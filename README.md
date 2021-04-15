@@ -45,6 +45,18 @@ openEuler OpenStack SIG致力于结合多样性算力为openstack社区贡献更
 - 邮件列表：openstack@openeuler.org，邮件订阅请在[页面](https://openeuler.org/zh/community/mailing-list/)中单击OpenStack链接。
 - Wechat讨论群，请联系Maintainer入群
 
+## 本项目目录结构
+
+```
+└── templet                                       "RPM打包规范"
+|   └── service-templet.spec                      "openstack服务及对应CLI打包规范"
+|   └── library-templet.spec                      "依赖库打包规范"
+|   └── architecture.md                           "RPM分包规则"
+└── tools                                         "openstack打包、依赖分析等工作"
+|   └── pyporter.py                               "python库的RPM spec和软件包生成工作"
+└── README.md                                     "SIG文档入口"
+```
+
 ## 项目清单
 
 ### 统一入口
