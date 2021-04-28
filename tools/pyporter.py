@@ -79,7 +79,7 @@ buildreq_tag_template = 'BuildRequires:\t{req}'
 
 
 # TODO List
-# 1. Need a reliable way to get description of module .. Partially done
+# 1. %description part in RPM spec file need be updated by hand sometimes. 
 # 2. requires_dist has some dependency restirction, need to present
 # 3. dependency outside python (i.e. pycurl depends on libcurl) doesn't exist in pipy
 
@@ -108,14 +108,15 @@ class PyPorter:
             self.__json = json.loads(u.read().decode('utf-8'))
         if self.__json is not None:
             self.__module_name = self.__json["info"]["name"]
-            self.__module_name = self.__module_name.replace(".", "-")
             self.__spec_name = "python-" + self.__module_name
+            self.__spec_name = self.__spec_name.replace(".", "-")
             if is_python2:
                 self.__is_python2 = True
                 self.__pkg_name = "python2-" + self.__module_name
             else:
                 self.__is_python2 = False
                 self.__pkg_name = "python3-" + self.__module_name
+            self.__pkg_name = self.__pkg_name.replace(".", "-")
             self.__build_noarch = self.__get_buildarch()
 
         if arch:
@@ -208,37 +209,13 @@ class PyPorter:
         if (self.__build_noarch == True):
             print("BuildArch:\tnoarch")
 
-    def get_description(self):
+    def print_description(self):
         """
-        return description.
-        Usually it's json["info"]["description"]
-        If it's rst style, then only use the content for the first paragraph, and remove all tag line.
-        For empty description, use summary instead.
+        print description to spec file
         """
-        desc = self.__json["info"]["description"].splitlines()
-        res = []
-        paragraph = 0
-        for d in desc:
-            if len(d.strip()) == 0:
-                continue
-            first_char = d.strip()[0]
-            ignore_line = False
-            if d.strip().startswith("===") or d.strip().startswith("---"):
-                paragraph = paragraph + 1
-                ignore_line = True
-            elif d.strip().startswith(":") or d.strip().startswith(".."):
-                ignore_line = True
-            if ignore_line != True and paragraph == 1:
-                res.append(d)
-            if paragraph >= 2:
-                del res[-1]
-                return "\n".join(res)
-        if res:
-            return "\n".join(res)
-        elif paragraph == 0:
-            return self.__json["info"]["description"]
-        else:
-            return self.__json["info"]["summary"]
+        descriptions = self.__json["info"]["description"].splitlines()
+        for line in descriptions:
+            print(line)
 
     def get_build_requires(self):
         req_list = []
@@ -248,13 +225,6 @@ class PyPorter:
                 br = refine_requires(rp, self.__is_python2)
                 if br == "":
                     continue
-                #
-                # Do not output BuildRequires: 
-                # just collect all build requires and using pip to install
-                # than can help to build all rpm withoud trap into 
-                # build dependency nightmare
-                #
-                # print(buildreq_tag_template.format(req=br))
                 name = str.lstrip(br).split(" ")
                 req_list.append(name[0])
         return req_list
@@ -493,36 +463,34 @@ def build_spec(porter, output):
     print(home_tag_template.format(pkg_home=porter.get_home()))
     print(source_tag_template.format(pkg_source=porter.get_source_url()))
     porter.get_buildarch()
-    print("")
-    porter.get_requires()
-    print("")
     print("%description")
-    print(porter.get_description())
+    porter.print_description()
     print("")
 
     print("%package -n {name}".format(name=porter.get_pkg_name()))
     print(summary_tag_template.format(pkg_sum=porter.get_summary()))
     print("Provides:\t" + porter.get_spec_name())
-
     porter.prepare_build_requires()
-
-    build_req_list = porter.get_build_requires()
-
+    porter.get_requires()
     print("%description -n " + porter.get_pkg_name())
-    print(porter.get_description())
+    porter.print_description()
     print("")
+
     print("%package help")
     print("Summary:\tDevelopment documents and examples for {name}".format(name=porter.get_module_name()))
     print("Provides:\t{name}-doc".format(name=porter.get_pkg_name()))
     print("%description help")
-    print(porter.get_description())
+    porter.print_description()
     print("")
+
     print("%prep")
     print("%autosetup -n {name}-{ver}".format(name=porter.get_module_name(), ver=porter.get_version()))
     print("")
+
     print("%build")
     porter.prepare_pkg_build()
     print("")
+
     print("%install")
     porter.prepare_pkg_install()
     print("install -d -m755 %{buildroot}/%{_pkgdocdir}")
@@ -551,14 +519,15 @@ def build_spec(porter, output):
     print("mv %{buildroot}/filelist.lst .")
     print("mv %{buildroot}/doclist.lst .")
     print("")
+
     print("%files -n {name} -f filelist.lst".format(name=porter.get_pkg_name()))
-
     porter.prepare_pkg_files()
-
     print("")
+
     print("%files help -f doclist.lst")
     print("%{_docdir}/*")
     print("")
+
     print("%changelog")
     date_str = datetime.date.today().strftime("%a %b %d %Y")
     print("* {today} Python_Bot <Python_Bot@openeuler.org>".format(today=date_str))
@@ -566,6 +535,7 @@ def build_spec(porter, output):
 
     sys.stdout = tmp
 
+    build_req_list = porter.get_build_requires()
     return build_req_list
 
 
