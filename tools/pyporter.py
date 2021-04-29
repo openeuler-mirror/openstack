@@ -78,7 +78,7 @@ source_tag_template = 'Source0:\t{pkg_source}'
 buildreq_tag_template = 'BuildRequires:\t{req}'
 
 
-# TODO List
+# TODO(OpenStack Sig)
 # 1. %description part in RPM spec file need be updated by hand sometimes. 
 # 2. requires_dist has some dependency restirction, need to present
 # 3. dependency outside python (i.e. pycurl depends on libcurl) doesn't exist in pipy
@@ -89,8 +89,11 @@ class PyPorter:
     __url_template_version = 'https://pypi.org/pypi/{pkg_name}/{pkg_version}/json'
     __build_noarch = True
     __json = None
+    # source code file name
     __module_name = ""
+    # spec file name
     __spec_name = ""
+    # rpm package name
     __pkg_name = ""
     __pkg_version = ""
     __is_python2 = False
@@ -108,27 +111,29 @@ class PyPorter:
             self.__json = json.loads(u.read().decode('utf-8'))
         if self.__json is not None:
             self.__module_name = self.__json["info"]["name"]
-            self.__spec_name = "python-" + self.__module_name
-            self.__spec_name = self.__spec_name.replace(".", "-")
-            if is_python2:
-                self.__is_python2 = True
-                self.__pkg_name = "python2-" + self.__module_name
-            else:
-                self.__is_python2 = False
-                self.__pkg_name = "python3-" + self.__module_name
-            self.__pkg_name = self.__pkg_name.replace(".", "-")
+            self.__is_python2 = True if is_python2 else False
             self.__build_noarch = self.__get_buildarch()
-
         if arch:
             self.__build_noarch = False
 
     def get_spec_name(self):
+        if not self.__spec_name:
+            self.__spec_name = self.__module_name.replace(".", "-")
+            if not self.__spec_name.startswith("python-"):
+                self.__spec_name = "python-" + self.__spec_name
         return self.__spec_name
 
     def get_module_name(self):
         return self.__module_name
 
     def get_pkg_name(self):
+        if not self.__pkg_name:
+            self.__pkg_name = self.__module_name.replace(".", "-")
+            prefix = "python2-" if self.__is_python2 else "python3-"
+            if not self.__module_name.startswith("python-"):
+                self.__pkg_name = prefix + self.__pkg_name
+            else:
+                self.__pkg_name = self.__pkg_name.replace("python-", prefix)
         return self.__pkg_name
 
     def get_version(self):
@@ -272,7 +277,7 @@ class PyPorter:
         """
         save json file
         """
-        fname = json_file_template.format(pkg_name=self.__pkg_name)
+        fname = json_file_template.format(pkg_name=self.get_pkg_name())
         json_file = os.path.join(spath, fname)
 
         # if file exist, do nothing 
@@ -306,9 +311,6 @@ def refine_requires(req, is_python2):
     return only requires without ';' (thus no extra)
     """
     ra = req.split(";", 1)
-    #
-    # Do not add requires which has ;, which is often has very complicated precondition
-    # TODO: need more parsing of the denpency after ;
     return transform_module_name(ra[0], is_python2)
 
 
@@ -341,7 +343,7 @@ def prepare_rpm_build_env(root):
     prepare environment for rpmbuild
     """
     if not os.path.exists(root):
-        print("Root path %s does not exist\n" & buildroot)
+        print("Root path %s does not exist\n" % root)
         return ""
 
     buildroot = os.path.join(root, "rpmbuild")
@@ -370,9 +372,6 @@ def try_pip_install_package(pkg):
     if ret != 0:
         print("%s can not be installed correctly, Fix it later, go ahead to do building..." % pip_name)
 
-    #
-    # TODO: try to build anyway, fix it later
-    #
     return True
 
 
@@ -385,12 +384,7 @@ def package_installed(pkg):
     return False
 
 
-def dependencies_ready(req_list):
-    """ 
-    TODO: do not need to do dependency check here, do it in pyporter_run
-    """
-    #    if (try_pip_install_package(req) == False):
-    #        return req
+def dependencies_ready():
     return ""
 
 
@@ -432,7 +426,7 @@ def build_rpm(porter, rootpath):
     specfile = os.path.join(buildroot, "SPECS", porter.get_spec_name() + ".spec")
 
     req_list = build_spec(porter, specfile)
-    ret = dependencies_ready(req_list)
+    ret = dependencies_ready()
     if ret != "":
         print("%s can not be installed automatically, Please handle it" % ret)
         return ret
@@ -530,7 +524,7 @@ def build_spec(porter, output):
 
     print("%changelog")
     date_str = datetime.date.today().strftime("%a %b %d %Y")
-    print("* {today} Python_Bot <Python_Bot@openeuler.org>".format(today=date_str))
+    print("* {today} OpenStack_SIG <openstack@openeuler.org>".format(today=date_str))
     print("- Package Spec generated")
 
     sys.stdout = tmp
@@ -539,14 +533,14 @@ def build_spec(porter, output):
     return build_req_list
 
 
-def do_args(root):
+def do_args(root_path):
     parser = argparse.ArgumentParser()
 
     parser.add_argument("-s", "--spec", help="Create spec file", action="store_true")
     parser.add_argument("-R", "--requires", help="Get required python modules", action="store_true")
     parser.add_argument("-b", "--build", help="Build rpm package", action="store_true")
     parser.add_argument("-B", "--buildinstall", help="Build&Install rpm package", action="store_true")
-    parser.add_argument("-r", "--rootpath", help="Build rpm package in root path", type=str, default=dft_root_path)
+    parser.add_argument("-r", "--rootpath", help="Build rpm package in root path", type=str, default=root_path)
     parser.add_argument("-d", "--download", help="Download source file indicated path", action="store_true")
     parser.add_argument("-p", "--path", help="indicated path to store files", type=str, default=os.getcwd())
     parser.add_argument("-j", "--json", help="Get Package JSON info", action="store_true")
@@ -571,33 +565,34 @@ if __name__ == "__main__":
 
     dft_root_path = os.path.join(str(Path.home()))
 
-    parser = do_args(dft_root_path)
+    my_parser = do_args(dft_root_path)
 
-    args = parser.parse_args()
+    args = my_parser.parse_args()
 
-    porter = porter_creator(args.type, args.arch, args.pkg, args.version, args.python2)
-    if porter is None:
+    my_porter = porter_creator(args.type, args.arch, args.pkg, args.version, args.python2)
+    if my_porter is None:
         print("Type %s is not supported now\n" % args.type)
         sys.exit(1)
 
     if args.requires:
-        req_list = porter.get_build_requires()
-        if req_list is not None:
-            for req in req_list:
-                print(req)
+        my_req_list = my_porter.get_build_requires()
+        if my_req_list is not None:
+            for my_req in my_req_list:
+                print(my_req)
     elif args.spec:
-        build_spec(porter, args.output)
+        build_spec(my_porter, args.output)
     elif args.build:
-        ret = build_rpm(porter, args.rootpath)
-        if ret != "":
-            print("build failed : BuildRequire : %s\n" % ret)
+        my_ret = build_rpm(my_porter, args.rootpath)
+        if my_ret != "":
+            print("build failed : BuildRequire : %s\n" % my_ret)
             sys.exit(1)
     elif args.buildinstall:
-        ret = build_install_rpm(porter, args.rootpath)
-        if ret != "":
+        my_ret = build_install_rpm(my_porter, args.rootpath)
+        if my_ret != "":
             print("Build & install failed\n")
             sys.exit(1)
     elif args.download:
-        download_source(porter, args.path)
+        download_source(my_porter, args.path)
     elif args.json:
-        porter.store_json(args.path)
+        my_porter.store_json(args.path)
+
