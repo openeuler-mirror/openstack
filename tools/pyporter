@@ -19,18 +19,31 @@ This is a packager bot for python modules from pypi.org
 # ******************************************************************************
 #
 # OpenStack SIG fork version
-# Update: 2021-04-23
+# forked from https://gitee.com/openeuler/pyporter
 # 
-# How to use:
-# 1. ./pyporter -d -s -o python-xxx.spec xxx
-#   download xxx package(newest version) from pypi and create RPM spec file named python-xxx.spec 
-# 2. ./pyporter -d -b xxx
-#   download xxx package(newest version) from pypi and build RPM package automaticly(python3 by default)
-# 3. ./pyporter -v 1.0.0 -d -s -o python-xxx.spec xxx
-#   download xxx package(version 1.0.0) from pypi and  create RPM spec file named python-xxx.spec 
-# 4. ./pyporter -v 1.0.0 -py2 -d -b xxx
-#   download xxx package(version 1.0.0) from pypi and build python2 RPM package automaticly
+# Update: 2021-04-30
 #
+# This tool need python3 support. And before use this tool, please install the required packages first:
+#     dnf install wget rpm-build gcc gdb libstdc++-devel python3-cffi
+#
+# How to use:
+# 1. ./pyporter -s -o python-xxx.spec xxx
+#   get xxx package(newest version) info from pypi and create RPM spec file named python-xxx.spec(python3 by default)
+# 2. ./pyporter -b xxx
+#   download xxx package(newest version) from pypi and build RPM package automaticly(python3 by default)
+# 3. ./pyporter -B xxx
+#   download xxx package(newest version) from pypi and build&install RPM package automaticly(python3 by default)
+# 4. ./pyporter -v 1.0.0 -s -o python-xxx.spec xxx
+#   download xxx package(version 1.0.0) from pypi and  create RPM spec file named python-xxx.spec(python3 by default)
+# 5. ./pyporter -v 1.0.0 -py2 -b xxx
+#   download xxx package(version 1.0.0) from pypi and build python2 RPM package automaticly
+# 6. ./pyporter -d xxx
+#   only download xxx package from pypi
+# 7. ./pyporter -R xxx
+#   only print the required RPM package name for xxx library
+# 8. ./pyporter -j xxx
+#   only fetch the json info of xxx library from pypi.
+
 # Supported parameter：
 #   "-s"   | "--spec"         | Create spec file
 #   "-R"   | "--requires"     | Get required python modules
@@ -41,29 +54,23 @@ This is a packager bot for python modules from pypi.org
 #   "-p"   | "--path"         | indicated path to store files
 #   "-j"   | "--json"         | Get Package JSON info
 #   "-o"   | "--output"       | Output to file
-#   "-t"   | "--type"         | Build module type : python, perl...
 #   "-a"   | "--arch"         | Build module with arch
 #   "-v"   | "--version"      | Package version
 #   "-py2" | "--python2"      | Build python2 package
 # ******************************************************************************
 
+import argparse
+import datetime
+import hashlib
+import json
+import os
+from os import path
+from pathlib import Path
+import platform
 import urllib
 import urllib.request
-from pprint import pprint
-from os import path
-import json
-import sys
-import re
-import datetime
-import argparse
 import subprocess
-import os
-import platform
-from pathlib import Path
-import hashlib
-
-# python3-wget is not default available on openEuler yet.
-# import wget  
+import sys
 
 
 json_file_template = '{pkg_name}.json'
@@ -106,7 +113,6 @@ class PyPorter:
             url = self.__url_template_version.format(pkg_name=pkg, pkg_version=version)
         else:
             url = self.__url_template_latest.format(pkg_name=pkg)
-        resp = ""
         with urllib.request.urlopen(url) as u:
             self.__json = json.loads(u.read().decode('utf-8'))
         if self.__json is not None:
@@ -384,10 +390,6 @@ def package_installed(pkg):
     return False
 
 
-def dependencies_ready():
-    return ""
-
-
 def build_package(specfile):
     """
     build rpm package with rpmbuild
@@ -424,12 +426,7 @@ def build_rpm(porter, rootpath):
         return False
 
     specfile = os.path.join(buildroot, "SPECS", porter.get_spec_name() + ".spec")
-
-    req_list = build_spec(porter, specfile)
-    ret = dependencies_ready()
-    if ret != "":
-        print("%s can not be installed automatically, Please handle it" % ret)
-        return ret
+    build_spec(porter, specfile)
 
     download_source(porter, os.path.join(buildroot, "SOURCES"))
 
@@ -545,7 +542,6 @@ def do_args(root_path):
     parser.add_argument("-p", "--path", help="indicated path to store files", type=str, default=os.getcwd())
     parser.add_argument("-j", "--json", help="Get Package JSON info", action="store_true")
     parser.add_argument("-o", "--output", help="Output to file", type=str, default="")
-    parser.add_argument("-t", "--type", help="Build module type : python, perl...", type=str, default="python")
     parser.add_argument("-a", "--arch", help="Build module with arch", action="store_true")
     parser.add_argument("-v", "--version", help="Package version", type=str, default="")
     parser.add_argument("-py2", "--python2", help="Build python2 package", action="store_true")
@@ -554,25 +550,12 @@ def do_args(root_path):
     return parser
 
 
-def porter_creator(t_str, arch, pkg, version, is_python2):
-    if t_str == "python":
-        return PyPorter(arch, pkg, version, is_python2)
-
-    return None
-
-
 if __name__ == "__main__":
-
     dft_root_path = os.path.join(str(Path.home()))
-
     my_parser = do_args(dft_root_path)
-
     args = my_parser.parse_args()
 
-    my_porter = porter_creator(args.type, args.arch, args.pkg, args.version, args.python2)
-    if my_porter is None:
-        print("Type %s is not supported now\n" % args.type)
-        sys.exit(1)
+    my_porter = PyPorter(args.arch, args.pkg, args.version, args.python2)
 
     if args.requires:
         my_req_list = my_porter.get_build_requires()
