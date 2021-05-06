@@ -53,6 +53,7 @@ Meeting agenda and summary: <https://etherpad.openeuler.org/p/sig-openstack-meet
 |   └── architecture.md                           "RPM subcontracting rules"
 └── tools                                         "openstack packaging, dependency analysis, etc"
 |   └── pyporter                                  "Python library RPM spec and package generation work"
+|   └── fetch_dep                                 "The dependence analysis tool for OpenStack service"
 └── README.md                                     "SIG Document Entry(Chinese)"
 └── README.en.md                                  "SIG Document Entry(English)"
 ```

@@ -54,6 +54,7 @@ openEuler OpenStack SIG致力于结合多样性算力为openstack社区贡献更
 |   └── architecture.md                           "RPM分包规则"
 └── tools                                         "openstack打包、依赖分析等工作"
 |   └── pyporter                                  "python库的RPM spec和软件包生成工作"
+|   └── fetch_dep                                 "OpenStack服务依赖库分析工具"
 └── README.md                                     "SIG文档入口(中文版)"
 └── README.en.md                                  "SIG文档入口(英文版)"
 ```
