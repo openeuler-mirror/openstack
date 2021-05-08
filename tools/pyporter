@@ -91,6 +91,8 @@ LICENSE_MAPPING = {
     "django-compressor": "Apache-2.0, MIT",
     "django-pyscss": "BSD",
     "jsonpath-rw-ext": "Apache-2.0",
+    # This package is MIT in source code. But it shows "Apache" in pypi.
+    "sqlalchemy-migrate": "MIT",
     "testresources": "Apache-2.0",
     "XStatic-Angular-FileUpload": "MIT",
     "XStatic-Angular-lrdragndrop": "MIT",
