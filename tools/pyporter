@@ -21,7 +21,7 @@ This is a packager bot for python modules from pypi.org
 # OpenStack SIG fork version
 # forked from https://gitee.com/openeuler/pyporter
 # 
-# Update: 2021-04-30
+# Update: 2021-05-07
 #
 # This tool need python3 support. And before use this tool, please install the required packages first:
 #     dnf install wget rpm-build gcc gdb libstdc++-devel python3-cffi
@@ -85,12 +85,35 @@ source_tag_template = 'Source0:\t{pkg_source}'
 buildreq_tag_template = 'BuildRequires:\t{req}'
 
 
+# TODO: This mapping is a trick way to fix the unstable package. It may be chagned usually.
+#       Feel free to revisit and update the content if needed.
+LICENSE_MAPPING = {
+    "django-compressor": "Apache-2.0, MIT",
+    "django-pyscss": "BSD",
+    "jsonpath-rw-ext": "Apache-2.0",
+    "testresources": "Apache-2.0",
+    "XStatic-Angular-FileUpload": "MIT",
+    "XStatic-Angular-lrdragndrop": "MIT",
+    "XStatic-Bootstrap-Datepicker": "Apache-2.0",
+    "XStatic-Hogan": "Apache-2.0",
+    "XStatic-Jasmine": "MIT",
+    "XStatic-jQuery": "MIT",
+    "XStatic-JQuery-Migrate": "MIT",
+    "XStatic-jquery-ui": "MIT",
+    "XStatic-JQuery.quicksearch": "MIT",
+    "XStatic-JQuery.TableSorter": "MIT",
+    "XStatic-mdi": "SIL OFL 1.1",
+    "XStatic-Rickshaw": "MIT",
+    "XStatic-smart-table": "MIT",
+    "XStatic-Spin": "MIT",
+    "XStatic-term.js": "MIT",
+    "XStatic-tv4": "Public Domain",
+}
+
+
 # TODO(OpenStack Sig)
-# 1. %description part in RPM spec file need be updated by hand sometimes. 
-# 2. requires_dist has some dependency restirction, need to present
-# 3. dependency outside python (i.e. pycurl depends on libcurl) doesn't exist in pipy
-
-
+# 1. requires_dist has some dependency restirction, need to present
+# 2. dependency outside python (i.e. pycurl depends on libcurl) doesn't exist in pipy
 class PyPorter:
     __url_template_latest = 'https://pypi.org/pypi/{pkg_name}/json'
     __url_template_version = 'https://pypi.org/pypi/{pkg_name}/{pkg_version}/json'
@@ -157,13 +180,27 @@ class PyPorter:
         in rare cases it doesn't work.
         We fall back to json["info"]["classifiers"], it looks like License :: OSI Approved :: BSD Clause
         """
-        if self.__json["info"]["license"] != "":
-            return self.__json["info"]["license"]
-        for k in self.__json["info"]["classifiers"]:
-            if k.startswith("License"):
-                ks = k.split("::")
-                return ks[2].strip()
-        return ""
+
+        if LICENSE_MAPPING.get(self.__module_name):
+            return LICENSE_MAPPING[self.__module_name]
+        origin_license = ""
+        if self.__json["info"]["license"] != "" or self.__json["info"]["license"] != "UNKNOWN":
+            origin_license = self.__json["info"]["license"]
+        else:
+            for k in self.__json["info"]["classifiers"]:
+                if k.startswith("License"):
+                    ks = k.split("::")
+                    origin_license = ks[2].strip()
+                    break
+        # openEuler CI is a little stiff. It hard-codes the License name.
+        # We change the format here to satisfy openEuler CI's requirement. 
+        if "Apache" in origin_license:
+            return "Apache-2.0"
+        if "BSD" in origin_license:
+            return "BSD"
+        if "MIT" in origin_license:
+            return "MIT"
+        return origin_license
 
     def get_source_info(self):
         """
