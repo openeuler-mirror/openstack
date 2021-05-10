@@ -71,6 +71,8 @@ import urllib
 import urllib.request
 import subprocess
 import sys
+import re
+import textwrap
 
 
 json_file_template = '{pkg_name}.json'
@@ -130,7 +132,7 @@ class PyPorter:
     __pkg_version = ""
     __is_python2 = False
 
-    def __init__(self, arch, pkg, version, is_python2):
+    def __init__(self, arch, pkg, version, is_python2, shorten_description=False):
         """
         receive json from pypi.org
         """
@@ -144,6 +146,7 @@ class PyPorter:
             self.__module_name = self.__json["info"]["name"]
             self.__is_python2 = True if is_python2 else False
             self.__build_noarch = self.__get_buildarch()
+            self._shorten_description = shorten_description
         if arch:
             self.__build_noarch = False
 
@@ -252,6 +255,32 @@ class PyPorter:
                     return False
         return True
 
+    def _clear_description(self, description):
+        """
+        Properly shorten long description
+        """
+        cut_dot = description.find('.', 80 * 8)
+        cut_br = description.find('\n', 80 * 8)
+        if cut_dot >= -1:
+            shorted = description[:cut_dot + 1]
+        elif cut_br:
+            shorted = description[:cut_br]
+        else:
+            shorted = description
+        spec_description = re.sub(
+            r'\s+', ' ',  # multiple whitespaces \
+            # general URLs
+            re.sub(r'\w+:\/{2}[\d\w-]+(\.[\d\w-]+)*(?:(?:\/[^\s/]*))*', '',
+                   # delimiters
+                   re.sub('(#|=|---|~|`_|-\s|\*\s|`)*', '',
+                          # very short lines, typically titles
+                          re.sub('((\r?\n)|^).{0,8}((\r?\n)|$)', '',
+                                 # PyPI's version and downloads tags
+                                 re.sub(
+                                     '((\r*.. image::|:target:) https?|(:align:|:alt:))[^\n]*\n', '',
+                                     shorted)))))
+        return '\n'.join(textwrap.wrap(spec_description, 80))
+
     def is_build_noarch(self):
         return self.__build_noarch
 
@@ -263,9 +292,13 @@ class PyPorter:
         """
         print description to spec file
         """
-        descriptions = self.__json["info"]["description"].splitlines()
-        for line in descriptions:
-            print(line)
+        if self._shorten_description:
+            description = self._clear_description(self.__json["info"]["description"])
+            print(description)
+        else:
+            descriptions = self.__json["info"]["description"].splitlines()
+            for line in descriptions:
+                print(line)
 
     def get_build_requires(self):
         req_list = []
@@ -584,6 +617,7 @@ def do_args(root_path):
     parser.add_argument("-a", "--arch", help="Build module with arch", action="store_true")
     parser.add_argument("-v", "--version", help="Package version", type=str, default="")
     parser.add_argument("-py2", "--python2", help="Build python2 package", action="store_true")
+    parser.add_argument("-sd", "--shorten-description", help="shorten description", action="store_true")
     parser.add_argument("pkg", type=str, help="The Python Module Name")
 
     return parser
@@ -594,7 +628,7 @@ if __name__ == "__main__":
     my_parser = do_args(dft_root_path)
     args = my_parser.parse_args()
 
-    my_porter = PyPorter(args.arch, args.pkg, args.version, args.python2)
+    my_porter = PyPorter(args.arch, args.pkg, args.version, args.python2, args.shorten_description)
 
     if args.requires:
         my_req_list = my_porter.get_build_requires()
