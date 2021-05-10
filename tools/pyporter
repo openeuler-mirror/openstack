@@ -21,7 +21,7 @@ This is a packager bot for python modules from pypi.org
 # OpenStack SIG fork version
 # forked from https://gitee.com/openeuler/pyporter
 # 
-# Update: 2021-05-07
+# Update: 2021-05-10
 #
 # This tool need python3 support. And before use this tool, please install the required packages first:
 #     dnf install wget rpm-build gcc gdb libstdc++-devel python3-cffi
@@ -170,6 +170,12 @@ class PyPorter:
                 self.__pkg_name = self.__pkg_name.replace("python-", prefix)
         return self.__pkg_name
 
+    def get_provide_name(self):
+        if self.__is_python2:
+            return self.get_pkg_name()
+        else:
+            return self.get_spec_name()
+
     def get_version(self):
         return self.__json["info"]["version"]
 
@@ -189,7 +195,7 @@ class PyPorter:
         if LICENSE_MAPPING.get(self.__module_name):
             return LICENSE_MAPPING[self.__module_name]
         origin_license = ""
-        if self.__json["info"]["license"] != "" or self.__json["info"]["license"] != "UNKNOWN":
+        if self.__json["info"]["license"] != "" and self.__json["info"]["license"] != "UNKNOWN":
             origin_license = self.__json["info"]["license"]
         else:
             for k in self.__json["info"]["classifiers"]:
@@ -532,7 +538,7 @@ def build_spec(porter, output):
 
     print("%package -n {name}".format(name=porter.get_pkg_name()))
     print(summary_tag_template.format(pkg_sum=porter.get_summary()))
-    print("Provides:\t" + porter.get_spec_name())
+    print("Provides:\t" + porter.get_provide_name())
     porter.prepare_build_requires()
     porter.get_requires()
     print("%description -n " + porter.get_pkg_name())
