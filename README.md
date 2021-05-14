@@ -25,20 +25,16 @@ openEuler OpenStack SIG致力于结合多样性算力为openstack社区贡献更
 
 ### Maintainer列表
 
-- 陈硕[@joec88](https://gitee.com/joec88)
-- 李昆山[@liksh](https://gitee.com/liksh)
+- 陈硕[@joec88](https://gitee.com/joec88) chens141@chinaunicom.cn
+- 李昆山[@liksh](https://gitee.com/liksh) liks11@chinaunicom.cn
 - 黄填华[@huangtianhua](https://gitee.com/huangtianhua) huangtianhua223@gmail.com
 - 王玺源[@xiyuanwang](https://gitee.com/xiyuanwang) wangxiyuan1007@gmail.com
+- 张帆[@zh-f](https://gitee.com/zh-f) zh.f@outlook.com
+- 张迎[@zhangy1317](https://gitee.com/zhangy1317) zhangy1317@chinaunicom.cn
 
 ### Committer列表
 
-- 陈硕[@joec88](https://gitee.com/joec88)
-- 李昆山[@liksh](https://gitee.com/liksh)
-- 高松[@the-moon-is-blue](https://gitee.com/the-moon-is-blue)
-- 张迎[@zhangy1317](https://gitee.com/zhangy1317)
-- 黄填华[@huangtianhua](https://gitee.com/huangtianhua)
-- 王玺源[@xiyuanwang](https://gitee.com/xiyuanwang)
-- 请依次添加
+- 刘胜[@sean-lau](https://gitee.com/sean-lau) liusheng2048@gmail.com
 
 ### 联系方式
 
@@ -93,11 +89,15 @@ OpenStack包含项目众多，为了方便管理，设置了统一入口项目�
 - <https://gitee.com/src-openeuler/python-castellan>
 - <https://gitee.com/src-openeuler/python-cinderclient>
 - <https://gitee.com/src-openeuler/python-cliff>
+- <https://gitee.com/src-openeuler/python-consul>
 - <https://gitee.com/src-openeuler/python-cursive>
 - <https://gitee.com/src-openeuler/python-debtcollector>
 - <https://gitee.com/src-openeuler/python-designateclient>
+- <https://gitee.com/src-openeuler/python-doc8>
 - <https://gitee.com/src-openeuler/python-dracclient>
+- <https://gitee.com/src-openeuler/python-etcd3>
 - <https://gitee.com/src-openeuler/python-etcd3gw>
+- <https://gitee.com/src-openeuler/python-flake8-docstrings>
 - <https://gitee.com/src-openeuler/python-futurist>
 - <https://gitee.com/src-openeuler/python-glanceclient>
 - <https://gitee.com/src-openeuler/python-glance-store>
@@ -106,11 +106,14 @@ OpenStack包含项目众多，为了方便管理，设置了统一入口项目�
 - <https://gitee.com/src-openeuler/python-ironicclient>
 - <https://gitee.com/src-openeuler/python-ironic-inspector-client>
 - <https://gitee.com/src-openeuler/python-ironic-lib>
+- <https://gitee.com/src-openeuler/python-kafka>
+- <https://gitee.com/src-openeuler/python-kazoo>
 - <https://gitee.com/src-openeuler/python-keystoneauth1>
 - <https://gitee.com/src-openeuler/python-keystoneclient>
 - <https://gitee.com/src-openeuler/python-keystonemiddleware>
 - <https://gitee.com/src-openeuler/python-ldappool>
 - <https://gitee.com/src-openeuler/python-microversion-parse>
+- <https://gitee.com/src-openeuler/python-mox3>
 - <https://gitee.com/src-openeuler/python-netmiko>
 - <https://gitee.com/src-openeuler/python-neutronclient>
 - <https://gitee.com/src-openeuler/python-neutron-lib>
@@ -153,22 +156,35 @@ OpenStack包含项目众多，为了方便管理，设置了统一入口项目�
 - <https://gitee.com/src-openeuler/python-os-win>
 - <https://gitee.com/src-openeuler/python-os-xenapi>
 - <https://gitee.com/src-openeuler/python-ovsdbapp>
+- <https://gitee.com/src-openeuler/python-pep257>
+- <https://gitee.com/src-openeuler/python-pep8>
+- <https://gitee.com/src-openeuler/python-pifpaf>
+- <https://gitee.com/src-openeuler/python-pika>
 - <https://gitee.com/src-openeuler/python-proliantutils>
 - <https://gitee.com/src-openeuler/python-pycadf>
+- <https://gitee.com/src-openeuler/python-pydotplus>
 - <https://gitee.com/src-openeuler/python-pyghmi>
+- <https://gitee.com/src-openeuler/python-PyMI>
+- <https://gitee.com/src-openeuler/python-restructuredtext-lint>
 - <https://gitee.com/src-openeuler/python-reno>
 - <https://gitee.com/src-openeuler/python-requestsexceptions>
 - <https://gitee.com/src-openeuler/python-requests-mock>
+- <https://gitee.com/src-openeuler/python-rtslib-fb>
+- <https://gitee.com/src-openeuler/python-ryu>
 - <https://gitee.com/src-openeuler/python-scciclient>
 - <https://gitee.com/src-openeuler/python-sqlalchemy-migrate>
 - <https://gitee.com/src-openeuler/python-stestr>
 - <https://gitee.com/src-openeuler/python-stevedore>
+- <https://gitee.com/src-openeuler/python-suds-jurko>
 - <https://gitee.com/src-openeuler/python-sushy>
 - <https://gitee.com/src-openeuler/python-swiftclient>
+- <https://gitee.com/src-openeuler/python-sysv-ipc>
 - <https://gitee.com/src-openeuler/python-taskflow>
 - <https://gitee.com/src-openeuler/python-textfsm>
 - <https://gitee.com/src-openeuler/python-tooz>
+- <https://gitee.com/src-openeuler/python-weakrefmethod>
 - <https://gitee.com/src-openeuler/python-websockify>
+- <https://gitee.com/src-openeuler/python-wmi>
 - <https://gitee.com/src-openeuler/python-wsme>
 - <https://gitee.com/src-openeuler/python-XStatic-Angular>
 - <https://gitee.com/src-openeuler/python-XStatic-Angular-Bootstrap>
@@ -197,3 +213,4 @@ OpenStack包含项目众多，为了方便管理，设置了统一入口项目�
 - <https://gitee.com/src-openeuler/python-XStatic-Spin>
 - <https://gitee.com/src-openeuler/python-XStatic-term.js>
 - <https://gitee.com/src-openeuler/python-XStatic-tv4>
+- <https://gitee.com/src-openeuler/python-zake>
