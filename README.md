@@ -91,6 +91,7 @@ OpenStack包含项目众多，为了方便管理，设置了统一入口项目�
 - <https://gitee.com/src-openeuler/openstack-placement>
 - <https://gitee.com/src-openeuler/openstack-swift>
 - <https://gitee.com/src-openeuler/openstack-tempest>
+- <https://gitee.com/src-openeuler/openstack-trove>
 - <https://gitee.com/src-openeuler/python-automaton>
 - <https://gitee.com/src-openeuler/python-barbicanclient>
 - <https://gitee.com/src-openeuler/python-castellan>

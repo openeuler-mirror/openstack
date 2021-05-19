@@ -91,6 +91,7 @@ OpenStack contains many projects. In order to facilitate management, a unified e
 - <https://gitee.com/src-openeuler/openstack-placement>
 - <https://gitee.com/src-openeuler/openstack-swift>
 - <https://gitee.com/src-openeuler/openstack-tempest>
+- <https://gitee.com/src-openeuler/openstack-trove>
 - <https://gitee.com/src-openeuler/python-automaton>
 - <https://gitee.com/src-openeuler/python-barbicanclient>
 - <https://gitee.com/src-openeuler/python-castellan>
