@@ -85,6 +85,8 @@ OpenStack contains many projects. In order to facilitate management, a unified e
 - <https://gitee.com/src-openeuler/openstack-ironic-python-agent-builder>
 - <https://gitee.com/src-openeuler/openstack-ironic-staging-drivers>
 - <https://gitee.com/src-openeuler/openstack-keystone>
+- <https://gitee.com/src-openeuler/openstack-kolla>
+- <https://gitee.com/src-openeuler/openstack-kolla-ansible>
 - <https://gitee.com/src-openeuler/openstack-macros>
 - <https://gitee.com/src-openeuler/openstack-neutron>
 - <https://gitee.com/src-openeuler/openstack-nova>

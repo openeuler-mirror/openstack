@@ -85,6 +85,8 @@ OpenStack包含项目众多，为了方便管理，设置了统一入口项目�
 - <https://gitee.com/src-openeuler/openstack-ironic-python-agent-builder>
 - <https://gitee.com/src-openeuler/openstack-ironic-staging-drivers>
 - <https://gitee.com/src-openeuler/openstack-keystone>
+- <https://gitee.com/src-openeuler/openstack-kolla>
+- <https://gitee.com/src-openeuler/openstack-kolla-ansible>
 - <https://gitee.com/src-openeuler/openstack-macros>
 - <https://gitee.com/src-openeuler/openstack-neutron>
 - <https://gitee.com/src-openeuler/openstack-nova>
