@@ -57,6 +57,7 @@ Meeting agenda and summary: <https://etherpad.openeuler.org/p/sig-openstack-meet
 |   |   └── projects.csv                          "Projects list to be handle by this tool in csv format"
 |   |   └── README.rst                            "README for introducing this tool"
 |   └── pyporter                                  "Python library RPM spec and package generation work"
+|   └── fetch_dep                                 "The dependence analysis tool for OpenStack service"
 └── README.md                                     "SIG Document Entry(Chinese)"
 └── README.en.md                                  "SIG Document Entry(English)"
 ```

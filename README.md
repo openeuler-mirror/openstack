@@ -57,6 +57,7 @@ openEuler OpenStack SIG致力于结合多样性算力为openstack社区贡献更
 |   |   └── projects.csv                          "该工具输入要处理的项目列表，csv格式"
 |   |   └── README.rst                            "介绍该工具的README"
 |   └── pyporter                                  "python库的RPM spec和软件包生成工作"
+|   └── fetch_dep                                 "OpenStack服务依赖库分析工具"
 └── README.md                                     "SIG文档入口(中文版)"
 └── README.en.md                                  "SIG文档入口(英文版)"
 ```
