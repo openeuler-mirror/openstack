@@ -183,7 +183,11 @@ class PyPorter:
         return self.__json["info"]["summary"]
 
     def get_home(self):
-        return self.__json["info"]["project_urls"]["Homepage"]
+        if self.__json["info"]["project_urls"]:
+            return self.__json["info"]["project_urls"]["Homepage"]
+        elif self.__json["info"]["project_url"]:
+            return self.__json["info"]["project_url"]
+        return self.__json["info"]["package_url"]
 
     def get_license(self):
         """
@@ -653,8 +657,8 @@ if __name__ == "__main__":
         if my_ret != "":
             print("Build & install failed\n")
             sys.exit(1)
-    elif args.download:
+    if args.download:
         download_source(my_porter, args.path)
-    elif args.json:
+    if args.json:
         my_porter.store_json(args.path)
 
