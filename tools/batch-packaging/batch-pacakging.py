@@ -11,8 +11,8 @@ import requests
 
 def _prepare_dir(src_dir):
     logging.debug("Prepare source repos dir: %s", src_dir)
-    src_dir_cmd = "[[ -d %(src_dir)s ]] && rm -fr %(src_dir)s; mkdir %(src_dir)s" % {"src_dir": src_dir}
-    subprocess.call(src_dir_cmd, shell=True)
+    if not os.path.exists(src_dir):
+        os.makedirs(src_dir)
 
 
 def _check_deps(pypi_name, version, all_pkg_names=None):
