@@ -21,7 +21,7 @@ This is a packager bot for python modules from pypi.org
 # OpenStack SIG fork version
 # forked from https://gitee.com/openeuler/pyporter
 # 
-# Update: 2021-05-10
+# Update: 2021-06-01
 #
 # This tool need python3 support. And before use this tool, please install the required packages first:
 #     dnf install wget rpm-build gcc gdb libstdc++-devel python3-cffi
@@ -326,9 +326,11 @@ class PyPorter:
         if self.__is_python2:
             print(buildreq_tag_template.format(req='python2-devel'))
             print(buildreq_tag_template.format(req='python2-setuptools'))
+            print(buildreq_tag_template.format(req='python2-pbr'))
         else:
             print(buildreq_tag_template.format(req='python3-devel'))
             print(buildreq_tag_template.format(req='python3-setuptools'))
+            print(buildreq_tag_template.format(req='python3-pbr'))
         if not self.__build_noarch:
             if self.__is_python2:
                 print(buildreq_tag_template.format(req='python2-cffi'))
