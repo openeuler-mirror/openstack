@@ -72,6 +72,7 @@ OpenStack contains many projects. In order to facilitate management, a unified e
 
 ### Sub-items (in alphabetical order)
 
+- <https://gitee.com/src-openeuler/crudini>
 - <https://gitee.com/src-openeuler/dibbler>
 - <https://gitee.com/src-openeuler/diskimage-builder>
 - <https://gitee.com/src-openeuler/networking-baremetal>
@@ -167,6 +168,7 @@ OpenStack contains many projects. In order to facilitate management, a unified e
 - <https://gitee.com/src-openeuler/python-os-win>
 - <https://gitee.com/src-openeuler/python-os-xenapi>
 - <https://gitee.com/src-openeuler/python-ovsdbapp>
+- <https://gitee.com/src-openeuler/python-pathlib>
 - <https://gitee.com/src-openeuler/python-pep257>
 - <https://gitee.com/src-openeuler/python-pep8>
 - <https://gitee.com/src-openeuler/python-pifpaf>

@@ -72,6 +72,7 @@ OpenStack包含项目众多，为了方便管理，设置了统一入口项目�
 
 ### 子项目（按字母顺序）
 
+- <https://gitee.com/src-openeuler/crudini>
 - <https://gitee.com/src-openeuler/dibbler>
 - <https://gitee.com/src-openeuler/diskimage-builder>
 - <https://gitee.com/src-openeuler/networking-baremetal>
@@ -167,6 +168,7 @@ OpenStack包含项目众多，为了方便管理，设置了统一入口项目�
 - <https://gitee.com/src-openeuler/python-os-win>
 - <https://gitee.com/src-openeuler/python-os-xenapi>
 - <https://gitee.com/src-openeuler/python-ovsdbapp>
+- <https://gitee.com/src-openeuler/python-pathlib>
 - <https://gitee.com/src-openeuler/python-pep257>
 - <https://gitee.com/src-openeuler/python-pep8>
 - <https://gitee.com/src-openeuler/python-pifpaf>
