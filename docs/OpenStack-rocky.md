@@ -25,7 +25,7 @@ openEuler 20.03-LTS-SP2 版本的官方 yum 源已经支持 Openstack-Rocky 版�
 1. 执行如下命令，安装软件包。
 
     ```plain
-    # yum install mariadb mariadb-server python-PyMySQL
+    # yum install mariadb mariadb-server python2-PyMySQL
     ```
 2. 执行如下命令，创建并编辑 `/etc/my.cnf.d/openstack.cnf` 文件。
     ```
@@ -81,7 +81,7 @@ openEuler 20.03-LTS-SP2 版本的官方 yum 源已经支持 Openstack-Rocky 版�
 1. 执行如下命令，安装依赖软件包。
 
     ```
-    #yum install memcached python3-memcached
+    #yum install memcached python2-memcached
     ```
 2. 执行如下命令，编辑 `/etc/sysconfig/memcached` 文件。
 
@@ -394,105 +394,6 @@ openEuler 20.03-LTS-SP2 版本的官方 yum 源已经支持 Openstack-Rocky 版�
     ```
     $ glance image-list
     ```
-### Placement安装
-
-1. 创建数据库、服务凭证和 API 端点
-
-    创建数据库：
-
-    作为 root 用户访问数据库，创建 placement 数据库并授权。
-
-    ```
-    $ mysql -u root -p
-    MariaDB [(none)]> CREATE DATABASE placement;
-    MariaDB [(none)]> GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'localhost' \
-    IDENTIFIED BY 'PLACEMENT_DBPASS';
-    MariaDB [(none)]> GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'%' \
-    IDENTIFIED BY 'PLACEMENT_DBPASS';
-    MariaDB [(none)]> exit
-    ```
-    替换 PLACEMENT_DBPASS，为 placement 数据库设置密码
-
-    ```
-    $ source admin-openrc
-    ```
-    执行如下命令，创建 placement 服务凭证、创建 placement 用户以及添加‘admin’角色到用户‘placement’。
-
-    创建Placement API服务
-
-    ```
-    $ openstack user create --domain default --password-prompt placement
-    $ openstack role add --project service --user placement admin
-    $ openstack service create --name placement --description "Placement API" placement
-    ```
-    创建placement服务API端点：
-
-    ```
-    $ openstack endpoint create --region RegionOne placement public http://controller:8778
-    $ openstack endpoint create --region RegionOne placement internal http://controller:8778
-    $ openstack endpoint create --region RegionOne placement admin http://controller:8778
-    ```
-2. 安装和配置
-
-    安装软件包：
-
-    ```
-    yum install openstack-placement-api
-    ```
-    配置placement：
-
-    编辑 /etc/placement/placement.conf 文件：
-
-    在[placement_database]部分，配置数据库入口
-
-    在[api] [keystone_authtoken]部分，配置身份认证服务入口
-
-    ```
-    # vim /etc/placement/placement.conf
-    [placement_database]
-    # ...
-    connection = mysql+pymysql://placement:PLACEMENT_DBPASS@controller/placement
-    [api]
-    # ...
-    auth_strategy = keystone
-    [keystone_authtoken]
-    # ...
-    auth_url = http://controller:5000/v3
-    memcached_servers = controller:11211
-    auth_type = password
-    project_domain_name = Default
-    user_domain_name = Default
-    project_name = service
-    username = placement
-    password = PLACEMENT_PASS
-    ```
-    其中，替换 PLACEMENT_DBPASS 为 placement 数据库的密码，替换 PLACEMENT_PASS 为 placement 用户的密码。
-
-    同步数据库：
-
-    ```
-    #su -s /bin/sh -c "placement-manage db sync" placement
-    ```
-    启动httpd服务：
-
-    ```
-    #systemctl restart httpd
-    ```
-3. 验证
-
-    执行如下命令，执行状态检查：
-    ```
-    $ . admin-openrc
-    $ placement-status upgrade check
-    ```
-
-    安装osc-placement，列出可用的资源类别及特性：
-
-    ```
-    $ yum install python3-osc-placement
-    $ openstack --os-placement-api-version 1.2 resource class list --sort-column name
-    $ openstack --os-placement-api-version 1.6 trait list --sort-column name
-    ```
 ### Nova 安装
 
 1. 创建数据库、服务凭证和 API 端点
@@ -506,6 +407,8 @@ openEuler 20.03-LTS-SP2 版本的官方 yum 源已经支持 Openstack-Rocky 版�
     MariaDB [(none)]> CREATE DATABASE nova_api;
     MariaDB [(none)]> CREATE DATABASE nova;
     MariaDB [(none)]> CREATE DATABASE nova_cell0;
+    MariaDB [(none)]> CREATE DATABASE placement;
+
     MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'localhost' \
     IDENTIFIED BY 'NOVA_DBPASS';
     MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'%' \
@@ -518,9 +421,13 @@ openEuler 20.03-LTS-SP2 版本的官方 yum 源已经支持 Openstack-Rocky 版�
     IDENTIFIED BY 'NOVA_DBPASS';
     MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_cell0.* TO 'nova'@'%' \
     IDENTIFIED BY 'NOVA_DBPASS';
+    MariaDB [(none)]> GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'localhost' \
+    IDENTIFIED BY 'PLACEMENT_DBPASS';
+    MariaDB [(none)]> GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'%' \
+    IDENTIFIED BY 'PLACEMENT_DBPASS';
     MariaDB [(none)]> exit
     ```
-    替换NOVA_DBPASS，为nova数据库设置密码
+    替换NOVA_DBPASS及PLACEMENT_DBPASS，为nova及placement数据库设置密码
 
     执行如下命令，完成创建nova服务凭证、创建nova用户以及添加‘admin’角色到用户‘nova’。
 
@@ -538,21 +445,35 @@ openEuler 20.03-LTS-SP2 版本的官方 yum 源已经支持 Openstack-Rocky 版�
     $ openstack endpoint create --region RegionOne compute internal http://controller:8774/v2.1
     $ openstack endpoint create --region RegionOne compute admin http://controller:8774/v2.1
     ```
-
+    
+    创建placement用户并添加‘admin’角色到用户‘placement’：
+    ```
+    $ openstack user create --domain default --password-prompt placement
+    $ openstack role add --project service --user placement admin
+    ```
+    
+    创建placement服务凭证及API服务端点：
+    ```
+    $ openstack service create --name placement --description "Placement API" placement
+    $ openstack endpoint create --region RegionOne placement public http://controller:8778
+    $ openstack endpoint create --region RegionOne placement internal http://controller:8778
+    $ openstack endpoint create --region RegionOne placement admin http://controller:8778
+    ```
 2. 安装和配置
 
     安装软件包：
 
     ```
     # yum install openstack-nova-api openstack-nova-conductor \
-    openstack-nova-novncproxy openstack-nova-scheduler openstack-nova-compute
+    openstack-nova-novncproxy openstack-nova-scheduler openstack-nova-compute \
+    openstack-nova-placement-api openstack-nova-console
     ```
 
     配置nova：
 
     编辑 /etc/nova/nova.conf 文件：
 
-    在[default]部分，启用计算和元数据的API，配置RabbitMQ消息队列入口，配置my_ip；
+    在[default]部分，启用计算和元数据的API，配置RabbitMQ消息队列入口，配置my_ip，启用网络服务neutron；
 
     在[api_database] [database]部分，配置数据库入口；
 
@@ -573,12 +494,17 @@ openEuler 20.03-LTS-SP2 版本的官方 yum 源已经支持 Openstack-Rocky 版�
     enabled_apis = osapi_compute,metadata
     transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
     my_ip = 10.0.0.11
+    use_neutron = true
+    firewall_driver = nova.virt.firewall.NoopFirewallDriver
     [api_database]
     # ...
     connection = mysql+pymysql://nova:NOVA_DBPASS@controller/nova_api
     [database]
     # ...
     connection = mysql+pymysql://nova:NOVA_DBPASS@controller/nova
+    [placement_database]
+    # ...
+    connection = mysql+pymysql://placement:PLACEMENT_DBPASS@controller/placement
     [api]
     # ...
     auth_strategy = keystone
@@ -632,6 +558,8 @@ openEuler 20.03-LTS-SP2 版本的官方 yum 源已经支持 Openstack-Rocky 版�
     配置my_ip为控制节点的管理IP地址；
 
     替换NOVA_DBPASS为nova数据库的密码；
+    
+    替换PLACEMENT_DBPASS为placement数据库的密码；
 
     替换NOVA_PASS为nova用户的密码；
 
