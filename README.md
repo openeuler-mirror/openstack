@@ -44,6 +44,12 @@ openEuler OpenStack SIG致力于结合多样性算力为openstack社区贡献更
 ## 本项目目录结构
 
 ```none
+└── docs                                          "安装、测试文档"
+|   └── install                                   "安装文档目录"
+|   |   └── OpenStack-Queens.md                   "OpenStack Queens安装文档"
+|   |   └── OpenStack-Rocky.md                    "OpenStack Rocky安装文档"
+|   └── test                                      "测试文档目录"
+|   |   └── openEuler-20.03-LTS-SP2.md            "openEuler 20.03 LTS SP2测试报告"
 └── templet                                       "RPM打包规范"
 |   └── service-templet.spec                      "openstack服务及对应CLI打包规范"
 |   └── library-templet.spec                      "依赖库打包规范"
