@@ -1234,7 +1234,7 @@ openEuler 20.03-LTS-SP2 版本的官方 yum 源已经支持 Openstack-Rocky 版�
 1. 安装软件包
 
     ```plain
-    yum install openstack-horizon
+    yum install openstack-dashboard
     ```
 2. 修改文件`/usr/share/openstack-dashboard/openstack_dashboard/local/local_settings.py`
    
@@ -1244,6 +1244,14 @@ openEuler 20.03-LTS-SP2 版本的官方 yum 源已经支持 Openstack-Rocky 版�
     ALLOWED_HOSTS = ['*', ]
     OPENSTACK_HOST = "controller"
     OPENSTACK_KEYSTONE_URL = "http://%s:5000/v3" % OPENSTACK_HOST
+    OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT = True
+    SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+    CACHES = {
+        'default': {
+             'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+             'LOCATION': 'controller:11211',
+        }
+    }
     ```
     新增变量
     ```plain
@@ -1259,11 +1267,33 @@ openEuler 20.03-LTS-SP2 版本的官方 yum 源已经支持 Openstack-Rocky 版�
     LOGIN_URL = '/dashboard/auth/login/'
     LOGOUT_URL = '/dashboard/auth/logout/'
     ```
-3. 在/usr/share/openstack-dashboard目录下执行
+3. 修改文件/etc/httpd/conf.d/openstack-dashboard.conf
+    ```plain
+    WSGIDaemonProcess dashboard
+    WSGIProcessGroup dashboard
+    WSGISocketPrefix run/wsgi
+    WSGIApplicationGroup %{GLOBAL}
+ 
+    WSGIScriptAlias /dashboard /usr/share/openstack-dashboard/openstack_dashboard/wsgi/django.wsgi
+    Alias /dashboard/static /usr/share/openstack-dashboard/static
+ 
+    <Directory /usr/share/openstack-dashboard/openstack_dashboard/wsgi>
+      Options All
+      AllowOverride All
+      Require all granted
+    </Directory>
+ 
+    <Directory /usr/share/openstack-dashboard/static>
+      Options All
+      AllowOverride All
+      Require all granted
+    </Directory>
+    ```
+4. 在/usr/share/openstack-dashboard目录下执行
     ```plain
     ./manage.py compress
     ```
-4. 重启 httpd 服务
+5. 重启 httpd 服务
     ```plain
     systemctl restart httpd
     ```
