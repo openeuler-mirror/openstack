@@ -24,7 +24,7 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
     gpgcheck=0
     enabled=1
     EOF
-
+    
     yum clean all && yum makecache
 
 ### 环境配置
@@ -1288,16 +1288,16 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
     WSGIProcessGroup dashboard
     WSGISocketPrefix run/wsgi
     WSGIApplicationGroup %{GLOBAL}
- 
+     
     WSGIScriptAlias /dashboard /usr/share/openstack-dashboard/openstack_dashboard/wsgi/django.wsgi
     Alias /dashboard/static /usr/share/openstack-dashboard/static
- 
+     
     <Directory /usr/share/openstack-dashboard/openstack_dashboard/wsgi>
       Options All
       AllowOverride All
       Require all granted
     </Directory>
- 
+     
     <Directory /usr/share/openstack-dashboard/static>
       Options All
       AllowOverride All
@@ -1669,15 +1669,9 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
 3. deploy ramdisk镜像制作
 
-   目前ramdisk镜像支持通过ironic python agent builder来进行制作，这里介绍下使用这个工具构建ironic使用的deploy镜像的完整过程。
+   目前ramdisk镜像支持通过ironic python agent builder来进行制作，这里介绍下使用这个工具构建ironic使用的deploy镜像的完整过程。（用户也可以根据自己的情况获取ironic-python-agent，这里提供使用ipa-builder制作ipa方法）
 
    ##### 安装 ironic-python-agent-builder
-
-   1. 本地安装python3，并且将本地的python切换到python3，然后解决下切换之后的问题（如yum源无法使用的问题）：
-
-      ```
-      yum install python3
-      ```
 
    2. 安装工具：
 
@@ -1716,14 +1710,6 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
       ```
 
    ##### 制作镜像
-
-   经过测试目前centos只支持8版本，而且centos8-minimal缺少部分网卡驱动，导致Dell的物理机启动之后所有的网卡都是down状态，所以我们这次使用centos8。添加如下环境变量：
-
-   ```
-   export DIB_PYTHON_VERSION=3 \ 
-   export DIB_RELEASE=8 \ 
-   export DIB_YUM_MINIMAL_CREATE_INTERFACES
-   ```
 
    如果是`arm`架构，还需要添加：
 
@@ -1793,3 +1779,5 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    参考：[source-repositories](https://docs.openstack.org/diskimage-builder/latest/elements/source-repositories/README.html)。
 
    指定仓库地址及版本验证成功。
+
+   
