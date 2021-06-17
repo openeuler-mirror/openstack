@@ -20,7 +20,8 @@
     - [Tempest 安装](#tempest-安装)
     - [Ironic 安装](#ironic-安装)
     - [Kolla 安装](#kolla-安装)
-    - [Trove 安装](#Trove-安装)
+    - [Trove 安装](#trove-安装)
+
 <!-- /TOC -->
 
 ## OpenStack 简介
@@ -1742,29 +1743,34 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
 6. deploy ramdisk镜像制作
 
-   目前ramdisk镜像支持通过ironic python agent builder来进行制作，这里介绍下使用这个工具构建ironic使用的deploy镜像的完整过程。
+   Q版的ramdisk镜像支持通过ironic-python-agent服务或disk-image-builder工具制作，也可以使用社区最新的ironic-python-agent-builder。用户也可以自行选择其他工具制作。
+   若使用Q版原生工具，则需要安装对应的软件包。
+
+   ```
+   yum install openstack-ironic-python-agent
+   或者
+   yum install diskimage-builder
+   ```
+   具体的使用方法可以参考[官方文档](https://docs.openstack.org/ironic/queens/install/deploy-ramdisk.html)
+
+   这里介绍下使用ironic-python-agent-builder构建ironic使用的deploy镜像的完整过程。
 
    1. 安装 ironic-python-agent-builder
 
-        1. 本地安装python3，并且将本地的python切换到python3，然后解决下切换之后的问题（如yum源无法使用的问题）：
 
-            ```shell
-            yum install python36
-            ```
-
-        2. 安装工具：
+        1. 安装工具：
 
             ```shell
             pip install ironic-python-agent-builder
             ```
 
-        3. 修改以下文件中的python解释器：
+        2. 修改以下文件中的python解释器：
 
             ```shell
             /usr/bin/yum /usr/libexec/urlgrabber-ext-down
             ```
 
-        4. 安装其它必须的工具：
+        3. 安装其它必须的工具：
 
             ```shell
             yum install git
@@ -1790,21 +1796,10 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
    2. 制作镜像
 
-        经过测试目前centos只支持8版本，而且centos8-minimal缺少部分网卡驱动，导致Dell的物理机启动之后所有的网卡都是down状态，所以我们这次使用centos8。添加如下环境变量：
-
-        ```shell
-        export DIB_PYTHON_VERSION=3 \
-        export DIB_RELEASE=8 \
-        export DIB_YUM_MINIMAL_CREATE_INTERFACES
-        ```
-
-        如果是`arm`架构，还需要添加：
-
+        如果是`arm`架构，需要添加：
         ```shell
         export ARCH=aarch64
         ```
-
-   3. 普通镜像
 
         基本用法：
 
@@ -1838,7 +1833,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
         ironic-python-agent-builder centos -o /mnt/ironic-agent-ssh -b origin/stable/rocky
         ```
 
-   4. 允许ssh登陆
+   3. 允许ssh登陆
 
         初始化环境变量，然后制作镜像：
 
@@ -1849,7 +1844,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
         ironic-python-agent-builder centos -o /mnt/ironic-agent-ssh -b origin/stable/rocky -e selinux-permissive -e devuser
         ```
 
-   5. 指定代码仓库
+   4. 指定代码仓库
 
         初始化对应的环境变量，然后制作镜像：
 
