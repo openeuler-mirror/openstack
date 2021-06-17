@@ -97,7 +97,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 1. 执行如下命令，安装软件包。
 
     ```shell
-    yum install mariadb mariadb-server python-PyMySQL
+    yum install mariadb mariadb-server python2-PyMySQL
     ```
 
 2. 执行如下命令，创建并编辑 `/etc/my.cnf.d/openstack.cnf` 文件。
@@ -942,8 +942,8 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     auth_url = http://controller:5000
     memcached_servers = controller:11211
     auth_type = password
-    project_domain_name = default
-    user_domain_name = default
+    project_domain_name = Default
+    user_domain_name = Default
     project_name = service
     username = neutron
     password = NEUTRON_PASS
@@ -951,8 +951,8 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     [nova]
     auth_url = http://controller:5000                                                              (CTL)
     auth_type = password                                                                           (CTL)
-    project_domain_name = default                                                                  (CTL)
-    user_domain_name = default                                                                     (CTL)
+    project_domain_name = Default                                                                  (CTL)
+    user_domain_name = Default                                                                     (CTL)
     region_name = RegionOne                                                                        (CTL)
     project_name = service                                                                         (CTL)
     username = nova                                                                                (CTL)
@@ -1060,7 +1060,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     配置Layer-3代理：
 
     ```shell
-    vim /etc/neutron/l3_agent.in                                                                   (CTL)
+    vim /etc/neutron/l3_agent.ini                                                                   (CTL)
 
     [DEFAULT]
     interface_driver = linuxbridge
@@ -1111,8 +1111,8 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     [neutron]
     auth_url = http://controller:5000
     auth_type = password
-    project_domain_name = default
-    user_domain_name = default
+    project_domain_name = Default
+    user_domain_name = Default
     region_name = RegionOne
     project_name = service
     username = neutron
@@ -1272,8 +1272,8 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     auth_url = http://controller:5000
     memcached_servers = controller:11211
     auth_type = password
-    project_domain_name = default
-    user_domain_name = default
+    project_domain_name = Default
+    user_domain_name = Default
     project_name = service
     username = cinder
     password = CINDER_PASS
@@ -1707,8 +1707,8 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    ironic_url = http://IRONIC_API_HOST_ADDRRESS:6385
    os_region = RegionOne
    project_name = service
-   project_domain_name = default
-   user_domain_name = default
+   project_domain_name = Default
+   user_domain_name = Default
    username = IRONIC_SERVICE_USER_NAME
    password = IRONIC_SERVICE_USER_PASSWORD
    ```
