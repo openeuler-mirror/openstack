@@ -610,7 +610,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     ***注意***
 
-    **如果为aarch结构，还需要执行以下命令
+    **如果为aarch结构，还需要执行以下命令**
 
     ```shell
     yum install edk2-aarch64                                                                       (CPT)
@@ -766,7 +766,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     ***注意***
 
-    **如果为aarch结构，还需要执行以下命令
+    **如果为aarch结构，还需要执行以下命令**
 
     ```shell
     mkdir -p /usr/share/AAVMF
