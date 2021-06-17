@@ -64,9 +64,9 @@ OpenStack Rocky版本，共计执行Tempest用例1128个，主要覆盖了API测
 |功能测试|Queens版本覆盖Tempest所有相关测试用例1164个，其中Skip 52个，Fail 3个，其他全通过。|
 |功能测试|Rocky版本覆盖Tempest所有相关测试用例1128个，其中Skip 76个，其他全通过。|
 
-||测试活动功能测试|
+|测试活动|功能测试|
 |:----|:----|
-||接口测试覆盖功能测试虚拟机（KVM、Qemu)、存储（lvm、NFS、Ceph后端）、网络资源（linuxbridge、openvswitch）管理操作正常|
+|功能测试|虚拟机（KVM、Qemu)、存储（lvm、NFS、Ceph后端）、网络资源（linuxbridge、openvswitch）管理操作正常|
 
 ## 3.2   约束说明
 
