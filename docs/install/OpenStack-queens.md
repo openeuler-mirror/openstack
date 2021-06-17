@@ -19,6 +19,7 @@
     - [horizon 安装](#horizon-安装)
     - [Tempest 安装](#tempest-安装)
     - [Ironic 安装](#ironic-安装)
+    - [Kolla 安装](#kolla-安装)
 
 <!-- /TOC -->
 
@@ -63,20 +64,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 1. 配置 20.03-LTS-SP2 官方认证的第三方源 oepkg
 
     ```shell
-    cat << EOF >> /etc/yum.repos.d/openEuler.repo
-
-    [Everything]
-    name=everything
-    baseurl=http://119.3.219.20:82/openEuler:/20.03:/LTS:/SP2/standard_aarch64/
-    gpgcheck=0
-    enabled=1
-
-    [EPOL]
-    name=EPOL
-    baseurl=http://119.3.219.20:82/openEuler:/20.03:/LTS:/SP2:/Epol/standard_aarch64/
-    gpgcheck=0
-    enabled=1
-
+    cat << EOF >> /etc/yum.repos.d/OpenStack_Queens.repo
     [openstack_common]
     name=OpenStack_Common
     baseurl=http://119.3.219.20:82/openEuler:/20.03:/LTS:/SP2:/oepkg:/openstack:/common/standard_aarch64/
@@ -95,7 +83,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
 2. 修改主机名以及映射
 
-    设置controller节点的主机名
+    设置各个节点的主机名
 
     ```shell
     hostnamectl set-hostname controller                                                            (CTL)
@@ -610,7 +598,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     ***注意***
 
-    **如果为aarch结构，还需要执行以下命令**
+    **如果为arm64结构，还需要执行以下命令**
 
     ```shell
     yum install edk2-aarch64                                                                       (CPT)
@@ -766,7 +754,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     ***注意***
 
-    **如果为aarch结构，还需要执行以下命令**
+    **如果为arm64结构，还需要执行以下命令**
 
     ```shell
     mkdir -p /usr/share/AAVMF
@@ -1035,7 +1023,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     **补充**
 
-    **l2 的具体配置可以根据用户需求自行修改，本文使用的是provider network + linuxbride**
+    **l2 的具体配置可以根据用户需求自行修改，本文使用的是provider network + linuxbridge**
 
     配置 Linux bridge 代理：
 
@@ -1879,3 +1867,15 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
         参考：[source-repositories](https://docs.openstack.org/diskimage-builder/latest/elements/source-repositories/README.html)。
 
         指定仓库地址及版本验证成功。
+
+### Kolla 安装
+
+Kolla为OpenStack服务提供生产环境可用的容器化部署的功能。openEuler 20.03 LTS SP2中引入了Kolla和Kolla-ansible服务。
+
+Kolla的安装十分简单，只需要安装对应的RPM包即可
+
+```
+yum install openstack-kolla openstack-kolla-ansible
+```
+
+安装完后，就可以使用`kolla-ansible`, `kolla-build`, `kolla-genpwd`, `kolla-mergepwd`等命令了。
