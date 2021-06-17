@@ -8,10 +8,25 @@ OpenStack 是一个社区，也是一个项目。它提供了一个部署云的�
 
 作为一个开源的云计算管理平台，OpenStack 由nova、cinder、neutron、glance、keystone、horizon等几个主要的组件组合起来完成具体工作。OpenStack 支持几乎所有类型的云环境，项目目标是提供实施简单、可大规模扩展、丰富、标准统一的云计算管理平台。OpenStack 通过各种互补的服务提供了基础设施即服务（IaaS）的解决方案，每个服务提供 API 进行集成。
 
-openEuler 20.03-LTS-SP2 版本的官方 yum 源已经支持 Openstack-Rocky 版本，用户可以配置好官方 yum 源后根据此文档进行 OpenStack 部署。
+openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 Openstack-Rocky 版本，用户可以配置好oepkg yum 源后根据此文档进行 OpenStack 部署。
 
 
 ## 准备环境
+### OpenStack yum源配置
+
+配置 20.03-LTS-SP2 官方认证的第三方源 oepkg，以x86_64为例
+
+    ```shell
+    cat << EOF >> /etc/yum.repos.d/OpenStack_Rocky.repo
+    [openstack_rocky]
+    name=OpenStack_Rocky
+    baseurl=https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/rocky/x86_64/
+    gpgcheck=0
+    enabled=1
+    EOF
+
+    yum clean all && yum makecache
+
 ### 环境配置
 
 在`/etc/hosts`中添加controller信息，例如节点IP是`10.0.0.11`，则新增：
