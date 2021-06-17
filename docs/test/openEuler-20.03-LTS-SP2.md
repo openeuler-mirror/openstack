@@ -56,8 +56,7 @@ OpenStack
 
 OpenStack Queens版本，共计执行Tempest用例1164个，主要覆盖了API测试和功能测试，通过7*24的长稳测试，Skip用例52个（全是openStack Queens版中已废弃的功能或接口，如Keystone V1、Cinder V1等），失败用例3个（测试用例本身问题），其他1109个用例全部通过，发现问题已解决，回归通过，无遗留风险，整体质量良好。
 
-OpenStack Rocky版本，共计执行Tempest用例1128个，主要覆盖了API测试和功能测试，通过7*24的长稳测试，Skip用例76个（全是openStack Rocky版中已废弃的功能或接口，如Keystone V1、Cinder V1等），其他1052个用例全部通过，发现问题已解决，回
-归通过，无遗留风险，整体质量良好。
+OpenStack Rocky版本，共计执行Tempest用例1128个，主要覆盖了API测试和功能测试，通过7*24的长稳测试，Skip用例76个（全是openStack Rocky版中已废弃的功能或接口，如KeystoneV1、Cinder V1等），其他1052个用例全部通过，发现问题已解决，回归通过，无遗留风险，整体质量良好。
 
 |测试活动|tempest集成测试|
 |:----|:----|
@@ -67,7 +66,6 @@ OpenStack Rocky版本，共计执行Tempest用例1128个，主要覆盖了API测
 
 ||测试活动功能测试|
 |:----|:----|
-|||
 ||接口测试覆盖功能测试虚拟机（KVM、Qemu)、存储（lvm、NFS、Ceph后端）、网络资源（linuxbridge、openvswitch）管理操作正常|
 
 ## 3.2   约束说明
@@ -87,8 +85,8 @@ OpenStack Rocky版本，共计执行Tempest用例1128个，主要覆盖了API测
 
 |    |问题总数|严重|主要|次要|不重要|
 |:----|:----|:----|:----|:----|:----|
-|数目|17|1|5|11|    |
-|百分比|100|5.9|29.4|64.7|    |
+|数目|14|3|6|5|    |
+|百分比|100|21.4|42.8|35.8|    |
 
 # 4 测试执行
 
@@ -98,8 +96,8 @@ OpenStack Rocky版本，共计执行Tempest用例1128个，主要覆盖了API测
 
 |版本名称|测试用例数|用例执行结果|发现问题单数|
 |:----|:----|:----|:----|
-|openEuler 20.03 LTS SP2 OpenStack Queens|1164|通过1109个，skip 52个，Fail 3个|7(安装、部署、配置问题)|
-|openEuler 20.03 LTS SP2 OpenStack Rocky|1128|通过1052个，skip 76个|5(包安装问题)
+|openEuler 20.03 LTS SP2 OpenStack Queens|1164|通过1109个，skip 52个，Fail 3个|7|
+|openEuler 20.03 LTS SP2 OpenStack Rocky|1128|通过1052个，skip 76个|7|
 
 ## 4.2 后续测试建议
 
