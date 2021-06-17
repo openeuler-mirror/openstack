@@ -20,7 +20,7 @@
     - [Tempest 安装](#tempest-安装)
     - [Ironic 安装](#ironic-安装)
     - [Kolla 安装](#kolla-安装)
-
+    - [Trove 安装](#Trove-安装)
 <!-- /TOC -->
 
 ## OpenStack 简介
@@ -1873,3 +1873,168 @@ yum install openstack-kolla openstack-kolla-ansible
 ```
 
 安装完后，就可以使用`kolla-ansible`, `kolla-build`, `kolla-genpwd`, `kolla-mergepwd`等命令了。
+
+### Trove 安装
+Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据库服务则推荐使用该组件。否则，可以不用安装。
+
+1. 设置数据库
+
+   数据库服务在数据库中存储信息，创建一个**trove**用户可以访问的**trove**数据库，替换**TROVE_DBPASSWORD**为合适的密码
+
+   ```sql
+   mysql -u root -p
+   
+   MariaDB [(none)]> CREATE DATABASE trove CHARACTER SET utf8;
+   MariaDB [(none)]> GRANT ALL PRIVILEGES ON trove.* TO 'trove'@'localhost' \
+   IDENTIFIED BY 'TROVE_DBPASSWORD';
+   MariaDB [(none)]> GRANT ALL PRIVILEGES ON trove.* TO 'trove'@'%' \
+   IDENTIFIED BY 'TROVE_DBPASSWORD';
+   ```
+
+2. 创建服务用户认证
+
+   1、创建**Trove**服务用户
+
+   ```shell
+   openstack user create --password TROVE_PASSWORD \
+                         --email trove@example.com trove
+   openstack role add --project service --user trove admin
+   openstack service create --name trove
+                            --description "Database service" database
+   ```
+   **解释：** `TROVE_PASSWORD` 替换为`trove`用户的密码
+
+   2、创建**Database**服务访问入口
+
+   ```shell
+   openstack endpoint create --region RegionOne database public http://$TROVE_NODE:8779/v1.0/%\(tenant_id\)s
+   openstack endpoint create --region RegionOne database internal http://$TROVE_NODE:8779/v1.0/%\(tenant_id\)s
+   openstack endpoint create --region RegionOne database admin http://$TROVE_NODE:8779/v1.0/%\(tenant_id\)s
+   ```
+   **解释：** `$TROVE_NODE` 替换为Trove的API服务部署节点
+
+3. 安装和配置**Trove**各组件
+   1、安装**Trove**包
+   ```shell script
+   yum install openstack-trove python-troveclient
+   ```
+   2. 配置`trove.conf`
+   ```shell script
+   vim /etc/trove/trove.conf
+
+   [DEFAULT]
+   bind_host=TROVE_NODE_IP
+   log_dir = /var/log/trove
+   
+   auth_strategy = keystone
+   # Config option for showing the IP address that nova doles out
+   add_addresses = True
+   network_label_regex = ^NETWORK_LABEL$
+   api_paste_config = /etc/trove/api-paste.ini
+   
+   trove_auth_url = http://controller:35357/v3/
+   nova_compute_url = http://controller:8774/v2
+   cinder_url = http://controller:8776/v1
+   
+   nova_proxy_admin_user = admin
+   nova_proxy_admin_pass = ADMIN_PASS
+   nova_proxy_admin_tenant_name = service
+   taskmanager_manager = trove.taskmanager.manager.Manager
+   use_nova_server_config_drive = True
+   
+   # Set these if using Neutron Networking
+   network_driver=trove.network.neutron.NeutronDriver
+   network_label_regex=.*
+   
+   
+   transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
+   
+   [database]
+   connection = mysql+pymysql://trove:TROVE_DBPASS@controller/trove
+   
+   [keystone_authtoken]
+   www_authenticate_uri = http://controller:5000/v3/
+   auth_url=http://controller:35357/v3/
+   #auth_uri = http://controller/identity
+   #auth_url = http://controller/identity_admin
+   auth_type = password
+   project_domain_name = default
+   user_domain_name = default
+   project_name = service
+   username = trove
+   password = TROVE_PASS
+  
+   ```
+   **解释：**
+   - `[Default]`分组中`bind_host`配置为Trove部署节点的IP
+   - `nova_compute_url` 和 `cinder_url` 为Nova和Cinder在Keystone中创建的endpoint
+   - `nova_proxy_XXX` 为一个能访问Nova服务的用户信息，上例中使用`admin`用户为例
+   - `transport_url` 为`RabbitMQ`连接信息，`RABBIT_PASS`替换为RabbitMQ的密码
+   - `[database]`分组中的`connection` 为前面在mysql中为Trove创建的数据库信息
+   - Trove的用户信息中`TROVE_PASS`替换为实际trove用户的密码  
+   
+   3. 配置`trove-taskmanager.conf`
+   ```shell script
+   vim /etc/trove/trove-taskmanager.conf
+
+   [DEFAULT]
+   log_dir = /var/log/trove
+   trove_auth_url = http://controller/identity/v2.0
+   nova_compute_url = http://controller:8774/v2
+   cinder_url = http://controller:8776/v1
+   transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
+
+   [database]
+   connection = mysql+pymysql://trove:TROVE_DBPASS@controller/trove
+   ```
+   **解释：** 参照`trove.conf`配置
+
+   4. 配置`trove-conductor.conf`
+   ```shell script
+   vim /etc/trove/trove-conductor.conf
+
+   [DEFAULT]
+   log_dir = /var/log/trove
+   trove_auth_url = http://controller/identity/v2.0
+   nova_compute_url = http://controller:8774/v2
+   cinder_url = http://controller:8776/v1
+   transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
+
+   [database]
+   connection = mysql+pymysql://trove:trove@controller/trove
+   ```
+   **解释：** 参照`trove.conf`配置
+
+   5. 配置`trove-guestagent.conf`
+   ```shell script
+   vim /etc/trove/trove-guestagent.conf
+   [DEFAULT]
+   rabbit_host = controller
+   rabbit_password = RABBIT_PASS
+   nova_proxy_admin_user = admin
+   nova_proxy_admin_pass = ADMIN_PASS
+   nova_proxy_admin_tenant_name = service
+   trove_auth_url = http://controller/identity_admin/v2.0
+   ```
+   **解释：** `guestagent`是trove中一个独立组件，需要预先内置到Trove通过Nova创建的虚拟
+   机镜像中，在创建好数据库实例后，会起guestagent进程，负责通过消息队列（RabbitMQ）向Trove上
+   报心跳，因此需要配置RabbitMQ的用户和密码信息。
+
+   6. 生成数据`Trove`数据库表
+   ```shell script
+   su -s /bin/sh -c "trove-manage db_sync" trove
+   ```
+4. 完成安装配置
+   1. 配置**Trove**服务自启动
+   ```shell script
+   systemctl enable openstack-trove-api.service \
+   openstack-trove-taskmanager.service \
+   openstack-trove-conductor.service 
+   ```
+   2. 启动服务
+   ```shell script
+   systemctl start openstack-trove-api.service \
+   openstack-trove-taskmanager.service \
+   openstack-trove-conductor.service
+   ```
+   
