@@ -170,7 +170,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 1. 执行如下命令，安装依赖软件包。
 
     ```shell
-    yum install memcached python3-memcached
+    yum install memcached python2-memcached
     ```
 
 2. 编辑 `/etc/sysconfig/memcached` 文件。
@@ -187,6 +187,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     systemctl enable memcached.service
     systemctl start memcached.service
     ```
+    服务启动后，可以通过命令`memcached-tool controller stats`确保启动正常，服务可用，其中可以将`controller`替换为控制节点的管理IP地址。
 
 ## 安装 OpenStack
 
@@ -309,7 +310,11 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     **替换 `ADMIN_PASS` 为 admin 用户的密码**
 
-10. 依次创建domain, projects, users, roles
+10. 依次创建domain, projects, users, roles，需要先安装好python2-openstackclient：
+
+    ```
+    yum install python2-openstackclient
+    ```
 
     导入环境变量
 
@@ -855,7 +860,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     检查cells和placement API是否运作成功，以及其他必要条件是否已具备。
 
     ```shell
-    nova-status upgrade chec                                                                       (CTL)
+    nova-status upgrade check                                                                       (CTL)
     ```
 
 ### Neutron 安装
@@ -1216,11 +1221,11 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
                 openstack-cinder-volume openstack-cinder-backup
     ```
 
-3. 准备存储设备
+3. 准备存储设备，以下仅为示例：
 
     ```shell
-    pvcreate /dev/sdb
-    vgcreate cinder-volumes /dev/sdb
+    pvcreate /dev/vdb
+    vgcreate cinder-volumes /dev/vdb
 
     vim /etc/lvm/lvm.conf
 
