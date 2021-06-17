@@ -44,6 +44,12 @@ Meeting agenda and summary: <https://etherpad.openeuler.org/p/sig-openstack-meet
 ## Directory structure of this project
 
 ```none
+└── docs                                          "Install, Test Docs"
+|   └── install                                   "Install folder"
+|   |   └── OpenStack-Queens.md                   "OpenStack Queens Install doc"
+|   |   └── OpenStack-Rocky.md                    "OpenStack Rocky Install doc"
+|   └── test                                      "Test folder"
+|   |   └── openEuler-20.03-LTS-SP2.md            "openEuler 20.03 LTS SP2 Test report"
 └── templet                                       "RPM Packaging Specification"
 |   └── service-templet.spec                      "openstack service and corresponding CLI packaging specification"
 |   └── library-templet.spec                      "Dependent Library Packaging Specification"
