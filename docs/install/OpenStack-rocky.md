@@ -48,7 +48,6 @@ openEuler 20.03-LTS-SP2 版本的官方 yum 源已经支持 Openstack-Rocky 版�
     # systemctl enable mariadb.service
     # systemctl start mariadb.service
     ```
-	
 ### 安装 RabbitMQ 
 
 1. 执行如下命令，安装软件包。
@@ -408,7 +407,7 @@ openEuler 20.03-LTS-SP2 版本的官方 yum 源已经支持 Openstack-Rocky 版�
     MariaDB [(none)]> CREATE DATABASE nova;
     MariaDB [(none)]> CREATE DATABASE nova_cell0;
     MariaDB [(none)]> CREATE DATABASE placement;
-
+    
     MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'localhost' \
     IDENTIFIED BY 'NOVA_DBPASS';
     MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'%' \
@@ -667,7 +666,6 @@ openEuler 20.03-LTS-SP2 版本的官方 yum 源已经支持 Openstack-Rocky 版�
     ```
     #nova-status upgrade check
     ```
-	
 ### Neutron安装
 
 1. 创建数据库、服务凭证和 API 端点
@@ -984,6 +982,7 @@ openEuler 20.03-LTS-SP2 版本的官方 yum 源已经支持 Openstack-Rocky 版�
     $ openstack endpoint create --region RegionOne volumev3 internal http://controller:8776/v3/%s
     $ openstack endpoint create --region RegionOne volumev3 admin http://controller:8776/v3/%s
     ```
+    
 2. 安装和配置控制节点
 
     安装软件包：
@@ -1063,12 +1062,13 @@ openEuler 20.03-LTS-SP2 版本的官方 yum 源已经支持 Openstack-Rocky 版�
     # systemctl enable openstack-cinder-api.service openstack-cinder-scheduler.service
     # systemctl start openstack-cinder-api.service openstack-cinder-scheduler.service
     ```
-3. 安装和配置存储节点
+    
+3. 安装和配置存储节点（LVM）
 
     安装软件包：
 
     ```
-    yum install lvm2 device-mapper-persistent-data targetcli python3-keystone
+    yum install lvm2 device-mapper-persistent-data targetcli python2-keystone
     ```
     启动服务：
 
@@ -1119,7 +1119,82 @@ openEuler 20.03-LTS-SP2 版本的官方 yum 源已经支持 Openstack-Rocky 版�
     # systemctl enable openstack-cinder-volume.service target.service
     # systemctl start openstack-cinder-volume.service target.service
     ```
-4. 安装和配置备份服务
+    
+4. 安装和配置存储节点（ceph RBD）
+
+    安装软件包：
+
+    ```
+    yum install ceph-common python2-rados python2-rbd python2-keystone
+    ```
+    
+    在[DEFAULT]部分，启用LVM后端，配置镜像服务API的位置。
+    
+    ```
+    [DEFAULT]
+    enabled_backends = ceph-rbd
+    ```
+
+    添加ceph rbd配置部分，配置块命名与enabled_backends中保持一致
+    
+    ```
+    [ceph-rbd]
+    glance_api_version = 2
+    rados_connect_timeout = -1
+    rbd_ceph_conf = /etc/ceph/ceph.conf
+    rbd_flatten_volume_from_snapshot = False
+    rbd_max_clone_depth = 5
+    rbd_pool = <RBD_POOL_NAME>  # RBD存储池名称
+    rbd_secret_uuid = <rbd_secret_uuid> # 随机生成SECRET UUID
+    rbd_store_chunk_size = 4
+    rbd_user = <RBD_USER_NAME>
+    volume_backend_name = ceph-rbd
+    volume_driver = cinder.volume.drivers.rbd.RBDDriver
+    ```
+    
+    配置存储节点ceph客户端，需要保证/etc/ceph/目录中包含ceph集群访问配置，包括ceph.conf以及keyring
+    
+    ```
+    [root@openeuler ~]# ll /etc/ceph
+    -rw-r--r-- 1 root root   82 Jun 16 17:11 ceph.client.<rbd_user>.keyring
+    -rw-r--r-- 1 root root 1.5K Jun 16 17:11 ceph.conf
+    -rw-r--r-- 1 root root   92 Jun 16 17:11 rbdmap
+    ```
+    
+    在存储节点检查ceph集群是否正常可访问
+    
+    ```
+    [root@openeuler ~]# ceph --user cinder -s
+      cluster:
+        id:     b7b2fac6-420f-4ec1-aea2-4862d29b4059
+        health: HEALTH_OK
+    
+      services:
+        mon: 3 daemons, quorum VIRT01,VIRT02,VIRT03
+        mgr: VIRT03(active), standbys: VIRT02, VIRT01
+        mds: cephfs_virt-1/1/1 up  {0=VIRT03=up:active}, 2 up:standby
+        osd: 15 osds: 15 up, 15 in
+    
+      data:
+        pools:   7 pools, 1416 pgs
+        objects: 5.41M objects, 19.8TiB
+        usage:   49.3TiB used, 59.9TiB / 109TiB avail
+        pgs:     1414 active
+    
+      io:
+        client:   2.73MiB/s rd, 22.4MiB/s wr, 3.21kop/s rd, 1.19kop/s wr
+    ```
+    
+    启动服务
+    
+    ```
+    # systemctl enable openstack-cinder-volume.service
+    # systemctl start openstack-cinder-volume.service
+    ```
+    
+    
+    
+5. 安装和配置备份服务
 
     编辑 /etc/cinder/cinder.conf 文件：
 
@@ -1143,14 +1218,15 @@ openEuler 20.03-LTS-SP2 版本的官方 yum 源已经支持 Openstack-Rocky 版�
     # systemctl enable openstack-cinder-backup.service
     # systemctl start openstack-cinder-backup.service
     ```
-5. 验证
+
+6. 验证
 
     列出服务组件验证每个步骤成功：
     ```
     $ source admin-openrc
     $ openstack volume service list
     ```
-	
+
     注：目前暂未对swift组件进行支持，有条件的同学可以配置对接ceph。
 
 ### horizon 安装
@@ -1555,7 +1631,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    1. 本地安装python3，并且将本地的python切换到python3，然后解决下切换之后的问题（如yum源无法使用的问题）：
 
       ```
-      yum install python36
+      yum install python3
       ```
 
    2. 安装工具：
