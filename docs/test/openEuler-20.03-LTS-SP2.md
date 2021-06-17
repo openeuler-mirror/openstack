@@ -8,6 +8,7 @@
 |日期|修订版本|修改描述|作者|
 |:----|:----|:----|:----|
 |2021-6-16|1|初稿|王玺源|
+|2021-6-17|2|增加Rocky版本测试报告|黄填华|
 |    |    |    |    |
 |    |    |    |    |
 
@@ -53,13 +54,16 @@ OpenStack
 
 ## 3.1 测试整体结论
 
-OpenStack Queens版本，共计执行Tempest用例1164个，主要覆盖了API测试和功能测试，通过经过7*24的长稳测试，Skip用例52个（全是openStack Q版中已废弃的功能或接口，如Keystone V1、Cinder V1等），失败用例3个（测试用例本身问题），其他1109个用例全部通过，发现问题已解决，回归通过，无遗留风险，整体质量良好。
+OpenStack Queens版本，共计执行Tempest用例1164个，主要覆盖了API测试和功能测试，通过7*24的长稳测试，Skip用例52个（全是openStack Queens版中已废弃的功能或接口，如Keystone V1、Cinder V1等），失败用例3个（测试用例本身问题），其他1109个用例全部通过，发现问题已解决，回归通过，无遗留风险，整体质量良好。
+
+OpenStack Rocky版本，共计执行Tempest用例1128个，主要覆盖了API测试和功能测试，通过7*24的长稳测试，Skip用例76个（全是openStack Rocky版中已废弃的功能或接口，如Keystone V1、Cinder V1等），其他1052个用例全部通过，发现问题已解决，回
+归通过，无遗留风险，整体质量良好。
 
 |测试活动|tempest集成测试|
 |:----|:----|
 |接口测试|API全覆盖|
 |功能测试|Queens版本覆盖Tempest所有相关测试用例1164个，其中Skip 52个，Fail 3个，其他全通过。|
-|功能测试|Rocky版本覆盖Tempest所有相关测试用例1164个，其中Skip 52个，Fail 3个，其他全通过。|
+|功能测试|Rocky版本覆盖Tempest所有相关测试用例1128个，其中Skip 76个，其他全通过。|
 
 ||测试活动功能测试|
 |:----|:----|
@@ -68,7 +72,7 @@ OpenStack Queens版本，共计执行Tempest用例1164个，主要覆盖了API�
 
 ## 3.2   约束说明
 
-本次测试没有覆盖OpenStack Queens、Rocky版中明确废弃的功能和接口，因此不能保证已废弃的功能和接口（前文提到的Skip的52个用例）在openEuler 20.03 LTS SP2上能正常使用。
+本次测试没有覆盖OpenStack Queens、Rocky版中明确废弃的功能和接口，因此不能保证已废弃的功能和接口（前文提到的Skip的用例）在openEuler 20.03 LTS SP2上能正常使用。
 
 ## 3.3   遗留问题分析
 
@@ -94,7 +98,8 @@ OpenStack Queens版本，共计执行Tempest用例1164个，主要覆盖了API�
 
 |版本名称|测试用例数|用例执行结果|发现问题单数|
 |:----|:----|:----|:----|
-|openEuler 20.03 LTS SP2|1164|通过1109个，skip 52个，Fail 3个|7(安装、部署、配置问题)|
+|openEuler 20.03 LTS SP2 OpenStack Queens|1164|通过1109个，skip 52个，Fail 3个|7(安装、部署、配置问题)|
+|openEuler 20.03 LTS SP2 OpenStack Rocky|1128|通过1052个，skip 76个|5(包安装问题)
 
 ## 4.2 后续测试建议
 
