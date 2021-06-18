@@ -855,7 +855,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     列出镜像服务中的镜像，验证与镜像服务的连接：
 
     ```shell
-    openstack image lis                                                                            (CTL)
+    openstack image list                                                                            (CTL)
     ```
 
     检查cells和placement API是否运作成功，以及其他必要条件是否已具备。
