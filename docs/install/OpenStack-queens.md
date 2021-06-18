@@ -1340,10 +1340,10 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     ```shell
     systemctl enable rpcbind.service nfs-server.service tgtd.service iscsid.service \              (CPT)
-                     openstack-cinder-volume.service target.service \
+                     openstack-cinder-volume.service \
                      openstack-cinder-backup.service
     systemctl start rpcbind.service nfs-server.service tgtd.service iscsid.service \               (CPT)
-                    openstack-cinder-volume.service target.service \
+                    openstack-cinder-volume.service \
                     openstack-cinder-backup.service
     ```
 
