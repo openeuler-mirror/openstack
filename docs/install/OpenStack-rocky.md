@@ -1640,7 +1640,9 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    默认情况下，为了与其他服务进行通信，裸金属服务会尝试通过身份认证服务的服务目录发现该服务合适的端点。如果希望对一个特定服务使用一个不同的端点，则在裸金属服务的配置文件中通过endpoint_override选项进行指定：
 
    ```
-   [neutron] ... endpoint_override = <NEUTRON_API_ADDRESS>
+   [neutron] 
+   ... 
+   endpoint_override = <NEUTRON_API_ADDRESS>
    ```
 
    5、配置允许的驱动程序和硬件类型
@@ -1648,19 +1650,26 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    通过设置enabled_hardware_types设置ironic-conductor服务允许使用的硬件类型：
 
    ```
-   [DEFAULT] enabled_hardware_types = ipmi 
+   [DEFAULT] 
+   enabled_hardware_types = ipmi 
    ```
 
    配置硬件接口：
 
    ```
-   enabled_boot_interfaces = pxe enabled_deploy_interfaces = direct,iscsi enabled_inspect_interfaces = inspector enabled_management_interfaces = ipmitool enabled_power_interfaces = ipmitool
+   enabled_boot_interfaces = pxe
+   enabled_deploy_interfaces = direct,iscsi
+   enabled_inspect_interfaces = inspector
+   enabled_management_interfaces = ipmitool
+   enabled_power_interfaces = ipmitool
    ```
 
    配置接口默认值：
 
    ```
-   [DEFAULT] default_deploy_interface = direct default_network_interface = neutron
+   [DEFAULT]
+   default_deploy_interface = direct
+   default_network_interface = neutron
    ```
 
    如果启用了任何使用Direct deploy的驱动，必须安装和配置镜像服务的Swift后端。Ceph对象网关(RADOS网关)也支持作为镜像服务的后端。
@@ -1698,7 +1707,8 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    3、配置消息度列通信地址
 
    ```
-   [DEFAULT] transport_url = rabbit://RPC_USER:RPC_PASSWORD@RPC_HOST:RPC_PORT/
+   [DEFAULT]
+   transport_url = rabbit://RPC_USER:RPC_PASSWORD@RPC_HOST:RPC_PORT/
    ```
 
    4、设置keystone认证
