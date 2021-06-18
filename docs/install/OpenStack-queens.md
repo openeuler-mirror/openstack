@@ -1347,6 +1347,14 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
                     openstack-cinder-backup.service
     ```
 
+    ***注意***
+
+    当cinder使用tgtadm的方式挂卷的时候，要修改/etc/tgt/tgtd.conf，内容如下，保证tgtd可以发现cinder-volume的iscsi target。
+
+    ```
+    include /var/lib/cinder/volumes/*
+    ```
+
 10. 验证
 
     ```shell
