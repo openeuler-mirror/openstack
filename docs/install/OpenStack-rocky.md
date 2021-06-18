@@ -1184,14 +1184,10 @@ $ yum clean all && yum makecache
     安装软件包：
 
     ```shell
-    $ yum install lvm2 device-mapper-persistent-data targetcli python2-keystone
+    $ yum install lvm2 device-mapper-persistent-data scsi-target-utils python2-keystone \
+    openstack-cinder-volume
     ```
-    启动服务：
 
-    ```shell
-    $ systemctl enable lvm2-lvmetad.service
-    $ systemctl start lvm2-lvmetad.service
-    ```
     创建LVM物理卷 /dev/sdb：
 
     ```shell
@@ -1234,8 +1230,8 @@ $ yum clean all && yum makecache
     完成安装：
     
     ```shell
-    $ systemctl enable openstack-cinder-volume.service target.service
-    $ systemctl start openstack-cinder-volume.service target.service
+    $ systemctl enable openstack-cinder-volume.service tgtd.service iscsid.service
+    $ systemctl start openstack-cinder-volume.service tgtd.service iscsid.service
     ```
     
 4. 安装和配置存储节点（ceph RBD）
@@ -1243,7 +1239,7 @@ $ yum clean all && yum makecache
     安装软件包：
 
     ```shell
-    $ yum install ceph-common python2-rados python2-rbd python2-keystone
+    $ yum install ceph-common python2-rados python2-rbd python2-keystone openstack-cinder-volume
     ```
     
     在[DEFAULT]部分，启用LVM后端，配置镜像服务API的位置。
