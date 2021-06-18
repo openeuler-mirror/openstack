@@ -74,7 +74,7 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
 
 1. 执行如下命令，安装软件包。
 
-    ```plain
+    ```shell
     # yum install mariadb mariadb-server python2-PyMySQL
     ```
 2. 执行如下命令，创建并编辑 `/etc/my.cnf.d/openstack.cnf` 文件。
@@ -102,7 +102,7 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
 
 1. 执行如下命令，安装软件包。
 
-    ```
+    ```shell
     # yum install rabbitmq-server
     ```
 
@@ -129,7 +129,7 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
 
 1. 执行如下命令，安装依赖软件包。
 
-    ```
+    ```shell
     # yum install memcached python2-memcached
     ```
 2. 执行如下命令，编辑 `/etc/sysconfig/memcached` 文件。
@@ -166,7 +166,7 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
 
 2. 执行如下命令，安装软件包。
 
-    ```
+    ```shell
     # yum install openstack-keystone httpd mod_wsgi
     ```
 3. 配置keystone，编辑 `/etc/keystone/keystone.conf` 文件。在[database]部分，配置数据库入口。在[token]部分，配置token provider
@@ -371,7 +371,7 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
 
 	安装软件包：
 
-	```
+	```shell
 	# yum install openstack-glance
 	```
 	配置glance：
@@ -539,7 +539,7 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
 
     安装软件包：
 
-    ```
+    ```shell
     # yum install openstack-nova-api openstack-nova-conductor \
     openstack-nova-novncproxy openstack-nova-scheduler openstack-nova-compute \
     openstack-nova-placement-api openstack-nova-console
@@ -551,7 +551,7 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
 
     在[default]部分，启用计算和元数据的API，配置RabbitMQ消息队列入口，配置my_ip，启用网络服务neutron；
 
-    在[api_database] [database]部分，配置数据库入口；
+    在[api_database] [database] [placement_database]部分，配置数据库入口；
 
     在[api] [keystone_authtoken]部分，配置身份认证服务入口；
 
@@ -621,8 +621,8 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
     # ...
     auth_url = http://controller:5000
     auth_type = password
-    project_domain_name = default
-    user_domain_name = default
+    project_domain_name = Default
+    user_domain_name = Default
     region_name = RegionOne
     project_name = service
     username = neutron
@@ -642,6 +642,28 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
     替换PLACEMENT_PASS为placement用户的密码；
 
     替换NEUTRON_PASS为neutron用户的密码；
+
+    手动增加Placement API接入配置
+
+    ```shell
+    vim /etc/httpd/conf.d/00-nova-placement-api.conf
+
+    <Directory /usr/bin>
+       <IfVersion >= 2.4>
+          Require all granted
+       </IfVersion>
+       <IfVersion < 2.4>
+          Order allow,deny
+          Allow from all
+       </IfVersion>
+    </Directory>
+    ```
+
+    重启httpd服务：
+
+    ```shell
+    systemctl restart httpd
+    ```
 
     同步nova-api数据库：
 
@@ -740,8 +762,8 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
 
     检查cells和placement API是否运作成功，以及其他必要条件是否已具备。
 
-    ```
-    #nova-status upgrade check
+    ```shell
+    nova-status upgrade check
     ```
 ### Neutron 安装
 
@@ -785,7 +807,7 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
 
     安装软件包：
 
-    ```
+    ```shell
     # yum install openstack-neutron openstack-neutron-ml2 \
     openstack-neutron-linuxbridge ebtables ipset
     ```
@@ -823,8 +845,8 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
     auth_url = http://controller:5000
     memcached_servers = controller:11211
     auth_type = password
-    project_domain_name = default
-    user_domain_name = default
+    project_domain_name = Default
+    user_domain_name = Default
     project_name = service
     username = neutron
     password = NEUTRON_PASS
@@ -832,8 +854,8 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
     # ...
     auth_url = http://controller:5000
     auth_type = password
-    project_domain_name = default
-    user_domain_name = default
+    project_domain_name = Default
+    user_domain_name = Default
     region_name = RegionOne
     project_name = service
     username = nova
@@ -961,8 +983,8 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
     # ...
     auth_url = http://controller:5000
     auth_type = password
-    project_domain_name = default
-    user_domain_name = default
+    project_domain_name = Default
+    user_domain_name = Default
     region_name = RegionOne
     project_name = service
     username = neutron
@@ -1064,7 +1086,7 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
 
     安装软件包：
 
-    ```
+    ```shell
     # yum install openstack-cinder
     ```
     配置cinder：
@@ -1095,8 +1117,8 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
     auth_url = http://controller:5000
     memcached_servers = controller:11211
     auth_type = password
-    project_domain_name = default
-    user_domain_name = default
+    project_domain_name = Default
+    user_domain_name = Default
     project_name = service
     username = cinder
     password = CINDER_PASS
@@ -1695,8 +1717,8 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    ironic_url = http://IRONIC_API_HOST_ADDRRESS:6385 
    os_region = RegionOne 
    project_name = service 
-   project_domain_name = default 
-   user_domain_name = default 
+   project_domain_name = Default 
+   user_domain_name = Default 
    username = IRONIC_SERVICE_USER_NAME 
    password = IRONIC_SERVICE_USER_PASSWORD
    ```
@@ -1773,7 +1795,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
    ##### 制作镜像
 
-   如果是`arm`架构，还需要添加：
+   如果是`aarch64`架构，还需要添加：
 
    ```
    export ARCH=aarch64
@@ -1859,7 +1881,7 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
 
 1. 设置数据库
 
-   数据库服务在数据库中存储信息，创建一个**trove**用户可以访问的**trove**数据库，替换**TROVE_DBPASSWORD**为合适的密码
+   数据库服务在数据库中存储信息，创建一个**trove**用户可以访问**trove**数据库，替换**TROVE_DBPASSWORD**为对应密码
 
    ```sql
    mysql -u root -p
@@ -1941,8 +1963,8 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
    #auth_uri = http://controller/identity
    #auth_url = http://controller/identity_admin
    auth_type = password
-   project_domain_name = default
-   user_domain_name = default
+   project_domain_name = Default
+   user_domain_name = Default
    project_name = service
    username = trove
    password = TROVE_PASS
