@@ -1867,11 +1867,14 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
    **解释：** `$TROVE_NODE` 替换为Trove的API服务部署节点
 
 3. 安装和配置**Trove**各组件
+
    1、安装**Trove**包
+
    ```shell script
    yum install openstack-trove python-troveclient
    ```
-   2. 配置`trove.conf`
+   2、配置`trove.conf`
+
    ```shell script
    vim /etc/trove/trove.conf
 
@@ -1926,7 +1929,8 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
    - `[database]`分组中的`connection` 为前面在mysql中为Trove创建的数据库信息
    - Trove的用户信息中`TROVE_PASS`替换为实际trove用户的密码  
    
-   3. 配置`trove-taskmanager.conf`
+   3、配置`trove-taskmanager.conf`
+
    ```shell script
    vim /etc/trove/trove-taskmanager.conf
 
@@ -1941,8 +1945,8 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
    connection = mysql+pymysql://trove:TROVE_DBPASS@controller/trove
    ```
    **解释：** 参照`trove.conf`配置
+   4、配置`trove-conductor.conf`
 
-   4. 配置`trove-conductor.conf`
    ```shell script
    vim /etc/trove/trove-conductor.conf
 
@@ -1958,7 +1962,8 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
    ```
    **解释：** 参照`trove.conf`配置
 
-   5. 配置`trove-guestagent.conf`
+   5、配置`trove-guestagent.conf`
+
    ```shell script
    vim /etc/trove/trove-guestagent.conf
    [DEFAULT]
@@ -1973,18 +1978,19 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
    机镜像中，在创建好数据库实例后，会起guestagent进程，负责通过消息队列（RabbitMQ）向Trove上
    报心跳，因此需要配置RabbitMQ的用户和密码信息。
 
-   6. 生成数据`Trove`数据库表
+   6、生成数据`Trove`数据库表
+
    ```shell script
    su -s /bin/sh -c "trove-manage db_sync" trove
    ```
 4. 完成安装配置
-   1. 配置**Trove**服务自启动
+   1、配置**Trove**服务自启动
    ```shell script
    systemctl enable openstack-trove-api.service \
    openstack-trove-taskmanager.service \
    openstack-trove-conductor.service 
    ```
-   2. 启动服务
+   2、启动服务
    ```shell script
    systemctl start openstack-trove-api.service \
    openstack-trove-taskmanager.service \
