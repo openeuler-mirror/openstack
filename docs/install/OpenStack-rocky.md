@@ -103,7 +103,7 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
 1. 执行如下命令，安装软件包。
 
     ```
-    #yum install rabbitmq-server
+    # yum install rabbitmq-server
     ```
 
 2. 启动 RabbitMQ 服务，并为其配置开机自启动。
@@ -130,7 +130,7 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
 1. 执行如下命令，安装依赖软件包。
 
     ```
-    #yum install memcached python2-memcached
+    # yum install memcached python2-memcached
     ```
 2. 执行如下命令，编辑 `/etc/sysconfig/memcached` 文件。
 
@@ -167,7 +167,7 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
 2. 执行如下命令，安装软件包。
 
     ```
-    #yum install openstack-keystone httpd mod_wsgi
+    # yum install openstack-keystone httpd mod_wsgi
     ```
 3. 配置keystone，编辑 `/etc/keystone/keystone.conf` 文件。在[database]部分，配置数据库入口。在[token]部分，配置token provider
 
@@ -372,7 +372,7 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
 	安装软件包：
 
 	```
-	#yum install openstack-glance
+	# yum install openstack-glance
 	```
 	配置glance：
 
@@ -1065,7 +1065,7 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
     安装软件包：
 
     ```
-    #yum install openstack-cinder
+    # yum install openstack-cinder
     ```
     配置cinder：
 
