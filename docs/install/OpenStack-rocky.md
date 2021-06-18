@@ -372,7 +372,7 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
 	安装软件包：
 
 	```
-	#yum install openstack-glance openstack-glance-api
+	#yum install openstack-glance
 	```
 	配置glance：
 
@@ -409,6 +409,33 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
 	default_store = file
 	filesystem_store_datadir = /var/lib/glance/images/
 	```
+
+    编辑 /etc/glance/glance-registry.conf 文件：
+
+	在[database]部分，配置数据库入口
+
+	在[keystone_authtoken] [paste_deploy]部分，配置身份认证服务入口
+
+    ```
+	# vim /etc/glance/glance-registry.conf
+	[database]
+	# ...
+	connection = mysql+pymysql://glance:GLANCE_DBPASS@controller/glance
+	[keystone_authtoken]
+	# ...
+	www_authenticate_uri  = http://controller:5000
+	auth_url = http://controller:5000
+	memcached_servers = controller:11211
+	auth_type = password
+	project_domain_name = Default
+	user_domain_name = Default
+	project_name = service
+	username = glance
+	password = GLANCE_PASS
+	[paste_deploy]
+	# ...
+	flavor = keystone
+	```
 	
 	其中，替换 GLANCE_DBPASS 为 glance 数据库的密码，替换 GLANCE_PASS 为 glance 用户的密码。
 
@@ -420,8 +447,8 @@ openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 
 	启动镜像服务：
 
 	```
-	# systemctl enable openstack-glance-api.service
-	# systemctl start openstack-glance-api.service
+	# systemctl enable openstack-glance-api.service openstack-glance-registry.service
+	# systemctl start openstack-glance-api.service openstack-glance-registry.service
 	```
 3. 验证
 
