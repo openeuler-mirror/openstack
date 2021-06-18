@@ -1227,6 +1227,14 @@ $ yum clean all && yum makecache
     enabled_backends = lvm
     glance_api_servers = http://controller:9292
     ```
+
+    ***注意***
+
+    当cinder使用tgtadm的方式挂卷的时候，要修改/etc/tgt/tgtd.conf，内容如下，保证tgtd可以发现cinder-volume的iscsi target。
+
+    ```
+    include /var/lib/cinder/volumes/*
+    ```
     完成安装：
     
     ```shell
