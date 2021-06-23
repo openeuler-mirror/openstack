@@ -914,7 +914,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     ```
 
     ```shell
-    yum install openstack-neutron-linuxbridge ebtables ipset                                       (CPT)
+    yum install openstack-neutron-linuxbridge-agent ebtables ipset                                       (CPT)
     ```
 
 3. 配置neutron相关配置：
