@@ -56,13 +56,13 @@ OpenStack
 
 OpenStack Queens版本，共计执行Tempest用例1164个，主要覆盖了API测试和功能测试，通过7*24的长稳测试，Skip用例52个（全是openStack Queens版中已废弃的功能或接口，如Keystone V1、Cinder V1等），失败用例3个（测试用例本身问题），其他1109个用例全部通过，发现问题已解决，回归通过，无遗留风险，整体质量良好。
 
-OpenStack Rocky版本，共计执行Tempest用例1197个，主要覆盖了API测试和功能测试，通过7*24的长稳测试，Skip用例101个（全是openStack Rocky版中已废弃的功能或接口，如KeystoneV1、Cinder V1等），其他1001个用例全部通过，发现问题已解决，回归通过，无遗留风险，整体质量良好。
+OpenStack Rocky版本，共计执行Tempest用例1197个，主要覆盖了API测试和功能测试，通过7*24的长稳测试，Skip用例105个（全是openStack Rocky版中已废弃的功能或接口，如KeystoneV1、Cinder V1等，和不支持的barbican项目），失败用例1个，其他1091个用例全部通过，发现问题已解决，回归通过，无遗留风险，整体质量良好。
 
 |测试活动|tempest集成测试|
 |:----|:----|
 |接口测试|API全覆盖|
 |功能测试|Queens版本覆盖Tempest所有相关测试用例1164个，其中Skip 52个，Fail 3个，其他全通过。|
-|功能测试|Rocky版本覆盖Tempest所有相关测试用例1197个，其中Skip 101个，Fail 95, 其他全通过。|
+|功能测试|Rocky版本覆盖Tempest所有相关测试用例1197个，其中Skip 105个，Fail 1个, 其他全通过。|
 
 |测试活动|功能测试|
 |:----|:----|
