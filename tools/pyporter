@@ -43,6 +43,8 @@ This is a packager bot for python modules from pypi.org
 #   only print the required RPM package name for xxx library
 # 8. ./pyporter -j xxx
 #   only fetch the json info of xxx library from pypi.
+# 9. ./pyporter -s -o python-xxx.spec -c -py2 -d xxx
+#   download xxx package(lastest version) from pypi and create python2 RPM spec file with %check section to enable testing
 
 # Supported parameter：
 #   "-s"   | "--spec"         | Create spec file
@@ -57,6 +59,7 @@ This is a packager bot for python modules from pypi.org
 #   "-a"   | "--arch"         | Build module with arch
 #   "-v"   | "--version"      | Package version
 #   "-py2" | "--python2"      | Build python2 package
+#   "-c"   | "--check"        | Add %check in spec to enable test running  
 # ******************************************************************************
 
 import argparse
@@ -132,7 +135,7 @@ class PyPorter:
     __pkg_version = ""
     __is_python2 = False
 
-    def __init__(self, arch, pkg, version, is_python2, shorten_description=False):
+    def __init__(self, arch, pkg, version, is_python2, do_check, shorten_description=False):
         """
         receive json from pypi.org
         """
@@ -149,6 +152,8 @@ class PyPorter:
             self._shorten_description = shorten_description
         if arch:
             self.__build_noarch = False
+
+        self.__do_check = True if do_check else False
 
     def get_spec_name(self):
         if not self.__spec_name:
@@ -350,6 +355,15 @@ class PyPorter:
             print("%py2_install")
         else:
             print("%py3_install")
+
+    def prepare_pkg_check(self):
+        if self.__do_check:
+            print("%check")
+            if self.__is_python2:
+                print("%{__python2} setup.py test")
+            else:
+                print("%{__python3} setup.py test")
+            print("")
 
     def prepare_pkg_files(self):
         if self.__build_noarch:
@@ -595,6 +609,8 @@ def build_spec(porter, output):
     print("mv %{buildroot}/doclist.lst .")
     print("")
 
+    porter.prepare_pkg_check()
+
     print("%files -n {name} -f filelist.lst".format(name=porter.get_pkg_name()))
     porter.prepare_pkg_files()
     print("")
@@ -631,6 +647,7 @@ def do_args(root_path):
     parser.add_argument("-py2", "--python2", help="Build python2 package", action="store_true")
     parser.add_argument("-sd", "--shorten-description", help="shorten description", action="store_true")
     parser.add_argument("pkg", type=str, help="The Python Module Name")
+    parser.add_argument("-c", "--check", help="Add %check step in spec", action="store_true")
 
     return parser
 
@@ -640,8 +657,7 @@ if __name__ == "__main__":
     my_parser = do_args(dft_root_path)
     args = my_parser.parse_args()
 
-    my_porter = PyPorter(args.arch, args.pkg, args.version, args.python2, args.shorten_description)
-
+    my_porter = PyPorter(args.arch, args.pkg, args.version, args.python2, args.check, args.shorten_description)
     if args.requires:
         my_req_list = my_porter.get_build_requires()
         if my_req_list is not None:
