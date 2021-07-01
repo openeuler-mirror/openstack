@@ -2,54 +2,14 @@ import csv
 import json
 import os
 from pathlib import Path
-import re
 import subprocess
 
 import click
 from packaging import version as p_version
 import requests
 
-
-# TODO: Add more service and release
-OPENSTACK_RELEASE_MAP = {
-    "victoria": {
-        "cinder": "17.1.0",
-        "glance": "21.0.0",
-        "horizon": "18.6.2",
-        "ironic": "16.0.3",
-        "keystone": "18.0.0",
-        "neutron": "17.1.1",
-        "nova": "22.2.0",
-        "placement": "4.0.0",
-        "python-openstackclient": "5.4.0",
-        "tempest": "25.0.1",
-    },
-    "wallaby": {
-        "cinder": "18.0.0",
-        "cinder-tempest-plugin": "1.4.0",
-        "glance": "22.0.0",
-        "glance-tempest-plugin": "0.1.0",
-        "horizon": "19.2.0",
-        "ironic": "17.0.3",
-        "ironic-inspector": "10.6.0",
-        "ironic-python-agent": "7.0.1",
-        "ironic-python-agent-builder": "2.7.0",
-        "ironic-tempest-plugin": "2.2.0",
-        "keystone": "19.0.0",
-        "keystone-tempest-plugin": "0.7.0",
-        "kolla": "12.0.0",
-        "kolla-ansible": "12.0.0",
-        "networking-baremetal": "4.0.0",
-        "networking-generic-switch": "5.0.0",
-        "neutron": "18.0.0",
-        "nova": "23.0.1",
-        "placement": "5.0.1",
-        "python-openstackclient": "5.4.0",
-        "tempest": "27.0.0",
-        "trove": "15.0.0",
-        "trove-tempest-plugin": "1.2.0",
-    }
-}
+from oos.constants import OPENSTACK_RELEASE_MAP
+from oos import utils
 
 
 class Dependence(object):
@@ -126,7 +86,7 @@ class InitDependence(Dependence):
         txt_file_path = (self.cache_path + "%s-%s.txt") % (project, version)
         if Path(txt_file_path).exists():
             with open(txt_file_path, 'r', encoding='utf8') as fp:
-                project_dep_list = fp.readlines()
+                project_dep_list = fp.read().splitlines()
         return project_dep_list
 
     def _cache_dependencies(self, project, version):
@@ -157,18 +117,18 @@ class InitDependence(Dependence):
             if "sys_platform=='win32'" in item:
                 continue
             if '!=' not in item and '>=' not in item and '<' not in item and '==' not in item:
-                project, min_version = item.split(';')[0].split(',')[0].split('#')[0].strip(' ').strip('\n'), '0'
+                project, min_version = item.split(';')[0].split(',')[0].split('#')[0].strip(' '), '0'
                 max_version = self.upper_list.get(project)
                 version = max_version if max_version else min_version
             elif '==' in item:
-                project, version = item.split('==')[0], item.split('==')[1].split('#')[0].strip(' ').strip('\n')
+                project, version = item.split('==')[0], item.split('==')[1].split('#')[0].strip(' ')
             else:
                 if '!=' in item and '>=' not in item and '<' not in item:
                     project, min_version = item.split('!=')[0], '0'
                 elif '<' in item and '>=' not in item and '!=' not in item:
                     project, min_version = item.split('<')[0], '0'
                 else:
-                    project, min_version = item.split('>=')[0].strip(' '), item.split('>=')[1].split(';')[0].split(',')[0].split('#')[0].strip(' ').strip('\n')
+                    project, min_version = item.split('>=')[0].strip(' '), item.split('>=')[1].split(';')[0].split(',')[0].split('#')[0].strip(' ')
                     if '!=' in project:
                         project = project.split('!=')[0].strip(' ')
                     elif '<' in project:
@@ -242,11 +202,52 @@ class InitDependence(Dependence):
 
 class CountDependence(Dependence):
 
-    def __init__(self, openstack_release, output):
+    def __init__(self, openstack_release, output, compare, token):
         super().__init__(openstack_release, output)
         path = Path(self.cache_path)
         if not path.exists():
             raise Exception("The cache folder doesn't exist, please add --init in command to generate it first.")
+        self.token = token if token else os.environ.get("GITEE_PAT")
+        self.compare = compare
+        if self.compare:
+            if not Path('./openeuler_repo').exists():
+                print("Fetching openEuler project info")
+                self.gitee_projects = utils.get_gitee_org_repos('src-openeuler', self.token)
+            else:
+                print("Read openeuler repo from cache")
+                with open('./openeuler_repo', 'r', encoding='utf8') as fp:
+                    self.gitee_projects = fp.read().splitlines()
+
+    def _generate_csv(self, dep_list):
+        with open(self.output, "w") as csv_file:
+            writer=csv.writer(csv_file)
+        if not self.compare:
+            writer.writerow(["Project", "Version"])
+            for key, value in dep_list.items():
+                writer.writerow([key, value])
+        else:
+            writer.writerow(["openEuler Repo", "Project Name", "Required Version", "Repo version", "Status"])
+            for project_name, project_version in dep_list.items():
+                repo_name = 'None'
+                version = 'None'
+                status = 'None'
+                if 'python-'+project_name in self.gitee_projects:
+                    repo_name = project_name
+                elif project_name in self.gitee_projects:
+                    repo_name = 'python-'+project_name
+                elif 'openstack-'+project_name in self.gitee_projects:
+                    repo_name = 'openstack-'+project_name
+                if repo_name != 'None':
+                    version = utils.get_gitee_project_version('src-openeuler', repo_name, 'master', self.token)
+                    if not version:
+                        status = 'Need Init'
+                    elif p_version.parse(version) == p_version.parse(project_version):
+                        status = 'OK'
+                    elif p_version.parse(version) > p_version.parse(project_version):
+                        status = 'Need Downgrade'
+                    elif p_version.parse(version) < p_version.parse(project_version):
+                        status = 'Need Upgrade'
+                writer.writerow([repo_name, project_name, project_version, version, status])
 
     def get_all_dep(self):
         """fetch all related dependent packages"""
@@ -266,22 +267,21 @@ class CountDependence(Dependence):
                         elif p_version.parse(project_version) > p_version.parse(dep_list[project_name]):
                             dep_list[project_name] = project_version
 
-        with open(self.output, "w") as csv_file:
-            writer=csv.writer(csv_file)
-            writer.writerow(["Project", "Version"])
-            for key, value in dep_list.items():
-                writer.writerow([key, value])
+        self._generate_csv(dep_list)
 
 
 @click.group(name='dependence', help='package dependence related commands')
 def mygroup():
     pass
 
+
 @mygroup.command(name='generate', help='generate required package list for the specified OpenStack release')
-@click.option('-i', '--init', is_flag=True, help='Init the cache file')
-@click.option('-o', '--output', default='result', help='Output file name, default: result.cvs')
+@click.option('-c', '--compare', is_flag=True, help='Check the project in openEuler community or not')
+@click.option('-i', '--init', is_flag=True, help='Init the cache file or not')
+@click.option('-o', '--output', default='result', help='Output file name, default: result.csv')
+@click.option('-t', '--token', help='Personal gitee access token used for fetching info from gitee')
 @click.argument('release', type=click.Choice(OPENSTACK_RELEASE_MAP.keys()))
-def generate(init, output, release):
+def generate(compare, init, output, token, release):
     if init:
         myobj = InitDependence(release)
         print("Start fetch caching files to %s_cache_file folder" % release)
@@ -290,7 +290,7 @@ def generate(init, output, release):
         print("Success cached pypi files.")
         print("...")
         print("Note: There is no need to fetch caching again from next time, unless you want to refresh the cache.")
-    myobj = CountDependence(release, output)
+    myobj = CountDependence(release, output, compare, token)
     print("Start count dependencies")
     print("...")
     myobj.get_all_dep()
