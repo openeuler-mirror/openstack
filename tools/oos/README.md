@@ -18,7 +18,19 @@ TBD
 oos dependence generate --init wallaby
 ```
 
-该命令运行完后，根目录下会生成3个文件：
+其他支持的参数有：
+
+```
+-c, --compare
+    结果是否与openeuler社区仓库进行比对，生成建议
+-t, --token
+    如果使用了-c，需要同时指定gitee token，否则gitee可能会拒接访问。
+    或者配置环境变量GITEE_PAT也行。
+-o, --output
+    指定命令行生成的文件名，默认为result.csv
+```
+
+该命令运行完后，根目录下会生成4个文件：
 
 wallaby_cache_file
 
@@ -27,6 +39,10 @@ wallaby_cache_file
 failed_cache.txt
 
     该命令无法处理的软件包，需要用户手动分析
+
+openeuler_repo
+
+    src-openeuler组织的全量项目名称
 
 result.csv
 
