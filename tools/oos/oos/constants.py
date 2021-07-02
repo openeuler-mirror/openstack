@@ -40,7 +40,6 @@ OPENSTACK_RELEASE_MAP = {
     }
 }
 
-
 # Some project name is unreadable by oos. Let's fix them by hand.
 # Pypi name : openEuelr name
 PYPI_OPENEULER_NAME_MAP = {
@@ -120,4 +119,28 @@ OPENEULER_PYPI_NAME_MAP = {
     'subunit': 'python-subunit',
     'semantic_version': 'semantic-version',
     'pyxattr': 'xattr'
+}
+LICENSE_MAPPING = {
+    "django-compressor": "Apache-2.0, MIT",
+    "django-pyscss": "BSD",
+    "jsonpath-rw-ext": "Apache-2.0",
+    # This package is MIT in source code. But it shows "Apache" in pypi.
+    "sqlalchemy-migrate": "MIT",
+    "testresources": "Apache-2.0",
+    "XStatic-Angular-FileUpload": "MIT",
+    "XStatic-Angular-lrdragndrop": "MIT",
+    "XStatic-Bootstrap-Datepicker": "Apache-2.0",
+    "XStatic-Hogan": "Apache-2.0",
+    "XStatic-Jasmine": "MIT",
+    "XStatic-jQuery": "MIT",
+    "XStatic-JQuery-Migrate": "MIT",
+    "XStatic-jquery-ui": "MIT",
+    "XStatic-JQuery.quicksearch": "MIT",
+    "XStatic-JQuery.TableSorter": "MIT",
+    "XStatic-mdi": "SIL OFL 1.1",
+    "XStatic-Rickshaw": "MIT",
+    "XStatic-smart-table": "MIT",
+    "XStatic-Spin": "MIT",
+    "XStatic-term.js": "MIT",
+    "XStatic-tv4": "Public Domain",
 }

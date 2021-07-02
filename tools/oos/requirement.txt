@@ -1,3 +1,6 @@
 click
+Jinja2
+pandas
 pipgrip
 requests
+urllib3  # MIT
