@@ -1,6 +1,6 @@
 # NOTE: the following image name is the openEuler docker images name from dailybuild,
 # may need to modify
-FROM openeuler-20.03-lts-sp2
+FROM openeuler-20.03-lts-next
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -16,11 +16,7 @@ RUN sed -i s'/TMOUT=300/TMOUT=300000000000/' /etc/bashrc
 
 RUN rpmdev-setuptree
 
-RUN curl -L https://gitee.com/openeuler/openstack/raw/master/tools/pyporter -o /usr/local/bin/pyporter \
-    && chmod +x /usr/local/bin/pyporter
-
-RUN pip3 install pandas requests click
-
-WORKDIR /root/rpmbuild
-COPY batch-packaging.py ./
-COPY projects.csv ./
+WORKDIR /root/
+RUN git clone https://gitee.com/openeuler/openstack \
+    && cd openstack/tools/oos \
+    && python3 setup.py develop \
