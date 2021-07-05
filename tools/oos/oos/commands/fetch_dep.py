@@ -9,6 +9,8 @@ from packaging import version as p_version
 import requests
 
 from oos.constants import OPENSTACK_RELEASE_MAP
+from oos.constants import OPENEULER_PYPI_NAME_MAP
+from oos.constants import PYPI_OPENEULER_NAME_MAP
 from oos import utils
 
 
@@ -221,33 +223,40 @@ class CountDependence(Dependence):
     def _generate_csv(self, dep_list):
         with open(self.output, "w") as csv_file:
             writer=csv.writer(csv_file)
-        if not self.compare:
-            writer.writerow(["Project", "Version"])
-            for key, value in dep_list.items():
-                writer.writerow([key, value])
-        else:
-            writer.writerow(["openEuler Repo", "Project Name", "Required Version", "Repo version", "Status"])
-            for project_name, project_version in dep_list.items():
-                repo_name = 'None'
-                version = 'None'
-                status = 'None'
-                if 'python-'+project_name in self.gitee_projects:
-                    repo_name = project_name
-                elif project_name in self.gitee_projects:
-                    repo_name = 'python-'+project_name
-                elif 'openstack-'+project_name in self.gitee_projects:
-                    repo_name = 'openstack-'+project_name
-                if repo_name != 'None':
-                    version = utils.get_gitee_project_version('src-openeuler', repo_name, 'master', self.token)
-                    if not version:
-                        status = 'Need Init'
-                    elif p_version.parse(version) == p_version.parse(project_version):
-                        status = 'OK'
-                    elif p_version.parse(version) > p_version.parse(project_version):
-                        status = 'Need Downgrade'
-                    elif p_version.parse(version) < p_version.parse(project_version):
-                        status = 'Need Upgrade'
-                writer.writerow([repo_name, project_name, project_version, version, status])
+            if not self.compare:
+                writer.writerow(["Project", "Version"])
+                for key, value in dep_list.items():
+                    writer.writerow([key, value])
+            else:
+                writer.writerow(["openEuler Repo", "Project Name", "Required Version", "Repo version", "Status"])
+                for project_name, project_version in dep_list.items():
+                    repo_name = ''
+                    version = ''
+                    status = ''
+                    if 'python-'+project_name in self.gitee_projects:
+                        repo_name = 'python-'+project_name
+                    elif project_name in self.gitee_projects:
+                        repo_name = project_name
+                    elif 'openstack-'+project_name in self.gitee_projects:
+                        repo_name = 'openstack-'+project_name
+                    if repo_name:
+                        version = utils.get_gitee_project_version('src-openeuler', repo_name, 'master', self.token)
+                        if not version:
+                            status = 'Need Init'
+                        elif p_version.parse(version) == p_version.parse(project_version):
+                            status = 'OK'
+                        elif p_version.parse(version) > p_version.parse(project_version):
+                            status = 'Need Downgrade'
+                        elif p_version.parse(version) < p_version.parse(project_version):
+                            status = 'Need Upgrade'
+                    writer.writerow([
+                        repo_name,
+                        OPENEULER_PYPI_NAME_MAP.get(project_name, project_name),
+                        project_version,
+                        version,
+                        status
+                        ]
+                    )
 
     def get_all_dep(self):
         """fetch all related dependent packages"""
@@ -257,11 +266,13 @@ class CountDependence(Dependence):
         for file_name in file_list:
             if file_name.endswith(".txt"):
                 project_name, project_version = file_name.rsplit('-', 1)[0], file_name.rsplit('-', 1)[1].rsplit('.', 1)[0]
+                project_name = PYPI_OPENEULER_NAME_MAP.get(project_name, project_name)
                 dep_list[project_name] = project_version
             else:
                 with open(self.cache_path+file_name, 'r', encoding='utf8') as fp:
                     sub_dict = json.load(fp)
                     for project_name, project_version in sub_dict.items():
+                        project_name = PYPI_OPENEULER_NAME_MAP.get(project_name, project_name)
                         if not dep_list.get(project_name):
                             dep_list[project_name] = project_version
                         elif p_version.parse(project_version) > p_version.parse(dep_list[project_name]):
