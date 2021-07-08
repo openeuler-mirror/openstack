@@ -186,7 +186,7 @@ def push(build_root, gitee_user, gitee_pat, gitee_email, gitee_org,
               default=os.path.join(str(Path.home()), 'rpmbuild'),
               help="Building root directory")
 @click.option("-n", "--name", help="Name of package to build")
-@click.option("-v", "--version", defalt='latest', help="Package version")
+@click.option("-v", "--version", default='latest', help="Package version")
 @click.option("-p", "--projects-data", help="File of projects list, includes "
                                             "'pypi_name', 'version' 2 columns ")
 @click.option('-q', '--query',
@@ -202,9 +202,9 @@ def push(build_root, gitee_user, gitee_pat, gitee_email, gitee_org,
 @click.option("-o", "--output", help="Specify output file of generated Spec")
 def build(build_root, name, version, projects_data, query, arch, python2,
           short_description, no_check, build_rpm, output):
-    if not ((name and version) or projects_data):
-        click.ClickException("You must specify projects_data file or specific "
-                             "package name and version!")
+    if not (name or projects_data):
+        raise click.ClickException("You must specify projects_data file or "
+                                   "specific package name!")
     if name and version:
         if projects_data:
             click.secho("You have specified package name and version, "
