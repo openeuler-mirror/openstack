@@ -182,10 +182,24 @@ class RPMSpec(object):
         return build_requires
 
     def _get_requires(self):
-        rs = self.pypi_json["info"]["requires_dist"]
-        if rs is None:
-            return
-        return rs
+        requires_info = self.pypi_json["info"]["requires_dist"]
+        if requires_info is None:
+            return [], []
+        dev_requires, test_requires = [], []
+        for r in requires_info:
+            req, _, extra = r.partition(";")
+            r_name, _, r_ver = req.rstrip().partition(' ')
+            if r_name.startswith('python-'):
+                r_name = r_name[7:]
+            if self.python2:
+                r_pkg = 'python2-' + r_name
+            else:
+                r_pkg = 'python3-' + r_name
+            if 'test' in extra:
+                test_requires.append(r_pkg)
+            else:
+                dev_requires.append(r_pkg)
+        return dev_requires, test_requires
 
     def generate_spec(self, build_root, output_file=None):
         import oos
@@ -203,11 +217,12 @@ class RPMSpec(object):
             except jinja2.exceptions.TemplateNotFound:
                 continue
         else:
-            click.secho("Project: %s built failed due to jinja template not found, need to manually fix" %
+            click.secho("Project: %s built failed due to jinja template not "
+                        "found, need to manually fix" %
                         self.pypi_name, fg='red')
             self.build_failed = True
             return
-
+        dev_requires, test_requires = self._get_requires()
         template_vars = {'spec_name': self.spec_name,
                          'version': self.version_num,
                          'pkg_summary': self.pkg_summary,
@@ -218,7 +233,8 @@ class RPMSpec(object):
                          'pkg_name': self.pkg_name,
                          'provides': self._get_provide_name(),
                          'build_requires': self._get_build_requires(),
-                         'requires': self._get_requires(),
+                         'requires': dev_requires + test_requires,
+                         'test_requires': test_requires,
                          'description': self._get_description(),
                          'today': datetime.date.today().strftime("%a %b %d %Y"),
                          'add_check': self.add_check,
@@ -238,9 +254,17 @@ class RPMSpec(object):
         self.generate_spec(build_root, output_file)
         if not self.spec_path:
             return
-        status = subprocess.call(["rpmbuild", "-ba", self.spec_path])
+        status = subprocess.call(["dnf", "builddep", '-y', self.spec_path])
         if status != 0:
-            click.secho("Project: %s built failed, need to manually fix" %
+            click.secho("Project: %s built failed, install dependencies failed."
+                        % self.pypi_name, fg='red')
+            self.build_failed = True
+            return
+        status = subprocess.call(["rpmbuild",
+                                  "--undefine=_disable_source_fetch", "-ba",
+                                  self.spec_path])
+        if status != 0:
+            click.secho("Project: %s built failed, need to manually fix." %
                         self.pypi_name, fg='red')
             self.build_failed = True
 

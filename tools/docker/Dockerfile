@@ -8,9 +8,10 @@ COPY openEuler.repo /etc/yum.repos.d/
 
 RUN yum update -y && yum install -y \
     sudo git tar curl patch shadow-utils make cmake gcc gcc-c++ \
-    rpm-build dnf-plugins-core make rpmdevtools wget python3-pip python2-pip
+    rpm-build dnf-plugins-core make rpmdevtools wget python3-pip
 
-RUN yum update -y && yum install -y python2-wheel openssl-devel libffi-devel python3-devel
+RUN yum update -y && yum install -y openssl-devel libffi-devel \
+    python3-devel python3-wheel
 
 RUN sed -i s'/TMOUT=300/TMOUT=300000000000/' /etc/bashrc
 
@@ -19,4 +20,5 @@ RUN rpmdev-setuptree
 WORKDIR /root/
 RUN git clone https://gitee.com/openeuler/openstack \
     && cd openstack/tools/oos \
-    && python3 setup.py develop \
+    && pip3 install -r requirement.txt \
+    && python3 setup.py develop
