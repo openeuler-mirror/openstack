@@ -39,7 +39,7 @@ Provides:       {{ pkg_name }}-doc
 {{ description }}
 
 %prep
-%autosetup -n {{ pypi_name }}-{{ version }} -S git
+%autosetup -n {{ source_file_dir }} -S git
 
 %build
 {%- if python2 %}

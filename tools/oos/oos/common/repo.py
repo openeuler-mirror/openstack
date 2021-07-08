@@ -40,7 +40,7 @@ class PkgGitRepo(object):
         click.echo("Cloning source repo from: %s" % clone_url)
         repo_dir = os.path.join(src_dir, self.repo_name)
         if os.path.exists(repo_dir):
-            os.remove(repo_dir)
+            subprocess.call(["rm", "-fr", repo_dir])
         subprocess.call(["git", "clone", clone_url, repo_dir])
         self.repo_dir = os.path.join(src_dir, self.repo_name)
 
