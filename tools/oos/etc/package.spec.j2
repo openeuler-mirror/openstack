@@ -81,6 +81,7 @@ mv %{buildroot}/filelist.lst .
 mv %{buildroot}/doclist.lst .
 
 {%- if add_check %}
+%check
 {% if python2 %}
 %{__python2} setup.py test
 {% else %}
