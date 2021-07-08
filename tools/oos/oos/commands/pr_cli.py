@@ -25,8 +25,8 @@ def pr():
 def comment_pr(gitee_pat, gitee_org, projects_data,
                repo, pr_num, comment):
     if not ((repo and pr) or projects_data):
-        click.ClickException("You must specify projects_data file or specific "
-                             "repo and pr number!")
+        raise click.ClickException("You must specify projects_data file or "
+                                   "specific repo and pr number!")
     if repo and pr_num:
         if projects_data:
             click.secho("You have specified repo and PR number, "
