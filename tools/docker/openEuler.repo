@@ -1,13 +1,13 @@
 [everything]
 name=everything
 # May need to update the following daily build URL
-baseurl=http://119.3.219.20:82/openEuler:/20.03:/LTS:/Next/standard_aarch64
+baseurl=http://119.3.219.20:82/openEuler:/Mainline/standard_aarch64
 enabled=1
 gpgcheck=0
 
 [EPOL]
 name=epol
 # May need to update the following daily build URL
-baseurl=http://119.3.219.20:82/openEuler:/20.03:/LTS:/Next:/Epol/standard_aarch64
+baseurl=http://119.3.219.20:82/openEuler:/Epol/standard_aarch64
 enabled=1
 gpgcheck=0

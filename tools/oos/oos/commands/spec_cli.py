@@ -87,7 +87,7 @@ class SpecPush(object):
         repo_obj = PkgGitRepo(
             repo_name, self.gitee_pat,
             self.gitee_org, self.gitee_user, self.gitee_email)
-        spec_obj.generate_spec(self.build_root)
+        spec_obj.build_package(self.build_root)
         if spec_obj.build_failed:
             self.build_failed.append(pypi_name)
             return

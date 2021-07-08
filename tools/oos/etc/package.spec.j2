@@ -18,6 +18,12 @@ Provides:       {{ provides }}
 BuildRequires:  {{ br }}
 {%- endfor %}
 {%- endif %}
+{%- if test_requires %}
+{%- for tr in test_requires %}
+BuildRequires:  {{ tr }}
+{%- endfor %}
+{%- endif %}
+
 {%- if requires %}
 {%- for req in requires %}
 Requires:       {{ req }}
