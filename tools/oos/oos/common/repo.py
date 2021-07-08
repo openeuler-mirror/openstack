@@ -38,8 +38,10 @@ class PkgGitRepo(object):
         clone_url = "https://gitee.com/%s/%s" % (
             self.gitee_user, self.repo_name)
         click.echo("Cloning source repo from: %s" % clone_url)
-        subprocess.call(
-            ["git", "clone", clone_url, "/".join([src_dir, self.repo_name])])
+        repo_dir = os.path.join(src_dir, self.repo_name)
+        if os.path.exists(repo_dir):
+            os.remove(repo_dir)
+        subprocess.call(["git", "clone", clone_url, repo_dir])
         self.repo_dir = os.path.join(src_dir, self.repo_name)
 
     def add_branch(self, src_branch, dest_branch):

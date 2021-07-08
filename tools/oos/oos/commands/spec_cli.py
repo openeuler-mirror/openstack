@@ -11,8 +11,8 @@ from oos.common.repo import PkgGitRepo
 
 class SpecPush(object):
     def __init__(self, gitee_org, gitee_pat, gitee_user, gitee_email,
-                 build_root, repos_dir, src_branch, dest_branch,
-                 projects_data_file, short_description, query):
+                 build_root, repos_dir, arch, python2, no_check, src_branch,
+                 dest_branch, projects_data_file, short_description, query):
         self.build_root = build_root
         self.repos_dir = os.path.join(self.build_root, repos_dir)
         self.projects_data_file = projects_data_file
@@ -20,6 +20,9 @@ class SpecPush(object):
         self.gitee_pat = gitee_pat
         self.gitee_user = gitee_user
         self.gitee_email = gitee_email
+        self.arch = arch
+        self.python2 = python2
+        self.no_check = no_check
         self.src_branch = src_branch
         self.dest_branch = dest_branch
         self.short_description = short_description
@@ -83,7 +86,8 @@ class SpecPush(object):
         subprocess.call(cp_src_pkg_cmd, shell=True)
 
     def _build_one(self, repo_name, pypi_name, version, commit_msg, do_push):
-        spec_obj = RPMSpec(pypi_name, version)
+        spec_obj = RPMSpec(pypi_name, version, self.arch, self.python2,
+                           self.short_description, not self.no_check)
         repo_obj = PkgGitRepo(
             repo_name, self.gitee_pat,
             self.gitee_org, self.gitee_user, self.gitee_email)
@@ -164,18 +168,23 @@ def spec():
 @click.option('-q', '--query',
               help="Filter, fuzzy match the 'pypi_name' of projects list, e.g. "
                    "'-q novaclient.")
+@click.option("-a", "--arch", default='noarch', help="Build module with arch")
+@click.option("-py2", "--python2", is_flag=True, help="Build python2 package")
 @click.option('-dp', '--do-push', is_flag=True, help="Do PUSH or not")
+@click.option("-nc", "--no-check", is_flag=True,
+              help="Do not add %check step in spec")
 @click.option('-sd', '--short-description', is_flag=True,
               help="Shorten description")
 @click.option("-cm", "--commit-message", required=True,
               help="Commit message and PR tittle")
 def push(build_root, gitee_user, gitee_pat, gitee_email, gitee_org,
-         projects_data, dest_branch, src_branch, repos_dir, do_push,
-         short_description, commit_message, query):
+         projects_data, dest_branch, src_branch, repos_dir, arch, python2,
+         do_push, no_check, short_description, commit_message, query):
     spec_push = SpecPush(gitee_org=gitee_org, gitee_pat=gitee_pat,
                          gitee_user=gitee_user, gitee_email=gitee_email,
                          build_root=build_root, repos_dir=repos_dir,
                          src_branch=src_branch, dest_branch=dest_branch,
+                         arch=arch, python2=python2, no_check=no_check,
                          projects_data_file=projects_data,
                          short_description=short_description, query=query)
     spec_push.build_all(commit_message, do_push)
