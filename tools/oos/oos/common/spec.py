@@ -35,6 +35,9 @@ class RPMSpec(object):
         self._pkg_summary = None
         self._pkg_home = None
         self._pkg_license = None
+        self._source_url = ""
+        self._source_file = ""
+        self._source_file_dir = ""
 
     @property
     def pypi_json(self):
@@ -115,28 +118,15 @@ class RPMSpec(object):
             return "MIT"
         return org_license
 
-    def _get_source_info(self):
-        """
-        return a map of source filename, md5 of source, source url
-        return None in errors
-        """
-        v = self.pypi_json["info"]["version"]
-        rs = self.pypi_json["releases"][v]
-        for r in rs:
-            if r["packagetype"] == "sdist":
-                return {"filename": r["filename"], "md5": r["md5_digest"],
-                        "url": r["url"]}
-        return None
-
-    def _get_source_url(self):
-        """
-        return URL for source file for the latest version
-        return "" in errors
-        """
-        s_info = self._get_source_info()
-        if s_info:
-            return s_info.get("url")
-        return ""
+    def _init_source_info(self):
+        urls_info = self.pypi_json['urls']
+        for url_info in urls_info:
+            if url_info["packagetype"] == "sdist":
+                self._source_file = url_info["filename"]
+                self._source_url = url_info["url"]
+        if self._source_file:
+            self._source_file_dir = ''.join(self._source_file.partition(
+                '-' + self.version_num)[:2])
 
     def _get_description(self, shorten=True):
         org_description = self.pypi_json["info"]["description"]
@@ -211,7 +201,8 @@ class RPMSpec(object):
         ]
         for location in search_paths:
             try:
-                env = jinja2.Environment(loader=jinja2.FileSystemLoader(location))
+                env = jinja2.Environment(
+                    loader=jinja2.FileSystemLoader(location))
                 template = env.get_template('package.spec.j2')
                 break
             except jinja2.exceptions.TemplateNotFound:
@@ -223,12 +214,13 @@ class RPMSpec(object):
             self.build_failed = True
             return
         dev_requires, test_requires = self._get_requires()
+        self._init_source_info()
         template_vars = {'spec_name': self.spec_name,
                          'version': self.version_num,
                          'pkg_summary': self.pkg_summary,
                          'pkg_license': self._get_license(),
                          'pkg_home': self.pkg_home,
-                         'source_url': self._get_source_url(),
+                         'source_url': self._source_url,
                          'build_arch': self.arch,
                          'pkg_name': self.pkg_name,
                          'provides': self._get_provide_name(),
@@ -239,7 +231,7 @@ class RPMSpec(object):
                          'today': datetime.date.today().strftime("%a %b %d %Y"),
                          'add_check': self.add_check,
                          'python2': self.python2,
-                         'pypi_name': self.pypi_name
+                         "source_file_dir": self._source_file_dir
                          }
         output = template.render(template_vars)
         if output_file:
@@ -268,10 +260,9 @@ class RPMSpec(object):
                         self.pypi_name, fg='red')
             self.build_failed = True
             return
-        src_info = self._get_source_info()
-        if src_info:
-            self.source_path = os.path.join(build_root, "SOURCES/",
-                                            src_info['filename'])
+
+        self.source_path = os.path.join(build_root, "SOURCES/",
+                                        self._source_file)
         if not os.path.isfile(self.source_path):
             click.secho("Project: %s built failed, source file not found." %
                         self.pypi_name, fg='red')
