@@ -189,9 +189,25 @@ class RPMSpec(object):
 
     def generate_spec(self, build_root, output_file=None):
         import oos
-        search_path = os.path.join(os.path.dirname(oos.__path__[0]), 'etc')
-        env = jinja2.Environment(loader=jinja2.FileSystemLoader(search_path))
-        template = env.get_template('package.spec.j2')
+        search_paths = [
+            '/etc/oos/',
+            '/usr/local/etc/oos',
+            '/usr/etc/oos',
+            os.path.join(os.path.dirname(oos.__path__[0]), 'etc'),
+        ]
+        for location in search_paths:
+            try:
+                env = jinja2.Environment(loader=jinja2.FileSystemLoader(location))
+                template = env.get_template('package.spec.j2')
+                break
+            except jinja2.exceptions.TemplateNotFound:
+                continue
+        else:
+            click.secho("Project: %s built failed due to jinja template not found, need to manually fix" %
+                        self.pypi_name, fg='red')
+            self.build_failed = True
+            return
+
         template_vars = {'spec_name': self.spec_name,
                          'version': self.version_num,
                          'pkg_summary': self.pkg_summary,
