@@ -40,6 +40,7 @@ OPENSTACK_RELEASE_MAP = {
     }
 }
 
+
 # Some project name is unreadable by oos. Let's fix them by hand.
 # Pypi name : openEuelr name
 PYPI_OPENEULER_NAME_MAP = {
@@ -47,6 +48,8 @@ PYPI_OPENEULER_NAME_MAP = {
     "dnspython": "python-dns",
     "dogpile-cache": "dogpile.cache",
     "gitpython": "GitPython",
+    "infi-dtypes-iqn": "infi.dtypes.iqn",
+    "infi-dtypes-wwn": "infi.dtypes.wwn",
     "logbook": "Logbook",
     "oslosphinx": "oslo.sphinx",
     "oslo-concurrency": "oslo.concurrency",
@@ -107,7 +110,6 @@ PYPI_OPENEULER_NAME_MAP = {
 OPENEULER_PYPI_NAME_MAP = {
     'python-sphinx-theme-alabaster': 'alabaster',
     'python-dns': 'dnspython',
-    'dogpile.cache': 'dogpile-cache',
     'oslo.sphinx': 'oslosphinx',
     'openvswitch': 'ovs',
     'paste-deploy': 'pastedeploy',
@@ -120,6 +122,8 @@ OPENEULER_PYPI_NAME_MAP = {
     'semantic_version': 'semantic-version',
     'pyxattr': 'xattr'
 }
+
+
 LICENSE_MAPPING = {
     "django-compressor": "Apache-2.0, MIT",
     "django-pyscss": "BSD",
