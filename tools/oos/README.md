@@ -130,8 +130,14 @@ oepkg_openstack-rocky_oe-20.03-LTS-SP2 --src-branch add_package_rocky \
     过滤器，模糊匹配projects-data中的软件包名称，通常用于重新生成软件包列表中的某一个，如‘-q cinderclient’
 -dp, --do-push
     指定是否执行push到gitee仓库上并提交PR，如果不指定则只会提交到本地的仓库中
+-a, --arch
+    指定生成Spec文件的arch，默认为'noarch'
+-py2, --python2
+    指定生成python2的软件包的Spec
 -sd, --short-description
     指定在生成spec的时候是否对description做截短处理，默认为True
+-nc, --no-check
+    指定在生成的Spec文件中不添加check步骤
 -cm, --commit-message
     指定提交时候的commit message信息，也会作为提交的tittle，必选参数
 ```

@@ -16,8 +16,8 @@ from oos.constants import LICENSE_MAPPING
 
 
 class RPMSpec(object):
-    def __init__(self, pypi_name, version='latest', arch='noarch', python2=True,
-                 short_description=True, add_check=True):
+    def __init__(self, pypi_name, version='latest', arch='noarch',
+                 python2=False, short_description=True, add_check=True):
         self.pypi_name = pypi_name
         self.version = version
         self.shorten_description = short_description
@@ -267,6 +267,16 @@ class RPMSpec(object):
             click.secho("Project: %s built failed, need to manually fix." %
                         self.pypi_name, fg='red')
             self.build_failed = True
+            return
+        src_info = self._get_source_info()
+        if src_info:
+            self.source_path = os.path.join(build_root, "SOURCES/",
+                                            src_info['filename'])
+        if not os.path.isfile(self.source_path):
+            click.secho("Project: %s built failed, source file not found." %
+                        self.pypi_name, fg='red')
+            self.build_failed = True
+            return
 
     def check_deps(self, all_repo_names=None):
         for r in self._get_requires():
