@@ -65,10 +65,8 @@ Provides:       {{ pkg_name }}-doc
 
 %install
 {%- if python2 %}
-%py2_install
-{% else %}
-%py3_install
-{% endif %}
+%py2_install{% else %}
+%py3_install{% endif %}
 install -d -m755 %{buildroot}/%{_pkgdocdir}
 if [ -d doc ]; then cp -arf doc %{buildroot}/%{_pkgdocdir}; fi
 if [ -d docs ]; then cp -arf docs %{buildroot}/%{_pkgdocdir}; fi
@@ -76,33 +74,29 @@ if [ -d example ]; then cp -arf example %{buildroot}/%{_pkgdocdir}; fi
 if [ -d examples ]; then cp -arf examples %{buildroot}/%{_pkgdocdir}; fi
 pushd %{buildroot}
 if [ -d usr/lib ]; then
-        find usr/lib -type f -printf "/%h/%f\n" >> filelist.lst
+    find usr/lib -type f -printf "/%h/%f\n" >> filelist.lst
 fi
 if [ -d usr/lib64 ]; then
-        find usr/lib64 -type f -printf "/%h/%f\n" >> filelist.lst
+    find usr/lib64 -type f -printf "/%h/%f\n" >> filelist.lst
 fi
 if [ -d usr/bin ]; then
-        find usr/bin -type f -printf "/%h/%f\n" >> filelist.lst
+    find usr/bin -type f -printf "/%h/%f\n" >> filelist.lst
 fi
 if [ -d usr/sbin ]; then
-        find usr/sbin -type f -printf "/%h/%f\n" >> filelist.lst
+    find usr/sbin -type f -printf "/%h/%f\n" >> filelist.lst
 fi
 touch doclist.lst
 if [ -d usr/share/man ]; then
-        find usr/share/man -type f -printf "/%h/%f.gz\n" >> doclist.lst
+    find usr/share/man -type f -printf "/%h/%f.gz\n" >> doclist.lst
 fi
 popd
 mv %{buildroot}/filelist.lst .
 mv %{buildroot}/doclist.lst .
 
 {%- if add_check %}
+
 %check
-{%- if python2 %}
-%{__python2} setup.py test
-{%- else %}
-%{__python3} setup.py test
-{% endif %}
-{%- endif %}
+{% if python2 %}%{__python2} setup.py test{% else %}%{__python3} setup.py test{% endif %}{%- endif %}
 
 %files -n {{ pkg_name }} -f filelist.lst
 {%- if python2 %}
@@ -115,5 +109,5 @@ mv %{buildroot}/doclist.lst .
 %{_docdir}/*
 
 %changelog
-* {{ today }} OpenStack_SIG <openstack@openeuler.org>
+* {{ today }} OpenStack_SIG <openstack@openeuler.org> - {{ version }}-1
 - Package Spec generate
