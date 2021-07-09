@@ -30,6 +30,7 @@ class SpecPush(object):
         self.missed_deps = []
         self.projects_missed_branch = []
         self.build_failed = []
+        self.check_stage_failed = []
         self.query = query
 
     def ensure_build_root(self):
@@ -93,6 +94,8 @@ class SpecPush(object):
             self.gitee_org, self.gitee_user, self.gitee_email)
         spec_obj.build_package(self.build_root)
         if spec_obj.build_failed:
+            if spec_obj.check_stage_failed:
+                self.check_stage_failed.append(pypi_name)
             self.build_failed.append(pypi_name)
             return
 
@@ -132,6 +135,8 @@ class SpecPush(object):
         click.secho("Projects missed dest branch: %s" %
                     self.projects_missed_branch, fg='red')
         click.secho("Build failed packages: %s" % self.build_failed,
+                    fg='red')
+        click.secho("Check stage failed packages: %s" % self.check_stage_failed,
                     fg='red')
 
         click.secho("=" * 20 + "Summary" + "=" * 20, fg='black', bg='green')

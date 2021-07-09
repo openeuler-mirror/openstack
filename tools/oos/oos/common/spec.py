@@ -27,17 +27,22 @@ class RPMSpec(object):
         self.source_path = ''
         self.deps_missed = set()
         self.build_failed = False
+        self.check_stage_failed = False
         self.add_check = add_check
 
         self._pypi_json = None
-        self._spec_name = None
-        self._pkg_name = None
-        self._pkg_summary = None
-        self._pkg_home = None
-        self._pkg_license = None
+        self._spec_name = ""
+        self._pkg_name = ""
+        self._pkg_summary = ""
+        self._pkg_home = ""
+        self._pkg_license = ""
         self._source_url = ""
         self._source_file = ""
         self._source_file_dir = ""
+        self._base_build_requires = []
+        self._dev_requires = []
+        self._test_requires = []
+        self._check_supported = True
 
     @property
     def pypi_json(self):
@@ -155,28 +160,28 @@ class RPMSpec(object):
                                      shorted)))))
         return '\n'.join(textwrap.wrap(spec_description, 80))
 
-    def _get_build_requires(self):
+    def _parse_requires(self):
+        self._base_build_requires = []
+        self._dev_requires = []
+        self._test_requires = []
+
         if self.python2:
-            build_requires = ['python2-devel', 'python2-setuptools',
-                              'python2-pbr']
+            self._base_build_requires = ['python2-devel', 'python2-setuptools',
+                                         'python2-pbr']
         else:
-            build_requires = ['python3-devel', 'python3-setuptools',
-                              'python3-pbr']
+            self._base_build_requires = ['python3-devel', 'python3-setuptools',
+                                         'python3-pbr']
         if self.arch != 'noarch':
             if self.python2:
-                build_requires.append('python2-cffi')
+                self._base_build_requires.append('python2-cffi')
             else:
-                build_requires.append('python3-cffi')
-            build_requires.append('gcc')
-            build_requires.append('gdb')
-        return build_requires
+                self._base_build_requires.append('python3-cffi')
+            self._base_build_requires.extend(['gcc', 'gdb'])
 
-    def _get_requires(self):
-        requires_info = self.pypi_json["info"]["requires_dist"]
-        if requires_info is None:
-            return [], []
-        dev_requires, test_requires = [], []
-        for r in requires_info:
+        pypi_requires = self.pypi_json["info"]["requires_dist"]
+        if pypi_requires is None:
+            return
+        for r in pypi_requires:
             req, _, extra = r.partition(";")
             r_name, _, r_ver = req.rstrip().partition(' ')
             if r_name.startswith('python-'):
@@ -186,10 +191,9 @@ class RPMSpec(object):
             else:
                 r_pkg = 'python3-' + r_name
             if 'test' in extra:
-                test_requires.append(r_pkg)
+                self._test_requires.append(r_pkg)
             else:
-                dev_requires.append(r_pkg)
-        return dev_requires, test_requires
+                self._dev_requires.append(r_pkg)
 
     def generate_spec(self, build_root, output_file=None):
         import oos
@@ -213,8 +217,9 @@ class RPMSpec(object):
                         self.pypi_name, fg='red')
             self.build_failed = True
             return
-        dev_requires, test_requires = self._get_requires()
+
         self._init_source_info()
+        self._parse_requires()
         template_vars = {'spec_name': self.spec_name,
                          'version': self.version_num,
                          'pkg_summary': self.pkg_summary,
@@ -224,9 +229,9 @@ class RPMSpec(object):
                          'build_arch': self.arch,
                          'pkg_name': self.pkg_name,
                          'provides': self._get_provide_name(),
-                         'build_requires': self._get_build_requires(),
-                         'requires': dev_requires + test_requires,
-                         'test_requires': test_requires,
+                         'base_build_requires': self._base_build_requires,
+                         'dev_requires': self._dev_requires,
+                         'test_requires': self._test_requires,
                          'description': self._get_description(),
                          'today': datetime.date.today().strftime("%a %b %d %Y"),
                          'add_check': self.add_check,
@@ -242,6 +247,27 @@ class RPMSpec(object):
         with open(self.spec_path, 'w') as f:
             f.write(output)
 
+    def _verify_check_stage(self, build_root):
+        # Verify the %check stage of spec file
+        if not self.add_check:
+            return
+        pkg_src_dir = os.path.join(build_root, 'BUILD', self._source_file_dir)
+        if self.python2:
+            cmd = "cd %s; python2 setup.py test" % pkg_src_dir
+        else:
+            cmd = "cd %s; python3 setup.py test" % pkg_src_dir
+        status = subprocess.call(cmd, shell=True)
+        if status != 0:
+            click.secho("Run check stage failed: %s" % self.pypi_name, fg='red')
+            output = subprocess.run(cmd, shell=True, stderr=subprocess.STDOUT,
+                                    stdout=subprocess.PIPE)
+            if "invalid command 'test'" in str(output.stdout):
+                click.secho("Does not support setup.py test command of %s, "
+                            "skip check stage." % self.pypi_name, fg='yellow')
+                self._check_supported = False
+            self.check_stage_failed = True
+            return
+
     def build_package(self, build_root, output_file=None):
         self.generate_spec(build_root, output_file)
         if not self.spec_path:
@@ -256,10 +282,20 @@ class RPMSpec(object):
                                   "--undefine=_disable_source_fetch", "-ba",
                                   self.spec_path])
         if status != 0:
-            click.secho("Project: %s built failed, need to manually fix." %
-                        self.pypi_name, fg='red')
             self.build_failed = True
-            return
+            if self._check_supported and self.add_check:
+                self._verify_check_stage(build_root)
+                if not self._check_supported:
+                    click.secho("Project: %s does not support check stage, "
+                                "re-generate " "spec." % self.pypi_name,
+                                fg='yellow')
+                    self.add_check = False
+                    self.build_failed = False
+                    self.build_package(build_root, output_file)
+            if self.build_failed:
+                click.secho("Project: %s built failed, need to manually fix." %
+                            self.pypi_name, fg='red')
+                return
 
         self.source_path = os.path.join(build_root, "SOURCES/",
                                         self._source_file)
@@ -270,7 +306,8 @@ class RPMSpec(object):
             return
 
     def check_deps(self, all_repo_names=None):
-        for r in self._get_requires():
+        self._parse_requires()
+        for r in self._dev_requires + self._test_requires:
             in_list = True
             if (all_repo_names and r.replace("python2", "python").lower()
                     not in all_repo_names or []):
