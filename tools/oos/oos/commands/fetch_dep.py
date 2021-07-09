@@ -8,8 +8,8 @@ import click
 from packaging import version as p_version
 import requests
 
+from oos.constants import JSON_PYPI_NAME_MAP
 from oos.constants import OPENSTACK_RELEASE_MAP
-from oos.constants import OPENEULER_PYPI_NAME_MAP
 from oos.constants import PYPI_OPENEULER_NAME_MAP
 from oos import utils
 
@@ -27,13 +27,31 @@ class Dependence(object):
             "driver-requirements.txt",
             "doc/requirements.txt"
         ]
+        self.upper_list = {}
+        self._generate_upper_list()
+
+    def _generate_upper_list(self):
+        file_path = self.cache_path + "upper.json"
+        if Path(file_path).exists():
+            with open(file_path, 'r', encoding='utf8') as fp:
+                self.upper_list = json.load(fp)
+            return
+        upper_url = "https://opendev.org/openstack/requirements/raw/branch/stable/%s/upper-constraints.txt" % self.openstack_release
+        projects = requests.get(upper_url).content.decode().split('\n')
+        for project in projects:
+            if not project:
+                continue
+            project_name, project_version = project.split('===')
+            project_version = project_version.split(';')[0]
+            self.upper_list[project_name] = project_version
+        with open(file_path, 'w', encoding='utf8') as fp:
+            json.dump(self.upper_list, fp, ensure_ascii=False)
 
 
 class InitDependence(Dependence):
 
     def __init__(self, openstack_release):
         super().__init__(openstack_release, 'no_output')
-        self.upper_list = {}
         self.cached_dict ={}
         self.blacklist = []
 
@@ -142,14 +160,11 @@ class InitDependence(Dependence):
 
     def _purge(self):
         """Purge the duplicated json file"""
-        try:
-            os.remove(self.cache_path+"upper.json")
-        except FileNotFoundError:
-            pass
-
         file_list = os.listdir(self.cache_path)
         file_dict = {}
         for file_name in file_list:
+            if file_name == 'upper.json':
+                continue
             project_name, project_version = file_name.rsplit('-', 1)[0], file_name.rsplit('-', 1)[1].rsplit('.', 1)[0]
             if not file_dict.get(project_name):
                 file_dict[project_name] = project_version
@@ -161,23 +176,6 @@ class InitDependence(Dependence):
                 except FileNotFoundError:
                     os.remove(self.cache_path+project_name+"-"+file_dict[project_name]+".txt")
                 file_dict[project_name] = project_version
-
-    def _generate_upper_list(self):
-        file_path = self.cache_path + "upper.json"
-        if Path(file_path).exists():
-            with open(file_path, 'r', encoding='utf8') as fp:
-                self.upper_list = json.load(fp)
-            return
-        upper_url = "https://opendev.org/openstack/requirements/raw/branch/stable/%s/upper-constraints.txt" % self.openstack_release
-        projects = requests.get(upper_url).content.decode().split('\n')
-        for project in projects:
-            if not project:
-                continue
-            project_name, project_version = project.split('===')
-            project_version = project_version.split(';')[0]
-            self.upper_list[project_name] = project_version
-        with open(file_path, 'w', encoding='utf8') as fp:
-            json.dump(self.upper_list, fp, ensure_ascii=False)
 
     def _init_failed_cache(self):
         failed_cache_path = './failed_cache.txt'
@@ -195,7 +193,6 @@ class InitDependence(Dependence):
         else:
             print("Creating Cache folder %s" % self.cache_path)
             path.mkdir()
-        self._generate_upper_list()
         self._init_failed_cache()
         for project, version in self.project_dict.items():
             self._cache_dependencies(project, version)
@@ -232,13 +229,14 @@ class CountDependence(Dependence):
                 for project_name, project_version in dep_list.items():
                     repo_name = ''
                     version = ''
-                    status = ''
-                    if 'python-'+project_name in self.gitee_projects:
-                        repo_name = 'python-'+project_name
-                    elif project_name in self.gitee_projects:
-                        repo_name = project_name
-                    elif 'openstack-'+project_name in self.gitee_projects:
-                        repo_name = 'openstack-'+project_name
+                    status = 'Need Create'
+                    openeuler_name = PYPI_OPENEULER_NAME_MAP.get(project_name, project_name)
+                    if 'python-'+openeuler_name in self.gitee_projects:
+                        repo_name = 'python-'+openeuler_name
+                    elif openeuler_name in self.gitee_projects:
+                        repo_name = openeuler_name
+                    elif 'openstack-'+openeuler_name in self.gitee_projects:
+                        repo_name = 'openstack-'+openeuler_name
                     if repo_name:
                         version = utils.get_gitee_project_version('src-openeuler', repo_name, 'master', self.token)
                         if not version:
@@ -251,7 +249,7 @@ class CountDependence(Dependence):
                             status = 'Need Upgrade'
                     writer.writerow([
                         repo_name,
-                        OPENEULER_PYPI_NAME_MAP.get(project_name, project_name),
+                        project_name,
                         project_version,
                         version,
                         status
@@ -264,15 +262,19 @@ class CountDependence(Dependence):
         dep_list = {}
 
         for file_name in file_list:
+            if file_name == 'upper.json':
+                continue
             if file_name.endswith(".txt"):
                 project_name, project_version = file_name.rsplit('-', 1)[0], file_name.rsplit('-', 1)[1].rsplit('.', 1)[0]
-                project_name = PYPI_OPENEULER_NAME_MAP.get(project_name, project_name)
                 dep_list[project_name] = project_version
             else:
                 with open(self.cache_path+file_name, 'r', encoding='utf8') as fp:
                     sub_dict = json.load(fp)
                     for project_name, project_version in sub_dict.items():
-                        project_name = PYPI_OPENEULER_NAME_MAP.get(project_name, project_name)
+                        project_name = JSON_PYPI_NAME_MAP.get(project_name, project_name)
+                        max_version = self.upper_list.get(project_name)
+                        if max_version and p_version.parse(max_version) < p_version.parse(project_version):
+                            project_version = max_version
                         if not dep_list.get(project_name):
                             dep_list[project_name] = project_version
                         elif p_version.parse(project_version) > p_version.parse(dep_list[project_name]):
