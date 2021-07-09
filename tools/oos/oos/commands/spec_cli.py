@@ -33,20 +33,6 @@ class SpecPush(object):
         self.check_stage_failed = []
         self.query = query
 
-    def ensure_build_root(self):
-        click.echo("Prepare source repos dir: %s" % self.build_root)
-        if not os.path.exists(self.build_root):
-            os.makedirs(self.build_root)
-
-    def ensure_src_repos(self):
-        click.echo("Prepare local repos dir: %s" % self.repos_dir)
-        if not os.path.exists(self.repos_dir):
-            os.makedirs(self.repos_dir)
-
-    def ensure_command(self):
-        # TODO: ensure rpmbuild, pyporter command
-        pass
-
     @property
     def projects_data(self):
         projects = pandas.read_csv(self.projects_data_file)
@@ -142,6 +128,22 @@ class SpecPush(object):
         click.secho("=" * 20 + "Summary" + "=" * 20, fg='black', bg='green')
 
 
+def _rpmbuild_env_ensure(build_root):
+    rpmbuild_cmd = subprocess.call(["rpmbuild", "--help"], shell=True)
+    tree_cmd = subprocess.call(["rpmdev-setuptree", "--help"],
+                               shell=True)
+    if rpmbuild_cmd != 0 or tree_cmd != 0:
+        raise click.ClickException("You must install rpm-build tools, e.g. "
+                                   "yum isntall -y rpm-build rpmdevtools")
+
+    for rb_dir in ['SPECS', 'SOURCES', 'BUILD', 'RPMS']:
+        if not os.path.exists(os.path.join(build_root, rb_dir)):
+            raise click.ClickException(
+                "You must setup the rpm build directories by running "
+                "'rpmdev-setuptree' command and specify the build_root the "
+                "path of 'rpmbuild/' directory.")
+
+
 @click.group(name='spec', help='RPM spec related commands')
 def spec():
     pass
@@ -185,6 +187,8 @@ def spec():
 def push(build_root, gitee_user, gitee_pat, gitee_email, gitee_org,
          projects_data, dest_branch, src_branch, repos_dir, arch, python2,
          do_push, no_check, short_description, commit_message, query):
+    if build_root:
+        _rpmbuild_env_ensure(build_root)
     spec_push = SpecPush(gitee_org=gitee_org, gitee_pat=gitee_pat,
                          gitee_user=gitee_user, gitee_email=gitee_email,
                          build_root=build_root, repos_dir=repos_dir,
@@ -216,6 +220,8 @@ def push(build_root, gitee_user, gitee_pat, gitee_email, gitee_org,
 @click.option("-o", "--output", help="Specify output file of generated Spec")
 def build(build_root, name, version, projects_data, query, arch, python2,
           short_description, no_check, build_rpm, output):
+    if build_root:
+        _rpmbuild_env_ensure(build_root)
     if not (name or projects_data):
         raise click.ClickException("You must specify projects_data file or "
                                    "specific package name!")
