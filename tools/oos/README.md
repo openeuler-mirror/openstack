@@ -144,3 +144,17 @@ oepkg_openstack-rocky_oe-20.03-LTS-SP2 --src-branch add_package_rocky \
 上述参数中必选参数为`--gitee-user`、`--gitee-pat`、 `--gitee-email`、`--gitee-org`、
 `--projects-data`、`--commit-message`
 其中Gitee相关的操作可以通过环境变量指定，见上述参数描述。
+
+## 环境和依赖
+上述`oos spec build`和`oos spec push`命令需要依赖于`rpmbuild`工具，因此需要安装以下相关软件包：
+```shell script
+yum install rpm-build rpmdevtools
+```
+同时，需要预先准备好`rpmbuild`命令所需的相关工作目录，执行如下命令：
+```shell script
+rpmdev-setuptree
+```
+在执行`oos spec build`和`oos spec push`命令时需指定`--build-root`参数为`rpmbuild`工作目录
+的根目录，默认为当前用户目录下`rpmbuild/`目录。
+
+另外，为了便于使用该工具，可以使用`Docker`快速构建一个打包环境，具体详见`docker/`目录下的[README](https://gitee.com/openeuler/openstack/blob/master/tools/docker/README.md).
