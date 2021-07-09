@@ -13,20 +13,35 @@ BuildArch:      {{ build_arch }}
 %package -n {{ pkg_name }}
 Summary:        {{ pkg_summary }}
 Provides:       {{ provides }}
-{%- if build_requires %}
-{%- for br in build_requires %}
+{%- if base_build_requires %}
+# Base build requires
+{%- for br in base_build_requires %}
 BuildRequires:  {{ br }}
 {%- endfor %}
 {%- endif %}
+{%- if dev_requires %}
+# General requires
+{%- for dr in dev_requires %}
+BuildRequires:  {{ dr }}
+{%- endfor %}
+{%- endif %}
 {%- if test_requires %}
+# Tests running requires
 {%- for tr in test_requires %}
 BuildRequires:  {{ tr }}
 {%- endfor %}
 {%- endif %}
 
-{%- if requires %}
-{%- for req in requires %}
-Requires:       {{ req }}
+{%- if dev_requires %}
+# General requires
+{%- for dr in dev_requires %}
+Requires:       {{ dr }}
+{%- endfor %}
+{%- endif %}
+{%- if test_requires %}
+# Tests running requires
+{%- for tr in test_requires %}
+Requires:       {{ tr }}
 {%- endfor %}
 {%- endif %}
 %description -n {{ pkg_name }}
@@ -82,9 +97,9 @@ mv %{buildroot}/doclist.lst .
 
 {%- if add_check %}
 %check
-{% if python2 %}
+{%- if python2 %}
 %{__python2} setup.py test
-{% else %}
+{%- else %}
 %{__python3} setup.py test
 {% endif %}
 {%- endif %}
