@@ -69,10 +69,15 @@ class RPMSpec(object):
     @property
     def pkg_name(self):
         if not self._pkg_name:
+            pkg_name = self.pypi_name.lower()
+            if self.pypi_name.startswith('oslo.'):
+                pkg_name = self.pypi_name.replace('oslo.', 'oslo-')
+            if pkg_name.startswith('python-'):
+                pkg_name = pkg_name[7:]
             if self.python2:
-                self._pkg_name = self.spec_name.replace('python-', 'python2-')
+                self._pkg_name = 'python2-' + pkg_name
             else:
-                self._pkg_name = self.spec_name.replace('python-', 'python3-')
+                self._pkg_name = 'python3-' + pkg_name
         return self._pkg_name
 
     @property
