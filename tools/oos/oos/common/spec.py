@@ -172,10 +172,12 @@ class RPMSpec(object):
 
         if self.python2:
             self._base_build_requires = ['python2-devel', 'python2-setuptools',
-                                         'python2-pbr']
+                                         'python2-pbr', 'python2-pip',
+                                         'python2-wheel']
         else:
             self._base_build_requires = ['python3-devel', 'python3-setuptools',
-                                         'python3-pbr']
+                                         'python3-pbr', 'python3-pip',
+                                         'python3-wheel']
         if self.arch != 'noarch':
             if self.python2:
                 self._base_build_requires.append('python2-cffi')
@@ -192,9 +194,9 @@ class RPMSpec(object):
             if r_name.startswith('python-'):
                 r_name = r_name[7:]
             if self.python2:
-                r_pkg = 'python2-' + r_name
+                r_pkg = 'python2-' + r_name.lower().replace('oslo.', 'oslo-')
             else:
-                r_pkg = 'python3-' + r_name
+                r_pkg = 'python3-' + r_name.lower().replace('oslo.', 'oslo-')
             if 'test' in extra:
                 self._test_requires.append(r_pkg)
             else:

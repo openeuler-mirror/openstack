@@ -22,13 +22,17 @@ BuildRequires:  {{ br }}
 {%- if dev_requires %}
 # General requires
 {%- for dr in dev_requires %}
+{%- if dr not in base_build_requires %}
 BuildRequires:  {{ dr }}
+{%- endif %}
 {%- endfor %}
 {%- endif %}
 {%- if test_requires %}
 # Tests running requires
 {%- for tr in test_requires %}
+{%- if tr not in base_build_requires %}
 BuildRequires:  {{ tr }}
+{%- endif %}
 {%- endfor %}
 {%- endif %}
 
