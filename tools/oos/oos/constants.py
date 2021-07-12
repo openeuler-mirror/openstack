@@ -82,6 +82,7 @@ JSON_PYPI_NAME_MAP = {
     "sphinx": "Sphinx",
     "sqlalchemy": "SQLAlchemy",
     "sqlalchemy-utils": "SQLAlchemy-Utils",
+    "storpool-spopenstack": "storpool.spopenstack",
     "tempita": "Tempita",
     "urlobject": "URLObject",
     "webob": "WebOb",
