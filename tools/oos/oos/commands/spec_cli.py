@@ -244,6 +244,8 @@ def build(build_root, name, version, projects_data, query, arch, python2,
     if projects_data.empty:
         click.echo("Projects list is empty, exit!")
         return
+    failed_pkgs = []
+    check_stage_failed = []
     for row in projects_data.itertuples():
         click.secho("Start to build spec for: %s, version: %s" %
                     (row.pypi_name, row.version), bg='blue', fg='white')
@@ -251,5 +253,17 @@ def build(build_root, name, version, projects_data, query, arch, python2,
                            short_description, not no_check)
         if build_rpm:
             spec_obj.build_package(build_root, output)
-            continue
-        spec_obj.generate_spec(build_root, output)
+        else:
+            spec_obj.generate_spec(build_root, output)
+        if spec_obj.build_failed:
+            failed_pkgs.append(spec_obj.pypi_name)
+            if spec_obj.check_stage_failed:
+                check_stage_failed.append(spec_obj.pypi_name)
+
+    click.secho("=" * 20 + "Summary" + "=" * 20, fg='black', bg='green')
+    click.secho("%s projects handled, failed %s" % (
+        len(projects_data.index), len(failed_pkgs)), fg='yellow')
+    click.secho("Built failed projects: %s" % failed_pkgs, fg='red')
+    click.secho("Projects built failed in check stage: %s" %
+                check_stage_failed, fg='red')
+    click.secho("=" * 20 + "Summary" + "=" * 20, fg='black', bg='green')
