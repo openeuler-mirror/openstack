@@ -98,6 +98,7 @@ OpenStack contains many projects. In order to facilitate management, a unified e
 - <https://gitee.com/src-openeuler/openstack-trove>
 - <https://gitee.com/src-openeuler/python-automaton>
 - <https://gitee.com/src-openeuler/python-barbicanclient>
+- <https://gitee.com/src-openeuler/python-binary-memcached>
 - <https://gitee.com/src-openeuler/python-castellan>
 - <https://gitee.com/src-openeuler/python-cinderclient>
 - <https://gitee.com/src-openeuler/python-cliff>
@@ -115,6 +116,8 @@ OpenStack contains many projects. In order to facilitate management, a unified e
 - <https://gitee.com/src-openeuler/python-glance-store>
 - <https://gitee.com/src-openeuler/python-hacking>
 - <https://gitee.com/src-openeuler/python-heatclient>
+- <https://gitee.com/src-openeuler/python-infinisdk>
+- <https://gitee.com/src-openeuler/python-infi.dtypes.iqn>
 - <https://gitee.com/src-openeuler/python-ironicclient>
 - <https://gitee.com/src-openeuler/python-ironic-inspector-client>
 - <https://gitee.com/src-openeuler/python-ironic-lib>
@@ -129,6 +132,7 @@ OpenStack contains many projects. In order to facilitate management, a unified e
 - <https://gitee.com/src-openeuler/python-netmiko>
 - <https://gitee.com/src-openeuler/python-neutronclient>
 - <https://gitee.com/src-openeuler/python-neutron-lib>
+- <https://gitee.com/src-openeuler/python-nodeenv>
 - <https://gitee.com/src-openeuler/python-novaclient>
 - <https://gitee.com/src-openeuler/python-openstackclient>
 - <https://gitee.com/src-openeuler/python-openstackdocstheme>
@@ -173,6 +177,7 @@ OpenStack contains many projects. In order to facilitate management, a unified e
 - <https://gitee.com/src-openeuler/python-pep8>
 - <https://gitee.com/src-openeuler/python-pifpaf>
 - <https://gitee.com/src-openeuler/python-pika>
+- <https://gitee.com/src-openeuler/python-pre-commit>
 - <https://gitee.com/src-openeuler/python-proliantutils>
 - <https://gitee.com/src-openeuler/python-pycadf>
 - <https://gitee.com/src-openeuler/python-pydotplus>
@@ -193,8 +198,14 @@ OpenStack contains many projects. In order to facilitate management, a unified e
 - <https://gitee.com/src-openeuler/python-swiftclient>
 - <https://gitee.com/src-openeuler/python-sysv-ipc>
 - <https://gitee.com/src-openeuler/python-taskflow>
+- <https://gitee.com/src-openeuler/python-tempest-lib>
 - <https://gitee.com/src-openeuler/python-textfsm>
+- <https://gitee.com/src-openeuler/python-threadloop>
 - <https://gitee.com/src-openeuler/python-tooz>
+- <https://gitee.com/src-openeuler/python-trove-tempest-plugin>
+- <https://gitee.com/src-openeuler/python-uhashring>
+- <https://gitee.com/src-openeuler/python-URLObject>
+- <https://gitee.com/src-openeuler/python-watcherclient>
 - <https://gitee.com/src-openeuler/python-weakrefmethod>
 - <https://gitee.com/src-openeuler/python-websockify>
 - <https://gitee.com/src-openeuler/python-wmi>
