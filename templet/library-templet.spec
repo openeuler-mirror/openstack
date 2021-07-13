@@ -1,72 +1,89 @@
 # ---------------------------------------------------------   #
-# 该模板以python-oslo.service.spec为例，删减了部分重复结构与内容 #
+# 该模板以python-oslo.service.spec为例
 # ----------------------------------------------------------- #
 
-# openEuler社区提供了一个RPM spec自动生成的工具，叫pyporter。
-# 地址：https://gitee.com/openeuler/pyporter
-# 但该工具有一些问题，比如不支持指定版本、不支持python2打包、description解析有问题等等。
-# OpenStack SIG fork了一份并进行了相应的增强和优化，放在了tools目录下，文件名叫pyporter.py
-# OpenStack SIG使用该软件生成所需python依赖库的Spec文件。
+# openEuler OpenStack SIG提供了命令行工具oos，其中包含了RPM spec自动生成功能。
+# 地址：https://gitee.com/openeuler/openstack/tools/oos
+#
+#
+# Spec命令示例：
+#   # 在当前目录生成olso.service 2.6.0 的spec文件
+#   oos spec build --name oslo.service --version 2.6.0 -o python-oslo-service.spec
+#   # 生成最新版本oslo.service spec文件、下载对应源码包，并在自动执行rpmbuild命令
+#   oos spec build -n oslo.service -b
 
-# 常用命令：
-#    1. ./pyporter -b -d <package>  
-#       该命令表示从pypi上搜索对应<package>，下载源码包，执行RPM打包动作。
-#    2. pyporter  -s -d -o python-<package>.spec <package>
-#       只下载源码包和生成spec文件，不执行打包动作
-# 例如: ./pyporter -v 2.4.0 -py2 -s -d -o python-oslo-service.spec oslo.service
-#     表示下载oslo.service v2.4.0版本源码包并生成对应的python2 RPM spec
-
-# 下面是使用pypoter生成的python-oslo-service spec
+# 下面是使用oos生成的python-oslo-service spec
 %global _empty_manifest_terminate_build 0
 Name:           python-oslo-service
-Version:        2.4.0
+Version:        2.6.0
 Release:        1
 Summary:        oslo.service library
-License:        Apache Software License
+License:        Apache-2.0
 URL:            https://docs.openstack.org/oslo.service/latest/
-Source0:        https://files.pythonhosted.org/packages/54/02/d889e957680e062c6302f9ab86f21f234b869d3dd831db9328b6bd63f0ba/oslo.service-2.4.0.tar.gz
+Source0:        https://files.pythonhosted.org/packages/bb/1f/a72c0ca35e9805704ce3cc4db704f955eb944170cb3b214cc7af03cb8851/oslo.service-2.6.0.tar.gz
 BuildArch:      noarch
-
-Requires:       python2-Paste
-Requires:       python2-PasteDeploy
-Requires:       python2-Routes
-Requires:       python2-WebOb
-Requires:       python2-Yappi
-Requires:       python2-debtcollector
-Requires:       python2-eventlet
-Requires:       python2-fixtures
-Requires:       python2-greenlet
-Requires:       python2-oslo-concurrency
-Requires:       python2-oslo-config
-Requires:       python2-oslo-i18n
-Requires:       python2-oslo-log
-Requires:       python2-oslo-utils
-
 %description
-# TODO:pyporter生成description有bug，需要修复
+ Team and repository tags .. Change things from this point on oslo.service
+-Library for running OpenStack services :target: .
 
-%package -n python2-oslo-service
+%package -n python3-oslo-service
 Summary:        oslo.service library
-Provides:        python-oslo-service
-BuildRequires:        python2-devel
-BuildRequires:        python2-setuptools
-%description -n python2-oslo-service
-
+Provides:       python-oslo-service
+# Base build requires
+BuildRequires:  python3-devel
+BuildRequires:  python3-setuptools
+BuildRequires:  python3-pbr
+BuildRequires:  python3-pip
+BuildRequires:  python3-wheel
+# General requires
+BuildRequires:  python3-paste
+BuildRequires:  python3-pastedeploy
+BuildRequires:  python3-routes
+BuildRequires:  python3-webob
+BuildRequires:  python3-yappi
+BuildRequires:  python3-debtcollector
+BuildRequires:  python3-eventlet
+BuildRequires:  python3-fixtures
+BuildRequires:  python3-greenlet
+BuildRequires:  python3-oslo-concurrency
+BuildRequires:  python3-oslo-config
+BuildRequires:  python3-oslo-i18n
+BuildRequires:  python3-oslo-log
+BuildRequires:  python3-oslo-utils
+# General requires
+Requires:       python3-paste
+Requires:       python3-pastedeploy
+Requires:       python3-routes
+Requires:       python3-webob
+Requires:       python3-yappi
+Requires:       python3-debtcollector
+Requires:       python3-eventlet
+Requires:       python3-fixtures
+Requires:       python3-greenlet
+Requires:       python3-oslo-concurrency
+Requires:       python3-oslo-config
+Requires:       python3-oslo-i18n
+Requires:       python3-oslo-log
+Requires:       python3-oslo-utils
+%description -n python3-oslo-service
+ Team and repository tags .. Change things from this point on oslo.service
+-Library for running OpenStack services :target: .
 
 %package help
-Summary:        Development documents and examples for oslo-service
-Provides:        python2-oslo-service-doc
+Summary:        oslo.service library
+Provides:       python3-oslo-service-doc
 %description help
-
+ Team and repository tags .. Change things from this point on oslo.service
+-Library for running OpenStack services :target: .
 
 %prep
-%autosetup -n oslo-service-2.4.0
+%autosetup -n oslo.service-2.6.0 -S git
 
 %build
-%py2_build
+%py3_build
 
 %install
-%py2_install
+%py3_install
 install -d -m755 %{buildroot}/%{_pkgdocdir}
 if [ -d doc ]; then cp -arf doc %{buildroot}/%{_pkgdocdir}; fi
 if [ -d docs ]; then cp -arf docs %{buildroot}/%{_pkgdocdir}; fi
@@ -74,31 +91,34 @@ if [ -d example ]; then cp -arf example %{buildroot}/%{_pkgdocdir}; fi
 if [ -d examples ]; then cp -arf examples %{buildroot}/%{_pkgdocdir}; fi
 pushd %{buildroot}
 if [ -d usr/lib ]; then
-        find usr/lib -type f -printf "/%h/%f\n" >> filelist.lst
+    find usr/lib -type f -printf "/%h/%f\n" >> filelist.lst
 fi
 if [ -d usr/lib64 ]; then
-        find usr/lib64 -type f -printf "/%h/%f\n" >> filelist.lst
+    find usr/lib64 -type f -printf "/%h/%f\n" >> filelist.lst
 fi
 if [ -d usr/bin ]; then
-        find usr/bin -type f -printf "/%h/%f\n" >> filelist.lst
+    find usr/bin -type f -printf "/%h/%f\n" >> filelist.lst
 fi
 if [ -d usr/sbin ]; then
-        find usr/sbin -type f -printf "/%h/%f\n" >> filelist.lst
+    find usr/sbin -type f -printf "/%h/%f\n" >> filelist.lst
 fi
 touch doclist.lst
 if [ -d usr/share/man ]; then
-        find usr/share/man -type f -printf "/%h/%f.gz\n" >> doclist.lst
+    find usr/share/man -type f -printf "/%h/%f.gz\n" >> doclist.lst
 fi
 popd
 mv %{buildroot}/filelist.lst .
 mv %{buildroot}/doclist.lst .
 
-%files -n python2-oslo-service -f filelist.lst
-%dir %{python2_sitelib}/*
+%check
+%{__python3} setup.py test
+
+%files -n python3-oslo-service -f filelist.lst
+%dir %{python3_sitelib}/*
 
 %files help -f doclist.lst
 %{_docdir}/*
 
 %changelog
-* Fri Apr 23 2021 Python_Bot <Python_Bot@openeuler.org>
-- Package Spec generated
+* Tue Jul 13 2021 OpenStack_SIG <openstack@openeuler.org> - 2.6.0-1
+- Package Spec generate
