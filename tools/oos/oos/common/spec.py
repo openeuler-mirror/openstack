@@ -16,7 +16,7 @@ from oos.constants import LICENSE_MAPPING
 
 
 class RPMSpec(object):
-    def __init__(self, pypi_name, version='latest', arch='noarch',
+    def __init__(self, pypi_name, version='latest', arch=None,
                  python2=False, short_description=True, add_check=True):
         self.pypi_name = pypi_name
         self.version = version
@@ -138,6 +138,15 @@ class RPMSpec(object):
             self._source_file_dir = ''.join(self._source_file.partition(
                 '-' + self.version_num)[:2])
 
+    def _identify_arch_from_pypi(self):
+        if self.arch:
+            return
+        urls_info = self.pypi_json['urls']
+        wheels = [info['filename'] for info in urls_info if
+                  info['packagetype'] == "bdist_wheel"]
+        if [wheel for wheel in wheels if wheel.endswith("none-any.whl")]:
+            self.arch = 'noarch'
+
     def _get_description(self, shorten=True):
         org_description = self.pypi_json["info"]["description"]
         if not shorten:
@@ -212,8 +221,9 @@ class RPMSpec(object):
         ]
         for location in search_paths:
             try:
-                env = jinja2.Environment(
-                    loader=jinja2.FileSystemLoader(location))
+                env = jinja2.Environment(trim_blocks=True, lstrip_blocks=True,
+                                         loader=jinja2.FileSystemLoader(
+                                             location))
                 template = env.get_template('package.spec.j2')
                 break
             except jinja2.exceptions.TemplateNotFound:
@@ -225,6 +235,7 @@ class RPMSpec(object):
             self.build_failed = True
             return
 
+        self._identify_arch_from_pypi()
         self._init_source_info()
         self._parse_requires()
         template_vars = {'spec_name': self.spec_name,
@@ -313,6 +324,7 @@ class RPMSpec(object):
             return
 
     def check_deps(self, all_repo_names=None):
+        self._identify_arch_from_pypi()
         self._parse_requires()
         for r in self._dev_requires + self._test_requires:
             in_list = True

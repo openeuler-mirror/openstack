@@ -175,7 +175,8 @@ def spec():
 @click.option('-q', '--query',
               help="Filter, fuzzy match the 'pypi_name' of projects list, e.g. "
                    "'-q novaclient.")
-@click.option("-a", "--arch", default='noarch', help="Build module with arch")
+@click.option("-a", "--arch", help="Build module with arch, automatically "
+                                   "identify if unspecified")
 @click.option("-py2", "--python2", is_flag=True, help="Build python2 package")
 @click.option('-dp', '--do-push', is_flag=True, help="Do PUSH or not")
 @click.option("-nc", "--no-check", is_flag=True,
@@ -210,7 +211,8 @@ def push(build_root, gitee_user, gitee_pat, gitee_email, gitee_org,
 @click.option('-q', '--query',
               help="Filter, fuzzy match the 'pypi_name' of projects list, e.g. "
                    "'-q novaclient.")
-@click.option("-a", "--arch", default='noarch', help="Build module with arch")
+@click.option("-a", "--arch", help="Build module with arch, automatically "
+                                   "identify if unspecified")
 @click.option("-py2", "--python2", is_flag=True, help="Build python2 package")
 @click.option('-sd', '--short-description', is_flag=True, default=True,
               help="Shorten description")
