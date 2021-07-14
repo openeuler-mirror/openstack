@@ -144,6 +144,9 @@ class RPMSpec(object):
         urls_info = self.pypi_json['urls']
         wheels = [info['filename'] for info in urls_info if
                   info['packagetype'] == "bdist_wheel"]
+        if not wheels and not self.arch:
+            self.arch = 'noarch'
+            return
         if [wheel for wheel in wheels if wheel.endswith("none-any.whl")]:
             self.arch = 'noarch'
 
