@@ -13,6 +13,7 @@ import jinja2
 import urllib.request
 
 from oos.constants import LICENSE_MAPPING
+from oos.constants import PYPI_OPENEULER_PKG_NAME_MAP
 
 
 class RPMSpec(object):
@@ -66,18 +67,20 @@ class RPMSpec(object):
                 self._spec_name = "python-" + self._spec_name
         return self._spec_name
 
+    def _pypi2pkg_name(self, pypi_name):
+        prefix = 'python2-' if self.python2 else 'python3-'
+        if pypi_name in PYPI_OPENEULER_PKG_NAME_MAP:
+            pkg_name = PYPI_OPENEULER_PKG_NAME_MAP[pypi_name]
+        else:
+            pkg_name = pypi_name.lower().replace('.', '-')
+        if pkg_name.startswith('python-'):
+            pkg_name = pkg_name[7:]
+        return prefix + pkg_name
+
     @property
     def pkg_name(self):
         if not self._pkg_name:
-            pkg_name = self.pypi_name.lower()
-            if self.pypi_name.startswith('oslo.'):
-                pkg_name = self.pypi_name.replace('oslo.', 'oslo-')
-            if pkg_name.startswith('python-'):
-                pkg_name = pkg_name[7:]
-            if self.python2:
-                self._pkg_name = 'python2-' + pkg_name
-            else:
-                self._pkg_name = 'python3-' + pkg_name
+            self._pkg_name = self._pypi2pkg_name(self.pypi_name)
         return self._pkg_name
 
     @property
@@ -103,7 +106,8 @@ class RPMSpec(object):
         return self.pypi_json["info"]["version"]
 
     def _get_provide_name(self):
-        return self.pkg_name if self.python2 else self.spec_name
+        return self.pkg_name if self.python2 else self.pkg_name.replace(
+            'python3-', 'python-')
 
     def _get_license(self):
         if LICENSE_MAPPING.get(self.module_name):
@@ -203,12 +207,7 @@ class RPMSpec(object):
         for r in pypi_requires:
             req, _, extra = r.partition(";")
             r_name, _, r_ver = req.rstrip().partition(' ')
-            if r_name.startswith('python-'):
-                r_name = r_name[7:]
-            if self.python2:
-                r_pkg = 'python2-' + r_name.lower().replace('oslo.', 'oslo-')
-            else:
-                r_pkg = 'python3-' + r_name.lower().replace('oslo.', 'oslo-')
+            r_pkg = self._pypi2pkg_name(r_name)
             if 'test' in extra:
                 self._test_requires.append(r_pkg)
             else:

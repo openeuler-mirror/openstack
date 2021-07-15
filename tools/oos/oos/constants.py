@@ -159,6 +159,43 @@ PYPI_OPENEULER_NAME_MAP = {
     "xattr": "pyxattr",
 }
 
+# Mapping between pypi name and openEuler package name
+# Pypi name : openEuelr package name
+PYPI_OPENEULER_PKG_NAME_MAP = {
+    "alabaster": "sphinx-theme-alabaster",
+    "Babel": "babel",
+    "Django": "Django",
+    "dnspython": "python-dns",
+    "Flask": "flask",
+    "Flask-RESTful": "flask-restful",
+    "Jinja2": "jinja2",
+    "Mako": "mako",
+    "MarkupSafe": "markupsafe",
+    "oslosphinx": "oslo-sphinx",
+    "ovs": "openvswitch",
+    "Paste": "paste",
+    "PasteDeploy": "paste-deploy",
+    "Pillow": "pillow",
+    "Pint": "pint",
+    "prometheus-client": "prometheus_client",
+    "Pygments": "pygments",
+    "pyinotify": "inotify",
+    "PyJWT": "jwt",
+    "PyNaCl": "pynacl",
+    "python-json-logger": "json_logger",
+    "python-qpid-proton": "qpid-proton",
+    "python-subunit": "subunit",
+    "Routes": "routes",
+    "Sphinx": "sphinx",
+    "SQLAlchemy": "sqlalchemy",
+    "semantic-version": "semantic_version",
+    "Tempita": "tempita",
+    "WebOb": "webob",
+    "WebTest": "webtest",
+    "Werkzeug": "werkzeug",
+    "WSME": "wsme",
+    "xattr": "pyxattr",
+}
 
 LICENSE_MAPPING = {
     "django-compressor": "Apache-2.0, MIT",
