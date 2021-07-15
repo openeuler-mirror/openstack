@@ -241,6 +241,7 @@ class RPMSpec(object):
         self._identify_arch_from_pypi()
         self._init_source_info()
         self._parse_requires()
+        test_requires = self._test_requires if self.add_check else []
         template_vars = {'spec_name': self.spec_name,
                          'version': self.version_num,
                          'pkg_summary': self.pkg_summary,
@@ -252,7 +253,7 @@ class RPMSpec(object):
                          'provides': self._get_provide_name(),
                          'base_build_requires': self._base_build_requires,
                          'dev_requires': self._dev_requires,
-                         'test_requires': self._test_requires,
+                         'test_requires': test_requires,
                          'description': self._get_description(),
                          'today': datetime.date.today().strftime("%a %b %d %Y"),
                          'add_check': self.add_check,
