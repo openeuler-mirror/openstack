@@ -205,10 +205,29 @@ class RPMSpec(object):
         if pypi_requires is None:
             return
         for r in pypi_requires:
-            req, _, extra = r.partition(";")
+            req, _, condition = r.partition(";")
+            striped = condition.replace('\"', '').replace(
+                '\'', '').replace(' ', '')
+            if 'platform==win32' in striped:
+                click.secho("Requires %s is Windows platform specific" % req)
+                continue
+            match_py_ver = True
+            for py_cond in ("python_version==", "python_version<=",
+                            "python_version<"):
+                if py_cond in striped:
+                    py_ver = re.findall(r'\d+\.?\d*',
+                                        striped.partition(py_cond)[2])
+                    if (py_ver and (py_ver[0] < '2.7.3' or
+                                    '3' < py_ver[0] < '3.8.3')):
+                        match_py_ver = False
+                        break
+            if not match_py_ver:
+                click.secho("Requires %s is not match python version" % req)
+                continue
+
             r_name, _, r_ver = req.rstrip().partition(' ')
             r_pkg = self._pypi2pkg_name(r_name)
-            if 'test' in extra:
+            if 'extra==test' in striped:
                 self._test_requires.append(r_pkg)
             else:
                 self._dev_requires.append(r_pkg)
