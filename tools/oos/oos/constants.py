@@ -220,4 +220,5 @@ LICENSE_MAPPING = {
     "XStatic-Spin": "MIT",
     "XStatic-term.js": "MIT",
     "XStatic-tv4": "Public Domain",
+    "URLObject": "Unlicense",
 }

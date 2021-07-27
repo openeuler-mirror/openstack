@@ -120,7 +120,10 @@ class RPMSpec(object):
             for k in self.pypi_json["info"]["classifiers"]:
                 if k.startswith("License"):
                     ks = k.split("::")
-                    org_license = ks[2].strip()
+                    if len(ks) <= 2:
+                        org_license = 'UNKNOWN'
+                    else:
+                        org_license = ks[2].strip()
                     break
         # openEuler CI is a little stiff. It hard-codes the License name.
         # We change the format here to satisfy openEuler CI's requirement.
