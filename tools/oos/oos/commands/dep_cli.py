@@ -30,7 +30,17 @@ class Dependence(object):
         self.upper_list = {}
         self._generate_upper_list()
 
+    def _make_cache_path(self):
+        if Path(self.cache_path).exists():
+            print("Cache folder exists, Using the cached file first. "
+                  "Please delete the cache folder if you want to "
+                  "generate the new cache.")
+        else:
+            print("Creating Cache folder %s" % self.cache_path)
+            Path(self.cache_path).mkdir()
+
     def _generate_upper_list(self):
+        self._make_cache_path()
         file_path = self.cache_path + "upper.json"
         if Path(file_path).exists():
             with open(file_path, 'r', encoding='utf8') as fp:
@@ -185,14 +195,6 @@ class InitDependence(Dependence):
 
     def init_all_dep(self):
         """download and cache all related requirement file"""
-        path = Path(self.cache_path)
-        if path.exists():
-            print("Cache folder exists, Using the cached file first. "
-                  "Please delete the cache folder if you want to "
-                  "generate the new cache.")
-        else:
-            print("Creating Cache folder %s" % self.cache_path)
-            path.mkdir()
         self._init_failed_cache()
         for project, version in self.project_dict.items():
             self._cache_dependencies(project, version)
