@@ -59,7 +59,7 @@ Provides:       {{ pkg_name }}-doc
 {{ description }}
 
 %prep
-%autosetup -n {{ source_file_dir }} -S git
+%autosetup -n {{ source_file_dir }}
 
 %build
 {% if python2 %}

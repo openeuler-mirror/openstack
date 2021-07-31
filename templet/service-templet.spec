@@ -114,7 +114,7 @@ This package contains documentation files for nova.
 
 # nova的prep阶段进行源码包解压、删除无用文件。
 %prep
-%autosetup -n nova-%{upstream_version} -S git
+%autosetup -n nova-%{upstream_version}
 find . \( -name .gitignore -o -name .placeholder \) -delete
 find nova -name \*.py -exec sed -i '/\/usr\/bin\/env python/{d;q}' {} +
 %py_req_cleanup
