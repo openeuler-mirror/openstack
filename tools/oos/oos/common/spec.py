@@ -92,9 +92,11 @@ class RPMSpec(object):
     @property
     def pkg_home(self):
         if not self._pkg_home:
-            self._pkg_home = (
-                    self.pypi_json["info"]["project_urls"].get("Homepage")
-                    or self.pypi_json["info"]["project_url"])
+            project_urls = self.pypi_json["info"]["project_urls"]
+            if project_urls:
+                self._pkg_home = project_urls.get("Homepage")
+            else:
+                self._pkg_home = self.pypi_json["info"]["project_url"]
         return self._pkg_home
 
     @property
@@ -125,6 +127,8 @@ class RPMSpec(object):
                     else:
                         org_license = ks[2].strip()
                     break
+            else:
+                org_license = 'UNKNOWN'
         # openEuler CI is a little stiff. It hard-codes the License name.
         # We change the format here to satisfy openEuler CI's requirement.
         if "Apache" in org_license:
@@ -142,8 +146,8 @@ class RPMSpec(object):
                 self._source_file = url_info["filename"]
                 self._source_url = url_info["url"]
         if self._source_file:
-            self._source_file_dir = ''.join(self._source_file.partition(
-                '-' + self.version_num)[:2])
+            self._source_file_dir = self._source_file.partition(
+                '-' + self.version_num)[0] + '-%{version}'
 
     def _identify_arch_from_pypi(self):
         if self.arch:

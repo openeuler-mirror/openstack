@@ -77,7 +77,7 @@ Provides:       python3-oslo-service-doc
 -Library for running OpenStack services :target: .
 
 %prep
-%autosetup -n oslo.service-2.6.0 -S git
+%autosetup -n oslo.service-2.6.0
 
 %build
 %py3_build
