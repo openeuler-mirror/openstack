@@ -10,7 +10,7 @@ Source0:        {{ source_url }}
 BuildArch:      {{ build_arch }}
 {% endif %}
 %description
-{{ description }}
+{{ pkg_summary }}
 
 %package -n {{ pkg_name }}
 Summary:        {{ pkg_summary }}
@@ -50,13 +50,13 @@ Requires:       {{ tr }}
 {% endfor %}
 {% endif %}
 %description -n {{ pkg_name }}
-{{ description }}
+{{ pkg_summary }}
 
 %package help
 Summary:        {{ pkg_summary }}
 Provides:       {{ pkg_name }}-doc
 %description help
-{{ description }}
+{{ pkg_summary }}
 
 %prep
 %autosetup -n {{ source_file_dir }}
