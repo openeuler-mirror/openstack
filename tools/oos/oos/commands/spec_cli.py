@@ -12,7 +12,8 @@ from oos.common.repo import PkgGitRepo
 class SpecPush(object):
     def __init__(self, gitee_org, gitee_pat, gitee_user, gitee_email,
                  build_root, repos_dir, arch, python2, no_check, src_branch,
-                 dest_branch, projects_data_file, short_description, query):
+                 dest_branch, projects_data_file, short_description, query,
+                 reuse_spec):
         self.build_root = build_root
         self.repos_dir = os.path.join(self.build_root, repos_dir)
         self.projects_data_file = projects_data_file
@@ -32,6 +33,7 @@ class SpecPush(object):
         self.build_failed = []
         self.check_stage_failed = []
         self.query = query
+        self.reuse_spec = reuse_spec
 
     @property
     def projects_data(self):
@@ -78,7 +80,7 @@ class SpecPush(object):
         repo_obj = PkgGitRepo(
             repo_name, self.gitee_pat,
             self.gitee_org, self.gitee_user, self.gitee_email)
-        spec_obj.build_package(self.build_root)
+        spec_obj.build_package(self.build_root, reuse_spec=self.reuse_spec)
         if spec_obj.build_failed:
             if spec_obj.check_stage_failed:
                 self.check_stage_failed.append(pypi_name)
@@ -185,9 +187,12 @@ def spec():
               help="Shorten description")
 @click.option("-cm", "--commit-message", required=True,
               help="Commit message and PR tittle")
+@click.option('-rs', '--reuse-spec', is_flag=True,
+              help="Reuse existed spec file")
 def push(build_root, gitee_user, gitee_pat, gitee_email, gitee_org,
          projects_data, dest_branch, src_branch, repos_dir, arch, python2,
-         do_push, no_check, short_description, commit_message, query):
+         do_push, no_check, short_description, commit_message, query,
+         reuse_spec):
     if build_root:
         _rpmbuild_env_ensure(build_root)
     spec_push = SpecPush(gitee_org=gitee_org, gitee_pat=gitee_pat,
@@ -196,7 +201,8 @@ def push(build_root, gitee_user, gitee_pat, gitee_email, gitee_org,
                          src_branch=src_branch, dest_branch=dest_branch,
                          arch=arch, python2=python2, no_check=no_check,
                          projects_data_file=projects_data,
-                         short_description=short_description, query=query)
+                         short_description=short_description, query=query,
+                         reuse_spec=reuse_spec)
     spec_push.build_all(commit_message, do_push)
 
 
@@ -220,8 +226,10 @@ def push(build_root, gitee_user, gitee_pat, gitee_email, gitee_org,
               help="Do not add %check step in spec")
 @click.option("-b", "--build-rpm", is_flag=True, help="Build rpm package")
 @click.option("-o", "--output", help="Specify output file of generated Spec")
+@click.option('-rs', '--reuse-spec', is_flag=True,
+              help="Reuse existed spec file")
 def build(build_root, name, version, projects_data, query, arch, python2,
-          short_description, no_check, build_rpm, output):
+          short_description, no_check, build_rpm, output, reuse_spec):
     if build_root:
         _rpmbuild_env_ensure(build_root)
     if not (name or projects_data):
@@ -234,9 +242,9 @@ def build(build_root, name, version, projects_data, query, arch, python2,
         spec_obj = RPMSpec(name, version, arch, python2, short_description,
                            not no_check)
         if build_rpm:
-            spec_obj.build_package(build_root, output)
+            spec_obj.build_package(build_root, output, reuse_spec)
             return
-        spec_obj.generate_spec(build_root, output)
+        spec_obj.generate_spec(build_root, output, reuse_spec)
         return
     projects = pandas.read_csv(projects_data)
     projects_data = pandas.DataFrame(projects, columns=["pypi_name", "version"])
@@ -254,9 +262,9 @@ def build(build_root, name, version, projects_data, query, arch, python2,
         spec_obj = RPMSpec(row.pypi_name, row.version, arch, python2,
                            short_description, not no_check)
         if build_rpm:
-            spec_obj.build_package(build_root, output)
+            spec_obj.build_package(build_root, output, reuse_spec)
         else:
-            spec_obj.generate_spec(build_root, output)
+            spec_obj.generate_spec(build_root, output, reuse_spec)
         if spec_obj.build_failed:
             failed_pkgs.append(spec_obj.pypi_name)
             if spec_obj.check_stage_failed:

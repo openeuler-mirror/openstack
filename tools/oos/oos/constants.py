@@ -195,6 +195,7 @@ PYPI_OPENEULER_PKG_NAME_MAP = {
     "Werkzeug": "werkzeug",
     "WSME": "wsme",
     "xattr": "pyxattr",
+    "pyenchant": "python3-enchant"
 }
 
 LICENSE_MAPPING = {

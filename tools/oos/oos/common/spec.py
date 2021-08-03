@@ -239,7 +239,19 @@ class RPMSpec(object):
             else:
                 self._dev_requires.append(r_pkg)
 
-    def generate_spec(self, build_root, output_file=None):
+    def generate_spec(self, build_root, output_file=None, reuse_spec=False):
+        if output_file:
+            self.spec_path = output_file
+        else:
+            self.spec_path = os.path.join(
+                build_root, "SPECS/", self.spec_name) + '.spec'
+        if reuse_spec:
+            if not os.path.exists(self.spec_path):
+                click.secho("Spec file no existed with reuse spec parameter "
+                            "specified" % self.pypi_name, fg='red')
+                self.build_failed = True
+            return
+
         import oos
         search_paths = [
             '/etc/oos/',
@@ -286,11 +298,6 @@ class RPMSpec(object):
                          "source_file_dir": self._source_file_dir
                          }
         output = template.render(template_vars)
-        if output_file:
-            self.spec_path = output_file
-        else:
-            self.spec_path = os.path.join(
-                build_root, "SPECS/", self.spec_name) + '.spec'
         with open(self.spec_path, 'w') as f:
             f.write(output)
 
@@ -315,8 +322,8 @@ class RPMSpec(object):
             self.check_stage_failed = True
             return
 
-    def build_package(self, build_root, output_file=None):
-        self.generate_spec(build_root, output_file)
+    def build_package(self, build_root, output_file=None, reuse_spec=False):
+        self.generate_spec(build_root, output_file, reuse_spec)
         if not self.spec_path:
             return
         status = subprocess.call(["dnf", "builddep", '-y', self.spec_path])
