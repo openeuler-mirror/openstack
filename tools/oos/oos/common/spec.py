@@ -240,6 +240,9 @@ class RPMSpec(object):
                 self._dev_requires.append(r_pkg)
 
     def generate_spec(self, build_root, output_file=None, reuse_spec=False):
+        self._identify_arch_from_pypi()
+        self._init_source_info()
+        self._parse_requires()
         if output_file:
             self.spec_path = output_file
         else:
@@ -275,9 +278,6 @@ class RPMSpec(object):
             self.build_failed = True
             return
 
-        self._identify_arch_from_pypi()
-        self._init_source_info()
-        self._parse_requires()
         test_requires = self._test_requires if self.add_check else []
         template_vars = {'spec_name': self.spec_name,
                          'version': self.version_num,
