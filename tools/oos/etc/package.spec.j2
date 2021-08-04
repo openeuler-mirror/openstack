@@ -111,7 +111,6 @@ mv %{buildroot}/doclist.lst .
 {% endif %}
 
 %files -n {{ pkg_name }} -f filelist.lst
-
 {% if build_arch == 'noarch' %}
 {% if python2 %}
 %dir %{python2_sitelib}/*
