@@ -122,7 +122,7 @@ JSON_PYPI_NAME_MAP = {
 
 
 # Some project name is unreadable by oos. Let's fix them by hand.
-# Pypi name : openEuelr name
+# Pypi name : openEuler repo name
 PYPI_OPENEULER_NAME_MAP = {
     "alabaster": "python-sphinx-theme-alabaster",
     "Babel": "babel",
@@ -156,16 +156,15 @@ PYPI_OPENEULER_NAME_MAP = {
     "WebTest": "webtest",
     "Werkzeug": "werkzeug",
     "WSME": "wsme",
-    "xattr": "pyxattr",
 }
 
-# Mapping between pypi name and openEuler package name
-# Pypi name : openEuelr package name
+# Mapping between pypi name and openEuler package name(without python prefix)
+# Pypi name : openEuelr package name(without python prefix)
 PYPI_OPENEULER_PKG_NAME_MAP = {
     "alabaster": "sphinx-theme-alabaster",
     "Babel": "babel",
     "Django": "Django",
-    "dnspython": "python-dns",
+    "dnspython": "dns",
     "Flask": "flask",
     "Flask-RESTful": "flask-restful",
     "Jinja2": "jinja2",
@@ -194,8 +193,8 @@ PYPI_OPENEULER_PKG_NAME_MAP = {
     "WebTest": "webtest",
     "Werkzeug": "werkzeug",
     "WSME": "wsme",
-    "xattr": "pyxattr",
-    "pyenchant": "python3-enchant"
+    "pyenchant": "enchant",
+    "PyMySQL": "PyMySQL"
 }
 
 LICENSE_MAPPING = {
