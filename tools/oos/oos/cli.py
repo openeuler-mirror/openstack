@@ -1,6 +1,6 @@
 import click
 
-from oos.commands import dep_cli
+from oos.commands.dependence_analysis import dep_cli
 from oos.commands import pr_cli
 from oos.commands import spec_cli
 
