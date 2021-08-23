@@ -761,7 +761,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     chown nova:nova /usr/share/AAVMF
 
     ln -s /usr/share/edk2/aarch64/QEMU_EFI-pflash.raw \
-          /usr/share/AAVMF/AAVMF_CODE.fdk                                                          (CPT)
+          /usr/share/AAVMF/AAVMF_CODE.fd                                                           (CPT)
     ln -s /usr/share/edk2/aarch64/vars-template-pflash.raw \
           /usr/share/AAVMF/AAVMF_VARS.fd                                                           (CPT)
 
