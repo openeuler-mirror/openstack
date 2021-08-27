@@ -892,7 +892,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     创建neutron服务凭证
 
     ```shell
-    openstack user create --domain default --password-prompt neutrou                               (CTL)
+    openstack user create --domain default --password-prompt neutron                               (CTL)
     openstack role add --project service --user neutron admin                                      (CTL)
     openstack service create --name neutron --description "OpenStack Networking" network           (CTL)
     ```
