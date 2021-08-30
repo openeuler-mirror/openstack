@@ -455,32 +455,6 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     filesystem_store_datadir = /var/lib/glance/images/
     ```
 
-    ```shell
-    vim /etc/glance/glance-registry.conf
-
-    [database]
-    connection = mysql+pymysql://glance:GLANCE_DBPASS@controller/glance
-
-    [keystone_authtoken]
-    www_authenticate_uri  = http://controller:5000
-    auth_url = http://controller:5000
-    memcached_servers = controller:11211
-    auth_type = password
-    project_domain_name = Default
-    user_domain_name = Default
-    project_name = service
-    username = glance
-    password = GLANCE_PASS
-
-    [paste_deploy]
-    flavor = keystone
-
-    [glance_store]
-    stores = file,http
-    default_store = file
-    filesystem_store_datadir = /var/lib/glance/images/
-    ```
-
     ***解释:***
 
     [database]部分，配置数据库入口
@@ -504,8 +478,8 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 5. 启动服务：
 
     ```shell
-    systemctl enable openstack-glance-api.service openstack-glance-registry.service
-    systemctl start openstack-glance-api.service openstack-glance-registry.service
+    systemctl enable openstack-glance-api.service
+    systemctl start openstack-glance-api.service
     ```
 
 6. 验证
@@ -520,7 +494,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     ***注意***
 
-    **如果您使用的环境是鲲鹏架构，请下载arm64版本的镜像**
+    **如果您使用的环境是鲲鹏架构，请下载aarch64版本的镜像；已对镜像cirros-0.5.2-aarch64-disk.img进行测试。**
 
     向Image服务上传镜像：
 
