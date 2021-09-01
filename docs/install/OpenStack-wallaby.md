@@ -13,6 +13,7 @@
   - [安装 OpenStack](#安装-openstack)
     - [Keystone 安装](#keystone-安装)
     - [Glance 安装](#glance-安装)
+    - [Placement安装](#placement安装)
     - [Nova 安装](#nova-安装)
     - [Neutron 安装](#neutron-安装)
     - [Cinder 安装](#cinder-安装)
@@ -21,8 +22,8 @@
     - [Ironic 安装](#ironic-安装)
     - [Kolla 安装](#kolla-安装)
     - [Trove 安装](#trove-安装)
-    - [Swift 安装](#swift-安装)
-    <!-- /TOC -->
+    - [swift 安装](#swift-安装)
+<!-- /TOC -->
 
 ## OpenStack 简介
 
@@ -47,6 +48,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 ```text
 以 `(CTL)` 为后缀表示此条配置或者命令仅适用`控制节点`
 以 `(CPT)` 为后缀表示此条配置或者命令仅适用`计算节点`
+以 `(STG)` 为后缀表示此条配置或者命令仅适用`存储节点`
 除此之外表示此条配置或者命令同时适用`控制节点`和`计算节点`
 ```
 
@@ -112,7 +114,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 1. 执行如下命令，安装软件包。
 
     ```shell
-    yum install mariadb mariadb-server python2-PyMySQL
+    yum install mariadb mariadb-server python3-PyMySQL
     ```
 
 2. 执行如下命令，创建并编辑 `/etc/my.cnf.d/openstack.cnf` 文件。
@@ -186,7 +188,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 1. 执行如下命令，安装依赖软件包。
 
     ```shell
-    yum install memcached python2-memcached
+    yum install memcached python3-memcached
     ```
 
 2. 编辑 `/etc/sysconfig/memcached` 文件。
@@ -326,10 +328,10 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     **替换 `ADMIN_PASS` 为 admin 用户的密码**
 
-10. 依次创建domain, projects, users, roles，需要先安装好python2-openstackclient：
+10. 依次创建domain, projects, users, roles，需要先安装好python3-openstackclient：
 
     ```
-    yum install python2-openstackclient
+    yum install python3-openstackclient
     ```
 
     导入环境变量
@@ -509,6 +511,106 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     openstack image list
     ```
 
+### Placement安装
+
+1. 创建数据库、服务凭证和 API 端点
+
+    创建数据库：
+
+    作为 root 用户访问数据库，创建 placement 数据库并授权。
+
+    ```
+    $ mysql -u root -p
+    MariaDB [(none)]> CREATE DATABASE placement;
+    MariaDB [(none)]> GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'localhost' \
+    IDENTIFIED BY 'PLACEMENT_DBPASS';
+    MariaDB [(none)]> GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'%' \
+    IDENTIFIED BY 'PLACEMENT_DBPASS';
+    MariaDB [(none)]> exit
+    ```
+    替换 PLACEMENT_DBPASS，为 placement 数据库设置密码
+
+    ```
+    $ source admin-openrc
+    ```
+    执行如下命令，创建 placement 服务凭证、创建 placement 用户以及添加‘admin’角色到用户‘placement’。
+
+    创建Placement API服务
+
+    ```
+    $ openstack user create --domain default --password-prompt placement
+    $ openstack role add --project service --user placement admin
+    $ openstack service create --name placement --description "Placement API" placement
+    ```
+    创建placement服务API端点：
+
+    ```
+    $ openstack endpoint create --region RegionOne placement public http://controller:8778
+    $ openstack endpoint create --region RegionOne placement internal http://controller:8778
+    $ openstack endpoint create --region RegionOne placement admin http://controller:8778
+    ```
+2. 安装和配置
+
+    安装软件包：
+
+    ```
+    yum install openstack-placement-api
+    ```
+    配置placement：
+
+    编辑 /etc/placement/placement.conf 文件：
+
+    在[placement_database]部分，配置数据库入口
+
+    在[api] [keystone_authtoken]部分，配置身份认证服务入口
+
+    ```
+    # vim /etc/placement/placement.conf
+    [placement_database]
+    # ...
+    connection = mysql+pymysql://placement:PLACEMENT_DBPASS@controller/placement
+    [api]
+    # ...
+    auth_strategy = keystone
+    [keystone_authtoken]
+    # ...
+    auth_url = http://controller:5000/v3
+    memcached_servers = controller:11211
+    auth_type = password
+    project_domain_name = Default
+    user_domain_name = Default
+    project_name = service
+    username = placement
+    password = PLACEMENT_PASS
+    ```
+    其中，替换 PLACEMENT_DBPASS 为 placement 数据库的密码，替换 PLACEMENT_PASS 为 placement 用户的密码。
+
+    同步数据库：
+
+    ```
+    #su -s /bin/sh -c "placement-manage db sync" placement
+    ```
+    启动httpd服务：
+
+    ```
+    #systemctl restart httpd
+    ```
+3. 验证
+
+    执行如下命令，执行状态检查：
+    ```
+    $ . admin-openrc
+    $ placement-status upgrade check
+    ```
+
+    安装osc-placement，列出可用的资源类别及特性：
+
+    ```
+    $ yum install python3-osc-placement
+    $ openstack --os-placement-api-version 1.2 resource class list --sort-column name
+    $ openstack --os-placement-api-version 1.6 trait list --sort-column name
+    ```
+
 ### Nova 安装
 
 1. 创建数据库、服务凭证和 API 端点
@@ -580,7 +682,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     ```shell
     yum install openstack-nova-api openstack-nova-conductor openstack-nova-console \
-    openstack-nova-novncproxy openstack-nova-scheduler openstack-nova-placement-api                (CTL)
+    openstack-nova-novncproxy openstack-nova-scheduler 
 
     yum install openstack-nova-compute                                                             (CPT)
     ```
@@ -702,28 +804,6 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     **额外**
 
-    手动增加Placement API接入配置。
-
-    ```shell
-    vim /etc/httpd/conf.d/00-nova-placement-api.conf                                               (CTL)
-
-    <Directory /usr/bin>
-       <IfVersion >= 2.4>
-          Require all granted
-       </IfVersion>
-       <IfVersion < 2.4>
-          Order allow,deny
-          Allow from all
-       </IfVersion>
-    </Directory>
-    ```
-
-    重启httpd服务：
-
-    ```shell
-    systemctl restart httpd                                                                        (CTL)
-    ```
-
     确定是否支持虚拟机硬件加速（x86架构）：
 
     ```shell
@@ -746,20 +826,48 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     **如果为arm64结构，还需要执行以下命令**
 
     ```shell
-    mkdir -p /usr/share/AAVMF
-    chown nova:nova /usr/share/AAVMF
-
-    ln -s /usr/share/edk2/aarch64/QEMU_EFI-pflash.raw \
-          /usr/share/AAVMF/AAVMF_CODE.fd                                                           (CPT)
-    ln -s /usr/share/edk2/aarch64/vars-template-pflash.raw \
-          /usr/share/AAVMF/AAVMF_VARS.fd                                                           (CPT)
-
     vim /etc/libvirt/qemu.conf
 
     nvram = ["/usr/share/AAVMF/AAVMF_CODE.fd: \
              /usr/share/AAVMF/AAVMF_VARS.fd", \
              "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw: \
-             /usr/share/edk2/aarch64/vars-template-pflash.raw"]                                    (CPT)
+             /usr/share/edk2/aarch64/vars-template-pflash.raw"]
+
+    vim /etc/qemu/firmware/edk2-aarch64.json
+
+    {
+        "description": "UEFI firmware for ARM64 virtual machines",
+        "interface-types": [
+            "uefi"
+        ],
+        "mapping": {
+            "device": "flash",
+            "executable": {
+                "filename": "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw",
+                "format": "raw"
+            },
+            "nvram-template": {
+                "filename": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
+                "format": "raw"
+            }
+        },
+        "targets": [
+            {
+                "architecture": "aarch64",
+                "machines": [
+                    "virt-*"
+                ]
+            }
+        ],
+        "features": [
+
+        ],
+        "tags": [
+
+        ]
+    }
+
+    (CPT)
     ```
 
 4. 同步数据库
@@ -847,7 +955,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     openstack image list                                                                            (CTL)
     ```
 
-    检查cells和placement API是否运作成功，以及其他必要条件是否已具备。
+    检查cells是否运作成功，以及其他必要条件是否已具备。
 
     ```shell
     nova-status upgrade check                                                                       (CTL)
@@ -1207,7 +1315,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     ```
 
     ```shell
-    yum install lvm2 device-mapper-persistent-data scsi-target-utils rpcbind nfs-utils \           (CPT)
+    yum install lvm2 device-mapper-persistent-data scsi-target-utils rpcbind nfs-utils \           (STG)
                 openstack-cinder-volume openstack-cinder-backup
     ```
 
@@ -1249,9 +1357,9 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     transport_url = rabbit://openstack:RABBIT_PASS@controller
     auth_strategy = keystone
     my_ip = 10.0.0.11
-    enabled_backends = lvm                                                                         (CPT)
-    backup_driver=cinder.backup.drivers.nfs.NFSBackupDriver                                        (CPT)
-    backup_share=HOST:PATH                                                                         (CPT)
+    enabled_backends = lvm                                                                         (STG)
+    backup_driver=cinder.backup.drivers.nfs.NFSBackupDriver                                        (STG)
+    backup_share=HOST:PATH                                                                         (STG)
 
     [database]
     connection = mysql+pymysql://cinder:CINDER_DBPASS@controller/cinder
@@ -1271,10 +1379,10 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     lock_path = /var/lib/cinder/tmp
 
     [lvm]
-    volume_driver = cinder.volume.drivers.lvm.LVMVolumeDriver                                      (CPT)
-    volume_group = cinder-volumes                                                                  (CPT)
-    iscsi_protocol = iscsi                                                                         (CPT)
-    iscsi_helper = tgtadm                                                                          (CPT)
+    volume_driver = cinder.volume.drivers.lvm.LVMVolumeDriver                                      (STG)
+    volume_group = cinder-volumes                                                                  (STG)
+    iscsi_protocol = iscsi                                                                         (STG)
+    iscsi_helper = tgtadm                                                                          (STG)
     ```
 
     ***解释***
@@ -1328,10 +1436,10 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     ```
 
     ```shell
-    systemctl enable rpcbind.service nfs-server.service tgtd.service iscsid.service \              (CPT)
+    systemctl enable rpcbind.service nfs-server.service tgtd.service iscsid.service \              (STG)
                      openstack-cinder-volume.service \
                      openstack-cinder-backup.service
-    systemctl start rpcbind.service nfs-server.service tgtd.service iscsid.service \               (CPT)
+    systemctl start rpcbind.service nfs-server.service tgtd.service iscsid.service \               (STG)
                     openstack-cinder-volume.service \
                     openstack-cinder-backup.service
     ```
@@ -1414,6 +1522,12 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
     ```shell
     tempest run
     ```
+
+5. 安装tempest扩展（可选）
+   OpenStack各个服务本身也提供了一些tempest测试包，用户可以安装这些包来丰富tempest的测试内容。在Wallaby中，我们提供了Cinder、Glance、Keystone、Ironic、Trove的扩展测试，用户可以执行如下命令进行安装使用：
+   ```
+   yum install python3-cinder-tempest-plugin python3-glance-tempest-plugin python3-ironic-tempest-plugin python3-keystone-tempest-plugin python3-trove-tempest-plugin
+   ```   
 
 ### Ironic 安装
 
@@ -2063,89 +2177,18 @@ Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适�
 2. 安装软件包：
 
     ```shell
-    yum install openstack-swift-proxy python3-swiftclient python3-keystoneclient python3-keystonemiddleware memcached 
+    yum install openstack-swift-proxy python3-swiftclient python3-keystoneclient python3-keystonemiddleware memcached （CTL）
     ```
     
 3. 配置proxy-server相关配置
+   
+   Swift RPM包里已经包含了一个基本可用的proxy-server.conf，只需要手动修改其中的ip和swift password即可。
 
-    ```shell
-    vim /etc/swift/proxy-server.conf
-    
-    [DEFAULT]
-    bind_port = 8080
-    workers = 2
-    user = swift
-    swift_dir = /etc/swift
-    
-    [pipeline:main]
-    pipeline = catch_errors gatekeeper healthcheck proxy-logging cache container_sync bulk ratelimit authtoken keystoneauth container-quotas account-quotas slo dlo versioned_writes proxy-logging proxy-server
-    
-    [app:proxy-server]
-    use = egg:swift#proxy
-    account_autocreate = True
-    
-    [filter:catch_errors]
-    use = egg:swift#catch_errors
-    
-    [filter:gatekeeper]
-    use = egg:swift#gatekeeper
-    
-    [filter:healthcheck]
-    use = egg:swift#healthcheck
-    
-    [filter:proxy-logging]
-    use = egg:swift#proxy_logging
-    
-    [filter:cache]
-    use = egg:swift#memcache
-    memcache_servers = controller:11211
-    
-    [filter:container_sync]
-    use = egg:swift#container_sync
-    
-    [filter:bulk]
-    use = egg:swift#bulk
-    
-    [filter:ratelimit]
-    use = egg:swift#ratelimit
-    
-    [filter:authtoken]
-    paste.filter_factory = keystonemiddleware.auth_token:filter_factory
-    www_authenticate_uri = http://controller:5000
-    auth_url = http://controller:5000
-    memcached_servers = controller:11211
-    auth_type = password
-    project_domain_id = default
-    user_domain_id = default
-    project_name = service
-    username = swift
-    # 根据用户创建的keystoneswift用户，自行修改密码
-    password = swift
-    delay_auth_decision = True
-    
-    [filter:keystoneauth]
-    use = egg:swift#keystoneauth
-    operator_roles = admin,user
-    
-    [filter:container-quotas]
-    use = egg:swift#container_quotas
-    
-    [filter:account-quotas]
-    use = egg:swift#account_quotas
-    
-    [filter:slo]
-    use = egg:swift#slo
-    
-    [filter:dlo]
-    use = egg:swift#dlo
-    
-    [filter:versioned_writes]
-    use = egg:swift#versioned_writes
-    ```
     ***注意***
+
     **注意替换password为您swift在身份服务中为用户选择的密码**
     
-4. 安装和配置存储节点
+4. 安装和配置存储节点 （STG）
 
     安装支持的程序包:
     ```shell
@@ -2185,8 +2228,11 @@ Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适�
     mount /srv/node/vdb
     mount /srv/node/vdc
     ```
+    ***注意***
 
-    创建或编辑/etc/rsyncd.conf文件以包含以下内容:
+    **如果用户不需要容灾功能，以上步骤只需要创建一个设备即可，同时可以跳过下面的rsync配置**
+
+    （可选）创建或编辑/etc/rsyncd.conf文件以包含以下内容:
 
     ```shell
     [DEFAULT]
@@ -2223,7 +2269,7 @@ Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适�
     systemctl start rsyncd.service
     ```
 
-5. 在存储节点安装和配置组件
+5. 在存储节点安装和配置组件 （STG）
 
     安装软件包:
 
@@ -2231,92 +2277,7 @@ Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适�
     yum install openstack-swift-account openstack-swift-container openstack-swift-object
     ```
 
-    编辑/etc/swift/account-server.conf文件:
-
-    ```shell
-    [DEFAULT]
-    bind_ip = 127.0.0.1
-    bind_port = 6202
-    workers = 2
-    user = swift
-    swift_dir = /etc/swift
-    devices = /srv/node
-    mount_check = True
-    
-    [pipeline:main]
-    pipeline = healthcheck recon account-server
-    
-    [filter:healthcheck]
-    use = egg:swift#healthcheck
-    
-    [filter:recon]
-    use = egg:swift#recon
-    recon_cache_path = /var/cache/swift
-    
-    [app:account-server]
-    use = egg:swift#account
-    ```
-    
-   **替换bindip为存储节点上管理网络的IP地址**
-   
-    编辑/etc/swift/container-server.conf文件:
-
-    ```shell
-    [DEFAULT]
-    bind_ip = 127.0.0.1
-    bind_port = 6201
-    workers = 2
-    user = swift
-    swift_dir = /etc/swift
-    devices = /srv/node
-    mount_check = True
-    
-    [pipeline:main]
-    pipeline = healthcheck recon container-server
-    
-    [filter:healthcheck]
-    use = egg:swift#healthcheck
-    
-    [filter:recon]
-    use = egg:swift#recon
-    recon_cache_path = /var/cache/swift
-    
-    [app:container-server]
-    use = egg:swift#container
-    ```
-   
-    **替换bindip为存储节点上管理网络的IP地址**
-       
-
-    编辑/etc/swift/object-server.conf`文件:
-
-    ```shell
-    [DEFAULT]
-    bind_ip = 127.0.0.1
-    bind_port = 6200
-    workers = 2
-    user = swift
-    swift_dir = /etc/swift
-    devices = /srv/node
-    mount_check = True
-    
-    [pipeline:main]
-    pipeline = healthcheck recon object-server
-    
-    [filter:healthcheck]
-    use = egg:swift#healthcheck
-    
-    [filter:recon]
-    use = egg:swift#recon
-    recon_cache_path = /var/cache/swift
-    recon_lock_path = /var/lock
-    
-    [app:object-server]
-    use = egg:swift#object
-    ```
-   
-   **替换bindip为存储节点上管理网络的IP地址**
-   
+    编辑/etc/swift目录的account-server.conf、container-server.conf和object-server.conf文件，替换bind_ip为存储节点上管理网络的IP地址。
 
     确保挂载点目录结构的正确所有权:
 
@@ -2332,7 +2293,7 @@ Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适�
     chmod -R 775 /var/cache/swift
     ```
    
-6. 创建账号环(在控制结点)
+6. 创建账号环 (CTL)
 
     切换到/etc/swift目录。
 
@@ -2363,13 +2324,13 @@ Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适�
     swift-ring-builder account.builder
     ```
     
-    （若有多个存储节点需要）重新平衡戒指：
+    重新平衡戒指：
     
     ```shell
     swift-ring-builder account.builder rebalance
     ```
     
-7. 创建容器环
+7. 创建容器环 (CTL)
    
     切换到`/etc/swift`目录。
     
@@ -2399,13 +2360,13 @@ Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适�
     swift-ring-builder container.builder
     ```
     
-    （若有多个存储节点需要）重新平衡戒指：
+    重新平衡戒指：
     
     ```shell
     swift-ring-builder account.builder rebalance
     ```
     
-8. 创建对象环
+8. 创建对象环 (CTL)
    
     切换到`/etc/swift`目录。
     
@@ -2434,17 +2395,19 @@ Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适�
     swift-ring-builder object.builder
     ```
     
-    （若有多个存储节点需要）重新平衡戒指：
+    重新平衡戒指：
     
     ```shell
     swift-ring-builder account.builder rebalance
     ```
+
     分发环配置文件：
+
     将`account.ring.gz`，`container.ring.gz`以及 `object.ring.gz`文件复制到`/etc/swift`每个存储节点和运行代理服务的任何其他节点上目录。
     
     
     
-9. 完成安装
+9.  完成安装
    
     编辑`/etc/swift/swift.conf`文件
     
@@ -2478,10 +2441,15 @@ Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适�
     在存储节点上，启动对象存储服务并将它们配置为在系统启动时启动：
     
     ```shell
-    # systemctl enable openstack-swift-account.service openstack-swift-account-auditor.service openstack-swift-account-reaper.service openstack-swift-account-replicator.service
-    # systemctl start openstack-swift-account.service openstack-swift-account-auditor.service openstack-swift-account-reaper.service openstack-swift-account-replicator.service
-    # systemctl enable openstack-swift-container.service openstack-swift-container-auditor.service openstack-swift-container-replicator.service openstack-swift-container-updater.service
-    # systemctl start openstack-swift-container.service openstack-swift-container-auditor.service openstack-swift-container-replicator.service openstack-swift-container-updater.service
-    # systemctl enable openstack-swift-object.service openstack-swift-object-auditor.service openstack-swift-object-replicator.service openstack-swift-object-updater.service
-    # systemctl start openstack-swift-object.service openstack-swift-object-auditor.service openstack-swift-object-replicator.service openstack-swift-object-updater.service
+    systemctl enable openstack-swift-account.service openstack-swift-account-auditor.service openstack-swift-account-reaper.service openstack-swift-account-replicator.service
+    
+    systemctl start openstack-swift-account.service openstack-swift-account-auditor.service openstack-swift-account-reaper.service openstack-swift-account-replicator.service
+    
+    systemctl enable openstack-swift-container.service openstack-swift-container-auditor.service openstack-swift-container-replicator.service openstack-swift-container-updater.service
+    
+    systemctl start openstack-swift-container.service openstack-swift-container-auditor.service openstack-swift-container-replicator.service openstack-swift-container-updater.service
+    
+    systemctl enable openstack-swift-object.service openstack-swift-object-auditor.service openstack-swift-object-replicator.service openstack-swift-object-updater.service
+    
+    systemctl start openstack-swift-object.service openstack-swift-object-auditor.service openstack-swift-object-replicator.service openstack-swift-object-updater.service
     ```
