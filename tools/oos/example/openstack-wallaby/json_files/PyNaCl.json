@@ -1,0 +1,1 @@
+{"name": "PyNaCl", "version_dict": {"version": "1.4.0", "eq_version": "", "ge_version": "1.4.0", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "cinder", "PyMySQL", "PyNaCl"]}, "requires": {}}

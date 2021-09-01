@@ -1,0 +1,1 @@
+{"name": "nosexcover", "version_dict": {"version": "1.0.10", "eq_version": "", "ge_version": "1.0.10", "lt_version": "", "ne_version": []}, "deep": {"count": 1, "list": ["trove", "nosexcover"]}, "requires": {}}

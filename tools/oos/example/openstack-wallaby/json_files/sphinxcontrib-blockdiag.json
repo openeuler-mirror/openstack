@@ -1,0 +1,1 @@
+{"name": "sphinxcontrib-blockdiag", "version_dict": {"version": "1.5.5", "eq_version": "", "ge_version": "1.5.5", "lt_version": "", "ne_version": []}, "deep": {"count": 1, "list": ["keystone", "sphinxcontrib-blockdiag"]}, "requires": {}}

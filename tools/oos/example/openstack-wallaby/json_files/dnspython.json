@@ -1,0 +1,1 @@
+{"name": "dnspython", "version_dict": {"version": "1.15.0", "eq_version": "", "ge_version": "1.15.0", "lt_version": "2.0.0", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "eventlet", "dnspython"]}, "requires": {}}

@@ -1,0 +1,1 @@
+{"name": "netaddr", "version_dict": {"version": "0.7.18", "eq_version": "", "ge_version": "0.7.18", "lt_version": "", "ne_version": []}, "deep": {"count": 5, "list": ["cinder", "keystoneauth1", "os-service-types", "oslotest", "oslotest", "oslo.config", "netaddr"]}, "requires": {}}

@@ -1,0 +1,1 @@
+{"name": "grpcio-gcp", "version_dict": {"version": "0.2.2", "eq_version": "", "ge_version": "0.2.2", "lt_version": "", "ne_version": []}, "deep": {"count": 3, "list": ["cinder", "cinder", "google-api-python-client", "google-api-core", "grpcio-gcp"]}, "requires": {"grpcio": {"eq_version": "", "ge_version": "1.12.0", "lt_version": "", "ne_version": [], "version": "1.12.0"}}}

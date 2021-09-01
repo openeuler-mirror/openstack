@@ -1,0 +1,1 @@
+{"name": "testresources", "version_dict": {"version": "2.0.0", "eq_version": "", "ge_version": "2.0.0", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "keystoneauth1", "keystoneauth1", "testresources"]}, "requires": {}}

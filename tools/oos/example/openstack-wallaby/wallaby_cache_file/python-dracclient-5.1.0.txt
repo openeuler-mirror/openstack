@@ -1,9 +1,0 @@
-lxml>=2.3
-pbr>=1.6
-requests>=2.10.0
-coverage>=3.6
-doc8
-hacking>=3.0.1,<3.1.0 # Apache-2.0
-requests-mock>=1.0
-sphinx!=1.6.6,!=1.6.7,!=2.1.0;python_version>='3.4'  # BSD
-openstackdocstheme  # Apache-2.0

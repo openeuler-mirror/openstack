@@ -1,0 +1,1 @@
+{"name": "filelock", "version_dict": {"version": "3.0.0", "eq_version": "", "ge_version": "3.0.0", "lt_version": "4", "ne_version": []}, "deep": {"count": 4, "list": ["cinder", "cinder", "oslo.concurrency", "pre-commit", "virtualenv", "filelock"]}, "requires": {}}

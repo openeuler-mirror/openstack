@@ -1,0 +1,1 @@
+{"name": "alembic", "version_dict": {"version": "1.4.2", "eq_version": "", "ge_version": "1.4.2", "lt_version": "", "ne_version": []}, "deep": {"count": 1, "list": ["ironic", "alembic"]}, "requires": {}}

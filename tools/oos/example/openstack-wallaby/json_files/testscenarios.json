@@ -1,0 +1,1 @@
+{"name": "testscenarios", "version_dict": {"version": "0.5.0", "eq_version": "", "ge_version": "0.5.0", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "cinder", "os-brick", "testscenarios"]}, "requires": {}}

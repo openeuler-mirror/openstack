@@ -1,0 +1,1 @@
+{"name": "googleapis-common-protos", "version_dict": {"version": "1.6.0", "eq_version": "", "ge_version": "1.6.0", "lt_version": "2.0dev", "ne_version": []}, "deep": {"count": 3, "list": ["cinder", "cinder", "google-api-python-client", "google-api-core", "googleapis-common-protos"]}, "requires": {}}

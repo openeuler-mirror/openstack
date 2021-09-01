@@ -1,0 +1,1 @@
+{"name": "typed-ast", "version_dict": {"version": "1.4.0", "eq_version": "", "ge_version": "1.4.0", "lt_version": "1.5.0", "ne_version": []}, "deep": {"count": 3, "list": ["cinder", "cinder", "oslo.config", "mypy", "typed-ast"]}, "requires": {}}

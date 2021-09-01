@@ -1,0 +1,1 @@
+{"name": "docutils", "version_dict": {"version": "0.12", "eq_version": "", "ge_version": "0.12", "lt_version": "", "ne_version": []}, "deep": {"count": 4, "list": ["cinder", "cinder", "keystonemiddleware", "openstackdocstheme", "Sphinx", "docutils"]}, "requires": {}}

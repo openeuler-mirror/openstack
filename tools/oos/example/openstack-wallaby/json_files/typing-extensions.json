@@ -1,0 +1,1 @@
+{"name": "typing-extensions", "version_dict": {"version": "3.7.4", "eq_version": "", "ge_version": "3.7.4", "lt_version": "", "ne_version": []}, "deep": {"count": 3, "list": ["cinder", "cinder", "oslo.config", "mypy", "typing-extensions"]}, "requires": {"typing": {"eq_version": "", "ge_version": "3.7.4", "lt_version": "", "ne_version": [], "version": "3.7.4"}}}

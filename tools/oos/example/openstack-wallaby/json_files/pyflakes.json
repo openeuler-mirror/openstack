@@ -1,0 +1,1 @@
+{"name": "pyflakes", "version_dict": {"version": "2.2.0", "eq_version": "", "ge_version": "2.2.0", "lt_version": "2.3.0", "ne_version": []}, "deep": {"count": 4, "list": ["cinder", "cinder", "os-brick", "hacking", "flake8", "pyflakes"]}, "requires": {}}

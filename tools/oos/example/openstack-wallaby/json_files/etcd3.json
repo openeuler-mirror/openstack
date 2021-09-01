@@ -1,0 +1,1 @@
+{"name": "etcd3", "version_dict": {"version": "0.6.2", "eq_version": "", "ge_version": "0.6.2", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "cinder", "tooz", "etcd3"]}, "requires": {}}

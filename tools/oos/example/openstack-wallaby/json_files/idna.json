@@ -1,0 +1,1 @@
+{"name": "idna", "version_dict": {"version": "2.5", "eq_version": "", "ge_version": "2.5", "lt_version": "3", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "cinder", "requests", "idna"]}, "requires": {}}

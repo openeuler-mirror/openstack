@@ -1,0 +1,1 @@
+{"name": "lazy-object-proxy", "version_dict": {"version": "1.4.3", "eq_version": "1.4.*", "ge_version": "", "lt_version": "", "ne_version": []}, "deep": {"count": 3, "list": ["horizon", "pylint", "pylint", "astroid", "lazy-object-proxy"]}, "requires": {}}

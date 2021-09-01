@@ -1,0 +1,1 @@
+{"name": "jmespath", "version_dict": {"version": "0.9.3", "eq_version": "", "ge_version": "0.9.3", "lt_version": "", "ne_version": []}, "deep": {"count": 1, "list": ["kolla-ansible", "jmespath"]}, "requires": {}}

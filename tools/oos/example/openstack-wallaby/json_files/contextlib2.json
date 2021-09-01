@@ -1,0 +1,1 @@
+{"name": "contextlib2", "version_dict": {"version": "0.4.0", "eq_version": "", "ge_version": "0.4.0", "lt_version": "", "ne_version": []}, "deep": {"count": 4, "list": ["cinder", "cinder", "keystonemiddleware", "oslo.messaging", "futurist", "contextlib2"]}, "requires": {}}

@@ -1,0 +1,1 @@
+{"name": "ddt", "version_dict": {"version": "1.4.1", "eq_version": "", "ge_version": "1.4.1", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "cinder", "os-brick", "ddt"]}, "requires": {}}

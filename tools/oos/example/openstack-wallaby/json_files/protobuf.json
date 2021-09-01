@@ -1,0 +1,1 @@
+{"name": "protobuf", "version_dict": {"version": "3.5.0.post1", "eq_version": "", "ge_version": "3.5.0.post1", "lt_version": "", "ne_version": []}, "deep": {"count": 4, "list": ["cinder", "cinder", "google-api-python-client", "google-api-core", "grpcio", "protobuf"]}, "requires": {}}

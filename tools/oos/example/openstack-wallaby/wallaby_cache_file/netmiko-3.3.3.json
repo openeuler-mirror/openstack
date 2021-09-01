@@ -1,1 +1,0 @@
-{"netmiko": "3.3.3", "ntc-templates": "2.1.0", "textfsm": "1.1.2", "future": "0.18.2", "six": "1.16.0", "paramiko": "2.7.2", "bcrypt": "3.2.0", "cffi": "1.14.5", "pycparser": "2.20", "cryptography": "3.4.7", "pynacl": "1.4.0", "pyserial": "3.5", "scp": "0.13.5", "setuptools": "57.0.0", "tenacity": "7.0.0"}

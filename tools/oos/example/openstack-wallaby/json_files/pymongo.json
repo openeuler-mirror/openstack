@@ -1,0 +1,1 @@
+{"name": "pymongo", "version_dict": {"version": "3.3.0", "eq_version": "", "ge_version": "3.3.0", "lt_version": "", "ne_version": []}, "deep": {"count": 3, "list": ["cinder", "cinder", "oslo.messaging", "kombu", "pymongo"]}, "requires": {}}
