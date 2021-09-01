@@ -31,11 +31,11 @@ OpenStack 是一个社区，也是一个项目。它提供了一个部署云的�
 
 作为一个开源的云计算管理平台，OpenStack 由nova、cinder、neutron、glance、keystone、horizon等几个主要的组件组合起来完成具体工作。OpenStack 支持几乎所有类型的云环境，项目目标是提供实施简单、可大规模扩展、丰富、标准统一的云计算管理平台。OpenStack 通过各种互补的服务提供了基础设施即服务（IaaS）的解决方案，每个服务提供 API 进行集成。
 
-openEuler 21.09 版本官方源已经支持 Openstack-Wallaby 版本，用户可以配置好 yum 源后根据此文档进行 OpenStack 部署。
+openEuler 21.09 版本官方源已经支持 OpenStack-Wallaby 版本，用户可以配置好 yum 源后根据此文档进行 OpenStack 部署。
 
 ## 约定
 
-Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distributed`两种部署方式，按照如下方式约定：
+OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distributed`两种部署方式，按照如下方式约定：
 
 `ALL in One`模式:
 
@@ -618,7 +618,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     创建数据库：
 
     ```sql
-    mysql -u root -p                                                                               (CPT)
+    mysql -u root -p                                                                               (CTL)
 
     MariaDB [(none)]> CREATE DATABASE nova_api;
     MariaDB [(none)]> CREATE DATABASE nova;
@@ -643,39 +643,39 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     **替换NOVA_DBPASS，为nova数据库设置密码**
 
     ```shell
-    source ~/.admin-openrc                                                                         (CPT)
+    source ~/.admin-openrc                                                                         (CTL)
     ```
 
     创建nova服务凭证:
 
     ```shell
-    openstack user create --domain default --password-prompt nova                                  (CTP)
-    openstack role add --project service --user nova admin                                         (CPT)
-    openstack service create --name nova --description "OpenStack Compute" compute                 (CPT)
+    openstack user create --domain default --password-prompt nova                                  (CTL)
+    openstack role add --project service --user nova admin                                         (CTL)
+    openstack service create --name nova --description "OpenStack Compute" compute                 (CTL)
     ```
 
     创建placement服务凭证:
 
     ```shell
-    openstack user create --domain default --password-prompt placement                             (CPT)
-    openstack role add --project service --user placement admin                                    (CPT)
-    openstack service create --name placement --description "Placement API" placement              (CPT)
+    openstack user create --domain default --password-prompt placement                             (CTL)
+    openstack role add --project service --user placement admin                                    (CTL)
+    openstack service create --name placement --description "Placement API" placement              (CTL)
     ```
 
     创建nova API端点：
 
     ```shell
-    openstack endpoint create --region RegionOne compute public http://controller:8774/v2.1        (CPT)
-    openstack endpoint create --region RegionOne compute internal http://controller:8774/v2.1      (CPT)
-    openstack endpoint create --region RegionOne compute admin http://controller:8774/v2.1         (CPT)
+    openstack endpoint create --region RegionOne compute public http://controller:8774/v2.1        (CTL)
+    openstack endpoint create --region RegionOne compute internal http://controller:8774/v2.1      (CTL)
+    openstack endpoint create --region RegionOne compute admin http://controller:8774/v2.1         (CTL)
     ```
 
     创建placement API端点：
 
     ```shell
-    openstack endpoint create --region RegionOne placement public http://controller:8778           (CPT)
-    openstack endpoint create --region RegionOne placement internal http://controller:8778         (CPT)
-    openstack endpoint create --region RegionOne placement admin http://controller:8778            (CPT)
+    openstack endpoint create --region RegionOne placement public http://controller:8778           (CTL)
+    openstack endpoint create --region RegionOne placement internal http://controller:8778         (CTL)
+    openstack endpoint create --region RegionOne placement admin http://controller:8778            (CTL)
     ```
 
 2. 安装软件包
@@ -952,13 +952,13 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     列出镜像服务中的镜像，验证与镜像服务的连接：
 
     ```shell
-    openstack image list                                                                            (CTL)
+    openstack image list                                                                           (CTL)
     ```
 
     检查cells是否运作成功，以及其他必要条件是否已具备。
 
     ```shell
-    nova-status upgrade check                                                                       (CTL)
+    nova-status upgrade check                                                                      (CTL)
     ```
 
 ### Neutron 安装
@@ -1011,7 +1011,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     ```
 
     ```shell
-    yum install openstack-neutron-linuxbridge-agent ebtables ipset                                       (CPT)
+    yum install openstack-neutron-linuxbridge-agent ebtables ipset                                 (CPT)
     ```
 
 3. 配置neutron相关配置：
@@ -1157,7 +1157,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     配置Layer-3代理：
 
     ```shell
-    vim /etc/neutron/l3_agent.ini                                                                   (CTL)
+    vim /etc/neutron/l3_agent.ini                                                                  (CTL)
 
     [DEFAULT]
     interface_driver = linuxbridge
@@ -1257,7 +1257,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
 8. 验证
 
-    列出代理验证 neutron 代理启动成功：
+    验证 neutron 代理启动成功：
 
     ```shell
     openstack network agent list
@@ -1494,7 +1494,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
 ### Tempest 安装
 
-Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测试已安装的OpenStack环境的功能,则推荐使用该组件。否则，可以不用安装
+Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测试已安装的OpenStack环境的功能,则推荐使用该组件。否则，可以不用安装。
 
 1. 安装Tempest
 
@@ -1688,17 +1688,17 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    为了与其他OpenStack服务进行通信，裸金属服务在请求其他服务时需要使用服务用户与OpenStack Identity服务进行认证。这些用户的凭据必须在与相应服务相关的每个配置文件中进行配置。
 
    ```shell
-   [neutron] - 访问Openstack网络服务
-   [glance] - 访问Openstack镜像服务
-   [swift] - 访问Openstack对象存储服务
-   [cinder] - 访问Openstack块存储服务
-   [inspector] - 访问Openstack裸金属introspection服务
-   [service_catalog] - 一个特殊项用于保存裸金属服务使用的凭证，该凭证用于发现注册在Openstack身份认证服务目录中的自己的API URL端点
+   [neutron] - 访问OpenStack网络服务
+   [glance] - 访问OpenStack镜像服务
+   [swift] - 访问OpenStack对象存储服务
+   [cinder] - 访问OpenStack块存储服务
+   [inspector] - 访问OpenStack裸金属introspection服务
+   [service_catalog] - 一个特殊项用于保存裸金属服务使用的凭证，该凭证用于发现注册在OpenStack身份认证服务目录中的自己的API URL端点
    ```
 
    简单起见，可以对所有服务使用同一个服务用户。为了向后兼容，该用户应该和ironic-api服务的[keystone_authtoken]所配置的为同一个用户。但这不是必须的，也可以为每个服务创建并配置不同的服务用户。
 
-   在下面的示例中，用户访问openstack网络服务的身份验证信息配置为：
+   在下面的示例中，用户访问OpenStack网络服务的身份验证信息配置为：
 
    ```shell
    网络服务部署在名为RegionOne的身份认证服务域中，仅在服务目录中注册公共端点接口
@@ -1854,8 +1854,8 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
 6. deploy ramdisk镜像制作
 
-   Q版的ramdisk镜像支持通过ironic-python-agent服务或disk-image-builder工具制作，也可以使用社区最新的ironic-python-agent-builder。用户也可以自行选择其他工具制作。
-   若使用Q版原生工具，则需要安装对应的软件包。
+   W版的ramdisk镜像支持通过ironic-python-agent服务或disk-image-builder工具制作，也可以使用社区最新的ironic-python-agent-builder。用户也可以自行选择其他工具制作。
+   若使用W版原生工具，则需要安装对应的软件包。
 
    ```
    yum install openstack-ironic-python-agent
@@ -1975,7 +1975,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
 ### Kolla 安装
 
-Kolla为OpenStack服务提供生产环境可用的容器化部署的功能。openEuler 20.03 LTS SP2中引入了Kolla和Kolla-ansible服务。
+Kolla为OpenStack服务提供生产环境可用的容器化部署的功能。openEuler 21.09中引入了Kolla和Kolla-ansible服务。
 
 Kolla的安装十分简单，只需要安装对应的RPM包即可
 
