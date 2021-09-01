@@ -1,0 +1,1 @@
+{"name": "chardet", "version_dict": {"version": "3.0.2", "eq_version": "", "ge_version": "3.0.2", "lt_version": "3.1.0", "ne_version": []}, "deep": {"count": 3, "list": ["cinder", "cinder", "oslo.config", "requests", "chardet"]}, "requires": {}}

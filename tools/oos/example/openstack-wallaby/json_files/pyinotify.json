@@ -1,0 +1,1 @@
+{"name": "pyinotify", "version_dict": {"version": "0.9.6", "eq_version": "", "ge_version": "0.9.6", "lt_version": "", "ne_version": []}, "deep": {"count": 4, "list": ["cinder", "cinder", "keystonemiddleware", "oslo.cache", "oslo.log", "pyinotify"]}, "requires": {}}

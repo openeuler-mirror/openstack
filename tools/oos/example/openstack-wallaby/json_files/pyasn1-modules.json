@@ -1,0 +1,1 @@
+{"name": "pyasn1-modules", "version_dict": {"version": "0.2.1", "eq_version": "", "ge_version": "0.2.1", "lt_version": "", "ne_version": []}, "deep": {"count": 3, "list": ["cinder", "cinder", "google-api-python-client", "google-auth", "pyasn1-modules"]}, "requires": {"pyasn1": {"eq_version": "", "ge_version": "0.4.1", "lt_version": "0.5.0", "ne_version": [], "version": "0.4.1"}}}

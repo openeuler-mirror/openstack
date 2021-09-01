@@ -1,0 +1,1 @@
+{"name": "identify", "version_dict": {"version": "1.0.0", "eq_version": "", "ge_version": "1.0.0", "lt_version": "", "ne_version": []}, "deep": {"count": 3, "list": ["cinder", "cinder", "oslo.concurrency", "pre-commit", "identify"]}, "requires": {}}

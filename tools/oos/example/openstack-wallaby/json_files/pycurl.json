@@ -1,0 +1,1 @@
+{"name": "pycurl", "version_dict": {"version": "7.43.0.2", "eq_version": "7.43.0.2", "ge_version": "", "lt_version": "", "ne_version": []}, "deep": {"count": 3, "list": ["cinder", "cinder", "oslo.messaging", "kombu", "pycurl"]}, "requires": {}}

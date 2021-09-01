@@ -1,0 +1,1 @@
+{"name": "botocore", "version_dict": {"version": "1.12.201", "eq_version": "", "ge_version": "1.12.201", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "cinder", "moto", "botocore"]}, "requires": {}}

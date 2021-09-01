@@ -1,0 +1,1 @@
+{"name": "certifi", "version_dict": {"version": "2017.4.17", "eq_version": "", "ge_version": "2017.4.17", "lt_version": "", "ne_version": []}, "deep": {"count": 3, "list": ["cinder", "cinder", "oslo.config", "requests", "certifi"]}, "requires": {}}

@@ -1,0 +1,1 @@
+{"name": "enum34", "version_dict": {"version": "1.0.4", "eq_version": "", "ge_version": "1.0.4", "lt_version": "", "ne_version": []}, "deep": {"count": 7, "list": ["cinder", "cinder", "oslo.messaging", "kombu", "azure-servicebus", "azure-common", "msrestazure", "msrest", "enum34"]}, "requires": {}}

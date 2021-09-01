@@ -1,0 +1,1 @@
+{"name": "appdirs", "version_dict": {"version": "1.4.3", "eq_version": "", "ge_version": "1.4.3", "lt_version": "2", "ne_version": []}, "deep": {"count": 4, "list": ["cinder", "cinder", "oslo.concurrency", "pre-commit", "virtualenv", "appdirs"]}, "requires": {}}

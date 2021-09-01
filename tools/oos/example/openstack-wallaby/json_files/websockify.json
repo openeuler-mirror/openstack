@@ -1,0 +1,1 @@
+{"name": "websockify", "version_dict": {"version": "0.9.0", "eq_version": "", "ge_version": "0.9.0", "lt_version": "", "ne_version": []}, "deep": {"count": 1, "list": ["nova", "websockify"]}, "requires": {}}

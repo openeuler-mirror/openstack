@@ -1,0 +1,1 @@
+{"name": "bandit", "version_dict": {"version": "1.6.0", "eq_version": "", "ge_version": "1.6.0", "lt_version": "1.7.0", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "cinder", "oslo.config", "bandit"]}, "requires": {}}

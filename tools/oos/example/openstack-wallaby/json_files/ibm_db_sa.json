@@ -1,0 +1,1 @@
+{"name": "ibm_db_sa", "version_dict": {"version": "0.3.0", "eq_version": "", "ge_version": "0.3.0", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "cinder", "sqlalchemy-migrate", "ibm_db_sa"]}, "requires": {}}

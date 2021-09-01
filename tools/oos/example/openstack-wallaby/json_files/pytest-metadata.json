@@ -1,0 +1,1 @@
+{"name": "pytest-metadata", "version_dict": {"version": "unknown", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["horizon", "pytest-html", "pytest-metadata"]}, "requires": {}}

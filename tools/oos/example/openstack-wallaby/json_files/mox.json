@@ -1,0 +1,1 @@
+{"name": "mox", "version_dict": {"version": "0.5.3", "eq_version": "", "ge_version": "0.5.3", "lt_version": "", "ne_version": []}, "deep": {"count": 3, "list": ["cinder", "cinder", "oslo.db", "sqlalchemy-migrate", "mox"]}, "requires": {}}

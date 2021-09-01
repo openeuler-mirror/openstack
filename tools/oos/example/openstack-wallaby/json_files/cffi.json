@@ -1,0 +1,1 @@
+{"name": "cffi", "version_dict": {"version": "1.14.0", "eq_version": "", "ge_version": "1.14.0", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "cinder", "oslo.privsep", "cffi"]}, "requires": {}}

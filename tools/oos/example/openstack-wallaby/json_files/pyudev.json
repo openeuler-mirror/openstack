@@ -1,0 +1,1 @@
+{"name": "pyudev", "version_dict": {"version": "0.18", "eq_version": "", "ge_version": "0.18", "lt_version": "", "ne_version": []}, "deep": {"count": 1, "list": ["ironic-python-agent", "pyudev"]}, "requires": {}}

@@ -1,0 +1,1 @@
+{"name": "Tempita", "version_dict": {"version": "0.4", "eq_version": "", "ge_version": "0.4", "lt_version": "", "ne_version": []}, "deep": {"count": 3, "list": ["cinder", "cinder", "oslo.db", "sqlalchemy-migrate", "Tempita"]}, "requires": {}}

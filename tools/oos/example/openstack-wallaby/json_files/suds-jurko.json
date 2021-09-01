@@ -1,0 +1,1 @@
+{"name": "suds-jurko", "version_dict": {"version": "0.6", "eq_version": "", "ge_version": "0.6", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "cinder", "oslo.vmware", "suds-jurko"]}, "requires": {}}

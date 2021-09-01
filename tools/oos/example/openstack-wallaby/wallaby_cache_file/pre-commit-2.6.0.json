@@ -1,1 +1,0 @@
-{"pre-commit": "2.6.0", "cfgv": "3.3.0", "identify": "2.2.10", "importlib-metadata": "4.6.0", "typing-extensions": "3.10.0.0", "zipp": "3.4.1", "nodeenv": "1.6.0", "pyyaml": "5.4.1", "toml": "0.10.2", "virtualenv": "20.4.7", "appdirs": "1.4.4", "distlib": "0.3.2", "filelock": "3.0.12", "six": "1.16.0"}

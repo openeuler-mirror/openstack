@@ -1,0 +1,1 @@
+{"name": "discover", "version_dict": {"version": "unknown", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": []}, "deep": {"count": 4, "list": ["cinder", "keystoneauth1", "os-service-types", "hacking", "discover"]}, "requires": {}}

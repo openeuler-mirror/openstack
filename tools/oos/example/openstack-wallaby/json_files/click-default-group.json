@@ -1,0 +1,1 @@
+{"name": "click-default-group", "version_dict": {"version": "unknown", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": []}, "deep": {"count": 5, "list": ["cinder", "cinder", "oslo.concurrency", "pre-commit", "virtualenv", "towncrier", "click-default-group"]}, "requires": {}}

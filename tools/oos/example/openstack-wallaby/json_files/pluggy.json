@@ -1,0 +1,1 @@
+{"name": "pluggy", "version_dict": {"version": "0.12", "eq_version": "", "ge_version": "0.12", "lt_version": "1.0", "ne_version": []}, "deep": {"count": 2, "list": ["horizon", "pytest", "pluggy"]}, "requires": {"importlib-metadata": {"eq_version": "", "ge_version": "0.12", "lt_version": "", "ne_version": [], "version": "0.12"}}}

@@ -1,0 +1,1 @@
+{"name": "sqlparse", "version_dict": {"version": "0.2.2", "eq_version": "", "ge_version": "0.2.2", "lt_version": "", "ne_version": []}, "deep": {"count": 1, "list": ["glance", "sqlparse"]}, "requires": {}}

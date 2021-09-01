@@ -1,0 +1,1 @@
+{"name": "azure-nspkg", "version_dict": {"version": "2.0.0", "eq_version": "", "ge_version": "2.0.0", "lt_version": "", "ne_version": []}, "deep": {"count": 5, "list": ["cinder", "cinder", "oslo.messaging", "kombu", "azure-servicebus", "azure-common", "azure-nspkg"]}, "requires": {}}

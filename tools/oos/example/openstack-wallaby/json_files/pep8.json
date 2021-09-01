@@ -1,0 +1,1 @@
+{"name": "pep8", "version_dict": {"version": "1.5.7", "eq_version": "1.5.7", "ge_version": "", "lt_version": "", "ne_version": []}, "deep": {"count": 4, "list": ["cinder", "keystoneauth1", "os-service-types", "hacking", "pep8"]}, "requires": {}}

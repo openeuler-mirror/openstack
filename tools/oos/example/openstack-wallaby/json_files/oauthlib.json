@@ -1,0 +1,1 @@
+{"name": "oauthlib", "version_dict": {"version": "0.6.2", "eq_version": "", "ge_version": "0.6.2", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "keystoneauth1", "keystoneauth1", "oauthlib"]}, "requires": {}}

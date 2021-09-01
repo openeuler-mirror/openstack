@@ -1,0 +1,1 @@
+{"name": "alabaster", "version_dict": {"version": "0.7.1", "eq_version": "", "ge_version": "0.7", "lt_version": "0.8", "ne_version": []}, "deep": {"count": 4, "list": ["cinder", "keystoneauth1", "keystoneauth1", "hacking", "Sphinx", "alabaster"]}, "requires": {}}
