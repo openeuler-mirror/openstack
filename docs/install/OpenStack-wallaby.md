@@ -22,7 +22,7 @@
     - [Ironic 安装](#ironic-安装)
     - [Kolla 安装](#kolla-安装)
     - [Trove 安装](#trove-安装)
-    - [swift 安装](#swift-安装)
+    - [Swift 安装](#swift-安装)
 <!-- /TOC -->
 
 ## OpenStack 简介
@@ -681,7 +681,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 2. 安装软件包
 
     ```shell
-    yum install openstack-nova-api openstack-nova-conductor openstack-nova-console \
+    yum install openstack-nova-api openstack-nova-conductor \                                      (CTL)
     openstack-nova-novncproxy openstack-nova-scheduler 
 
     yum install openstack-nova-compute                                                             (CPT)
@@ -913,14 +913,12 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     ```shell
     systemctl enable \                                                                             (CTL)
     openstack-nova-api.service \
-    openstack-nova-consoleauth.service \
     openstack-nova-scheduler.service \
     openstack-nova-conductor.service \
     openstack-nova-novncproxy.service
 
     systemctl start \                                                                              (CTL)
     openstack-nova-api.service \
-    openstack-nova-consoleauth.service \
     openstack-nova-scheduler.service \
     openstack-nova-conductor.service \
     openstack-nova-novncproxy.service
@@ -2148,7 +2146,7 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
    openstack-trove-taskmanager.service \
    openstack-trove-conductor.service
    ```
-### swift 安装
+### Swift 安装
 
 Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适合存储大规模非结构化数据。
 
