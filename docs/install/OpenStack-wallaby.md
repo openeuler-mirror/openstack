@@ -654,28 +654,12 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     openstack service create --name nova --description "OpenStack Compute" compute                 (CTL)
     ```
 
-    创建placement服务凭证:
-
-    ```shell
-    openstack user create --domain default --password-prompt placement                             (CTL)
-    openstack role add --project service --user placement admin                                    (CTL)
-    openstack service create --name placement --description "Placement API" placement              (CTL)
-    ```
-
     创建nova API端点：
 
     ```shell
     openstack endpoint create --region RegionOne compute public http://controller:8774/v2.1        (CTL)
     openstack endpoint create --region RegionOne compute internal http://controller:8774/v2.1      (CTL)
     openstack endpoint create --region RegionOne compute admin http://controller:8774/v2.1         (CTL)
-    ```
-
-    创建placement API端点：
-
-    ```shell
-    openstack endpoint create --region RegionOne placement public http://controller:8778           (CTL)
-    openstack endpoint create --region RegionOne placement internal http://controller:8778         (CTL)
-    openstack endpoint create --region RegionOne placement admin http://controller:8778            (CTL)
     ```
 
 2. 安装软件包
