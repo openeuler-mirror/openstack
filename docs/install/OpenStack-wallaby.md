@@ -1003,13 +1003,12 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 2. 安装软件包：
 
     ```shell
-    yum install openstack-neutron openstack-neutron-linuxbridge-agent ebtables ipset \             (CTL)
-                openstack-neutron-l3-agent openstack-neutron-dhcp-agent \
-                openstack-neutron-metadata-agent
+    yum install openstack-neutron openstack-neutron-linuxbridge ebtables ipset \             (CTL)
+    openstack-neutron-ml2
     ```
 
     ```shell
-    yum install openstack-neutron-linuxbridge-agent ebtables ipset                                 (CPT)
+    yum install openstack-neutron-linuxbridge ebtables ipset                                 (CPT)
     ```
 
 3. 配置neutron相关配置：
@@ -1242,15 +1241,15 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 7. 启动网络服务
 
     ```shell
-    systemctl enable openstack-neutron-server.service \                                            (CTL)
-    openstack-neutron-linuxbridge-agent.service openstack-neutron-dhcp-agent.service \
-    openstack-neutron-metadata-agent.service openstack-neutron-l3-agent.service
-    systemctl restart openstack-nova-api.service openstack-neutron-server.service                  (CTL)
-    openstack-neutron-linuxbridge-agent.service openstack-neutron-dhcp-agent.service \
-    openstack-neutron-metadata-agent.service openstack-neutron-l3-agent.service
+    systemctl enable neutron-server.service neutron-linuxbridge-agent.service \                    (CTL)
+    neutron-dhcp-agent.service neutron-metadata-agent.service \
+    systemctl enable neutron-l3-agent.service
+    systemctl restart openstack-nova-api.service neutron-server.service                            (CTL)
+    neutron-linuxbridge-agent.service neutron-dhcp-agent.service \
+    neutron-metadata-agent.service neutron-l3-agent.service
 
-    systemctl enable openstack-neutron-linuxbridge-agent.service                                   (CPT)
-    systemctl restart openstack-neutron-linuxbridge-agent.service openstack-nova-compute.service   (CPT)
+    systemctl enable neutron-linuxbridge-agent.service                                             (CPT)
+    systemctl restart neutron-linuxbridge-agent.service openstack-nova-compute.service             (CPT)
     ```
 
 8. 验证
