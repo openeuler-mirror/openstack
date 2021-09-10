@@ -1,5 +1,71 @@
 # TODO: Add more service and release, or make it configurable
 OPENSTACK_RELEASE_MAP = {
+    "train": {
+        # service
+        "cinder": "15.6.0",
+        "glance": "19.0.4",
+        "horizon": "16.2.2",
+        "ironic": "13.0.7",
+        "keystone": "16.0.2",
+        "kolla": "9.4.0",
+        "kolla-ansible": "9.3.2",
+        "neutron": "15.3.4",
+        "nova": "20.6.1",
+        "placement": "2.0.1",
+        "swift": "2.23.3",
+        "trove": "12.1.0",
+        # client
+        "python-openstackclient": "4.0.2",
+        # ui
+        "ironic-ui": "3.5.5",
+        "trove-dashboard": "13.0.0",
+        # test
+        "tempest": "21.0.0",
+        "cinder-tempest-plugin": "0.3.0",
+        "ironic-tempest-plugin": "1.5.1",
+        "keystone-tempest-plugin": "0.3.0",
+        "neutron-tempest-plugin": "0.6.0",
+        "trove-tempest-plugin": "0.3.0",
+        # library
+        "ironic-inspector": "9.2.4",
+        "ironic-prometheus-exporter": "1.1.2",
+        "ironic-python-agent": "5.0.4",
+        "networking-baremetal": "1.4.0",
+        "networking-generic-switch": "2.1.0",
+    },
+    "ussuri": {
+        # service
+        "cinder": "16.4.0",
+        "glance": "20.1.0",
+        "horizon": "18.3.4",
+        "ironic": "15.0.2",
+        "keystone": "17.0.1",
+        "kolla": "10.3.0",
+        "kolla-ansible": "10.3.0",
+        "neutron": "16.4.0",
+        "nova": "21.2.2",
+        "placement": "3.0.1",
+        "swift": "2.25.2",
+        "trove": "13.0.1",
+        # client
+        "python-openstackclient": "5.2.2",
+        # ui
+        "ironic-ui": "4.0.0",
+        "trove-dashboard": "14.1.0",
+        # test
+        "tempest": "24.0.0",
+        "cinder-tempest-plugin": "1.0.0",
+        "ironic-tempest-plugin": "2.0.0",
+        "keystone-tempest-plugin": "0.4.0",
+        "neutron-tempest-plugin": "1.1.0",
+        "trove-tempest-plugin": "1.0.0",
+        # library
+        "ironic-inspector": "10.1.2",
+        "ironic-prometheus-exporter": "2.0.1",
+        "ironic-python-agent": "6.1.2",
+        "networking-baremetal": "2.0.0",
+        "networking-generic-switch": "3.0.0",
+    },
     "victoria": {
         "cinder": "17.1.0",
         "glance": "21.0.0",
@@ -139,11 +205,14 @@ PYPI_OPENEULER_NAME_MAP = {
     "PasteDeploy": "paste-deploy",
     "Pillow": "pillow",
     "Pint": "pint",
+    "PrettyTable": "prettytable",
     "prometheus-client": "prometheus_client",
+    "PyECLib": "pyeclib",
     "Pygments": "pygments",
     "pyinotify": "python-inotify",
     "PyJWT": "jwt",
     "PyNaCl": "pynacl",
+    "PySocks": "pysocks",
     "python-json-logger": "json_logger",
     "python-qpid-proton": "qpid-proton",
     "python-subunit": "subunit",
@@ -151,11 +220,14 @@ PYPI_OPENEULER_NAME_MAP = {
     "Sphinx": "sphinx",
     "SQLAlchemy": "sqlalchemy",
     "semantic-version": "semantic_version",
+    "sphinxcontrib.autoprogram": "sphinxcontrib-autoprogram",
     "Tempita": "tempita",
     "WebOb": "webob",
     "WebTest": "webtest",
     "Werkzeug": "werkzeug",
     "WSME": "wsme",
+    "Yappi": "yappi",
+    "zope.interface": "zope-interface",
 }
 
 

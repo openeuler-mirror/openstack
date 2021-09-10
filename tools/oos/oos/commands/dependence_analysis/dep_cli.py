@@ -93,7 +93,9 @@ class InitDependence(Dependence):
         if Path(self.black_list_file).exists():
             with open(self.black_list_file, 'r', encoding='utf8') as fp:
                 self.blacklist = fp.read().splitlines()
-        self.blacklist = list(set(self.blacklist).update(constants.PROJECT_OUT_OF_PYPI))
+        black_list_set = set(self.blacklist)
+        black_list_set.update(constants.PROJECT_OUT_OF_PYPI)
+        self.blacklist = list(black_list_set)
         self.upper_dict = self._generate_upper_list()
 
     def _post(self):
@@ -137,6 +139,10 @@ class CountDependence(Dependence):
             if not Path(self.cache_path + '/' + 'openeuler_repo').exists():
                 print("Fetching openEuler project info")
                 self.gitee_projects = utils.get_gitee_org_repos('src-openeuler', self.token)
+                with open(self.cache_path + '/' + 'openeuler_repo', 'w', encoding='utf8') as fp:
+                    for project in self.gitee_projects:
+                        fp.write(project)
+                        fp.write('\n')
             else:
                 print("Read openeuler repo from cache")
                 with open(self.cache_path + '/' + 'openeuler_repo', 'r', encoding='utf8') as fp:
@@ -200,6 +206,8 @@ class CountDependence(Dependence):
                                     status = 'OK'
                                 elif p_version.parse(repo_version) < p_version.parse(project_dict['version_dict']['lt_version']):
                                     status = 'OK'
+                                else:
+                                    status = 'Need Downgrade'
                             else:
                                 status = 'Need Downgrade'
                         elif p_version.parse(repo_version) < p_version.parse(project_version):
