@@ -13,6 +13,7 @@ oos(openEuler OpenStack SIG)是OpenStack SIG提供的命令行工具。该工具
 - 生成单个软件包的RPM Spec
 ```shell script
 oos spec build --build-rpm --name stevedore --version 1.28.0
+# or: oos spec build -b -n stevedore -v 1.28.0
 ```
 
 - 批量化生成RPM Spec
@@ -20,7 +21,8 @@ oos spec build --build-rpm --name stevedore --version 1.28.0
 批量化生RPM Spec 需要预先准备一个`.cvs`文件存放要生成RPM Spec的软件包列表，`.csv`文件中需要
 包含`pypi_name`和`version`两列。
 ```shell script
-oos spec build --projects-data projects.cvs
+oos spec build --projects-data projects.csv
+# or: oos spec build -p projects.csv
 ```
 
 除了上述基本用法，`oos spec build`命令支持的参数如下：
@@ -94,56 +96,51 @@ result.csv
 
 可以通过`oos spec push`命令构建Spec文件并将其提交到openEuler社区
 
-使用该命令，需要预先准备软件包列表的`.csv`文件，以及Gitee的账号等信息，例子如下：
+- 批量生成spec并提交到Gitee，需要预先准备软件包列表的`.csv`文件，以及Gitee的账号等信息，例子如下：
 ```shell script
-export BUILD_ROOT=/root/rpmbuild
-export GITEE_USER=<your gitee user>
 export GITEE_PAT=<your gitee pat>
-export GITEE_EMAIL=<your gitee email>
-export GITEE_ORG=src-openeuler
-oos spec push --projects-data projects.cvs --dest-branch \
-oepkg_openstack-rocky_oe-20.03-LTS-SP2 --src-branch add_package_rocky \
---short-description --commit-message "Add package for OpenStack rocky support"
+oos spec push --projects-data projects.csv --dest-branch master
+# or: oos spec push -p projects.csv -d master
+```
+
+- 生成单个包的spec并提交：
+```shell script
+export GITEE_PAT=<your gitee pat>
+oos spec push --name stevedore --version 1.28.0
+# or: oos spec push --n stevedore --v 1.28.0
 ```
 
 该命令所支持的参数如下：
 ```
 --build-root
-    指定build spec的根目录，默认为用户目（通常为root）录的rpmbuild/目录，建议使用默认
--u, --gitee-user
-    个人Gitee账户的用户名，必选参数，可以使用GITEE_USER环境变量指定
+    [可选] 指定build spec的根目录，默认为用户目（通常为root）录的rpmbuild/目录，建议使用默认
 -t，--gitee-pat
-    个人Gitee账户personal access token，必选参数，可以使用GITEE_PAT环境变量指定
+    [必选] 个人Gitee账户personal access token，必选参数，可以使用GITEE_PAT环境变量指定
 -e，--gitee-email
-    个人Gitee账户email地址，必选参数，可以使用GITEE_EMAIL环境变量指定
+    [可选] 个人Gitee账户email地址，可使用GITEE_EMAIL指定, 若在Gitee账户公开，可通过Token自动获取
 -o --gitee-org
-    gitee组织的名称，对于openEuler来说就是src-openeuler，必选参数，可以使用GITEE_ORG环境变量指定
+    [可选] gitee组织的名称，默认为src-openeuler，必选参数，可以使用GITEE_ORG环境变量指定
 -p, --projects-data
-    批量生成软件包RPM Spec的时候指定projects列表的csv文件，必须包含`pypi_name`和`version`两列
+    [可选] 软件包列表的.csv文件，必须包含`pypi_name`和`version`两列, 和“--version、--name”参数二选一
 -d, --dest-branch
-    指定push spec到openEuler仓库的目标分支名，如oepkg_openstack-rocky_oe-20.03-LTS-SP2，必选参数
--s, --src-branch
-    指定提交spec的时候本地分支的名称，必选参数，用户可以随意指定
+    [可选] 指定push spec到openEuler仓库的目标分支名，默认为master
 -r, --repos-dir
-    指定存放openEuler仓库的本地目录，默认为build root目录下面的src-repos目录
+    [可选] 指定存放openEuler仓库的本地目录，默认为build root目录下面的src-repos目录
 -q, --query
-    过滤器，模糊匹配projects-data中的软件包名称，通常用于重新生成软件包列表中的某一个，如‘-q cinderclient’
+    [可选] 过滤器，模糊匹配projects-data中的软件包名称，通常用于重新生成软件包列表中的某一个，如‘-q cinderclient’
 -dp, --do-push
-    指定是否执行push到gitee仓库上并提交PR，如果不指定则只会提交到本地的仓库中
+    [可选] 指定是否执行push到gitee仓库上并提交PR，如果不指定则只会提交到本地的仓库中
 -a, --arch
-    指定生成Spec文件的arch，默认为'noarch'
+    [可选] 指定生成Spec文件的arch，默认为'noarch'
 -py2, --python2
-    指定生成python2的软件包的Spec
--sd, --short-description
-    指定在生成spec的时候是否对description做截短处理，默认为True
+    [可选] 指定生成python2的软件包的Spec
 -nc, --no-check
-    指定在生成的Spec文件中不添加check步骤
--cm, --commit-message
-    指定提交时候的commit message信息，也会作为提交的tittle，必选参数
+    [可选] 指定在生成的Spec文件中不添加check步骤
 ```
-上述参数中必选参数为`--gitee-user`、`--gitee-pat`、 `--gitee-email`、`--gitee-org`、
-`--projects-data`、`--commit-message`
-其中Gitee相关的操作可以通过环境变量指定，见上述参数描述。
+**注意：** `oos spec push`命令必选参数为`--gitee-pat` 即Gitee账号的token，可以指定
+--name，--version来提交单个包的spec，或者--projects-data指定包列表批量化提交，
+其他参数均有默认值为可选参数。
+**注意：默认只是在本地repo提交，需要显示指定`-dp/--do-push`参数才能提交到Gitee上。**
 
 ## 环境和依赖
 上述`oos spec build`和`oos spec push`命令需要依赖于`rpmbuild`工具，因此需要安装以下相关软件包：

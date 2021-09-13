@@ -11,14 +11,18 @@ import textwrap
 import click
 import jinja2
 import urllib.request
+import yaml
 
-from oos.constants import LICENSE_MAPPING
-from oos.constants import PYPI_OPENEULER_PKG_NAME_MAP
+from oos.common import SPEC_CONSTANTS_FILE
+from oos.common import SPEC_TEMPLET_DIR
+
+SPEC_CONSTANTS = yaml.safe_load(open(SPEC_CONSTANTS_FILE))
 
 
 class RPMSpec(object):
     def __init__(self, pypi_name, version='latest', arch=None,
-                 python2=False, short_description=True, add_check=True):
+                 python2=False, short_description=True, add_check=True,
+                 old_changelog=None):
         self.pypi_name = pypi_name
         self.version = version
         self.shorten_description = short_description
@@ -30,6 +34,7 @@ class RPMSpec(object):
         self.build_failed = False
         self.check_stage_failed = False
         self.add_check = add_check
+        self.old_changelog = old_changelog
 
         self._pypi_json = None
         self._spec_name = ""
@@ -69,8 +74,8 @@ class RPMSpec(object):
 
     def _pypi2pkg_name(self, pypi_name):
         prefix = 'python2-' if self.python2 else 'python3-'
-        if pypi_name in PYPI_OPENEULER_PKG_NAME_MAP:
-            pkg_name = PYPI_OPENEULER_PKG_NAME_MAP[pypi_name]
+        if pypi_name in SPEC_CONSTANTS['pypi2pkgname']:
+            pkg_name = SPEC_CONSTANTS['pypi2pkgname'][pypi_name]
         else:
             pkg_name = pypi_name.lower().replace('.', '-')
         if pkg_name.startswith('python-'):
@@ -112,9 +117,8 @@ class RPMSpec(object):
             'python3-', 'python-')
 
     def _get_license(self):
-        if LICENSE_MAPPING.get(self.module_name):
-            return LICENSE_MAPPING[self.module_name]
-        org_license = ''
+        if SPEC_CONSTANTS['pypi_license'].get(self.module_name):
+            return SPEC_CONSTANTS['pypi_license'][self.module_name]
         if (self.pypi_json["info"]["license"] != "" and
                 self.pypi_json["info"]["license"] != "UNKNOWN"):
             org_license = self.pypi_json["info"]["license"]
@@ -162,6 +166,8 @@ class RPMSpec(object):
             self.arch = 'noarch'
 
     def _get_description(self, shorten=True):
+        if self.pypi_name in SPEC_CONSTANTS['pkg_description']:
+            return SPEC_CONSTANTS['pkg_description'][self.pypi_name]
         org_description = self.pypi_json["info"]["description"]
         if not shorten:
             return org_description
@@ -254,29 +260,10 @@ class RPMSpec(object):
                             "specified" % self.pypi_name, fg='red')
                 self.build_failed = True
             return
-
-        import oos
-        search_paths = [
-            '/etc/oos/',
-            '/usr/local/etc/oos',
-            '/usr/etc/oos',
-            os.path.join(os.path.dirname(oos.__path__[0]), 'etc'),
-        ]
-        for location in search_paths:
-            try:
-                env = jinja2.Environment(trim_blocks=True, lstrip_blocks=True,
-                                         loader=jinja2.FileSystemLoader(
-                                             location))
-                template = env.get_template('package.spec.j2')
-                break
-            except jinja2.exceptions.TemplateNotFound:
-                continue
-        else:
-            click.secho("Project: %s built failed due to jinja template not "
-                        "found, need to manually fix" %
-                        self.pypi_name, fg='red')
-            self.build_failed = True
-            return
+        env = jinja2.Environment(trim_blocks=True, lstrip_blocks=True,
+                                 loader=jinja2.FileSystemLoader(
+                                     SPEC_TEMPLET_DIR))
+        template = env.get_template('package.spec.j2')
 
         test_requires = self._test_requires if self.add_check else []
         template_vars = {'spec_name': self.spec_name,
@@ -295,7 +282,8 @@ class RPMSpec(object):
                          'today': datetime.date.today().strftime("%a %b %d %Y"),
                          'add_check': self.add_check,
                          'python2': self.python2,
-                         "source_file_dir": self._source_file_dir
+                         "source_file_dir": self._source_file_dir,
+                         "old_changelog": self.old_changelog
                          }
         output = template.render(template_vars)
         with open(self.spec_path, 'w') as f:

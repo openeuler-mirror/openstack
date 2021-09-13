@@ -3,13 +3,18 @@ import subprocess
 
 import click
 import requests
+import yaml
+
+from oos.common import SPEC_CONSTANTS_FILE
+
+SPEC_CONSTANTS = yaml.safe_load(open(SPEC_CONSTANTS_FILE))
 
 
 class PkgGitRepo(object):
-    def __init__(self, repo_name, gitee_pat, gitee_org, gitee_user=None,
+    def __init__(self, pypi_name, gitee_pat, gitee_org, gitee_user=None,
                  gitee_email=None):
+        self.pypi_name = pypi_name
         self.gitee_org = gitee_org
-        self.repo_name = repo_name
         self.gitee_pat = gitee_pat
         self.gitee_user = gitee_user
         self.gitee_email = gitee_email
@@ -17,6 +22,13 @@ class PkgGitRepo(object):
         self.branch_not_found = False
         self.repo_dir = ''
         self.commit_pushed = False
+        self.repo_name = self._pypi_2_repo_name()
+
+    def _pypi_2_repo_name(self):
+        if self.pypi_name in SPEC_CONSTANTS['pypi2reponame']:
+            return SPEC_CONSTANTS['pypi2reponame'][self.pypi_name]
+        else:
+            return 'python-' + self.pypi_name
 
     def fork_repo(self):
         try:

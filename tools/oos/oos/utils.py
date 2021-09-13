@@ -68,3 +68,11 @@ def get_json_from_pypi(project, version=None):
     if response.status_code != 200:
         raise Exception("%s-%s doesn't exist on pypi" % (project, version))
     return json.loads(response.content.decode())
+
+
+def get_user_info(token):
+    user_info_url = 'https://gitee.com/api/v5/user?access_token=%s' % token
+    user_info = requests.request('GET', user_info_url).json()
+    gitee_user = user_info['login']
+    gitee_email = user_info['email'] if '@' in user_info['email'] else None
+    return gitee_user, gitee_email
