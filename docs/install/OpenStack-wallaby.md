@@ -205,7 +205,10 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     systemctl enable memcached.service
     systemctl start memcached.service
     ```
-    服务启动后，可以通过命令`memcached-tool controller stats`确保启动正常，服务可用，其中可以将`controller`替换为控制节点的管理IP地址。
+
+    ***注意***
+
+    **服务启动后，可以通过命令`memcached-tool controller stats`确保启动正常，服务可用，其中可以将`controller`替换为控制节点的管理IP地址。**
 
 ## 安装 OpenStack
 
@@ -330,7 +333,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
 10. 依次创建domain, projects, users, roles，需要先安装好python3-openstackclient：
 
-    ```
+    ```shell
     yum install python3-openstackclient
     ```
 
@@ -519,8 +522,8 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     作为 root 用户访问数据库，创建 placement 数据库并授权。
 
-    ```
-    $ mysql -u root -p
+    ```shell
+    mysql -u root -p
     MariaDB [(none)]> CREATE DATABASE placement;
     MariaDB [(none)]> GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'localhost' \
     IDENTIFIED BY 'PLACEMENT_DBPASS';
@@ -528,34 +531,41 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     IDENTIFIED BY 'PLACEMENT_DBPASS';
     MariaDB [(none)]> exit
     ```
-    替换 PLACEMENT_DBPASS，为 placement 数据库设置密码
 
+    ***注意***
+
+    **替换 `PLACEMENT_DBPASS` 为 placement 数据库设置密码**
+
+    ```shell
+    source admin-openrc
     ```
-    $ source admin-openrc
-    ```
+
     执行如下命令，创建 placement 服务凭证、创建 placement 用户以及添加‘admin’角色到用户‘placement’。
 
     创建Placement API服务
 
+    ```shell
+    openstack user create --domain default --password-prompt placement
+    openstack role add --project service --user placement admin
+    openstack service create --name placement --description "Placement API" placement
     ```
-    $ openstack user create --domain default --password-prompt placement
-    $ openstack role add --project service --user placement admin
-    $ openstack service create --name placement --description "Placement API" placement
-    ```
+
     创建placement服务API端点：
 
+    ```shell
+    openstack endpoint create --region RegionOne placement public http://controller:8778
+    openstack endpoint create --region RegionOne placement internal http://controller:8778
+    openstack endpoint create --region RegionOne placement admin http://controller:8778
     ```
-    $ openstack endpoint create --region RegionOne placement public http://controller:8778
-    $ openstack endpoint create --region RegionOne placement internal http://controller:8778
-    $ openstack endpoint create --region RegionOne placement admin http://controller:8778
-    ```
+
 2. 安装和配置
 
     安装软件包：
 
-    ```
+    ```shell
     yum install openstack-placement-api
     ```
+
     配置placement：
 
     编辑 /etc/placement/placement.conf 文件：
@@ -564,7 +574,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     在[api] [keystone_authtoken]部分，配置身份认证服务入口
 
-    ```
+    ```shell
     # vim /etc/placement/placement.conf
     [placement_database]
     # ...
@@ -583,32 +593,36 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     username = placement
     password = PLACEMENT_PASS
     ```
+
     其中，替换 PLACEMENT_DBPASS 为 placement 数据库的密码，替换 PLACEMENT_PASS 为 placement 用户的密码。
 
     同步数据库：
 
+    ```shell
+    su -s /bin/sh -c "placement-manage db sync" placement
     ```
-    #su -s /bin/sh -c "placement-manage db sync" placement
-    ```
+
     启动httpd服务：
 
+    ```shell
+    systemctl restart httpd
     ```
-    #systemctl restart httpd
-    ```
+
 3. 验证
 
     执行如下命令，执行状态检查：
-    ```
-    $ . admin-openrc
-    $ placement-status upgrade check
+
+    ```shell
+    . admin-openrc
+    placement-status upgrade check
     ```
 
     安装osc-placement，列出可用的资源类别及特性：
 
-    ```
-    $ yum install python3-osc-placement
-    $ openstack --os-placement-api-version 1.2 resource class list --sort-column name
-    $ openstack --os-placement-api-version 1.6 trait list --sort-column name
+    ```shell
+    yum install python3-osc-placement
+    openstack --os-placement-api-version 1.2 resource class list --sort-column name
+    openstack --os-placement-api-version 1.6 trait list --sort-column name
     ```
 
 ### Nova 安装
@@ -723,7 +737,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     [libvirt]
     virt_type = qemu                                                                               (CPT)
     cpu_mode = custom                                                                              (CPT)
-    cpu_model = cortex-a72                                                                          (CPT)
+    cpu_model = cortex-a72                                                                         (CPT)
 
     [glance]
     api_servers = http://controller:9292
@@ -987,12 +1001,12 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 2. 安装软件包：
 
     ```shell
-    yum install openstack-neutron openstack-neutron-linuxbridge ebtables ipset \             (CTL)
+    yum install openstack-neutron openstack-neutron-linuxbridge ebtables ipset \                   (CTL)
     openstack-neutron-ml2
     ```
 
     ```shell
-    yum install openstack-neutron-linuxbridge ebtables ipset                                 (CPT)
+    yum install openstack-neutron-linuxbridge ebtables ipset                                       (CPT)
     ```
 
 3. 配置neutron相关配置：
@@ -1313,9 +1327,9 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     ...
     filter = [ "a/vdb/", "r/.*/"]
     ```
-    
+
     ***解释***
-    
+
     在devices部分，添加过滤以接受/dev/vdb设备拒绝其他设备。
 
 4. 准备NFS
@@ -1429,7 +1443,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     当cinder使用tgtadm的方式挂卷的时候，要修改/etc/tgt/tgtd.conf，内容如下，保证tgtd可以发现cinder-volume的iscsi target。
 
-    ```
+    ```shell
     include /var/lib/cinder/volumes/*
     ```
 
@@ -1455,15 +1469,34 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     ```text
     vim /etc/openstack-dashboard/local_settings
 
-    ALLOWED_HOSTS = ['*', ]
     OPENSTACK_HOST = "controller"
+    ALLOWED_HOSTS = ['*', ]
+
+    SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
+    CACHES = {
+    'default': {
+         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+         'LOCATION': 'controller:11211',
+        }
+    }
+
     OPENSTACK_KEYSTONE_URL = "http://%s:5000/v3" % OPENSTACK_HOST
+    OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT = True
+    OPENSTACK_KEYSTONE_DEFAULT_DOMAIN = "Default"
+    OPENSTACK_KEYSTONE_DEFAULT_ROLE = "user"
+
+    OPENSTACK_API_VERSIONS = {
+        "identity": 3,
+        "image": 2,
+        "volume": 3,
+    }
     ```
 
 3. 重启 httpd 服务
 
     ```shell
-    systemctl restart httpd
+    systemctl restart httpd.service memcached.service
     ```
 
 4. 验证
@@ -1838,11 +1871,12 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    W版的ramdisk镜像支持通过ironic-python-agent服务或disk-image-builder工具制作，也可以使用社区最新的ironic-python-agent-builder。用户也可以自行选择其他工具制作。
    若使用W版原生工具，则需要安装对应的软件包。
 
-   ```
+   ```shell
    yum install openstack-ironic-python-agent
    或者
    yum install diskimage-builder
    ```
+
    具体的使用方法可以参考[官方文档](https://docs.openstack.org/ironic/queens/install/deploy-ramdisk.html)
 
    这里介绍下使用ironic-python-agent-builder构建ironic使用的deploy镜像的完整过程。
