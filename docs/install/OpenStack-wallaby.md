@@ -23,7 +23,7 @@
     - [Kolla 安装](#kolla-安装)
     - [Trove 安装](#trove-安装)
     - [Swift 安装](#swift-安装)
-<!-- /TOC -->
+    <!-- /TOC -->
 
 ## OpenStack 简介
 
@@ -1327,9 +1327,9 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     ...
     filter = [ "a/vdb/", "r/.*/"]
     ```
-
+    
     ***解释***
-
+    
     在devices部分，添加过滤以接受/dev/vdb设备拒绝其他设备。
 
 4. 准备NFS
@@ -1541,7 +1541,7 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
    OpenStack各个服务本身也提供了一些tempest测试包，用户可以安装这些包来丰富tempest的测试内容。在Wallaby中，我们提供了Cinder、Glance、Keystone、Ironic、Trove的扩展测试，用户可以执行如下命令进行安装使用：
    ```
    yum install python3-cinder-tempest-plugin python3-glance-tempest-plugin python3-ironic-tempest-plugin python3-keystone-tempest-plugin python3-trove-tempest-plugin
-   ```   
+   ```
 
 ### Ironic 安装
 
@@ -1596,10 +1596,10 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
    ```shell
    [database]
-
+   
    # The SQLAlchemy connection string used to connect to the
    # database (string value)
-
+   
    connection = mysql+pymysql://ironic:IRONIC_DBPASSWORD@DB_IP/ironic
    ```
 
@@ -1607,10 +1607,10 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
    ```shell
    [DEFAULT]
-
+   
    # A URL representing the messaging driver to use and its full
    # configuration. (string value)
-
+   
    transport_url = rabbit://RPC_USER:RPC_PASSWORD@RPC_HOST:RPC_PORT/
    ```
 
@@ -1620,14 +1620,29 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
    ```shell
    [DEFAULT]
-
+   
    # Authentication strategy used by ironic-api: one of
    # "keystone" or "noauth". "noauth" should not be used in a
    # production environment because all authentication will be
    # disabled. (string value)
-
+   
    auth_strategy=keystone
-
+   host = controller
+   memcache_servers = controller:11211
+   enabled_network_interfaces = flat,noop,neutron
+   default_network_interface = noop
+   transport_url = rabbit://openstack:RABBITPASSWD@controller:5672/
+   enabled_hardware_types = ipmi
+   enabled_boot_interfaces = pxe
+   enabled_deploy_interfaces = direct
+   default_deploy_interface = direct
+   enabled_inspect_interfaces = inspector
+   enabled_management_interfaces = ipmitool
+   enabled_power_interfaces = ipmitool
+   enabled_rescue_interfaces = no-rescue,agent
+   isolinux_bin = /usr/share/syslinux/isolinux.bin
+   logging_context_format_string = %(asctime)s.%(msecs)03d %(process)d %(levelname)s %(name)s [%(global_request_id)s %(request_id)s %(user_identity)s] %(instance)s%(message)s
+   
    [keystone_authtoken]
    # Authentication type to load (string value)
    auth_type=password
@@ -1645,6 +1660,36 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    project_domain_name=Default
    # User's domain name (string value)
    user_domain_name=Default
+   
+   [agent]
+   deploy_logs_collect = always
+   deploy_logs_local_path = /var/log/ironic/deploy
+   deploy_logs_storage_backend = local
+   image_download_source = http
+   stream_raw_images = false
+   force_raw_images = false
+   verify_ca = False
+   
+   [oslo_concurrency]
+   
+   [oslo_messaging_notifications]
+   transport_url = rabbit://openstack:123456@172.20.19.25:5672/
+   topics = notifications
+   driver = messagingv2
+   
+   [oslo_messaging_rabbit]
+   amqp_durable_queues = True
+   rabbit_ha_queues = True
+   
+   [pxe]
+   ipxe_enabled = false
+   pxe_append_params = nofb nomodeset vga=normal coreos.autologin ipa-insecure=1
+   image_cache_size = 204800
+   tftp_root=/var/lib/tftpboot/cephfs/
+   tftp_master_path=/var/lib/tftpboot/cephfs/master_images
+   
+   [dhcp]
+   dhcp_provider = none
    ```
 
    4、创建裸金属服务数据库表
@@ -1665,11 +1710,11 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
    ```shell
    [DEFAULT]
-
+   
    # IP address of this host. If unset, will determine the IP
    # programmatically. If unable to do so, will use "127.0.0.1".
    # (string value)
-
+   
    my_ip=HOST_IP
    ```
 
@@ -1677,10 +1722,10 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
    ```shell
    [database]
-
+   
    # The SQLAlchemy connection string to use to connect to the
    # database. (string value)
-
+   
    connection = mysql+pymysql://ironic:IRONIC_DBPASSWORD@DB_IP/ironic
    ```
 
@@ -1688,10 +1733,10 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
    ```shell
    [DEFAULT]
-
+   
    # A URL representing the messaging driver to use and its full
    # configuration. (string value)
-
+   
    transport_url = rabbit://RPC_USER:RPC_PASSWORD@RPC_HOST:RPC_PORT/
    ```
 
@@ -1716,17 +1761,17 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
    ```shell
    网络服务部署在名为RegionOne的身份认证服务域中，仅在服务目录中注册公共端点接口
-
+   
    请求时使用特定的CA SSL证书进行HTTPS连接
-
+   
    与ironic-api服务配置相同的服务用户
-
+   
    动态密码认证插件基于其他选项发现合适的身份认证服务API版本
    ```
 
    ```shell
    [neutron]
-
+   
    # Authentication type to load (string value)
    auth_type = password
    # Authentication URL (string value)
@@ -1794,9 +1839,9 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
    ```shell
    # mysql -u root -p
-
+   
    MariaDB [(none)]> CREATE DATABASE ironic_inspector CHARACTER SET utf8;
-
+   
    MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic_inspector.* TO 'ironic_inspector'@'localhost' \     IDENTIFIED BY 'IRONIC_INSPECTOR_DBPASSWORD';
    MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic_inspector.* TO 'ironic_inspector'@'%' \
    IDENTIFIED BY 'IRONIC_INSPECTOR_DBPASSWORD';
@@ -1808,23 +1853,39 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    [database]
    backend = sqlalchemy
    connection = mysql+pymysql://ironic_inspector:IRONIC_INSPECTOR_DBPASSWORD@DB_IP/ironic_inspector
+   min_pool_size = 100
+   max_pool_size = 500
+   pool_timeout = 30
+   max_retries = 5
+   max_overflow = 200
+   db_retry_interval = 2
+   db_inc_retry_interval = True
+   db_max_retry_interval = 2
+   db_max_retries = 5
    ```
 
    3、配置消息度列通信地址
 
    ```shell
-   [DEFAULT] transport_url = rabbit://RPC_USER:RPC_PASSWORD@RPC_HOST:RPC_PORT/
+   [DEFAULT] 
+   transport_url = rabbit://RPC_USER:RPC_PASSWORD@RPC_HOST:RPC_PORT/
+   
    ```
 
    4、设置keystone认证
 
    ```shell
    [DEFAULT]
-
+   
    auth_strategy = keystone
-
+   timeout = 900
+   rootwrap_config = /etc/ironic-inspector/rootwrap.conf
+   logging_context_format_string = %(asctime)s.%(msecs)03d %(process)d %(levelname)s %(name)s [%(global_request_id)s %(request_id)s %(user_identity)s] %(instance)s%(message)s
+   log_dir = /var/log/ironic-inspector
+   state_path = /var/lib/ironic-inspector
+   use_stderr = False
+   
    [ironic]
-
    api_endpoint = http://IRONIC_API_HOST_ADDRRESS:6385
    auth_type = password
    auth_url = http://PUBLIC_IDENTITY_IP:5000
@@ -1836,6 +1897,33 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    user_domain_name = Default
    username = IRONIC_SERVICE_USER_NAME
    password = IRONIC_SERVICE_USER_PASSWORD
+   
+   [keystone_authtoken]
+   auth_type = password
+   auth_url = http://control:5000
+   www_authenticate_uri = http://control:5000
+   project_domain_name = default
+   user_domain_name = default
+   project_name = service
+   username = ironic_inspector
+   password = IRONICPASSWD
+   region_name = RegionOne
+   memcache_servers = control:11211
+   token_cache_time = 300
+   
+   [processing]
+   add_ports = active
+   processing_hooks = $default_processing_hooks,local_link_connection,lldp_basic
+   ramdisk_logs_dir = /var/log/ironic-inspector/ramdisk
+   always_store_ramdisk_logs = true
+   store_data =none
+   power_off = false
+   
+   [pxe_filter]
+   driver = iptables
+   
+   [capabilities]
+   boot_mode=True
    ```
 
    5、配置ironic inspector dnsmasq服务
@@ -1847,26 +1935,95 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    dhcp-range=172.20.19.100,172.20.19.110   #替换为实际dhcp地址范围
    bind-interfaces
    enable-tftp
-
+   
    dhcp-match=set:efi,option:client-arch,7
    dhcp-match=set:efi,option:client-arch,9
    dhcp-match=aarch64, option:client-arch,11
    dhcp-boot=tag:aarch64,grubaa64.efi
    dhcp-boot=tag:!aarch64,tag:efi,grubx64.efi
    dhcp-boot=tag:!aarch64,tag:!efi,pxelinux.0
-
+   
    tftp-root=/tftpboot                       #替换为实际tftpboot目录
    log-facility=/var/log/dnsmasq.log
    ```
 
-   6、启动服务
+   6、关闭ironic provision网络子网的dhcp
+
+   ```
+   openstack subnet set --no-dhcp 72426e89-f552-4dc4-9ac7-c4e131ce7f3c
+   ```
+
+   7、初始化ironic-inspector服务的数据库
+
+   在控制节点执行：
+
+   ```
+   ironic-inspector-dbsync --config-file /etc/ironic-inspector/inspector.conf upgrade
+   ```
+
+   8、启动服务
 
    ```shell
    systemctl enable --now openstack-ironic-inspector.service
    systemctl enable --now openstack-ironic-inspector-dnsmasq.service
    ```
 
-6. deploy ramdisk镜像制作
+6. 配置httpd服务
+
+   1. 创建ironic要使用的httpd的root目录并设置属主属组，目录路径要和/etc/ironic/ironic.conf中[deploy]组中http_root 配置项指定的路径要一致。
+   
+      ```
+      mkdir -p /var/lib/ironic/httproot ``chown ironic.ironic /var/lib/ironic/httproot
+      ```
+   
+      
+   
+   2. 安装和配置httpd服务
+   
+      
+   
+      1. 安装httpd服务，已有请忽略
+   
+         ```
+         yum install httpd -y
+         ```
+   
+         
+   
+      2. 创建/etc/httpd/conf.d/openstack-ironic-httpd.conf文件，内容如下：
+   
+         ```
+         Listen 8080
+          
+         <VirtualHost *:8080>
+             ServerName ironic.openeuler.com
+          
+             ErrorLog "/var/log/httpd/openstack-ironic-httpd-error_log"
+             CustomLog "/var/log/httpd/openstack-ironic-httpd-access_log" "%h %l %u %t \"%r\" %>s %b"
+          
+             DocumentRoot "/var/lib/ironic/httproot"
+             <Directory "/var/lib/ironic/httproot">
+                 Options Indexes FollowSymLinks
+                 Require all granted
+             </Directory>
+             LogLevel warn
+             AddDefaultCharset UTF-8
+             EnableSendfile on
+         </VirtualHost>
+         
+         ```
+   
+         注意监听的端口要和/etc/ironic/ironic.conf里[deploy]选项中http_url配置项中指定的端口一致。
+   
+      3. 重启httpd服务。
+   
+         ```
+         systemctl restart httpd
+         ```
+   
+         
+   
+7. deploy ramdisk镜像制作
 
    W版的ramdisk镜像支持通过ironic-python-agent服务或disk-image-builder工具制作，也可以使用社区最新的ironic-python-agent-builder。用户也可以自行选择其他工具制作。
    若使用W版原生工具，则需要安装对应的软件包。
@@ -1987,6 +2144,70 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
         参考：[source-repositories](https://docs.openstack.org/diskimage-builder/latest/elements/source-repositories/README.html)。
 
         指定仓库地址及版本验证成功。
+        
+   5. 注意
+
+原生的openstack里的pxe配置文件的模版不支持arm64架构，需要自己对原生openstack代码进行修改：
+
+在W版中，社区的ironic仍然不支持arm64位的uefi pxe启动，表现为生成的grub.cfg文件(一般位于/tftpboot/下)格式不对而导致pxe启动失败，如下：
+
+生成的错误配置文件：
+
+![erro](/Users/andy_lee/Downloads/erro.png)
+
+如上图所示，arm架构里寻找vmlinux和ramdisk镜像的命令分别是linux和initrd，上图所示的标红命令是x86架构下的uefi pxe启动。
+
+需要用户对生成grub.cfg的代码逻辑自行修改。
+
+ironic向ipa发送查询命令执行状态请求的tls报错：
+
+w版的ipa和ironic默认都会开启tls认证的方式向对方发送请求，跟据官网的说明进行关闭即可。
+
+1. 修改ironic配置文件(/etc/ironic/ironic.conf)下面的配置中添加ipa-insecure=1：
+
+```
+[agent]
+verify_ca = False
+ 
+[pxe]
+pxe_append_params = nofb nomodeset vga=normal coreos.autologin ipa-insecure=1
+```
+
+2) ramdisk镜像中添加ipa配置文件/etc/ironic_python_agent/ironic_python_agent.conf并配置tls的配置如下：
+
+/etc/ironic_python_agent/ironic_python_agent.conf (需要提前创建/etc/ironic_python_agent目录）
+
+```
+[DEFAULT]
+enable_auto_tls = False
+```
+
+设置权限：
+
+```
+chown -R ipa.ipa /etc/ironic_python_agent/
+```
+
+3. 修改ipa服务的服务启动文件，添加配置文件选项
+
+   vim usr/lib/systemd/system/ironic-python-agent.service
+
+   ```
+   [Unit]
+   Description=Ironic Python Agent
+   After=network-online.target
+    
+   [Service]
+   ExecStartPre=/sbin/modprobe vfat
+   ExecStart=/usr/local/bin/ironic-python-agent --config-file /etc/ironic_python_agent/ironic_python_agent.conf
+   Restart=always
+   RestartSec=30s
+    
+   [Install]
+   WantedBy=multi-user.target
+   ```
+
+   
 
 ### Kolla 安装
 
@@ -2067,7 +2288,7 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
    network_driver=trove.network.neutron.NeutronDriver
    network_label_regex=.*
    
-
+   
    transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
    
    [database]
@@ -2111,7 +2332,7 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
    5. 配置`trove-guestagent.conf`
    ```shell script
    vim /etc/trove/trove-guestagent.conf
-
+   
    [DEFAULT]
    log_file = trove-guestagent.log
    log_dir = /var/log/trove/
@@ -2122,7 +2343,7 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
    command_process_timeout = 60
    use_syslog = False
    debug = True
-
+   
    [service_credentials]
    auth_url = http://controller:5000/v3/
    region_name = RegionOne
@@ -2131,7 +2352,7 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
    project_domain_name = Default
    user_domain_name = Default
    username = trove
-
+   
    [mysql]
    docker_image = your-registry/your-repo/mysql
    backup_docker_image = your-registry/your-repo/db-backup-mysql:1.1.0
@@ -2199,7 +2420,7 @@ Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适�
     ***注意***
 
     **注意替换password为您swift在身份服务中为用户选择的密码**
-    
+   
 4. 安装和配置存储节点 （STG）
 
     安装支持的程序包:
