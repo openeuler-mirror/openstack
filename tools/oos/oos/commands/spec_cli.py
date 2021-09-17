@@ -1,3 +1,4 @@
+import glob
 import os
 from pathlib import Path
 import subprocess
@@ -7,26 +8,25 @@ import pandas
 
 from oos.common.spec import RPMSpec
 from oos.common.repo import PkgGitRepo
+from oos import utils
 
 
 class SpecPush(object):
-    def __init__(self, gitee_org, gitee_pat, gitee_user, gitee_email,
-                 build_root, repos_dir, arch, python2, no_check, src_branch,
-                 dest_branch, projects_data_file, short_description, query,
-                 reuse_spec):
+    def __init__(self, build_root, gitee_pat, gitee_email, gitee_org,
+                 name, version, projects_data_file, dest_branch, src_branch,
+                 repos_dir, query, arch, python2, no_check, reuse_spec):
         self.build_root = build_root
         self.repos_dir = os.path.join(self.build_root, repos_dir)
         self.projects_data_file = projects_data_file
         self.gitee_org = gitee_org
         self.gitee_pat = gitee_pat
-        self.gitee_user = gitee_user
-        self.gitee_email = gitee_email
+        self.name = name
+        self.version = version
         self.arch = arch
         self.python2 = python2
         self.no_check = no_check
-        self.src_branch = src_branch
         self.dest_branch = dest_branch
-        self.short_description = short_description
+        self.src_branch = src_branch
         self.missed_repos = []
         self.missed_deps = []
         self.projects_missed_branch = []
@@ -35,16 +35,40 @@ class SpecPush(object):
         self.query = query
         self.reuse_spec = reuse_spec
 
+        g_user, g_email = utils.get_user_info(self.gitee_pat)
+        self.gitee_email = gitee_email or g_email
+        if not self.gitee_email:
+            raise click.ClickException(
+                "Your email was not publicized in gitee, need to manually "
+                "specified by --gitee-email")
+        self.gitee_user = g_user
+
     @property
     def projects_data(self):
+        if self.name and self.version:
+            return None
         projects = pandas.read_csv(self.projects_data_file)
         project_df = pandas.DataFrame(projects,
-                                      columns=["repo_name", "pypi_name",
-                                               "version"])
+                                      columns=["pypi_name", "version"])
         if self.query:
             project_df = project_df.set_index('pypi_name', drop=False, ).filter(
                 like=self.query, axis=0)
         return project_df
+
+    def _get_old_changelog(self, repo_obj):
+        spec_f = glob.glob(os.path.join(repo_obj.repo_dir, '*.spec'))
+        if not spec_f:
+            return
+        spec_f = spec_f[0]
+        with open(spec_f) as f_spec:
+            lines = f_spec.readlines()
+        for l_num, line in enumerate(lines):
+            if '%changelog' in line:
+                break
+        else:
+            return
+        old_changelog = lines[l_num+1:]
+        return [cl.rstrip() for cl in old_changelog]
 
     def _copy_spec_source(self, spec_obj, repo_obj):
         if not (spec_obj.spec_path and spec_obj.source_path):
@@ -74,12 +98,24 @@ class SpecPush(object):
         click.echo("CMD: %s" % cp_src_pkg_cmd)
         subprocess.call(cp_src_pkg_cmd, shell=True)
 
-    def _build_one(self, repo_name, pypi_name, version, commit_msg, do_push):
+    def _build_one(self, pypi_name, version, do_push):
+        repo_obj = PkgGitRepo(pypi_name, self.gitee_pat, self.gitee_org,
+                              self.gitee_user, self.gitee_email)
+        repo_obj.fork_repo()
+        if repo_obj.not_found:
+            self.missed_repos.append(repo_obj.repo_name)
+            return
+
+        repo_obj.clone_repo(self.repos_dir)
+        repo_obj.add_branch(self.src_branch, self.dest_branch)
+        if repo_obj.branch_not_found:
+            self.projects_missed_branch.append(pypi_name)
+            return
+        old_changelog = self._get_old_changelog(repo_obj)
+
         spec_obj = RPMSpec(pypi_name, version, self.arch, self.python2,
-                           self.short_description, not self.no_check)
-        repo_obj = PkgGitRepo(
-            repo_name, self.gitee_pat,
-            self.gitee_org, self.gitee_user, self.gitee_email)
+                           not self.no_check, old_changelog=old_changelog)
+        commit_msg = "Update package %s of version %s" % (pypi_name, version)
         spec_obj.build_package(self.build_root, reuse_spec=self.reuse_spec)
         if spec_obj.build_failed:
             if spec_obj.check_stage_failed:
@@ -90,33 +126,33 @@ class SpecPush(object):
         spec_obj.check_deps()
         if spec_obj.deps_missed:
             self.missed_deps.append({pypi_name: list(spec_obj.deps_missed)})
-        repo_obj.fork_repo()
-        if repo_obj.not_found:
-            self.missed_repos.append(repo_obj.repo_name)
-            return
 
-        repo_obj.clone_repo(self.repos_dir)
-        repo_obj.add_branch(self.src_branch, self.dest_branch)
-        if repo_obj.branch_not_found:
-            self.projects_missed_branch.append(pypi_name)
         self._copy_spec_source(spec_obj, repo_obj)
         repo_obj.commit(commit_msg, do_push=do_push)
         repo_obj.create_pr(self.src_branch, self.dest_branch, commit_msg)
 
-    def build_all(self, commit_msg, do_push=False):
-        if self.projects_data.empty:
-            click.echo("Projects list is empty, exit!")
-            return
-        for row in self.projects_data.itertuples():
-            click.secho("Start to handle project: %s" % row.pypi_name,
-                        bg='blue', fg='white')
-            self._build_one(row.repo_name, row.pypi_name, row.version,
-                            commit_msg, do_push)
+    def build_all(self, do_push=False):
+        if self.name and self.version:
+            if self.projects_data:
+                click.echo("Package name and version has been specified, ignore"
+                           " projects data!")
+            pkg_amount = 1
+            self._build_one(self.name, self.version, do_push)
+        else:
+            if self.projects_data.empty:
+                click.echo("Projects list is empty, exit!")
+                return
+            pkg_amount = len(self.projects_data.index)
+            for row in self.projects_data.itertuples():
+                click.secho("Start to handle project: %s" % row.pypi_name,
+                            bg='blue', fg='white')
+                self._build_one(row.pypi_name, row.version, do_push)
+
         click.secho("=" * 20 + "Summary" + "=" * 20, fg='black', bg='green')
         failed = (len(self.build_failed) + len(self.missed_repos) +
                   len(self.missed_deps) + len(self.projects_missed_branch))
         click.secho("%s projects handled, failed %s" % (
-            len(self.projects_data.index), failed), fg='yellow')
+            pkg_amount, failed), fg='yellow')
         click.secho("Source repos not found: %s" % self.missed_repos,
                     fg='red')
         click.secho("Miss requires: %s" % self.missed_deps, fg='red')
@@ -155,23 +191,25 @@ def spec():
 @click.option("--build-root", envvar='BUILD_ROOT',
               default=os.path.join(str(Path.home()), 'rpmbuild'),
               help="Building root directory")
-@click.option("-u", "--gitee-user", envvar='GITEE_USER', required=True,
-              help="Gitee user account who running this tool")
 @click.option("-t", "--gitee-pat", envvar='GITEE_PAT', required=True,
               help="Gitee personal access token")
-@click.option("-e", "--gitee-email", envvar='GITEE_EMAIL', required=True,
-              help="Email address for git commit changes")
+@click.option("-e", "--gitee-email", envvar='GITEE_EMAIL',
+              help="Email address for git commit changes, automatically "
+                   "query from gitee if you have public in gitee")
 @click.option("-o", "--gitee-org", envvar='GITEE_ORG', required=True,
               show_default=True,
               default="src-openeuler",
               help="Gitee organization name of openEuler")
-@click.option("-p", "--projects-data", required=True,
-              help="File of projects list, includes 'repo_name', 'pypi_name',"
-                   " 'version' 3 columns ")
-@click.option("-d", "--dest-branch", required=True,
-              help="Target remote branch to create PR")
-@click.option("-s", "--src-branch", required=True,
-              help="Source branch name for creating PR")
+@click.option("-n", "--name", help="Name of package to build")
+@click.option("-v", "--version", default='latest', help="Package version")
+@click.option("-p", "--projects-data",
+              help="File of projects list, includes 'pypi_name',"
+                   " 'version' 2 columns ")
+@click.option("-d", "--dest-branch", default='master', show_default=True,
+              help="Target remote branch to create PR, default as master")
+@click.option("-s", "--src-branch", default='openstack-pkg-support',
+              show_default=True,
+              help="Local source branch to create PR")
 @click.option("-r", "--repos-dir", default='src-repos', show_default=True,
               help="Directory for storing source repo locally")
 @click.option('-q', '--query',
@@ -183,27 +221,25 @@ def spec():
 @click.option('-dp', '--do-push', is_flag=True, help="Do PUSH or not")
 @click.option("-nc", "--no-check", is_flag=True,
               help="Do not add %check step in spec")
-@click.option('-sd', '--short-description', is_flag=True,
-              help="Shorten description")
-@click.option("-cm", "--commit-message", required=True,
-              help="Commit message and PR tittle")
 @click.option('-rs', '--reuse-spec', is_flag=True,
               help="Reuse existed spec file")
-def push(build_root, gitee_user, gitee_pat, gitee_email, gitee_org,
-         projects_data, dest_branch, src_branch, repos_dir, arch, python2,
-         do_push, no_check, short_description, commit_message, query,
-         reuse_spec):
+def push(build_root, gitee_pat, gitee_email, gitee_org, name, version,
+         projects_data, dest_branch, src_branch, repos_dir, query, arch,
+         python2, do_push, no_check, reuse_spec):
+    if not (name or projects_data):
+        raise click.ClickException("You must specify projects_data file or "
+                                   "specific package name!")
     if build_root:
         _rpmbuild_env_ensure(build_root)
-    spec_push = SpecPush(gitee_org=gitee_org, gitee_pat=gitee_pat,
-                         gitee_user=gitee_user, gitee_email=gitee_email,
-                         build_root=build_root, repos_dir=repos_dir,
-                         src_branch=src_branch, dest_branch=dest_branch,
-                         arch=arch, python2=python2, no_check=no_check,
+    spec_push = SpecPush(build_root=build_root, gitee_pat=gitee_pat,
+                         gitee_email=gitee_email, gitee_org=gitee_org,
+                         name=name, version=version,
                          projects_data_file=projects_data,
-                         short_description=short_description, query=query,
+                         dest_branch=dest_branch, src_branch=src_branch,
+                         repos_dir=repos_dir, query=query,
+                         arch=arch, python2=python2, no_check=no_check,
                          reuse_spec=reuse_spec)
-    spec_push.build_all(commit_message, do_push)
+    spec_push.build_all(do_push)
 
 
 @spec.command(name='build', help='Build RPM spec locally')

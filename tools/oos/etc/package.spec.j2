@@ -10,7 +10,7 @@ Source0:        {{ source_url }}
 BuildArch:      {{ build_arch }}
 {% endif %}
 %description
-{{ pkg_summary }}
+{{ description }}
 
 %package -n {{ pkg_name }}
 Summary:        {{ pkg_summary }}
@@ -50,13 +50,13 @@ Requires:       {{ tr }}
 {% endfor %}
 {% endif %}
 %description -n {{ pkg_name }}
-{{ pkg_summary }}
+{{ description }}
 
 %package help
 Summary:        {{ pkg_summary }}
 Provides:       {{ pkg_name }}-doc
 %description help
-{{ pkg_summary }}
+{{ description }}
 
 %prep
 %autosetup -n {{ source_file_dir }}
@@ -130,4 +130,14 @@ mv %{buildroot}/doclist.lst .
 
 %changelog
 * {{ today }} OpenStack_SIG <openstack@openeuler.org> - {{ version }}-1
-- Package Spec generate
+{% if old_changelog %}
+- Upgrade package {{ pkg_name }} to version {{ version }}
+{% else %}
+- Init package {{ pkg_name }} of version {{ version }}
+{% endif %}
+
+{% if old_changelog %}
+{% for cl in old_changelog %}
+{{ cl }}
+{% endfor %}
+{% endif %}
