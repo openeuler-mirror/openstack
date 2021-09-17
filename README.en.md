@@ -43,13 +43,29 @@ Meeting agenda and summary: <https://etherpad.openeuler.org/p/sig-openstack-meet
 
 ## OpenStack Release Support List
 
-| openEuler | OpenStack | Status|
-|  ----  | ----  | ----  |
-| 20.03 LTS SP2 | Queens、Rocky | Released |
-| 20.03 LTS SP3 | Queens、Rocky | Plan |
-| 21.03 | Victoria | Released |
-| 21.09 | Wallaby | Developing |
-| 22.03 LTS | Train | Plan |
+| openEuler | OpenStack | Projects | Status |
+|  ----  |  ----  |  ----  |  ----  |
+| 20.03 LTS SP2 | Queens, Rocky | Keystone, Glance, Nova, Cinder, Neutron, Ironic, Trove, Kolla, Tempest, Horizon(10) | Released |
+| 20.03 LTS SP3 | Queens, Rocky | Keystone, Glance, Nova, Cinder, Neutron, Ironic, Trove, Kolla, Tempest, Horizon(10) | Plan |
+| 21.03 | Victoria | Keystone, Glance, Nova, Cinder, Neutron, Ironic, Tempest, Horizon, Placement(9) | Released |
+| 21.09 | Wallaby | Keystone, Glance, Nova, Cinder, Neutron, Swift, Ironic, Trove, Kolla, Tempest, Horizon, Placement(12) | Developing |
+| 22.03 LTS | Train | | Plan |
+| 22.09 LTS | Yoga | | Plan |
+
+## How to contribue
+
+OpenStack SIG follows the four open principle from OpenStack Community: Open source、Open Design、Open Development、Open Community. Everyone is welcome to join the SIG. You can help the SIG to:
+
+1. Report Isuee, Bug or anything to SIG.
+2. Discuess with other via OpenStack SIG mail list.
+3. Join SIG wechat group, talk with others directly.
+4. Join SIG bi-weekly meeting, talk with maintainers.
+5. Join SIG develope stuff, such as RPM package build, OpenStack environment deploy and test, automatic tools development or even doc update.
+6. Donate projects to SIG，or code some self-hosted projects in SIG.
+
+Of cause, there are many other things you can do in SIG, just make sure the work you do is related to OpenStack and opensource.
+
+Everybody is welcome to join the SIG.
 
 ## Directory structure of this project
 

@@ -44,13 +44,14 @@ openEuler OpenStack SIG致力于结合多样性算力为openstack社区贡献更
 ## OpenStack版本支持列表
 OpenStack SIG通过用户反馈等方式收集OpenStack版本需求，经过SIG组内成员公开讨论决定OpenStack的版本演进路线。规划中的版本可能因为需求更变、人力变动等原因进行调整。OpenStack SIG欢迎更多开发者、厂商参与，共同完善openEuler的OpenStack支持。
 
-| openEuler | OpenStack | 状态 |
-|  ----  | ----  | ----  |
-| 20.03 LTS SP2 | Queens、Rocky | 已发布 |
-| 20.03 LTS SP3 | Queens、Rocky | 规划中 |
-| 21.03 | Victoria | 已发布 |
-| 21.09 | Wallaby | 开发中 |
-| 22.03 LTS | Train | 规划中 |
+| openEuler | OpenStack | 支持项目 | 状态 |
+|  ----  |  ----  |  ----  |  ----  |
+| 20.03 LTS SP2 | Queens、Rocky | Keystone、Glance、Nova、Cinder、Neutron、Ironic、Trove、Kolla、Tempest、Horizon（10） | 已发布 |
+| 20.03 LTS SP3 | Queens、Rocky | Keystone、Glance、Nova、Cinder、Neutron、Ironic、Trove、Kolla、Tempest、Horizon（10） | 规划中 |
+| 21.03 | Victoria | Keystone、Glance、Nova、Cinder、Neutron、Ironic、Tempest、Horizon、Placement（9） | 已发布 |
+| 21.09 | Wallaby | Keystone、Glance、Nova、Cinder、Neutron、Swift、Ironic、Trove、Kolla、Tempest、Horizon、Placement（12） | 开发中 |
+| 22.03 LTS | Train | | 规划中 |
+| 22.09 LTS | Yoga | | 规划中 |
 
 ## 本项目目录结构
 
@@ -64,6 +65,19 @@ OpenStack SIG通过用户反馈等方式收集OpenStack版本需求，经过SIG�
     └── oos                                       "OpenStack SIG开发工具"
     └── docker                                    "OpenStack SIG开发基础容器环境"
 ```
+
+## 如何贡献
+
+OpenStack SIG秉承OpenStack社区4个Open原则（Open source、Open Design、Open Development、Open Community），欢迎开发者、用户、厂商以各种开源方式参与SIG贡献，包括但不限于：
+
+1. 向SIG提交Issue，反馈需求、软件包Bug等
+2. 在邮件列表中进行交流
+3. 加入SIG微信讨论群，实时接收SIG最新动态，与业内开发者一起讨论各种技术
+4. 参加SIG双周例会，讨论实时技术问题、SIG路标等等
+5. 参与SIG的软件开发工作，包括RPM包制作、环境部署与测试、自动化工具开发、文档编写等等
+6. OpenStack开源项目捐献、SIG自研项目开发等等。
+
+当然，贡献形式不仅包含这些，其他任何与OpenStack相关、与开源相关的事务都可以带到SIG中。OpenStack SIG欢迎您的参与。
 
 ## 项目清单
 
