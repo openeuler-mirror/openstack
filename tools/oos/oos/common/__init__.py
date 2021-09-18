@@ -7,7 +7,7 @@ SPEC_TEMPLET_DIR = None
 
 search_paths = ['/etc/oos/',
                 os.path.join(os.path.dirname(oos.__path__[0]), 'etc'),
-                os.environ.get("OOS_CONF_DIR"), '/usr/local/etc/oos',
+                os.environ.get("OOS_CONF_DIR", ""), '/usr/local/etc/oos',
                 '/usr/etc/oos',
                 ]
 
