@@ -55,6 +55,7 @@ OpenStack SIG通过用户反馈等方式收集OpenStack版本需求，经过SIG�
 
 ### oepkg软件仓地址列表（Queens、Rocky版本的支持放在官方认证的第三方软件平台oepkg）
 20.03-LTS-SP2 Rocky： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/rocky/
+
 20.03-LTS-SP2 Queens： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/queens/
 
 ## 本项目目录结构
