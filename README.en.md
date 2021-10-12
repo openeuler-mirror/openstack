@@ -48,7 +48,7 @@ Meeting agenda and summary: <https://etherpad.openeuler.org/p/sig-openstack-meet
 | 20.03 LTS SP2 | Queens, Rocky | Keystone, Glance, Nova, Cinder, Neutron, Ironic, Trove, Kolla, Tempest, Horizon(10) | Released |
 | 20.03 LTS SP3 | Queens, Rocky | Keystone, Glance, Nova, Cinder, Neutron, Ironic, Trove, Kolla, Tempest, Horizon, Rally(11) | Plan |
 | 21.03 | Victoria | Keystone, Glance, Nova, Cinder, Neutron, Ironic, Tempest, Horizon, Placement(9) | Released |
-| 21.09 | Wallaby | Keystone, Glance, Nova, Cinder, Neutron, Swift, Ironic, Trove, Kolla, Tempest, Horizon, Placement(12) | Developing |
+| 21.09 | Wallaby | Keystone, Glance, Nova, Cinder, Neutron, Swift, Ironic, Trove, Kolla, Tempest, Horizon, Placement(12) | Released |
 | 22.03 LTS | Train | | Plan |
 | 22.09 | Yoga | | Plan |
 
