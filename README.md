@@ -49,7 +49,7 @@ OpenStack SIG通过用户反馈等方式收集OpenStack版本需求，经过SIG�
 | 20.03 LTS SP2 | Queens、Rocky | Keystone、Glance、Nova、Cinder、Neutron、Ironic、Trove、Kolla、Tempest、Horizon（10） | 已发布 |
 | 20.03 LTS SP3 | Queens、Rocky | Keystone、Glance、Nova、Cinder、Neutron、Ironic、Trove、Kolla、Tempest、Horizon、Rally（11） | 规划中 |
 | 21.03 | Victoria | Keystone、Glance、Nova、Cinder、Neutron、Ironic、Tempest、Horizon、Placement（9） | 已发布 |
-| 21.09 | Wallaby | Keystone、Glance、Nova、Cinder、Neutron、Swift、Ironic、Trove、Kolla、Tempest、Horizon、Placement（12） | 开发中 |
+| 21.09 | Wallaby | Keystone、Glance、Nova、Cinder、Neutron、Swift、Ironic、Trove、Kolla、Tempest、Horizon、Placement（12） | 已发布 |
 | 22.03 LTS | Train | | 规划中 |
 | 22.09 | Yoga | | 规划中 |
 
