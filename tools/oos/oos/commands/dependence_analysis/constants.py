@@ -2,8 +2,12 @@
 OPENSTACK_RELEASE_MAP = {
     "train": {
         # service
+        "aodh": "9.0.1",
+        "ceilometer": "13.1.2",
         "cinder": "15.6.0",
+        "cyborg": "3.0.1",
         "glance": "19.0.4",
+        "heat": "13.1.0",
         "horizon": "16.2.2",
         "ironic": "13.0.7",
         "keystone": "16.0.2",
@@ -11,6 +15,7 @@ OPENSTACK_RELEASE_MAP = {
         "kolla-ansible": "9.3.2",
         "neutron": "15.3.4",
         "nova": "20.6.1",
+        "panko": "7.1.0",
         "placement": "2.0.1",
         "swift": "2.23.3",
         "trove": "12.1.0",
@@ -143,6 +148,7 @@ JSON_PYPI_NAME_MAP = {
     "pyopenssl": "pyOpenSSL",
     "pyscss": "pyScss",
     "pyyaml": "PyYAML",
+    "request_mock": "request-mock",
     "routes": "Routes",
     "secretstorage": "SecretStorage",
     "sphinx": "Sphinx",
@@ -197,6 +203,7 @@ PYPI_OPENEULER_NAME_MAP = {
     "Flask": "flask",
     "Flask-RESTful": "flask-restful",
     "Jinja2": "jinja2",
+    "grpcio": "grpc",
     "Mako": "mako",
     "MarkupSafe": "markupsafe",
     "oslosphinx": "oslo.sphinx",
@@ -207,10 +214,12 @@ PYPI_OPENEULER_NAME_MAP = {
     "Pint": "pint",
     "PrettyTable": "prettytable",
     "prometheus-client": "prometheus_client",
+    "pycrypto": "python-crypto",
     "PyECLib": "pyeclib",
     "Pygments": "pygments",
     "pyinotify": "python-inotify",
     "PyJWT": "jwt",
+    "pyldap": "python-ldap",
     "PyNaCl": "pynacl",
     "PySocks": "pysocks",
     "python-json-logger": "json_logger",
@@ -219,6 +228,7 @@ PYPI_OPENEULER_NAME_MAP = {
     "Routes": "routes",
     "Sphinx": "sphinx",
     "SQLAlchemy": "sqlalchemy",
+    "sphinx-rtd-theme": "python-sphinx_rtd_theme",
     "semantic-version": "semantic_version",
     "sphinxcontrib.autoprogram": "sphinxcontrib-autoprogram",
     "Tempita": "tempita",
@@ -233,6 +243,7 @@ PYPI_OPENEULER_NAME_MAP = {
 
 # Some project's version doesn't exist, this mapping correct the version.
 PROJECT_VERSION_FIX_MAPPING = {
+    "aioeventlet-0.4": "0.5.1",
     "alabaster-0.7": "0.7.1",
     "attrs-19.0": "19.1.0",
     'bitmath-1.3.0': '1.3.0.1',
@@ -252,11 +263,13 @@ PROJECT_VERSION_FIX_MAPPING = {
     'prompt-toolkit-2.0.0': '2.0.1',
     "py-1.5.0": "1.5.1",
     'pyldap-2.4': '2.4.14',
+    'pyngus-2.0.0': '2.0.3',
     "pyOpenSSL-1.0.0": "16.0.0",
     'pytz-0a': '2020.1',
     "setuptools-0.6a2": "0.7.2",
     "Sphinx-1.6.0": "1.6.1", 
     'stone-2.*': '3.0.0',
+    'trollius-1.0': "1.0.4",
 }
 
 
