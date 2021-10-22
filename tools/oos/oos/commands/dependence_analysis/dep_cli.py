@@ -150,7 +150,7 @@ class CountDependence(Dependence):
             if not Path(self.openeuler_cache_path).exists():
                 Path(self.openeuler_cache_path).mkdir(parents=True)
 
-    def get_all_dep(self):
+    def get_all_dep(self, compare_branch='master'):
         """fetch all related dependent packages"""
         file_list = os.listdir(self.json_cache_path)
         with open(self.output, "w") as csv_file:
@@ -175,7 +175,7 @@ class CountDependence(Dependence):
                     project_name = project_dict['name']
                     project_version = project_dict['version_dict']['version']
                     project_version = 'No Limit' if project_version == 'unknown' else project_version
-                    status = 'Need Create'
+                    status = 'Need Create Repo'
                     openeuler_name = constants.PYPI_OPENEULER_NAME_MAP.get(project_name, project_name)
                     if 'python-'+openeuler_name in self.gitee_projects:
                         repo_name = 'python-'+openeuler_name
@@ -189,11 +189,14 @@ class CountDependence(Dependence):
                                 repo_version = json.load(fp)['version']
                         else:
                             print('fetch %s info from gitee' % repo_name)
-                            repo_version = utils.get_gitee_project_version('src-openeuler', repo_name, 'master', self.token)
-                            with open(self.openeuler_cache_path + '/' + '%s.json' % repo_name, 'w', encoding='utf8') as fp:
-                                json.dump({'version': repo_version}, fp, ensure_ascii=False)
-                        if not repo_version:
-                            status = 'Need Init'
+                            repo_version = utils.get_gitee_project_version('src-openeuler', repo_name, compare_branch, self.token)
+                            if repo_version != 'null':
+                                with open(self.openeuler_cache_path + '/' + '%s.json' % repo_name, 'w', encoding='utf8') as fp:
+                                    json.dump({'version': repo_version}, fp, ensure_ascii=False)
+                        if repo_version == 'null':
+                            status = 'Need Create Branch'
+                        elif not repo_version:
+                            status = 'Need Init Branch'
                         elif project_version == 'No Limit':
                             status = 'OK'
                         elif p_version.parse(repo_version) == p_version.parse(project_version):
@@ -234,11 +237,12 @@ def mygroup():
 
 @mygroup.command(name='generate', help='generate required package list for the specified OpenStack release')
 @click.option('-c', '--compare', is_flag=True, help='Check the project in openEuler community or not')
+@click.option('-cb', '--compare-branch', default='master', help='Branch to compare with')
 @click.option('-i', '--init', is_flag=True, help='Init the cache file or not')
 @click.option('-o', '--output', default='result', help='Output file name, default: result.csv')
 @click.option('-t', '--token', help='Personal gitee access token used for fetching info from gitee')
 @click.argument('release', type=click.Choice(constants.OPENSTACK_RELEASE_MAP.keys()))
-def generate(compare, init, output, token, release):
+def generate(compare, compare_branch, init, output, token, release):
     if init:
         myobj = InitDependence(release)
         print("Start fetch caching files to %s_cache_file folder" % release)
@@ -250,5 +254,5 @@ def generate(compare, init, output, token, release):
     myobj = CountDependence(release, output, compare, token)
     print("Start count dependencies")
     print("...")
-    myobj.get_all_dep()
+    myobj.get_all_dep(compare_branch)
     print("Success count dependencies, the result is saved into %s file" % output)    
