@@ -45,10 +45,6 @@ def get_gitee_project_version(owner, project, branch, access_token=None):
     """Get project version"""
     version = ''
     file_tree = get_gitee_project_tree(owner, project, branch, access_token)
-    if not file_tree['tree']:
-        # there is no such branch for the project
-        verion =  'null'
-        return version
     for file in file_tree['tree']:
         if file['path'].endswith('tar.gz') or file['path'].endswith('tar.bz2') or file['path'].endswith('.zip'):
             if file['path'].endswith('tar.gz') or file['path'].endswith('tar.bz2'):
@@ -63,6 +59,20 @@ def get_gitee_project_version(owner, project, branch, access_token=None):
 
     return version
 
+def has_branch(owner, project, branch, access_token=None):
+    """Check if the repo has specified branch"""
+    headers = {
+        'Content-Type': 'application/json;charset=UTF-8',
+    }
+    url = 'https://gitee.com/api/v5/repos/%s/%s/branches/%s' % (owner, project, branch)
+    if access_token:
+        url = url + '?access_token=%s' % access_token
+    response = requests.get(url, headers=headers)
+
+    if response.status_code != 200:
+        return False
+    else:
+        return True
 
 def get_json_from_pypi(project, version=None):
     if version and version != 'latest':
