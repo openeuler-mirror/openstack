@@ -15,20 +15,22 @@ from oos import utils
 
 class Dependence(object):
     def __init__(self, openstack_release):
-        self.openstack_release = openstack_release
-        self.cache_path = "./%s_cached_file" % self.openstack_release
-        self.json_cache_path = self.cache_path + "/" + "json_files"
+        self.cache_path = "./%s_cached_file" % openstack_release
+        self.pypi_cache_path = self.cache_path + "/" + "pypi_files"
         self.openeuler_cache_path = self.cache_path + "/" + "openeuler_files"
 
+
 class InitDependence(Dependence):
-    def __init__(self, openstack_release):
+    def __init__(self, openstack_release, projects):
         super(InitDependence, self).__init__(openstack_release)
         self.project_dict = constants.OPENSTACK_RELEASE_MAP[openstack_release]
+        if projects:
+            self.project_dict = dict((k, v) for k, v in self.project_dict.items() if k in projects.split(","))
         self.blacklist = []
         self.upper_dict = {}
         self.black_list_file = self.cache_path + "/" + "failed_cache.txt"
         self.upper_list_file = self.cache_path + "/" + "upper.json"
-        self.upper_url = "https://opendev.org/openstack/requirements/raw/branch/stable/%s/upper-constraints.txt" % self.openstack_release
+        self.upper_url = "https://opendev.org/openstack/requirements/raw/branch/stable/%s/upper-constraints.txt" % openstack_release
         self.loaded_list = []
 
     def _cache_dependencies(self, project_obj):
@@ -36,7 +38,7 @@ class InitDependence(Dependence):
         if project_obj.name in self.blacklist:
             print("%s is in black list, skip now" % project_obj.name)
             return
-        file_path = self.json_cache_path + "/" + "%s.json" % project_obj.name
+        file_path = self.pypi_cache_path + "/" + "%s.json" % project_obj.name
         if Path(file_path).exists():
             is_out_of_date = project_obj.refresh_from_local(file_path)
             if not is_out_of_date:
@@ -82,13 +84,13 @@ class InitDependence(Dependence):
         return upper_dict
 
     def _pre(self):
-        if Path(self.json_cache_path).exists():
+        if Path(self.pypi_cache_path).exists():
             print("Cache folder exists, Using the cached file first. "
                   "Please delete the cache folder if you want to "
                   "generate the new cache.")
         else:
-            print("Creating Cache folder %s" % self.json_cache_path)
-            Path(self.json_cache_path).mkdir(parents=True)
+            print("Creating Cache folder %s" % self.pypi_cache_path)
+            Path(self.pypi_cache_path).mkdir(parents=True)
 
         if Path(self.black_list_file).exists():
             with open(self.black_list_file, 'r', encoding='utf8') as fp:
@@ -104,16 +106,16 @@ class InitDependence(Dependence):
                 fp.write(project)
                 fp.write('\n')
         all_project = set(self.project_dict.keys())
-        file_list = os.listdir(self.json_cache_path)
+        file_list = os.listdir(self.pypi_cache_path)
         for file_name in file_list:
-            with open(self.json_cache_path + '/' + file_name, 'r', encoding='utf8') as fp:
+            with open(self.pypi_cache_path + '/' + file_name, 'r', encoding='utf8') as fp:
                 project_dict = json.load(fp)
                 all_project.update(project_dict['requires'].keys())
         for file_name in file_list:
             project_name = os.path.splitext(file_name)[0]
             if project_name not in list(all_project):
                 print("%s is required by nothing, remove it." % project_name)
-                os.remove(self.json_cache_path + '/' + file_name)
+                os.remove(self.pypi_cache_path + '/' + file_name)
 
     def init_all_dep(self):
         """download and cache all related requirement file"""
@@ -127,11 +129,7 @@ class CountDependence(Dependence):
     def __init__(self, openstack_release, output, compare, token):
         super(CountDependence, self).__init__(openstack_release)
         self.output = output + ".csv" if not output.endswith(".csv") else output
-        self.csv_title_without_compare = ["Project", "Version", "Requires", "Depth"]
-        self.csv_tile_with_compare = ["Project Name", "openEuler Repo", "Repo version", "Required (Min) Version",
-            "lt Version", "ne Version", "Status", "Requires", "Depth"]
-        path = Path(self.cache_path)
-        if not path.exists():
+        if not Path(self.cache_path).exists():
             raise Exception("The cache folder doesn't exist, please add --init in command to generate it first.")
         self.token = token if token else os.environ.get("GITEE_PAT")
         self.compare = compare
@@ -150,84 +148,120 @@ class CountDependence(Dependence):
             if not Path(self.openeuler_cache_path).exists():
                 Path(self.openeuler_cache_path).mkdir(parents=True)
 
-    def get_all_dep(self, compare_branch='master'):
-        """fetch all related dependent packages"""
-        file_list = os.listdir(self.json_cache_path)
+    def _generate_without_compare(self, file_list):
+        with open(self.output, "w") as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerow(["Project", "Version", "Requires", "Depth"])
+            for file_name in file_list:
+                with open(self.pypi_cache_path + '/' + file_name, 'r', encoding='utf8') as fp:
+                    project_dict = json.load(fp)
+                writer.writerow([
+                    project_dict['name'],
+                    project_dict['version_dict']['version'],
+                    project_dict['requires'].keys(),
+                    project_dict['deep']['count']
+                ])
+
+    def _get_repo_name(self, project_name):
+        openeuler_name = constants.PYPI_OPENEULER_NAME_MAP.get(project_name, project_name)
+        if 'python-'+openeuler_name in self.gitee_projects:
+            return 'python-'+openeuler_name
+        elif openeuler_name in self.gitee_projects:
+            return openeuler_name
+        elif 'openstack-'+openeuler_name in self.gitee_projects:
+            return 'openstack-'+openeuler_name
+        else:
+            return ''
+
+    def _get_repo_version(self, repo_name, compare_branch):
+        if Path(self.openeuler_cache_path + '/' + '%s.json' % repo_name).exists():
+            with open(self.openeuler_cache_path + '/' + '%s.json' % repo_name, 'r', encoding='utf8') as fp:
+                return json.load(fp)['version'], True
+
+        print('fetch %s info from gitee' % repo_name)
+        if not utils.has_branch('src-openeuler', repo_name, compare_branch, self.token):
+            return '', False
+
+        repo_version = utils.get_gitee_project_version('src-openeuler', repo_name, compare_branch, self.token)
+        with open(self.openeuler_cache_path + '/' + '%s.json' % repo_name, 'w', encoding='utf8') as fp:
+            json.dump({'version': repo_version}, fp, ensure_ascii=False)
+        return repo_version, True
+
+    def _get_version_and_status(self, repo_name, project_version, project_eq_version,
+                                project_lt_version, project_ne_version, compare_branch):
+        if not repo_name:
+            return '', 'Need Create Repo'
+        repo_version, has_branch = self._get_repo_version(repo_name, compare_branch)
+        if not has_branch:
+            return '', 'Need Create Branch'
+        if not repo_version:
+            return '', 'Need Init Branch'
+
+        if project_version == 'No Limit':
+            status = 'OK'
+        elif p_version.parse(repo_version) == p_version.parse(project_version):
+            status = 'OK'
+        elif p_version.parse(repo_version) > p_version.parse(project_version):
+            if project_version == project_eq_version:
+                status = 'Need Downgrade'
+            elif repo_version not in project_ne_version:
+                if not project_lt_version:
+                    status = 'OK'
+                elif p_version.parse(repo_version) < p_version.parse(project_lt_version):
+                    status = 'OK'
+                else:
+                    status = 'Need Downgrade'
+            else:
+                status = 'Need Downgrade'
+        elif p_version.parse(repo_version) < p_version.parse(project_version):
+            status = 'Need Upgrade'
+
+        return repo_version, status
+
+    def _generate_with_compare(self, file_list, compare_branch):
         with open(self.output, "w") as csv_file:
             writer=csv.writer(csv_file)
-            if not self.compare:
-                writer.writerow(self.csv_title_without_compare)
-            else:
-                writer.writerow(self.csv_tile_with_compare)
+            writer.writerow(["Project Name", "openEuler Repo", "Repo version",
+                "Required (Min) Version", "lt Version", "ne Version", "Status",
+                "Requires", "Depth"])
             for file_name in file_list:
-                with open(self.json_cache_path + '/' + file_name, 'r', encoding='utf8') as fp:
+                with open(self.pypi_cache_path + '/' + file_name, 'r', encoding='utf8') as fp:
                     project_dict = json.load(fp)
-                if not self.compare:
-                    writer.writerow([
-                        project_dict['name'],
-                        project_dict['version_dict']['version'],
-                        project_dict['requires'].keys(),
-                        project_dict['deep']['count']
-                    ])
-                else:
-                    repo_name = ''
-                    repo_version = ''
                     project_name = project_dict['name']
                     project_version = project_dict['version_dict']['version']
-                    project_version = 'No Limit' if project_version == 'unknown' else project_version
-                    status = 'Need Create Repo'
-                    openeuler_name = constants.PYPI_OPENEULER_NAME_MAP.get(project_name, project_name)
-                    if 'python-'+openeuler_name in self.gitee_projects:
-                        repo_name = 'python-'+openeuler_name
-                    elif openeuler_name in self.gitee_projects:
-                        repo_name = openeuler_name
-                    elif 'openstack-'+openeuler_name in self.gitee_projects:
-                        repo_name = 'openstack-'+openeuler_name
-                    if repo_name:
-                        if Path(self.openeuler_cache_path + '/' + '%s.json' % repo_name).exists():
-                            with open(self.openeuler_cache_path + '/' + '%s.json' % repo_name, 'r', encoding='utf8') as fp:
-                                repo_version = json.load(fp)['version']
-                        else:
-                            print('fetch %s info from gitee' % repo_name)
-                            repo_version = utils.get_gitee_project_version('src-openeuler', repo_name, compare_branch, self.token)
-                            if repo_version != 'null':
-                                with open(self.openeuler_cache_path + '/' + '%s.json' % repo_name, 'w', encoding='utf8') as fp:
-                                    json.dump({'version': repo_version}, fp, ensure_ascii=False)
-                        if repo_version == 'null':
-                            status = 'Need Create Branch'
-                        elif not repo_version:
-                            status = 'Need Init Branch'
-                        elif project_version == 'No Limit':
-                            status = 'OK'
-                        elif p_version.parse(repo_version) == p_version.parse(project_version):
-                            status = 'OK'
-                        elif p_version.parse(repo_version) > p_version.parse(project_version):
-                            if project_version == project_dict['version_dict']['eq_version']:
-                                status = 'Need Downgrade'
-                            elif repo_version not in project_dict['version_dict']['ne_version']:
-                                if not project_dict['version_dict']['lt_version']:
-                                    status = 'OK'
-                                elif p_version.parse(repo_version) < p_version.parse(project_dict['version_dict']['lt_version']):
-                                    status = 'OK'
-                                else:
-                                    status = 'Need Downgrade'
-                            else:
-                                status = 'Need Downgrade'
-                        elif p_version.parse(repo_version) < p_version.parse(project_version):
-                            status = 'Need Upgrade'
-                    project_version = project_version+'(Must)' if project_version == project_dict['version_dict']['eq_version'] else project_version
-                    writer.writerow([
-                        project_name,
-                        repo_name,
-                        repo_version,
-                        project_version,
-                        project_dict['version_dict']['lt_version'],
-                        project_dict['version_dict']['ne_version'],
-                        status,
-                        list(project_dict['requires'].keys()),
-                        project_dict['deep']['count']
-                        ]
-                    )
+                    if project_version == 'unknown':
+                        project_version = 'No Limit'
+                    project_eq_version = project_dict['version_dict']['eq_version']
+                    project_lt_version = project_dict['version_dict']['lt_version']
+                    project_ne_version = project_dict['version_dict']['ne_version']
+
+                repo_name = self._get_repo_name(project_name)
+                repo_version, status = self._get_version_and_status(repo_name,
+                    project_version, project_eq_version, project_lt_version,
+                    project_ne_version, compare_branch)
+
+                if project_version == project_eq_version:
+                    project_version += '(Must)'
+                writer.writerow([
+                    project_name,
+                    repo_name,
+                    repo_version,
+                    project_version,
+                    project_lt_version,
+                    project_ne_version,
+                    status,
+                    list(project_dict['requires'].keys()),
+                    project_dict['deep']['count']
+                    ]
+                )
+
+    def get_all_dep(self, compare_branch):
+        """fetch all related dependent packages"""
+        file_list = os.listdir(self.pypi_cache_path)
+        if not self.compare:
+            self._generate_without_compare(file_list)
+        else:
+            self._generate_with_compare(file_list, compare_branch)
 
 
 @click.group(name='dependence', help='package dependence related commands')
@@ -241,10 +275,11 @@ def mygroup():
 @click.option('-i', '--init', is_flag=True, help='Init the cache file or not')
 @click.option('-o', '--output', default='result', help='Output file name, default: result.csv')
 @click.option('-t', '--token', help='Personal gitee access token used for fetching info from gitee')
+@click.option('-p', '--projects', default=None, help='Specify the projects to be generated. Format should be like project1,project2')
 @click.argument('release', type=click.Choice(constants.OPENSTACK_RELEASE_MAP.keys()))
-def generate(compare, compare_branch, init, output, token, release):
+def generate(compare, compare_branch, init, output, token, projects, release):
     if init:
-        myobj = InitDependence(release)
+        myobj = InitDependence(release, projects)
         print("Start fetch caching files to %s_cache_file folder" % release)
         print("...")
         myobj.init_all_dep()
