@@ -46,7 +46,10 @@ def get_gitee_project_version(owner, project, branch, access_token=None):
     version = ''
     file_tree = get_gitee_project_tree(owner, project, branch, access_token)
     for file in file_tree['tree']:
-        if file['path'].endswith('tar.gz') or file['path'].endswith('tar.bz2') or file['path'].endswith('.zip'):
+        if file['path'].endswith('tar.gz') or \
+                file['path'].endswith('tar.bz2') or \
+                file['path'].endswith('.zip') or \
+                file['path'].endswith('.tgz'):
             if file['path'].endswith('tar.gz') or file['path'].endswith('tar.bz2'):
                 sub_str = file['path'].rsplit('.', 2)[0]
             else:
