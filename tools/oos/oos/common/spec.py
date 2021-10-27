@@ -24,7 +24,8 @@ class RPMSpec(object):
                  python2=False, short_description=True, add_check=True,
                  old_changelog=None):
         self.pypi_name = pypi_name
-        self.version = version
+        # use 'latest' as version if version is NaN
+        self.version = 'latest' if version != version else version
         self.shorten_description = short_description
         self.arch = arch
         self.python2 = python2
@@ -235,7 +236,8 @@ class RPMSpec(object):
                         match_py_ver = False
                         break
             if not match_py_ver:
-                click.secho("Requires %s is not match python version" % req)
+                click.secho("[INFO] Requires %s is not match python version, "
+                            "skipped" % req)
                 continue
 
             r_name, _, r_ver = req.rstrip().partition(' ')
