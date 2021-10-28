@@ -28,6 +28,8 @@ class PkgGitRepo(object):
         if self.pypi_name in SPEC_CONSTANTS['pypi2reponame']:
             return SPEC_CONSTANTS['pypi2reponame'][self.pypi_name]
         else:
+            if self.pypi_name.startswith('python-'):
+                return self.pypi_name
             return 'python-' + self.pypi_name
 
     def fork_repo(self):
