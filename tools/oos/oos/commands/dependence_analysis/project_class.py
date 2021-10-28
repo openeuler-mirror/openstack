@@ -10,20 +10,19 @@ from oos.commands.dependence_analysis import constants
 
 class Project(object):
     def __init__(self, name, version,
-                 eq_version=None, ge_version=None, lt_version=None, ne_version=None,
-                 deep_count=None, deep_list=None, requires=None):
+                 eq_version='', ge_version='', lt_version='', ne_version=None,
+                 upper_version='', deep_count=0, deep_list=None, requires=None):
         self.name = name
         self.version = version
-        self.eq_version = eq_version if eq_version else ''
-        self.ge_version = ge_version if ge_version else ''
-        self.lt_version = lt_version if lt_version else ''
+        self.eq_version = eq_version
+        self.ge_version = ge_version
+        self.lt_version = lt_version
         self.ne_version = ne_version if ne_version else []
-        self.deep_count = deep_count if deep_count else 0
-
+        self.upper_version = upper_version
         self.deep_list = deep_list if deep_list else []
         self.deep_list.append(self.name)
-
         self.requires = requires if requires else {}
+        self.deep_count = deep_count
 
         self.dep_file = [
             "requirements.txt",
@@ -31,23 +30,6 @@ class Project(object):
             "driver-requirements.txt",
             "doc/requirements.txt"
         ]
-
-    def to_dict(self):
-        return {
-            'name': self.name,
-            'version_dict': {
-                'version': self.version,
-                'eq_version': self.eq_version,
-                'ge_version': self.ge_version,
-                'lt_version': self.lt_version,
-                'ne_version': self.ne_version,
-            },
-            'deep': {
-                'count': self.deep_count,
-                'list': self.deep_list,
-            },
-            'requires': self.requires,
-        }
 
     def _refresh(self, local_project):
         is_out_of_date = False
@@ -166,10 +148,29 @@ class Project(object):
         ge_version = args['version_dict']['ge_version']
         lt_version = args['version_dict']['lt_version']
         ne_version = args['version_dict']['ne_version']
+        upper_version = args['version_dict']['upper_version']
         deep_count = args['deep']['count']
         deep_list = args['deep']['list']
         requires = args['requires']
         return Project(
             name, version, eq_version, ge_version, lt_version,
-            ne_version, deep_count, deep_list, requires
+            ne_version, upper_version, deep_count, deep_list, requires
         )
+
+    def to_dict(self):
+        return {
+            'name': self.name,
+            'version_dict': {
+                'version': self.version,
+                'eq_version': self.eq_version,
+                'ge_version': self.ge_version,
+                'lt_version': self.lt_version,
+                'ne_version': self.ne_version,
+                'upper_version': self.upper_version,
+            },
+            'deep': {
+                'count': self.deep_count,
+                'list': self.deep_list,
+            },
+            'requires': self.requires,
+        }
