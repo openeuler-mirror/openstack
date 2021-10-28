@@ -1,21 +1,21 @@
 # openEuler OpenStack SIG
 
-## Mission and vision
+## Mission and Vision
 
-OpenStack is an open source cloud computing software initiated by NASA and Rackspace, and then continuously developed and maintained by major open source contributors and vendors. It is licensed under the terms of the Apache license and is free and open source software.
+OpenStack is an open source cloud computing software project initiated by NASA and Rackspace, and then continuously developed and maintained by major open source contributors and vendors. It is licensed under the terms of the Apache license and is free and open source.
 
-OpenStack is currently the world's most widely deployed open source cloud software that has been validated in a large-scale production environment. It includes a series of software components that provide common services for cloud infrastructure.
+OpenStack is currently the world's most widely deployed open source cloud software that has been validated in large-scale production environments. It contains a series of software components that provide common services for cloud infrastructure.
 
 As a well-known cloud computing open source community, the OpenStack community has many individuals and corporate organizations providing code contributions around the world.
 
-openEuler OpenStack SIG is committed to combining diversified computing power to contribute to the openstack community with platform enhancements that are more suitable for industry development, and regularly organizes meetings to provide suggestions and feedback for community development.
+The openEuler OpenStack SIG is committed to combining diversified computing power to contribute to the OpenStack community with platform enhancements that are more suitable for industry development, and regularly organizes meetings to provide suggestions and feedback for community development.
 
-## SIG work objectives and scope
+## SIG Work Objectives and Scope
 
 - Provide native OpenStack on top of openEuler to build an open and reliable cloud computing technology stack.
-- Regular meetings are held to collect requests from developers and vendors and discuss the development of the OpenStack community.
+- Hold regular meetings to collect requests from developers and vendors and discuss the development of the OpenStack community.
 
-## Organization meeting
+## Organization Meetings
 
 Public meeting time: bi-weekly regular meeting, Wednesday afternoon 3:00-4:00(UTC +8)
 
@@ -25,74 +25,77 @@ Meeting agenda and summary: <https://etherpad.openeuler.org/p/sig-openstack-meet
 
 ### Maintainer list
 
-- chenshuo[@joec88](https://gitee.com/joec88) chens141@chinaunicom.cn
-- likunshan[@liksh](https://gitee.com/liksh) liks11@chinaunicom.cn
-- huangtianhua[@huangtianhua](https://gitee.com/huangtianhua) huangtianhua223@gmail.com
-- wangxiyuan[@xiyuanwang](https://gitee.com/xiyuanwang) wangxiyuan1007@gmail.com
-- zhangfan[@zh-f](https://gitee.com/zh-f) zh.f@outlook.com
-- zhangying[@zhangy1317](https://gitee.com/zhangy1317) zhangy1317@chinaunicom.cn
+- Chen Shuo [@joec88](https://gitee.com/joec88) chens141@chinaunicom.cn
+- Li Kunshan [@liksh](https://gitee.com/liksh) liks11@chinaunicom.cn
+- Huang Tianhua [@huangtianhua](https://gitee.com/huangtianhua) huangtianhua223@gmail.com
+- Wang Xiyuan [@xiyuanwang](https://gitee.com/xiyuanwang) wangxiyuan1007@gmail.com
+- Zhang Fan [@zh-f](https://gitee.com/zh-f) zh.f@outlook.com
+- Zhang Ying [@zhangy1317](https://gitee.com/zhangy1317) zhangy1317@chinaunicom.cn
 
 ### Committer list
 
-- liusheng[@sean-lau](https://gitee.com/sean-lau) liusheng2048@gmail.com
+- Liu Sheng [@sean-lau](https://gitee.com/sean-lau) liusheng2048@gmail.com
 
 ### Contact details
 
-- Mailing list: openstack@openeuler.org, please click the OpenStack link on the [page](https://openeuler.org/zh/community/mailing-list/) to subscribe.
-- Wechat discussion group, please contact Maintainer to join the group
+- Mailing list: openstack@openeuler.org. Click the OpenStack link on the [openEuler page](https://openeuler.org/zh/community/mailing-list/) to subscribe.
+- Contact the maintainers to join our Wechat discussion group.
 
-## OpenStack Release Support List
+## OpenStack Version Support List
+
+The OpenStack SIG collects OpenStack version requirements through user feedback, and determines the OpenStack version evolution roadmap through open discussions of members. Versions in the plan may be adjusted due to changes in requirements and manpower. The OpenStack SIG welcomes more developers and vendors to jointly improve OpenStack support for openEuler.
 
 | openEuler | OpenStack | Projects | Status |
 |  ----  |  ----  |  ----  |  ----  |
 | 20.03 LTS SP2 | Queens, Rocky | Keystone, Glance, Nova, Cinder, Neutron, Ironic, Trove, Kolla, Tempest, Horizon(10) | Released |
-| 20.03 LTS SP3 | Queens, Rocky | Keystone, Glance, Nova, Cinder, Neutron, Ironic, Trove, Kolla, Tempest, Horizon, Rally(11) | Plan |
+| 20.03 LTS SP3 | Queens, Rocky | Keystone, Glance, Nova, Cinder, Neutron, Ironic, Trove, Kolla, Tempest, Horizon, Rally(11) | Planning |
 | 21.03 | Victoria | Keystone, Glance, Nova, Cinder, Neutron, Ironic, Tempest, Horizon, Placement(9) | Released |
 | 21.09 | Wallaby | Keystone, Glance, Nova, Cinder, Neutron, Swift, Ironic, Trove, Kolla, Tempest, Horizon, Placement(12) | Released |
-| 22.03 LTS | Train | | Plan |
-| 22.09 | Yoga | | Plan |
+| 22.03 LTS | Train | | Planning |
+| 22.09 | Yoga | | Planning |
 
-### oepkg Repository List(The packages of OpenStack Queens and Rocky are in oepkg repository)
-20.03-LTS-SP2 Rocky： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/rocky/
+### oepkg Repository List 
 
-20.03-LTS-SP2 Queens： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/queens/
+(The packages of OpenStack Queens and Rocky are in the oepkg repository)
 
-## How to contribue
+20.03-LTS-SP2 Rocky: https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/rocky/
 
-OpenStack SIG follows the four open principle from OpenStack Community: Open source、Open Design、Open Development、Open Community. Everyone is welcome to join the SIG. You can help the SIG to:
+20.03-LTS-SP2 Queens: https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/queens/
 
-1. Report Isuee, Bug or anything to SIG.
-2. Discuess with other via OpenStack SIG mail list.
-3. Join SIG wechat group, talk with others directly.
-4. Join SIG bi-weekly meeting, talk with maintainers.
-5. Join SIG develope stuff, such as RPM package build, OpenStack environment deploy and test, automatic tools development or even doc update.
-6. Donate projects to SIG，or code some self-hosted projects in SIG.
+## How to Contribue
 
-Of cause, there are many other things you can do in SIG, just make sure the work you do is related to OpenStack and opensource.
+The OpenStack SIG adheres to the four open principles of the OpenStack community: open source, open design, open development, open community. Developers, users, and vendors are welcome to participate in SIG contributions in various open source modes, including but not limited to:
 
-Everybody is welcome to join the SIG.
+1. Submit issues to the SIG and report requirements and software package bugs.
+2. Communicate with the SIG through the mailing list.
+3. Join the SIG WeChat discussion group to receive the latest SIG updates in real time and discuss various technologies with industry developers.
+4. Participate in bi-weekly meetings to discuss real-time technical issues and SIG roadmaps.
+5. Participate in SIG software development, including RPM package creation, environment deployment and testing, automatic tool development, and document compilation.
+6. Participate in OpenStack open source project donation, SIG self-developed project development, etc.
+
+There are many other things you can do in the SIG. Just ensure that the work you do is related to OpenStack and open source. OpenStack SIG welcomes your participation.
 
 ## Directory structure of this project
 
 ```none
-└── docs                                          "Install, Test Docs"
-|   └── install                                   "Install folder"
-|   └── test                                      "Test folder"
-└── example                                       "example files"
-└── templet                                       "RPM Packaging Specification"
-└── tools                                         "openstack packaging, dependency analysis, etc"
-    └── oos                                       "OpenStack SIG develop tool"
-    └── docker                                    "OpenStack SIG develop container environment"
+└── docs                                          "Installation and test documents"
+|   └── install                                   "Installation document directory"
+|   └── test                                      "Test document directory"
+└── example                                       "Example files"
+└── templet                                       "RPM packaging specifications"
+└── tools                                         "OpenStack packaging and dependency analysis"
+    └── oos                                       "OpenStack SIG development tool"
+    └── docker                                    "Basic container environment for OpenStack SIG development"
 
 ```
 
-## The list of items
+## Item List
 
-### Unified entrance
+### Unified entry
 
 - <https://gitee.com/openeuler/openstack>
 
-OpenStack contains many projects. In order to facilitate management, a unified entry project has been set up. Users and developers who have any questions about the OpenStack SIG and various OpenStack sub-projects can submit an issue in the project.
+OpenStack contains many projects. To facilitate management, a unified entry project has been set up. Users and developers can submit issues in the project if they have any questions about the OpenStack SIG and OpenStack sub-projects.
 
 ### Sub-items (in alphabetical order)
 
