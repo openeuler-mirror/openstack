@@ -1,12 +1,12 @@
 # TODO: Add more service and release, or make it configurable
 OPENSTACK_RELEASE_MAP = {
     "queens": {
-        "rally": "0.11.0",
-        "rally-openstack": "1.0.0"
+        "rally": "2.1.0",
+        "rally-openstack": "1.3.0"
     },
     "rocky": {
-        "rally": "1.1.0",
-        "rally-openstack": "1.1.0",
+        "rally": "2.1.0",
+        "rally-openstack": "1.3.0",
     },
     "train": {
         # service

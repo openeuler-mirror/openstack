@@ -62,6 +62,7 @@ class InitDependence(Dependence):
             child_project_obj = project_class.Project(
                 name, version, eq_version=version_range['eq_version'], ge_version=version_range['ge_version'],
                 lt_version=version_range['lt_version'], ne_version=version_range['ne_version'],
+                upper_version=self.upper_dict.get(name, ''),
                 deep_count=project_obj.deep_count+1, deep_list=copy.deepcopy(project_obj.deep_list)
             )
             self._cache_dependencies(child_project_obj)
@@ -188,7 +189,7 @@ class CountDependence(Dependence):
         return repo_version, True
 
     def _get_version_and_status(self, repo_name, project_version, project_eq_version,
-                                project_lt_version, project_ne_version, compare_branch):
+                                project_lt_version, project_ne_version, project_upper_version, compare_branch):
         if not repo_name:
             return '', 'Need Create Repo'
         repo_version, has_branch = self._get_repo_version(repo_name, compare_branch)
@@ -197,7 +198,9 @@ class CountDependence(Dependence):
         if not repo_version:
             return '', 'Need Init Branch'
 
-        if project_version == 'No Limit':
+        if project_upper_version and p_version.parse(repo_version) > p_version.parse(project_upper_version):
+            status = 'Need Downgrade'
+        elif project_version == 'No Limit':
             status = 'OK'
         elif p_version.parse(repo_version) == p_version.parse(project_version):
             status = 'OK'
@@ -222,7 +225,7 @@ class CountDependence(Dependence):
         with open(self.output, "w") as csv_file:
             writer=csv.writer(csv_file)
             writer.writerow(["Project Name", "openEuler Repo", "Repo version",
-                "Required (Min) Version", "lt Version", "ne Version", "Status",
+                "Required (Min) Version", "lt Version", "ne Version", "Upper Version", "Status",
                 "Requires", "Depth"])
             for file_name in file_list:
                 with open(self.pypi_cache_path + '/' + file_name, 'r', encoding='utf8') as fp:
@@ -234,11 +237,11 @@ class CountDependence(Dependence):
                     project_eq_version = project_dict['version_dict']['eq_version']
                     project_lt_version = project_dict['version_dict']['lt_version']
                     project_ne_version = project_dict['version_dict']['ne_version']
-
+                    project_upper_version = project_dict['version_dict']['upper_version']
                 repo_name = self._get_repo_name(project_name)
                 repo_version, status = self._get_version_and_status(repo_name,
                     project_version, project_eq_version, project_lt_version,
-                    project_ne_version, compare_branch)
+                    project_ne_version, project_upper_version, compare_branch)
 
                 if project_version == project_eq_version:
                     project_version += '(Must)'
@@ -249,6 +252,7 @@ class CountDependence(Dependence):
                     project_version,
                     project_lt_version,
                     project_ne_version,
+                    project_upper_version,
                     status,
                     list(project_dict['requires'].keys()),
                     project_dict['deep']['count']
