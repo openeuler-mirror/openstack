@@ -142,6 +142,10 @@ pypi2reponame:
   python-psycopg2: python-psycopg2
   ansible: ansible
   python-scrypt: python-scrypt
+  python-searchlightclient: python-searchlightclient
+  python-congressclient: python-congressclient
+  python-monascaclient: python-monascaclient
+  python-blazarclient: python-blazarclient
 
 # <pypi name> : <license>
 pypi_license:
