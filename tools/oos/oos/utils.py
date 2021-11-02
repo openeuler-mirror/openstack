@@ -92,5 +92,7 @@ def get_user_info(token):
     user_info_url = 'https://gitee.com/api/v5/user?access_token=%s' % token
     user_info = requests.request('GET', user_info_url).json()
     gitee_user = user_info['login']
+    if not user_info.get('email'):
+        return gitee_user, None
     gitee_email = user_info['email'] if '@' in user_info['email'] else None
     return gitee_user, gitee_email
