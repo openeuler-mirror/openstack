@@ -174,9 +174,9 @@ class RPMSpec(object):
             return org_description
         cut_dot = org_description.find('.', 80 * 8)
         cut_br = org_description.find('\n', 80 * 8)
-        if cut_dot >= -1:
+        if cut_dot > -1:
             shorted = org_description[:cut_dot + 1]
-        elif cut_br:
+        elif cut_br > -1:
             shorted = org_description[:cut_br]
         else:
             shorted = org_description
