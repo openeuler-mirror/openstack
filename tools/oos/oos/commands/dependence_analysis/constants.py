@@ -232,10 +232,12 @@ PROJECT_NAME_FIX_MAPPING = {
 }
 
 
-# Some project doesn't exist on pypi. We only deal them by hand, skip them in oos.
 PROJECT_OUT_OF_PYPI  = [
+    # Some project doesn't exist on pypi. We only deal them by hand, skip them in oos.
     'infinisim',
     'pyev',
     'rados',
     'rbd',
+    # Some project is out of date. 
+    'argparse',
 ]
