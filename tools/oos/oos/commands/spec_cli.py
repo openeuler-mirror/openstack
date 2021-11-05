@@ -114,7 +114,8 @@ class SpecPush(object):
         old_changelog = self._get_old_changelog(repo_obj)
 
         spec_obj = RPMSpec(pypi_name, version, self.arch, self.python2,
-                           not self.no_check, old_changelog=old_changelog)
+                           add_check=not self.no_check,
+                           old_changelog=old_changelog)
         commit_msg = "Update package %s of version %s" % (pypi_name, version)
         spec_obj.build_package(self.build_root, reuse_spec=self.reuse_spec)
         if spec_obj.build_failed:
