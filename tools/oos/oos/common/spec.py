@@ -22,7 +22,7 @@ SPEC_CONSTANTS = yaml.safe_load(open(SPEC_CONSTANTS_FILE))
 class RPMSpec(object):
     def __init__(self, pypi_name, version='latest', arch=None,
                  python2=False, short_description=True, add_check=True,
-                 old_changelog=None):
+                 old_changelog=None, old_version=None):
         self.pypi_name = pypi_name
         # use 'latest' as version if version is NaN
         self.version = 'latest' if version != version else version
@@ -36,6 +36,7 @@ class RPMSpec(object):
         self.check_stage_failed = False
         self.add_check = add_check
         self.old_changelog = old_changelog
+        self.old_version = old_version
 
         self._pypi_json = None
         self._spec_name = ""
@@ -112,6 +113,16 @@ class RPMSpec(object):
     @property
     def version_num(self):
         return self.pypi_json["info"]["version"]
+
+    def _is_upgrade(self):
+        if not self.old_version:
+            return False
+        try:
+            old_version = float(self.old_version)
+            new_version = float(self.version_num)
+            return new_version > old_version
+        except ValueError:
+            return str(self.version_num) > str(self.old_version)
 
     def _get_provide_name(self):
         return self.pkg_name if self.python2 else self.pkg_name.replace(
@@ -266,6 +277,7 @@ class RPMSpec(object):
                                  loader=jinja2.FileSystemLoader(
                                      SPEC_TEMPLET_DIR))
         template = env.get_template('package.spec.j2')
+        up_down_grade = 'Upgrade' if self._is_upgrade() else "Downgrade"
 
         test_requires = self._test_requires if self.add_check else []
         template_vars = {'spec_name': self.spec_name,
@@ -285,7 +297,8 @@ class RPMSpec(object):
                          'add_check': self.add_check,
                          'python2': self.python2,
                          "source_file_dir": self._source_file_dir,
-                         "old_changelog": self.old_changelog
+                         "old_changelog": self.old_changelog,
+                         "up_down_grade": up_down_grade
                          }
         output = template.render(template_vars)
         with open(self.spec_path, 'w') as f:
