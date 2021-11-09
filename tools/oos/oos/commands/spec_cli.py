@@ -55,20 +55,23 @@ class SpecPush(object):
                 like=self.query, axis=0)
         return project_df
 
-    def _get_old_changelog(self, repo_obj):
+    def _get_old_changelog_version(self, repo_obj):
+        old_version = None
+        old_changelog = None
         spec_f = glob.glob(os.path.join(repo_obj.repo_dir, '*.spec'))
         if not spec_f:
-            return
+            return None, None
         spec_f = spec_f[0]
         with open(spec_f) as f_spec:
             lines = f_spec.readlines()
         for l_num, line in enumerate(lines):
+            if 'Version:' in line:
+                old_version = line.partition(':')[2].strip()
             if '%changelog' in line:
+                old_changelog = [cl.rstrip() for cl in lines[l_num + 1:]]
                 break
-        else:
-            return
-        old_changelog = lines[l_num+1:]
-        return [cl.rstrip() for cl in old_changelog]
+
+        return old_changelog, old_version
 
     def _copy_spec_source(self, spec_obj, repo_obj):
         if not (spec_obj.spec_path and spec_obj.source_path):
@@ -111,11 +114,11 @@ class SpecPush(object):
         if repo_obj.branch_not_found:
             self.projects_missed_branch.append(pypi_name)
             return
-        old_changelog = self._get_old_changelog(repo_obj)
+        old_changelog, old_version = self._get_old_changelog_version(repo_obj)
 
         spec_obj = RPMSpec(pypi_name, version, self.arch, self.python2,
                            add_check=not self.no_check,
-                           old_changelog=old_changelog)
+                           old_changelog=old_changelog, old_version=old_version)
         commit_msg = "Update package %s of version %s" % (pypi_name, version)
         spec_obj.build_package(self.build_root, reuse_spec=self.reuse_spec)
         if spec_obj.build_failed:
