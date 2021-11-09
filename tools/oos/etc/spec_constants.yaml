@@ -1943,3 +1943,7 @@ pkg_description:
     just to use something like dib-run-parts is not desirable. This project allows
     consumers to use the tools while pulling in only one small package with few/no
     additional dependencies.
+  unicodecsv: |-
+    The unicodecsv is a drop-in replacement for Python 2.7’s csv module which
+    supports unicode strings without a hassle. Supported versions are python 2.7,
+    3.3, 3.4, 3.5, and pypy 2.4.0.
