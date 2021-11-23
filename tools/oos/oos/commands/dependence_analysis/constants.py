@@ -29,6 +29,7 @@ OPENSTACK_RELEASE_MAP = {
         "trove": "12.1.0",
         # client
         "python-openstackclient": "4.0.2",
+        "osc-placement": "1.7.0",
         # ui
         "ironic-ui": "3.5.5",
         "trove-dashboard": "13.0.0",

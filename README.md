@@ -31,10 +31,7 @@ openEuler OpenStack SIG致力于结合多样性算力为openstack社区贡献更
 - 王玺源[@xiyuanwang](https://gitee.com/xiyuanwang) wangxiyuan1007@gmail.com
 - 张帆[@zh-f](https://gitee.com/zh-f) zh.f@outlook.com
 - 张迎[@zhangy1317](https://gitee.com/zhangy1317) zhangy1317@chinaunicom.cn
-
-### Committer列表
-
-- 刘胜[@sean-lau](https://gitee.com/sean-lau) liusheng2048@gmail.com
+- 刘胜[@sean-lau](https://gitee.com/sean-lau) liusheng2048@gmail.com - 已退休
 
 ### 联系方式
 
@@ -42,18 +39,48 @@ openEuler OpenStack SIG致力于结合多样性算力为openstack社区贡献更
 - Wechat讨论群，请联系Maintainer入群
 
 ## OpenStack版本支持列表
+
 OpenStack SIG通过用户反馈等方式收集OpenStack版本需求，经过SIG组内成员公开讨论决定OpenStack的版本演进路线。规划中的版本可能因为需求更变、人力变动等原因进行调整。OpenStack SIG欢迎更多开发者、厂商参与，共同完善openEuler的OpenStack支持。
 
-| openEuler | OpenStack | 支持项目 | 状态 |
-|  ----  |  ----  |  ----  |  ----  |
-| 20.03 LTS SP2 | Queens、Rocky | Keystone、Glance、Nova、Cinder、Neutron、Ironic、Trove、Kolla、Tempest、Horizon（10） | 已发布 |
-| 20.03 LTS SP3 | Queens、Rocky | Keystone、Glance、Nova、Cinder、Neutron、Ironic、Trove、Kolla、Tempest、Horizon、Rally（11） | 规划中 |
-| 21.03 | Victoria | Keystone、Glance、Nova、Cinder、Neutron、Ironic、Tempest、Horizon、Placement（9） | 已发布 |
-| 21.09 | Wallaby | Keystone、Glance、Nova、Cinder、Neutron、Swift、Ironic、Trove、Kolla、Tempest、Horizon、Placement（12） | 已发布 |
-| 22.03 LTS | Train | | 规划中 |
-| 22.09 | Yoga | | 规划中 |
+● - 已支持
+○ - 规划中
 
-### oepkg软件仓地址列表（Queens、Rocky版本的支持放在官方认证的第三方软件平台oepkg）
+|                         | Queens | Rocky | Train | Ussuri | Victoria | Wallaby | Xena | Yoga |
+|:-----------------------:|:------:|:-----:|:-----:|:------:|:--------:|:-------:|:----:|:----:|
+| openEuler 20.03 LTS SP2 |    ●   |   ●   |       |        |          |         |      |      |
+| openEuler 20.03 LTS SP3 |    ●   |   ●   |   ●   |        |          |         |      |      |
+|     openEuler 21.03     |        |       |       |        |     ●    |         |      |      |
+|     openEuler 21.09     |        |       |       |        |          |    ●    |      |      |
+|   openEuler 22.03 LTS   |        |       |   ○   |        |          |         |      |      |
+|   openEuler 22.09 LTS   |        |       |       |        |          |         |      |   ○  |
+
+
+|            | Queens | Rocky | Train | Victoria | Wallaby |
+|:---------: |:------:|:-----:|:-----:|:--------:|:-------:|
+|  Keystone  |    ●   |   ●   |   ●   |     ●    |    ●    |
+|   Glance   |    ●   |   ●   |   ●   |     ●    |    ●    |
+|    Nova    |    ●   |   ●   |   ●   |     ●    |    ●    |
+|   Cinder   |    ●   |   ●   |   ●   |     ●    |    ●    |
+|  Neutron   |    ●   |   ●   |   ●   |     ●    |    ●    |
+|  Tempest   |    ●   |   ●   |   ●   |     ●    |    ●    |
+|  Horizon   |    ●   |   ●   |   ●   |     ●    |    ●    |
+|   Ironic   |    ●   |   ●   |   ●   |     ●    |    ●    |
+| Placement  |        |       |   ●   |     ●    |    ●    |
+|   Trove    |    ●   |   ●   |   ●   |          |    ●    |
+|   Kolla    |    ●   |   ●   |   ●   |          |    ●    |
+|   Rally    |    ●   |   ●   |       |          |         |
+|   Swift    |        |       |   ●   |          |    ●    |
+|    Heat    |        |       |   ●   |          |         |
+| Ceilometer |        |       |   ●   |          |         |
+|    Aodh    |        |       |   ●   |          |         |
+|   Cyborg   |        |       |   ●   |          |         |
+
+Note: openEuler 20.03 LTS SP2不支持Rally
+
+### oepkg软件仓地址列表
+
+Queens、Rocky版本的支持放在官方认证的第三方软件平台oepkg:
+
 20.03-LTS-SP2 Rocky： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/rocky/
 
 20.03-LTS-SP2 Queens： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/queens/
