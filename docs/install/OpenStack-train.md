@@ -824,48 +824,21 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     **如果为arm64结构，还需要执行以下命令**
 
     ```shell
+    
+    mkdir -p /usr/share/AAVMF
+    chown nova:nova /usr/share/AAVMF
+
+    ln -s /usr/share/edk2/aarch64/QEMU_EFI-pflash.raw \
+          /usr/share/AAVMF/AAVMF_CODE.fd                                                           (CPT)
+    ln -s /usr/share/edk2/aarch64/vars-template-pflash.raw \
+          /usr/share/AAVMF/AAVMF_VARS.fd                                                           (CPT)
+
     vim /etc/libvirt/qemu.conf
 
     nvram = ["/usr/share/AAVMF/AAVMF_CODE.fd: \
              /usr/share/AAVMF/AAVMF_VARS.fd", \
              "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw: \
              /usr/share/edk2/aarch64/vars-template-pflash.raw"]
-
-    vim /etc/qemu/firmware/edk2-aarch64.json
-
-    {
-        "description": "UEFI firmware for ARM64 virtual machines",
-        "interface-types": [
-            "uefi"
-        ],
-        "mapping": {
-            "device": "flash",
-            "executable": {
-                "filename": "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw",
-                "format": "raw"
-            },
-            "nvram-template": {
-                "filename": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
-                "format": "raw"
-            }
-        },
-        "targets": [
-            {
-                "architecture": "aarch64",
-                "machines": [
-                    "virt-*"
-                ]
-            }
-        ],
-        "features": [
-
-        ],
-        "tags": [
-
-        ]
-    }
-
-    (CPT)
     ```
 
 4. 同步数据库
