@@ -821,7 +821,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     ***注意***
 
-    **如果为arm64结构，还需要执行以下命令**
+    **如果为arm64结构，还需要在计算节点执行以下命令**
 
     ```shell
     
@@ -838,7 +838,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     nvram = ["/usr/share/AAVMF/AAVMF_CODE.fd: \
              /usr/share/AAVMF/AAVMF_VARS.fd", \
              "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw: \
-             /usr/share/edk2/aarch64/vars-template-pflash.raw"]
+             /usr/share/edk2/aarch64/vars-template-pflash.raw"]                                    (CPT)
     ```
 
 4. 同步数据库
