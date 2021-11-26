@@ -31,10 +31,7 @@ Meeting agenda and summary: <https://etherpad.openeuler.org/p/sig-openstack-meet
 - Wang Xiyuan [@xiyuanwang](https://gitee.com/xiyuanwang) wangxiyuan1007@gmail.com
 - Zhang Fan [@zh-f](https://gitee.com/zh-f) zh.f@outlook.com
 - Zhang Ying [@zhangy1317](https://gitee.com/zhangy1317) zhangy1317@chinaunicom.cn
-
-### Committer list
-
-- Liu Sheng [@sean-lau](https://gitee.com/sean-lau) liusheng2048@gmail.com
+- Liu Sheng [@sean-lau](https://gitee.com/sean-lau) liusheng2048@gmail.com - Retired
 
 ### Contact details
 
@@ -45,18 +42,43 @@ Meeting agenda and summary: <https://etherpad.openeuler.org/p/sig-openstack-meet
 
 The OpenStack SIG collects OpenStack version requirements through user feedback, and determines the OpenStack version evolution roadmap through open discussions of members. Versions in the plan may be adjusted due to changes in requirements and manpower. The OpenStack SIG welcomes more developers and vendors to jointly improve OpenStack support for openEuler.
 
-| openEuler | OpenStack | Projects | Status |
-|  ----  |  ----  |  ----  |  ----  |
-| 20.03 LTS SP2 | Queens, Rocky | Keystone, Glance, Nova, Cinder, Neutron, Ironic, Trove, Kolla, Tempest, Horizon(10) | Released |
-| 20.03 LTS SP3 | Queens, Rocky | Keystone, Glance, Nova, Cinder, Neutron, Ironic, Trove, Kolla, Tempest, Horizon, Rally(11) | Planning |
-| 21.03 | Victoria | Keystone, Glance, Nova, Cinder, Neutron, Ironic, Tempest, Horizon, Placement(9) | Released |
-| 21.09 | Wallaby | Keystone, Glance, Nova, Cinder, Neutron, Swift, Ironic, Trove, Kolla, Tempest, Horizon, Placement(12) | Released |
-| 22.03 LTS | Train | | Planning |
-| 22.09 | Yoga | | Planning |
+● - Released
+○ - Planning
 
-### oepkg Repository List 
+|                         | Queens | Rocky | Train | Ussuri | Victoria | Wallaby | Xena | Yoga |
+|:-----------------------:|:------:|:-----:|:-----:|:------:|:--------:|:-------:|:----:|:----:|
+| openEuler 20.03 LTS SP2 |    ●   |   ●   |       |        |          |         |      |      |
+| openEuler 20.03 LTS SP3 |    ●   |   ●   |   ●   |        |          |         |      |      |
+|     openEuler 21.03     |        |       |       |        |     ●    |         |      |      |
+|     openEuler 21.09     |        |       |       |        |          |    ●    |      |      |
+|   openEuler 22.03 LTS   |        |       |   ○   |        |          |         |      |      |
+|   openEuler 22.09 LTS   |        |       |       |        |          |         |      |   ○  |
 
-(The packages of OpenStack Queens and Rocky are in the oepkg repository)
+
+|            | Queens | Rocky | Train | Victoria | Wallaby |
+|:---------: |:------:|:-----:|:-----:|:--------:|:-------:|
+|  Keystone  |    ●   |   ●   |   ●   |     ●    |    ●    |
+|   Glance   |    ●   |   ●   |   ●   |     ●    |    ●    |
+|    Nova    |    ●   |   ●   |   ●   |     ●    |    ●    |
+|   Cinder   |    ●   |   ●   |   ●   |     ●    |    ●    |
+|  Neutron   |    ●   |   ●   |   ●   |     ●    |    ●    |
+|  Tempest   |    ●   |   ●   |   ●   |     ●    |    ●    |
+|  Horizon   |    ●   |   ●   |   ●   |     ●    |    ●    |
+|   Ironic   |    ●   |   ●   |   ●   |     ●    |    ●    |
+| Placement  |        |       |   ●   |     ●    |    ●    |
+|   Trove    |    ●   |   ●   |   ●   |          |    ●    |
+|   Kolla    |    ●   |   ●   |   ●   |          |    ●    |
+|   Rally    |    ●   |   ●   |       |          |         |
+|   Swift    |        |       |   ●   |          |    ●    |
+|    Heat    |        |       |   ●   |          |         |
+| Ceilometer |        |       |   ●   |          |         |
+|    Aodh    |        |       |   ●   |          |         |
+|   Cyborg   |        |       |   ●   |          |         |
+
+Note: openEuler 20.03 LTS SP2 doesn't support Rally
+### oepkg Repository List
+
+The packages of OpenStack Queens and Rocky are in the oepkg repository:
 
 20.03-LTS-SP2 Rocky: https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/rocky/
 
