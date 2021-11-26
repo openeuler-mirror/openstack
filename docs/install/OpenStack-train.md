@@ -23,6 +23,8 @@
     - [Kolla 安装](#kolla-安装)
     - [Trove 安装](#trove-安装)
     - [Swift 安装](#swift-安装)
+    - [Cyborg 安装](#cyborg-安装)
+    - [Aodh 安装](#aodh-安装)
     <!-- /TOC -->
 
 ## OpenStack 简介
@@ -2185,7 +2187,7 @@ chown -R ipa.ipa /etc/ironic_python_agent/
 
 ### Kolla 安装
 
-Kolla为OpenStack服务提供生产环境可用的容器化部署的功能。openEuler 21.09中引入了Kolla和Kolla-ansible服务。
+Kolla为OpenStack服务提供生产环境可用的容器化部署的功能。
 
 Kolla的安装十分简单，只需要安装对应的RPM包即可
 
@@ -2193,7 +2195,7 @@ Kolla的安装十分简单，只需要安装对应的RPM包即可
 yum install openstack-kolla openstack-kolla-ansible
 ```
 
-安装完后，就可以使用`kolla-ansible`, `kolla-build`, `kolla-genpwd`, `kolla-mergepwd`等命令了。
+安装完后，就可以使用`kolla-ansible`, `kolla-build`, `kolla-genpwd`, `kolla-mergepwd`等命令进行相关的镜像制作和容器环境部署了。
 
 ### Trove 安装
 Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据库服务则推荐使用该组件。否则，可以不用安装。
@@ -2660,3 +2662,169 @@ Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适�
     
     systemctl start openstack-swift-object.service openstack-swift-object-auditor.service openstack-swift-object-replicator.service openstack-swift-object-updater.service
     ```
+
+### Cyborg 安装
+
+Cyborg为OpenStack提供加速器设备的支持，包括 GPU, FPGA, ASIC, NP, SoCs, NVMe/NOF SSDs, ODP, DPDK/SPDK等等。
+
+1. 初始化对应数据库
+
+```
+CREATE DATABASE cyborg;
+GRANT ALL PRIVILEGES ON cyborg.* TO 'cyborg'@'localhost' IDENTIFIED BY 'CYBORG_DBPASS';
+GRANT ALL PRIVILEGES ON cyborg.* TO 'cyborg'@'%' IDENTIFIED BY 'CYBORG_DBPASS';
+```
+
+2. 创建对应Keystone资源对象
+
+```
+$ openstack user create --domain default --password-prompt cyborg
+$ openstack role add --project service --user cyborg admin
+$ openstack service create --name cyborg --description "Acceleration Service" accelerator
+
+$ openstack endpoint create --region RegionOne \
+  accelerator public http://<cyborg-ip>:6666/v1
+$ openstack endpoint create --region RegionOne \
+  accelerator internal http://<cyborg-ip>:6666/v1
+$ openstack endpoint create --region RegionOne \
+  accelerator admin http://<cyborg-ip>:6666/v1
+```
+
+3. 安装Cyborg
+
+```
+yum install openstack-cyborg
+```
+
+4. 配置Cyborg
+
+修改`/etc/cyborg/cyborg.conf`
+
+```
+[DEFAULT]
+transport_url = rabbit://%RABBITMQ_USER%:%RABBITMQ_PASSWORD%@%OPENSTACK_HOST_IP%:5672/
+use_syslog = False
+state_path = /var/lib/cyborg
+debug = True
+
+[database]
+connection = mysql+pymysql://%DATABASE_USER%:%DATABASE_PASSWORD%@%OPENSTACK_HOST_IP%/cyborg
+
+[service_catalog]
+project_domain_id = default
+user_domain_id = default
+project_name = service
+password = PASSWORD
+username = cyborg
+auth_url = http://%OPENSTACK_HOST_IP%/identity
+auth_type = password
+
+[placement]
+project_domain_name = Default
+project_name = service
+user_domain_name = Default
+password = PASSWORD
+username = placement
+auth_url = http://%OPENSTACK_HOST_IP%/identity
+auth_type = password
+
+[keystone_authtoken]
+memcached_servers = localhost:11211
+project_domain_name = Default
+project_name = service
+user_domain_name = Default
+password = PASSWORD
+username = cyborg
+auth_url = http://%OPENSTACK_HOST_IP%/identity
+auth_type = password
+```
+
+自行修改对应的用户名、密码、IP等信息
+
+5. 同步数据库表格
+
+```
+cyborg-dbsync --config-file /etc/cyborg/cyborg.conf upgrade
+```
+
+6. 启动Cyborg服务
+
+```
+systemctl enable openstack-cyborg-api openstack-cyborg-conductor openstack-cyborg-agent
+systemctl start openstack-cyborg-api openstack-cyborg-conductor openstack-cyborg-agent
+```
+
+### Aodh 安装
+
+1. 创建数据库、服务凭证和 API 端点
+
+```
+CREATE DATABASE aodh;
+
+GRANT ALL PRIVILEGES ON aodh.* TO 'aodh'@'localhost' IDENTIFIED BY 'AODH_DBPASS';
+
+GRANT ALL PRIVILEGES ON aodh.* TO 'aodh'@'%' IDENTIFIED BY 'AODH_DBPASS';
+```
+
+2. 创建对应Keystone资源对象
+
+```
+openstack user create --domain default --password-prompt aodh
+
+openstack role add --project service --user aodh admin
+
+openstack service create --name aodh --description "Telemetry" alarming
+
+openstack endpoint create --region RegionOne alarming public http://controller:8042
+
+openstack endpoint create --region RegionOne alarming internal http://controller:8042
+
+openstack endpoint create --region RegionOne alarming admin http://controller:8042
+```
+
+3. 安装Aodh
+
+```
+yum install openstack-aodh-api openstack-aodh-evaluator openstack-aodh-notifier openstack-aodh-listener openstack-aodh-expirer python-aodhclient
+```
+
+4. 修改配置文件
+
+```
+[database]
+connection = mysql+pymysql://aodh:AODH_DBPASS@controller/aodh
+
+[DEFAULT]
+transport_url = rabbit://openstack:RABBIT_PASS@controller
+auth_strategy = keystone
+
+[keystone_authtoken]
+www_authenticate_uri = http://controller:5000
+auth_url = http://controller:5000
+memcached_servers = controller:11211
+auth_type = password
+project_domain_id = default
+user_domain_id = default
+project_name = service
+username = aodh
+password = AODH_PASS
+
+[service_credentials]
+auth_type = password
+auth_url = http://controller:5000/v3
+project_domain_id = default
+user_domain_id = default
+project_name = service
+username = aodh
+password = AODH_PASS
+interface = internalURL
+region_name = RegionOne
+```
+
+5. 启动Aodh服务
+
+```
+systemctl enable openstack-aodh-api.service openstack-aodh-evaluator.service openstack-aodh-notifier.service openstack-aodh-listener.service
+
+systemctl start openstack-aodh-api.service openstack-aodh-evaluator.service openstack-aodh-notifier.service openstack-aodh-listener.service
+```
