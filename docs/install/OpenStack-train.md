@@ -1214,10 +1214,11 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     ```shell
     systemctl enable neutron-server.service neutron-linuxbridge-agent.service \                    (CTL)
     neutron-dhcp-agent.service neutron-metadata-agent.service \
-    systemctl enable neutron-l3-agent.service
-    systemctl restart openstack-nova-api.service neutron-server.service                            (CTL)
-    neutron-linuxbridge-agent.service neutron-dhcp-agent.service \
-    neutron-metadata-agent.service neutron-l3-agent.service
+    neutron-l3-agent.service
+
+    systemctl restart neutron-server.service neutron-linuxbridge-agent.service \                   (CTL)
+    neutron-dhcp-agent.service neutron-metadata-agent.service \
+    neutron-l3-agent.service
 
     systemctl enable neutron-linuxbridge-agent.service                                             (CPT)
     systemctl restart neutron-linuxbridge-agent.service openstack-nova-compute.service             (CPT)
