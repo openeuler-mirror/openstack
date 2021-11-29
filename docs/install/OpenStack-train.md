@@ -831,16 +831,16 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     chown nova:nova /usr/share/AAVMF
 
     ln -s /usr/share/edk2/aarch64/QEMU_EFI-pflash.raw \
-          /usr/share/AAVMF/AAVMF_CODE.fd                                                           (CPT)
+          /usr/share/AAVMF/AAVMF_CODE.fd
     ln -s /usr/share/edk2/aarch64/vars-template-pflash.raw \
-          /usr/share/AAVMF/AAVMF_VARS.fd                                                           (CPT)
+          /usr/share/AAVMF/AAVMF_VARS.fd
 
     vim /etc/libvirt/qemu.conf
 
     nvram = ["/usr/share/AAVMF/AAVMF_CODE.fd: \
              /usr/share/AAVMF/AAVMF_VARS.fd", \
              "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw: \
-             /usr/share/edk2/aarch64/vars-template-pflash.raw"]                                    (CPT)
+             /usr/share/edk2/aarch64/vars-template-pflash.raw"]
     ```
 
 4. 同步数据库
@@ -878,7 +878,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     添加计算节点到openstack集群
 
     ```shell
-    su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova                           (CPT)
+    su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova                           (CTL)
     ```
 
 5. 启动服务
