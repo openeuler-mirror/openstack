@@ -738,11 +738,6 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     server_proxyclient_address = $my_ip
     novncproxy_base_url = http://controller:6080/vnc_auto.html                                     (CPT)
 
-    [libvirt]
-    virt_type = qemu                                                                               (CPT)
-    cpu_mode = custom                                                                              (CPT)
-    cpu_model = cortex-a72                                                                         (CPT)
-
     [glance]
     api_servers = http://controller:9292
 
@@ -821,7 +816,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     virt_type = qemu
     ```
 
-    如果返回值为1或更大的值，则支持硬件加速，不需要进行额外的配置
+    如果返回值为1或更大的值，则支持硬件加速，则`virt_type`可以配置为`kvm`
 
     ***注意***
 
@@ -843,6 +838,15 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
              /usr/share/AAVMF/AAVMF_VARS.fd", \
              "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw: \
              /usr/share/edk2/aarch64/vars-template-pflash.raw"]
+    ```
+
+    并且当ARM架构下的部署环境为嵌套虚拟化时，`libvirt`配置如下：
+
+    ```shell
+    [libvirt]
+    virt_type = qemu
+    cpu_mode = custom
+    cpu_model = cortex-a72
     ```
 
 4. 同步数据库
@@ -2758,7 +2762,7 @@ systemctl start openstack-cyborg-api openstack-cyborg-conductor openstack-cyborg
 
 ### Aodh 安装
 
-1. 创建数据库、服务凭证和 API 端点
+1. 创建数据库
 
 ```
 CREATE DATABASE aodh;
@@ -2839,7 +2843,7 @@ systemctl start openstack-aodh-api.service openstack-aodh-evaluator.service open
 
 ### Gnocchi 安装
 
-1. 创建数据库、服务凭证和 API 端点
+1. 创建数据库
 
 ```
 CREATE DATABASE gnocchi;
@@ -2917,12 +2921,7 @@ systemctl start openstack-gnocchi-api.service openstack-gnocchi-metricd.service
 
 ### Ceilometer 安装
 
-1. 创建数据库、服务凭证和 API 端点
-
-```
-```
-
-2. 创建对应Keystone资源对象
+1. 创建对应Keystone资源对象
 
 ```
 openstack user create --domain default --password-prompt ceilometer
@@ -2932,13 +2931,13 @@ openstack role add --project service --user ceilometer admin
 openstack service create --name ceilometer --description "Telemetry" metering
 ```
 
-3. 安装Ceilometer
+2. 安装Ceilometer
 
 ```
 yum install openstack-ceilometer-notification openstack-ceilometer-central
 ```
 
-4. 修改配置文件`/etc/ceilometer/pipeline.yaml`
+3. 修改配置文件`/etc/ceilometer/pipeline.yaml`
 
 ```
 publishers:
@@ -2948,7 +2947,7 @@ publishers:
     - gnocchi://?filter_project=service&archive_policy=low
 ```
 
-5. 修改配置文件`/etc/ceilometer/ceilometer.conf`
+4. 修改配置文件`/etc/ceilometer/ceilometer.conf`
 
 ```
 [DEFAULT]
@@ -2966,13 +2965,13 @@ interface = internalURL
 region_name = RegionOne
 ```
 
-6. 初始化数据库
+5. 初始化数据库
 
 ```
 ceilometer-upgrade
 ```
 
-7. 启动Ceilometer服务
+6. 启动Ceilometer服务
 
 ```
 systemctl enable openstack-ceilometer-notification.service openstack-ceilometer-central.service
