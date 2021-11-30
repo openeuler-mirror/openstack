@@ -74,6 +74,7 @@ The OpenStack SIG collects OpenStack version requirements through user feedback,
 | Ceilometer |        |       |   ●   |          |         |
 |    Aodh    |        |       |   ●   |          |         |
 |   Cyborg   |        |       |   ●   |          |         |
+|   Gnocchi  |        |       |   ●   |          |    ●    |
 
 Note: openEuler 20.03 LTS SP2 doesn't support Rally
 ### oepkg Repository List

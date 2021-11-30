@@ -25,6 +25,8 @@
     - [Swift 安装](#swift-安装)
     - [Cyborg 安装](#cyborg-安装)
     - [Aodh 安装](#aodh-安装)
+    - [Gnocchi 安装](#gnocchi-安装)
+    - [Ceilometer 安装](#ceilometer-安装)
     <!-- /TOC -->
 
 ## OpenStack 简介
@@ -2785,7 +2787,7 @@ openstack endpoint create --region RegionOne alarming admin http://controller:80
 3. 安装Aodh
 
 ```
-yum install openstack-aodh-api openstack-aodh-evaluator openstack-aodh-notifier openstack-aodh-listener openstack-aodh-expirer python-aodhclient
+yum install openstack-aodh-api openstack-aodh-evaluator openstack-aodh-notifier openstack-aodh-listener openstack-aodh-expirer python3-aodhclient
 ```
 
 4. 修改配置文件
@@ -2821,10 +2823,159 @@ interface = internalURL
 region_name = RegionOne
 ```
 
-5. 启动Aodh服务
+5. 初始化数据库
+
+```
+aodh-dbsync
+```
+
+6. 启动Aodh服务
 
 ```
 systemctl enable openstack-aodh-api.service openstack-aodh-evaluator.service openstack-aodh-notifier.service openstack-aodh-listener.service
 
 systemctl start openstack-aodh-api.service openstack-aodh-evaluator.service openstack-aodh-notifier.service openstack-aodh-listener.service
+```
+
+### Gnocchi 安装
+
+1. 创建数据库、服务凭证和 API 端点
+
+```
+CREATE DATABASE gnocchi;
+
+GRANT ALL PRIVILEGES ON gnocchi.* TO 'gnocchi'@'localhost' IDENTIFIED BY 'GNOCCHI_DBPASS';
+
+GRANT ALL PRIVILEGES ON gnocchi.* TO 'gnocchi'@'%' IDENTIFIED BY 'GNOCCHI_DBPASS';
+```
+
+2. 创建对应Keystone资源对象
+
+```
+openstack user create --domain default --password-prompt gnocchi
+
+openstack role add --project service --user gnocchi admin
+
+openstack service create --name gnocchi --description "Metric Service" metric
+
+openstack endpoint create --region RegionOne metric public http://controller:8041
+
+openstack endpoint create --region RegionOne metric internal http://controller:8041
+
+openstack endpoint create --region RegionOne metric admin http://controller:8041
+```
+
+3. 安装Gnocchi
+
+```
+yum install openstack-gnocchi-api openstack-gnocchi-metricd python3-gnocchiclient
+```
+
+4. 修改配置文件`/etc/gnocchi/gnocchi.conf`
+
+```
+[api]
+auth_mode = keystone
+port = 8041
+uwsgi_mode = http-socket
+
+[keystone_authtoken]
+auth_type = password
+auth_url = http://controller:5000/v3
+project_domain_name = Default
+user_domain_name = Default
+project_name = service
+username = gnocchi
+password = GNOCCHI_PASS
+interface = internalURL
+region_name = RegionOne
+
+[indexer]
+url = mysql+pymysql://gnocchi:GNOCCHI_DBPASS@controller/gnocchi
+
+[storage]
+# coordination_url is not required but specifying one will improve
+# performance with better workload division across workers.
+coordination_url = redis://controller:6379
+file_basepath = /var/lib/gnocchi
+driver = file
+```
+
+5. 初始化数据库
+
+```
+gnocchi-upgrade
+```
+
+6. 启动Gnocchi服务
+
+```
+systemctl enable openstack-gnocchi-api.service openstack-gnocchi-metricd.service
+
+systemctl start openstack-gnocchi-api.service openstack-gnocchi-metricd.service
+```
+
+### Ceilometer 安装
+
+1. 创建数据库、服务凭证和 API 端点
+
+```
+```
+
+2. 创建对应Keystone资源对象
+
+```
+openstack user create --domain default --password-prompt ceilometer
+
+openstack role add --project service --user ceilometer admin
+
+openstack service create --name ceilometer --description "Telemetry" metering
+```
+
+3. 安装Ceilometer
+
+```
+yum install openstack-ceilometer-notification openstack-ceilometer-central
+```
+
+4. 修改配置文件`/etc/ceilometer/pipeline.yaml`
+
+```
+publishers:
+    # set address of Gnocchi
+    # + filter out Gnocchi-related activity meters (Swift driver)
+    # + set default archive policy
+    - gnocchi://?filter_project=service&archive_policy=low
+```
+
+5. 修改配置文件`/etc/ceilometer/ceilometer.conf`
+
+```
+[DEFAULT]
+transport_url = rabbit://openstack:RABBIT_PASS@controller
+
+[service_credentials]
+auth_type = password
+auth_url = http://controller:5000/v3
+project_domain_id = default
+user_domain_id = default
+project_name = service
+username = ceilometer
+password = CEILOMETER_PASS
+interface = internalURL
+region_name = RegionOne
+```
+
+6. 初始化数据库
+
+```
+ceilometer-upgrade
+```
+
+7. 启动Ceilometer服务
+
+```
+systemctl enable openstack-ceilometer-notification.service openstack-ceilometer-central.service
+
+systemctl start openstack-ceilometer-notification.service openstack-ceilometer-central.service
 ```

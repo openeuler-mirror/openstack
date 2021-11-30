@@ -74,6 +74,7 @@ OpenStack SIG通过用户反馈等方式收集OpenStack版本需求，经过SIG�
 | Ceilometer |        |       |   ●   |          |         |
 |    Aodh    |        |       |   ●   |          |         |
 |   Cyborg   |        |       |   ●   |          |         |
+|   Gnocchi  |        |       |   ●   |          |    ●    |
 
 Note: openEuler 20.03 LTS SP2不支持Rally
 
