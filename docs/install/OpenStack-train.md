@@ -27,6 +27,7 @@
     - [Aodh 安装](#aodh-安装)
     - [Gnocchi 安装](#gnocchi-安装)
     - [Ceilometer 安装](#ceilometer-安装)
+    - [Heat 安装](#heat-安装)
     <!-- /TOC -->
 
 ## OpenStack 简介
@@ -2977,4 +2978,99 @@ ceilometer-upgrade
 systemctl enable openstack-ceilometer-notification.service openstack-ceilometer-central.service
 
 systemctl start openstack-ceilometer-notification.service openstack-ceilometer-central.service
+```
+
+### Heat 安装
+
+1. 创建**heat**数据库，并授予**heat**数据库正确的访问权限，替换**HEAT_DBPASS**为合适的密码
+
+```
+CREATE DATABASE heat;
+GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'localhost' IDENTIFIED BY 'HEAT_DBPASS';
+GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'%' IDENTIFIED BY 'HEAT_DBPASS';
+```
+
+2. 创建服务凭证，创建**heat**用户，并为其增加**admin**角色
+
+```
+openstack user create --domain default --password-prompt heat
+openstack role add --project service --user heat admin
+```
+
+3. 创建**heat**和**heat-cfn**服务及其对应的API端点
+
+```
+openstack service create --name heat --description "Orchestration" orchestration
+openstack service create --name heat-cfn --description "Orchestration"  cloudformation
+openstack endpoint create --region RegionOne orchestration public http://controller:8004/v1/%\(tenant_id\)s
+openstack endpoint create --region RegionOne orchestration internal http://controller:8004/v1/%\(tenant_id\)s
+openstack endpoint create --region RegionOne orchestration admin http://controller:8004/v1/%\(tenant_id\)s
+openstack endpoint create --region RegionOne cloudformation public http://controller:8000/v1
+openstack endpoint create --region RegionOne cloudformation internal http://controller:8000/v1
+openstack endpoint create --region RegionOne cloudformation admin http://controller:8000/v1
+```
+
+4. 创建stack管理的额外信息，包括**heat**domain及其对应domain的admin用户**heat_domain_admin**，
+**heat_stack_owner**角色，**heat_stack_user**角色
+
+```
+openstack user create --domain heat --password-prompt heat_domain_admin
+openstack role add --domain heat --user-domain heat --user heat_domain_admin admin
+openstack role create heat_stack_owner
+openstack role create heat_stack_user
+```
+
+5. 安装软件包
+
+```
+yum install openstack-heat-api openstack-heat-api-cfn openstack-heat-engine
+```
+
+6. 修改配置文件`/etc/heat/heat.conf`
+
+```
+[DEFAULT]
+transport_url = rabbit://openstack:RABBIT_PASS@controller
+heat_metadata_server_url = http://controller:8000
+heat_waitcondition_server_url = http://controller:8000/v1/waitcondition
+stack_domain_admin = heat_domain_admin
+stack_domain_admin_password = HEAT_DOMAIN_PASS
+stack_user_domain_name = heat
+
+[database]
+connection = mysql+pymysql://heat:HEAT_DBPASS@controller/heat
+
+[keystone_authtoken]
+www_authenticate_uri = http://controller:5000
+auth_url = http://controller:5000
+memcached_servers = controller:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = heat
+password = HEAT_PASS
+
+[trustee]
+auth_type = password
+auth_url = http://controller:5000
+username = heat
+password = HEAT_PASS
+user_domain_name = default
+
+[clients_keystone]
+auth_uri = http://controller:5000
+```
+
+7. 初始化**heat**数据库表
+
+```
+su -s /bin/sh -c "heat-manage db_sync" heat
+```
+
+8. 启动服务
+
+```
+systemctl enable openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service
+systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service
 ```
