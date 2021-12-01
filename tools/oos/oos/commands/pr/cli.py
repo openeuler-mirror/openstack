@@ -1,15 +1,15 @@
 import click
 import pandas
 
-from oos.common.repo import PkgGitRepo
+from oos.commands.spec.repo_class import PkgGitRepo
 
 
 @click.group(name='pr', help='Pull request operations')
-def pr():
+def group():
     pass
 
 
-@pr.command(name='comment', help='Add comment for PR')
+@group.command(name='comment', help='Add comment for PR')
 @click.option("-t", "--gitee-pat", envvar='GITEE_PAT', required=True,
               help="Gitee personal access token")
 @click.option("-o", "--gitee-org", envvar='GITEE_ORG', required=True,
@@ -23,11 +23,11 @@ def pr():
 @click.option('--pr', '--pr-num', help="Specify PR of repo to add comment")
 @click.option('-c', '--comment', required=True, help="Comment to PR")
 def comment_pr(gitee_pat, gitee_org, projects_data,
-               repo, pr_num, comment):
+               repo, pr, comment):
     if not ((repo and pr) or projects_data):
         raise click.ClickException("You must specify projects_data file or "
                                    "specific repo and pr number!")
-    if repo and pr_num:
+    if repo and pr:
         if projects_data:
             click.secho("You have specified repo and PR number, "
                         "the projects_data will be ignore.", fg='red')

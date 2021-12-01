@@ -5,7 +5,7 @@ import click
 import requests
 import yaml
 
-from oos.common import SPEC_CONSTANTS_FILE
+from oos.commands.spec import SPEC_CONSTANTS_FILE
 
 SPEC_CONSTANTS = yaml.safe_load(open(SPEC_CONSTANTS_FILE))
 

@@ -4,8 +4,8 @@ import re
 from packaging import version as p_version
 import requests
 
-from oos import utils
-from oos.commands.dependence_analysis import constants
+from oos.commands.dependence import constants
+from oos.common import utils
 
 
 class Project(object):
