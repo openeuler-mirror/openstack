@@ -13,8 +13,8 @@ import jinja2
 import urllib.request
 import yaml
 
-from oos.common import SPEC_CONSTANTS_FILE
-from oos.common import SPEC_TEMPLET_DIR
+from oos.commands.spec import SPEC_CONSTANTS_FILE
+from oos.commands.spec import SPEC_TEMPLET_DIR
 
 SPEC_CONSTANTS = yaml.safe_load(open(SPEC_CONSTANTS_FILE))
 

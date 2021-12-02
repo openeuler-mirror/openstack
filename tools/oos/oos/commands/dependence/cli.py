@@ -8,9 +8,9 @@ import click
 from packaging import version as p_version
 import requests
 
-from oos.commands.dependence_analysis import constants
-from oos.commands.dependence_analysis import project_class
-from oos import utils
+from oos.commands.dependence import constants
+from oos.commands.dependence import project_class
+from oos.common import utils
 
 
 class Dependence(object):
@@ -269,11 +269,11 @@ class CountDependence(Dependence):
 
 
 @click.group(name='dependence', help='package dependence related commands')
-def mygroup():
+def group():
     pass
 
 
-@mygroup.command(name='generate', help='generate required package list for the specified OpenStack release')
+@group.command(name='generate', help='generate required package list for the specified OpenStack release')
 @click.option('-c', '--compare', is_flag=True, help='Check the project in openEuler community or not')
 @click.option('-cb', '--compare-branch', default='master', help='Branch to compare with')
 @click.option('-i', '--init', is_flag=True, help='Init the cache file or not')

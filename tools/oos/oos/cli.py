@@ -1,8 +1,9 @@
 import click
 
-from oos.commands.dependence_analysis import dep_cli
-from oos.commands import pr_cli
-from oos.commands import spec_cli
+from oos.commands.cluster import cli as cluster_cli
+from oos.commands.dependence import cli as dep_cli
+from oos.commands.pr import cli as pr_cli
+from oos.commands.spec import cli as spec_cli
 
 
 @click.group()
@@ -12,7 +13,8 @@ def run():
 
 def main():
     # Add more command group if needed.
-    run.add_command(spec_cli.spec)
-    run.add_command(pr_cli.pr)
-    run.add_command(dep_cli.mygroup)
+    run.add_command(spec_cli.group)
+    run.add_command(pr_cli.group)
+    run.add_command(dep_cli.group)
+    run.add_command(cluster_cli.group)
     run()

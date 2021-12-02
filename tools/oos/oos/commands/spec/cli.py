@@ -6,9 +6,9 @@ import subprocess
 import click
 import pandas
 
-from oos.common.spec import RPMSpec
-from oos.common.repo import PkgGitRepo
-from oos import utils
+from oos.commands.spec.spec_class import RPMSpec
+from oos.commands.spec.repo_class import PkgGitRepo
+from oos.common import utils
 
 
 class SpecPush(object):
@@ -187,11 +187,11 @@ def _rpmbuild_env_ensure(build_root):
 
 
 @click.group(name='spec', help='RPM spec related commands')
-def spec():
+def group():
     pass
 
 
-@spec.command(name='push', help='Build RPM spec and push to Gitee repo')
+@group.command(name='push', help='Build RPM spec and push to Gitee repo')
 @click.option("--build-root", envvar='BUILD_ROOT',
               default=os.path.join(str(Path.home()), 'rpmbuild'),
               help="Building root directory")
@@ -246,7 +246,7 @@ def push(build_root, gitee_pat, gitee_email, gitee_org, name, version,
     spec_push.build_all(do_push)
 
 
-@spec.command(name='build', help='Build RPM spec locally')
+@group.command(name='build', help='Build RPM spec locally')
 @click.option("--build-root", envvar='BUILD_ROOT',
               default=os.path.join(str(Path.home()), 'rpmbuild'),
               help="Building root directory")
