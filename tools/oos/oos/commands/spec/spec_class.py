@@ -11,12 +11,9 @@ import textwrap
 import click
 import jinja2
 import urllib.request
-import yaml
 
-from oos.commands.spec import SPEC_CONSTANTS_FILE
-from oos.commands.spec import SPEC_TEMPLET_DIR
-
-SPEC_CONSTANTS = yaml.safe_load(open(SPEC_CONSTANTS_FILE))
+from oos.common import CONSTANTS
+from oos.common import SPEC_TEMPLET_DIR
 
 
 class RPMSpec(object):
@@ -76,8 +73,8 @@ class RPMSpec(object):
 
     def _pypi2pkg_name(self, pypi_name):
         prefix = 'python2-' if self.python2 else 'python3-'
-        if pypi_name in SPEC_CONSTANTS['pypi2pkgname']:
-            pkg_name = SPEC_CONSTANTS['pypi2pkgname'][pypi_name]
+        if pypi_name in CONSTANTS['pypi2pkgname']:
+            pkg_name = CONSTANTS['pypi2pkgname'][pypi_name]
         else:
             pkg_name = pypi_name.lower().replace('.', '-')
         if pkg_name.startswith('python-'):
@@ -129,8 +126,8 @@ class RPMSpec(object):
             'python3-', 'python-')
 
     def _get_license(self):
-        if SPEC_CONSTANTS['pypi_license'].get(self.module_name):
-            return SPEC_CONSTANTS['pypi_license'][self.module_name]
+        if CONSTANTS['pypi_license'].get(self.module_name):
+            return CONSTANTS['pypi_license'][self.module_name]
         if (self.pypi_json["info"]["license"] != "" and
                 self.pypi_json["info"]["license"] != "UNKNOWN"):
             org_license = self.pypi_json["info"]["license"]
@@ -178,8 +175,8 @@ class RPMSpec(object):
             self.arch = 'noarch'
 
     def _get_description(self, shorten=True):
-        if self.pypi_name in SPEC_CONSTANTS['pkg_description']:
-            return SPEC_CONSTANTS['pkg_description'][self.pypi_name]
+        if self.pypi_name in CONSTANTS['pkg_description']:
+            return CONSTANTS['pkg_description'][self.pypi_name]
         org_description = self.pypi_json["info"]["description"]
         if not shorten:
             return org_description

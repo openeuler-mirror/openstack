@@ -3,12 +3,9 @@ import subprocess
 
 import click
 import requests
-import yaml
 
-from oos.commands.spec import SPEC_CONSTANTS_FILE
-
-SPEC_CONSTANTS = yaml.safe_load(open(SPEC_CONSTANTS_FILE))
-
+from oos.common import CONSTANTS
+from oos.common import utils
 
 class PkgGitRepo(object):
     def __init__(self, pypi_name, gitee_pat, gitee_org, gitee_user=None,
@@ -22,15 +19,7 @@ class PkgGitRepo(object):
         self.branch_not_found = False
         self.repo_dir = ''
         self.commit_pushed = False
-        self.repo_name = self._pypi_2_repo_name()
-
-    def _pypi_2_repo_name(self):
-        if self.pypi_name in SPEC_CONSTANTS['pypi2reponame']:
-            return SPEC_CONSTANTS['pypi2reponame'][self.pypi_name]
-        else:
-            if self.pypi_name.startswith('python-'):
-                return self.pypi_name
-            return 'python-' + self.pypi_name
+        self.repo_name = utils.get_openeuler_repo_name(self.pypi_name)
 
     def fork_repo(self):
         try:
