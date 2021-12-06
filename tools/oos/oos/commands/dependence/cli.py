@@ -8,8 +8,10 @@ import click
 from packaging import version as p_version
 import requests
 
-from oos.commands.dependence import constants
+from oos.commands.dependence import constants as dep_constants
 from oos.commands.dependence import project_class
+from oos.common import CONSTANTS
+from oos.common import gitee
 from oos.common import utils
 
 
@@ -23,19 +25,17 @@ class Dependence(object):
 class InitDependence(Dependence):
     def __init__(self, openstack_release, projects):
         super(InitDependence, self).__init__(openstack_release)
-        self.project_dict = constants.OPENSTACK_RELEASE_MAP[openstack_release]
+        self.project_dict = dep_constants.OPENSTACK_RELEASE_MAP[openstack_release]
         if projects:
             self.project_dict = dict((k, v) for k, v in self.project_dict.items() if k in projects.split(","))
-        self.blacklist = []
         self.upper_dict = {}
-        self.black_list_file = self.cache_path + "/" + "failed_cache.txt"
         self.upper_list_file = self.cache_path + "/" + "upper.json"
         self.upper_url = "https://opendev.org/openstack/requirements/raw/branch/stable/%s/upper-constraints.txt" % openstack_release
         self.loaded_list = []
 
     def _cache_dependencies(self, project_obj):
         """Cache dependencies by recursion way"""
-        if project_obj.name in self.blacklist:
+        if project_obj.name in CONSTANTS['black_list']:
             print("%s is in black list, skip now" % project_obj.name)
             return
         file_path = self.pypi_cache_path + "/" + "%s.json" % project_obj.name
@@ -58,7 +58,7 @@ class InitDependence(Dependence):
             if name in project_obj.deep_list:
                 continue
             version = version_range['version']
-            version = constants.PROJECT_VERSION_FIX_MAPPING.get("%s-%s" % (name, version), version)
+            version = CONSTANTS['pypi_version_fix'].get("%s-%s" % (name, version), version)
             child_project_obj = project_class.Project(
                 name, version, eq_version=version_range['eq_version'], ge_version=version_range['ge_version'],
                 lt_version=version_range['lt_version'], ne_version=version_range['ne_version'],
@@ -92,20 +92,9 @@ class InitDependence(Dependence):
         else:
             print("Creating Cache folder %s" % self.pypi_cache_path)
             Path(self.pypi_cache_path).mkdir(parents=True)
-
-        if Path(self.black_list_file).exists():
-            with open(self.black_list_file, 'r', encoding='utf8') as fp:
-                self.blacklist = fp.read().splitlines()
-        black_list_set = set(self.blacklist)
-        black_list_set.update(constants.PROJECT_OUT_OF_PYPI)
-        self.blacklist = list(black_list_set)
         self.upper_dict = self._generate_upper_list()
 
     def _post(self):
-        with open(self.black_list_file, 'a', encoding='utf8') as fp:
-            for project in self.blacklist:
-                fp.write(project)
-                fp.write('\n')
         all_project = set(self.project_dict.keys())
         file_list = os.listdir(self.pypi_cache_path)
         for file_name in file_list:
@@ -134,20 +123,6 @@ class CountDependence(Dependence):
             raise Exception("The cache folder doesn't exist, please add --init in command to generate it first.")
         self.token = token if token else os.environ.get("GITEE_PAT")
         self.compare = compare
-        if self.compare:
-            if not Path(self.cache_path + '/' + 'openeuler_repo').exists():
-                print("Fetching openEuler project info")
-                self.gitee_projects = utils.get_gitee_org_repos('src-openeuler', self.token)
-                with open(self.cache_path + '/' + 'openeuler_repo', 'w', encoding='utf8') as fp:
-                    for project in self.gitee_projects:
-                        fp.write(project)
-                        fp.write('\n')
-            else:
-                print("Read openeuler repo from cache")
-                with open(self.cache_path + '/' + 'openeuler_repo', 'r', encoding='utf8') as fp:
-                    self.gitee_projects = fp.read().splitlines()
-            if not Path(self.openeuler_cache_path).exists():
-                Path(self.openeuler_cache_path).mkdir(parents=True)
 
     def _generate_without_compare(self, file_list):
         with open(self.output, "w") as csv_file:
@@ -163,27 +138,16 @@ class CountDependence(Dependence):
                     project_dict['deep']['count']
                 ])
 
-    def _get_repo_name(self, project_name):
-        openeuler_name = constants.PYPI_OPENEULER_NAME_MAP.get(project_name, project_name)
-        if 'python-'+openeuler_name in self.gitee_projects:
-            return 'python-'+openeuler_name
-        elif openeuler_name in self.gitee_projects:
-            return openeuler_name
-        elif 'openstack-'+openeuler_name in self.gitee_projects:
-            return 'openstack-'+openeuler_name
-        else:
-            return ''
-
     def _get_repo_version(self, repo_name, compare_branch):
         if Path(self.openeuler_cache_path + '/' + '%s.json' % repo_name).exists():
             with open(self.openeuler_cache_path + '/' + '%s.json' % repo_name, 'r', encoding='utf8') as fp:
                 return json.load(fp)['version'], True
 
         print('fetch %s info from gitee' % repo_name)
-        if not utils.has_branch('src-openeuler', repo_name, compare_branch, self.token):
+        if not gitee.has_branch('src-openeuler', repo_name, compare_branch, self.token):
             return '', False
 
-        repo_version = utils.get_gitee_project_version('src-openeuler', repo_name, compare_branch, self.token)
+        repo_version = gitee.get_gitee_project_version('src-openeuler', repo_name, compare_branch, self.token)
         with open(self.openeuler_cache_path + '/' + '%s.json' % repo_name, 'w', encoding='utf8') as fp:
             json.dump({'version': repo_version}, fp, ensure_ascii=False)
         return repo_version, True
@@ -238,7 +202,7 @@ class CountDependence(Dependence):
                     project_lt_version = project_dict['version_dict']['lt_version']
                     project_ne_version = project_dict['version_dict']['ne_version']
                     project_upper_version = project_dict['version_dict']['upper_version']
-                repo_name = self._get_repo_name(project_name)
+                repo_name = utils.get_openeuler_repo_name(project_name)
                 repo_version, status = self._get_version_and_status(repo_name,
                     project_version, project_eq_version, project_lt_version,
                     project_ne_version, project_upper_version, compare_branch)
@@ -280,7 +244,7 @@ def group():
 @click.option('-o', '--output', default='result', help='Output file name, default: result.csv')
 @click.option('-t', '--token', help='Personal gitee access token used for fetching info from gitee')
 @click.option('-p', '--projects', default=None, help='Specify the projects to be generated. Format should be like project1,project2')
-@click.argument('release', type=click.Choice(constants.OPENSTACK_RELEASE_MAP.keys()))
+@click.argument('release', type=click.Choice(dep_constants.OPENSTACK_RELEASE_MAP.keys()))
 def generate(compare, compare_branch, init, output, token, projects, release):
     if init:
         myobj = InitDependence(release, projects)

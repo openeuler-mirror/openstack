@@ -4,8 +4,8 @@ import re
 from packaging import version as p_version
 import requests
 
-from oos.commands.dependence import constants
-from oos.common import utils
+from oos.common import CONSTANTS
+from oos.common import pypi
 
 
 class Project(object):
@@ -103,7 +103,7 @@ class Project(object):
         for line in requires_list:
             if self._is_legal(line):
                 required_project_name = re.search(r"^[a-zA-Z0-9_\.\-]+", line).group()
-                required_project_name = constants.PROJECT_NAME_FIX_MAPPING.get(required_project_name, required_project_name)
+                required_project_name = CONSTANTS['pypi_name_fix'].get(required_project_name, required_project_name)
                 required_project_info = {
                     "eq_version": re.search(project_version_eq_regex, line).group() if re.search(project_version_eq_regex, line) else '',
                     "ge_version": re.search(project_version_ge_regex, line).group() if re.search(project_version_ge_regex, line) else '',
@@ -134,7 +134,7 @@ class Project(object):
         return True
 
     def _generate_cache_from_pypi(self, file_path):
-        requires_list = utils.get_json_from_pypi(self.name, self.version)["info"]["requires_dist"]
+        requires_list = pypi.get_json_from_pypi(self.name, self.version)["info"]["requires_dist"]
         if requires_list:
             self._update_requires(requires_list)
         with open(file_path, 'w', encoding='utf8') as fp:

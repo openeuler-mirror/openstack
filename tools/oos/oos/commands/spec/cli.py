@@ -8,7 +8,7 @@ import pandas
 
 from oos.commands.spec.spec_class import RPMSpec
 from oos.commands.spec.repo_class import PkgGitRepo
-from oos.common import utils
+from oos.common import gitee
 
 
 class SpecPush(object):
@@ -35,7 +35,7 @@ class SpecPush(object):
         self.query = query
         self.reuse_spec = reuse_spec
 
-        g_user, g_email = utils.get_user_info(self.gitee_pat)
+        g_user, g_email = gitee.get_user_info(self.gitee_pat)
         self.gitee_email = gitee_email or g_email
         if not self.gitee_email:
             raise click.ClickException(
