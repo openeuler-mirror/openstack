@@ -28,9 +28,9 @@
 
 OpenStack 是一个社区，也是一个项目。它提供了一个部署云的操作平台或工具集，为组织提供可扩展的、灵活的云计算。
 
-作为一个开源的云计算管理平台，OpenStack 由nova、cinder、neutron、glance、keystone、horizon等几个主要的组件组合起来完成具体工作。OpenStack 支持几乎所有类型的云环境，项目目标是提供实施简单、可大规模扩展、丰富、标准统一的云计算管理平台。OpenStack 通过各种互补的服务提供了基础设施即服务（IaaS）的解决方案，每个服务提供 API 进行集成。
+作为一个开源的云计算管理平台，OpenStack 由 nova、cinder、neutron、glance、keystone、horizon 等几个主要的组件组合起来完成具体工作。OpenStack 支持几乎所有类型的云环境，项目目标是提供实施简单、可大规模扩展、丰富、标准统一的云计算管理平台。OpenStack 通过各种互补的服务提供了基础设施即服务（IaaS）的解决方案，每个服务提供 API 进行集成。
 
-openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 Openstack-Queens 版本，用户可以配置好oepkg yum 源后根据此文档进行 OpenStack 部署。
+openEuler 20.03-LTS-SP3 版本官方认证的第三方 oepkg yum 源已经支持 Openstack-Queens 版本，用户可以配置好 oepkg yum 源后根据此文档进行 OpenStack 部署。
 
 ## 约定
 
@@ -62,13 +62,13 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
 ### 环境配置
 
-1. 配置 20.03-LTS-SP2 官方认证的第三方源 oepkg，以aarch64为例
+1. 配置 20.03-LTS-SP3 官方认证的第三方源 oepkg，以aarch64为例
 
     ```shell
     cat << EOF >> /etc/yum.repos.d/OpenStack_Queens.repo
     [openstack_queens]
     name=OpenStack_Queens
-    baseurl=https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/queens/aarch64/
+    baseurl=https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP3/budding-openeuler/openstack/queens/aarch64/
     gpgcheck=0
     enabled=1
     EOF
@@ -1872,17 +1872,29 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
 ### Kolla 安装
 
-Kolla为OpenStack服务提供生产环境可用的容器化部署的功能。openEuler 20.03 LTS SP2中引入了Kolla和Kolla-ansible服务。
+Kolla 为 OpenStack 服务提供生产环境可用的容器化部署的功能。openEuler 20.03 LTS SP3 中引入了 Kolla 和 Kolla-ansible 服务。
 
 Kolla的安装十分简单，只需要安装对应的RPM包即可
 
+支持 openEuler 版本：
+
+```shell
+yum install openstack-kolla-plugin openstack-kolla-ansible-plugin
 ```
+
+不支持 openEuler 版本：
+
+```shell
 yum install openstack-kolla openstack-kolla-ansible
 ```
 
 安装完后，就可以使用`kolla-ansible`, `kolla-build`, `kolla-genpwd`, `kolla-mergepwd`等命令了。
 
+**补充:**
+Kolla 以及 Kolla-ansible 原生并不支持 openEuler，因此 Openstack SIG 提供了 `openstack-kolla-plugin` 和 `openstack-kolla-ansible-plugin` 这两个补丁包。
+
 ### Trove 安装
+
 Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据库服务则推荐使用该组件。否则，可以不用安装。
 
 1. 设置数据库
