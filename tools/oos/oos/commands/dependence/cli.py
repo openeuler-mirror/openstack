@@ -8,11 +8,12 @@ import click
 from packaging import version as p_version
 import requests
 
-from oos.commands.dependence import constants as dep_constants
 from oos.commands.dependence import project_class
-from oos.common import CONSTANTS
 from oos.common import gitee
 from oos.common import utils
+
+from oos.common import CONSTANTS
+from oos.common import OPENSTACK_RELEASE_MAP
 
 
 class Dependence(object):
@@ -25,7 +26,7 @@ class Dependence(object):
 class InitDependence(Dependence):
     def __init__(self, openstack_release, projects):
         super(InitDependence, self).__init__(openstack_release)
-        self.project_dict = dep_constants.OPENSTACK_RELEASE_MAP[openstack_release]
+        self.project_dict = OPENSTACK_RELEASE_MAP[openstack_release]
         if projects:
             self.project_dict = dict((k, v) for k, v in self.project_dict.items() if k in projects.split(","))
         self.upper_dict = {}
@@ -244,7 +245,7 @@ def group():
 @click.option('-o', '--output', default='result', help='Output file name, default: result.csv')
 @click.option('-t', '--token', help='Personal gitee access token used for fetching info from gitee')
 @click.option('-p', '--projects', default=None, help='Specify the projects to be generated. Format should be like project1,project2')
-@click.argument('release', type=click.Choice(dep_constants.OPENSTACK_RELEASE_MAP.keys()))
+@click.argument('release', type=click.Choice(OPENSTACK_RELEASE_MAP.keys()))
 def generate(compare, compare_branch, init, output, token, projects, release):
     if init:
         myobj = InitDependence(release, projects)

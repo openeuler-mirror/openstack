@@ -1,7 +1,5 @@
 click
 Jinja2
 pandas
-pipgrip
 pyyaml
 requests
-urllib3  # MIT
