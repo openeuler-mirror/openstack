@@ -2538,7 +2538,7 @@ Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适�
     重新平衡戒指：
     
     ```shell
-    swift-ring-builder account.builder rebalance
+    swift-ring-builder container.builder rebalance
     ```
     
 8. 创建对象环 (CTL)
@@ -2573,7 +2573,7 @@ Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适�
     重新平衡戒指：
     
     ```shell
-    swift-ring-builder account.builder rebalance
+    swift-ring-builder object.builder rebalance
     ```
 
     分发环配置文件：
