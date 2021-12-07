@@ -1,0 +1,1 @@
+{"name": "nosexcover", "version_dict": {"version": "1.0.11", "eq_version": "", "ge_version": "1.0.10", "lt_version": "", "ne_version": [], "upper_version": "1.0.11"}, "deep": {"count": 1, "list": ["swift", "nosexcover"]}, "requires": {}}

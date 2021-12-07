@@ -1,1 +1,0 @@
-{"name": "matplotlib", "version_dict": {"version": "1.4", "eq_version": "", "ge_version": "1.4", "lt_version": "", "ne_version": []}, "deep": {"count": 4, "list": ["cinder", "cinder", "os-brick", "stestr", "subunit2sql", "matplotlib"]}, "requires": {}}

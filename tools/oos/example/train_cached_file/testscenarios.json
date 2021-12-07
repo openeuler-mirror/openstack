@@ -1,0 +1,1 @@
+{"name": "testscenarios", "version_dict": {"version": "0.5.0", "eq_version": "", "ge_version": "0.4", "lt_version": "", "ne_version": [], "upper_version": "0.5.0"}, "deep": {"count": 10, "list": ["aodh", "futurist", "hacking", "oslosphinx", "openstackdocstheme", "os-api-ref", "stestr", "cliff", "stevedore", "bandit", "testscenarios"]}, "requires": {}}

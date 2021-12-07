@@ -1,1 +1,0 @@
-{"name": "openstack.nose-plugin", "version_dict": {"version": "0.7", "eq_version": "", "ge_version": "0.7", "lt_version": "", "ne_version": []}, "deep": {"count": 4, "list": ["cinder", "cinder", "python-barbicanclient", "python-openstackclient", "python-zaqarclient", "python-zaqarclient", "openstack.nose-plugin"]}, "requires": {}}

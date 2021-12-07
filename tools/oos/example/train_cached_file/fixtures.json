@@ -1,0 +1,1 @@
+{"name": "fixtures", "version_dict": {"version": "3.0.0", "eq_version": "", "ge_version": "0.3.14", "lt_version": "", "ne_version": [], "upper_version": "3.0.0"}, "deep": {"count": 3, "list": ["aodh", "futurist", "hacking", "fixtures"]}, "requires": {}}

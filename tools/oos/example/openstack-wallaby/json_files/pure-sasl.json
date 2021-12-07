@@ -1,1 +1,0 @@
-{"name": "pure-sasl", "version_dict": {"version": "unknown", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": []}, "deep": {"count": 3, "list": ["cinder", "cinder", "taskflow", "kazoo", "pure-sasl"]}, "requires": {}}

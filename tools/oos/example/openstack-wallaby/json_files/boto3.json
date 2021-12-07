@@ -1,1 +1,0 @@
-{"name": "boto3", "version_dict": {"version": "1.16.51", "eq_version": "", "ge_version": "1.16.51", "lt_version": "", "ne_version": []}, "deep": {"count": 1, "list": ["cinder", "cinder", "boto3"]}, "requires": {}}

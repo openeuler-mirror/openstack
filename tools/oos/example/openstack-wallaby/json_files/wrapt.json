@@ -1,1 +1,0 @@
-{"name": "wrapt", "version_dict": {"version": "1.7.0", "eq_version": "", "ge_version": "1.7.0", "lt_version": "", "ne_version": []}, "deep": {"count": 6, "list": ["cinder", "keystoneauth1", "os-service-types", "oslotest", "oslotest", "oslo.config", "debtcollector", "wrapt"]}, "requires": {}}

@@ -1,1 +1,0 @@
-{"name": "ruamel.ordereddict", "version_dict": {"version": "unknown", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": []}, "deep": {"count": 3, "list": ["kolla-ansible", "ansible-lint", "ansible-lint", "ruamel.yaml", "ruamel.ordereddict"]}, "requires": {}}

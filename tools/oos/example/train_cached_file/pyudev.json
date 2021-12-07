@@ -1,0 +1,1 @@
+{"name": "pyudev", "version_dict": {"version": "0.21.0", "eq_version": "", "ge_version": "0.16.1", "lt_version": "", "ne_version": [], "upper_version": "0.21.0"}, "deep": {"count": 2, "list": ["cinder", "rtslib-fb", "pyudev"]}, "requires": {}}

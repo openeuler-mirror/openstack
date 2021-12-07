@@ -1,1 +1,0 @@
-{"name": "ansible", "version_dict": {"version": "2.9.0", "eq_version": "", "ge_version": "2.9.0", "lt_version": "3.0", "ne_version": []}, "deep": {"count": 1, "list": ["kolla-ansible", "ansible"]}, "requires": {}}

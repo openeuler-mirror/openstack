@@ -1,0 +1,1 @@
+{"name": "prometheus_client", "version_dict": {"version": "0.6.0", "eq_version": "", "ge_version": "0.6.0", "lt_version": "", "ne_version": [], "upper_version": ""}, "deep": {"count": 1, "list": ["ironic-prometheus-exporter", "prometheus_client"]}, "requires": {}}

@@ -1,1 +1,0 @@
-{"name": "pytest-env", "version_dict": {"version": "0.6.2", "eq_version": "", "ge_version": "0.6.2", "lt_version": "1", "ne_version": []}, "deep": {"count": 4, "list": ["cinder", "cinder", "oslo.concurrency", "pre-commit", "virtualenv", "pytest-env"]}, "requires": {}}

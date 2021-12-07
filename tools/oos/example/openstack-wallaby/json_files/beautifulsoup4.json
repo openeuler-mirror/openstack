@@ -1,1 +1,0 @@
-{"name": "beautifulsoup4", "version_dict": {"version": "4.6.0", "eq_version": "", "ge_version": "4.6.0", "lt_version": "", "ne_version": []}, "deep": {"count": 5, "list": ["cinder", "cinder", "python-novaclient", "python-neutronclient", "osc-lib", "openstacksdk", "beautifulsoup4"]}, "requires": {}}

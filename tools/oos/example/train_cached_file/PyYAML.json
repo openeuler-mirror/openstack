@@ -1,0 +1,1 @@
+{"name": "PyYAML", "version_dict": {"version": "5.1.2", "eq_version": "", "ge_version": "3.12", "lt_version": "", "ne_version": [], "upper_version": "5.1.2"}, "deep": {"count": 6, "list": ["aodh", "futurist", "hacking", "oslosphinx", "openstackdocstheme", "os-api-ref", "PyYAML"]}, "requires": {}}

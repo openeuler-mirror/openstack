@@ -1,4 +1,0 @@
-pyev
-infinisim
-rbd
-rados

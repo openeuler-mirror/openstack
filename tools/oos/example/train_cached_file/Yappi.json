@@ -1,0 +1,1 @@
+{"name": "Yappi", "version_dict": {"version": "1.0", "eq_version": "", "ge_version": "1.0", "lt_version": "", "ne_version": [], "upper_version": ""}, "deep": {"count": 4, "list": ["aodh", "keystonemiddleware", "oslo.messaging", "oslo.service", "Yappi"]}, "requires": {}}

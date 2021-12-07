@@ -1,0 +1,1 @@
+{"name": "python-subunit", "version_dict": {"version": "1.4.0", "eq_version": "", "ge_version": "0.0.18", "lt_version": "", "ne_version": [], "upper_version": "1.4.0"}, "deep": {"count": 3, "list": ["aodh", "futurist", "hacking", "python-subunit"]}, "requires": {}}

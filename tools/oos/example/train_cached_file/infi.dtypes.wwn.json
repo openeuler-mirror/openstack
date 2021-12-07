@@ -1,0 +1,1 @@
+{"name": "infi.dtypes.wwn", "version_dict": {"version": "0.1.1", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": [], "upper_version": "0.1.1"}, "deep": {"count": 1, "list": ["cinder", "infi.dtypes.wwn"]}, "requires": {}}

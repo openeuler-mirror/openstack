@@ -1,0 +1,1 @@
+{"name": "sysv-ipc", "version_dict": {"version": "1.0.0", "eq_version": "", "ge_version": "0.6.8", "lt_version": "", "ne_version": [], "upper_version": "1.0.0"}, "deep": {"count": 2, "list": ["aodh", "tooz", "sysv-ipc"]}, "requires": {}}

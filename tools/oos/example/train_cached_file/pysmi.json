@@ -1,0 +1,1 @@
+{"name": "pysmi", "version_dict": {"version": "0.3.4", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": [], "upper_version": "0.3.4"}, "deep": {"count": 2, "list": ["ceilometer", "pysnmp", "pysmi"]}, "requires": {"ply": {"eq_version": "", "ge_version": "", "lt_version": "", "ne_version": [], "upper_version": "3.11", "version": "3.11"}}}

@@ -1,0 +1,1 @@
+{"name": "rjsmin", "version_dict": {"version": "1.1.0", "eq_version": "1.1.0", "ge_version": "", "lt_version": "", "ne_version": [], "upper_version": "1.1.0"}, "deep": {"count": 2, "list": ["horizon", "django-compressor", "rjsmin"]}, "requires": {}}

@@ -1,1 +1,0 @@
-{"name": "python-memcached", "version_dict": {"version": "1.59", "eq_version": "", "ge_version": "1.59", "lt_version": "", "ne_version": []}, "deep": {"count": 1, "list": ["horizon", "python-memcached"]}, "requires": {"six": {"eq_version": "", "ge_version": "1.4.0", "lt_version": "", "ne_version": [], "version": "1.4.0"}}}

@@ -1,1 +1,0 @@
-{"name": "nodeenv", "version_dict": {"version": "0.11.1", "eq_version": "", "ge_version": "0.11.1", "lt_version": "", "ne_version": []}, "deep": {"count": 3, "list": ["cinder", "cinder", "oslo.concurrency", "pre-commit", "nodeenv"]}, "requires": {}}

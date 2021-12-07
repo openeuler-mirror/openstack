@@ -1,0 +1,1 @@
+{"name": "sphinxcontrib-blockdiag", "version_dict": {"version": "1.5.5", "eq_version": "", "ge_version": "1.5.4", "lt_version": "", "ne_version": [], "upper_version": "1.5.5"}, "deep": {"count": 1, "list": ["ceilometer", "sphinxcontrib-blockdiag"]}, "requires": {}}

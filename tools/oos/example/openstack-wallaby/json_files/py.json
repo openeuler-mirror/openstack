@@ -1,1 +1,0 @@
-{"name": "py", "version_dict": {"version": "1.5.1", "eq_version": "", "ge_version": "1.5.0", "lt_version": "", "ne_version": []}, "deep": {"count": 5, "list": ["cinder", "cinder", "oslo.concurrency", "pre-commit", "virtualenv", "pytest", "py"]}, "requires": {}}

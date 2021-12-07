@@ -1,0 +1,1 @@
+{"name": "voluptuous", "version_dict": {"version": "0.11.7", "eq_version": "", "ge_version": "0.8.9", "lt_version": "", "ne_version": [], "upper_version": "0.11.7"}, "deep": {"count": 7, "list": ["aodh", "futurist", "hacking", "oslosphinx", "openstackdocstheme", "os-api-ref", "stestr", "voluptuous"]}, "requires": {}}

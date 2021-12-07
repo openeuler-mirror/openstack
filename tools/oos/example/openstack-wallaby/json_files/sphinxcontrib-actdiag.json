@@ -1,1 +1,0 @@
-{"name": "sphinxcontrib-actdiag", "version_dict": {"version": "0.8.5", "eq_version": "", "ge_version": "0.8.5", "lt_version": "", "ne_version": []}, "deep": {"count": 1, "list": ["nova", "sphinxcontrib-actdiag"]}, "requires": {}}

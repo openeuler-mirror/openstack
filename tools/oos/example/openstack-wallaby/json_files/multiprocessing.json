@@ -1,1 +1,0 @@
-{"name": "multiprocessing", "version_dict": {"version": "unknown", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": []}, "deep": {"count": 5, "list": ["cinder", "cinder", "google-api-python-client", "google-api-core", "grpcio", "futures", "multiprocessing"]}, "requires": {}}

@@ -1,1 +1,0 @@
-{"name": "ecdsa", "version_dict": {"version": "0.13", "eq_version": "", "ge_version": "0.13", "lt_version": "", "ne_version": []}, "deep": {"count": 3, "list": ["cinder", "cinder", "moto", "sshpubkeys", "ecdsa"]}, "requires": {}}

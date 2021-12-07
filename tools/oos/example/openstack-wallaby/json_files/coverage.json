@@ -1,1 +1,0 @@
-{"name": "coverage", "version_dict": {"version": "5.5", "eq_version": "", "ge_version": "5.5", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "cinder", "os-brick", "coverage"]}, "requires": {"toml": {"eq_version": "", "ge_version": "", "lt_version": "", "ne_version": [], "version": "unknown"}}}

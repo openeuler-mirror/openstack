@@ -1,0 +1,1 @@
+{"name": "scandir", "version_dict": {"version": "1.10.0", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": [], "upper_version": "1.10.0"}, "deep": {"count": 11, "list": ["aodh", "futurist", "hacking", "mock", "Sphinx", "sphinxcontrib-applehelp", "pytest", "pluggy", "importlib-metadata", "zipp", "pathlib2", "scandir"]}, "requires": {}}

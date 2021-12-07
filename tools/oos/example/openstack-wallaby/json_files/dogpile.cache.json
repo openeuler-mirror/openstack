@@ -1,1 +1,0 @@
-{"name": "dogpile.cache", "version_dict": {"version": "1.0.2", "eq_version": "", "ge_version": "1.0.2", "lt_version": "", "ne_version": []}, "deep": {"count": 1, "list": ["keystone", "keystone", "dogpile.cache"]}, "requires": {}}

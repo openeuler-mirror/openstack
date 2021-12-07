@@ -1,0 +1,1 @@
+{"name": "cassandra-driver", "version_dict": {"version": "3.19.0", "eq_version": "", "ge_version": "2.1.4", "lt_version": "", "ne_version": ["3.6.0"], "upper_version": "3.19.0"}, "deep": {"count": 1, "list": ["trove", "cassandra-driver"]}, "requires": {}}

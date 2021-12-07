@@ -1,1 +1,0 @@
-{"name": "Werkzeug", "version_dict": {"version": "1.0.1", "eq_version": "", "ge_version": "1.0.1", "lt_version": "", "ne_version": []}, "deep": {"count": 1, "list": ["ironic-python-agent", "Werkzeug"]}, "requires": {"watchdog": {"eq_version": "", "ge_version": "", "lt_version": "", "ne_version": [], "version": "unknown"}}}

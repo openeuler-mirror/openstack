@@ -1,0 +1,1 @@
+{"name": "pytz", "version_dict": {"version": "2019.2", "eq_version": "", "ge_version": "2015.7", "lt_version": "", "ne_version": [], "upper_version": "2019.2"}, "deep": {"count": 7, "list": ["aodh", "futurist", "hacking", "mock", "Sphinx", "Jinja2", "Babel", "pytz"]}, "requires": {}}

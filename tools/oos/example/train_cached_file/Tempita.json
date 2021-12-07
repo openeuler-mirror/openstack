@@ -1,0 +1,1 @@
+{"name": "Tempita", "version_dict": {"version": "0.5.2", "eq_version": "", "ge_version": "0.4", "lt_version": "", "ne_version": [], "upper_version": "0.5.2"}, "deep": {"count": 10, "list": ["aodh", "futurist", "hacking", "oslosphinx", "openstackdocstheme", "os-api-ref", "stestr", "subunit2sql", "oslo.db", "sqlalchemy-migrate", "Tempita"]}, "requires": {}}

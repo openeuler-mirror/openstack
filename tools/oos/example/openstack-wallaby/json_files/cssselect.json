@@ -1,1 +1,0 @@
-{"name": "cssselect", "version_dict": {"version": "0.7", "eq_version": "", "ge_version": "0.7", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "cinder", "lxml", "cssselect"]}, "requires": {}}

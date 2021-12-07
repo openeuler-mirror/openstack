@@ -1,0 +1,1 @@
+{"name": "itsdangerous", "version_dict": {"version": "1.1.0", "eq_version": "", "ge_version": "0.24", "lt_version": "", "ne_version": [], "upper_version": "1.1.0"}, "deep": {"count": 2, "list": ["keystone", "Flask", "itsdangerous"]}, "requires": {}}

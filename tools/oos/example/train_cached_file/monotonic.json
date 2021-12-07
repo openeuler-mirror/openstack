@@ -1,0 +1,1 @@
+{"name": "monotonic", "version_dict": {"version": "1.5", "eq_version": "", "ge_version": "0.6", "lt_version": "", "ne_version": [], "upper_version": "1.5"}, "deep": {"count": 2, "list": ["aodh", "futurist", "monotonic"]}, "requires": {}}

@@ -1,0 +1,1 @@
+{"name": "pyxcli", "version_dict": {"version": "1.1.5", "eq_version": "", "ge_version": "1.1.5", "lt_version": "", "ne_version": [], "upper_version": ""}, "deep": {"count": 1, "list": ["cinder", "pyxcli"]}, "requires": {}}

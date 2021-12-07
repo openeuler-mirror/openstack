@@ -1,1 +1,0 @@
-{"name": "persist-queue", "version_dict": {"version": "0.2.3", "eq_version": "", "ge_version": "0.2.3", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "cinder", "storops", "persist-queue"]}, "requires": {}}

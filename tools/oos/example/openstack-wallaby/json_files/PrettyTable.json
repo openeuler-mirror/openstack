@@ -1,1 +1,0 @@
-{"name": "PrettyTable", "version_dict": {"version": "0.7.2", "eq_version": "", "ge_version": "0.7", "lt_version": "0.8", "ne_version": []}, "deep": {"count": 8, "list": ["cinder", "keystoneauth1", "os-service-types", "hacking", "reno", "oslotest", "os-client-config", "python-keystoneclient", "PrettyTable"]}, "requires": {}}

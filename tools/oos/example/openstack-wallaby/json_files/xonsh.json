@@ -1,1 +1,0 @@
-{"name": "xonsh", "version_dict": {"version": "0.9.13", "eq_version": "", "ge_version": "0.9.13", "lt_version": "1", "ne_version": []}, "deep": {"count": 4, "list": ["cinder", "cinder", "oslo.concurrency", "pre-commit", "virtualenv", "xonsh"]}, "requires": {}}

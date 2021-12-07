@@ -1,0 +1,1 @@
+{"name": "ujson", "version_dict": {"version": "1.35", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": [], "upper_version": "1.35"}, "deep": {"count": 2, "list": ["aodh", "gnocchiclient", "ujson"]}, "requires": {}}

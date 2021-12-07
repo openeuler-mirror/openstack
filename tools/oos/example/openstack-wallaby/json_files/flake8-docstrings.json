@@ -1,1 +1,0 @@
-{"name": "flake8-docstrings", "version_dict": {"version": "0.2.1.post1", "eq_version": "0.2.1.post1", "ge_version": "", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "keystoneauth1", "keystoneauth1", "flake8-docstrings"]}, "requires": {}}

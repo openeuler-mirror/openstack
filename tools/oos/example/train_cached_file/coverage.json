@@ -1,0 +1,1 @@
+{"name": "coverage", "version_dict": {"version": "4.5.4", "eq_version": "", "ge_version": "3.6", "lt_version": "", "ne_version": [], "upper_version": "4.5.4"}, "deep": {"count": 3, "list": ["aodh", "futurist", "hacking", "coverage"]}, "requires": {}}
