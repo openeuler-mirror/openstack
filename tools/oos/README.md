@@ -56,10 +56,21 @@ oos spec build --projects-data projects.csv
 
 ## 自动分析OpenStack软件包依赖
 
-以OpenStack wallaby为例，执行执行命令，生成结果。第一次使用的时候要加上`--init`参数，以便生成缓存文件：
+以OpenStack train为例，
+
+1. 调用脚本，生成缓存文件，默认存放在`train_cached_file`目录
 
 ```
-oos dependence generate --init wallaby
+cd tools/oos/scripts
+python3 generate_dependence.py train
+本命令默认会生成Train版本SIG支持的所有OpenStack服务，用户也可以根据自己需求，指定openstack项目，例如
+python3 generate_dependence.py --projects nova,cinder train
+```
+
+2. 调用oos命令，生成依赖分析结果
+
+```
+oos dependence generate train_cached_file
 ```
 
 其他支持的参数有：
@@ -67,6 +78,8 @@ oos dependence generate --init wallaby
 ```
 -c, --compare
     结果是否与openeuler社区仓库进行比对，生成建议
+-cb, --compare-branch'
+    指定openEuler比对的仓库分支，默认是master
 -t, --token
     如果使用了-c，需要同时指定gitee token，否则gitee可能会拒接访问。
     或者配置环境变量GITEE_PAT也行。
@@ -74,23 +87,8 @@ oos dependence generate --init wallaby
     指定命令行生成的文件名，默认为result.csv
 ```
 
-该命令运行完后，根目录下会生成4个文件：
+该命令运行完后，根目录下会生成1个结果文件，默认为`result.csv`。
 
-wallaby_cache_file
-
-    cache文件目录，里面包含了所有项目的依赖分析文件
-
-failed_cache.txt
-
-    该命令无法处理的软件包，需要用户手动分析
-
-openeuler_repo
-
-    src-openeuler组织的全量项目名称
-
-result.csv
-
-    依赖分析结果文件
 
 ## 自动提交Spec PR到openEuler社区
 
