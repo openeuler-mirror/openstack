@@ -243,8 +243,8 @@ class Project(object):
 class InitDependence(object):
     def __init__(self, openstack_release, projects):
         self.pypi_cache_path =  "./%s_cached_file" % openstack_release
-        self.unknow_file = self.pypi_cache_path + "/" + "unknow"
-        self.unknow_list = []
+        self.unknown_file = self.pypi_cache_path + "/" + "unknown"
+        self.unknown_list = []
         self.loaded_list = []
 
         self.project_dict = dict()
@@ -264,15 +264,15 @@ class InitDependence(object):
             return
         if project_obj.version == 'unknown':
             print("The version of %s is not specified, skip now" % project_obj.version)
-            if project_obj.name not in self.unknow_list:
-                if Path(self.unknow_file).exists():
-                    with open(self.unknow_file, 'a') as fp:
+            if project_obj.name not in self.unknown_list:
+                if Path(self.unknown_file).exists():
+                    with open(self.unknown_file, 'a') as fp:
                         fp.write(project_obj.name + "\n")
-                    self.unknow_list.append(project_obj.name)
+                    self.unknown_list.append(project_obj.name)
                 else:
-                    with open(self.unknow_file, 'w') as fp:
+                    with open(self.unknown_file, 'w') as fp:
                         fp.write(project_obj.name + "\n")
-                    self.unknow_list.append(project_obj.name)
+                    self.unknown_list.append(project_obj.name)
             return
         file_path = self.pypi_cache_path + "/" + "%s.json" % project_obj.name
         if Path(file_path).exists():
@@ -326,9 +326,9 @@ class InitDependence(object):
             if project_name not in list(all_project) and file_name.endswith('.json'):
                 print("%s is required by nothing, remove it." % project_name)
                 os.remove(self.pypi_cache_path + '/' + file_name)
-        with open(self.unknow_file, 'r') as fp:
+        with open(self.unknown_file, 'r') as fp:
             content = fp.readlines()
-        with open(self.unknow_file, 'w') as fp:
+        with open(self.unknown_file, 'w') as fp:
             for project in content:
                 if project.split('\n')[0] + '.json' not in file_list:
                     fp.write(project)
