@@ -1,1 +1,0 @@
-{"name": "pytest-cov", "version_dict": {"version": "unknown", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": []}, "deep": {"count": 4, "list": ["cinder", "keystoneauth1", "keystoneauth1", "hacking", "Sphinx", "pytest-cov"]}, "requires": {}}

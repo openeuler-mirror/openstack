@@ -1,0 +1,1 @@
+{"name": "pydot", "version_dict": {"version": "1.4.1", "eq_version": "", "ge_version": "1.2.4", "lt_version": "", "ne_version": [], "upper_version": "1.4.1"}, "deep": {"count": 2, "list": ["cinder", "taskflow", "pydot"]}, "requires": {"pyparsing": {"eq_version": "", "ge_version": "2.1.4", "lt_version": "", "ne_version": [], "upper_version": "2.4.2", "version": "2.4.2"}}}

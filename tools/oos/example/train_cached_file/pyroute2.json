@@ -1,0 +1,1 @@
+{"name": "pyroute2", "version_dict": {"version": "0.5.6", "eq_version": "", "ge_version": "0.5.3", "lt_version": "", "ne_version": [], "upper_version": "0.5.6"}, "deep": {"count": 1, "list": ["neutron", "pyroute2"]}, "requires": {}}

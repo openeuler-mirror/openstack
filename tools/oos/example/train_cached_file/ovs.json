@@ -1,0 +1,1 @@
+{"name": "ovs", "version_dict": {"version": "2.11.8", "eq_version": "", "ge_version": "2.6.0", "lt_version": "", "ne_version": [], "upper_version": "2.11.8"}, "deep": {"count": 3, "list": ["openstack-heat", "neutron-lib", "os-ken", "ovs"]}, "requires": {}}

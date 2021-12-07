@@ -1,1 +1,0 @@
-{"name": "ply", "version_dict": {"version": "unknown", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": []}, "deep": {"count": 5, "list": ["cinder", "cinder", "python-barbicanclient", "python-openstackclient", "python-muranoclient", "yaql", "ply"]}, "requires": {}}

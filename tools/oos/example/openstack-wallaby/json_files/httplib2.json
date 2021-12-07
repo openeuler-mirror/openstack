@@ -1,1 +1,0 @@
-{"name": "httplib2", "version_dict": {"version": "0.18.1", "eq_version": "", "ge_version": "0.18.1", "lt_version": "", "ne_version": []}, "deep": {"count": 1, "list": ["cinder", "httplib2"]}, "requires": {}}

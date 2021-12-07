@@ -1,1 +1,0 @@
-{"name": "python-pcre", "version_dict": {"version": "unknown", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["python-openstackclient", "whereto", "python-pcre"]}, "requires": {}}

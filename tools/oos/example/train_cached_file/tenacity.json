@@ -1,0 +1,1 @@
+{"name": "tenacity", "version_dict": {"version": "5.1.1", "eq_version": "", "ge_version": "3.2.1", "lt_version": "", "ne_version": [], "upper_version": "5.1.1"}, "deep": {"count": 1, "list": ["aodh", "tenacity"]}, "requires": {}}

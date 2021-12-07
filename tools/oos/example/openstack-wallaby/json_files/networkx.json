@@ -1,1 +1,0 @@
-{"name": "networkx", "version_dict": {"version": "2.1.0", "eq_version": "", "ge_version": "2.1.0", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "cinder", "taskflow", "networkx"]}, "requires": {}}

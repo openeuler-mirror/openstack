@@ -1,0 +1,1 @@
+{"name": "unicodecsv", "version_dict": {"version": "0.14.1", "eq_version": "", "ge_version": "0.8.0", "lt_version": "", "ne_version": [], "upper_version": "0.14.1"}, "deep": {"count": 8, "list": ["aodh", "futurist", "hacking", "oslosphinx", "openstackdocstheme", "os-api-ref", "stestr", "cliff", "unicodecsv"]}, "requires": {}}

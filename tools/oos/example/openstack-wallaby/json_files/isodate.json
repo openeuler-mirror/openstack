@@ -1,1 +1,0 @@
-{"name": "isodate", "version_dict": {"version": "0.5.4", "eq_version": "", "ge_version": "0.5.4", "lt_version": "", "ne_version": []}, "deep": {"count": 7, "list": ["cinder", "cinder", "oslo.messaging", "kombu", "azure-servicebus", "azure-common", "msrestazure", "msrest", "isodate"]}, "requires": {}}

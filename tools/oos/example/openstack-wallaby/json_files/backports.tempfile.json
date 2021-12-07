@@ -1,1 +1,0 @@
-{"name": "backports.tempfile", "version_dict": {"version": "unknown", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "cinder", "moto", "moto", "backports.tempfile"]}, "requires": {}}

@@ -1,0 +1,1 @@
+{"name": "typed-ast", "version_dict": {"version": "1.4.0", "eq_version": "", "ge_version": "1.4.0", "lt_version": "1.5.0", "ne_version": [], "upper_version": "1.4.0"}, "deep": {"count": 7, "list": ["aodh", "futurist", "hacking", "mock", "Sphinx", "sphinxcontrib-applehelp", "mypy", "typed-ast"]}, "requires": {}}

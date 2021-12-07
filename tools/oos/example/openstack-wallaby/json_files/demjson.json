@@ -1,1 +1,0 @@
-{"name": "demjson", "version_dict": {"version": "unknown", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": []}, "deep": {"count": 5, "list": ["cinder", "cinder", "python-barbicanclient", "python-openstackclient", "python-zaqarclient", "openstack-doc-tools", "demjson"]}, "requires": {}}

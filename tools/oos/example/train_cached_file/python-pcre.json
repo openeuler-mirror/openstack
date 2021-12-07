@@ -1,0 +1,1 @@
+{"name": "python-pcre", "version_dict": {"version": "0.7", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": [], "upper_version": "0.7"}, "deep": {"count": 5, "list": ["aodh", "gnocchiclient", "python-openstackclient", "python-novaclient", "whereto", "python-pcre"]}, "requires": {}}

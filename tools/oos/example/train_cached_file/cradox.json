@@ -1,0 +1,1 @@
+{"name": "cradox", "version_dict": {"version": "2.1.2", "eq_version": "", "ge_version": "2.0.0", "lt_version": "", "ne_version": [], "upper_version": ""}, "deep": {"count": 1, "list": ["gnocchi", "gnocchi", "cradox"]}, "requires": {}}

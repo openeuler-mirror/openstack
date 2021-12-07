@@ -1,1 +1,0 @@
-{"name": "uritemplate", "version_dict": {"version": "3.0.0", "eq_version": "", "ge_version": "3.0.0", "lt_version": "4dev", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "cinder", "google-api-python-client", "uritemplate"]}, "requires": {}}

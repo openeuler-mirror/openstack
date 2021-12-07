@@ -1,0 +1,1 @@
+{"name": "argon2-cffi", "version_dict": {"version": "16.1.0", "eq_version": "", "ge_version": "16.1.0", "lt_version": "", "ne_version": [], "upper_version": ""}, "deep": {"count": 2, "list": ["horizon", "Django", "argon2-cffi"]}, "requires": {}}

@@ -1,1 +1,0 @@
-{"name": "Cython", "version_dict": {"version": "0.29.7", "eq_version": "", "ge_version": "0.29.7", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "cinder", "lxml", "Cython"]}, "requires": {}}

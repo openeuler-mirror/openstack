@@ -1,1 +1,0 @@
-{"name": "setuptools", "version_dict": {"version": "40.3.0", "eq_version": "", "ge_version": "40.3.0", "lt_version": "", "ne_version": []}, "deep": {"count": 3, "list": ["cinder", "cinder", "google-api-python-client", "google-auth", "setuptools"]}, "requires": {"certifi": {"eq_version": "2016.9.26", "ge_version": "", "lt_version": "", "ne_version": [], "version": "2016.9.26"}}}

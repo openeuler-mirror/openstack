@@ -1,0 +1,1 @@
+{"name": "pyparsing", "version_dict": {"version": "2.4.2", "eq_version": "", "ge_version": "2.0.2", "lt_version": "", "ne_version": [], "upper_version": "2.4.2"}, "deep": {"count": 8, "list": ["aodh", "futurist", "hacking", "mock", "Sphinx", "sphinxcontrib-applehelp", "pytest", "packaging", "pyparsing"]}, "requires": {}}

@@ -1,0 +1,1 @@
+{"name": "botocore", "version_dict": {"version": "1.12.225", "eq_version": "", "ge_version": "1.12", "lt_version": "", "ne_version": [], "upper_version": "1.12.225"}, "deep": {"count": 1, "list": ["swift", "botocore"]}, "requires": {}}

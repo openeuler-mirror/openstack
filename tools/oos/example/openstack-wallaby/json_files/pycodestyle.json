@@ -1,1 +1,0 @@
-{"name": "pycodestyle", "version_dict": {"version": "2.6.0", "eq_version": "2.6.0", "ge_version": "", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "cinder", "os-brick", "pycodestyle"]}, "requires": {}}

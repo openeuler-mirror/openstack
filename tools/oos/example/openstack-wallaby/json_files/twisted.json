@@ -1,1 +1,0 @@
-{"name": "twisted", "version_dict": {"version": "unknown", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": []}, "deep": {"count": 4, "list": ["cinder", "cinder", "keystonemiddleware", "oslo.messaging", "pika", "twisted"]}, "requires": {}}

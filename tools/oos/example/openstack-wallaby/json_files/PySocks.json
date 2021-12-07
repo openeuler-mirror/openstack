@@ -1,1 +1,0 @@
-{"name": "PySocks", "version_dict": {"version": "1.5.6", "eq_version": "", "ge_version": "1.5.6", "lt_version": "", "ne_version": ["1.5.7"]}, "deep": {"count": 3, "list": ["cinder", "keystoneauth1", "keystoneauth1", "requests", "PySocks"]}, "requires": {}}

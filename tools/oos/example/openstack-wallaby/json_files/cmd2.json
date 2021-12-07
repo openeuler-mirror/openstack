@@ -1,1 +1,0 @@
-{"name": "cmd2", "version_dict": {"version": "0.8.0", "eq_version": "", "ge_version": "0.8.0", "lt_version": "", "ne_version": ["0.8.3"]}, "deep": {"count": 2, "list": ["python-openstackclient", "cliff", "cmd2"]}, "requires": {}}

@@ -1,1 +1,0 @@
-{"name": "mccabe", "version_dict": {"version": "0.6.0", "eq_version": "", "ge_version": "0.6.0", "lt_version": "0.7.0", "ne_version": []}, "deep": {"count": 4, "list": ["cinder", "keystoneauth1", "keystoneauth1", "hacking", "flake8", "mccabe"]}, "requires": {}}

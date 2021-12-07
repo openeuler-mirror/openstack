@@ -1,1 +1,0 @@
-{"name": "statsd", "version_dict": {"version": "3.3.0", "eq_version": "", "ge_version": "3.3.0", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["ironic", "openstacksdk", "statsd"]}, "requires": {}}

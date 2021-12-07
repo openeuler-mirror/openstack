@@ -1,0 +1,1 @@
+{"name": "cmd2", "version_dict": {"version": "0.8.9", "eq_version": "", "ge_version": "0.8.0", "lt_version": "0.9.0", "ne_version": ["0.8.3"], "upper_version": "0.8.9"}, "deep": {"count": 8, "list": ["aodh", "futurist", "hacking", "oslosphinx", "openstackdocstheme", "os-api-ref", "stestr", "cliff", "cmd2"]}, "requires": {}}

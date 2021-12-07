@@ -1,1 +1,0 @@
-{"name": "munch", "version_dict": {"version": "2.1.0", "eq_version": "", "ge_version": "2.1.0", "lt_version": "", "ne_version": []}, "deep": {"count": 3, "list": ["cinder", "cinder", "python-novaclient", "python-novaclient", "openstacksdk", "munch"]}, "requires": {}}

@@ -1,1 +1,0 @@
-{"name": "argparse", "version_dict": {"version": "unknown", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": []}, "deep": {"count": 8, "list": ["cinder", "keystoneauth1", "os-service-types", "hacking", "reno", "oslotest", "os-client-config", "python-keystoneclient", "argparse"]}, "requires": {}}

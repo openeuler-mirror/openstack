@@ -1,1 +1,0 @@
-{"name": "Flask-RESTful", "version_dict": {"version": "0.3.5", "eq_version": "", "ge_version": "0.3.5", "lt_version": "", "ne_version": []}, "deep": {"count": 1, "list": ["keystone", "Flask-RESTful"]}, "requires": {}}

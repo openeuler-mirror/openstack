@@ -1,0 +1,1 @@
+{"name": "ply", "version_dict": {"version": "3.11", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": [], "upper_version": "3.11"}, "deep": {"count": 5, "list": ["aodh", "gnocchiclient", "python-openstackclient", "python-muranoclient", "yaql", "ply"]}, "requires": {}}

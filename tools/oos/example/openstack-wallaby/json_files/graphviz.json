@@ -1,1 +1,0 @@
-{"name": "graphviz", "version_dict": {"version": "0.4", "eq_version": "", "ge_version": "0.4", "lt_version": "", "ne_version": ["0.5.0"]}, "deep": {"count": 1, "list": ["kolla", "graphviz"]}, "requires": {}}

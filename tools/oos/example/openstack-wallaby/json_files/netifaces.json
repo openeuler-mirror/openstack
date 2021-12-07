@@ -1,1 +1,0 @@
-{"name": "netifaces", "version_dict": {"version": "0.10.4", "eq_version": "", "ge_version": "0.10.4", "lt_version": "", "ne_version": []}, "deep": {"count": 10, "list": ["cinder", "keystoneauth1", "os-service-types", "hacking", "reno", "oslotest", "os-client-config", "python-keystoneclient", "oslo.serialization", "oslo.utils", "netifaces"]}, "requires": {}}

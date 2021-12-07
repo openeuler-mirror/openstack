@@ -1,1 +1,0 @@
-{"name": "psutil", "version_dict": {"version": "5.7.2", "eq_version": "", "ge_version": "5.7.2", "lt_version": "", "ne_version": []}, "deep": {"count": 1, "list": ["cinder", "cinder", "psutil"]}, "requires": {"enum34": {"eq_version": "", "ge_version": "", "lt_version": "", "ne_version": [], "version": "unknown"}}}

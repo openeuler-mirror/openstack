@@ -1,4 +1,3 @@
-import copy
 import csv
 import json
 import os
@@ -6,117 +5,14 @@ from pathlib import Path
 
 import click
 from packaging import version as p_version
-import requests
 
-from oos.commands.dependence import project_class
 from oos.common import gitee
 from oos.common import utils
 
-from oos.common import CONSTANTS
 from oos.common import OPENSTACK_RELEASE_MAP
 
 
-class Dependence(object):
-    def __init__(self, openstack_release):
-        self.cache_path = "./%s_cached_file" % openstack_release
-        self.pypi_cache_path = self.cache_path + "/" + "pypi_files"
-        self.openeuler_cache_path = self.cache_path + "/" + "openeuler_files"
-
-
-class InitDependence(Dependence):
-    def __init__(self, openstack_release, projects):
-        super(InitDependence, self).__init__(openstack_release)
-        self.project_dict = OPENSTACK_RELEASE_MAP[openstack_release]
-        if projects:
-            self.project_dict = dict((k, v) for k, v in self.project_dict.items() if k in projects.split(","))
-        self.upper_dict = {}
-        self.upper_list_file = self.cache_path + "/" + "upper.json"
-        self.upper_url = "https://opendev.org/openstack/requirements/raw/branch/stable/%s/upper-constraints.txt" % openstack_release
-        self.loaded_list = []
-
-    def _cache_dependencies(self, project_obj):
-        """Cache dependencies by recursion way"""
-        if project_obj.name in CONSTANTS['black_list']:
-            print("%s is in black list, skip now" % project_obj.name)
-            return
-        file_path = self.pypi_cache_path + "/" + "%s.json" % project_obj.name
-        if Path(file_path).exists():
-            is_out_of_date = project_obj.refresh_from_local(file_path)
-            if not is_out_of_date:
-                print('Cache %s exists, loading from cache, deep %s' % (project_obj.name, project_obj.deep_count))
-                if project_obj.name in self.loaded_list:
-                    return
-                else:
-                    self.loaded_list.append(project_obj.name)
-            else:
-                print('Cache %s exists but out of date, loading from upstream, deep %s' % (project_obj.name, project_obj.deep_count))
-                project_obj.refresh_from_upstream(file_path)
-        else:
-            # Load and cache info from upstream
-            print('Cache %s doesn\'t exists, loading from upstream, deep %s' % (project_obj.name, project_obj.deep_count))
-            project_obj.refresh_from_upstream(file_path)
-        for name, version_range in project_obj.requires.items():
-            if name in project_obj.deep_list:
-                continue
-            version = version_range['version']
-            version = CONSTANTS['pypi_version_fix'].get("%s-%s" % (name, version), version)
-            child_project_obj = project_class.Project(
-                name, version, eq_version=version_range['eq_version'], ge_version=version_range['ge_version'],
-                lt_version=version_range['lt_version'], ne_version=version_range['ne_version'],
-                upper_version=self.upper_dict.get(name, ''),
-                deep_count=project_obj.deep_count+1, deep_list=copy.deepcopy(project_obj.deep_list)
-            )
-            self._cache_dependencies(child_project_obj)
-
-    def _generate_upper_list(self):
-        upper_dict = {}
-        if Path(self.upper_list_file).exists():
-            with open(self.upper_list_file, 'r', encoding='utf8') as fp:
-                upper_dict = json.load(fp)
-        else:
-            projects = requests.get(self.upper_url).content.decode().split('\n')
-            for project in projects:
-                if not project:
-                    continue
-                project_name, project_version = project.split('===')
-                project_version = project_version.split(';')[0]
-                upper_dict[project_name] = project_version
-            with open(self.upper_list_file, 'w', encoding='utf8') as fp:
-                json.dump(upper_dict, fp, ensure_ascii=False)
-        return upper_dict
-
-    def _pre(self):
-        if Path(self.pypi_cache_path).exists():
-            print("Cache folder exists, Using the cached file first. "
-                  "Please delete the cache folder if you want to "
-                  "generate the new cache.")
-        else:
-            print("Creating Cache folder %s" % self.pypi_cache_path)
-            Path(self.pypi_cache_path).mkdir(parents=True)
-        self.upper_dict = self._generate_upper_list()
-
-    def _post(self):
-        all_project = set(self.project_dict.keys())
-        file_list = os.listdir(self.pypi_cache_path)
-        for file_name in file_list:
-            with open(self.pypi_cache_path + '/' + file_name, 'r', encoding='utf8') as fp:
-                project_dict = json.load(fp)
-                all_project.update(project_dict['requires'].keys())
-        for file_name in file_list:
-            project_name = os.path.splitext(file_name)[0]
-            if project_name not in list(all_project):
-                print("%s is required by nothing, remove it." % project_name)
-                os.remove(self.pypi_cache_path + '/' + file_name)
-
-    def init_all_dep(self):
-        """download and cache all related requirement file"""
-        self._pre()
-        for name, version in self.project_dict.items():
-            project_obj = project_class.Project(name, version, eq_version=version)
-            self._cache_dependencies(project_obj)
-        self._post()
-
-class CountDependence(Dependence):
+class CountDependence(object):
     def __init__(self, openstack_release, output, compare, token):
         super(CountDependence, self).__init__(openstack_release)
         self.output = output + ".csv" if not output.endswith(".csv") else output
@@ -224,7 +120,7 @@ class CountDependence(Dependence):
                     ]
                 )
 
-    def get_all_dep(self, compare_branch):
+    def get_all_dep(self, compare_branch, projects):
         """fetch all related dependent packages"""
         file_list = os.listdir(self.pypi_cache_path)
         if not self.compare:
@@ -241,22 +137,13 @@ def group():
 @group.command(name='generate', help='generate required package list for the specified OpenStack release')
 @click.option('-c', '--compare', is_flag=True, help='Check the project in openEuler community or not')
 @click.option('-cb', '--compare-branch', default='master', help='Branch to compare with')
-@click.option('-i', '--init', is_flag=True, help='Init the cache file or not')
 @click.option('-o', '--output', default='result', help='Output file name, default: result.csv')
 @click.option('-t', '--token', help='Personal gitee access token used for fetching info from gitee')
 @click.option('-p', '--projects', default=None, help='Specify the projects to be generated. Format should be like project1,project2')
 @click.argument('release', type=click.Choice(OPENSTACK_RELEASE_MAP.keys()))
-def generate(compare, compare_branch, init, output, token, projects, release):
-    if init:
-        myobj = InitDependence(release, projects)
-        print("Start fetch caching files to %s_cache_file folder" % release)
-        print("...")
-        myobj.init_all_dep()
-        print("Success cached pypi files.")
-        print("...")
-        print("Note: There is no need to fetch caching again from next time, unless you want to refresh the cache.")
+def generate(compare, compare_branch, output, token, projects, release):
     myobj = CountDependence(release, output, compare, token)
-    print("Start count dependencies")
+    print("Start generate dependencies")
     print("...")
-    myobj.get_all_dep(compare_branch)
-    print("Success count dependencies, the result is saved into %s file" % output)    
+    myobj.get_all_dep(compare_branch, projects)
+    print("Success generate dependencies, the result is saved into %s file" % output)    

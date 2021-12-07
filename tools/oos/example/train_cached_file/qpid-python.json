@@ -1,0 +1,1 @@
+{"name": "qpid-python", "version_dict": {"version": "1.36.0.post1", "eq_version": "", "ge_version": "0.26", "lt_version": "", "ne_version": [], "upper_version": "1.36.0.post1"}, "deep": {"count": 4, "list": ["aodh", "keystonemiddleware", "oslo.messaging", "kombu", "qpid-python"]}, "requires": {}}

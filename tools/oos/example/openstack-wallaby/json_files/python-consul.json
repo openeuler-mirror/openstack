@@ -1,1 +1,0 @@
-{"name": "python-consul", "version_dict": {"version": "0.6.0", "eq_version": "", "ge_version": "0.6.0", "lt_version": "", "ne_version": []}, "deep": {"count": 3, "list": ["cinder", "cinder", "oslo.messaging", "kombu", "python-consul"]}, "requires": {}}

@@ -1,1 +1,0 @@
-{"name": "krest", "version_dict": {"version": "1.3.0", "eq_version": "", "ge_version": "1.3.0", "lt_version": "", "ne_version": []}, "deep": {"count": 1, "list": ["cinder", "cinder", "krest"]}, "requires": {}}

@@ -1,0 +1,1 @@
+{"name": "simplegeneric", "version_dict": {"version": "0.8.1", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": [], "upper_version": "0.8.1"}, "deep": {"count": 2, "list": ["aodh", "WSME", "simplegeneric"]}, "requires": {}}

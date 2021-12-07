@@ -1,1 +1,0 @@
-{"name": "jsonpatch", "version_dict": {"version": "1.16", "eq_version": "", "ge_version": "1.16", "lt_version": "", "ne_version": []}, "deep": {"count": 5, "list": ["cinder", "cinder", "python-novaclient", "python-neutronclient", "osc-lib", "openstacksdk", "jsonpatch"]}, "requires": {}}

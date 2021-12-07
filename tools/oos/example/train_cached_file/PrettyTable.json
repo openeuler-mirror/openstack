@@ -1,0 +1,1 @@
+{"name": "PrettyTable", "version_dict": {"version": "0.7.2", "eq_version": "", "ge_version": "0.7.2", "lt_version": "0.8", "ne_version": [], "upper_version": ""}, "deep": {"count": 8, "list": ["aodh", "futurist", "hacking", "oslosphinx", "openstackdocstheme", "os-api-ref", "stestr", "cliff", "PrettyTable"]}, "requires": {}}

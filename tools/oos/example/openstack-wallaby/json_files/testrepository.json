@@ -1,1 +1,0 @@
-{"name": "testrepository", "version_dict": {"version": "0.0.18", "eq_version": "", "ge_version": "0.0.18", "lt_version": "", "ne_version": []}, "deep": {"count": 4, "list": ["cinder", "keystoneauth1", "os-service-types", "hacking", "testrepository"]}, "requires": {}}

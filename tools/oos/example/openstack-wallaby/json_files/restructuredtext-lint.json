@@ -1,1 +1,0 @@
-{"name": "restructuredtext-lint", "version_dict": {"version": "0.7", "eq_version": "", "ge_version": "0.7", "lt_version": "", "ne_version": []}, "deep": {"count": 3, "list": ["cinder", "cinder", "keystonemiddleware", "doc8", "restructuredtext-lint"]}, "requires": {}}

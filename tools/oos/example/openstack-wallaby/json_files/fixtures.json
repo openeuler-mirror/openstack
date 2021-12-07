@@ -1,1 +1,0 @@
-{"name": "fixtures", "version_dict": {"version": "3.0.0", "eq_version": "", "ge_version": "3.0.0", "lt_version": "", "ne_version": []}, "deep": {"count": 4, "list": ["cinder", "keystoneauth1", "os-service-types", "hacking", "fixtures"]}, "requires": {}}

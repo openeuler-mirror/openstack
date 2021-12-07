@@ -1,0 +1,1 @@
+{"name": "tinyrpc", "version_dict": {"version": "1.0.3", "eq_version": "", "ge_version": "0.6", "lt_version": "", "ne_version": [], "upper_version": "1.0.3"}, "deep": {"count": 3, "list": ["openstack-heat", "neutron-lib", "os-ken", "tinyrpc"]}, "requires": {}}

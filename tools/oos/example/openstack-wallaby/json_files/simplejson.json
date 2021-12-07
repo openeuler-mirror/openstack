@@ -1,1 +1,0 @@
-{"name": "simplejson", "version_dict": {"version": "3.16.0", "eq_version": "", "ge_version": "3.16.0", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["python-openstackclient", "osc-placement", "simplejson"]}, "requires": {}}

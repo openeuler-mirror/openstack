@@ -1,1 +1,0 @@
-{"name": "prometheus-client", "version_dict": {"version": "0.4.2", "eq_version": "", "ge_version": "0.4.2", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["ironic", "openstacksdk", "prometheus-client"]}, "requires": {}}

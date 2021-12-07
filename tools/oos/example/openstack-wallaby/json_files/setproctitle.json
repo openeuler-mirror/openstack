@@ -1,1 +1,0 @@
-{"name": "setproctitle", "version_dict": {"version": "1.1.10", "eq_version": "", "ge_version": "1.1.10", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["networking-baremetal", "neutron-lib", "setproctitle"]}, "requires": {}}

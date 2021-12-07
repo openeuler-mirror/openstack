@@ -1,1 +1,0 @@
-{"name": "itsdangerous", "version_dict": {"version": "0.24", "eq_version": "", "ge_version": "0.24", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["ironic-inspector", "Flask", "itsdangerous"]}, "requires": {}}

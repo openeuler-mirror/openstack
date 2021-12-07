@@ -1,1 +1,0 @@
-{"name": "greenlet", "version_dict": {"version": "0.4.16", "eq_version": "", "ge_version": "0.4.16", "lt_version": "", "ne_version": []}, "deep": {"count": 1, "list": ["cinder", "greenlet"]}, "requires": {}}

@@ -1,0 +1,1 @@
+{"name": "purestorage", "version_dict": {"version": "1.17.0", "eq_version": "", "ge_version": "1.6.0", "lt_version": "", "ne_version": [], "upper_version": "1.17.0"}, "deep": {"count": 1, "list": ["cinder", "purestorage"]}, "requires": {}}

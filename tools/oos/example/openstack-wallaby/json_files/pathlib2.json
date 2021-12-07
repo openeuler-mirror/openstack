@@ -1,1 +1,0 @@
-{"name": "pathlib2", "version_dict": {"version": "unknown", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": []}, "deep": {"count": 5, "list": ["cinder", "cinder", "oslo.messaging", "kombu", "importlib-metadata", "zipp", "pathlib2"]}, "requires": {}}

@@ -1,1 +1,0 @@
-{"name": "storpool.spopenstack", "version_dict": {"version": "2.2.1", "eq_version": "", "ge_version": "2.2.1", "lt_version": "", "ne_version": []}, "deep": {"count": 1, "list": ["cinder", "cinder", "storpool.spopenstack"]}, "requires": {"storpool": {"eq_version": "", "ge_version": "4.0.0", "lt_version": "", "ne_version": [], "version": "4.0.0"}}}

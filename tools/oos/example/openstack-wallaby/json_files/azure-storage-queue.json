@@ -1,1 +1,0 @@
-{"name": "azure-storage-queue", "version_dict": {"version": "unknown", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": []}, "deep": {"count": 3, "list": ["cinder", "cinder", "oslo.messaging", "kombu", "azure-storage-queue"]}, "requires": {}}

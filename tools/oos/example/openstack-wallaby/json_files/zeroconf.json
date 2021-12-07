@@ -1,1 +1,0 @@
-{"name": "zeroconf", "version_dict": {"version": "0.24.0", "eq_version": "", "ge_version": "0.24.0", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["ironic", "ironic-lib", "zeroconf"]}, "requires": {}}

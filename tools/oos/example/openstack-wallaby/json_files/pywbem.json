@@ -1,1 +1,0 @@
-{"name": "pywbem", "version_dict": {"version": "0.7.0", "eq_version": "", "ge_version": "0.7.0", "lt_version": "", "ne_version": []}, "deep": {"count": 1, "list": ["cinder", "cinder", "pywbem"]}, "requires": {}}

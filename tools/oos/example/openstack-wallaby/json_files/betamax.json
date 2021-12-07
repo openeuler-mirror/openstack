@@ -1,1 +1,0 @@
-{"name": "betamax", "version_dict": {"version": "0.7.0", "eq_version": "", "ge_version": "0.7.0", "lt_version": "", "ne_version": []}, "deep": {"count": 2, "list": ["cinder", "keystoneauth1", "keystoneauth1", "betamax"]}, "requires": {"requests": {"eq_version": "", "ge_version": "2.0", "lt_version": "", "ne_version": [], "version": "2.0"}}}
