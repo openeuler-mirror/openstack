@@ -1,0 +1,26 @@
+all:
+  hosts:
+    controller:
+      ansible_host: <IP>
+      ansible_ssh_private_key_file: <FILE_PATH>
+    compute01:
+      ansible_host: <IP>
+      ansible_ssh_private_key_file: <FILE_PATH>
+    compute02:
+      ansible_host: <IP>
+      ansible_ssh_private_key_file: <FILE_PATH>
+  vars:
+    test-key: test-value
+  children:
+    compute:
+      hosts:
+        compute01
+        compute02
+      vars:
+        test-key: test-value
+    storage:
+      hosts: controller
+    network:
+      hosts: controller
+      vars:
+        test-key: test-value
