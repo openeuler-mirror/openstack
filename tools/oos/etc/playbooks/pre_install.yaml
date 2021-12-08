@@ -1,0 +1,10 @@
+- name: Install openstack-keystone
+  hosts: controller
+  become: yes
+  tasks:
+    - name: Install openstack-keystone
+      yum:
+        name:
+          - mariadb
+          - memcached
+          - httpd

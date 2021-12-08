@@ -1,0 +1,4 @@
+- import_playbook: pre_install.yaml
+#- import_playbook: keystone.yaml
+#- import_playbook: nova.yaml
+#- import_playbook: cinder.yaml
