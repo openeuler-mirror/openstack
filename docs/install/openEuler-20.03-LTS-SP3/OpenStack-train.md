@@ -2132,7 +2132,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
 原生的openstack里的pxe配置文件的模版不支持arm64架构，需要自己对原生openstack代码进行修改：
 
-在W版中，社区的ironic仍然不支持arm64位的uefi pxe启动，表现为生成的grub.cfg文件(一般位于/tftpboot/下)格式不对而导致pxe启动失败，如下：
+在T版中，社区的ironic仍然不支持arm64位的uefi pxe启动，表现为生成的grub.cfg文件(一般位于/tftpboot/下)格式不对而导致pxe启动失败，如下：
 
 生成的错误配置文件：
 
@@ -2144,7 +2144,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
 ironic向ipa发送查询命令执行状态请求的tls报错：
 
-w版的ipa和ironic默认都会开启tls认证的方式向对方发送请求，跟据官网的说明进行关闭即可。
+T版的ipa和ironic默认都会开启tls认证的方式向对方发送请求，跟据官网的说明进行关闭即可。
 
 1. 修改ironic配置文件(/etc/ironic/ironic.conf)下面的配置中添加ipa-insecure=1：
 
