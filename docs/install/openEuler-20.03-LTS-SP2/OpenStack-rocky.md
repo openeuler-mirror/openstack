@@ -170,7 +170,7 @@ $ yum clean all && yum makecache
 2. 执行如下命令，安装软件包。
 
     ```shell
-    $ yum install openstack-keystone httpd mod_wsgi
+    $ yum install openstack-keystone httpd python2-mod_wsgi
     ```
 
 3. 配置keystone，编辑 `/etc/keystone/keystone.conf` 文件。在[database]部分，配置数据库入口。在[token]部分，配置token provider
@@ -233,20 +233,37 @@ $ yum clean all && yum makecache
     $ systemctl start httpd.service
     ```
 
-10. 执行如下命令，设置环境变量。
+10. 安装OpenStackClient
 
     ```shell
-    $ export OS_USERNAME=admin
-    $ export OS_PASSWORD=ADMIN_PASS
-    $ export OS_PROJECT_NAME=admin
-    $ export OS_USER_DOMAIN_NAME=Default
-    $ export OS_PROJECT_DOMAIN_NAME=Default
-    $ export OS_AUTH_URL=http://controller:5000/v3
-    $ export OS_IDENTITY_API_VERSION=3
+    $ yum install python2-openstackclient
     ```
-    替换 ADMIN_PASS 为 keystone-manage bootstrap 命令中设置的密码
 
-11. 分别执行如下命令，创建domain, projects, users, roles。
+11. 创建 OpenStack client 环境脚本
+
+     创建admin用户的环境变量脚本：
+
+     ```shell
+     # vim admin-openrc
+
+     export OS_PROJECT_DOMAIN_NAME=Default
+     export OS_USER_DOMAIN_NAME=Default
+     export OS_PROJECT_NAME=admin
+     export OS_USERNAME=admin
+     export OS_PASSWORD=ADMIN_PASS
+     export OS_AUTH_URL=http://controller:5000/v3
+     export OS_IDENTITY_API_VERSION=3
+     export OS_IMAGE_API_VERSION=2
+     ```
+
+     替换ADMIN_PASS为admin用户的密码, 与上述`keystone-manage bootstrap` 命令中设置的密码一致
+     运行脚本加载环境变量：
+
+     ```shell
+     $ source admin-openrc
+     ```
+
+12. 分别执行如下命令，创建domain, projects, users, roles。
 
      创建domain ‘example’：
 
@@ -271,7 +288,7 @@ $ yum clean all && yum makecache
      $ openstack role add --project myproject --user myuser myrole
      ```
 
-12. 验证
+13. 验证
 
      取消临时环境变量OS_AUTH_URL和OS_PASSWORD：
 
@@ -295,43 +312,6 @@ $ yum clean all && yum makecache
      --os-project-name myproject --os-username myuser token issue
      ```
 
-13. 创建 OpenStack client 环境脚本
-
-     分别为admin和demo用户创建环境变量脚本：
-
-     ```shell
-     # vim admin-openrc
-     
-     export OS_PROJECT_DOMAIN_NAME=Default
-     export OS_USER_DOMAIN_NAME=Default
-     export OS_PROJECT_NAME=admin
-     export OS_USERNAME=admin
-     export OS_PASSWORD=ADMIN_PASS
-     export OS_AUTH_URL=http://controller:5000/v3
-     export OS_IDENTITY_API_VERSION=3
-     export OS_IMAGE_API_VERSION=2
-     ```
-     ```shell
-     # vim demo-openrc
-     
-     export OS_PROJECT_DOMAIN_NAME=Default
-     export OS_USER_DOMAIN_NAME=Default
-     export OS_PROJECT_NAME=myproject
-     export OS_USERNAME=myuser
-     export OS_PASSWORD=DEMO_PASS
-     export OS_AUTH_URL=http://controller:5000/v3
-     export OS_IDENTITY_API_VERSION=3
-     export OS_IMAGE_API_VERSION=2
-     ```
-     替换ADMIN_PASS为admin用户的密码
-
-     替换DEMO_PASS为myuser用户的密码
-
-     运行脚本加载环境变量：
-
-     ```shell
-     $ source admin-openrc
-     ```
 
 ### Glance 安装
 
@@ -554,7 +534,7 @@ $ yum clean all && yum makecache
 
     ```shell
     $ yum install openstack-nova-api openstack-nova-conductor \
-    $ openstack-nova-novncproxy openstack-nova-scheduler openstack-nova-compute \
+      openstack-nova-novncproxy openstack-nova-scheduler openstack-nova-compute \
       openstack-nova-placement-api openstack-nova-console
     ```
 
@@ -584,6 +564,8 @@ $ yum clean all && yum makecache
     my_ip = 10.0.0.11
     use_neutron = true
     firewall_driver = nova.virt.firewall.NoopFirewallDriver
+    compute_driver = libvirt.LibvirtDriver
+    instances_path = /var/lib/nova/instances/
     [api_database]
     # ...
     connection = mysql+pymysql://nova:NOVA_DBPASS@controller/nova_api
@@ -707,15 +689,37 @@ $ yum clean all && yum makecache
     ```
     
     如果返回值为0则不支持硬件加速，需要配置libvirt使用QEMU而不是KVM：
+    **注意：** 如果是在ARM64的服务器上，还需要在配置`cpu_mode`为`custom`,`cpu_model`为`cortex-a72`
     
     ```ini
     # vim /etc/nova/nova.conf
     [libvirt]
     # ...
     virt_type = qemu
+    cpu_mode = custom
+    cpu_model = cortex-a72
     ```
     如果返回值为1或更大的值，则支持硬件加速，不需要进行额外的配置
+
+    ***注意***
+
+    **如果为arm64结构，还需要在`compute`节点执行以下命令**
+
+    ```shell
+    mkdir -p /usr/share/AAVMF
+    ln -s /usr/share/edk2/aarch64/QEMU_EFI-pflash.raw \
+          /usr/share/AAVMF/AAVMF_CODE.fd
+    ln -s /usr/share/edk2/aarch64/vars-template-pflash.raw \
+          /usr/share/AAVMF/AAVMF_VARS.fd
+    chown nova:nova /usr/share/AAVMF -R
     
+    vim /etc/libvirt/qemu.conf
+    
+    nvram = ["/usr/share/AAVMF/AAVMF_CODE.fd:/usr/share/AAVMF/AAVMF_VARS.fd",
+         "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw:/usr/share/edk2/aarch64/vars-template-pflash.raw"
+    ]
+    ```
+
     启动计算服务及其依赖项，并配置其开机启动：
     
     ```shell
@@ -1093,12 +1097,12 @@ $ yum clean all && yum makecache
     创建块存储服务API端点：
 
     ```shell
-    $ openstack endpoint create --region RegionOne volumev2 public http://controller:8776/v2/%s
-    $ openstack endpoint create --region RegionOne volumev2 internal http://controller:8776/v2/%s
-    $ openstack endpoint create --region RegionOne volumev2 admin http://controller:8776/v2/%s
-    $ openstack endpoint create --region RegionOne volumev3 public http://controller:8776/v3/%s
-    $ openstack endpoint create --region RegionOne volumev3 internal http://controller:8776/v3/%s
-    $ openstack endpoint create --region RegionOne volumev3 admin http://controller:8776/v3/%s
+    $ openstack endpoint create --region RegionOne volumev2 public http://controller:8776/v2/%\(project_id\)s
+    $ openstack endpoint create --region RegionOne volumev2 internal http://controller:8776/v2/%\(project_id\)s
+    $ openstack endpoint create --region RegionOne volumev2 admin http://controller:8776/v2/%\(project_id\)s
+    $ openstack endpoint create --region RegionOne volumev3 public http://controller:8776/v3/%\(project_id\)s
+    $ openstack endpoint create --region RegionOne volumev3 internal http://controller:8776/v3/%\(project_id\)s
+    $ openstack endpoint create --region RegionOne volumev3 admin http://controller:8776/v3/%\(project_id\)s
     ```
     
 2. 安装和配置控制节点
@@ -1539,6 +1543,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    # disabled. (string value) 
    
    auth_strategy=keystone 
+   force_config_drive = True
    
    [keystone_authtoken] 
    # Authentication type to load (string value) 
@@ -1558,23 +1563,30 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    # User's domain name (string value) 
    user_domain_name=Default
    ```
+   
+   4、需要在配置文件中指定ironic日志目录
+   
+   ```
+   [DEFAULT]
+   log_dir = /var/log/ironic/
+   ```
 
-   4、创建裸金属服务数据库表
-
+   5、创建裸金属服务数据库表
+   
    ```shell
    $ ironic-dbsync --config-file /etc/ironic/ironic.conf create_schema
    ```
 
-   5、重启ironic-api服务
+   6、重启ironic-api服务
 
    ```shell
    $ systemctl restart openstack-ironic-api
    ```
-
+   
    ##### 配置ironic-conductor服务
-
+   
    1、替换**HOST_IP**为conductor host的IP
-
+   
    ```ini
    [DEFAULT] 
    
@@ -1584,9 +1596,9 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    
    my_ip=HOST_IP
    ```
-
+   
    2、配置数据库的位置，ironic-conductor应该使用和ironic-api相同的配置。替换**IRONIC_DBPASSWORD**为**ironic**用户的密码，替换DB_IP为DB服务器所在的IP地址：
-
+   
    ```ini
    [database] 
    
@@ -1595,9 +1607,9 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    
    connection = mysql+pymysql://ironic:IRONIC_DBPASSWORD@DB_IP/ironic
    ```
-
+   
    3、通过以下选项配置ironic-api服务使用RabbitMQ消息代理，ironic-conductor应该使用和ironic-api相同的配置，替换**RPC_\***为RabbitMQ的详细地址和凭证
-
+   
    ```ini
    [DEFAULT] 
    
@@ -1606,13 +1618,13 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    
    transport_url = rabbit://RPC_USER:RPC_PASSWORD@RPC_HOST:RPC_PORT/
    ```
-
+   
    用户也可自行使用json-rpc方式替换rabbitmq
-
+   
    4、配置凭证访问其他OpenStack服务
-
+   
    为了与其他OpenStack服务进行通信，裸金属服务在请求其他服务时需要使用服务用户与OpenStack Identity服务进行认证。这些用户的凭据必须在与相应服务相关的每个配置文件中进行配置。
-
+   
    [neutron] - 访问Openstack网络服务 
    [glance] - 访问Openstack镜像服务 
    [swift] - 访问Openstack对象存储服务 
@@ -1621,11 +1633,11 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    [service_catalog] - 一个特殊项用于保存裸金属服务使用的凭证，该凭证用于发现注册在Openstack身份认证服务目录中的自己的API URL端点
    
    简单起见，可以对所有服务使用同一个服务用户。为了向后兼容，该用户应该和ironic-api服务的[keystone_authtoken]所配置的为同一个用户。但这不是必须的，也可以为每个服务创建并配置不同的服务用户。
-
+   
    在下面的示例中，用户访问openstack网络服务的身份验证信息配置为：
-
+   
    网络服务部署在名为RegionOne的身份认证服务域中，仅在服务目录中注册公共端点接口
-
+   
    请求时使用特定的CA SSL证书进行HTTPS连接
    
    与ironic-api服务配置相同的服务用户
@@ -1671,7 +1683,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    5、配置允许的驱动程序和硬件类型
    
    通过设置enabled_hardware_types设置ironic-conductor服务允许使用的硬件类型：
-
+   
    ```ini
    [DEFAULT] 
    enabled_hardware_types = ipmi 
@@ -1706,9 +1718,9 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    ##### 配置ironic-inspector服务
    
    配置文件路径`/etc/ironic-inspector/inspector.conf`
-
+   
    1、创建数据库
-
+   
    ```shell
    $ mysql -u root -p 
    ```
@@ -1728,14 +1740,20 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    connection = mysql+pymysql://ironic_inspector:IRONIC_INSPECTOR_DBPASSWORD@DB_IP/ironic_inspector
    ```
    
-   3、配置消息度列通信地址
+   3、调用 ironic-inspector-dbsync 生成表
+   
+   ```
+   ironic-inspector-dbsync --config-file /etc/ironic-inspector/inspector.conf upgrade
+   ```
+   
+   4、配置消息队列通信地址
    
    ```ini
    [DEFAULT]
    transport_url = rabbit://RPC_USER:RPC_PASSWORD@RPC_HOST:RPC_PORT/
    ```
    
-   4、设置keystone认证
+   5、设置keystone认证
    
    ```ini
    [DEFAULT] 
@@ -1757,7 +1775,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    password = IRONIC_SERVICE_USER_PASSWORD
    ```
    
-   5、配置ironic inspector dnsmasq服务
+   6、配置ironic inspector dnsmasq服务
    
    ```ini
    # 配置文件地址：/etc/ironic-inspector/dnsmasq.conf 
@@ -1778,12 +1796,21 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    log-facility=/var/log/dnsmasq.log
    ```
    
-   6、启动服务
+   7、启动服务
    
    ```shell
    $ systemctl enable --now openstack-ironic-inspector.service 
    $ systemctl enable --now openstack-ironic-inspector-dnsmasq.service
    ```
+   
+   8、如果节点单独部署ironic服务还需要部署启动iscsid.service服务
+   
+   ```
+   $ systemctl enable openstack-cinder-volume.service tgtd.service iscsid.service
+   $ systemctl start openstack-cinder-volume.service tgtd.service iscsid.service
+   ```
+   
+   **注意**：arm架构支持不完全，需要根据自己情况进行适配；
    
 3. deploy ramdisk镜像制作
 

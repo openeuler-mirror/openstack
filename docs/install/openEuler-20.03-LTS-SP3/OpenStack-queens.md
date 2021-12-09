@@ -62,13 +62,13 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
 ### 环境配置
 
-1. 配置 20.03-LTS-SP3 官方认证的第三方源 oepkg，以aarch64为例
+1. 配置 20.03-LTS-SP3 官方认证的第三方源 oepkg
 
     ```shell
     cat << EOF >> /etc/yum.repos.d/OpenStack_Queens.repo
     [openstack_queens]
     name=OpenStack_Queens
-    baseurl=https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP3/budding-openeuler/openstack/queens/aarch64/
+    baseurl=https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP3/budding-openeuler/openstack/queens/$basearch/
     gpgcheck=0
     enabled=1
     EOF
@@ -214,7 +214,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 2. 安装软件包。
 
     ```shell
-    yum install openstack-keystone httpd mod_wsgi
+    yum install openstack-keystone httpd python2-mod_wsgi
     ```
 
 3. 配置keystone相关配置
@@ -1203,12 +1203,12 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     创建块存储服务API端点：
 
     ```shell
-    openstack endpoint create --region RegionOne volumev2 public http://controller:8776/v2/%s
-    openstack endpoint create --region RegionOne volumev2 internal http://controller:8776/v2/%s
-    openstack endpoint create --region RegionOne volumev2 admin http://controller:8776/v2/%s
-    openstack endpoint create --region RegionOne volumev3 public http://controller:8776/v3/%s
-    openstack endpoint create --region RegionOne volumev3 internal http://controller:8776/v3/%s
-    openstack endpoint create --region RegionOne volumev3 admin http://controller:8776/v3/%s
+    openstack endpoint create --region RegionOne volumev2 public http://controller:8776/v2/%\(project_id\)s
+    openstack endpoint create --region RegionOne volumev2 internal http://controller:8776/v2/%\(project_id\)s
+    openstack endpoint create --region RegionOne volumev2 admin http://controller:8776/v2/%\(project_id\)s
+    openstack endpoint create --region RegionOne volumev3 public http://controller:8776/v3/%\(project_id\)s
+    openstack endpoint create --region RegionOne volumev3 internal http://controller:8776/v3/%\(project_id\)s
+    openstack endpoint create --region RegionOne volumev3 admin http://controller:8776/v3/%\(project_id\)s
     ```
 
 2. 安装软件包：
@@ -1366,8 +1366,8 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
 1. 安装软件包
 
-    ```plain
-    yum install openstack-dashborad
+    ```shell
+    yum install openstack-dashboard
     ```
 
 2. 修改文件
@@ -1375,7 +1375,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     修改变量
 
     ```text
-    vim /etc/openstack-dashboard/local_settings/local_settings.py
+    vim /etc/openstack-dashboard/local_settings
 
     ALLOWED_HOSTS = ['*', ]
     OPENSTACK_HOST = "controller"
@@ -1384,7 +1384,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
 3. 重启 httpd 服务
 
-    ```plain
+    ```shell
     systemctl restart httpd
     ```
 
@@ -1872,7 +1872,8 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
 ### Kolla 安装
 
-Kolla 为 OpenStack 服务提供生产环境可用的容器化部署的功能。openEuler 20.03 LTS SP3 中引入了 Kolla 和 Kolla-ansible 服务。
+Kolla 为 OpenStack 服务提供生产环境可用的容器化部署的功能。openEuler 20.03 LTS SP2中已经引入了Kolla和Kolla-ansible服务，但是Kolla 以及 Kolla-ansible 原生并不支持 openEuler，
+因此 Openstack SIG 在openEuler 20.03 LTS SP3中提供了 `openstack-kolla-plugin` 和 `openstack-kolla-ansible-plugin` 这两个补丁包。
 
 Kolla的安装十分简单，只需要安装对应的RPM包即可
 
@@ -1890,11 +1891,7 @@ yum install openstack-kolla openstack-kolla-ansible
 
 安装完后，就可以使用`kolla-ansible`, `kolla-build`, `kolla-genpwd`, `kolla-mergepwd`等命令了。
 
-**补充:**
-Kolla 以及 Kolla-ansible 原生并不支持 openEuler，因此 Openstack SIG 提供了 `openstack-kolla-plugin` 和 `openstack-kolla-ansible-plugin` 这两个补丁包。
-
 ### Trove 安装
-
 Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据库服务则推荐使用该组件。否则，可以不用安装。
 
 1. 设置数据库
