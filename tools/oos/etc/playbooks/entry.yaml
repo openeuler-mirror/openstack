@@ -4,3 +4,6 @@
 #- import_playbook: keystone.yaml
 #- import_playbook: nova.yaml
 #- import_playbook: cinder.yaml
+- import_playbook: aodh.yaml
+  when: 
+    - '"aodh" in enabled_service'
