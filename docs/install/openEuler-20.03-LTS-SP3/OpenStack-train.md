@@ -1556,8 +1556,8 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
                             --description "Ironic baremetal provisioning service" baremetal
 
    openstack service create --name ironic-inspector --description     "Ironic inspector baremetal provisioning service" baremetal-introspection
-   openstack user create --password IRONIC_INSPECTOR_PASSWORD --email ironic_inspector@example.com ironic-inspector
-   openstack role add --project service --user ironic-inspector admin
+   openstack user create --password IRONIC_INSPECTOR_PASSWORD --email ironic_inspector@example.com ironic_inspector
+   openstack role add --project service --user ironic_inspector admin
    ```
 
    2、创建Bare Metal服务访问入口
