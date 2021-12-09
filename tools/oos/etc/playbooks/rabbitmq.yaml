@@ -1,0 +1,19 @@
+- name: Install Message Queue
+  hosts: controller
+  become: yes
+  tasks:
+    - name: Install RabbitMQ package
+      yum:
+        name:
+          - rabbitmq-server
+
+    - name: Start RabbitMQ
+      systemd:
+        name: rabbitmq-server
+        state: started
+        enabled: True
+
+    - name: Config RabbitMQ
+      shell: |
+        rabbitmqctl add_user openstack {{ rabbitmq_password }}
+        rabbitmqctl set_permissions openstack ".*" ".*" ".*"

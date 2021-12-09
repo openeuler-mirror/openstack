@@ -1,0 +1,53 @@
+- name: Install Database
+  hosts: controller
+  become: yes
+  tasks:
+    - name: Install Database package
+      yum:
+        name:
+          - mariadb
+          - mariadb-server
+          - python3-PyMySQL
+
+    - name: Config Database
+      shell: |
+        cat << EOF > /etc/my.cnf.d/openstack.cnf
+        [mysqld]
+        bind-address = {{ hostvars['controller']['ansible_default_ipv4']['address'] }}
+        default-storage-engine = innodb
+        innodb_file_per_table = on
+        max_connections = 4096
+        collation-server = utf8_general_ci
+        character-set-server = utf8
+        EOF
+
+    - name: Start Database
+      systemd:
+        name: mariadb
+        state: started
+        enabled: True
+
+    - name: Sets the root password 
+      mysql_user:
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+        name: root
+        password: "{{ mysql_root_password }}"
+        login_unix_socket: "/var/lib/mysql/mysql.sock"
+
+    - name: Deletes anonymous MySQL server user
+      mysql_user:
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+        name: ''
+        host_all: yes
+        state: absent
+        login_unix_socket: "/var/lib/mysql/mysql.sock"
+
+    - name: Removes the MySQL test database
+      mysql_db:
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+        name: test
+        state: absent
+        login_unix_socket: "/var/lib/mysql/mysql.sock"

@@ -10,7 +10,8 @@ all:
       ansible_host: <IP>
       ansible_ssh_private_key_file: <FILE_PATH>
   vars:
-    test-key: test-value
+    mysql_root_password: root
+    rabbitmq_password: root
   children:
     compute:
       hosts:

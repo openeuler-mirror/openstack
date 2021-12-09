@@ -1,4 +1,6 @@
-- import_playbook: pre_install.yaml
+- import_playbook: mariadb.yaml
+- import_playbook: rabbitmq.yaml
+- import_playbook: memcached.yaml
 #- import_playbook: keystone.yaml
 #- import_playbook: nova.yaml
 #- import_playbook: cinder.yaml
