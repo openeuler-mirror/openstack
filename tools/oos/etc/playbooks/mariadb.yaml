@@ -30,10 +30,10 @@
     - name: Sets the root password 
       mysql_user:
         login_user: root
-        login_password: "{{ mysql_root_password }}"
         name: root
         password: "{{ mysql_root_password }}"
         login_unix_socket: "/var/lib/mysql/mysql.sock"
+      ignore_errors: yes
 
     - name: Deletes anonymous MySQL server user
       mysql_user:
