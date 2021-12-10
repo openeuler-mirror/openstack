@@ -1,10 +1,9 @@
 - name: Create {{ project }} identity resources
   shell: |
+    source ~/.admin-openrc
     openstack user create --domain default --password {{ project_identity_password }} {{ project }}
     openstack role add --project service --user {{ project }} admin
     openstack service create --name {{ project }} --description {{ description }} {{ type }}
     openstack endpoint create --region RegionOne {{ type }} public {{ endpoint }}
     openstack endpoint create --region RegionOne {{ type }} internal {{ endpoint }}
     openstack endpoint create --region RegionOne {{ type }} admin {{ endpoint }}
-  # TODO: register identity_env once keystone setup
-  environment: '{{ identity_env }}'

@@ -1,7 +1,68 @@
 - name: Install openstack-keystone
   hosts: controller
   become: yes
+  roles:
+    - role: init_database
+      vars:
+        project: keystone
   tasks:
     - name: Install openstack-keystone
       yum:
-        name: openstack-keystone
+        name: 
+          - openstack-keystone
+          - httpd
+          - mod_wsgi
+          - python3-openstackclient
+
+    - name: Update config file
+      shell: |
+        cat << EOF > /etc/keystone/keystone.conf
+        [database]
+        connection = mysql+pymysql://keystone:{{ mysql_project_password }}@{{ hostvars['controller']['ansible_default_ipv4']['address'] }}/keystone
+
+        [token]
+        provider = fernet
+        EOF
+    - name: Sync database schema
+      shell: su -s /bin/sh -c "keystone-manage db_sync" keystone
+    
+    - name: Generate fernte key
+      shell: |
+        keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone
+        keystone-manage credential_setup --keystone-user keystone --keystone-group keystone
+    
+    - name: Bootstrap identity resource
+      shell: |
+        keystone-manage bootstrap --bootstrap-password {{ project_identity_password }} \
+        --bootstrap-admin-url http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5000/v3/ \
+        --bootstrap-internal-url http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5000/v3/ \
+        --bootstrap-public-url http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5000/v3/ \
+        --bootstrap-region-id RegionOne
+
+    - name: Update httpd Servername
+      shell: sed -i "s/ServerName.*/ServerName {{ hostvars['controller']['ansible_default_ipv4']['address'] }}/" /etc/httpd/conf/httpd.conf
+
+    - name: enable keystone httpd app
+      file:
+        src: /usr/share/keystone/wsgi-keystone.conf
+        dest: /etc/httpd/conf.d/wsgi-keystone.conf
+        state: link
+
+    - name: Start httpd service
+      systemd:
+        name: httpd
+        state: started
+        enabled: True
+
+    - name: Genrate admin environment file
+      shell: |
+        cat << EOF >> ~/.admin-openrc
+        export OS_PROJECT_DOMAIN_NAME=Default
+        export OS_USER_DOMAIN_NAME=Default
+        export OS_PROJECT_NAME=admin
+        export OS_USERNAME=admin
+        export OS_PASSWORD={{ project_identity_password }}
+        export OS_AUTH_URL=http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5000/v3
+        export OS_IDENTITY_API_VERSION=3
+        export OS_IMAGE_API_VERSION=2
+        EOF
