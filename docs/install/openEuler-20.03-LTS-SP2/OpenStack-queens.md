@@ -62,13 +62,13 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
 ### 环境配置
 
-1. 配置 20.03-LTS-SP2 官方认证的第三方源 oepkg，以aarch64为例
+1. 配置 20.03-LTS-SP2 官方认证的第三方源 oepkg
 
     ```shell
     cat << EOF >> /etc/yum.repos.d/OpenStack_Queens.repo
     [openstack_queens]
     name=OpenStack_Queens
-    baseurl=https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/queens/aarch64/
+    baseurl=https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/queens/$basearch/
     gpgcheck=0
     enabled=1
     EOF
@@ -214,7 +214,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 2. 安装软件包。
 
     ```shell
-    yum install openstack-keystone httpd mod_wsgi
+    yum install openstack-keystone httpd python2-mod_wsgi
     ```
 
 3. 配置keystone相关配置
@@ -1203,12 +1203,12 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     创建块存储服务API端点：
 
     ```shell
-    openstack endpoint create --region RegionOne volumev2 public http://controller:8776/v2/%s
-    openstack endpoint create --region RegionOne volumev2 internal http://controller:8776/v2/%s
-    openstack endpoint create --region RegionOne volumev2 admin http://controller:8776/v2/%s
-    openstack endpoint create --region RegionOne volumev3 public http://controller:8776/v3/%s
-    openstack endpoint create --region RegionOne volumev3 internal http://controller:8776/v3/%s
-    openstack endpoint create --region RegionOne volumev3 admin http://controller:8776/v3/%s
+    openstack endpoint create --region RegionOne volumev2 public http://controller:8776/v2/%\(project_id\)s
+    openstack endpoint create --region RegionOne volumev2 internal http://controller:8776/v2/%\(project_id\)s
+    openstack endpoint create --region RegionOne volumev2 admin http://controller:8776/v2/%\(project_id\)s
+    openstack endpoint create --region RegionOne volumev3 public http://controller:8776/v3/%\(project_id\)s
+    openstack endpoint create --region RegionOne volumev3 internal http://controller:8776/v3/%\(project_id\)s
+    openstack endpoint create --region RegionOne volumev3 admin http://controller:8776/v3/%\(project_id\)s
     ```
 
 2. 安装软件包：
@@ -1366,8 +1366,8 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
 1. 安装软件包
 
-    ```plain
-    yum install openstack-dashborad
+    ```shell
+    yum install openstack-dashboard
     ```
 
 2. 修改文件
@@ -1375,7 +1375,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     修改变量
 
     ```text
-    vim /etc/openstack-dashboard/local_settings/local_settings.py
+    vim /etc/openstack-dashboard/local_settings
 
     ALLOWED_HOSTS = ['*', ]
     OPENSTACK_HOST = "controller"
@@ -1384,7 +1384,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
 3. 重启 httpd 服务
 
-    ```plain
+    ```shell
     systemctl restart httpd
     ```
 
