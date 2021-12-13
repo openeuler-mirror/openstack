@@ -9,3 +9,9 @@
 - import_playbook: aodh.yaml
   when:
     - '"aodh" in enabled_service'
+- import_playbook: gnocchi.yaml
+  when:
+    - '"gnocchi" in enabled_service'
+- import_playbook: ceilometer.yaml
+  when:
+    - '"ceilometer" in enabled_service'
