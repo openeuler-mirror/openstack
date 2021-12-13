@@ -18,8 +18,10 @@ all:
       - keystone
       - neutron
       - cinder
+      - placement
       - nova
       - glance
+    neutron_provider_interface_name: eth1
   children:
     compute:
       hosts:
