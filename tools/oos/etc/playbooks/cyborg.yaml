@@ -1,0 +1,82 @@
+# TODO: cyborg now is all-in-one mode. Add cluster support in the future.
+- name: Install Cyborg
+  hosts: controller
+  become: yes
+  roles:
+    - role: init_database
+      vars:
+        database: cyborg
+        user: cyborg
+    - role: create_identity_resource
+      vars:
+        project: cyborg
+        type: accelerator
+        description: Acceleration Service
+        endpoint: http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:6666/v1
+  tasks:
+    - name: Install cyborg package
+      yum:
+        name:
+          - openstack-cyborg
+
+    - name: Initialize config file
+      shell: |
+        cat << EOF > /etc/cyborg/cyborg.conf
+        [DEFAULT]
+        transport_url = rabbit://openstack:{{ rabbitmq_password }}@{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5672/
+        use_syslog = False
+        state_path = /var/lib/cyborg
+        debug = True
+
+        [database]
+        connection = mysql+pymysql://cyborg:{{ mysql_project_password }}@{{ hostvars['controller']['ansible_default_ipv4']['address'] }}/cyborg
+
+        [service_catalog]
+        project_domain_id = default
+        user_domain_id = default
+        project_name = service
+        password = {{ project_identity_password }}
+        username = cyborg
+        auth_url = http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5000/v3
+        auth_type = password
+
+        [placement]
+        project_domain_name = Default
+        project_name = service
+        user_domain_name = Default
+        password = {{ project_identity_password }}
+        username = placement
+        auth_url = http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5000
+        auth_type = password
+
+        [keystone_authtoken]
+        memcached_servers = {{ hostvars['controller']['ansible_default_ipv4']['address'] }}:11211
+        project_domain_name = Default
+        project_name = service
+        user_domain_name = Default
+        password = {{ project_identity_password }}
+        username = cyborg
+        auth_url = http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5000
+        auth_type = password
+        EOF
+
+    - name: Sync database
+      shell: cyborg-dbsync --config-file /etc/cyborg/cyborg.conf upgrade
+
+    - name: Start openstack-cyborg-api service
+      systemd:
+        name: openstack-cyborg-api
+        state: started
+        enabled: True
+    
+    - name: Start openstack-cyborg-conductor service
+      systemd:
+        name: openstack-cyborg-conductor
+        state: started
+        enabled: True
+    
+    - name: Start openstack-cyborg-agent service
+      systemd:
+        name: openstack-cyborg-agent
+        state: started
+        enabled: True

@@ -1,29 +1,29 @@
-- name: Create {{ project }} database
+- name: Create {{ database }} database
   mysql_db:
     login_user: root
     login_password: "{{ mysql_root_password }}"
-    name: "{{ project }}"
+    name: "{{ database }}"
     state: present
     login_unix_socket: "/var/lib/mysql/mysql.sock"
 
-- name: grant {{ project }} database user privilege(local)
+- name: grant {{ database }} database user privilege(local)
   mysql_user:
     login_user: root
     login_password: "{{ mysql_root_password }}"
-    name: "{{ project }}"
+    name: "{{ database }}"
     password: "{{ mysql_project_password }}"
     host: localhost
-    priv: "{{ project }}.*:ALL"
+    priv: "{{ user }}.*:ALL"
     state: present
     login_unix_socket: "/var/lib/mysql/mysql.sock"
 
-- name: grant {{ project }} database user privilege(remote)
+- name: grant {{ database }} database user privilege(remote)
   mysql_user:
     login_user: root
     login_password: "{{ mysql_root_password }}"
-    name: "{{ project }}"
+    name: "{{ database }}"
     password: "{{ mysql_project_password }}"
     host: "%"
-    priv: "{{ project }}.*:ALL"
+    priv: "{{ user }}.*:ALL"
     state: present
     login_unix_socket: "/var/lib/mysql/mysql.sock"
