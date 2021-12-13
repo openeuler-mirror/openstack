@@ -1933,7 +1933,7 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
 3. 安装和配置**Trove**各组件
    1、安装**Trove**包
    ```shell script
-   yum install openstack-trove python-troveclient
+   yum install openstack-trove python2-troveclient
    ```
    2. 配置`trove.conf`
    ```shell script
