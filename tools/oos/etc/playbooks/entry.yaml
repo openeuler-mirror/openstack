@@ -18,6 +18,10 @@
   when:
     - '"nova" in enabled_service'
 
+- import_playbook: neutron.yaml
+  when:
+    - '"neutron" in enabled_service'
+
 #- import_playbook: cinder.yaml
 
 - import_playbook: horizon.yaml
