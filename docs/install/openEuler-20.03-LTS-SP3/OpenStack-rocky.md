@@ -1992,7 +1992,7 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
    1、安装**Trove**包
 
    ```shell
-   $ yum install openstack-trove python-troveclient
+   $ yum install openstack-trove python2-troveclient
    ```
    2、配置`/etc/trove/trove.conf`
 
