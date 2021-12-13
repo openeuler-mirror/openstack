@@ -1,0 +1,9 @@
+- name: Install Rally
+  hosts: controller
+  become: yes
+  tasks:
+    - name: Install rally package
+      yum:
+        name:
+          - openstack-rally
+          - openstack-rally-plugin

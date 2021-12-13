@@ -23,6 +23,7 @@
         [token]
         provider = fernet
         EOF
+
     - name: Sync database schema
       shell: su -s /bin/sh -c "keystone-manage db_sync" keystone
     
