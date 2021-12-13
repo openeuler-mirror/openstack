@@ -4,7 +4,8 @@
   roles:
     - role: init_database
       vars:
-        project: gnocchi
+        database: gnocchi
+        user: gnocchi
     - role: create_identity_resource
       vars:
         project: gnocchi

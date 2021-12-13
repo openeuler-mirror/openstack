@@ -4,7 +4,8 @@
   roles:
     - role: init_database
       vars:
-        project: aodh
+        database: aodh
+        user: aodh
     - role: create_identity_resource
       vars:
         project: aodh

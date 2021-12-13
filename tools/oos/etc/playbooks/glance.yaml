@@ -1,0 +1,54 @@
+- name: Install Glance
+  hosts: controller
+  become: yes
+  roles:
+    - role: init_database
+      vars:
+        database: glance
+        user: glance
+    - role: create_identity_resource
+      vars:
+        project: glance
+        type: image
+        description: OpenStack Image
+        endpoint: http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:9292
+  tasks:
+    - name: Install glance package
+      yum:
+        name:
+          - openstack-glance
+
+    - name: Initialize config file
+      shell: |
+        cat << EOF > /etc/glance/glance.conf
+        [database]
+        connection = mysql+pymysql://glance:{{ mysql_project_password }}@{{ hostvars['controller']['ansible_default_ipv4']['address'] }}/glance
+
+        [keystone_authtoken]
+        www_authenticate_uri  = http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5000
+        auth_url = http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5000
+        memcached_servers = {{ hostvars['controller']['ansible_default_ipv4']['address'] }}:11211
+        auth_type = password
+        project_domain_name = Default
+        user_domain_name = Default
+        project_name = service
+        username = glance
+        password = {{ project_identity_password }}
+
+        [paste_deploy]
+        flavor = keystone
+
+        [glance_store]
+        stores = file,http
+        default_store = file
+        filesystem_store_datadir = /var/lib/glance/images/
+        EOF
+
+    - name: Sync database
+      shell: su -s /bin/sh -c "glance-manage db_sync" glance
+
+    - name: Start openstack-glance-api service
+      systemd:
+        name: openstack-glance-api
+        state: started
+        enabled: True

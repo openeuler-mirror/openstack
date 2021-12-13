@@ -4,7 +4,8 @@
   roles:
     - role: init_database
       vars:
-        project: ceilometer
+        database: ceilometer
+        user: ceilometer
   tasks:
     - name: Install ceilometer package
       yum:

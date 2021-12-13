@@ -4,7 +4,8 @@
   roles:
     - role: init_database
       vars:
-        project: keystone
+        database: keystone
+        user: keystone
   tasks:
     - name: Install openstack-keystone
       yum:

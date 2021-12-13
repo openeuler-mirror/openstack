@@ -1,0 +1,94 @@
+- name: Install Heat
+  hosts: controller
+  become: yes
+  roles:
+    - role: init_database
+      vars:
+        database: heat
+        user: heat
+    - role: create_identity_resource
+      vars:
+        project: heat
+        type: orchestration
+        description: Orchestration
+        endpoint: http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8004/v1/%\(tenant_id\)s
+  tasks:
+    - name: Add heat-cfn identity resource
+      shell: |
+        source ~/.admin-openrc
+        openstack service create --name heat-cfn --description "Orchestration" cloudformation
+        openstack endpoint create --region RegionOne cloudformation public http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8000/v1
+        openstack endpoint create --region RegionOne cloudformation internal http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8000/v1
+        openstack endpoint create --region RegionOne cloudformation admin http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8000/v1
+
+    - name: Add stack identity resource
+      shell: |
+        source ~/.admin-openrc
+        openstack user create --domain heat --password {{ project_identity_password }} heat_domain_admin
+        openstack role add --domain heat --user-domain heat --user heat_domain_admin admin
+        openstack role create heat_stack_owner
+        openstack role create heat_stack_user
+
+    - name: Install heat package
+      yum:
+        name:
+          - openstack-heat-api
+          - openstack-heat-api-cfn
+          - openstack-heat-engine
+
+    - name: Initialize config file
+      shell: |
+        cat << EOF > /etc/heat/heat.conf
+        [DEFAULT]
+        transport_url = rabbit://openstack:{{ rabbitmq_password }}@{{ hostvars['controller']['ansible_default_ipv4']['address'] }}
+        heat_metadata_server_url = http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8000
+        heat_waitcondition_server_url = http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8000/v1/waitcondition
+        stack_domain_admin = heat_domain_admin
+        stack_domain_admin_password = {{ project_identity_password }}
+        stack_user_domain_name = heat
+
+        [database]
+        connection = mysql+pymysql://heat:{{ mysql_project_password }}@{{ hostvars['controller']['ansible_default_ipv4']['address'] }}/heat
+
+        [keystone_authtoken]
+        www_authenticate_uri = http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5000
+        auth_url = http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5000
+        memcached_servers = {{ hostvars['controller']['ansible_default_ipv4']['address'] }}:11211
+        auth_type = password
+        project_domain_name = default
+        user_domain_name = default
+        project_name = service
+        username = heat
+        password = {{ project_identity_password }}
+
+        [trustee]
+        auth_type = password
+        auth_url = http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5000
+        username = heat
+        password = {{ project_identity_password }}
+        user_domain_name = default
+
+        [clients_keystone]
+        auth_uri = http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5000
+        EOF
+
+    - name: Sync database
+      shell: su -s /bin/sh -c "heat-manage db_sync" heat
+
+    - name: Start openstack-heat-api service
+      systemd:
+        name: openstack-heat-api
+        state: started
+        enabled: True
+
+    - name: Start openstack-heat-api-cfn service
+      systemd:
+        name: openstack-heat-api-cfn
+        state: started
+        enabled: True
+
+    - name: Start openstack-heat-engine service
+      systemd:
+        name: openstack-heat-engine
+        state: started
+        enabled: True
