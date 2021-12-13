@@ -1,0 +1,16 @@
+- name: Install Kolla
+  hosts: kolla
+  become: yes
+  tasks:
+    - name: Install kolla package
+      yum:
+        name:
+          - openstack-kolla
+          - openstack-kolla-ansible
+
+    - name: Install kolla openEuler plugin package
+      yum:
+        name:
+          - openstack-kolla-plugin
+          - openstack-kolla-ansible-plugin
+      when: openeuler_plugin|default(false)|bool

@@ -1,4 +1,4 @@
-- name: Install Database
+- name: Install ceilometer
   hosts: controller
   become: yes
   roles:

@@ -33,3 +33,13 @@ all:
       hosts: controller
       vars:
         test-key: test-value
+    dashboard:
+      hosts: controller
+      vars:
+        allowed_host: '*'
+    kolla:
+      hosts: controller
+      vars:
+        # We add openEuler OS support for kolla in OpenStack Queens/Rocky release
+        # Set this var to true if you want to use it in Q/R
+        openeuler_plugin: false

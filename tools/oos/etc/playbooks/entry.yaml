@@ -6,6 +6,9 @@
     - '"keystone" in enabled_service'
 #- import_playbook: nova.yaml
 #- import_playbook: cinder.yaml
+- import_playbook: horizon.yaml
+  when:
+    - '"horizon" in enabled_service'
 - import_playbook: aodh.yaml
   when:
     - '"aodh" in enabled_service'
@@ -15,3 +18,9 @@
 - import_playbook: ceilometer.yaml
   when:
     - '"ceilometer" in enabled_service'
+- import_playbook: rally.yaml
+  when:
+    - '"rally" in enabled_service'
+- import_playbook: kolla.yaml
+  when:
+    - '"kolla" in enabled_service'

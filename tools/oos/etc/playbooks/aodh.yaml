@@ -1,4 +1,4 @@
-- name: Install Database
+- name: Install aodh
   hosts: controller
   become: yes
   roles:
