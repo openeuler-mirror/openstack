@@ -1,0 +1,65 @@
+- name: Install Database
+  hosts: controller
+  become: yes
+  roles:
+    - role: init_database
+      vars:
+        project: gnocchi
+    - role: create_identity_resource
+      vars:
+        project: gnocchi
+        type: metric
+        description: Metric Service
+        endpoint: http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8041
+  tasks:
+    - name: Install gnocchi package
+      yum:
+        name:
+          - openstack-gnocchi-api
+          - openstack-gnocchi-metricd
+          - python3-gnocchiclient
+
+    - name: Initialize config file
+      shell: |
+        cat << EOF > /etc/gnocchi/gnocchi.conf
+        [api]
+        auth_mode = keystone
+        port = 8041
+        uwsgi_mode = http-socket
+
+        [keystone_authtoken]
+        auth_type = password
+        auth_url = http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5000/v3
+        project_domain_name = Default
+        user_domain_name = Default
+        project_name = service
+        username = gnocchi
+        password = {{ project_identity_password }}
+        interface = internalURL
+        region_name = RegionOne
+
+        [indexer]
+        url = mysql+pymysql://gnocchi:{{ mysql_project_password }}@{{ hostvars['controller']['ansible_default_ipv4']['address'] }}/gnocchi
+
+        [storage]
+        # coordination_url is not required but specifying one will improve
+        # performance with better workload division across workers.
+        coordination_url = redis://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:6379
+        file_basepath = /var/lib/gnocchi
+        driver = file
+        EOF
+
+    - name: Sync database
+      shell: gnocchi-upgrade
+
+    - name: Start openstack-gnocchi-api service
+      systemd:
+        name: openstack-gnocchi-api
+        state: started
+        enabled: True
+    
+    - name: Start openstack-gnocchi-metricd service
+      systemd:
+        name: openstack-gnocchi-metricd
+        state: started
+        enabled: True
