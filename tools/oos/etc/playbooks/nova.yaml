@@ -16,7 +16,8 @@
         user: nova
     - role: create_identity_resource
       vars:
-        project: nova
+        user: nova
+        service: nova
         type: compute
         description: "OpenStack Compute"
         endpoint: http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8774/v2.1

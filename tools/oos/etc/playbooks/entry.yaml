@@ -22,7 +22,9 @@
   when:
     - '"neutron" in enabled_service'
 
-#- import_playbook: cinder.yaml
+- import_playbook: cinder.yaml
+  when:
+    - '"cinder" in enabled_service'
 
 - import_playbook: horizon.yaml
   when:

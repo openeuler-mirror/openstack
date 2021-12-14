@@ -8,7 +8,8 @@
         user: gnocchi
     - role: create_identity_resource
       vars:
-        project: gnocchi
+        user: gnocchi
+        service: gnocchi
         type: metric
         description: Metric Service
         endpoint: http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8041
