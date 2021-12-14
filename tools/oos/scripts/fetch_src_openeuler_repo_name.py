@@ -29,7 +29,7 @@ def get_gitee_org_repos(org, verify=True, access_token=None):
                 start += 1
     return all_projects.sort()
 
-projects = get_gitee_org_repos('src-openeuler', os.environ.get("GITEE_USER_TOKEN"))
+projects = get_gitee_org_repos('src-openeuler', True, os.environ.get("GITEE_USER_TOKEN"))
 with open('openeuler_repo', 'w') as fp:
     for project in projects:
         fp.write(project + "\n")
