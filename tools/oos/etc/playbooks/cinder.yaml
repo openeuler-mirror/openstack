@@ -1,0 +1,136 @@
+# TODO: Add cinder-backup support
+- name: Install Cinder controller
+  hosts: controller
+  become: yes
+  roles:
+    - role: init_database
+      vars:
+        database: cinder
+        user: cinder
+    - role: create_identity_resource
+      vars:
+        user: cinder
+        service: cinderv2
+        type: volumev2
+        description: "OpenStack Block Storage"
+        endpoint: http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8776/v2/%\(project_id\)s
+    - role: create_identity_resource
+      vars:
+        service: cinderv3
+        type: volumev3
+        description: "OpenStack Block Storage"
+        endpoint: http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8776/v3/%\(project_id\)s
+        skip_user_create: true
+  tasks:
+    - name: Install cinder package
+      yum:
+        name:
+          - openstack-cinder-api
+          - openstack-cinder-scheduler
+
+- name: Config Cinder
+  hosts: all
+  become: yes
+  tasks:
+    - name: Initialize config file
+      shell: |
+        cat << EOF > /etc/cinder/cinder.conf
+        [DEFAULT]
+        transport_url = rabbit://openstack:{{ rabbitmq_password }}@{{ hostvars['controller']['ansible_default_ipv4']['address'] }}
+        auth_strategy = keystone
+        my_ip = {{ rabbitmq_password }}@{{ hostvars['controller']['ansible_default_ipv4']['address'] }}
+        enabled_backends = lvm
+        backup_driver=cinder.backup.drivers.nfs.NFSBackupDriver
+        # backup_share=HOST:PATH
+
+        [database]
+        connection = mysql+pymysql://cinder:{{ mysql_project_password }}@{{ hostvars['controller']['ansible_default_ipv4']['address'] }}/cinder
+
+        [keystone_authtoken]
+        www_authenticate_uri = http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5000
+        auth_url = http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5000
+        memcached_servers = {{ hostvars['controller']['ansible_default_ipv4']['address'] }}:11211
+        auth_type = password
+        project_domain_name = Default
+        user_domain_name = Default
+        project_name = service
+        username = cinder
+        password = {{ project_identity_password }}
+
+        [oslo_concurrency]
+        lock_path = /var/lib/cinder/tmp
+
+        [lvm]
+        volume_driver = cinder.volume.drivers.lvm.LVMVolumeDriver
+        volume_group = cinder-volumes
+        iscsi_protocol = iscsi
+        iscsi_helper = tgtadm
+        EOF
+
+- name: Install Cinder storage
+  hosts: storage
+  become: yes
+  tasks:
+    - name: Install cinder package
+      yum:
+        name:
+          - lvm2
+          - device-mapper-persistent-data
+          - scsi-target-utils rpcbind nfs-utils
+          - openstack-cinder-volume
+          - openstack-cinder-backup
+    - name: Initialize block device
+      shell: |
+        pvcreate /dev/{{ cinder_block_device }}
+        vgcreate cinder-volumes /dev/{{ cinder_block_device }}
+
+- name: Complete Cinder controller
+  hosts: controller
+  become: yes
+  tasks:
+    - name: Sync database
+      shell: su -s /bin/sh -c "cinder-manage db sync" cinder
+
+    - name: Start openstack-cinder-api service
+      systemd:
+        name: openstack-cinder-api
+        state: started
+        enabled: True
+
+    - name: Start openstack-cinder-scheduler service
+      systemd:
+        name: openstack-cinder-scheduler
+        state: started
+        enabled: True
+
+- name: Complete Cinder storage
+  hosts: storage
+  become: yes
+  tasks:
+    - name: Update tgtd config file
+      shell: |
+        cat >> /etc/tgt/tgtd/conf << EOF
+        include /var/lib/cinder/volumes/*
+        EOF
+
+    - name: Start openstack-cinder-volume service
+      systemd:
+        name: openstack-cinder-volume
+        state: started
+        enabled: True
+
+    - name: Start tgtd service
+      systemd:
+        name: tgtd
+        state: started
+        enabled: True
+
+- name: Complete Nova compute
+  hosts: compute
+  become: yes
+  tasks:
+    - name: Start iscsid service
+      systemd:
+        name: iscsid
+        state: started
+        enabled: True

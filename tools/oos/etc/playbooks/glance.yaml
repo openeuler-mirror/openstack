@@ -8,7 +8,8 @@
         user: glance
     - role: create_identity_resource
       vars:
-        project: glance
+        user: glance
+        service: glance
         type: image
         description: OpenStack Image
         endpoint: http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:9292

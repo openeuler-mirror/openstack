@@ -22,6 +22,7 @@ all:
       - nova
       - glance
     neutron_provider_interface_name: eth1
+    cinder_block_device: vdb
   children:
     compute:
       hosts:
@@ -30,7 +31,9 @@ all:
       vars:
         test-key: test-value
     storage:
-      hosts: controller
+      hosts:
+        compute01
+        compute02
     network:
       hosts: controller
       vars:

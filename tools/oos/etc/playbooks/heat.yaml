@@ -8,19 +8,19 @@
         user: heat
     - role: create_identity_resource
       vars:
-        project: heat
+        user: heat
+        service: heat
         type: orchestration
         description: Orchestration
         endpoint: http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8004/v1/%\(tenant_id\)s
+    - role: create_identity_resource
+      vars:
+        service: heat-cfn
+        type: cloudformation
+        description: Orchestration
+        endpoint: http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8000/v1
+        skip_user_create: true
   tasks:
-    - name: Add heat-cfn identity resource
-      shell: |
-        source ~/.admin-openrc
-        openstack service create --name heat-cfn --description "Orchestration" cloudformation
-        openstack endpoint create --region RegionOne cloudformation public http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8000/v1
-        openstack endpoint create --region RegionOne cloudformation internal http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8000/v1
-        openstack endpoint create --region RegionOne cloudformation admin http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8000/v1
-
     - name: Add stack identity resource
       shell: |
         source ~/.admin-openrc

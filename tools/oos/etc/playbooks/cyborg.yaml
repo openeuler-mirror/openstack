@@ -9,7 +9,8 @@
         user: cyborg
     - role: create_identity_resource
       vars:
-        project: cyborg
+        user: cyborg
+        service: cyborg
         type: accelerator
         description: Acceleration Service
         endpoint: http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:6666/v1

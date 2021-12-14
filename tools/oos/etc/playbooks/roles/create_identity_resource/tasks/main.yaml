@@ -1,9 +1,15 @@
-- name: Create {{ project }} identity resources
+- name: Create {{ service }} identity user
   shell: |
     source ~/.admin-openrc
-    openstack user create --domain default --password {{ project_identity_password }} {{ project }}
-    openstack role add --project service --user {{ project }} admin
-    openstack service create --name {{ project }} --description {{ description }} {{ type }}
+    openstack user create --domain default --password {{ project_identity_password }} {{ user }}
+    openstack role add --project service --user {{ user }} admin
+  when: not skip_user_create|default(false)|bool
+
+
+- name: Create {{ service }} identity service
+  shell: |
+    source ~/.admin-openrc
+    openstack service create --name {{ service }} --description {{ description }} {{ type }}
     openstack endpoint create --region RegionOne {{ type }} public {{ endpoint }}
     openstack endpoint create --region RegionOne {{ type }} internal {{ endpoint }}
     openstack endpoint create --region RegionOne {{ type }} admin {{ endpoint }}

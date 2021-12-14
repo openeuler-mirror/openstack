@@ -8,7 +8,8 @@
         user: aodh
     - role: create_identity_resource
       vars:
-        project: aodh
+        user: aodh
+        service: aodh
         type: alarming
         description: Telemetry
         endpoint: http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8042
