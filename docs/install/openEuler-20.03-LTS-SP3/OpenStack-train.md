@@ -1543,8 +1543,20 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic.* TO 'ironic'@'%' \
    IDENTIFIED BY 'IRONIC_DBPASSWORD';
    ```
+2. 安装软件包
 
-2. 创建服务用户认证
+   ```shell
+   yum install openstack-ironic-api openstack-ironic-conductor python3-ironicclient
+   ```
+
+   启动服务
+
+   ```shell
+   systemctl enable openstack-ironic-api openstack-ironic-conductor
+   systemctl start openstack-ironic-api openstack-ironic-conductor
+   ```
+
+3. 创建服务用户认证
 
    1、创建Bare Metal服务用户
 
@@ -1552,12 +1564,8 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    openstack user create --password IRONIC_PASSWORD \
                          --email ironic@example.com ironic
    openstack role add --project service --user ironic admin
-   openstack service create --name ironic
+   openstack service create --name ironic \
                             --description "Ironic baremetal provisioning service" baremetal
-
-   openstack service create --name ironic-inspector --description     "Ironic inspector baremetal provisioning service" baremetal-introspection
-   openstack user create --password IRONIC_INSPECTOR_PASSWORD --email ironic_inspector@example.com ironic_inspector
-   openstack role add --project service --user ironic_inspector admin
    ```
 
    2、创建Bare Metal服务访问入口
@@ -1566,12 +1574,9 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    openstack endpoint create --region RegionOne baremetal admin http://$IRONIC_NODE:6385
    openstack endpoint create --region RegionOne baremetal public http://$IRONIC_NODE:6385
    openstack endpoint create --region RegionOne baremetal internal http://$IRONIC_NODE:6385
-   openstack endpoint create --region RegionOne baremetal-introspection internal http://172.20.19.13:5050/v1
-   openstack endpoint create --region RegionOne baremetal-introspection public http://172.20.19.13:5050/v1
-   openstack endpoint create --region RegionOne baremetal-introspection admin http://172.20.19.13:5050/v1
    ```
 
-3. 配置ironic-api服务
+4. 配置ironic-api服务
 
    配置文件路径/etc/ironic/ironic.conf
 
@@ -1610,21 +1615,6 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    # disabled. (string value)
    
    auth_strategy=keystone
-   host = controller
-   memcache_servers = controller:11211
-   enabled_network_interfaces = flat,noop,neutron
-   default_network_interface = noop
-   transport_url = rabbit://openstack:RABBITPASSWD@controller:5672/
-   enabled_hardware_types = ipmi
-   enabled_boot_interfaces = pxe
-   enabled_deploy_interfaces = direct
-   default_deploy_interface = direct
-   enabled_inspect_interfaces = inspector
-   enabled_management_interfaces = ipmitool
-   enabled_power_interfaces = ipmitool
-   enabled_rescue_interfaces = no-rescue,agent
-   isolinux_bin = /usr/share/syslinux/isolinux.bin
-   logging_context_format_string = %(asctime)s.%(msecs)03d %(process)d %(levelname)s %(name)s [%(global_request_id)s %(request_id)s %(user_identity)s] %(instance)s%(message)s
    
    [keystone_authtoken]
    # Authentication type to load (string value)
@@ -1644,35 +1634,6 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    # User's domain name (string value)
    user_domain_name=Default
    
-   [agent]
-   deploy_logs_collect = always
-   deploy_logs_local_path = /var/log/ironic/deploy
-   deploy_logs_storage_backend = local
-   image_download_source = http
-   stream_raw_images = false
-   force_raw_images = false
-   verify_ca = False
-   
-   [oslo_concurrency]
-   
-   [oslo_messaging_notifications]
-   transport_url = rabbit://openstack:123456@172.20.19.25:5672/
-   topics = notifications
-   driver = messagingv2
-   
-   [oslo_messaging_rabbit]
-   amqp_durable_queues = True
-   rabbit_ha_queues = True
-   
-   [pxe]
-   ipxe_enabled = false
-   pxe_append_params = nofb nomodeset vga=normal coreos.autologin ipa-insecure=1
-   image_cache_size = 204800
-   tftp_root=/var/lib/tftpboot/cephfs/
-   tftp_master_path=/var/lib/tftpboot/cephfs/master_images
-   
-   [dhcp]
-   dhcp_provider = none
    ```
 
    4、创建裸金属服务数据库表
@@ -1687,7 +1648,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    sudo systemctl restart openstack-ironic-api
    ```
 
-4. 配置ironic-conductor服务
+5. 配置ironic-conductor服务
 
    1、替换**HOST_IP**为conductor host的IP
 
@@ -1814,143 +1775,6 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    sudo systemctl restart openstack-ironic-conductor
    ```
 
-5. 配置ironic-inspector服务
-
-   配置文件路径/etc/ironic-inspector/inspector.conf
-
-   1、创建数据库
-
-   ```shell
-   # mysql -u root -p
-   
-   MariaDB [(none)]> CREATE DATABASE ironic_inspector CHARACTER SET utf8;
-   
-   MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic_inspector.* TO 'ironic_inspector'@'localhost' \     IDENTIFIED BY 'IRONIC_INSPECTOR_DBPASSWORD';
-   MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic_inspector.* TO 'ironic_inspector'@'%' \
-   IDENTIFIED BY 'IRONIC_INSPECTOR_DBPASSWORD';
-   ```
-
-   2、通过**connection**选项配置数据库的位置，如下所示，替换**IRONIC_INSPECTOR_DBPASSWORD**为**ironic_inspector**用户的密码，替换**DB_IP**为DB服务器所在的IP地址：
-
-   ```shell
-   [database]
-   backend = sqlalchemy
-   connection = mysql+pymysql://ironic_inspector:IRONIC_INSPECTOR_DBPASSWORD@DB_IP/ironic_inspector
-   min_pool_size = 100
-   max_pool_size = 500
-   pool_timeout = 30
-   max_retries = 5
-   max_overflow = 200
-   db_retry_interval = 2
-   db_inc_retry_interval = True
-   db_max_retry_interval = 2
-   db_max_retries = 5
-   ```
-
-   3、配置消息度列通信地址
-
-   ```shell
-   [DEFAULT] 
-   transport_url = rabbit://RPC_USER:RPC_PASSWORD@RPC_HOST:RPC_PORT/
-   
-   ```
-
-   4、设置keystone认证
-
-   ```shell
-   [DEFAULT]
-   
-   auth_strategy = keystone
-   timeout = 900
-   rootwrap_config = /etc/ironic-inspector/rootwrap.conf
-   logging_context_format_string = %(asctime)s.%(msecs)03d %(process)d %(levelname)s %(name)s [%(global_request_id)s %(request_id)s %(user_identity)s] %(instance)s%(message)s
-   log_dir = /var/log/ironic-inspector
-   state_path = /var/lib/ironic-inspector
-   use_stderr = False
-   
-   [ironic]
-   api_endpoint = http://IRONIC_API_HOST_ADDRRESS:6385
-   auth_type = password
-   auth_url = http://PUBLIC_IDENTITY_IP:5000
-   auth_strategy = keystone
-   ironic_url = http://IRONIC_API_HOST_ADDRRESS:6385
-   os_region = RegionOne
-   project_name = service
-   project_domain_name = Default
-   user_domain_name = Default
-   username = IRONIC_SERVICE_USER_NAME
-   password = IRONIC_SERVICE_USER_PASSWORD
-   
-   [keystone_authtoken]
-   auth_type = password
-   auth_url = http://control:5000
-   www_authenticate_uri = http://control:5000
-   project_domain_name = default
-   user_domain_name = default
-   project_name = service
-   username = ironic_inspector
-   password = IRONICPASSWD
-   region_name = RegionOne
-   memcache_servers = control:11211
-   token_cache_time = 300
-   
-   [processing]
-   add_ports = active
-   processing_hooks = $default_processing_hooks,local_link_connection,lldp_basic
-   ramdisk_logs_dir = /var/log/ironic-inspector/ramdisk
-   always_store_ramdisk_logs = true
-   store_data =none
-   power_off = false
-   
-   [pxe_filter]
-   driver = iptables
-   
-   [capabilities]
-   boot_mode=True
-   ```
-
-   5、配置ironic inspector dnsmasq服务
-
-   ```shell
-   # 配置文件地址：/etc/ironic-inspector/dnsmasq.conf
-   port=0
-   interface=enp3s0                         #替换为实际监听网络接口
-   dhcp-range=172.20.19.100,172.20.19.110   #替换为实际dhcp地址范围
-   bind-interfaces
-   enable-tftp
-   
-   dhcp-match=set:efi,option:client-arch,7
-   dhcp-match=set:efi,option:client-arch,9
-   dhcp-match=aarch64, option:client-arch,11
-   dhcp-boot=tag:aarch64,grubaa64.efi
-   dhcp-boot=tag:!aarch64,tag:efi,grubx64.efi
-   dhcp-boot=tag:!aarch64,tag:!efi,pxelinux.0
-   
-   tftp-root=/tftpboot                       #替换为实际tftpboot目录
-   log-facility=/var/log/dnsmasq.log
-   ```
-
-   6、关闭ironic provision网络子网的dhcp
-
-   ```
-   openstack subnet set --no-dhcp 72426e89-f552-4dc4-9ac7-c4e131ce7f3c
-   ```
-
-   7、初始化ironic-inspector服务的数据库
-
-   在控制节点执行：
-
-   ```
-   ironic-inspector-dbsync --config-file /etc/ironic-inspector/inspector.conf upgrade
-   ```
-
-   8、启动服务
-
-   ```shell
-   systemctl enable --now openstack-ironic-inspector.service
-   systemctl enable --now openstack-ironic-inspector-dnsmasq.service
-   ```
-
 6. 配置httpd服务
 
    1. 创建ironic要使用的httpd的root目录并设置属主属组，目录路径要和/etc/ironic/ironic.conf中[deploy]组中http_root 配置项指定的路径要一致。
@@ -1959,20 +1783,13 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
       mkdir -p /var/lib/ironic/httproot ``chown ironic.ironic /var/lib/ironic/httproot
       ```
    
-      
-   
    2. 安装和配置httpd服务
-   
-      
    
       1. 安装httpd服务，已有请忽略
    
          ```
          yum install httpd -y
          ```
-   
-         
-   
       2. 创建/etc/httpd/conf.d/openstack-ironic-httpd.conf文件，内容如下：
    
          ```
@@ -2003,13 +1820,10 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
          ```
          systemctl restart httpd
          ```
-   
-         
-   
 7. deploy ramdisk镜像制作
-
-   W版的ramdisk镜像支持通过ironic-python-agent服务或disk-image-builder工具制作，也可以使用社区最新的ironic-python-agent-builder。用户也可以自行选择其他工具制作。
-   若使用W版原生工具，则需要安装对应的软件包。
+   
+   T版的ramdisk镜像支持通过ironic-python-agent服务或disk-image-builder工具制作，也可以使用社区最新的ironic-python-agent-builder。用户也可以自行选择其他工具制作。
+   若使用T版原生工具，则需要安装对应的软件包。
 
    ```shell
    yum install openstack-ironic-python-agent
@@ -2022,7 +1836,6 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    这里介绍下使用ironic-python-agent-builder构建ironic使用的deploy镜像的完整过程。
 
    1. 安装 ironic-python-agent-builder
-
 
         1. 安装工具：
     
@@ -2127,70 +1940,64 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
         参考：[source-repositories](https://docs.openstack.org/diskimage-builder/latest/elements/source-repositories/README.html)。
 
         指定仓库地址及版本验证成功。
-        
+   
    5. 注意
+	原生的openstack里的pxe配置文件的模版不支持arm64架构，需要自己对原生openstack代码进行修改：
 
-原生的openstack里的pxe配置文件的模版不支持arm64架构，需要自己对原生openstack代码进行修改：
+	在T版中，社区的ironic仍然不支持arm64位的uefi pxe启动，表现为生成的grub.cfg文件(一般位于/tftpboot/下)格式不对而导致pxe启动失败
 
-在T版中，社区的ironic仍然不支持arm64位的uefi pxe启动，表现为生成的grub.cfg文件(一般位于/tftpboot/下)格式不对而导致pxe启动失败，如下：
+	需要用户对生成grub.cfg的代码逻辑自行修改。
 
-生成的错误配置文件：
+	ironic向ipa发送查询命令执行状态请求的tls报错：
 
-![erro](/Users/andy_lee/Downloads/erro.png)
+	T版的ipa和ironic默认都会开启tls认证的方式向对方发送请求，跟据官网的说明进行关闭即可。
 
-如上图所示，arm架构里寻找vmlinux和ramdisk镜像的命令分别是linux和initrd，上图所示的标红命令是x86架构下的uefi pxe启动。
+	1. 修改ironic配置文件(/etc/ironic/ironic.conf)下面的配置中添加ipa-insecure=1：
 
-需要用户对生成grub.cfg的代码逻辑自行修改。
-
-ironic向ipa发送查询命令执行状态请求的tls报错：
-
-T版的ipa和ironic默认都会开启tls认证的方式向对方发送请求，跟据官网的说明进行关闭即可。
-
-1. 修改ironic配置文件(/etc/ironic/ironic.conf)下面的配置中添加ipa-insecure=1：
-
-```
-[agent]
-verify_ca = False
+	```
+	[agent]
+	verify_ca = False
  
-[pxe]
-pxe_append_params = nofb nomodeset vga=normal coreos.autologin ipa-insecure=1
-```
+	[pxe]
+	pxe_append_params = nofb nomodeset vga=normal coreos.autologin ipa-insecure=1
+	```
 
-2) ramdisk镜像中添加ipa配置文件/etc/ironic_python_agent/ironic_python_agent.conf并配置tls的配置如下：
+	2. ramdisk镜像中添加ipa配置文件/etc/ironic_python_agent/ironic_python_agent.conf并配置tls的配置如下：
 
-/etc/ironic_python_agent/ironic_python_agent.conf (需要提前创建/etc/ironic_python_agent目录）
+	/etc/ironic_python_agent/ironic_python_agent.conf (需要提前创建/etc/ironic_python_agent目录）
 
-```
-[DEFAULT]
-enable_auto_tls = False
-```
+	```
+	[DEFAULT]
+	enable_auto_tls = False
+	```
 
-设置权限：
+	设置权限：
 
-```
-chown -R ipa.ipa /etc/ironic_python_agent/
-```
+	```
+	chown -R ipa.ipa /etc/ironic_python_agent/
+	```
 
-3. 修改ipa服务的服务启动文件，添加配置文件选项
+	3. 修改ipa服务的服务启动文件，添加配置文件选项
 
-   vim usr/lib/systemd/system/ironic-python-agent.service
+   	vim usr/lib/systemd/system/ironic-python-agent.service
 
-   ```
-   [Unit]
-   Description=Ironic Python Agent
-   After=network-online.target
+	   ```
+	   [Unit]
+	   Description=Ironic Python Agent
+	   After=network-online.target
     
-   [Service]
-   ExecStartPre=/sbin/modprobe vfat
-   ExecStart=/usr/local/bin/ironic-python-agent --config-file /etc/ironic_python_agent/ironic_python_agent.conf
-   Restart=always
-   RestartSec=30s
+	   [Service]
+	   ExecStartPre=/sbin/modprobe vfat
+	   ExecStart=/usr/local/bin/ironic-python-agent --config-file /etc/ironic_python_agent/ironic_python_agent.conf
+	   Restart=always
+	   RestartSec=30s
     
-   [Install]
-   WantedBy=multi-user.target
-   ```
+	   [Install]
+	   WantedBy=multi-user.target
+	   ```
 
    
+在Train中，我们还提供了ironic-inspector等服务，用户可根据自身需求安装。
 
 ### Kolla 安装
 
