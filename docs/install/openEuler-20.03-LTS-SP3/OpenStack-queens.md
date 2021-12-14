@@ -58,6 +58,38 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 - Nova
 - Neutron
 
+## 软件包多版本约定
+
+openEuler 20.03-LTS-SP3 版本支持 OpenStack 的 Queens、Rocky 和 Train 版本，有些软件包存在多版本，对于OpenStack Queens 和 Rocky 版本的安装，这些多版本软件包的安装我们需要指出对应版本号，
+以 OpenStack Nova 为例，可以使用 `yum list --showduplicates |grep openstack-nova` 列出对应nova服务的版本，这里我们选择对应 Queens 版本，以下安装文档均以 ‘$QueensVer’ 来表示。 
+
+涉及的软件包：
+
+openstack-keystone 及其子包
+
+openstack-glance 及其子包
+
+openstack-nova 及其子包
+
+openstack-neutron 及其子包
+
+openstack-cinder 及其子包
+
+openstack-dashboard 及其子包
+
+openstack-ironic 及其子包
+
+openstack-tempest
+
+openstack-kolla
+
+openstack-kolla-ansible
+
+openstack-trove 及其子包
+
+novnc
+
+
 ## 准备环境
 
 ### 环境配置
@@ -214,7 +246,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 2. 安装软件包。
 
     ```shell
-    yum install openstack-keystone httpd python2-mod_wsgi
+    yum install openstack-keystone-$QueensVer httpd python2-mod_wsgi
     ```
 
 3. 配置keystone相关配置
@@ -409,7 +441,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 2. 安装软件包
 
     ```shell
-    yum install openstack-glance
+    yum install openstack-glance-$QueensVer
     ```
 
 3. 配置glance相关配置：
@@ -590,10 +622,11 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 2. 安装软件包
 
     ```shell
-    yum install openstack-nova-api openstack-nova-conductor openstack-nova-console \
-    openstack-nova-novncproxy openstack-nova-scheduler openstack-nova-placement-api                (CTL)
+    yum install openstack-nova-api-$QueensVer openstack-nova-conductor-$QueensVer openstack-nova-console-$QueensVer \
+    novnc-$QueensVer openstack-nova-novncproxy-$QueensVer openstack-nova-scheduler-$QueensVer \
+    openstack-nova-placement-api-$QueensVer                                                        (CTL)
 
-    yum install openstack-nova-compute                                                             (CPT)
+    yum install openstack-nova-compute-$QueensVer                                                   (CPT)
     ```
 
     ***注意***
@@ -648,7 +681,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     [libvirt]
     virt_type = qemu                                                                               (CPT)
     cpu_mode = custom                                                                              (CPT)
-    cpu_model = cortex-a7                                                                          (CPT)
+    cpu_model = cortex-a72                                                                         (CPT)
 
     [glance]
     api_servers = http://controller:9292
@@ -908,13 +941,14 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 2. 安装软件包：
 
     ```shell
-    yum install openstack-neutron openstack-neutron-linuxbridge-agent ebtables ipset \             (CTL)
-                openstack-neutron-l3-agent openstack-neutron-dhcp-agent \
-                openstack-neutron-metadata-agent
+    yum install openstack-neutron-$QueensVer openstack-neutron-linuxbridge-agent-$QueensVer \      (CTL)
+                ebtables ipset openstack-neutron-l3-agent-$QueensVer \
+                openstack-neutron-dhcp-agent-$QueensVer \
+                openstack-neutron-metadata-agent-$QueensVer
     ```
 
     ```shell
-    yum install openstack-neutron-linuxbridge-agent ebtables ipset                                       (CPT)
+    yum install openstack-neutron-linuxbridge-agent-$QueensVer ebtables ipset                      (CPT)
     ```
 
 3. 配置neutron相关配置：
@@ -1150,7 +1184,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     systemctl enable openstack-neutron-server.service \                                            (CTL)
     openstack-neutron-linuxbridge-agent.service openstack-neutron-dhcp-agent.service \
     openstack-neutron-metadata-agent.service openstack-neutron-l3-agent.service
-    systemctl restart openstack-nova-api.service openstack-neutron-server.service                  (CTL)
+    systemctl restart openstack-nova-api.service openstack-neutron-server.service \                (CTL)
     openstack-neutron-linuxbridge-agent.service openstack-neutron-dhcp-agent.service \
     openstack-neutron-metadata-agent.service openstack-neutron-l3-agent.service
 
@@ -1214,12 +1248,12 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 2. 安装软件包：
 
     ```shell
-    yum install openstack-cinder-api openstack-cinder-scheduler                                    (CTL)
+    yum install openstack-cinder-api-$QueensVer openstack-cinder-scheduler-$QueensVer              (CTL)
     ```
 
     ```shell
     yum install lvm2 device-mapper-persistent-data scsi-target-utils rpcbind nfs-utils \           (CPT)
-                openstack-cinder-volume openstack-cinder-backup
+                openstack-cinder-volume-$QueensVer openstack-cinder-backup-$QueensVer
     ```
 
 3. 准备存储设备，以下仅为示例：
@@ -1367,7 +1401,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 1. 安装软件包
 
     ```shell
-    yum install openstack-dashboard
+    yum install openstack-dashboard-$QueensVer
     ```
 
 2. 修改文件
@@ -1402,7 +1436,7 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
 1. 安装Tempest
 
     ```shell
-    yum install openstack-tempest
+    yum install openstack-tempest-$QueensVer
     ```
 
 2. 初始化目录
@@ -1452,12 +1486,11 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    openstack user create --password IRONIC_PASSWORD \
                          --email ironic@example.com ironic
    openstack role add --project service --user ironic admin
-   openstack service create --name ironic
-                            --description "Ironic baremetal provisioning service" baremetal
+   openstack service create --name ironic --description "Ironic baremetal provisioning service" baremetal
 
-   openstack service create --name ironic-inspector --description     "Ironic inspector baremetal provisioning service" baremetal-introspection
+   openstack service create --name ironic-inspector --description "Ironic inspector baremetal provisioning service" baremetal-introspection
    openstack user create --password IRONIC_INSPECTOR_PASSWORD --email ironic_inspector@example.com ironic_inspector
-   openstack role add --project service --user ironic-inspector admin
+   openstack role add --project service --user ironic_inspector admin
    ```
 
    2、创建Bare Metal服务访问入口
@@ -1755,9 +1788,9 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    若使用Q版原生工具，则需要安装对应的软件包。
 
    ```
-   yum install openstack-ironic-python-agent
+   yum install openstack-ironic-python-agent-$QueensVer
    或者
-   yum install diskimage-builder
+   yum install diskimage-builder-$QueensVer
    ```
    具体的使用方法可以参考[官方文档](https://docs.openstack.org/ironic/queens/install/deploy-ramdisk.html)
 
@@ -1886,7 +1919,7 @@ yum install openstack-kolla-plugin openstack-kolla-ansible-plugin
 不支持 openEuler 版本：
 
 ```shell
-yum install openstack-kolla openstack-kolla-ansible
+yum install openstack-kolla-$QueensVer openstack-kolla-ansible-$QueensVer
 ```
 
 安装完后，就可以使用`kolla-ansible`, `kolla-build`, `kolla-genpwd`, `kolla-mergepwd`等命令了。
@@ -1916,8 +1949,7 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
    openstack user create --password TROVE_PASSWORD \
                          --email trove@example.com trove
    openstack role add --project service --user trove admin
-   openstack service create --name trove
-                            --description "Database service" database
+   openstack service create --name trove --description "Database service" database
    ```
    **解释：** `TROVE_PASSWORD` 替换为`trove`用户的密码
 
@@ -1933,7 +1965,7 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
 3. 安装和配置**Trove**各组件
    1、安装**Trove**包
    ```shell script
-   yum install openstack-trove python2-troveclient
+   yum install openstack-trove-$QueensVer python2-troveclient
    ```
    2. 配置`trove.conf`
    ```shell script
