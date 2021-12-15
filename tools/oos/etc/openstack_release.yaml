@@ -1520,7 +1520,7 @@ victoria:
   cinder-tempest-plugin: 1.2.0
   cinderlib: 3.1.0
   cliff: 3.4.0
-  cloudkitty: 13.0.0
+  cloudkitty: 13.0.1
   cloudkitty-dashboard: 11.0.0
   cloudkitty_tempest_plugin: 2.1.0
   compute-hyperv: 11.0.0
@@ -1815,7 +1815,7 @@ wallaby:
   cinder-tempest-plugin: 1.4.0
   cinderlib: 4.0.0
   cliff: 3.7.0
-  cloudkitty: 14.0.0
+  cloudkitty: 14.0.1
   cloudkitty-dashboard: 12.0.0
   cloudkitty_tempest_plugin: 2.3.0
   compute-hyperv: 12.0.0
@@ -1868,7 +1868,7 @@ wallaby:
   masakari: 11.0.1
   masakari-dashboard: 4.0.1
   masakari-monitors: 11.0.2
-  metalsmith: 1.4.2
+  metalsmith: 1.4.3
   mistral: 12.0.0
   mistral-dashboard: 12.0.1
   mistral-extra: 11.0.0
@@ -2084,6 +2084,7 @@ xena:
   ceilometermiddleware: 2.3.0
   cinder: 19.0.0
   cinder-tempest-plugin: 1.5.0
+  cinderlib: 4.1.0
   cliff: 3.9.0
   cloudkitty: 15.0.0
   cloudkitty-dashboard: 13.0.0
@@ -2138,7 +2139,7 @@ xena:
   masakari: 12.0.0
   masakari-dashboard: 5.0.0
   masakari-monitors: 12.0.0
-  metalsmith: 1.5.1
+  metalsmith: 1.5.2
   mistral: 13.0.0
   mistral-dashboard: 13.0.0
   mistral-extra: 11.1.0
@@ -2321,11 +2322,15 @@ xena:
   zun-tempest-plugin: 4.4.1
   zun-ui: 8.0.0
 yoga:
+  bifrost: 12.0.0
   castellan: 3.10.0
   ceilometermiddleware: 2.4.0
   cliff: 3.10.0
   horizon: 20.2.0
+  ironic: 19.0.0
+  ironic-inspector: 10.9.0
   ironic-lib: 5.1.0
+  ironic-python-agent: 8.3.0
   metalsmith: 1.6.1
   mistral-extra: 11.2.0
   neutron-lib: 2.17.0
