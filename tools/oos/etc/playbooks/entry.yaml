@@ -61,3 +61,7 @@
 - import_playbook: heat.yaml
   when:
     - '"heat" in enabled_service'
+
+- import_playbook: swift.yaml
+  when:
+    - '"swift" in enabled_service'

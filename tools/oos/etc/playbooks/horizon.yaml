@@ -1,19 +1,18 @@
 - name: Install openstack dashboard
   hosts: dashboard
   become: yes
-  roles:
   tasks:
     - name: Install horizon package
       yum:
         name:
           - openstack-dashboard
 
-    - name: Initialize config file
+    - name: Initialize dashboard config file
       shell: |
         sed -i "s/^OPENSTACK_HOST.*/OPENSTACK_HOST = \"{{ hostvars['controller']['ansible_default_ipv4']['address'] }}\"/" /etc/openstack-dashboard/local_settings
         sed -i "s/^ALLOWED_HOSTS.*/ALLOWED_HOSTS = [\"localhost\", \"{{ allowed_host }}\"]/" /etc/openstack-dashboard/local_settings
 
-    - name: Update config file
+    - name: Update dashboard config file
       blockinfile:
         path: /etc/openstack-dashboard/local_settings
         insertafter: EOF
@@ -35,7 +34,7 @@
               "volume": 3,
           }
 
-    - name: Restart httpd service
+    - name: Restart httpd service for dashboard
       systemd:
         name: httpd
         state: restarted

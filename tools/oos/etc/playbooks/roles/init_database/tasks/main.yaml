@@ -10,10 +10,10 @@
   mysql_user:
     login_user: root
     login_password: "{{ mysql_root_password }}"
-    name: "{{ database }}"
+    name: "{{ user }}"
     password: "{{ mysql_project_password }}"
-    host: localhost
-    priv: "{{ user }}.*:ALL"
+    priv: "{{ database }}.*:ALL"
+    append_privs: yes
     state: present
     login_unix_socket: "/var/lib/mysql/mysql.sock"
 
@@ -21,9 +21,10 @@
   mysql_user:
     login_user: root
     login_password: "{{ mysql_root_password }}"
-    name: "{{ database }}"
+    name: "{{ user }}"
     password: "{{ mysql_project_password }}"
     host: "%"
-    priv: "{{ user }}.*:ALL"
+    priv: "{{ database }}.*:ALL"
+    append_privs: yes
     state: present
     login_unix_socket: "/var/lib/mysql/mysql.sock"

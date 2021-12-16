@@ -6,14 +6,17 @@
       vars:
         database: nova
         user: nova
+
     - role: init_database
       vars:
         database: nova_api
         user: nova
+
     - role: init_database
       vars:
         database: nova_cell0
         user: nova
+
     - role: create_identity_resource
       vars:
         user: nova
@@ -55,7 +58,7 @@
         [DEFAULT]
         enabled_apis = osapi_compute,metadata
         transport_url = rabbit://openstack:{{ rabbitmq_password }}@{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5672/
-        my_ip = {{ hostvars['controller']['ansible_default_ipv4']['address'] }}
+        my_ip = {{ ansible_default_ipv4['address'] }}
         use_neutron = true
         firewall_driver = nova.virt.firewall.NoopFirewallDriver
         compute_driver=libvirt.LibvirtDriver
@@ -84,8 +87,8 @@
 
         [vnc]
         enabled = true
-        server_listen = $my_ip
-        server_proxyclient_address = $my_ip
+        server_listen = {{ ansible_default_ipv4['address'] }}
+        server_proxyclient_address = {{ ansible_default_ipv4['address'] }}
         novncproxy_base_url = http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:6080/vnc_auto.html
 
         [glance]
@@ -124,17 +127,16 @@
   tasks:
     - name: Update config file
       shell: |
-        cat >> /etc/nova/nova.conf << EOF
-
+        cat <<EOF>> /etc/nova/nova.conf
+        
         [libvirt]
         virt_type = qemu
         EOF
-
         if [[ `uname -m` == 'aarch64' ]];then
-          cat >> /etc/nova/nova.conf << EOF
-          cpu_mode = custom
-          cpu_model = cortex-a72
-          EOF
+        cat <<EOF>> /etc/nova/nova.conf
+        cpu_mode = custom
+        cpu_model = cortex-a72
+        EOF
 
           mkdir -p /usr/share/AAVMF
           chown nova:nova /usr/share/AAVMF
@@ -142,12 +144,10 @@
           ln -s /usr/share/edk2/aarch64/QEMU_EFI-pflash.raw /usr/share/AAVMF/AAVMF_CODE.fd
           ln -s /usr/share/edk2/aarch64/vars-template-pflash.raw /usr/share/AAVMF/AAVMF_VARS.fd
 
-          cat >> /etc/libvirt/qemu.conf << EOF
-          nvram = ["/usr/share/AAVMF/AAVMF_CODE.fd: \
-                  /usr/share/AAVMF/AAVMF_VARS.fd", \
-                  "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw: \
-                  /usr/share/edk2/aarch64/vars-template-pflash.raw"]
-          EOF
+        cat << EOF >> /etc/libvirt/qemu.conf
+        nvram = ["/usr/share/AAVMF/AAVMF_CODE.fd: /usr/share/AAVMF/AAVMF_VARS.fd",
+                 "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw: /usr/share/edk2/aarch64/vars-template-pflash.raw"]
+        EOF
         fi
 
 - name: Complete Nova controller install

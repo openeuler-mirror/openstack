@@ -28,17 +28,36 @@
           - openstack-cinder-api
           - openstack-cinder-scheduler
 
+- name: Install Cinder storage
+  hosts: storage
+  become: yes
+  tasks:
+    - name: Install cinder package
+      yum:
+        name:
+          - lvm2
+          - device-mapper-persistent-data
+          - scsi-target-utils
+          - rpcbind
+          - nfs-utils
+          - openstack-cinder-volume
+          - openstack-cinder-backup
+    - name: Initialize block device
+      shell: |
+        pvcreate /dev/{{ cinder_block_device }}
+        vgcreate cinder-volumes /dev/{{ cinder_block_device }}
+
 - name: Config Cinder
   hosts: all
   become: yes
   tasks:
-    - name: Initialize config file
+    - name: Initialize cinder config file
       shell: |
         cat << EOF > /etc/cinder/cinder.conf
         [DEFAULT]
         transport_url = rabbit://openstack:{{ rabbitmq_password }}@{{ hostvars['controller']['ansible_default_ipv4']['address'] }}
         auth_strategy = keystone
-        my_ip = {{ rabbitmq_password }}@{{ hostvars['controller']['ansible_default_ipv4']['address'] }}
+        my_ip = {{ ansible_default_ipv4['address'] }}
         enabled_backends = lvm
         backup_driver=cinder.backup.drivers.nfs.NFSBackupDriver
         # backup_share=HOST:PATH
@@ -67,28 +86,11 @@
         iscsi_helper = tgtadm
         EOF
 
-- name: Install Cinder storage
-  hosts: storage
-  become: yes
-  tasks:
-    - name: Install cinder package
-      yum:
-        name:
-          - lvm2
-          - device-mapper-persistent-data
-          - scsi-target-utils rpcbind nfs-utils
-          - openstack-cinder-volume
-          - openstack-cinder-backup
-    - name: Initialize block device
-      shell: |
-        pvcreate /dev/{{ cinder_block_device }}
-        vgcreate cinder-volumes /dev/{{ cinder_block_device }}
-
 - name: Complete Cinder controller
   hosts: controller
   become: yes
   tasks:
-    - name: Sync database
+    - name: Sync cinder database
       shell: su -s /bin/sh -c "cinder-manage db sync" cinder
 
     - name: Start openstack-cinder-api service
@@ -109,7 +111,7 @@
   tasks:
     - name: Update tgtd config file
       shell: |
-        cat >> /etc/tgt/tgtd/conf << EOF
+        cat >> /etc/tgt/tgtd.conf << EOF
         include /var/lib/cinder/volumes/*
         EOF
 
