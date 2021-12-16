@@ -89,6 +89,7 @@ openstack-trove 及其子包
 
 novnc
 
+diskimage-builder
 
 ## 准备环境
 
@@ -1478,7 +1479,21 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    IDENTIFIED BY 'IRONIC_DBPASSWORD';
    ```
 
-2. 创建服务用户认证
+2. 安装软件包
+
+   ```shell
+   yum install openstack-ironic-api-$QueensVer openstack-ironic-conductor-$QueensVer python2-ironicclient
+   ```
+
+   启动服务
+
+   ```shell
+   systemctl enable openstack-ironic-api openstack-ironic-conductor
+   systemctl start openstack-ironic-api openstack-ironic-conductor
+   ```
+
+
+3. 创建服务用户认证
 
    1、创建Bare Metal服务用户
 
@@ -1488,9 +1503,6 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    openstack role add --project service --user ironic admin
    openstack service create --name ironic --description "Ironic baremetal provisioning service" baremetal
 
-   openstack service create --name ironic-inspector --description "Ironic inspector baremetal provisioning service" baremetal-introspection
-   openstack user create --password IRONIC_INSPECTOR_PASSWORD --email ironic_inspector@example.com ironic_inspector
-   openstack role add --project service --user ironic_inspector admin
    ```
 
    2、创建Bare Metal服务访问入口
@@ -1499,12 +1511,9 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    openstack endpoint create --region RegionOne baremetal admin http://$IRONIC_NODE:6385
    openstack endpoint create --region RegionOne baremetal public http://$IRONIC_NODE:6385
    openstack endpoint create --region RegionOne baremetal internal http://$IRONIC_NODE:6385
-   openstack endpoint create --region RegionOne baremetal-introspection internal http://172.20.19.13:5050/v1
-   openstack endpoint create --region RegionOne baremetal-introspection public http://172.20.19.13:5050/v1
-   openstack endpoint create --region RegionOne baremetal-introspection admin http://172.20.19.13:5050/v1
    ```
 
-3. 配置ironic-api服务
+4. 配置ironic-api服务
 
    配置文件路径/etc/ironic/ironic.conf
 
@@ -1575,7 +1584,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    sudo systemctl restart openstack-ironic-api
    ```
 
-4. 配置ironic-conductor服务
+5. 配置ironic-conductor服务
 
    1、替换**HOST_IP**为conductor host的IP
 
@@ -1702,86 +1711,6 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    sudo systemctl restart openstack-ironic-conductor
    ```
 
-5. 配置ironic-inspector服务
-
-   配置文件路径/etc/ironic-inspector/inspector.conf
-
-   1、创建数据库
-
-   ```shell
-   # mysql -u root -p
-
-   MariaDB [(none)]> CREATE DATABASE ironic_inspector CHARACTER SET utf8;
-
-   MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic_inspector.* TO 'ironic_inspector'@'localhost' \     IDENTIFIED BY 'IRONIC_INSPECTOR_DBPASSWORD';
-   MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic_inspector.* TO 'ironic_inspector'@'%' \
-   IDENTIFIED BY 'IRONIC_INSPECTOR_DBPASSWORD';
-   ```
-
-   2、通过**connection**选项配置数据库的位置，如下所示，替换**IRONIC_INSPECTOR_DBPASSWORD**为**ironic_inspector**用户的密码，替换**DB_IP**为DB服务器所在的IP地址：
-
-   ```shell
-   [database]
-   backend = sqlalchemy
-   connection = mysql+pymysql://ironic_inspector:IRONIC_INSPECTOR_DBPASSWORD@DB_IP/ironic_inspector
-   ```
-
-   3、配置消息度列通信地址
-
-   ```shell
-   [DEFAULT] transport_url = rabbit://RPC_USER:RPC_PASSWORD@RPC_HOST:RPC_PORT/
-   ```
-
-   4、设置keystone认证
-
-   ```shell
-   [DEFAULT]
-
-   auth_strategy = keystone
-
-   [ironic]
-
-   api_endpoint = http://IRONIC_API_HOST_ADDRRESS:6385
-   auth_type = password
-   auth_url = http://PUBLIC_IDENTITY_IP:5000
-   auth_strategy = keystone
-   ironic_url = http://IRONIC_API_HOST_ADDRRESS:6385
-   os_region = RegionOne
-   project_name = service
-   project_domain_name = Default
-   user_domain_name = Default
-   username = IRONIC_SERVICE_USER_NAME
-   password = IRONIC_SERVICE_USER_PASSWORD
-   ```
-
-   5、配置ironic inspector dnsmasq服务
-
-   ```shell
-   # 配置文件地址：/etc/ironic-inspector/dnsmasq.conf
-   port=0
-   interface=enp3s0                         #替换为实际监听网络接口
-   dhcp-range=172.20.19.100,172.20.19.110   #替换为实际dhcp地址范围
-   bind-interfaces
-   enable-tftp
-
-   dhcp-match=set:efi,option:client-arch,7
-   dhcp-match=set:efi,option:client-arch,9
-   dhcp-match=aarch64, option:client-arch,11
-   dhcp-boot=tag:aarch64,grubaa64.efi
-   dhcp-boot=tag:!aarch64,tag:efi,grubx64.efi
-   dhcp-boot=tag:!aarch64,tag:!efi,pxelinux.0
-
-   tftp-root=/tftpboot                       #替换为实际tftpboot目录
-   log-facility=/var/log/dnsmasq.log
-   ```
-
-   6、启动服务
-
-   ```shell
-   systemctl enable --now openstack-ironic-inspector.service
-   systemctl enable --now openstack-ironic-inspector-dnsmasq.service
-   ```
-
 6. deploy ramdisk镜像制作
 
    Q版的ramdisk镜像支持通过ironic-python-agent服务或disk-image-builder工具制作，也可以使用社区最新的ironic-python-agent-builder。用户也可以自行选择其他工具制作。
@@ -1902,6 +1831,8 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
         参考：[source-repositories](https://docs.openstack.org/diskimage-builder/latest/elements/source-repositories/README.html)。
 
         指定仓库地址及版本验证成功。
+
+在Queens中，我们还提供了ironic-inspector等服务，用户可根据自身需求安装。
 
 ### Kolla 安装
 
