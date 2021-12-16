@@ -678,11 +678,6 @@ novnc
     server_proxyclient_address = $my_ip
     novncproxy_base_url = http://controller:6080/vnc_auto.html                                     (CPT)
 
-    [libvirt]
-    virt_type = qemu                                                                               (CPT)
-    cpu_mode = custom                                                                              (CPT)
-    cpu_model = cortex-a72                                                                         (CPT)
-
     [glance]
     api_servers = http://controller:9292
 
@@ -787,23 +782,32 @@ novnc
 
     ***注意***
 
-    **如果为arm64结构，还需要执行以下命令**
+    **如果为arm64结构，还需要在计算节点执行以下命令**
 
     ```shell
     mkdir -p /usr/share/AAVMF
     chown nova:nova /usr/share/AAVMF
 
     ln -s /usr/share/edk2/aarch64/QEMU_EFI-pflash.raw \
-          /usr/share/AAVMF/AAVMF_CODE.fd                                                           (CPT)
+          /usr/share/AAVMF/AAVMF_CODE.fd
     ln -s /usr/share/edk2/aarch64/vars-template-pflash.raw \
-          /usr/share/AAVMF/AAVMF_VARS.fd                                                           (CPT)
+          /usr/share/AAVMF/AAVMF_VARS.fd
 
     vim /etc/libvirt/qemu.conf
 
     nvram = ["/usr/share/AAVMF/AAVMF_CODE.fd: \
              /usr/share/AAVMF/AAVMF_VARS.fd", \
              "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw: \
-             /usr/share/edk2/aarch64/vars-template-pflash.raw"]                                    (CPT)
+             /usr/share/edk2/aarch64/vars-template-pflash.raw"]
+    ```
+
+    并且当ARM架构下的部署环境为嵌套虚拟化时，`libvirt`配置如下：
+
+    ```shell
+    [libvirt]
+    virt_type = qemu
+    cpu_mode = custom
+    cpu_model = cortex-a72
     ```
 
 4. 同步数据库
@@ -888,13 +892,13 @@ novnc
     列出镜像服务中的镜像，验证与镜像服务的连接：
 
     ```shell
-    openstack image list                                                                            (CTL)
+    openstack image list                                                                           (CTL)
     ```
 
     检查cells和placement API是否运作成功，以及其他必要条件是否已具备。
 
     ```shell
-    nova-status upgrade check                                                                       (CTL)
+    nova-status upgrade check                                                                      (CTL)
     ```
 
 ### Neutron 安装
