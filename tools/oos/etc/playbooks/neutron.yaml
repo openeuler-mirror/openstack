@@ -132,7 +132,7 @@
 
         [vxlan]
         enable_vxlan = true
-        local_ip = {{ hostvars['controller']['ansible_{{ neutron_provider_interface_name }}'].ipv4.address }}
+        local_ip = {{ ansible_default_ipv4['address'] }}
         l2_population = true
 
         [securitygroup]

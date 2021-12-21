@@ -24,14 +24,14 @@
       shell: |
         cat << EOF > /etc/placement/placement.conf
         [placement_database]
-        connection = mysql+pymysql://placement:{{ mysql_project_password }}@hostvars['controller']['ansible_default_ipv4']['address'] }}/placement
+        connection = mysql+pymysql://placement:{{ mysql_project_password }}@{{ hostvars['controller']['ansible_default_ipv4']['address'] }}/placement
 
         [api]
         auth_strategy = keystone
 
         [keystone_authtoken]
-        auth_url = http://hostvars['controller']['ansible_default_ipv4']['address'] }}:5000/v3
-        memcached_servers = hostvars['controller']['ansible_default_ipv4']['address'] }}:11211
+        auth_url = http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5000/v3
+        memcached_servers = {{ hostvars['controller']['ansible_default_ipv4']['address'] }}:11211
         auth_type = password
         project_domain_name = Default
         user_domain_name = Default

@@ -68,3 +68,8 @@
         export OS_IDENTITY_API_VERSION=3
         export OS_IMAGE_API_VERSION=2
         EOF
+
+    - name: Create project 'service'
+      shell: |
+        source ~/.admin-openrc
+        openstack project create --domain default --description "Service Project" service
