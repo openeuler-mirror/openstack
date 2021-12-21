@@ -26,6 +26,10 @@
   when:
     - '"cinder" in enabled_service'
 
+- import_playbook: trove.yaml
+  when:
+    - '"trove" in enabled_service'
+
 - import_playbook: horizon.yaml
   when:
     - '"horizon" in enabled_service'
