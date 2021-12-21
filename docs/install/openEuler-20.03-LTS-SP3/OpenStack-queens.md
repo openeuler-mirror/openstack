@@ -5,6 +5,7 @@
 - [OpenStack-Queens 部署指南](#openstack-queens-部署指南)
   - [OpenStack 简介](#openstack-简介)
   - [约定](#约定)
+  - [软件包多版本约定](#软件包多版本约定)
   - [准备环境](#准备环境)
     - [环境配置](#环境配置)
     - [安装 SQL DataBase](#安装-sql-database)
@@ -21,6 +22,7 @@
     - [Ironic 安装](#ironic-安装)
     - [Kolla 安装](#kolla-安装)
     - [Trove 安装](#trove-安装)
+    - [Rally 安装](#rally-安装)
 
 <!-- /TOC -->
 
@@ -2022,3 +2024,10 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
    openstack-trove-conductor.service
    ```
    
+### Rally 安装
+
+Rally是OpenStack提供的性能测试工具。只需要简单的安装即可。
+
+```
+yum install openstack-rally openstack-rally-plugins
+```

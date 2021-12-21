@@ -35,6 +35,7 @@
     
     - [Trove 安装](#Trove-安装)
 
+    - [Rally 安装](#Rally-安装)
 <!-- /TOC -->
 
 ## OpenStack 简介
@@ -1891,6 +1892,7 @@ yum install openstack-kolla-$RockyVer openstack-kolla-ansible-$RockyVer
 安装完后，就可以使用`kolla-ansible`, `kolla-build`, `kolla-genpwd`, `kolla-mergepwd`等命令了。
 
 ### Trove 安装
+
 Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据库服务则推荐使用该组件。否则，可以不用安装。
 
 1. 设置数据库
@@ -2055,3 +2057,11 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
    openstack-trove-taskmanager.service \
    openstack-trove-conductor.service
    ```
+
+### Rally 安装
+
+Rally是OpenStack提供的性能测试工具。只需要简单的安装即可。
+
+```
+yum install openstack-rally openstack-rally-plugins
+```
