@@ -2333,7 +2333,7 @@ yoga:
   ironic-python-agent: 8.3.0
   metalsmith: 1.6.1
   mistral-extra: 11.2.0
-  neutron-lib: 2.17.0
+  neutron-lib: 2.18.0
   neutron-tempest-plugin: 1.8.0
   openstacksdk: 0.61.0
   os-brick: 5.1.0
@@ -2341,10 +2341,10 @@ yoga:
   os_vif: 2.7.0
   oslo.context: 3.4.0
   oslo.db: 11.1.0
-  oslo.messaging: 12.11.0
+  oslo.messaging: 12.11.1
   oslo.metrics: 0.4.0
   oslo.middleware: 4.5.0
-  oslo.policy: 3.10.0
+  oslo.policy: 3.10.1
   oslo.service: 2.7.0
   oslo.utils: 4.12.0
   oslo.vmware: 3.10.0

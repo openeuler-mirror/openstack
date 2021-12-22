@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import json
 import os
 
@@ -11,23 +12,22 @@ def get_gitee_org_repos(org, verify=True, access_token=None):
     }
     start = 1
     all_projects = []
-    with open('./openeuler_repo', 'w') as fp:
-        while True:
-            print('Getting page %s' % start)
-            if access_token:
-                url = 'https://gitee.com/api/v5/orgs/%s/repos?access_token=%s&type=public&page=%s&per_page=100' % (org, access_token, start)
-            else:
-                url = 'https://gitee.com/api/v5/orgs/%s/repos?type=public&page=%s&per_page=100' % (org, start)
-            response = requests.get(url, headers=headers, verify=verify)
-            projects = json.loads(response.content.decode())
-            if not projects:
-                break
-            else:
-                for project in projects:
-                    all_projects.append(project['name'])
-                    fp.write("%s\n" % project['name'])
-                start += 1
-    return all_projects.sort()
+    while True:
+        print('Getting page %s' % start)
+        if access_token:
+            url = 'https://gitee.com/api/v5/orgs/%s/repos?access_token=%s&type=public&page=%s&per_page=100' % (org, access_token, start)
+        else:
+            url = 'https://gitee.com/api/v5/orgs/%s/repos?type=public&page=%s&per_page=100' % (org, start)
+        response = requests.get(url, headers=headers, verify=verify)
+        projects = json.loads(response.content.decode())
+        if not projects:
+            break
+        else:
+            for project in projects:
+                all_projects.append(project['name'])
+            start += 1
+    all_projects.sort()
+    return all_projects
 
 projects = get_gitee_org_repos('src-openeuler', True, os.environ.get("GITEE_USER_TOKEN"))
 with open('openeuler_repo', 'w') as fp:

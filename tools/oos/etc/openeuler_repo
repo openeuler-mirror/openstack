@@ -91,6 +91,7 @@ aha
 aide
 airline
 alertmanager
+alluxio
 alpine
 alsa-firmware
 alsa-lib
@@ -99,6 +100,7 @@ alsa-tools
 alsa-utils
 amanda
 amavis
+ambari
 amtk
 anaconda
 anaconda-user-help
@@ -609,6 +611,7 @@ deepin-movie
 deepin-music
 deepin-qml-widgets
 deepin-reader
+deepin-rpm-installer
 deepin-screen-recorder
 deepin-shortcut-viewer
 deepin-sound-theme
@@ -801,6 +804,7 @@ facter
 fakechroot
 fakeroot
 farstream02
+fastdb
 fastdfs
 fasterxml-oss-parent
 fastp
@@ -1091,6 +1095,7 @@ gnome-shell
 gnome-shell-extension-appindicator
 gnome-shell-extension-bubblemail
 gnome-shell-extension-caffeine
+gnome-shell-extension-customize-ibus
 gnome-shell-extension-dash-to-dock
 gnome-shell-extension-desktop-icons
 gnome-shell-extension-disconnect-wifi
@@ -1488,6 +1493,7 @@ ibus-sayura
 ibus-table
 ibus-table-array30
 ibus-table-chinese
+ibus-theme-tools
 ibus-typing-booster
 icc-profiles-openicc
 icedtea-web
@@ -1821,6 +1827,7 @@ katello
 katran
 kbd
 kbox
+kbuild-standalone
 kde-filesystem
 kde-settings
 kdecoration
@@ -1830,6 +1837,7 @@ keepalived
 kelbt
 kernel
 kexec-tools
+keybinder
 keybinder3
 keycloak-httpd-client-install
 keyrings-filesystem
@@ -2418,6 +2426,7 @@ linuxdoc-tools
 linuxptp
 lirc
 live555
+livy
 lklug-fonts
 lksctp-tools
 lldb
@@ -2748,6 +2757,7 @@ mx4j
 mxml
 mxparser
 mybatis
+mybatis-generator
 mybatis-parent
 mypaint-brushes
 mysema-commons-lang
@@ -3581,7 +3591,6 @@ perl-CGI-Prototype
 perl-CGI-Session
 perl-CGI-Session-Driver-memcached
 perl-CGI-Simple
-perl-CGI-Struct
 perl-CLASS
 perl-CPAN
 perl-CPAN-Changes
@@ -3854,7 +3863,6 @@ perl-Encode-Detect
 perl-Encode-IMAPUTF7
 perl-Encode-Locale
 perl-Encode-Newlines
-perl-End
 perl-Env
 perl-Env-C
 perl-Env-Path
@@ -5055,6 +5063,7 @@ pgadmin4-server
 pgpool2
 phantomjs
 phodav
+phoenix
 phonon
 php
 php-pear
@@ -5064,6 +5073,7 @@ picketbox
 picketbox-commons
 picketbox-xacml
 pidgin
+pig
 pigpio
 pigz
 pinentry
@@ -5192,6 +5202,7 @@ pyScss
 pyang
 pyang-swagger
 pyatspi
+pybind11
 pycairo
 pycharm-community
 pyelftools
@@ -5493,6 +5504,7 @@ python-certifi
 python-cffi
 python-cfgv
 python-chardet
+python-charset-normalizer
 python-check-manifest
 python-cheetah
 python-cheroot
@@ -5859,6 +5871,7 @@ python-hkdf
 python-hl7
 python-hole
 python-holidays
+python-horovod
 python-hpack
 python-hstspreload
 python-html2text
@@ -7698,6 +7711,7 @@ telepathy-glib
 telepathy-logger
 telnet
 template-glib
+tengine
 tensorflow
 tepl
 tesseract
@@ -7737,6 +7751,7 @@ texlive-split-w
 texlive-split-x
 texlive-split-y
 texlive-split-z
+tez
 tftp
 thai-scalable-fonts
 the_silver_searcher
@@ -8182,6 +8197,7 @@ zabbix
 zbar
 zd1211-firmware
 zenity
+zephyr
 zeppelin
 zerofree
 zeromq
