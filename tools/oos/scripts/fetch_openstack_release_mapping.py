@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from packaging import version
 import re
 
