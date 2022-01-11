@@ -7,9 +7,11 @@
       vars:
         database: cinder
         user: cinder
-    - role: create_identity_resource
+    - role: create_identity_user
       vars:
         user: cinder
+    - role: create_identity_resource
+      vars:
         service: cinderv2
         type: volumev2
         description: "OpenStack Block Storage"
@@ -20,7 +22,6 @@
         type: volumev3
         description: "OpenStack Block Storage"
         endpoint: http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8776/v3/%\(project_id\)s
-        skip_user_create: true
   tasks:
     - name: Install cinder package
       yum:

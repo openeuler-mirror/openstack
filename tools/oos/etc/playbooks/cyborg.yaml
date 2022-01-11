@@ -7,9 +7,11 @@
       vars:
         database: cyborg
         user: cyborg
-    - role: create_identity_resource
+    - role: create_identity_user
       vars:
         user: cyborg
+    - role: create_identity_resource
+      vars:
         service: cyborg
         type: accelerator
         description: Acceleration Service

@@ -1,0 +1,5 @@
+- name: Create {{ user }} identity user
+  shell: |
+    source ~/.admin-openrc
+    openstack user create --domain default --password {{ project_identity_password }} {{ user }}
+    openstack role add --project service --user {{ user }} admin

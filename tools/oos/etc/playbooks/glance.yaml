@@ -6,9 +6,11 @@
       vars:
         database: glance
         user: glance
-    - role: create_identity_resource
+    - role: create_identity_user
       vars:
         user: glance
+    - role: create_identity_resource
+      vars:
         service: glance
         type: image
         description: OpenStack Image

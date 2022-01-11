@@ -6,9 +6,11 @@
       vars:
         database: placement
         user: placement
-    - role: create_identity_resource
+    - role: create_identity_user
       vars:
         user: placement
+    - role: create_identity_resource
+      vars:
         service: placement
         type: placement
         description: Placement API

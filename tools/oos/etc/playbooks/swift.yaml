@@ -2,9 +2,11 @@
   hosts: controller
   become: yes
   roles:
-    - role: create_identity_resource
+    - role: create_identity_user
       vars:
         user: swift
+    - role: create_identity_resource
+      vars:
         service: swift
         type: object-store
         description: "OpenStack Object Storage"
