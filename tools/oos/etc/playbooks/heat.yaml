@@ -6,9 +6,11 @@
       vars:
         database: heat
         user: heat
-    - role: create_identity_resource
+    - role: create_identity_user
       vars:
         user: heat
+    - role: create_identity_resource
+      vars:
         service: heat
         type: orchestration
         description: Orchestration
@@ -19,7 +21,6 @@
         type: cloudformation
         description: Orchestration
         endpoint: http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8000/v1
-        skip_user_create: true
   tasks:
     - name: Add stack identity resource
       shell: |

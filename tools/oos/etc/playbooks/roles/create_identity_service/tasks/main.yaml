@@ -1,11 +1,3 @@
-- name: Create {{ service }} identity user
-  shell: |
-    source ~/.admin-openrc
-    openstack user create --domain default --password {{ project_identity_password }} {{ user }}
-    openstack role add --project service --user {{ user }} admin
-  when: not skip_user_create|default(false)|bool
-
-
 - name: Create {{ service }} identity service
   shell: |
     source ~/.admin-openrc

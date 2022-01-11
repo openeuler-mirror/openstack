@@ -25,9 +25,16 @@ all:
       - nova
       - glance
       - horizon
+      - aodh
+      - ceilometer
+      - cyborg
+      - gnocchi
+      - kolla
       - heat
       - swift
       - trove
+      - rally
+      - tempest
     neutron_provider_interface_name: eth1
     cinder_block_device: vdb
     swift_storage_devices:
