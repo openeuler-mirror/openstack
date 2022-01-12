@@ -107,7 +107,7 @@
       shell: |
         cat << EOF > /etc/neutron/metadata_agent.ini
         [DEFAULT]
-        nova_metadata_host = controller
+        nova_metadata_host = {{ hostvars['controller']['ansible_default_ipv4']['address'] }}
         metadata_proxy_shared_secret = secret
         EOF
 
@@ -134,7 +134,7 @@
 
         [vxlan]
         enable_vxlan = true
-        local_ip = {{ ansible_default_ipv4['address'] }}
+        local_ip = {{ hostvars['controller']['ansible_'~neutron_provider_interface_name]['ipv4']['address'] }}
         l2_population = true
 
         [securitygroup]
