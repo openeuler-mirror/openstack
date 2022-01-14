@@ -60,7 +60,7 @@ class CountDependence(object):
                 return repo_version, 'Need Downgrade'
         else:
             if p_version.parse(repo_version) > p_version.parse(project_version):
-                if project_version == project_eq_version:
+                if project_version and project_version == project_eq_version:
                     status = 'Need Downgrade'
                 elif repo_version not in project_ne_version:
                     if not project_lt_version:
@@ -83,7 +83,7 @@ class CountDependence(object):
             for file_name in file_list:
                 with open(self.location + '/' + file_name, 'r', encoding='utf8') as fp:
                     if file_name == 'unknown':
-                        project_list = [{'name': project} for project in fp.readlines()]
+                        project_list = [{'name': project} for project in fp.read().splitlines()]
                     else:
                         project_list = [json.load(fp)]
                 for project_dict in project_list:
@@ -92,15 +92,15 @@ class CountDependence(object):
                     project_version = version_dict['version'] if version_dict else ''
                     project_eq_version = version_dict['eq_version'] if version_dict else ''
                     project_lt_version = version_dict['lt_version'] if version_dict else ''
-                    project_ne_version = version_dict['ne_version'] if version_dict else ''
+                    project_ne_version = version_dict['ne_version'] if version_dict else []
                     project_upper_version = version_dict['upper_version'] if version_dict else ''
-                    requires = list(project_dict['requires'].keys()) if project_dict.get('requires') else ''
+                    requires = list(project_dict['requires'].keys()) if project_dict.get('requires') else []
                     deep_count = project_dict['deep']['count'] if project_dict.get('deep') else ''
                     repo_name = utils.get_openeuler_repo_name(project_name)
                     repo_version, status = self._get_version_and_status(repo_name,
                         project_version, project_eq_version, project_lt_version,
                         project_ne_version, project_upper_version, compare_branch)
-                    if project_version == project_eq_version:
+                    if project_version and project_version == project_eq_version:
                         project_version += '(Must)'
                     writer.writerow([
                         project_name,
