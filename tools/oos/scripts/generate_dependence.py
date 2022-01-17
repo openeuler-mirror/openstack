@@ -62,6 +62,51 @@ SUPPORT_RELEASE = {
             "gnocchi": "4.3.5"
         }
     },
+    "wallaby": {
+        "base_service": [
+            # service
+            "aodh",
+            "ceilometer",
+            "cinder",
+            "openstack-cyborg",
+            "glance",
+            "openstack-heat",
+            "horizon",
+            "ironic",
+            "keystone",
+            "kolla",
+            "kolla-ansible",
+            "neutron",
+            "nova",
+            "panko",
+            "openstack-placement",
+            "swift",
+            "trove",
+            # client
+            "python-openstackclient",
+            "osc-placement",
+            "python-cyborgclient",
+            # ui
+            "ironic-ui",
+            "trove-dashboard",
+            # test
+            "tempest",
+            "cinder-tempest-plugin",
+            "ironic-tempest-plugin",
+            "keystone-tempest-plugin",
+            "neutron-tempest-plugin",
+            "trove-tempest-plugin",
+            # library
+            "ironic-inspector",
+            "ironic-prometheus-exporter",
+            "ironic-python-agent",
+            "networking-baremetal",
+            "networking-generic-switch",
+        ],
+        "extra_service": {
+            "gnocchi": "4.3.5"
+        }
+    },
 }
 
 
