@@ -1,0 +1,147 @@
+- name: Initialize test resource
+  hosts: controller
+  become: yes
+  tasks:
+    - name: Install required package
+      yum:
+        name:
+          - wget
+
+    - name: Create test flavor
+      shell: |
+        source ~/.admin-openrc
+        openstack flavor create --disk 1 --vcpus 2 --ram 1024 --id 1 --public my-flavor
+        openstack flavor create --disk 1 --vcpus 2 --ram 1024 --id 2 --public my-flavor-alt
+
+    - name: Create test image
+      shell: |
+        source ~/.admin-openrc
+        if [[ `uname -m` == 'aarch64' ]];then
+          wget http://download.cirros-cloud.net/0.5.2/cirros-0.5.2-aarch64-disk.img -O cirros-0.5.2.img
+        else
+          wget http://download.cirros-cloud.net/0.5.2/cirros-0.5.2-x86_64-disk.img -O cirros-0.5.2.img
+        fi
+        openstack image create --disk-format qcow2 --container-format bare --file ./cirros-0.5.2.img --public --id 53e9e0c5-58b5-41e9-ac77-e89045066246 my-image
+        openstack image create --disk-format qcow2 --container-format bare --file ./cirros-0.5.2.img --public --id 33e90c23-8c9b-4e91-8319-f1b38ada916d my-image-alt
+
+    - name: Create test public network
+      shell: |
+        source ~/.admin-openrc
+        openstack network create --external public-network -c id -f value
+      register: public_network_id
+
+    - name: Create other network resource
+      shell: |
+        # TODO: Fix network problem
+        source ~/.admin-openrc
+        openstack network create --interal private-network
+        openstack subnet create --subnet-range 172.188.0.0/16 --network private-network private-subnet
+        openstack router create my-router
+
+    - name: Genereate tempest folder
+      shell: |
+        tempest init mytest
+
+        cat << EOF > /root/mytest/etc/tempest.conf
+        [DEFAULT]
+        log_dir = /root/mytest/logs
+        log_file = tempest.log
+
+        [auth]
+        admin_username = admin
+        admin_password = admin
+        admin_project_name = admin
+        admin_domain_name = Default
+
+        [identity]
+        auth_version = v3
+        uri_v3 = http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5000/v3
+
+        [identity-feature-enabled]
+        security_compliance = true
+        project_tags = true
+        application_credentials = true
+
+        [compute]
+        flavor_ref = 1
+        flavor_ref_alt = 2
+        image_ref = 53e9e0c5-58b5-41e9-ac77-e89045066246
+        image_ref_alt = 33e90c23-8c9b-4e91-8319-f1b38ada916d
+        min_microversion = 2.1
+        max_microversion = 2.79
+        min_compute_nodes = 2
+        fixed_network_name = private-network
+
+        [scenario]
+        img_file = /root/cirros-0.5.2.img
+        img_container_format = bare
+        img_disk_format = qcow2
+
+        [compute-feature-enabled]
+        change_password = true
+        swap_volume = true
+        volume_multiattach = true
+        resize = true
+        #volume_backed_live_migration = true
+        #block_migration_for_live_migration = true
+        #block_migrate_cinder_iscsi = true
+        #scheduler_enabled_filters = DifferentHostFilter
+        vnc_console = true
+        live_migration = false
+
+        [oslo_concurrency]
+        lock_path = /root/mytest/tempest_lock
+
+        [volume]
+        min_microversion = 3.0
+        max_microversion = 3.59
+        backend_names = lvm
+
+        [volume-feature-enabled]
+        backup = false
+        multi_backend = true
+        manage_volume = true
+        manage_snapshot = true
+        extend_attached_volume = true
+
+        [service_available]
+        nova = true
+        cinder = true
+        neutron = true
+        glance = true
+        horizon = true
+        heat = true
+        placement = true
+        swift = true
+        keystone = true
+
+        [placement]
+        min_microversion = 1.0
+        max_microversion = 1.36
+
+        [network]
+        public_network_id = {{ public_network_id }}
+        project_network_cidr = 172.188.0.0/16
+        floating_network_name = public-network
+
+        [network-feature-enabled]
+        port_security = true
+        ipv6_subnet_attributes = true
+        qos_placement_physnet = true
+
+        [image-feature-enabled]
+        import_image = true
+
+        [validation]
+        image_ssh_user = cirros
+        image_ssh_password = gocubsgo
+        image_alt_ssh_user = cirros
+        image_alt_ssh_password = gocubsgo
+
+        [debug]
+        trace_requests = .*
+        EOF
+
+    - name: Genereate tempest folder
+      debug:
+        msg: "The environment is ready for test, please login controller and run `tempest run` command in mytest folder."
