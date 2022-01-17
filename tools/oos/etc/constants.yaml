@@ -1,114 +1,124 @@
 ---
 # <pypi name> : <openEuelr package name(without python prefix)>
 pypi2pkgname:
-  alabaster: sphinx-theme-alabaster
   Babel: babel
   Django: Django
-  dnspython: dns
-  Flask: flask
   Flask-RESTful: flask-restful
+  Flask: flask
   Jinja2: jinja2
   Mako: mako
   MarkupSafe: markupsafe
-  oslosphinx: oslo-sphinx
-  ovs: openvswitch
   Paste: paste
   PasteDeploy: paste-deploy
   Pillow: pillow
   Pint: pint
-  prometheus-client: prometheus_client
-  Pygments: pygments
-  pyinotify: inotify
   PyJWT: jwt
+  PyMySQL: PyMySQL
   PyNaCl: pynacl
-  python-json-logger: json_logger
-  python-qpid-proton: qpid-proton
-  python-subunit: subunit
+  PySocks: pysocks
+  Pygments: pygments
   Routes: routes
-  Sphinx: sphinx
   SQLAlchemy: sqlalchemy
-  semantic-version: semantic_version
+  Sphinx: sphinx
   Tempita: tempita
+  WSME: wsme
   WebOb: webob
   WebTest: webtest
   Werkzeug: werkzeug
-  WSME: wsme
+  alabaster: sphinx-theme-alabaster
+  dnspython: dns
+  oslosphinx: oslo-sphinx
+  ovs: openvswitch
+  prometheus-client: prometheus_client
   pyenchant: enchant
-  PyMySQL: PyMySQL
+  pyinotify: inotify
+  pykerberos: kerberos
+  python-json-logger: json_logger
+  python-qpid-proton: qpid-proton
+  python-subunit: subunit
+  repoze.lru: repoze-lru
+  semantic-version: semantic_version
 
 pypi2reponame:
-  alabaster: python-sphinx-theme-alabaster
   Babel: babel
   Django: django
-  dnspython: dns
-  Flask: flask
   Flask-RESTful: flask-restful
-  grpcio: grpc
+  Flask: flask
   Jinja2: jinja2
   Mako: mako
   MarkupSafe: markupsafe
-  oslosphinx: python-oslo.sphinx
-  ovs: openvswitch
   Paste: paste
   PasteDeploy: paste-deploy
   Pillow: pillow
   Pint: pint
   PrettyTable: prettytable
-  prometheus-client: python-prometheus_client
-  pycrypto: python-crypto
   PyECLib: pyeclib
-  Pygments: python-pygments
-  pyinotify: python-inotify
   PyJWT: python-jwt
-  pyldap: python-ldap
   PyNaCl: python-pynacl
-  python-json-logger: python-json_logger
+  PySocks: pysocks
+  Pygments: python-pygments
   Routes: routes
-  semantic-version: python-semantic_version
-  Sphinx: sphinx
-  sphinxcontrib.autoprogram: sphinxcontrib-autoprogram
-  sphinx-rtd-theme: python-sphinx_rtd_theme
   SQLAlchemy: sqlalchemy
+  Sphinx: sphinx
   Tempita: tempita
+  WSME: wsme
   WebOb: webob
   WebTest: webtest
   Werkzeug: werkzeug
-  WSME: wsme
   Yappi: yappi
+  alabaster: python-sphinx-theme-alabaster
+  dnspython: dns
+  grpcio: grpc
+  oslosphinx: python-oslo.sphinx
+  ovs: openvswitch
+  prometheus-client: python-prometheus_client
+  pycrypto: python-crypto
+  pyinotify: python-inotify
+  pykerberos: kerberos
+  pyldap: python-ldap
+  python-json-logger: python-json_logger
+  repoze.lru: repoze-lru
+  semantic-version: python-semantic_version
+  sphinx-rtd-theme: python-sphinx_rtd_theme
+  sphinxcontrib.autoprogram: sphinxcontrib-autoprogram
   zope.interface: zope-interface
 
 # Some projects' name in pypi json file doesn't correct, this mapping fix it.
 # Wrong name : Right name(pypi name)
 pypi_name_fix:
-  babel: Babel
   BeautifulSoup4: beautifulsoup4
   Click: click
+  IPython: ipython
+  Ipython: ipython
+  Six: six
+  Webob: WebOb
+  babel: Babel
   couchdb: CouchDB
   cython: Cython
   django: Django
   flask: Flask
-  Ipython: ipython
-  IPython: ipython
   jinja2: Jinja2
   logbook: Logbook
   openstack.nose-plugin: openstack.nose_plugin
   pygments: Pygments
+  pyjwt: PyJWT
   pympler: Pympler
+  pymysql: PyMySQL
   pyopenssl: pyOpenSSL
   pyyaml: PyYAML
   requests_mock: requests-mock
-  Six: six
+  secretstorage: SecretStorage
   sphinx: Sphinx
   sphinxcontrib_issuetracker: sphinxcontrib-issuetracker
-  sqlalchemy: SQLAlchemy
   sqlalchemy-utils: SQLAlchemy-Utils
-  secretstorage: SecretStorage
+  sqlalchemy: SQLAlchemy
   webob: WebOb
-  Webob: WebOb
   werkzeug: Werkzeug
 
 # Some project's version doesn't exist, this mapping correct the version.
 pypi_version_fix:
+  PrettyTable-0.7: 0.7.2
+  Sphinx-1.6.0: 1.6.1
   aioeventlet-0.4: 0.5.1
   alabaster-0.7: 0.7.1
   attrs-19.0: 19.1.0
@@ -126,15 +136,13 @@ pypi_version_fix:
   openstackdocstheme-1.32.1: 2.0.0ß
   pep517-0.9: 0.9.1
   pluggy-0.7: 0.7.1
-  PrettyTable-0.7: 0.7.2
   prompt-toolkit-2.0.0: 2.0.1
   py-1.5.0: 1.5.1
+  pyOpenSSL-1.0.0: 16.0.0
   pyldap-2.4: 2.4.14
   pyngus-2.0.0: 2.0.3
-  pyOpenSSL-1.0.0: 16.0.0
   pytz-0a: 2020.1
   setuptools-0.6a2: 0.7.2
-  Sphinx-1.6.0: 1.6.1
   stone-2.*: 3.0.0
   trollius-1.0: 1.0.4
 
