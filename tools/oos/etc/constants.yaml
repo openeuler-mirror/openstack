@@ -27,6 +27,7 @@ pypi2pkgname:
   Werkzeug: werkzeug
   alabaster: sphinx-theme-alabaster
   dnspython: dns
+  gitdb2: gitdb
   oslosphinx: oslo-sphinx
   ovs: openvswitch
   prometheus-client: prometheus_client
@@ -38,6 +39,7 @@ pypi2pkgname:
   python-subunit: subunit
   repoze.lru: repoze-lru
   semantic-version: semantic_version
+  smmap2: smmap
 
 pypi2reponame:
   Babel: babel
@@ -68,6 +70,7 @@ pypi2reponame:
   Yappi: yappi
   alabaster: python-sphinx-theme-alabaster
   dnspython: dns
+  gitdb2: python-gitdb
   grpcio: grpc
   oslosphinx: python-oslo.sphinx
   ovs: openvswitch
@@ -77,8 +80,10 @@ pypi2reponame:
   pykerberos: kerberos
   pyldap: python-ldap
   python-json-logger: python-json_logger
+  python-subunit: subunit
   repoze.lru: repoze-lru
   semantic-version: python-semantic_version
+  smmap2: python-smmap
   sphinx-rtd-theme: python-sphinx_rtd_theme
   sphinxcontrib.autoprogram: sphinxcontrib-autoprogram
   zope.interface: zope-interface
@@ -93,6 +98,7 @@ pypi_name_fix:
   Six: six
   Webob: WebOb
   babel: Babel
+  cloud-sptheme: cloud_sptheme
   couchdb: CouchDB
   cython: Cython
   django: Django
@@ -125,6 +131,7 @@ pypi_version_fix:
   bitmath-1.3.0: 1.3.0.1
   chardet-2.0: 2.2.1
   chardet-2.2: 2.2.1
+  cloud_sptheme-1.10.1: 1.10.1.post20200504175005
   cradox-2.0.0: 2.1.2
   furo-2021.6.24: 2021.6.24b37
   html5lib-0.99999999pre: 1.0
