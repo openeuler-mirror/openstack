@@ -32,6 +32,7 @@ pypi2pkgname:
   ovs: openvswitch
   prometheus-client: prometheus_client
   pyenchant: enchant
+  pygraphviz: graphviz
   pyinotify: inotify
   pykerberos: kerberos
   python-json-logger: json_logger
@@ -40,6 +41,7 @@ pypi2pkgname:
   repoze.lru: repoze-lru
   semantic-version: semantic_version
   smmap2: smmap
+  systemd-python: systemd
 
 pypi2reponame:
   Babel: babel
@@ -69,23 +71,32 @@ pypi2reponame:
   Werkzeug: werkzeug
   Yappi: yappi
   alabaster: python-sphinx-theme-alabaster
+  dfs_sdk: dfs-sdk
   dnspython: dns
   gitdb2: python-gitdb
   grpcio: grpc
+  jaraco.collections: jaraco-collections
+  jaraco.functools: jaraco-functools
   oslosphinx: python-oslo.sphinx
   ovs: openvswitch
   prometheus-client: python-prometheus_client
   pycrypto: python-crypto
+  pygraphviz: python-graphviz
   pyinotify: python-inotify
   pykerberos: kerberos
   pyldap: python-ldap
   python-json-logger: python-json_logger
   python-subunit: subunit
   repoze.lru: repoze-lru
+  ruamel.yaml: ruamel-yaml
   semantic-version: python-semantic_version
+  setuptools-git: setuptools_git
   smmap2: python-smmap
+  sphinx_feature_classification: sphinx-feature-classification
   sphinx-rtd-theme: python-sphinx_rtd_theme
   sphinxcontrib.autoprogram: sphinxcontrib-autoprogram
+  systemd-python: python-systemd
+  zope.component: zope-component
   zope.interface: zope-interface
 
 # Some projects' name in pypi json file doesn't correct, this mapping fix it.
