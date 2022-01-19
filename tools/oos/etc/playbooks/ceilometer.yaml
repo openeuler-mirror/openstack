@@ -6,7 +6,15 @@
       vars:
         database: ceilometer
         user: ceilometer
+    - role: create_identity_user
+      vars:
+        user: ceilometer
   tasks:
+    - name: Create ceilometer identity service
+      shell: |
+        source ~/.admin-openrc
+        openstack service create --name ceilometer --description "Telemetry" metering
+
     - name: Install ceilometer package
       yum:
         name:

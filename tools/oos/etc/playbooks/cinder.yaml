@@ -10,13 +10,13 @@
     - role: create_identity_user
       vars:
         user: cinder
-    - role: create_identity_resource
+    - role: create_identity_service
       vars:
         service: cinderv2
         type: volumev2
         description: "OpenStack Block Storage"
         endpoint: http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8776/v2/%\(project_id\)s
-    - role: create_identity_resource
+    - role: create_identity_service
       vars:
         service: cinderv3
         type: volumev3

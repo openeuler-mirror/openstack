@@ -9,13 +9,13 @@
     - role: create_identity_user
       vars:
         user: heat
-    - role: create_identity_resource
+    - role: create_identity_service
       vars:
         service: heat
         type: orchestration
         description: Orchestration
         endpoint: http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8004/v1/%\(tenant_id\)s
-    - role: create_identity_resource
+    - role: create_identity_service
       vars:
         service: heat-cfn
         type: cloudformation
