@@ -5,7 +5,7 @@
     - role: create_identity_user
       vars:
         user: swift
-    - role: create_identity_resource
+    - role: create_identity_service
       vars:
         service: swift
         type: object-store

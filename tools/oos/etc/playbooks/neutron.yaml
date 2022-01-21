@@ -9,7 +9,7 @@
     - role: create_identity_user
       vars:
         user: neutron
-    - role: create_identity_resource
+    - role: create_identity_service
       vars:
         service: neutron
         type: network
@@ -65,7 +65,6 @@
   become: yes
   tasks:
     - name: Initialize neutron config file
-      hosts: all
       shell: |
         cat << EOF > /etc/neutron/neutron.conf
         [database]

@@ -24,7 +24,7 @@ def setup(target):
 
 @group.command(name='init', help='Initialize the base OpenStack resource for the Cluster')
 @click.argument('target', type=click.Choice(['cluster']))
-def test(prepare, target):
+def test(target):
     inventory_file = os.path.join(ANSIBLE_INVENTORY_DIR, target+'.yaml')
     playbook_entry = os.path.join(ANSIBLE_PLAYBOOK_DIR, 'init.yaml')
     cmd = ['ansible-playbook', '-i', inventory_file, playbook_entry]
