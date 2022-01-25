@@ -43,6 +43,7 @@
           - nfs-utils
           - openstack-cinder-volume
           - openstack-cinder-backup
+
     - name: Initialize block device
       shell: |
         pvcreate /dev/{{ cinder_block_device }}
