@@ -127,7 +127,7 @@
   tasks:
     - name: Update config file
       shell: |
-        cat <<EOF>> /etc/nova/nova.conf
+        cat << EOF >> /etc/nova/nova.conf
         
         [libvirt]
         virt_type = qemu
@@ -203,7 +203,7 @@
         enabled: True
 
 - name: Discover compute node
-  hosts: compute
+  hosts: controller
   become: yes
   tasks:
     - name: Discover compute node

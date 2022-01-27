@@ -22,10 +22,20 @@ def setup(target):
     cmd = ['ansible-playbook', '-i', inventory_file, playbook_entry]
     subprocess.call(cmd)
 
+
 @group.command(name='init', help='Initialize the base OpenStack resource for the Cluster')
 @click.argument('target', type=click.Choice(['cluster']))
 def test(target):
     inventory_file = os.path.join(ANSIBLE_INVENTORY_DIR, target+'.yaml')
     playbook_entry = os.path.join(ANSIBLE_PLAYBOOK_DIR, 'init.yaml')
+    cmd = ['ansible-playbook', '-i', inventory_file, playbook_entry]
+    subprocess.call(cmd)
+
+
+@group.command(name='clean', help='Clean up the Cluster')
+@click.argument('target', type=click.Choice(['cluster', 'all_in_one']))
+def clean(target):
+    inventory_file = os.path.join(ANSIBLE_INVENTORY_DIR, target+'.yaml')
+    playbook_entry = os.path.join(ANSIBLE_PLAYBOOK_DIR, 'cleanup.yaml')
     cmd = ['ansible-playbook', '-i', inventory_file, playbook_entry]
     subprocess.call(cmd)
