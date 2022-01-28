@@ -19,6 +19,8 @@ openEuler OpenStack SIG致力于结合多样性算力为openstack社区贡献更
 
 公开的会议时间：双周例会，周三下午3:00-4:00(北京时间)
 
+会议链接：通过微信群消息和邮件列表发出
+
 会议纪要： <https://etherpad.openeuler.org/p/sig-openstack-meetings>
 
 ## 成员
@@ -51,8 +53,8 @@ OpenStack SIG通过用户反馈等方式收集OpenStack版本需求，经过SIG�
 | openEuler 20.03 LTS SP3 |    ●   |   ●   |   ●   |        |          |         |      |      |
 |     openEuler 21.03     |        |       |       |        |     ●    |         |      |      |
 |     openEuler 21.09     |        |       |       |        |          |    ●    |      |      |
-|   openEuler 22.03 LTS   |        |       |   ○   |        |          |         |      |      |
-|   openEuler 22.09 LTS   |        |       |       |        |          |         |      |   ○  |
+|   openEuler 22.03 LTS   |        |       |   ○   |        |          |    ○    |      |      |
+|   openEuler 22.09       |        |       |       |        |          |         |      |   ○  |
 
 
 |            | Queens | Rocky | Train | Victoria | Wallaby |
@@ -103,12 +105,17 @@ Queens、Rocky版本的支持放在官方认证的第三方软件平台oepkg:
 
 OpenStack SIG秉承OpenStack社区4个Open原则（Open source、Open Design、Open Development、Open Community），欢迎开发者、用户、厂商以各种开源方式参与SIG贡献，包括但不限于：
 
-1. 向SIG提交Issue，反馈需求、软件包Bug等
-2. 在邮件列表中进行交流
-3. 加入SIG微信讨论群，实时接收SIG最新动态，与业内开发者一起讨论各种技术
-4. 参加SIG双周例会，讨论实时技术问题、SIG路标等等
-5. 参与SIG的软件开发工作，包括RPM包制作、环境部署与测试、自动化工具开发、文档编写等等
-6. OpenStack开源项目捐献、SIG自研项目开发等等。
+1. [提交Issue](https://gitee.com/openeuler/openstack/issues/new)
+    如果您在使用OpenStack时遇到了任何问题，可以向SIG提交ISSUE，包括不限于使用疑问、软件包BUG、特性需求等等。
+2. 参与技术讨论
+   通过邮件列表、微信群、在线例会等方式，与SIG成员实时讨论OpenStack技术。
+3. 参与SIG的软件开发测试工作
+    1. OpenStack SIG跟随openEuler版本开发的节奏，每几个月对外发布不同版本的OpenStack，每个版本包含了几百个RPM软件包，开发者可以参与到这些RPM包的开发工作中。
+    2. OpenStack SIG包括一些来自厂商捐献、自主研发的项目，开发者可以参与相关项目的开发工作。
+    3. openEuler新版本发布后，用户可以测试试用对应的OpenStack，相关BUG和问题可以提交到SIG。
+    4. OpenStack SIG还提供了一系列提高开发效率的工具和文档，用户可以帮忙优化、完善。
+4. 技术预言、联合创新
+   OpenStack SIG欢迎各种形式的联合创新，邀请各位开发者以开源的方式、以SIG为平台，创造属于国人的云计算新技术。如果您有idea或开发意愿，欢迎加入SIG。
 
 当然，贡献形式不仅包含这些，其他任何与OpenStack相关、与开源相关的事务都可以带到SIG中。OpenStack SIG欢迎您的参与。
 
@@ -124,8 +131,7 @@ OpenStack包含项目众多，为了方便管理，设置了统一入口项目�
 
 - <https://gitee.com/openeuler/openstack-kolla-ansible-plugin>
 - <https://gitee.com/openeuler/openstack-kolla-plugin>
-
-OpenStack的原生部署、构建等工具默认不支持openEuler生态，SIG专门为这些项目提供了openEuler支持，用户可以在openEuler上快速安装并使用。
+- <https://gitee.com/openeuler/hostha>
 
 ### RPM构建项目（按字母顺序）
 
