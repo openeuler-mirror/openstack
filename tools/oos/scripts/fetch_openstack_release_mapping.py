@@ -22,7 +22,7 @@ releases = [
 all_res = dict()
 for release in releases:
     url = 'https://releases.openstack.org/' + release
-    url_os_content = requests.get(url, verify=False).content.decode()
+    url_os_content = requests.get(url, verify=True).content.decode()
 
     # get all links, which ends .tar.gz from HTML
     links = re.findall(r'https://.*\.tar\.gz', url_os_content)

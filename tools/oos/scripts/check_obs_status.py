@@ -10,19 +10,17 @@ import yaml
 
 
 BRANCHS = [
-    'openEuler:20.03:LTS:Next:oepkg:openstack:queens',
-    'openEuler:20.03:LTS:Next:oepkg:openstack:rocky',
-    'openEuler:20.03:LTS:Next:oepkg:openstack:common',
     'openEuler:20.03:LTS:SP2:oepkg:openstack:queens',
     'openEuler:20.03:LTS:SP2:oepkg:openstack:rocky',
     'openEuler:20.03:LTS:SP2:oepkg:openstack:common',
     'openEuler:20.03:LTS:SP3:oepkg:openstack:queens',
     'openEuler:20.03:LTS:SP3:oepkg:openstack:rocky',
     'openEuler:20.03:LTS:SP3:oepkg:openstack:common',
-    'openEuler:20.03:LTS:Next:Epol',
     'openEuler:20.03:LTS:SP3:Epol',
     'openEuler:21.03:Epol',
     'openEuler:21.09:Epol',
+    'openEuler:22.03:LTS:Next:Epol:Multi-Version:OpenStack:Train',
+    'openEuler:22.03:LTS:Next:Epol:Multi-Version:OpenStack:Wallaby',
     'openEuler:Epol',
 ]
 
@@ -42,7 +40,7 @@ GITEE_USER_TOKEN = os.environ.get('GITEE_USER_TOKEN')
 
 def get_openstack_sig_project():
     project_list = []
-    sig_dict = yaml.safe_load(requests.get(SIG_PROJECT_URL, verify=False).content.decode())
+    sig_dict = yaml.safe_load(requests.get(SIG_PROJECT_URL, verify=True).content.decode())
     for item in sig_dict['repositories']:
         project_list.append(item['repo'].split('/')[-1])
     return project_list
@@ -66,7 +64,7 @@ def check_status():
     result = {}
     for branch in BRANCHS:
         sub_res = {}
-        res = branch_session.get(OBS_PACKAGE_BUILD_RESULT_URL % {'branch': branch}, verify=False)
+        res = branch_session.get(OBS_PACKAGE_BUILD_RESULT_URL % {'branch': branch}, verify=True)
         obs_result = xmltodict.parse(res.content.decode())['resultlist']['result']
         for each_arch in obs_result:
             if each_arch['@state'] == 'unknown':
@@ -171,4 +169,5 @@ def main():
         html = markdown.markdown(result_str)
         f.write(html)
 
-main()
+if __name__ == '__main__':
+    main()
