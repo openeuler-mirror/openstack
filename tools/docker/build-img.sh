@@ -12,7 +12,7 @@ cd `dirname $0`
 image_ref=$(curl -L "$BASE_IMG_URL" | docker load)
 image_name=${image_ref#*:}
 
-cp Dockerfile Dockerfiler-tmp
+cp Dockerfile Dockerfile-tmp
 sed -i "s/FROM.*/FROM $image_name/" Dockerfile-tmp
 docker build . -t openeuler-pkg-build -f Dockerfile-tmp
-rm Dockerfiler-tmp
+rm Dockerfile-tmp
