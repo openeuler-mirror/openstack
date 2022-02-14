@@ -4,3 +4,4 @@ Jinja2
 pandas
 pyyaml
 requests
+bs4

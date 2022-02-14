@@ -134,3 +134,30 @@ class PkgGitRepo(object):
         if resp.status_code != 201:
             click.echo("Comment PR %s failed, reason: %s" %
                        (pr_num, resp.reason), err=True)
+    
+    def pr_get_comments(self, pr_num):
+        click.echo("Getting comments for %s/%s in PR: %s" % (
+            self.gitee_org, self.repo_name, pr_num))
+        url = 'https://gitee.com/api/v5/repos/%s/%s/pulls/%s/comments' % (
+            self.gitee_org, self.repo_name, pr_num)
+        param = {"access_token": "%s" % self.gitee_pat,
+                'comment_type': 'pr_comment', 'direction': 'desc'}
+        resp = requests.get(url, params=param)
+        if resp.status_code != 200:
+            click.echo("Getting comments of %s failed, reason: %s" %
+                       (pr_num, resp.reason), err=True)
+        return resp.json()
+
+    def get_pr_list(self, filter=None):
+        click.echo("Getting PR list for %s/%s"  % (
+            self.gitee_org, self.repo_name))
+        url = 'https://gitee.com/api/v5/repos/%s/%s/pulls' % (
+            self.gitee_org, self.repo_name)
+        param = {"access_token": "%s" % self.gitee_pat}
+        if filter:
+            param.update(filter)
+        resp = requests.get(url, params=param)
+        if resp.status_code != 200:
+            click.echo("Getting PR list failed, reason: %s" %
+                       (resp.reason), err=True)
+        return resp.json()
