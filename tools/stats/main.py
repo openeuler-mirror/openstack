@@ -61,7 +61,13 @@ for pr in prs:
 
 print(results)
 
+import csv
+f = open(CONFIG['OWNER']+"_"+CONFIG['REPO']+'_PR.csv','w',encoding='utf-8')
+csv_writer = csv.writer(f)
+csv_writer.writerows(results)
+f.close()
 
-# TODO1: check return list's length when there is no page and size
+
+#TODO1: check return list's length when there is no page and size
 #TODO2: 存在标签既有ci_failed又有ci_successful
 #TODO3: 标签ci_failed和ci_fail两种
