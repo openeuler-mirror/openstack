@@ -148,7 +148,7 @@ oos spec push --name stevedore --version 1.28.0
 1. 调用oos命令， 将CI跑失败的PR信息梳理成列表输出
 
 ```
-oos ci failed_pr -t GITEE_PAT -o GITEE_ORG -r REPO -s STATE
+oos pr fetch -t GITEE_PAT --gitee-org GITEE_ORG -r REPO -s STATE
 ```
 
 该命令所支持的参数如下：
@@ -156,17 +156,17 @@ oos ci failed_pr -t GITEE_PAT -o GITEE_ORG -r REPO -s STATE
 ```
 -t，--gitee-pat
     [必选] 个人Gitee账户personal access token，可以使用GITEE_PAT环境变量指定
--o --gitee-org
-    [必选] gitee组织的名称，默认为src-openeuler，可以使用GITEE_ORG环境变量指定
+--gitee-org
+    [可选] gitee组织的名称，默认为src-openeuler，可以使用GITEE_ORG环境变量指定
 -r, --repo
-    [必选] 组织仓库的名称
+    [可选] 组织仓库的名称，如果不指定默认为组织下的所有仓库
 -s, --state
     [可选] Pull Request 状态，选项有open、closed、merged、all，如果不指定默认为open
--f, --file
-    [可选] 输出文件名，如果不指定默认为gitee-org_repo_PR.csv
+-o, --output
+    [可选] 输出文件名，如果不指定默认为failed_PR_result.csv
 ```
 
-该命令运行完后，目录下会生成1个结果文件，默认为`gitee-org_repo_PR.csv`。
+该命令运行完后，目录下会生成1个结果文件，默认为`failed_PR_result.csv`。
 
 ## 环境和依赖
 上述`oos spec build`和`oos spec push`命令需要依赖于`rpmbuild`工具，因此需要安装以下相关软件包：

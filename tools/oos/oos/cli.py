@@ -4,7 +4,6 @@ from oos.commands.environment import cli as environment_cli
 from oos.commands.dependence import cli as dep_cli
 from oos.commands.pr import cli as pr_cli
 from oos.commands.spec import cli as spec_cli
-from oos.commands.ci import cli as ci_cli
 
 
 @click.group()
@@ -18,5 +17,4 @@ def main():
     run.add_command(pr_cli.group)
     run.add_command(dep_cli.group)
     run.add_command(environment_cli.group)
-    run.add_command(ci_cli.group)
     run()
