@@ -21,7 +21,6 @@ def group():
 @click.option("-s", '--state',
               type=click.Choice(['open', 'closed', 'merged', 'all']),
               default="open",
-              required=True,
               help="Specify repo to add comment")
 @click.option("-f", '--file', help="Specify output file")
 def ci_failed_pr(gitee_pat, gitee_org, repo, state, file):
