@@ -156,7 +156,7 @@ oos pr fetch -t GITEE_PAT --gitee-org GITEE_ORG -r REPO -s STATE
 ```
 -t，--gitee-pat
     [必选] 个人Gitee账户personal access token，可以使用GITEE_PAT环境变量指定
---gitee-org
+-g, --gitee-org
     [可选] gitee组织的名称，默认为src-openeuler，可以使用GITEE_ORG环境变量指定
 -r, --repo
     [可选] 组织仓库的名称，如果不指定默认为组织下的所有仓库
