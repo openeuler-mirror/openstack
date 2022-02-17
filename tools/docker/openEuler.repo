@@ -1,13 +1,24 @@
 [everything]
 name=everything
-# May need to update the following daily build URL
-baseurl=http://119.3.219.20:82/openEuler:/Mainline/standard_aarch64
+baseurl=http://119.3.219.20:82/openEuler:/22.03:/LTS:/Next/standard_x86_64
 enabled=1
 gpgcheck=0
 
 [EPOL]
 name=epol
-# May need to update the following daily build URL
-baseurl=http://119.3.219.20:82/openEuler:/Epol/standard_aarch64
+baseurl=http://119.3.219.20:82/openEuler:/22.03:/LTS:/Next:/Epol/standard_x86_64
 enabled=1
 gpgcheck=0
+
+[openstack_train]
+name=openstack_train
+baseurl=http://119.3.219.20:82/openEuler:/22.03:/LTS:/Next:/Epol:/Multi-Version:/OpenStack:/Train/standard_x86_64
+enabled=1
+gpgcheck=0
+
+#[openstack_wallay]
+#name=openstack_wallay
+#baseurl=http://119.3.219.20:82/openEuler:/22.03:/LTS:/Next:/Epol:/Multi-Version:/OpenStack:/Wallaby/standard_x86_64
+#enabled=1
+#gpgcheck=0
+

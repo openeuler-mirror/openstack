@@ -12,6 +12,8 @@ Cython
 DCache
 DevIL
 FAudio
+Fast-CDR
+Fast-DDS
 GAPP
 GATK
 GATK3
@@ -87,6 +89,7 @@ adwaita-qt
 aesh
 aespipe
 afflib
+afterburn
 aha
 aide
 airline
@@ -101,6 +104,11 @@ alsa-utils
 amanda
 amavis
 ambari
+ament_cmake
+ament_cmake_ros
+ament_index
+ament_lint
+ament_package
 amtk
 anaconda
 anaconda-user-help
@@ -321,6 +329,7 @@ boom-boot
 boost
 booth
 bootstrap
+bootupd
 bouncycastle
 bowtie2
 box86
@@ -450,6 +459,7 @@ cockpit
 cockpit-ovirt
 codegen
 codehaus-parent
+codelite
 codemodel
 codenarc
 coffee-script
@@ -480,8 +490,10 @@ comps-extras
 concurrent-trees
 conmon
 conntrack-tools
+console-login-helper-messages
 console-setup
 console_bridge
+console_bridge_vendor
 container-exception-logger
 container-selinux
 containerd
@@ -542,6 +554,7 @@ cvs
 cxf
 cxf-build-utils
 cxf-xjc-utils
+cyclonedds
 cyrus-imapd
 cyrus-sasl
 czmq
@@ -586,6 +599,7 @@ dde-server-industry-config
 dde-session-shell
 dde-session-ui
 debootstrap
+debugedit
 decentxml
 deepin-anything
 deepin-clone
@@ -735,6 +749,7 @@ ehcache-core
 ehcache-sizeof-agent
 eigen
 eigen3
+eigen3_cmake_module
 elasticsearch
 elfutils
 eli5
@@ -795,6 +810,7 @@ exo
 expat
 expect
 expresso
+extfuse
 extra-cmake-modules
 extra166y
 f2fs-tools
@@ -889,6 +905,7 @@ fonts-rpm-macros
 fonts-tweak-tool
 foomatic
 foomatic-db
+foonathan_memory_vendor
 fop
 forbidden-apis
 foreman
@@ -919,6 +936,7 @@ ftgl
 ftp
 fuse
 fuse-exfat
+fuse-overlayfs
 fuse-python
 fuse3
 fusesource-pom
@@ -1167,6 +1185,8 @@ google-noto-emoji-fonts
 google-noto-fonts
 google-oauth-java-client
 google-roboto-slab-fonts
+google_benchmark_vendor
+googletest
 goversioninfo
 gpac
 gpars
@@ -1180,6 +1200,7 @@ gpm
 gradle
 grafana
 grantlee
+grantlee-qt5
 graphene
 graphite2
 graphviz
@@ -1508,6 +1529,7 @@ idm-console-framework
 iftop
 igh-ethercat-xenomai
 ignite
+ignition
 iio-sensor-proxy
 ilmbase
 im-chooser
@@ -1600,6 +1622,7 @@ jacorb
 jaf
 jakarta-commons-httpclient
 jakarta-oro
+jakarta-servlet
 jamm
 jamonapi
 jandex
@@ -1752,6 +1775,7 @@ jhighlight
 jibx
 jimtcl
 jing-trang
+jitterentropy-library
 jline
 jline1
 jmatio
@@ -1775,7 +1799,6 @@ jopt-simple
 jose
 jpegoptim
 jq
-jredis
 jruby
 js-excanvas
 js-jquery
@@ -1831,10 +1854,11 @@ kbuild-standalone
 kde-filesystem
 kde-settings
 kdecoration
+kdevelop
+kdevelopkdevelop-pg-qt
 kdl_parser
 kdump-anaconda-addon
 keepalived
-kelbt
 kernel
 kexec-tools
 keybinder
@@ -1881,11 +1905,14 @@ kf5-kjobwidgets
 kf5-kjs
 kf5-knewstuff
 kf5-knotifications
+kf5-knotifyconfig
 kf5-kpackage
 kf5-kparts
 kf5-kplotting
 kf5-kpty
+kf5-krunner
 kf5-kservice
+kf5-ktexteditor
 kf5-ktextwidgets
 kf5-kunitconversion
 kf5-kwallet
@@ -1898,16 +1925,24 @@ kf5-plasma
 kf5-solid
 kf5-sonnet
 kf5-syntax-highlighting
+kf5-threadweaver
 khmeros-fonts
 kim-api
+kiran-authentication-service
 kiran-avatar-editor
+kiran-biometrics
+kiran-calculator
 kiran-calendar
 kiran-cc-daemon
 kiran-control-panel
 kiran-cpanel-account
+kiran-cpanel-appearance
 kiran-cpanel-display
+kiran-cpanel-keybinding
+kiran-cpanel-keyboard
 kiran-cpanel-menu
 kiran-cpanel-mouse
+kiran-cpanel-power
 kiran-cpanel-timedate
 kiran-desktop
 kiran-flameshot
@@ -1917,7 +1952,9 @@ kiran-log
 kiran-menu
 kiran-panel
 kiran-qdbusxml2cpp
+kiran-screensaver
 kiran-screensaver-dialog
+kiran-session-guard
 kiran-session-manager
 kiran-themes
 kiran-wallpapers
@@ -1955,6 +1992,7 @@ kylin-scanner
 kylin-screenshot
 kylin-software-center
 kylin-usb-creator
+kylin-user-guide
 kylin-video
 kyotocabinet
 kyua
@@ -1976,6 +2014,8 @@ latex2html
 latexmk
 lato-fonts
 latrace
+launch
+launch_ros
 lcdf-typetools
 lcms2
 lcr
@@ -2148,7 +2188,6 @@ libgnomeui
 libgovirt
 libgpg-error
 libgphoto2
-libgpod
 libgsasl
 libgsf
 libgssglue
@@ -2194,8 +2233,10 @@ libkeepalive
 libkefir
 libkkc
 libkml
+libkomparediff2
 libksba
 libkscreen-qt5
+libksysguard
 libldac
 libldb
 libldm
@@ -2345,6 +2386,7 @@ libtommath
 libtool
 libtorrent
 libtpms
+libtraceevent
 libucil
 libudfread
 libumem
@@ -2399,6 +2441,7 @@ libxslt
 libxsmm
 libyami
 libyaml
+libyaml_vendor
 libyang
 libyang1
 libytnef
@@ -2665,6 +2708,7 @@ microcode_ctl
 migration-assistant
 mikmod
 mimepull
+mimick_vendor
 mina-ftpserver
 mingw-binutils
 mingw-crt
@@ -3197,6 +3241,7 @@ nodejsporter
 nodelet_core
 nodeunit
 noggit
+notebook
 notepadqq
 notification-daemon
 nototools
@@ -3242,6 +3287,7 @@ ocaml-calendar
 ocaml-camlp4
 ocaml-camomile
 ocaml-cppo
+ocaml-csexp
 ocaml-csv
 ocaml-curses
 ocaml-dune
@@ -3263,6 +3309,7 @@ oemaker
 ogdi
 ohc
 okhttp
+okteta
 oldstandard-sfd-fonts
 ompi
 onboard
@@ -3394,6 +3441,8 @@ osgi-compendium
 osgi-core
 osinfo-db
 osinfo-db-tools
+osrf_pycommon
+osrf_testing_tools_cpp
 ostree
 ostree_assembly
 otopi
@@ -3509,6 +3558,7 @@ perception_pcl
 percona-server
 percona-toolkit
 percona-xtrabackup
+performance_test_fixture
 perftest
 perl
 perl-Acme-Damn
@@ -5088,6 +5138,7 @@ pkgporter
 pkgship
 pki-core
 plasma-breeze
+plasma-wayland-protocols
 platform
 platform_build
 platform_frameworks_base
@@ -5096,7 +5147,6 @@ platform_frameworks_opt_net_wifi
 platform_hardware_libhardware_legacy
 platform_hardware_ril
 platform_manifests
-platform_packages_apps_DeskClock
 platform_packages_apps_PackageInstaller
 platform_system_core
 plexus-ant-factory
@@ -5747,7 +5797,6 @@ python-fastpurge
 python-faust
 python-fauxquests
 python-fdb
-python-fedfind
 python-feedgenerator
 python-feedparser
 python-fido2
@@ -5931,6 +5980,7 @@ python-ipaddress
 python-ipdb
 python-ipgetter2
 python-iptools
+python-ipykernel
 python-ipython_genutils
 python-ironic-inspector-client
 python-ironic-lib
@@ -5973,6 +6023,8 @@ python-jsonpath-rw-ext
 python-jsonpointer
 python-jsonschema
 python-junitxml
+python-jupyter-client
+python-jupyter-core
 python-justbytes
 python-jwcrypto
 python-jwt
@@ -6126,7 +6178,12 @@ python-mygpoclient
 python-mypy
 python-mypy-extensions
 python-mysqlclient
+python-myst-parser
 python-nb2plots
+python-nbconvert
+python-nbformat
+python-nbsphinx
+python-nbval
 python-nbxmpp
 python-ndjson-testrunner
 python-neomodel
@@ -6542,6 +6599,7 @@ python-requests-mock
 python-requests-ntlm
 python-requests-oauthlib
 python-requests-toolbelt
+python-requests-unixsocket
 python-requestsexceptions
 python-requirementslib
 python-responses
@@ -6675,6 +6733,7 @@ python-sphinxcontrib-bibtex
 python-sphinxcontrib-blockdiag
 python-sphinxcontrib-devhelp
 python-sphinxcontrib-fulltoc
+python-sphinxcontrib-github-alt
 python-sphinxcontrib-htmlhelp
 python-sphinxcontrib-httpdomain
 python-sphinxcontrib-issuetracker
@@ -6746,6 +6805,7 @@ python-tenacity
 python-tensorboard
 python-tensorboard-plugin-wit
 python-termcolor
+python-terminado
 python-terminaltables
 python-test-server
 python-testpath
@@ -6811,6 +6871,7 @@ python-urllib3
 python-urllib_gssapi
 python-urwid
 python-urwidtrees
+python-utils
 python-utmp
 python-uwsgidecorators
 python-vagrantpy
@@ -6943,6 +7004,7 @@ python2-typing
 python3
 python3-docs
 python3-mallard-ducktype
+python_cmake_module
 python_qt_binding
 pytorch
 pytz
@@ -6950,6 +7012,7 @@ pyusb
 pywbem
 pyxattr
 pyxdg
+qca
 qdox
 qemu
 qgnomeplatform
@@ -7033,7 +7096,10 @@ raspberrypi-kernel
 raspberrypi-userland
 raspi-config
 rasqal
+rcl_interfaces
+rcpputils
 rcs
+rcutilsl
 rdate
 rdiff-backup
 rdma-core
@@ -7075,6 +7141,9 @@ rinetd
 risc-v-kernel
 ristretto
 rmic-maven-plugin
+rmw
+rmw_cyclonedds
+rmw_dds_common
 rng-tools
 rngom
 robodoc
@@ -7095,6 +7164,11 @@ rosbag_migration_rule
 rosconsole
 rosconsole_bridge
 roscpp_core
+rosidl
+rosidl_dds
+rosidl_defaults
+rosidl_python
+rosidl_typesupport
 roslint
 roslisp
 rospack
@@ -7106,6 +7180,7 @@ rpm-ostree-toolbox
 rpmdevtools
 rpmlint
 rpmrebuild
+rpyutils
 rqt
 rqt_action
 rqt_bag
@@ -7141,9 +7216,13 @@ rrdtool
 rstudio
 rsync
 rsyslog
+rt-tests
+rtcheck
+rteval
 rtkit
 rtorrent
 rubberband
+rubik
 ruby
 ruby-augeas
 ruby-common
@@ -7583,6 +7662,7 @@ sparsehash
 spatial4j
 spawn-fcgi
 spdk
+spdlog_vendor
 spec-version-maven-plugin
 speech-dispatcher
 speex
@@ -7595,6 +7675,7 @@ spice-parent
 spice-protocol
 spice-vdagent
 spirv-headers
+spirv-llvm-translator
 spirv-tools
 spock
 spring-ldap
@@ -7614,6 +7695,7 @@ sqljet
 squashfs-tools
 squid
 sratom
+sros2
 srt
 sscg
 sshj
@@ -7622,6 +7704,7 @@ sslext
 sssd
 stage
 stage_ros
+stalld
 stapler
 stapler-adjunct-timeline
 star
@@ -7717,6 +7800,7 @@ tepl
 tesseract
 tesseract-tessdata
 test-interface
+test_interface_files
 testng
 teuthology
 tex-fonts-hebrew
@@ -7781,11 +7865,14 @@ timedatex
 tinycdb
 tinyxml
 tinyxml2
+tinyxml2_vendor
+tinyxml_vendor
 tipcutils
 tito
 tix
 tk
 tldr
+tlsf
 tmpwatch
 tmux
 tng
@@ -7796,6 +7883,7 @@ tomcat
 tomcat-taglibs-parent
 tomcat-taglibs-standard
 tomcatjss
+toolbox
 torque
 totem
 totem-pl-parser
@@ -7885,12 +7973,14 @@ umockdev
 uname-build-checks
 unbound
 unboundid-ldapsdk
+uncrustify_vendor
 undertow
 unicode-emoji
 unicode-ucd
 uniconvertor
 unique
 unique3
+unique_identifier_msgs
 unit-api
 units
 univocity-parsers
@@ -7956,6 +8046,7 @@ virt-manager
 virt-viewer
 virt-what
 vision_opencv
+visualization_tutorials
 vkd3d
 vlc
 vmaf
@@ -8000,6 +8091,7 @@ wildfly-security-manager
 wildmidi
 wine
 wine-mono
+wireguard-tools
 wireless-regdb
 wireless-tools
 wireshark
@@ -8178,6 +8270,7 @@ yajl
 yakuake
 yaml-cpp
 yaml-cpp03
+yaml_cpp_vendor
 yapet
 yasm
 yecht
@@ -8195,6 +8288,7 @@ ypserv
 yum-metadata-parser
 zabbix
 zbar
+zchunk
 zd1211-firmware
 zenity
 zephyr
@@ -8203,6 +8297,7 @@ zerofree
 zeromq
 zimg
 zinc
+zincati
 zip
 zipkin
 zlib
@@ -8210,6 +8305,7 @@ zlog
 znerd-oss-parent
 zookeeper
 zopfli
+zram-generator
 zsh
 zssh
 zstd

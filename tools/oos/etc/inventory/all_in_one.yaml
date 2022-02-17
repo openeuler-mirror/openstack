@@ -1,0 +1,57 @@
+all:
+  hosts:
+    controller:
+      ansible_host: <IP>
+      ansible_ssh_private_key_file: <FILE_PATH>
+      ansible_ssh_user: root
+  vars:
+    mysql_root_password: root
+    mysql_project_password: root
+    rabbitmq_password: root
+    project_identity_password: root
+    enabled_service:
+      - keystone
+      - neutron
+      - cinder
+      - placement
+      - nova
+      - glance
+      - horizon
+      - aodh
+      - ceilometer
+      - cyborg
+      - gnocchi
+      - kolla
+      - heat
+      - swift
+      - trove
+      - rally
+      - tempest
+    neutron_provider_interface_name: br-ex
+    default_ext_subnet_range: 10.100.100.0/24
+    default_ext_subnet_gateway: 10.100.100.1
+    neutron_dataplane_interface_name: eth1
+    cinder_block_device: vdb
+    swift_storage_devices:
+      - vdc
+    swift_hash_path_suffix: ash
+    swift_hash_path_prefix: has
+  children:
+    compute:
+      hosts: controller
+    storage:
+      hosts: controller
+    network:
+      hosts: controller
+      vars:
+        test-key: test-value
+    dashboard:
+      hosts: controller
+      vars:
+        allowed_host: '*'
+    kolla:
+      hosts: controller
+      vars:
+        # We add openEuler OS support for kolla in OpenStack Queens/Rocky release
+        # Set this var to true if you want to use it in Q/R
+        openeuler_plugin: false

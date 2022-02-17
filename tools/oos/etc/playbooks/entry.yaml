@@ -1,3 +1,4 @@
+- import_playbook: pre.yaml
 - import_playbook: mariadb.yaml
 - import_playbook: rabbitmq.yaml
 - import_playbook: memcached.yaml

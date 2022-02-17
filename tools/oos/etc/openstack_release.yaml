@@ -1372,7 +1372,7 @@ ussuri:
   puppet-gnocchi: 16.4.0
   puppet-heat: 16.4.0
   puppet-horizon: 16.4.0
-  puppet-ironic: 16.4.0
+  puppet-ironic: 16.5.0
   puppet-keystone: 16.4.0
   puppet-magnum: 16.4.0
   puppet-manila: 16.4.0
@@ -1514,14 +1514,14 @@ victoria:
   blazar-nova: 2.1.0
   blazar_tempest_plugin: 0.5.0
   castellan: 3.6.1
-  ceilometer: 15.0.0
+  ceilometer: 15.1.0
   ceilometermiddleware: 2.1.0
   cinder: 17.2.0
   cinder-tempest-plugin: 1.2.0
   cinderlib: 3.1.0
   cliff: 3.4.0
-  cloudkitty: 13.0.1
-  cloudkitty-dashboard: 11.0.0
+  cloudkitty: 13.0.2
+  cloudkitty-dashboard: 11.0.1
   cloudkitty_tempest_plugin: 2.1.0
   compute-hyperv: 11.0.0
   cyborg-tempest-plugin: 1.1.0
@@ -1529,7 +1529,7 @@ victoria:
   designate: 11.0.1
   designate-dashboard: 11.0.0
   designate-tempest-plugin: 0.9.0
-  ec2-api: 11.0.0
+  ec2-api: 11.1.0
   ec2api-tempest-plugin: 1.1.0
   freezer: 9.0.0
   freezer-api: 9.0.0
@@ -1538,7 +1538,7 @@ victoria:
   freezer_tempest_plugin: 1.1.0
   futurist: 2.3.0
   glance: 21.1.0
-  glance_store: 2.3.0
+  glance_store: 2.3.1
   heat-agents: 2.1.1
   heat-dashboard: 4.0.0
   heat-tempest-plugin: 1.1.0
@@ -1546,27 +1546,27 @@ victoria:
   horizon: 18.6.2
   ironic: 16.0.3
   ironic-inspector: 10.4.1
-  ironic-lib: 4.4.1
+  ironic-lib: 4.4.2
   ironic-prometheus-exporter: 2.1.1
   ironic-python-agent: 6.4.3
   ironic-tempest-plugin: 2.1.0
   ironic-ui: 4.2.0
   karbor: 1.6.0
   karbor-dashboard: 1.5.1
-  kayobe: 9.1.0
-  kayobe-config: 9.1.0
+  kayobe: 9.2.0
+  kayobe-config: 9.2.0
   kayobe-config-dev: 9.1.0
   keystone: 18.0.0
   keystone_tempest_plugin: 0.5.0
   keystoneauth1: 4.2.1
   keystonemiddleware: 9.1.0
-  kolla: 11.1.0
-  kolla-ansible: 11.1.0
+  kolla: 11.2.1
+  kolla-ansible: 11.3.0
   kuryr-kubernetes: 3.0.0
   kuryr-lib: 2.1.0
   kuryr-libnetwork: 6.0.0
   kuryr-tempest-plugin: 0.7.0
-  magnum: 11.2.0
+  magnum: 11.2.1
   magnum-ui: 7.0.1
   magnum_tempest_plugin: 1.1.0
   manila: 11.1.0
@@ -1597,20 +1597,20 @@ victoria:
   networking-bagpipe: 13.0.0
   networking-baremetal: 3.0.0
   networking-bgpvpn: 13.0.0
-  networking-generic-switch: 4.0.0
+  networking-generic-switch: 4.0.1
   networking-hyperv: 9.0.0
   networking-midonet: 11.0.0
   networking-odl: 17.0.0
   networking-sfc: 11.0.0
-  neutron: 17.2.1
+  neutron: 17.3.0
   neutron-dynamic-routing: 17.0.0
   neutron-lib: 2.6.1
   neutron-tempest-plugin: 1.2.0
   neutron-vpnaas: 17.0.0
   neutron-vpnaas-dashboard: 3.0.0
   nova: 22.3.0
-  octavia: 7.1.1
-  octavia-dashboard: 6.0.0
+  octavia: 7.1.2
+  octavia-dashboard: 6.0.1
   octavia-lib: 2.2.0
   octavia-tempest-plugin: 1.5.0
   openstack-cyborg: 5.0.0
@@ -1643,7 +1643,7 @@ victoria:
   oslo.reports: 2.2.0
   oslo.rootwrap: 6.2.0
   oslo.serialization: 4.0.2
-  oslo.service: 2.4.0
+  oslo.service: 2.4.1
   oslo.upgradecheck: 1.1.1
   oslo.utils: 4.6.0
   oslo.versionedobjects: 2.3.0
@@ -1712,7 +1712,7 @@ victoria:
   python-glanceclient: 3.2.2
   python-heatclient: 2.2.1
   python-ironic-inspector-client: 4.4.0
-  python-ironicclient: 4.4.0
+  python-ironicclient: 4.4.1
   python-karborclient: 2.1.0
   python-keystoneclient: 4.1.1
   python-magnumclient: 3.2.2
@@ -1762,7 +1762,7 @@ victoria:
   solum-tempest-plugin: 2.1.0
   stevedore: 3.2.2
   storlets: 6.0.0
-  sushy: 3.4.4
+  sushy: 3.4.5
   sushy-cli: 0.3.1
   swift: 2.26.0
   tacker: 4.0.0
@@ -1785,7 +1785,7 @@ victoria:
   vitrage: 7.3.0
   vitrage-dashboard: 3.2.0
   vitrage-tempest-plugin: 5.1.0
-  watcher-dashboard: 4.0.0
+  watcher-dashboard: 4.0.1
   watcher-tempest-plugin: 2.1.0
   zaqar: 11.0.0
   zaqar-ui: 9.0.0
@@ -1846,20 +1846,20 @@ wallaby:
   ironic-python-agent-builder: 2.7.0
   ironic-tempest-plugin: 2.2.0
   ironic-ui: 4.3.0
-  kayobe: 10.0.1
+  kayobe: 10.1.0
   kayobe-config: 10.0.0
-  kayobe-config-dev: 10.0.1
+  kayobe-config-dev: 10.1.0
   keystone: 19.0.0
   keystone_tempest_plugin: 0.7.0
   keystoneauth1: 4.3.1
   keystonemiddleware: 9.2.0
-  kolla: 12.0.1
-  kolla-ansible: 12.2.0
+  kolla: 12.1.0
+  kolla-ansible: 12.3.0
   kuryr-kubernetes: 4.0.0
   kuryr-lib: 2.3.0
   kuryr-libnetwork: 7.0.0
   kuryr-tempest-plugin: 0.9.0
-  magnum: 12.0.0
+  magnum: 12.1.0
   magnum-ui: 8.0.1
   magnum_tempest_plugin: 1.3.0
   manila: 12.1.0
@@ -1894,14 +1894,14 @@ wallaby:
   networking-hyperv: 10.0.0
   networking-odl: 18.0.0
   networking-sfc: 12.0.0
-  neutron: 18.1.1
-  neutron-dynamic-routing: 18.0.0
+  neutron: 18.2.0
+  neutron-dynamic-routing: 18.1.0
   neutron-lib: 2.10.1
   neutron-tempest-plugin: 1.4.0
   neutron-vpnaas: 18.0.0
   neutron-vpnaas-dashboard: 4.0.0
   nova: 23.1.0
-  octavia: 8.0.0
+  octavia: 8.0.1
   octavia-dashboard: 7.0.0
   octavia-lib: 2.3.1
   octavia-tempest-plugin: 1.7.0
@@ -1910,7 +1910,7 @@ wallaby:
   openstack-placement: 5.0.1
   openstacksdk: 0.55.0
   os-brick: 4.3.2
-  os-ken: 1.4.0
+  os-ken: 1.4.1
   os-net-config: 14.2.0
   os-win: 5.4.0
   os_vif: 2.4.0
@@ -1924,7 +1924,7 @@ wallaby:
   oslo.messaging: 12.7.1
   oslo.metrics: 0.2.1
   oslo.middleware: 4.2.0
-  oslo.policy: 3.7.0
+  oslo.policy: 3.7.1
   oslo.privsep: 2.5.0
   oslo.serialization: 4.1.0
   oslo.service: 2.5.0
@@ -1934,7 +1934,7 @@ wallaby:
   oslo.vmware: 3.8.0
   oswin-tempest-plugin: 1.2.0
   ovn-octavia-provider: 1.0.0
-  ovsdbapp: 1.9.0
+  ovsdbapp: 1.9.1
   panko: 10.0.0
   pankoclient: 1.2.0
   patrole: 0.12.0
@@ -2070,7 +2070,7 @@ xena:
   ansible-role-lunasa-hsm: 2.0.0
   ansible-role-thales-hsm: 2.0.0
   aodh: 13.0.0
-  aodhclient: 2.3.0
+  aodhclient: 2.3.1
   automaton: 2.4.0
   barbican: 13.0.0
   barbican_tempest_plugin: 1.5.0
@@ -2117,15 +2117,15 @@ xena:
   ironic-python-agent-builder: 3.0.0
   ironic-tempest-plugin: 2.3.1
   ironic-ui: 5.0.0
-  kayobe: 11.0.0
+  kayobe: 11.0.1
   kayobe-config: 11.0.0
   kayobe-config-dev: 11.0.0
   keystone: 20.0.0
   keystone_tempest_plugin: 0.8.0
   keystoneauth1: 4.4.0
   keystonemiddleware: 9.3.0
-  kolla: 13.0.0
-  kolla-ansible: 13.0.0
+  kolla: 13.0.1
+  kolla-ansible: 13.0.1
   kuryr-kubernetes: 5.0.0
   kuryr-lib: 2.4.0
   kuryr-libnetwork: 8.0.0
@@ -2165,14 +2165,14 @@ xena:
   networking-hyperv: 11.0.0
   networking-odl: 19.0.0
   networking-sfc: 13.0.0
-  neutron: 19.0.0
-  neutron-dynamic-routing: 19.0.0
-  neutron-lib: 2.15.0
+  neutron: 19.1.0
+  neutron-dynamic-routing: 19.1.0
+  neutron-lib: 2.15.1
   neutron-tempest-plugin: 1.7.0
   neutron-vpnaas: 19.0.0
   neutron-vpnaas-dashboard: 5.0.0
   nova: 24.0.0
-  octavia: 9.0.0
+  octavia: 9.0.1
   octavia-dashboard: 8.0.0
   octavia-lib: 2.4.1
   octavia-tempest-plugin: 1.8.1
@@ -2199,7 +2199,7 @@ xena:
   oslo.serialization: 4.2.0
   oslo.service: 2.6.0
   oslo.upgradecheck: 1.4.0
-  oslo.utils: 4.10.0
+  oslo.utils: 4.10.1
   oslo.versionedobjects: 2.5.0
   oslo.vmware: 3.9.1
   oswin-tempest-plugin: 1.3.0
@@ -2322,6 +2322,7 @@ xena:
   zun-tempest-plugin: 4.4.1
   zun-ui: 8.0.0
 yoga:
+  aodhclient: 2.4.0
   bifrost: 12.0.0
   castellan: 3.10.0
   ceilometermiddleware: 2.4.0
@@ -2333,22 +2334,23 @@ yoga:
   ironic-python-agent: 8.3.0
   metalsmith: 1.6.1
   mistral-extra: 11.2.0
-  neutron-lib: 2.18.0
+  neutron-lib: 2.19.0
   neutron-tempest-plugin: 1.8.0
   openstacksdk: 0.61.0
   os-brick: 5.1.0
   os-ken: 2.3.0
   os_vif: 2.7.0
+  oslo.cache: 2.9.0
   oslo.context: 3.4.0
   oslo.db: 11.1.0
   oslo.messaging: 12.11.1
   oslo.metrics: 0.4.0
   oslo.middleware: 4.5.0
   oslo.policy: 3.10.1
-  oslo.service: 2.7.0
-  oslo.utils: 4.12.0
+  oslo.service: 2.8.0
+  oslo.utils: 4.12.1
   oslo.vmware: 3.10.0
-  ovsdbapp: 1.13.0
+  ovsdbapp: 1.15.0
   puppet-aodh: 20.0.0
   puppet-barbican: 20.0.0
   puppet-ceilometer: 20.0.0
@@ -2390,13 +2392,17 @@ yoga:
   python-cyborgclient: 1.6.0
   python-designateclient: 4.4.0
   python-freezerclient: 4.4.0
+  python-heatclient: 2.5.0
   python-ironic-inspector-client: 4.7.0
-  python-ironicclient: 4.9.0
-  python-manilaclient: 3.1.0
+  python-ironicclient: 4.10.0
+  python-keystoneclient: 4.4.0
+  python-manilaclient: 3.2.0
   python-muranoclient: 2.4.0
   python-neutronclient: 7.7.0
   python-openstackclient: 5.7.0
   python-swiftclient: 3.13.0
+  python-tackerclient: 1.9.0
+  python-zunclient: 4.4.0
   stevedore: 3.5.0
   sushy: 4.0.0
   tempest: 29.2.0

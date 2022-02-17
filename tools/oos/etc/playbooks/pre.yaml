@@ -1,0 +1,10 @@
+- name: Install Database
+  hosts: all
+  become: yes
+  tasks:
+    - name: Update python bin
+      shell: |
+        yum install -y python2 python3
+        rm -f /usr/bin/python
+        ln -s /usr/bin/python3 /usr/bin/python
+      ignore_errors: yes

@@ -14,50 +14,61 @@ import yaml
 CONSTANTS = None
 OPENSTACK_RELEASE_MAP = None
 UPPER = dict()
-
-
+_SEARVICE = [
+    # service
+    "aodh",
+    "ceilometer",
+    "cinder",
+    "openstack-cyborg",
+    "glance",
+    "openstack-heat",
+    "horizon",
+    "ironic",
+    "keystone",
+    "kolla",
+    "kolla-ansible",
+    "neutron",
+    "nova",
+    "panko",
+    "openstack-placement",
+    "swift",
+    "trove",
+    # client
+    "python-openstackclient",
+    "osc-placement",
+    "python-cyborgclient",
+    # ui
+    "ironic-ui",
+    "trove-dashboard",
+    # test
+    "tempest",
+    "cinder-tempest-plugin",
+    "ironic-tempest-plugin",
+    "keystone-tempest-plugin",
+    "neutron-tempest-plugin",
+    "trove-tempest-plugin",
+    # library
+    "ironic-inspector",
+    "ironic-prometheus-exporter",
+    "ironic-python-agent",
+    "networking-baremetal",
+    "networking-generic-switch",
+]
 SUPPORT_RELEASE = {
+    "queens": {
+        "base_service": _SEARVICE + ['barbican'], 
+    },
+    "rocky": {
+        "base_service": _SEARVICE + ['barbican'], 
+    },
     "train": {
-        "base_service": [
-            # service
-            "aodh",
-            "ceilometer",
-            "cinder",
-            "openstack-cyborg",
-            "glance",
-            "openstack-heat",
-            "horizon",
-            "ironic",
-            "keystone",
-            "kolla",
-            "kolla-ansible",
-            "neutron",
-            "nova",
-            "panko",
-            "openstack-placement",
-            "swift",
-            "trove",
-            # client
-            "python-openstackclient",
-            "osc-placement",
-            "python-cyborgclient",
-            # ui
-            "ironic-ui",
-            "trove-dashboard",
-            # test
-            "tempest",
-            "cinder-tempest-plugin",
-            "ironic-tempest-plugin",
-            "keystone-tempest-plugin",
-            "neutron-tempest-plugin",
-            "trove-tempest-plugin",
-            # library
-            "ironic-inspector",
-            "ironic-prometheus-exporter",
-            "ironic-python-agent",
-            "networking-baremetal",
-            "networking-generic-switch",
-        ],
+        "base_service": _SEARVICE, 
+        "extra_service": {
+            "gnocchi": "4.3.5"
+        }
+    },
+    "wallaby": {
+        "base_service": _SEARVICE,
         "extra_service": {
             "gnocchi": "4.3.5"
         }
@@ -177,7 +188,7 @@ class Project(object):
         file_content = ""
         for file_name in self.dep_file:
             url = "https://opendev.org/openstack/%s/raw/tag/%s/%s" % (self.name, self.version, file_name)
-            response = requests.get(url, verify=False)
+            response = requests.get(url, verify=True)
             if response.status_code == 200:
                 file_content += response.content.decode()
             else:
@@ -195,7 +206,7 @@ class Project(object):
             url = 'https://pypi.org/pypi/%s/%s/json' % (project, version)
         else:
             url = 'https://pypi.org/pypi/%s/json' % project
-        response = requests.get(url, verify=False)
+        response = requests.get(url, verify=True)
         if response.status_code != 200:
             raise Exception("%s-%s doesn't exist on pypi" % (project, version))
         return json.loads(response.content.decode())
@@ -251,10 +262,18 @@ class InitDependence(object):
         self.project_dict = dict()
         if projects:
             for project in projects.split(","):
-                self.project_dict[project] = OPENSTACK_RELEASE_MAP[openstack_release].get(project, OPENSTACK_RELEASE_MAP[openstack_release].get(project.replace("-", "_")))
+                version =OPENSTACK_RELEASE_MAP[openstack_release].get(project, OPENSTACK_RELEASE_MAP[openstack_release].get(project.replace("-", "_")))
+                if version:
+                    self.project_dict[project] = version
+                else:
+                    print("%s doesn't support %s" % (openstack_release, project))
         else:
             for project in SUPPORT_RELEASE[openstack_release]['base_service']:
-                self.project_dict[project] = OPENSTACK_RELEASE_MAP[openstack_release].get(project, OPENSTACK_RELEASE_MAP[openstack_release].get(project.replace("-", "_")))
+                version = OPENSTACK_RELEASE_MAP[openstack_release].get(project, OPENSTACK_RELEASE_MAP[openstack_release].get(project.replace("-", "_")))
+                if version:
+                    self.project_dict[project] = version
+                else:
+                    print("%s doesn't support %s" % (openstack_release, project))
             for project, version in SUPPORT_RELEASE[openstack_release]['extra_service'].items():
                 self.project_dict[project] = version
 
@@ -336,6 +355,8 @@ class InitDependence(object):
 
     def init_all_dep(self):
         """download and cache all related requirement file"""
+        if not self.project_dict:
+            return
         self._pre()
         for name, version in self.project_dict.items():
             project_obj = Project(name, version, eq_version=version)
@@ -347,7 +368,7 @@ class InitDependence(object):
 @click.argument('release', type=click.Choice(SUPPORT_RELEASE.keys()))
 def run(projects, release):
     upper_url = "https://opendev.org/openstack/requirements/raw/branch/stable/%s/upper-constraints.txt" % release
-    upper_projects = requests.get(upper_url, verify=False).content.decode().split('\n')
+    upper_projects = requests.get(upper_url, verify=True).content.decode().split('\n')
     for upper_project in upper_projects:
         if not upper_project:
             continue

@@ -1,6 +1,6 @@
 # NOTE: the following image name is the openEuler docker images name from dailybuild,
 # may need to modify
-FROM openeuler-20.03-lts-next
+FROM  openeuler-22.03-lts-next:latest
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 

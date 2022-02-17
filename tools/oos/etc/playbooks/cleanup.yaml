@@ -1,0 +1,85 @@
+- name: Clean up OpenStack environment
+  hosts: all
+  become: yes
+  tasks:
+    - name: Cleanup block storage
+      shell: |
+        vgremove -y cinder-volumes
+        pvremove /dev/{{ cinder_block_device }}
+      ignore_errors: yes
+
+    - name: Cleanup interface
+      shell: |
+        ip add del {{ default_ext_subnet_gateway }}/24 dev {{ neutron_provider_interface_name }}
+        ip link set {{ neutron_provider_interface_name }} down
+        ip tuntap del {{ neutron_provider_interface_name }} mode tap
+      ignore_errors: yes
+
+    - name: Remove OpenStack related Package
+      yum:
+        name:
+          - openstack-aodh-api
+          - openstack-aodh-evaluator
+          - openstack-aodh-notifier
+          - openstack-aodh-listener
+          - openstack-aodh-expirer 
+          - openstack-ceilometer-notification
+          - openstack-ceilometer-central
+          - openstack-cinder-api
+          - openstack-cinder-scheduler
+          - openstack-cinder-volume
+          - openstack-cinder-backup
+          - openstack-cyborg
+          - openstack-glance
+          - openstack-gnocchi-api
+          - openstack-gnocchi-metricd
+          - openstack-heat-api
+          - openstack-heat-api-cfn
+          - openstack-heat-engine
+          - openstack-dashboard
+          - openstack-keystone
+          - openstack-kolla
+          - openstack-kolla-ansible
+          - openstack-kolla-plugin
+          - openstack-kolla-ansible-plugin
+          - openstack-neutron
+          - openstack-neutron-linuxbridge
+          - openstack-neutron-ml2
+          - openstack-neutron-linuxbridge
+          - openstack-nova-api
+          - openstack-nova-conductor
+          - openstack-nova-novncproxy
+          - openstack-nova-scheduler
+          - openstack-nova-compute
+          - openstack-placement-api
+          - openstack-rally
+          - openstack-rally-plugin
+          - openstack-swift-proxy
+          - openstack-swift-account
+          - openstack-swift-container
+          - openstack-swift-object
+          - openstack-tempest
+          - openstack-trove
+          - redis
+          - mariadb
+          - mariadb-server
+          - memcached
+          - rabbitmq-server
+        autoremove: true
+
+    - name: Cleanup database files
+      shell: |
+        rm -rf /var/lib/mysql
+      ignore_errors: yes
+
+    - name: Cleanup config files
+      shell: |
+        rm -rf /etc/nova /etc/keystone /etc/glance /etc/neutron /etc/cinder
+        rm -rf /etc/aodh /etc/ceilometer /etc/cyborg /etc/gnocchi /etc/heat
+        rm -rf /etc/kolla /etc/placement /etc/rally /etc/swift /etc/tempest
+        rm -rf /etc/openstack-dashboard
+      ignore_errors: yes
+
+    - name: Cleanup tempest folder
+      shell: rm -rf mytest
+      ignore_errors: yes

@@ -17,7 +17,7 @@
     - role: create_identity_user
       vars:
         user: nova
-    - role: create_identity_resource
+    - role: create_identity_service
       vars:
         service: nova
         type: compute
@@ -40,6 +40,7 @@
       yum:
         name:
           - openstack-nova-compute
+          - dmidecode
 
     - name: Check node architecture
       shell: |
@@ -126,13 +127,13 @@
   tasks:
     - name: Update config file
       shell: |
-        cat <<EOF>> /etc/nova/nova.conf
+        cat << EOF >> /etc/nova/nova.conf
         
         [libvirt]
         virt_type = qemu
         EOF
         if [[ `uname -m` == 'aarch64' ]];then
-        cat <<EOF>> /etc/nova/nova.conf
+        cat << EOF >> /etc/nova/nova.conf
         cpu_mode = custom
         cpu_model = cortex-a72
         EOF
@@ -144,8 +145,8 @@
           ln -s /usr/share/edk2/aarch64/vars-template-pflash.raw /usr/share/AAVMF/AAVMF_VARS.fd
 
         cat << EOF >> /etc/libvirt/qemu.conf
-        nvram = ["/usr/share/AAVMF/AAVMF_CODE.fd: /usr/share/AAVMF/AAVMF_VARS.fd",
-                 "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw: /usr/share/edk2/aarch64/vars-template-pflash.raw"]
+        nvram = ["/usr/share/AAVMF/AAVMF_CODE.fd:/usr/share/AAVMF/AAVMF_VARS.fd",
+                 "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw:/usr/share/edk2/aarch64/vars-template-pflash.raw"]
         EOF
         fi
 
@@ -202,7 +203,7 @@
         enabled: True
 
 - name: Discover compute node
-  hosts: compute
+  hosts: controller
   become: yes
   tasks:
     - name: Discover compute node

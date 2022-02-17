@@ -58,7 +58,7 @@
 
     - name: Genrate admin environment file
       shell: |
-        cat << EOF >> ~/.admin-openrc
+        cat << EOF > ~/.admin-openrc
         export OS_PROJECT_DOMAIN_NAME=Default
         export OS_USER_DOMAIN_NAME=Default
         export OS_PROJECT_NAME=admin
