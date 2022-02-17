@@ -5,7 +5,7 @@ oos(openEuler OpenStack SIG)是OpenStack SIG提供的命令行工具。该工具
 1. 自动生成RPM Spec
 2. 自动分析OpenStack软件包依赖
 3. 自动提交Spec PR到openEuler社区
-3. 获取OpenStack SIG CI失败的PR列表
+4. 获取OpenStack SIG CI失败的PR列表
 
 ## 自动生成RPM Spec
 
