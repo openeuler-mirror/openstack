@@ -119,6 +119,31 @@ OpenStack SIG秉承OpenStack社区4个Open原则（Open source、Open Design、O
 
 当然，贡献形式不仅包含这些，其他任何与OpenStack相关、与开源相关的事务都可以带到SIG中。OpenStack SIG欢迎您的参与。
 
+## Maintainer的加入和退出
+
+秉承开源开放的理念，OpenStack SIG在maintainer成员的加入和退出方面也有一定的规范和要求。
+
+### 如何成为maintainer
+
+maintainer作为SIG的直接负责人，拥有代码合入、路标规划、提名maintainer等方面的权利，同时也有软件质量看护、版本开发的义务。如果您想成为OpenStack SIG的一名maintainer，需要满足以下几点要求：
+
+1. 持续参与OpenStack SIG开发贡献，不小于一个openEuler release周期（一般为3个月）
+2. 持续参与OpenStack SIG代码检视，review排名应不低于SIG平均量
+3. 定时参加OpenStack SIG例会（一般为双周一次），一个openEuler release周期一般包括6次例会，缺席次数应不大于2次
+
+加分项：
+
+1. 积极参加OpenStack SIG组织的各种活动，比如线上分享、线下meetup或峰会等。
+2. 帮助SIG扩展运营范围，进行联合技术创新，例如主动开源新项目，吸引新的开发者、厂商加入SIG等。
+
+SIG maintainer每个季度会组织闭门会议，审视当前贡献数据，根据贡献者满足相关要求，经讨论达成一致后并且贡献者愿意担任maintainer一职时，SIG会向openEuler TC提出相关申请
+
+### maintainer的退出
+
+当SIG maintainer因为自身原因（工作变动、业务调整等原因），无法再担任maintainer一职时，可主动申请退出。
+
+SIG maintainer每半年也会例行审视当前maintainer列表，如果发现有不再适合担任maintainer的贡献者（贡献不足、不再活跃等原因），经讨论达成一致后，会向openEuler TC提出相关申请。
+
 ## 项目清单
 
 ### 统一入口
