@@ -27,12 +27,12 @@ openEuler OpenStack SIG致力于结合多样性算力为openstack社区贡献更
 
 ### Maintainer列表
 
-- 陈硕[@joec88](https://gitee.com/joec88) chens141@chinaunicom.cn
-- 李昆山[@liksh](https://gitee.com/liksh) liks11@chinaunicom.cn
+- 陈硕[@joec88](https://gitee.com/joec88) joseph.chn1988@gmail.com
+- 李昆山[@liksh](https://gitee.com/liksh) li_kunshan@163.com
 - 黄填华[@huangtianhua](https://gitee.com/huangtianhua) huangtianhua223@gmail.com
 - 王玺源[@xiyuanwang](https://gitee.com/xiyuanwang) wangxiyuan1007@gmail.com
 - 张帆[@zh-f](https://gitee.com/zh-f) zh.f@outlook.com
-- 张迎[@zhangy1317](https://gitee.com/zhangy1317) zhangy1317@chinaunicom.cn
+- 张迎[@zhangy1317](https://gitee.com/zhangy1317) zhangy1317@foxmail.com
 - 刘胜[@sean-lau](https://gitee.com/sean-lau) liusheng2048@gmail.com - 已退休
 
 ### 联系方式
