@@ -51,14 +51,14 @@ def comment_pr(gitee_pat, gitee_org, projects_data,
 
 
 @group.command(name='fetch', help='Get failed ci PR')
-@click.option("-t", "--gitee-pat", envvar='GITEE_PAT', required=True,
-              help="Gitee personal access token")
-@click.option("-g", "--gitee-org", envvar='GITEE_ORG', show_default=True,
-              default="src-openeuler", help="Gitee organization name of openEuler")
-@click.option("-r", '--repo', help="Specify repo to get failed PR")
-@click.option("-s", '--state', type=click.Choice(['open', 'closed', 'merged', 'all']),
-              default="open", help="Specify the state of faield PR")
-@click.option("-o", '--output', help="Specify output file")
+@click.option('-t', '--gitee-pat', envvar='GITEE_PAT', required=True,
+              help='Gitee personal access token')
+@click.option('-g', '--gitee-org', envvar='GITEE_ORG', show_default=True,
+              default='src-openeuler', help='Gitee organization name of openEuler')
+@click.option('-r', '--repo', help='Specify repo to get failed PR')
+@click.option('-s', '--state', type=click.Choice(['open', 'closed', 'merged', 'all']),
+              default='open', help='Specify the state of faield PR')
+@click.option('-o', '--output', help='Specify output file')
 def ci_failed_pr(gitee_pat, gitee_org, repo, state, output):
     if repo is None:
         with open('etc/openstack_sig_repo', 'r') as f:
@@ -79,7 +79,7 @@ def ci_failed_pr(gitee_pat, gitee_org, repo, state, output):
     if output is None:
         output = 'failed_PR_result.csv'
 
-    with open(output, 'w', encoding='utf-8') as f:
+    with open(output, 'w', encoding='utf-8-sig') as f:
         csv_writer = csv.writer(f)
         csv_writer.writerows(outputs)
 

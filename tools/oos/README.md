@@ -159,11 +159,11 @@ oos pr fetch -t GITEE_PAT --gitee-org GITEE_ORG -r REPO -s STATE
 -g, --gitee-org
     [可选] gitee组织的名称，默认为src-openeuler，可以使用GITEE_ORG环境变量指定
 -r, --repo
-    [可选] 组织仓库的名称，如果不指定默认为组织下的所有仓库
+    [可选] 组织仓库的名称，默认为组织下的所有仓库
 -s, --state
-    [可选] Pull Request 状态，选项有open、closed、merged、all，如果不指定默认为open
+    [可选] Pull Request 状态，选项有open、closed、merged、all，默认为open
 -o, --output
-    [可选] 输出文件名，如果不指定默认为failed_PR_result.csv
+    [可选] 输出文件名，默认为failed_PR_result.csv
 ```
 
 该命令运行完后，目录下会生成1个结果文件，默认为`failed_PR_result.csv`。
