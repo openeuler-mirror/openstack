@@ -5,3 +5,5 @@ packaging
 pandas
 pyyaml
 requests
+bs4
+lxml
