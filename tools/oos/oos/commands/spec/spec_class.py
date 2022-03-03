@@ -162,18 +162,6 @@ class RPMSpec(object):
             self._source_file_dir = self._source_file.partition(
                 '-' + self.version_num)[0] + '-%{version}'
 
-    def _identify_arch_from_pypi(self):
-        if self.arch:
-            return
-        urls_info = self.pypi_json['urls']
-        wheels = [info['filename'] for info in urls_info if
-                  info['packagetype'] == "bdist_wheel"]
-        if not wheels and not self.arch:
-            self.arch = 'noarch'
-            return
-        if [wheel for wheel in wheels if wheel.endswith("none-any.whl")]:
-            self.arch = 'noarch'
-
     def _get_description(self, shorten=True):
         if self.pypi_name in CONSTANTS['pkg_description']:
             return CONSTANTS['pkg_description'][self.pypi_name]
@@ -216,7 +204,7 @@ class RPMSpec(object):
             self._base_build_requires = ['python3-devel', 'python3-setuptools',
                                          'python3-pbr', 'python3-pip',
                                          'python3-wheel']
-        if self.arch != 'noarch':
+        if self.arch:
             if self.python2:
                 self._base_build_requires.append('python2-cffi')
             else:
@@ -256,7 +244,6 @@ class RPMSpec(object):
                 self._dev_requires.append(r_pkg)
 
     def generate_spec(self, build_root, output_file=None, reuse_spec=False):
-        self._identify_arch_from_pypi()
         self._init_source_info()
         self._parse_requires()
         if output_file:
@@ -360,7 +347,6 @@ class RPMSpec(object):
             return
 
     def check_deps(self, all_repo_names=None):
-        self._identify_arch_from_pypi()
         self._parse_requires()
         for r in self._dev_requires + self._test_requires:
             in_list = True
