@@ -77,7 +77,7 @@ class CountDependence(object):
     def _generate_with_compare(self, file_list, compare_branch):
         with open(self.output, "w") as csv_file:
             writer=csv.writer(csv_file)
-            writer.writerow(["Project Name", "openEuler Repo", "Repo version",
+            writer.writerow(["Project Name", "openEuler Repo", "SIG", "Repo version",
                 "Required (Min) Version", "lt Version", "ne Version", "Upper Version", "Status",
                 "Requires", "Depth"])
             for file_name in file_list:
@@ -96,7 +96,7 @@ class CountDependence(object):
                     project_upper_version = version_dict['upper_version'] if version_dict else ''
                     requires = list(project_dict['requires'].keys()) if project_dict.get('requires') else []
                     deep_count = project_dict['deep']['count'] if project_dict.get('deep') else ''
-                    repo_name = utils.get_openeuler_repo_name(project_name)
+                    repo_name, sig = utils.get_openeuler_repo_name_and_sig(project_name)
                     repo_version, status = self._get_version_and_status(repo_name,
                         project_version, project_eq_version, project_lt_version,
                         project_ne_version, project_upper_version, compare_branch)
@@ -105,6 +105,7 @@ class CountDependence(object):
                     writer.writerow([
                         project_name,
                         repo_name,
+                        sig,
                         repo_version,
                         project_version,
                         project_lt_version,
