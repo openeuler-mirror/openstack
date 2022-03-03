@@ -19,7 +19,7 @@ class PkgGitRepo(object):
         self.branch_not_found = False
         self.repo_dir = ''
         self.commit_pushed = False
-        self.repo_name = utils.get_openeuler_repo_name(self.pypi_name)
+        self.repo_name, _ = utils.get_openeuler_repo_name_and_sig(self.pypi_name)
 
     def fork_repo(self):
         try:

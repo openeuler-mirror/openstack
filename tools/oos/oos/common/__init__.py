@@ -24,7 +24,7 @@ search_paths = ['/etc/oos/',
 for conf_path in search_paths:
     cons = os.path.join(conf_path, "constants.yaml")
     pkg_tpl = os.path.join(conf_path, "package.spec.j2")
-    openeuler_repo = os.path.join(conf_path, "openeuler_repo")
+    openeuler_repo = os.path.join(conf_path, "openeuler_repo.yaml")
     openstack_release = os.path.join(conf_path, "openstack_release.yaml")
     playbook_path = os.path.join(conf_path, "playbooks")
     inventory_path = os.path.join(conf_path, "inventory")
@@ -33,9 +33,7 @@ for conf_path in search_paths:
     if os.path.isfile(pkg_tpl) and not SPEC_TEMPLET_DIR:
         SPEC_TEMPLET_DIR = conf_path
     if os.path.isfile(openeuler_repo) and not OPENEULER_REPO:
-        with open(openeuler_repo, 'r', encoding="utf-8") as fp:
-            OPENEULER_REPO = fp.read().splitlines()
-            OPENEULER_REPO.sort()
+        OPENEULER_REPO = yaml.safe_load(open(openeuler_repo, encoding="utf-8"))
     if os.path.isfile(openstack_release) and not OPENSTACK_RELEASE_MAP:
         OPENSTACK_RELEASE_MAP = yaml.safe_load(open(openstack_release, encoding="utf-8"))
     if os.path.isdir(playbook_path) and not ANSIBLE_PLAYBOOK_DIR:

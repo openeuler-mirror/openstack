@@ -7,3 +7,4 @@ oos.egg-info/
 AUTHORS
 ChangeLog
 dist/
+*.egg-info/
