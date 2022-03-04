@@ -6,8 +6,8 @@ Summary:        {{ pkg_summary }}
 License:        {{ pkg_license }}
 URL:            {{ pkg_home }}
 Source0:        {{ source_url }}
-{% if build_arch %}
-BuildArch:      {{ build_arch }}
+{% if not build_arch %}
+BuildArch:      noarch
 {% endif %}
 %description
 {{ description }}
@@ -111,7 +111,7 @@ mv %{buildroot}/doclist.lst .
 {% endif %}
 
 %files -n {{ pkg_name }} -f filelist.lst
-{% if build_arch == 'noarch' %}
+{% if not build_arch %}
 {% if python2 %}
 %dir %{python2_sitelib}/*
 {% else %}

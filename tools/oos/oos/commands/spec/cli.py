@@ -219,8 +219,8 @@ def group():
 @click.option('-q', '--query',
               help="Filter, fuzzy match the 'pypi_name' of projects list, e.g. "
                    "'-q novaclient.")
-@click.option("-a", "--arch", help="Build module with arch, automatically "
-                                   "identify if unspecified")
+@click.option("-a", "--arch", is_flag=True,
+              help="Build module with arch, noarch by default.")
 @click.option("-py2", "--python2", is_flag=True, help="Build python2 package")
 @click.option('-dp', '--do-push', is_flag=True, help="Do PUSH or not")
 @click.option("-nc", "--no-check", is_flag=True,
@@ -257,8 +257,8 @@ def push(build_root, gitee_pat, gitee_email, gitee_org, name, version,
 @click.option('-q', '--query',
               help="Filter, fuzzy match the 'pypi_name' of projects list, e.g. "
                    "'-q novaclient.")
-@click.option("-a", "--arch", help="Build module with arch, automatically "
-                                   "identify if unspecified")
+@click.option("-a", "--arch", is_flag=True,
+              help="Build module with arch, noarch by default.")
 @click.option("-py2", "--python2", is_flag=True, help="Build python2 package")
 @click.option('-sd', '--short-description', is_flag=True, default=True,
               help="Shorten description")
@@ -270,7 +270,7 @@ def push(build_root, gitee_pat, gitee_email, gitee_org, name, version,
               help="Reuse existed spec file")
 def build(build_root, name, version, projects_data, query, arch, python2,
           short_description, no_check, build_rpm, output, reuse_spec):
-    if build_root:
+    if build_root and build_rpm:
         _rpmbuild_env_ensure(build_root)
     if not (name or projects_data):
         raise click.ClickException("You must specify projects_data file or "
