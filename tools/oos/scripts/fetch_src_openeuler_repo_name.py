@@ -2,6 +2,7 @@
 import base64
 import json
 import os
+import sys
 import yaml
 
 import requests
@@ -29,6 +30,10 @@ def get_project_name(target_hash, token=os.environ.get("GITEE_USER_TOKEN", ''), 
 
 
 if __name__ == '__main__':
+    if len(sys.argv) > 2:
+        print("Please provide sigs name only. The format should be like: sig1,sig2,sig3...")
+        exit(1)
+    target_sigs = sys.argv[1].split(',') if len(sys.argv) == 2 else []
     community_tree = get_tree('master')
     for node in community_tree:
         if node['path'] == 'sig':
@@ -38,7 +43,9 @@ if __name__ == '__main__':
     result = {}
     for sig in sigs_tree:
         if sig['type'] == 'blob':
-            print(f"{sig} is not a sig, skip it.")
+            print(f"{sig['path']} is not a sig, skip it.")
+            continue
+        if target_sigs and sig['path'] not in target_sigs:
             continue
         sig_name = sig['path']
         sig_tree = get_tree(sig['sha'])

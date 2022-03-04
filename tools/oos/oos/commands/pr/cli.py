@@ -6,6 +6,7 @@ from multiprocessing import Pool
 from functools import partial
 
 from oos.commands.spec.repo_class import PkgGitRepo
+from oos.common import OPENEULER_SIG_REPO
 
 
 @click.group(name='pr', help='Pull request operations')
@@ -55,16 +56,15 @@ def comment_pr(gitee_pat, gitee_org, projects_data,
               help='Gitee personal access token')
 @click.option('-g', '--gitee-org', envvar='GITEE_ORG', show_default=True,
               default='src-openeuler', help='Gitee organization name of openEuler')
-@click.option('-r', '--repo', help='Specify repo to get failed PR')
+@click.option('-r', '--repos', help='Specify repo to get failed PR, format can be like repo1,repo2,...')
 @click.option('-s', '--state', type=click.Choice(['open', 'closed', 'merged', 'all']),
               default='open', help='Specify the state of faield PR')
 @click.option('-o', '--output', help='Specify output file')
-def ci_failed_pr(gitee_pat, gitee_org, repo, state, output):
-    if repo is None:
-        with open('etc/openstack_sig_repo', 'r') as f:
-            repos = [name.rstrip('\n') for name in f.readlines()]
+def ci_failed_pr(gitee_pat, gitee_org, repos, state, output):
+    if repos is None:
+        repos = list(OPENEULER_SIG_REPO.keys())
     else:
-        repos = [repo]
+        repos = repos.split(',')
 
     param = {'state': state, 'labels': 'ci_failed'}
 
