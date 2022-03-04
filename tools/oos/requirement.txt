@@ -1,9 +1,12 @@
 ansible==2.9.27
+bs4
 click
 Jinja2
+lxml
+markdown
 packaging
 pandas
+pymdown-extensions
 pyyaml
 requests
-bs4
-lxml
+xmltodict

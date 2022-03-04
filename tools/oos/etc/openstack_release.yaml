@@ -1508,8 +1508,8 @@ victoria:
   automaton: 2.2.0
   barbican: 11.0.0
   barbican_tempest_plugin: 1.1.0
-  bifrost: 9.0.1
-  blazar: 6.0.0
+  bifrost: 9.1.0
+  blazar: 6.0.1
   blazar-dashboard: 4.0.0
   blazar-nova: 2.1.0
   blazar_tempest_plugin: 0.5.0
@@ -1540,36 +1540,36 @@ victoria:
   glance: 21.1.0
   glance_store: 2.3.1
   heat-agents: 2.1.1
-  heat-dashboard: 4.0.0
+  heat-dashboard: 4.0.1
   heat-tempest-plugin: 1.1.0
   heat-translator: 2.1.0
-  horizon: 18.6.2
-  ironic: 16.0.3
-  ironic-inspector: 10.4.1
+  horizon: 18.6.3
+  ironic: 16.0.4
+  ironic-inspector: 10.4.2
   ironic-lib: 4.4.2
   ironic-prometheus-exporter: 2.1.1
-  ironic-python-agent: 6.4.3
+  ironic-python-agent: 6.4.4
   ironic-tempest-plugin: 2.1.0
   ironic-ui: 4.2.0
   karbor: 1.6.0
   karbor-dashboard: 1.5.1
-  kayobe: 9.2.0
+  kayobe: 9.3.0
   kayobe-config: 9.2.0
-  kayobe-config-dev: 9.1.0
-  keystone: 18.0.0
+  kayobe-config-dev: 9.3.0
+  keystone: 18.1.0
   keystone_tempest_plugin: 0.5.0
   keystoneauth1: 4.2.1
   keystonemiddleware: 9.1.0
   kolla: 11.2.1
   kolla-ansible: 11.3.0
-  kuryr-kubernetes: 3.0.0
-  kuryr-lib: 2.1.0
+  kuryr-kubernetes: 3.1.0
+  kuryr-lib: 2.1.1
   kuryr-libnetwork: 6.0.0
   kuryr-tempest-plugin: 0.7.0
   magnum: 11.2.1
   magnum-ui: 7.0.1
   magnum_tempest_plugin: 1.1.0
-  manila: 11.1.0
+  manila: 11.1.1
   manila-tempest-plugin: 1.2.0
   manila-ui: 4.1.0
   masakari: 10.0.3
@@ -1581,7 +1581,7 @@ victoria:
   mistral-extra: 10.1.0
   mistral-lib: 2.3.0
   mistral_tempest_tests: 1.1.0
-  monasca-agent: 4.0.0
+  monasca-agent: 4.0.1
   monasca-api: 5.0.0
   monasca-common: 3.2.0
   monasca-events-api: 2.0.0
@@ -1591,7 +1591,7 @@ victoria:
   monasca-tempest-plugin: 2.1.0
   monasca-ui: 3.0.0
   murano: 10.0.0
-  murano-agent: 6.0.0
+  murano-agent: 6.0.1
   murano-dashboard: 10.0.0
   murano-tempest-plugin: 2.1.0
   networking-bagpipe: 13.0.0
@@ -1604,7 +1604,7 @@ victoria:
   networking-sfc: 11.0.0
   neutron: 17.3.0
   neutron-dynamic-routing: 17.0.0
-  neutron-lib: 2.6.1
+  neutron-lib: 2.6.2
   neutron-tempest-plugin: 1.2.0
   neutron-vpnaas: 17.0.0
   neutron-vpnaas-dashboard: 3.0.0
@@ -1614,14 +1614,14 @@ victoria:
   octavia-lib: 2.2.0
   octavia-tempest-plugin: 1.5.0
   openstack-cyborg: 5.0.0
-  openstack-heat: 15.0.0
+  openstack-heat: 15.1.0
   openstack-placement: 4.0.0
   openstack-release-test: 3.3.1
   openstacksdk: 0.50.0
   os-apply-config: 12.0.1
   os-brick: 4.0.4
   os-collect-config: 12.0.2
-  os-ken: 1.2.0
+  os-ken: 1.2.1
   os-net-config: 13.2.1
   os-refresh-config: 12.0.1
   os-win: 5.2.0
@@ -1645,14 +1645,14 @@ victoria:
   oslo.serialization: 4.0.2
   oslo.service: 2.4.1
   oslo.upgradecheck: 1.1.1
-  oslo.utils: 4.6.0
+  oslo.utils: 4.6.1
   oslo.versionedobjects: 2.3.0
   oslo.vmware: 3.7.0
   oslotest: 4.4.1
   osprofiler: 3.4.0
   oswin-tempest-plugin: 1.1.0
-  ovn-octavia-provider: 0.4.0
-  ovsdbapp: 1.6.0
+  ovn-octavia-provider: 0.4.1
+  ovsdbapp: 1.6.1
   panko: 9.0.0
   pankoclient: 1.1.0
   patrole: 0.10.0
@@ -1716,7 +1716,7 @@ victoria:
   python-karborclient: 2.1.0
   python-keystoneclient: 4.1.1
   python-magnumclient: 3.2.2
-  python-manilaclient: 2.3.0
+  python-manilaclient: 2.3.1
   python-masakariclient: 6.1.1
   python-mistralclient: 4.1.1
   python-monascaclient: 2.2.1
@@ -1733,7 +1733,7 @@ victoria:
   python-swiftclient: 3.10.1
   python-tackerclient: 1.3.0
   python-tripleoclient: 14.2.3
-  python-troveclient: 5.1.1
+  python-troveclient: 5.1.2
   python-vitrageclient: 4.1.1
   python-watcher: 5.0.0
   python-watcherclient: 3.1.1
@@ -1765,7 +1765,7 @@ victoria:
   sushy: 3.4.5
   sushy-cli: 0.3.1
   swift: 2.26.0
-  tacker: 4.0.0
+  tacker: 4.1.0
   tacker-horizon: 2.0.0
   taskflow: 4.5.0
   telemetry_tempest_plugin: 1.1.0
@@ -1779,8 +1779,8 @@ victoria:
   tripleo-ipsec: 10.0.1
   tripleo-puppet-elements: 13.1.1
   tripleo-validations: 13.4.1
-  trove: 14.0.0
-  trove-dashboard: 15.0.0
+  trove: 14.1.0
+  trove-dashboard: 15.0.1
   trove_tempest_plugin: 1.1.0
   vitrage: 7.3.0
   vitrage-dashboard: 3.2.0
@@ -1800,7 +1800,7 @@ wallaby:
   ansible-role-thales-hsm: 1.0.0
   aodh: 12.0.0
   aodhclient: 2.2.0
-  automaton: 2.3.0
+  automaton: 2.3.1
   barbican: 12.0.0
   barbican_tempest_plugin: 1.3.0
   bifrost: 10.2.0
@@ -1809,7 +1809,7 @@ wallaby:
   blazar-nova: 2.2.0
   blazar_tempest_plugin: 0.6.1
   castellan: 3.7.2
-  ceilometer: 16.0.0
+  ceilometer: 16.0.1
   ceilometermiddleware: 2.2.0
   cinder: 18.1.0
   cinder-tempest-plugin: 1.4.0
@@ -1862,7 +1862,7 @@ wallaby:
   magnum: 12.1.0
   magnum-ui: 8.0.1
   magnum_tempest_plugin: 1.3.0
-  manila: 12.1.0
+  manila: 12.1.1
   manila-tempest-plugin: 1.4.0
   manila-ui: 5.1.0
   masakari: 11.0.1
@@ -1896,7 +1896,7 @@ wallaby:
   networking-sfc: 12.0.0
   neutron: 18.2.0
   neutron-dynamic-routing: 18.1.0
-  neutron-lib: 2.10.1
+  neutron-lib: 2.10.2
   neutron-tempest-plugin: 1.4.0
   neutron-vpnaas: 18.0.0
   neutron-vpnaas-dashboard: 4.0.0
@@ -1916,68 +1916,68 @@ wallaby:
   os_vif: 2.4.0
   osc-lib: 2.3.1
   osc-placement: 2.2.0
-  oslo.cache: 2.7.0
+  oslo.cache: 2.7.1
   oslo.config: 8.5.1
   oslo.context: 3.2.1
   oslo.db: 8.5.1
-  oslo.limit: 1.3.0
-  oslo.messaging: 12.7.1
-  oslo.metrics: 0.2.1
-  oslo.middleware: 4.2.0
+  oslo.limit: 1.3.1
+  oslo.messaging: 12.7.2
+  oslo.metrics: 0.2.2
+  oslo.middleware: 4.2.1
   oslo.policy: 3.7.1
-  oslo.privsep: 2.5.0
-  oslo.serialization: 4.1.0
-  oslo.service: 2.5.0
-  oslo.upgradecheck: 1.3.0
-  oslo.utils: 4.8.0
-  oslo.versionedobjects: 2.4.0
-  oslo.vmware: 3.8.0
+  oslo.privsep: 2.5.1
+  oslo.serialization: 4.1.1
+  oslo.service: 2.5.1
+  oslo.upgradecheck: 1.3.1
+  oslo.utils: 4.8.1
+  oslo.versionedobjects: 2.4.1
+  oslo.vmware: 3.8.1
   oswin-tempest-plugin: 1.2.0
   ovn-octavia-provider: 1.0.0
   ovsdbapp: 1.9.1
   panko: 10.0.0
   pankoclient: 1.2.0
   patrole: 0.12.0
-  puppet-aodh: 18.4.0
-  puppet-barbican: 18.4.0
-  puppet-ceilometer: 18.4.0
-  puppet-cinder: 18.4.0
+  puppet-aodh: 18.4.1
+  puppet-barbican: 18.4.1
+  puppet-ceilometer: 18.4.1
+  puppet-cinder: 18.5.0
   puppet-cloudkitty: 7.4.0
-  puppet-designate: 18.4.0
+  puppet-designate: 18.5.0
   puppet-ec2api: 18.4.0
   puppet-freezer: 18.4.1
-  puppet-glance: 18.4.0
+  puppet-glance: 18.5.0
   puppet-glare: 7.4.0
-  puppet-gnocchi: 18.4.0
+  puppet-gnocchi: 18.4.1
   puppet-heat: 18.4.0
-  puppet-horizon: 18.4.0
-  puppet-ironic: 18.5.0
-  puppet-keystone: 18.4.0
-  puppet-magnum: 18.4.0
-  puppet-manila: 18.4.0
+  puppet-horizon: 18.5.0
+  puppet-ironic: 18.6.0
+  puppet-keystone: 18.5.0
+  puppet-magnum: 18.4.1
+  puppet-manila: 18.5.0
   puppet-mistral: 18.4.0
   puppet-monasca: 7.4.0
   puppet-murano: 18.4.0
-  puppet-neutron: 18.4.0
-  puppet-nova: 18.4.0
-  puppet-octavia: 18.4.0
-  puppet-openstack_extras: 18.4.0
-  puppet-openstacklib: 18.4.0
-  puppet-oslo: 18.4.0
-  puppet-ovn: 18.4.0
+  puppet-neutron: 18.5.0
+  puppet-nova: 18.5.0
+  puppet-octavia: 18.4.1
+  puppet-openstack_extras: 18.5.0
+  puppet-openstacklib: 18.5.0
+  puppet-oslo: 18.4.1
+  puppet-ovn: 18.5.0
   puppet-panko: 18.4.0
-  puppet-placement: 5.4.0
+  puppet-placement: 5.4.1
   puppet-qdr: 7.4.0
   puppet-rally: 6.4.0
   puppet-sahara: 18.4.0
   puppet-senlin: 5.4.0
-  puppet-swift: 18.4.0
+  puppet-swift: 18.5.0
   puppet-tacker: 18.4.0
   puppet-tempest: 18.4.0
   puppet-tripleo: 14.2.2
   puppet-trove: 18.4.0
   puppet-vitrage: 8.4.0
-  puppet-vswitch: 14.4.0
+  puppet-vswitch: 14.4.1
   puppet-watcher: 18.4.0
   puppet-zaqar: 18.4.0
   python-adjutant: 2.0.0
@@ -1996,7 +1996,7 @@ wallaby:
   python-ironicclient: 4.6.3
   python-keystoneclient: 4.2.0
   python-magnumclient: 3.4.1
-  python-manilaclient: 2.6.1
+  python-manilaclient: 2.6.2
   python-masakariclient: 7.0.0
   python-mistralclient: 4.2.0
   python-monascaclient: 2.3.0
@@ -2034,7 +2034,7 @@ wallaby:
   solum: 10.0.0
   solum-dashboard: 6.0.0
   solum-tempest-plugin: 2.2.0
-  stevedore: 3.3.0
+  stevedore: 3.3.1
   storlets: 7.0.0
   sushy: 3.7.3
   sushy-cli: 0.4.0
@@ -2074,13 +2074,13 @@ xena:
   automaton: 2.4.0
   barbican: 13.0.0
   barbican_tempest_plugin: 1.5.0
-  bifrost: 11.2.0
+  bifrost: 11.2.1
   blazar: 8.0.0
   blazar-dashboard: 6.0.0
   blazar-nova: 2.3.0
   blazar_tempest_plugin: 0.7.0
   castellan: 3.9.1
-  ceilometer: 17.0.0
+  ceilometer: 17.0.1
   ceilometermiddleware: 2.3.0
   cinder: 19.0.0
   cinder-tempest-plugin: 1.5.0
@@ -2108,12 +2108,12 @@ xena:
   heat-dashboard: 6.0.0
   heat-tempest-plugin: 1.4.0
   heat-translator: 2.4.1
-  horizon: 20.1.0
-  ironic: 18.2.0
+  horizon: 20.1.1
+  ironic: 18.2.1
   ironic-inspector: 10.8.0
   ironic-lib: 5.0.1
   ironic-prometheus-exporter: 3.0.0
-  ironic-python-agent: 8.2.0
+  ironic-python-agent: 8.2.1
   ironic-python-agent-builder: 3.0.0
   ironic-tempest-plugin: 2.3.1
   ironic-ui: 5.0.0
@@ -2133,7 +2133,7 @@ xena:
   magnum: 13.0.0
   magnum-ui: 9.0.0
   magnum_tempest_plugin: 1.5.0
-  manila: 13.0.1
+  manila: 13.0.2
   manila-tempest-plugin: 1.6.0
   manila-ui: 6.0.0
   masakari: 12.0.0
@@ -2167,7 +2167,7 @@ xena:
   networking-sfc: 13.0.0
   neutron: 19.1.0
   neutron-dynamic-routing: 19.1.0
-  neutron-lib: 2.15.1
+  neutron-lib: 2.15.2
   neutron-tempest-plugin: 1.7.0
   neutron-vpnaas: 19.0.0
   neutron-vpnaas-dashboard: 5.0.0
@@ -2177,7 +2177,7 @@ xena:
   octavia-lib: 2.4.1
   octavia-tempest-plugin: 1.8.1
   openstack-cyborg: 7.0.0
-  openstack-heat: 17.0.0
+  openstack-heat: 17.0.1
   openstack-placement: 6.0.0
   openstacksdk: 0.59.0
   os-brick: 5.0.1
@@ -2191,13 +2191,13 @@ xena:
   oslo.context: 3.3.2
   oslo.db: 11.0.0
   oslo.limit: 1.4.0
-  oslo.messaging: 12.9.1
-  oslo.metrics: 0.3.0
+  oslo.messaging: 12.9.2
+  oslo.metrics: 0.3.1
   oslo.middleware: 4.4.0
   oslo.policy: 3.8.3
   oslo.privsep: 2.6.2
   oslo.serialization: 4.2.0
-  oslo.service: 2.6.0
+  oslo.service: 2.6.1
   oslo.upgradecheck: 1.4.0
   oslo.utils: 4.10.1
   oslo.versionedobjects: 2.5.0
@@ -2261,7 +2261,7 @@ xena:
   python-ironicclient: 4.8.1
   python-keystoneclient: 4.3.0
   python-magnumclient: 3.5.0
-  python-manilaclient: 3.0.0
+  python-manilaclient: 3.0.1
   python-masakariclient: 7.1.0
   python-mistralclient: 4.3.0
   python-monascaclient: 2.4.0
@@ -2322,88 +2322,136 @@ xena:
   zun-tempest-plugin: 4.4.1
   zun-ui: 8.0.0
 yoga:
-  aodhclient: 2.4.0
-  bifrost: 12.0.0
-  castellan: 3.10.0
-  ceilometermiddleware: 2.4.0
-  cliff: 3.10.0
-  horizon: 20.2.0
-  ironic: 19.0.0
-  ironic-inspector: 10.9.0
-  ironic-lib: 5.1.0
-  ironic-python-agent: 8.3.0
-  metalsmith: 1.6.1
+  aodhclient: 2.4.1
+  automaton: 2.5.0
+  bifrost: 13.0.0
+  blazar-nova: 2.4.0
+  castellan: 3.10.1
+  ceilometermiddleware: 2.4.1
+  cliff: 3.10.1
+  cyborg-tempest-plugin: 1.4.0
+  glance: 24.0.0.0rc1
+  glance_store: 3.0.0
+  heat-translator: 2.5.0
+  horizon: 21.0.0
+  ironic: 20.0.0
+  ironic-inspector: 10.10.0
+  ironic-lib: 5.2.0
+  ironic-prometheus-exporter: 3.1.0
+  ironic-python-agent: 8.4.0
+  ironic-python-agent-builder: 4.0.0
+  ironic-ui: 5.1.0
+  keystonemiddleware: 9.4.0
+  kuryr-lib: 2.5.0
+  metalsmith: 1.6.2
   mistral-extra: 11.2.0
-  neutron-lib: 2.19.0
+  mistral-lib: 2.6.0
+  monasca-common: 3.5.0
+  monasca-statsd: 2.4.0
+  networking-baremetal: 5.1.0
+  networking-generic-switch: 6.1.0
+  neutron-lib: 2.20.0
   neutron-tempest-plugin: 1.8.0
+  octavia-lib: 2.5.0
   openstacksdk: 0.61.0
-  os-brick: 5.1.0
-  os-ken: 2.3.0
-  os_vif: 2.7.0
-  oslo.cache: 2.9.0
-  oslo.context: 3.4.0
-  oslo.db: 11.1.0
-  oslo.messaging: 12.11.1
+  os-brick: 5.2.0
+  os-ken: 2.3.1
+  os-win: 5.6.0
+  os_vif: 2.7.1
+  osc-lib: 2.5.0
+  osc-placement: 3.2.0
+  oslo.cache: 2.10.1
+  oslo.config: 8.8.0
+  oslo.context: 4.1.0
+  oslo.db: 11.2.0
+  oslo.limit: 1.5.0
+  oslo.messaging: 12.13.0
   oslo.metrics: 0.4.0
-  oslo.middleware: 4.5.0
-  oslo.policy: 3.10.1
+  oslo.middleware: 4.5.1
+  oslo.policy: 3.11.0
+  oslo.privsep: 2.7.0
+  oslo.serialization: 4.3.0
   oslo.service: 2.8.0
-  oslo.utils: 4.12.1
+  oslo.upgradecheck: 1.5.0
+  oslo.utils: 4.12.2
+  oslo.versionedobjects: 2.6.0
   oslo.vmware: 3.10.0
-  ovsdbapp: 1.15.0
-  puppet-aodh: 20.0.0
-  puppet-barbican: 20.0.0
-  puppet-ceilometer: 20.0.0
-  puppet-cinder: 20.0.0
-  puppet-cloudkitty: 9.0.0
-  puppet-designate: 20.0.0
-  puppet-ec2api: 20.0.0
-  puppet-glance: 20.0.0
-  puppet-gnocchi: 20.0.0
-  puppet-heat: 20.0.0
-  puppet-horizon: 20.0.0
-  puppet-ironic: 20.0.0
-  puppet-keystone: 20.0.0
-  puppet-magnum: 20.0.0
-  puppet-manila: 20.0.0
+  ovsdbapp: 1.15.1
+  patrole: 0.14.0
+  puppet-aodh: 20.1.0
+  puppet-barbican: 20.1.0
+  puppet-ceilometer: 20.1.0
+  puppet-cinder: 20.1.0
+  puppet-cloudkitty: 9.1.0
+  puppet-designate: 20.1.0
+  puppet-ec2api: 20.1.0
+  puppet-glance: 20.1.0
+  puppet-gnocchi: 20.1.0
+  puppet-heat: 20.1.0
+  puppet-horizon: 20.1.0
+  puppet-ironic: 20.1.0
+  puppet-keystone: 20.1.0
+  puppet-magnum: 20.1.0
+  puppet-manila: 20.1.0
   puppet-mistral: 20.0.0
-  puppet-murano: 20.0.0
-  puppet-neutron: 20.0.0
-  puppet-nova: 20.0.0
-  puppet-octavia: 20.0.0
-  puppet-openstack_extras: 20.0.0
-  puppet-openstacklib: 20.0.0
-  puppet-oslo: 20.0.0
-  puppet-ovn: 20.0.0
-  puppet-placement: 7.0.0
-  puppet-qdr: 9.0.0
-  puppet-rally: 8.0.0
-  puppet-sahara: 20.0.0
-  puppet-swift: 20.0.0
-  puppet-tacker: 20.0.0
-  puppet-tempest: 20.0.0
-  puppet-trove: 20.0.0
-  puppet-vitrage: 10.0.0
-  puppet-vswitch: 16.0.0
-  puppet-watcher: 20.0.0
-  puppet-zaqar: 20.0.0
-  python-cinderclient: 8.2.0
-  python-cloudkittyclient: 4.4.0
-  python-cyborgclient: 1.6.0
-  python-designateclient: 4.4.0
+  puppet-murano: 20.1.0
+  puppet-neutron: 20.1.0
+  puppet-nova: 20.1.0
+  puppet-octavia: 20.1.0
+  puppet-openstack_extras: 20.1.0
+  puppet-openstacklib: 20.1.0
+  puppet-oslo: 20.1.0
+  puppet-ovn: 20.1.0
+  puppet-placement: 7.1.0
+  puppet-qdr: 9.1.0
+  puppet-rally: 8.1.0
+  puppet-sahara: 20.1.0
+  puppet-swift: 20.1.0
+  puppet-tacker: 20.1.0
+  puppet-tempest: 20.1.0
+  puppet-trove: 20.1.0
+  puppet-vitrage: 10.1.0
+  puppet-vswitch: 16.1.0
+  puppet-watcher: 20.1.0
+  puppet-zaqar: 20.1.0
+  python-adjutantclient: 0.10.0
+  python-barbicanclient: 5.3.0
+  python-blazarclient: 3.4.0
+  python-brick-cinderclient-ext: 1.5.0
+  python-cinderclient: 8.3.0
+  python-cloudkittyclient: 4.5.0
+  python-cyborgclient: 1.7.0
+  python-designateclient: 4.5.0
   python-freezerclient: 4.4.0
-  python-heatclient: 2.5.0
-  python-ironic-inspector-client: 4.7.0
-  python-ironicclient: 4.10.0
+  python-glanceclient: 3.6.0
+  python-heatclient: 2.5.1
+  python-ironic-inspector-client: 4.7.1
+  python-ironicclient: 4.11.0
   python-keystoneclient: 4.4.0
-  python-manilaclient: 3.2.0
-  python-muranoclient: 2.4.0
-  python-neutronclient: 7.7.0
+  python-magnumclient: 3.6.0
+  python-manilaclient: 3.3.0
+  python-masakariclient: 7.2.0
+  python-mistralclient: 4.4.0
+  python-monascaclient: 2.5.0
+  python-muranoclient: 2.4.1
+  python-neutronclient: 7.8.0
+  python-novaclient: 17.7.0
+  python-octaviaclient: 2.5.0
   python-openstackclient: 5.7.0
-  python-swiftclient: 3.13.0
-  python-tackerclient: 1.9.0
+  python-saharaclient: 3.5.0
+  python-senlinclient: 2.4.0
+  python-solumclient: 3.5.0
+  python-swiftclient: 3.13.1
+  python-tackerclient: 1.10.0
+  python-troveclient: 7.2.0
+  python-vitrageclient: 4.5.0
+  python-watcherclient: 3.4.0
+  python-zaqarclient: 2.3.0
   python-zunclient: 4.4.0
   stevedore: 3.5.0
-  sushy: 4.0.0
+  sushy: 4.1.0
+  swift: 2.29.0
   tempest: 29.2.0
-  tosca-parser: 2.5.0
+  tosca-parser: 2.5.1
+  vitrage: 8.0.0
+  vitrage-dashboard: 3.5.0

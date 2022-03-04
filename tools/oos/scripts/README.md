@@ -6,9 +6,17 @@
 
     功能: 检查OBS上OpenStack SIG软件包构建情况。
 
-    输入: `python3 check_obs_status.py`
+    输入: `python3 check_obs_status.py markdown`
 
-    输出: `result.html`
+    输出: `result.md`
+
+    输入: `python3 check_obs_status.py html`
+
+    输出: `result_attach.html`, `result_body.html`
+
+    输入: `python3 check_obs_status.py gitee`
+
+    输出: [Gitee issue](https://gitee.com/openeuler/openstack/issues)
 
     环境变量:
 

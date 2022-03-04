@@ -2,6 +2,7 @@
 import datetime
 import json
 import os
+import sys
 
 import markdown
 import requests
@@ -21,6 +22,8 @@ BRANCHS = [
     'openEuler:21.09:Epol',
     'openEuler:22.03:LTS:Next:Epol:Multi-Version:OpenStack:Train',
     'openEuler:22.03:LTS:Next:Epol:Multi-Version:OpenStack:Wallaby',
+    'openEuler:22.03:LTS:Epol:Multi-Version:OpenStack:Train',
+    'openEuler:22.03:LTS:Epol:Multi-Version:OpenStack:Wallaby',
     'openEuler:Epol',
 ]
 
@@ -40,7 +43,7 @@ GITEE_USER_TOKEN = os.environ.get('GITEE_USER_TOKEN')
 
 def get_openstack_sig_project():
     project_list = []
-    sig_dict = yaml.safe_load(requests.get(SIG_PROJECT_URL, verify=True).content.decode())
+    sig_dict = yaml.safe_load(requests.get(SIG_PROJECT_URL).content.decode())
     for item in sig_dict['repositories']:
         project_list.append(item['repo'].split('/')[-1])
     return project_list
@@ -64,18 +67,21 @@ def check_status():
     result = {}
     for branch in BRANCHS:
         sub_res = {}
-        res = branch_session.get(OBS_PACKAGE_BUILD_RESULT_URL % {'branch': branch}, verify=True)
+        res = branch_session.get(OBS_PACKAGE_BUILD_RESULT_URL % {'branch': branch}, verify=False)
         obs_result = xmltodict.parse(res.content.decode())['resultlist']['result']
         for each_arch in obs_result:
             if each_arch['@state'] == 'unknown':
                 result[branch] = 'Unknown'
                 break
             arch = each_arch['@arch']
+            if not each_arch.get('status'):
+                result[branch] = 'No Content'
+                break
             arch_result = each_arch['status']
             for package in arch_result:
                 package_name = package['@package']
                 package_status = package['@code']
-                if ('oepkg' in branch or package_name in white_list) and package_status in ['unresolvable', 'failed', 'broken']:
+                if ('oepkg' in branch or 'Multi' in branch or package_name in white_list) and package_status in ['unresolvable', 'failed', 'broken']:
                     project_key = PROJECT_MARKDOWN_FORMAT % {'project': package_name, 'url': OBS_PROJECT_URL % {'branch': branch, 'project': package_name}}
                     if not sub_res.get(project_key):
                         sub_res[project_key] = {}
@@ -139,7 +145,7 @@ def create_or_update_issue(result_str):
         create_issue(result_str)
 
 
-def format_content(input_dict):
+def format_content_for_markdown(input_dict):
     output = ""
     today = datetime.datetime.now()
     output += '## check date: %s-%s-%s\n' % (today.year, today.month, today.day)
@@ -162,12 +168,54 @@ def format_content(input_dict):
     return output
 
 
+def format_content_for_html(input_dict):
+    output_attach = ""
+    output_body = ""
+    today = datetime.datetime.now()
+    output_body += '# check date: %s-%s-%s\n\n' % (today.year, today.month, today.day)
+    output_body += 'See the attached file for the failed branch\n\n'
+    if input_dict:
+        for branch, project_info in input_dict.items():
+            if isinstance(project_info, str):
+                output_body += '## %s\n\n' % branch
+                output_body += '%s\n' % project_info
+                continue
+            output_attach += '## %s\n\n' % branch
+            output_attach += '??? note "Detail"\n'
+            for project_name, status in project_info.items():
+                output_attach += '    %s:\n\n' % project_name
+                if status.get('x86_64'):
+                    output_attach += '        x86_64: %s\n' % status['x86_64']
+                if status.get('aarch64'):
+                    output_attach += '        aarch64: %s\n' % status['aarch64']
+            output_attach += '\n'
+    else:
+        output_body += 'All package build success.'
+
+    return output_attach, output_body
+
+
 def main():
+    try:
+        output_type = sys.argv[1]
+    except IndexError:
+        print("Please specify the output type: markdown, html or gitee")
+        exit(1)
     result = check_status()
-    result_str = format_content(result)
-    with open('result.html', 'w') as f:
-        html = markdown.markdown(result_str)
-        f.write(html)
+    if output_type == 'markdown':
+        output = format_content_for_markdown(result)
+        with open('result.md', 'w') as f:
+            f.write(markdown.markdown(output))
+    elif output_type == 'html':
+        result_str_attach, result_str_body= format_content_for_html(result)
+        with open('result_attach.html', 'w') as f:
+            html = markdown.markdown(result_str_attach, extensions=['pymdownx.details'])
+            f.write(html)
+        with open('result_body.html', 'w') as f:
+            html = markdown.markdown(result_str_body, extensions=['pymdownx.details'])
+            f.write(html)
+    elif output_type == 'gitee':
+        create_or_update_issue(result)
 
 if __name__ == '__main__':
     main()
