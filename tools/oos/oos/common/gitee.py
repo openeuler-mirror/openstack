@@ -30,6 +30,8 @@ def get_gitee_project_version(owner, project, branch, access_token=None):
                 sub_str = file['path'].rsplit('.', 1)[0]
             if '-' in sub_str:
                 version = sub_str.rsplit('-', 1)[1].strip('v')
+            if '_' in sub_str:
+                version = sub_str.rsplit('_', 1)[1].strip('v')
             else:
                 version = sub_str.strip('v')
             break
