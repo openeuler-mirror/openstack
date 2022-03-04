@@ -28,11 +28,15 @@
 
 3. fetch_src_openeuler_repo_name.py
 
-    功能: 获取src-openEuler最新的仓库名列表
+    功能: 获取src-openEuler最新的仓库名列表, 可以指定目标sig列表
 
     输入: `python3 fetch_src_openeuler_repo_name.py`
 
-    输出: `openeuler_repo`
+    输出: `openeuler_repo.yaml`
+
+    输入: `python3 fetch_src_openeuler_repo_name.py sig1,sig2`
+
+    输出: `openeuler_repo.yaml`
 
     环境变量:
 
