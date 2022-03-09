@@ -31,8 +31,6 @@
           - openstack-cinder-backup
           - openstack-cyborg
           - openstack-glance
-          - openstack-gnocchi-api
-          - openstack-gnocchi-metricd
           - openstack-heat-api
           - openstack-heat-api-cfn
           - openstack-heat-engine
@@ -60,12 +58,15 @@
           - openstack-swift-object
           - openstack-tempest
           - openstack-trove
-          - redis
+          - gnocchi-api
+          - gnocchi-metricd
           - mariadb
           - mariadb-server
           - memcached
           - rabbitmq-server
+          - redis
         autoremove: true
+        state: absent
 
     - name: Cleanup database files
       shell: |
