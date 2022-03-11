@@ -36,7 +36,7 @@
         # Init the ext subnet
         openstack subnet create --subnet-range {{ default_ext_subnet_range }} --gateway {{ default_ext_subnet_gateway }} --network public-network public-subnet
         # Init the private network
-        openstack network create --interal private-network
+        openstack network create --internal private-network
         openstack subnet create --subnet-range 172.188.0.0/16 --network private-network private-subnet
         # Connect the simulative ext network with private network via a router 
         openstack router create my-router
@@ -54,7 +54,7 @@
 
         [auth]
         admin_username = admin
-        admin_password = admin
+        admin_password = root
         admin_project_name = admin
         admin_domain_name = Default
 
