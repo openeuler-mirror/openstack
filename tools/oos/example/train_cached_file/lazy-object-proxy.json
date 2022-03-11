@@ -1,0 +1,1 @@
+{"name": "lazy-object-proxy", "version_dict": {"version": "1.6.0", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": [], "upper_version": "1.6.0"}, "deep": {"count": 5, "list": ["openstack-heat", "neutron-lib", "os-ken", "pylint", "astroid", "lazy-object-proxy"]}, "requires": {}}

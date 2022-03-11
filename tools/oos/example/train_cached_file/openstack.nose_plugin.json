@@ -1,1 +1,0 @@
-{"name": "openstack.nose_plugin", "version_dict": {"version": "0.7", "eq_version": "", "ge_version": "0.7", "lt_version": "", "ne_version": [], "upper_version": ""}, "deep": {"count": 1, "list": ["trove", "openstack.nose_plugin"]}, "requires": {}}
