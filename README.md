@@ -37,7 +37,7 @@ openEuler OpenStack SIG致力于结合多样性算力为openstack社区贡献更
 
 ### 联系方式
 
-- 邮件列表：openstack@openeuler.org，邮件订阅请在[页面](https://openeuler.org/zh/community/mailing-list/)中单击OpenStack链接。
+- 邮件列表：openstack@openeuler.org，邮件订阅请在[页面](https://www.openeuler.org/zh/community/mailing-list/)中单击OpenStack链接。
 - Wechat讨论群，请联系Maintainer入群
 
 ## OpenStack版本支持列表
