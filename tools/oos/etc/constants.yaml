@@ -165,14 +165,24 @@ pypi_version_fix:
   trollius-1.0: 1.0.4
 
 black_list:
-  # Some project doesn't exist on pypi. We only deal them by hand, skip them in oos.
+  # Some projects don't exist on pypi. We only deal them by hand, skip them in oos.
   - infinisim
   - pyev
   - rados
   - python-rados
   - rbd
-  # Some project is out of date.
+  # Some projects are out of date.
   - argparse
+  # Some project don't support python3
+  - mox
+  - enum34
+  - futures
+  # Some projects are removed from openEuler.
+  # The projects which relies on this kind of projects should be removed as well.
+  - nose
+  - nosehtmloutput
+  - nosexcover
+  - openstack.nose_plugin
 
 # <pypi name> : <license>
 pypi_license:

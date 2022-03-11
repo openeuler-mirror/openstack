@@ -1240,12 +1240,12 @@ ussuri:
   heat-translator: 2.0.0
   horizon: 18.3.5
   ironic: 15.0.2
-  ironic-inspector: 10.1.2
+  ironic-inspector: 10.1.3
   ironic-lib: 4.2.3
   ironic-prometheus-exporter: 2.0.1
-  ironic-python-agent: 6.1.2
+  ironic-python-agent: 6.1.3
   ironic-tempest-plugin: 2.0.0
-  ironic-ui: 4.0.0
+  ironic-ui: 4.0.1
   karbor: 1.5.0
   karbor-dashboard: 1.4.0
   kayobe: 8.2.0
@@ -1323,7 +1323,7 @@ ussuri:
   os-client-config: 2.1.0
   os-collect-config: 11.0.4
   os-ken: 1.0.0
-  os-net-config: 12.3.5
+  os-net-config: 12.3.6
   os-refresh-config: 11.0.1
   os-win: 5.0.2
   os_vif: 2.0.1
@@ -1395,7 +1395,7 @@ ussuri:
   puppet-swift: 16.4.0
   puppet-tacker: 16.4.0
   puppet-tempest: 16.3.1
-  puppet-tripleo: 12.7.0
+  puppet-tripleo: 12.7.1
   puppet-trove: 16.4.0
   puppet-vitrage: 6.4.0
   puppet-vswitch: 12.4.0
@@ -1436,7 +1436,7 @@ ussuri:
   python-solumclient: 3.1.0
   python-swiftclient: 3.9.1
   python-tackerclient: 1.1.1
-  python-tripleoclient: 13.4.5
+  python-tripleoclient: 13.4.6
   python-troveclient: 3.3.2
   python-vitrageclient: 4.0.1
   python-watcher: 4.0.1
@@ -1467,7 +1467,7 @@ ussuri:
   solum-tempest-plugin: 2.0.0
   stevedore: 1.32.0
   storlets: 5.0.0
-  sushy: 3.2.2
+  sushy: 3.2.3
   sushy-cli: 0.2.0
   swift: 2.25.2
   tacker: 3.0.1
@@ -1480,8 +1480,8 @@ ussuri:
   tosca-parser: 2.0.0
   tricircle: 8.0.0
   tricircleclient: 1.0.0
-  tripleo-common: 12.4.6
-  tripleo-heat-templates: 12.4.5
+  tripleo-common: 12.4.7
+  tripleo-heat-templates: 12.4.6
   tripleo-image-elements: 12.0.2
   tripleo-ipsec: 9.3.2
   tripleo-puppet-elements: 12.3.4
@@ -1516,7 +1516,7 @@ victoria:
   castellan: 3.6.1
   ceilometer: 15.1.0
   ceilometermiddleware: 2.1.0
-  cinder: 17.2.0
+  cinder: 17.3.0
   cinder-tempest-plugin: 1.2.0
   cinderlib: 3.1.0
   cliff: 3.4.0
@@ -1608,7 +1608,7 @@ victoria:
   neutron-tempest-plugin: 1.2.0
   neutron-vpnaas: 17.0.0
   neutron-vpnaas-dashboard: 3.0.0
-  nova: 22.3.0
+  nova: 22.4.0
   octavia: 7.1.2
   octavia-dashboard: 6.0.1
   octavia-lib: 2.2.0
@@ -1619,7 +1619,7 @@ victoria:
   openstack-release-test: 3.3.1
   openstacksdk: 0.50.0
   os-apply-config: 12.0.1
-  os-brick: 4.0.4
+  os-brick: 4.0.5
   os-collect-config: 12.0.2
   os-ken: 1.2.1
   os-net-config: 13.2.1
@@ -1811,7 +1811,7 @@ wallaby:
   castellan: 3.7.2
   ceilometer: 16.0.1
   ceilometermiddleware: 2.2.0
-  cinder: 18.1.0
+  cinder: 18.2.0
   cinder-tempest-plugin: 1.4.0
   cinderlib: 4.0.0
   cliff: 3.7.0
@@ -1900,7 +1900,7 @@ wallaby:
   neutron-tempest-plugin: 1.4.0
   neutron-vpnaas: 18.0.0
   neutron-vpnaas-dashboard: 4.0.0
-  nova: 23.1.0
+  nova: 23.2.0
   octavia: 8.0.1
   octavia-dashboard: 7.0.0
   octavia-lib: 2.3.1
@@ -1909,7 +1909,7 @@ wallaby:
   openstack-heat: 16.0.0
   openstack-placement: 5.0.1
   openstacksdk: 0.55.0
-  os-brick: 4.3.2
+  os-brick: 4.3.3
   os-ken: 1.4.1
   os-net-config: 14.2.0
   os-win: 5.4.0
@@ -2082,7 +2082,7 @@ xena:
   castellan: 3.9.1
   ceilometer: 17.0.1
   ceilometermiddleware: 2.3.0
-  cinder: 19.0.0
+  cinder: 19.1.0
   cinder-tempest-plugin: 1.5.0
   cinderlib: 4.1.0
   cliff: 3.9.0
@@ -2171,7 +2171,7 @@ xena:
   neutron-tempest-plugin: 1.7.0
   neutron-vpnaas: 19.0.0
   neutron-vpnaas-dashboard: 5.0.0
-  nova: 24.0.0
+  nova: 24.1.0
   octavia: 9.0.1
   octavia-dashboard: 8.0.0
   octavia-lib: 2.4.1
@@ -2180,7 +2180,7 @@ xena:
   openstack-heat: 17.0.1
   openstack-placement: 6.0.0
   openstacksdk: 0.59.0
-  os-brick: 5.0.1
+  os-brick: 5.0.2
   os-ken: 2.1.0
   os-win: 5.5.0
   os_vif: 2.6.0
@@ -2322,16 +2322,32 @@ xena:
   zun-tempest-plugin: 4.4.1
   zun-ui: 8.0.0
 yoga:
+  aodh: 14.0.0.0rc1
   aodhclient: 2.4.1
   automaton: 2.5.0
   bifrost: 13.0.0
+  blazar: 9.0.0.0rc1
+  blazar-dashboard: 7.0.0.0rc1
   blazar-nova: 2.4.0
   castellan: 3.10.1
+  ceilometer: 18.0.0.0rc1
   ceilometermiddleware: 2.4.1
   cliff: 3.10.1
+  cloudkitty: 16.0.0.0rc1
+  cloudkitty-dashboard: 14.0.0.0rc1
+  compute-hyperv: 14.0.0.0rc1
   cyborg-tempest-plugin: 1.4.0
+  designate: 14.0.0.0rc1
+  designate-dashboard: 14.0.0.0rc1
+  ec2-api: 14.0.0.0rc1
+  freezer: 12.0.0.0rc1
+  freezer-api: 12.0.0.0rc1
+  freezer-dr: 12.0.0.0rc1
+  freezer-web-ui: 12.0.0.0rc1
   glance: 24.0.0.0rc1
   glance_store: 3.0.0
+  heat-agents: 4.0.0.0rc1
+  heat-dashboard: 7.0.0.0rc1
   heat-translator: 2.5.0
   horizon: 21.0.0
   ironic: 20.0.0
@@ -2341,18 +2357,48 @@ yoga:
   ironic-python-agent: 8.4.0
   ironic-python-agent-builder: 4.0.0
   ironic-ui: 5.1.0
+  keystoneauth1: 4.5.0
   keystonemiddleware: 9.4.0
   kuryr-lib: 2.5.0
+  kuryr-libnetwork: 9.0.0.0rc1
+  magnum: 14.0.0.0rc1
+  magnum-ui: 10.0.0.0rc1
+  manila-ui: 7.0.0.0rc1
+  masakari: 13.0.0.0rc1
+  masakari-dashboard: 6.0.0.0rc1
+  masakari-monitors: 13.0.0.0rc1
   metalsmith: 1.6.2
   mistral-extra: 11.2.0
   mistral-lib: 2.6.0
+  monasca-agent: 7.0.0.0rc1
+  monasca-api: 8.0.0.0rc1
   monasca-common: 3.5.0
+  monasca-notification: 6.0.0.0rc1
+  monasca-persister: 6.0.0.0rc1
   monasca-statsd: 2.4.0
+  monasca-ui: 6.0.0.0rc1
+  murano: 13.0.0.0rc1
+  murano-agent: 9.0.0.0rc1
+  murano-dashboard: 13.0.0.0rc1
+  networking-bagpipe: 16.0.0.0rc1
   networking-baremetal: 5.1.0
+  networking-bgpvpn: 16.0.0.0rc1
   networking-generic-switch: 6.1.0
+  networking-hyperv: 12.0.0.0rc1
+  networking-odl: 20.0.0.0rc1
+  networking-sfc: 14.0.0.0rc1
+  neutron: 20.0.0.0rc1
+  neutron-dynamic-routing: 20.0.0.0rc1
   neutron-lib: 2.20.0
   neutron-tempest-plugin: 1.8.0
+  neutron-vpnaas: 20.0.0.0rc1
+  neutron-vpnaas-dashboard: 6.0.0.0rc1
+  octavia: 10.0.0.0rc1
+  octavia-dashboard: 9.0.0.0rc1
   octavia-lib: 2.5.0
+  openstack-cyborg: 8.0.0.0rc1
+  openstack-heat: 18.0.0.0rc1
+  openstack-placement: 7.0.0.0rc1
   openstacksdk: 0.61.0
   os-brick: 5.2.0
   os-ken: 2.3.1
@@ -2376,6 +2422,7 @@ yoga:
   oslo.utils: 4.12.2
   oslo.versionedobjects: 2.6.0
   oslo.vmware: 3.10.0
+  ovn-octavia-provider: 2.0.0.0rc1
   ovsdbapp: 1.15.1
   patrole: 0.14.0
   puppet-aodh: 20.1.0
@@ -2393,7 +2440,7 @@ yoga:
   puppet-keystone: 20.1.0
   puppet-magnum: 20.1.0
   puppet-manila: 20.1.0
-  puppet-mistral: 20.0.0
+  puppet-mistral: 20.1.0
   puppet-murano: 20.1.0
   puppet-neutron: 20.1.0
   puppet-nova: 20.1.0
@@ -2437,7 +2484,7 @@ yoga:
   python-neutronclient: 7.8.0
   python-novaclient: 17.7.0
   python-octaviaclient: 2.5.0
-  python-openstackclient: 5.7.0
+  python-openstackclient: 5.8.0
   python-saharaclient: 3.5.0
   python-senlinclient: 2.4.0
   python-solumclient: 3.5.0
@@ -2445,13 +2492,24 @@ yoga:
   python-tackerclient: 1.10.0
   python-troveclient: 7.2.0
   python-vitrageclient: 4.5.0
+  python-watcher: 8.0.0.0rc1
   python-watcherclient: 3.4.0
   python-zaqarclient: 2.3.0
   python-zunclient: 4.4.0
+  solum: 12.0.0.0rc1
+  solum-dashboard: 8.0.0.0rc1
   stevedore: 3.5.0
-  sushy: 4.1.0
+  storlets: 9.0.0.0rc1
+  sushy: 4.1.1
   swift: 2.29.0
-  tempest: 29.2.0
+  tacker-horizon: 5.0.0.0rc1
+  tap-as-a-service: 9.0.0.0rc1
+  tempest: 30.0.0
   tosca-parser: 2.5.1
+  trove: 17.0.0.0rc1
+  trove-dashboard: 18.0.0.0rc1
   vitrage: 8.0.0
   vitrage-dashboard: 3.5.0
+  watcher-dashboard: 7.0.0.0rc1
+  zun: 9.0.0.0rc1
+  zun-ui: 9.0.0.0rc1

@@ -283,7 +283,7 @@ class InitDependence(object):
             print("%s is in black list, skip now" % project_obj.name)
             return
         if project_obj.version == 'unknown':
-            print("The version of %s is not specified, skip now" % project_obj.version)
+            print("The version of %s is not specified, skip now" % project_obj.name)
             if project_obj.name not in self.unknown_list:
                 if Path(self.unknown_file).exists():
                     with open(self.unknown_file, 'a') as fp:
