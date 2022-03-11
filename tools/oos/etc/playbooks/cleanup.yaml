@@ -81,6 +81,11 @@
         rm -rf /etc/openstack-dashboard
       ignore_errors: yes
 
+    - name: Clean /etc/fstab item
+      shell: |
+        sed -i "/\/srv\/node\/.*xfs/d" /etc/fstab
+      ignore_errors: yes
+
     - name: Cleanup tempest folder
       shell: rm -rf mytest
       ignore_errors: yes
