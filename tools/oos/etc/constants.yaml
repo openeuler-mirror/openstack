@@ -150,7 +150,6 @@ pypi_version_fix:
   lazy-object-proxy-1.4.*: 1.4.3
   msgpack-0.4.0: 0.5.0
   nbformat-5.0: 5.0.2
-  nose-0.10.1: 1.0.0
   openstackdocstheme-1.32.1: 2.0.0ß
   pep517-0.9: 0.9.1
   pluggy-0.7: 0.7.1
@@ -183,6 +182,8 @@ black_list:
   - nosehtmloutput
   - nosexcover
   - openstack.nose_plugin
+  - django-babel
+  - CouchDB
 
 # <pypi name> : <license>
 pypi_license:
@@ -526,11 +527,6 @@ pkg_description:
   funcparserlib: |-
     Parser combinators are just higher-order functions that take parsers as their
     arguments and return them as result values.
-  futures: |-
-    Provides a high-level interface for asynchronously executing callables.The asynchronous
-    execution can be performed with threads, using ThreadPoolExecutor, or separate processes,
-    using ProcessPoolExecutor. Both implement the same interface, which is defined by the
-    abstract Executor class.
   futurist: |-
     Useful additions to futures, from the future.
   gabbi: |-
@@ -755,8 +751,6 @@ pkg_description:
     This is a python library for efficient use of itertools utility, which also
     includes implementations of the recipes from the itertools documentation.
     See https://pythonhosted.org/more-itertools/index.html for more information.
-  mox: |-
-    Mox is based on EasyMock, a Java mock object framework.
   msgpack: |-
     MessagePack is an efficient binary serialization format. It lets you exchange
     data among multiple languages like JSON. But it's faster and smaller. This
@@ -792,8 +786,6 @@ pkg_description:
     Client library and command line utility for interacting with OpenStack Neutron's API
   neutron-lib: |-
     OpenStack Neutron library shared by all Neutron sub-projects.
-  nose: |-
-    Nose extends unittest to make testing easier.
   python-novaclient: |-
     This is a client for the OpenStack Nova API. There's a Python API (the
     novaclient module), and a command-line script (nova). Each implements 100% of
@@ -1676,15 +1668,10 @@ pkg_description:
     It aims to provide selecting, matching, and filtering using modern CSS selectors.
     Soup Sieve currently provides selectors from the CSS level 1 specifications up
     through the latest CSS level 4 drafts and beyond (though some are not yet implemented).
-  nosexcover: |-
-    A companion to the built-in nose.plugins.cover, this plugin will write out an
-    XML coverage report to a file named coverage.xml.
   pyxcli: |-
     IBM Python XCLI Client for Spectrum Accelerate Storage Family.
   bunch: |-
     Bunch is a dictionary that supports attribute-style access, a la JavaScript.
-  nosehtmloutput: |-
-    Nose plugin that generates a nice html test report.
   python-saharaclient: |-
     This is a client for the OpenStack Sahara API.
   xmlschema: |-
@@ -1718,9 +1705,6 @@ pkg_description:
     A utility library for mocking out the requests Python library.
   flake8-logging-format: |-
     Flake8 extension to validate (lack of) logging format strings
-  openstack.nose_plugin: |-
-    openstack.nose_plugin provides a nose plugin that allow's nosetests output to
-    mimic the output of openstack's run_tests.py.
   nocasedict: |-
     A case-insensitive ordered dictionary for Python.
   nocaselist: |-
