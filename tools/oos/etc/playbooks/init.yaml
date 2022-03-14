@@ -27,12 +27,14 @@
     - name: Create test public network
       shell: |
         source ~/.admin-openrc
-        openstack network create --external public-network --provider-network-type flat --provider-physical-network provider -c id -f value
+        openstack network create --external public-network --provider-network-type flat --provider-physical-network provider --default -c id -f value
       register: public_network_id
 
     - name: Create other network resource
       shell: |
         source ~/.admin-openrc
+        # Create default shared subnet pool for tempest test
+        openstack subnet pool create --pool-prefix 192.168.253.0/24 --default --share --default-prefix-length 26 default_subnet_pool
         # Init the ext subnet
         openstack subnet create --subnet-range {{ default_ext_subnet_range }} --gateway {{ default_ext_subnet_gateway }} --network public-network public-subnet
         # Init the private network
@@ -40,8 +42,11 @@
         openstack subnet create --subnet-range 172.188.0.0/16 --network private-network private-subnet
         # Connect the simulative ext network with private network via a router 
         openstack router create my-router
-        openstack router set my-router --external-gateway {{ public_network_id }}
+        openstack router set my-router --external-gateway {{ public_network_id.stdout }}
         openstack router add subnet my-router private-subnet
+        # Update security group rule
+        openstack security group rule create default --ingress --protocol icmp
+        openstack security group rule create default --ingress --protocol tcp --dst-port 22
 
     - name: Genereate tempest folder
       shell: |
