@@ -281,7 +281,7 @@ azote: Desktop
 b43-openfwwf: Networking
 b43-tools: System-tool
 babel: Base-service
-"babeld\r": Networking
+babeld: Networking
 babeltrace: Base-service
 babeltrace2: Base-service
 babl: Others
@@ -1370,7 +1370,7 @@ httpcomponents-project: dev-utils
 httpd: Networking
 httpry: Application
 httpunit: sig-Java
-"hue\r": sig-ai-bigdata
+hue: sig-ai-bigdata
 hunspell: Desktop
 hunspell-ak: Application
 hunspell-am: Application
@@ -2919,7 +2919,7 @@ nekohtml: Application
 neo4j: DB
 neofetch: dev-utils
 neon: Programming-language
-"nestos-installer\r": sig-CloudNative
+nestos-installer: sig-CloudNative
 net-snmp: Networking
 net-tools: Networking
 netcdf: dev-utils
@@ -7344,9 +7344,9 @@ rsh: Private
 rstudio: sig-bio
 rsync: Base-service
 rsyslog: Base-service
-"rt-tests\r": sig-industrial-control
-"rtcheck\r": sig-industrial-control
-"rteval\r": sig-industrial-control
+rt-tests: sig-industrial-control
+rtcheck: sig-industrial-control
+rteval: sig-industrial-control
 rtkit: Desktop
 rtorrent: Application
 rubberband: Desktop
