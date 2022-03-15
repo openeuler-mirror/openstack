@@ -25,7 +25,7 @@ def get_project_name(target_hash, token=os.environ.get("GITEE_USER_TOKEN", ''), 
     }
     response = requests.get(url, headers=headers, verify=verify)
     content = json.loads(response.content.decode())
-    project_name = base64.b64decode(content['content']).decode().split('\n')[0].split(' ')[-1]
+    project_name = base64.b64decode(content['content']).decode().split('\n')[0].split(' ')[-1].rstrip("\r")
     return project_name
 
 
