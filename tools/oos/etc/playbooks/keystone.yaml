@@ -53,7 +53,7 @@
     - name: Start httpd service
       systemd:
         name: httpd
-        state: started
+        state: restarted
         enabled: True
 
     - name: Genrate admin environment file
