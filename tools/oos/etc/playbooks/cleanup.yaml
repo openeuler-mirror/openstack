@@ -65,6 +65,7 @@
           - memcached
           - rabbitmq-server
           - redis
+          - httpd
         autoremove: true
         state: absent
 
