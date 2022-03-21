@@ -23,11 +23,21 @@ def setup(target):
     subprocess.call(cmd)
 
 
-@group.command(name='init', help='Initialize the base OpenStack resource for the Cluster')
+@group.command(name='init',
+               help='Initialize the base OpenStack resource for the Cluster')
+@click.argument('target', type=click.Choice(['cluster', 'all_in_one']))
+def init(target):
+    inventory_file = os.path.join(ANSIBLE_INVENTORY_DIR, target+'.yaml')
+    playbook_entry = os.path.join(ANSIBLE_PLAYBOOK_DIR, 'init.yaml')
+    cmd = ['ansible-playbook', '-i', inventory_file, playbook_entry]
+    subprocess.call(cmd)
+
+
+@group.command(name='test', help='Run tempest on the Cluster')
 @click.argument('target', type=click.Choice(['cluster', 'all_in_one']))
 def test(target):
     inventory_file = os.path.join(ANSIBLE_INVENTORY_DIR, target+'.yaml')
-    playbook_entry = os.path.join(ANSIBLE_PLAYBOOK_DIR, 'init.yaml')
+    playbook_entry = os.path.join(ANSIBLE_PLAYBOOK_DIR, 'test.yaml')
     cmd = ['ansible-playbook', '-i', inventory_file, playbook_entry]
     subprocess.call(cmd)
 

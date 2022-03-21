@@ -24,6 +24,9 @@
     - name: Initialize config file
       shell: |
         cat << EOF > /etc/glance/glance.conf
+        [DEFAULT]
+        workers = {{ glance_api_workers }}
+
         [database]
         connection = mysql+pymysql://glance:{{ mysql_project_password }}@{{ hostvars['controller']['ansible_default_ipv4']['address'] }}/glance
 

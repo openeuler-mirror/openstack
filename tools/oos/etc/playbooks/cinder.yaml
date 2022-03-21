@@ -57,6 +57,7 @@
       shell: |
         cat << EOF > /etc/cinder/cinder.conf
         [DEFAULT]
+        osapi_volume_workers = {{ cinder_api_workers }}
         transport_url = rabbit://openstack:{{ rabbitmq_password }}@{{ hostvars['controller']['ansible_default_ipv4']['address'] }}
         auth_strategy = keystone
         my_ip = {{ ansible_default_ipv4['address'] }}
