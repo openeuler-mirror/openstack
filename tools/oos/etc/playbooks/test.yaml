@@ -1,0 +1,25 @@
+- name: Run tempest test
+  hosts: controller
+  become: true
+  tasks:
+    - name: Echo start Info
+      debug:
+        msg: "Start runing tempest test. Please wait more"
+
+    - name: Run tempest test
+      shell:
+        cmd: tempest run
+        chdir: ~/mytest
+
+    - name: Format the test result
+      shell:
+        cmd: |
+          # ensure the tool installed.
+          yum install python3-stestr python3-os-testr -y
+          stestr last --subunit >> test_result
+          subunit2html test_result
+        chdir: ~/mytest
+
+    - name: Echo finish Info
+      debug:
+        msg: "Test is finished. Please see the result file 'results.html' in tempest test forlder."

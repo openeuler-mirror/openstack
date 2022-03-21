@@ -13,7 +13,7 @@
         openstack flavor create --disk 1 --vcpus 2 --ram 1024 --id 1 --public my-flavor
         openstack flavor create --disk 1 --vcpus 2 --ram 1024 --id 2 --public my-flavor-alt
 
-    - name: Create test image
+    - name: Download test image
       shell: |
         source ~/.admin-openrc
         if [[ `uname -m` == 'aarch64' ]];then
@@ -21,8 +21,14 @@
         else
           wget http://download.cirros-cloud.net/0.5.2/cirros-0.5.2-x86_64-disk.img -O cirros-0.5.2.img
         fi
-        openstack image create --disk-format qcow2 --container-format bare --file ./cirros-0.5.2.img --public --id 53e9e0c5-58b5-41e9-ac77-e89045066246 my-image
-        openstack image create --disk-format qcow2 --container-format bare --file ./cirros-0.5.2.img --public --id 33e90c23-8c9b-4e91-8319-f1b38ada916d my-image-alt
+
+    - name: Create test image
+      shell: openstack image create --disk-format qcow2 --container-format bare --file ./cirros-0.5.2.img --public my-image -c id -f value
+      register: image_id
+
+    - name: Create test image alt
+      shell: openstack image create --disk-format qcow2 --container-format bare --file ./cirros-0.5.2.img --public my-image-alt  -c id -f value
+      register: image_id_alt
 
     - name: Create test public network
       shell: |
@@ -75,8 +81,8 @@
         [compute]
         flavor_ref = 1
         flavor_ref_alt = 2
-        image_ref = 53e9e0c5-58b5-41e9-ac77-e89045066246
-        image_ref_alt = 33e90c23-8c9b-4e91-8319-f1b38ada916d
+        image_ref = {{ image_id.stdout }}
+        image_ref_alt = {{ image_id_alt.stdout }}
         min_microversion = 2.1
         max_microversion = 2.79
         min_compute_nodes = 2
@@ -130,7 +136,7 @@
         max_microversion = 1.36
 
         [network]
-        public_network_id = {{ public_network_id }}
+        public_network_id = {{ public_network_id.stdout }}
         project_network_cidr = 172.188.0.0/16
         floating_network_name = public-network
 
@@ -154,4 +160,4 @@
 
     - name: Genereate tempest folder
       debug:
-        msg: "The environment is ready for test, please login controller and run `tempest run` command in mytest folder."
+        msg: "The environment is ready for test, please login controller and run `tempest run` command in mytest folder.  Or run 'oos env test' command for tempest test."

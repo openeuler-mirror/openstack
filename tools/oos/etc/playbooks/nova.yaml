@@ -56,6 +56,8 @@
       shell: |
         cat << EOF > /etc/nova/nova.conf
         [DEFAULT]
+        osapi_compute_workers = {{ nova_api_workders }}
+        metadata_workers = {{ nova_metadata_api_workers }}
         enabled_apis = osapi_compute,metadata
         transport_url = rabbit://openstack:{{ rabbitmq_password }}@{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5672/
         my_ip = {{ ansible_default_ipv4['address'] }}
@@ -118,6 +120,12 @@
         password = {{ project_identity_password }}
         service_metadata_proxy = true
         metadata_proxy_shared_secret = secret
+
+        [conductor]
+        workers = {{ nova_conductor_workers }}
+
+        [scheduler]
+        workers = {{ nova_scheduler_workers }}
         EOF
 
 # TODO: add kvm support

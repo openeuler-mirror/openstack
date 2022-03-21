@@ -173,6 +173,7 @@ black_list:
   # Some projects are out of date.
   - argparse
   # Some project don't support python3
+  - anyjson
   - mox
   - enum34
   - futures
