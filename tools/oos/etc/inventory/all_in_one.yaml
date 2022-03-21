@@ -25,7 +25,7 @@ all:
       - heat
       - swift
       - trove
-      - rally
+      # - rally
       - tempest
     neutron_provider_interface_name: br-ex
     default_ext_subnet_range: 10.100.100.0/24
