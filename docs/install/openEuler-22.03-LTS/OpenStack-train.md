@@ -85,7 +85,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     [EPOL]
     name=EPOL
-    baseurl=http://repo.openeuler.org/openEuler-22.03-LTS/EPOL/$basearch/
+    baseurl=http://repo.openeuler.org/openEuler-22.03-LTS/EPOL/main/$basearch/
     enabled=1
     gpgcheck=1
     gpgkey=http://repo.openeuler.org/openEuler-22.03-LTS/OS/$basearch/RPM-GPG-KEY-openEuler
@@ -1377,7 +1377,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     **替换`CINDER_PASS`为 cinder 用户的密码；**
 
-    **替换`HOST:PATH`为 NFS的HOSTIP和共享路径 用户的密码；**
+    **替换`HOST:PATH`为 NFS 的HOSTIP和共享路径的密码；**
 
 6. 同步数据库：
 
@@ -2135,7 +2135,7 @@ Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适�
     ``` shell
     #创建swift用户：
     openstack user create --domain default --password-prompt swift                 
-    #admin为swift用户添加角色：
+    #为swift用户添加admin角色：
     openstack role add --project service --user swift admin                        
     #创建swift服务实体：
     openstack service create --name swift --description "OpenStack Object Storage" object-store        															  
@@ -2162,7 +2162,7 @@ Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适�
 
     ***注意***
 
-    **注意替换password为您swift在身份服务中为用户选择的密码**
+    **注意替换password为您在身份服务中为swift用户选择的密码**
    
 4. 安装和配置存储节点 （STG）
 
@@ -2379,7 +2379,7 @@ Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适�
 
     分发环配置文件：
 
-    将`account.ring.gz`，`container.ring.gz`以及 `object.ring.gz`文件复制到`/etc/swift`每个存储节点和运行代理服务的任何其他节点上目录。
+    将`account.ring.gz`，`container.ring.gz`以及 `object.ring.gz`文件复制到每个存储节点和运行代理服务的任何其他节点上的`/etc/swift`目录。
     
     
     
@@ -2858,7 +2858,7 @@ OpenStack SIG还提供了一键部署OpenStack all in one或三节点的ansible�
 
     [EPOL]
     name=EPOL
-    baseurl=http://repo.openeuler.org/openEuler-22.03-LTS/EPOL/$basearch/
+    baseurl=http://repo.openeuler.org/openEuler-22.03-LTS/EPOL/main/$basearch/
     enabled=1
     gpgcheck=1
     gpgkey=http://repo.openeuler.org/openEuler-22.03-LTS/OS/$basearch/RPM-GPG-KEY-openEuler
