@@ -1,11 +1,13 @@
 ansible==2.9.27
 bs4
 click
+huaweicloudsdkecs
 Jinja2
 lxml
 markdown
 packaging
 pandas
+prettytable
 pymdown-extensions
 pyyaml
 requests

@@ -1,4 +1,7 @@
+import configparser
 import os
+from pathlib import Path
+import sqlite3
 
 import click
 import yaml
@@ -13,6 +16,8 @@ OPENEULER_SIG_REPO = None
 OPENSTACK_RELEASE_MAP = None
 ANSIBLE_PLAYBOOK_DIR = None
 ANSIBLE_INVENTORY_DIR = None
+CONFIG = None
+SQL_DB = '/etc/oos/data.db'
 
 
 search_paths = ['/etc/oos/',
@@ -20,6 +25,7 @@ search_paths = ['/etc/oos/',
                 os.environ.get("OOS_CONF_DIR", ""), '/usr/local/etc/oos',
                 '/usr/etc/oos',
                 ]
+conf_paths = ['/etc/oos/oos.conf', '/usr/local/etc/oos/oos.conf']
 
 
 for conf_path in search_paths:
@@ -45,6 +51,25 @@ for conf_path in search_paths:
     if os.path.isdir(inventory_path) and not ANSIBLE_INVENTORY_DIR:
         ANSIBLE_INVENTORY_DIR = inventory_path
 
+for fp in conf_paths:
+    if os.path.exists(fp):
+        CONFIG = configparser.ConfigParser()
+        CONFIG.read(fp)
+        break
+
+if not Path(SQL_DB).exists():
+    try:
+        Path(SQL_DB).parents[0].mkdir(parents=True)
+    except FileExistsError:
+        pass
+    Path(SQL_DB).touch()
+    connect = sqlite3.connect(SQL_DB)
+    cur = connect.cursor()
+    cur.execute('''CREATE TABLE resource
+                   (provider, name, uuid, ip, flavor, openeuler_release, create_time)''')
+    connect.commit()
+    connect.close()
+
 if not CONSTANTS:
     raise click.ClickException("constants.yaml is missing")
 if not SPEC_TEMPLET_DIR:
@@ -57,3 +82,5 @@ if not ANSIBLE_PLAYBOOK_DIR:
     raise click.ClickException("ansible playbook dir is missing")
 if not ANSIBLE_INVENTORY_DIR:
     raise click.ClickException("ansible inventory dir is missing")
+if not CONFIG:
+    raise click.ClickException("Unable to locate config file")
