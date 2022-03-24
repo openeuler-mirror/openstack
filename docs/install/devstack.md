@@ -27,7 +27,7 @@
     vi /etc/yum.repos.d/openEuler.repo
 
     把[EPOL-UPDATE]URL改成
-    baseurl=http://repo.openeuler.org/openEuler-20.03-LTS-SP2/EPOL/update/main/update/$basearch/
+    baseurl=http://repo.openeuler.org/openEuler-20.03-LTS-SP2/EPOL/update/main/$basearch/
     ```
 
 3. 下载devstack
