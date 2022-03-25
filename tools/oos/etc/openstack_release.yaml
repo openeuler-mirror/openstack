@@ -2339,7 +2339,7 @@ yoga:
   castellan: 3.10.1
   ceilometer: 18.0.0.0rc1
   ceilometermiddleware: 2.4.1
-  cinder: 20.0.0.0rc1
+  cinder: 20.0.0.0rc2
   cinder-tempest-plugin: 1.6.0
   cliff: 3.10.1
   cloudkitty: 16.0.0.0rc1
@@ -2358,13 +2358,14 @@ yoga:
   freezer-web-ui: 12.0.0.0rc1
   freezer_tempest_plugin: 1.4.0
   glance: 24.0.0.0rc1
+  glance-tempest-plugin: 0.3.0
   glance_store: 3.0.0
   heat-agents: 4.0.0.0rc1
   heat-dashboard: 7.0.0.0rc1
   heat-tempest-plugin: 1.5.0
   heat-translator: 2.5.0
   horizon: 22.0.0
-  ironic: 20.0.0
+  ironic: 20.1.0
   ironic-inspector: 10.11.0
   ironic-lib: 5.2.0
   ironic-prometheus-exporter: 3.1.0
