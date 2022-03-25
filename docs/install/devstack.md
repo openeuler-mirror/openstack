@@ -76,7 +76,11 @@
     cpu_mode=custom
     cpu_model=cortex-a72
     ```
-
+    如果安装Ironic，需要提前安装依赖：
+    ```bash
+    sudo dnf install syslinux-nonlinux
+    ```
+    
 5. 部署OpenStack
 
     进入devstack目录，执行`./stack.sh`，等待OpenStack完成安装部署。
