@@ -2371,6 +2371,7 @@ yoga:
   ironic-prometheus-exporter: 3.1.0
   ironic-python-agent: 8.5.0
   ironic-python-agent-builder: 4.0.1
+  ironic-tempest-plugin: 2.4.0
   ironic-ui: 5.1.0
   keystone: 21.0.0.0rc1
   keystone_tempest_plugin: 0.9.0
@@ -2380,7 +2381,7 @@ yoga:
   kuryr-lib: 2.5.0
   kuryr-libnetwork: 9.0.0.0rc1
   kuryr-tempest-plugin: 0.12.0
-  magnum: 14.0.0.0rc1
+  magnum: 14.0.0.0rc2
   magnum-ui: 10.0.0.0rc1
   magnum_tempest_plugin: 1.6.0
   manila: 14.0.0.0rc1
@@ -2402,6 +2403,7 @@ yoga:
   monasca-notification: 6.0.0.0rc1
   monasca-persister: 6.0.0.0rc1
   monasca-statsd: 2.4.0
+  monasca-tempest-plugin: 2.4.0
   monasca-ui: 6.0.0.0rc1
   murano: 13.0.0.0rc1
   murano-agent: 9.0.0.0rc1
@@ -2414,7 +2416,7 @@ yoga:
   networking-hyperv: 12.0.0.0rc1
   networking-odl: 20.0.0.0rc1
   networking-sfc: 14.0.0.0rc1
-  neutron: 20.0.0.0rc1
+  neutron: 20.0.0.0rc2
   neutron-dynamic-routing: 20.0.0.0rc1
   neutron-lib: 2.20.0
   neutron-tempest-plugin: 1.9.0
