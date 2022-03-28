@@ -6,8 +6,8 @@ import subprocess
 import click
 import pandas
 
+from oos.commands.repo.repo_class import PkgGitRepo
 from oos.commands.spec.spec_class import RPMSpec
-from oos.commands.spec.repo_class import PkgGitRepo
 from oos.common import gitee
 
 
@@ -102,8 +102,9 @@ class SpecPush(object):
         subprocess.call(cp_src_pkg_cmd, shell=True)
 
     def _build_one(self, pypi_name, version, do_push):
-        repo_obj = PkgGitRepo(pypi_name, self.gitee_pat, self.gitee_org,
-                              self.gitee_user, self.gitee_email)
+        repo_obj = PkgGitRepo(self.gitee_pat, self.gitee_org,
+                              self.gitee_user, self.gitee_email,
+                              pypi_name=pypi_name)
         repo_obj.fork_repo()
         if repo_obj.not_found:
             self.missed_repos.append(repo_obj.repo_name)

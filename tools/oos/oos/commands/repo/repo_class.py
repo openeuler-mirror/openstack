@@ -7,9 +7,11 @@ import requests
 from oos.common import CONSTANTS
 from oos.common import utils
 
+
 class PkgGitRepo(object):
-    def __init__(self, pypi_name, gitee_pat, gitee_org, gitee_user=None,
-                 gitee_email=None):
+    def __init__(self, gitee_pat=None, gitee_org='src-openeuler',
+                 gitee_user=None, gitee_email=None,
+                 pypi_name=None, repo_name=None):
         self.pypi_name = pypi_name
         self.gitee_org = gitee_org
         self.gitee_pat = gitee_pat
@@ -19,7 +21,11 @@ class PkgGitRepo(object):
         self.branch_not_found = False
         self.repo_dir = ''
         self.commit_pushed = False
-        self.repo_name, _ = utils.get_openeuler_repo_name_and_sig(self.pypi_name)
+        if not repo_name:
+            self.repo_name, _ = utils.get_openeuler_repo_name_and_sig(
+                self.pypi_name)
+        else:
+            self.repo_name = repo_name
 
     def fork_repo(self):
         try:
@@ -75,7 +81,10 @@ class PkgGitRepo(object):
                   "src_branch": src_branch,
                   "dest_branch": dest_branch}
         click.echo("CMD: %s" % cmd)
-        subprocess.call(cmd, shell=True)
+        status = subprocess.call(cmd, shell=True)
+        if status != 0:
+            raise Exception("Add branch %s for repo %s FAILED!!" % (
+                src_branch, self.repo_name))
 
     def commit(self, commit_message, do_push=True):
         click.echo("Commit changes for %s/%s" % (
@@ -140,8 +149,7 @@ class PkgGitRepo(object):
             self.gitee_org, self.repo_name, pr_num))
         url = 'https://gitee.com/api/v5/repos/%s/%s/pulls/%s/comments' % (
             self.gitee_org, self.repo_name, pr_num)
-        param = {"access_token": "%s" % self.gitee_pat,
-                'comment_type': 'pr_comment', 'direction': 'desc'}
+        param = {'comment_type': 'pr_comment', 'direction': 'desc'}
         resp = requests.get(url, params=param)
         if resp.status_code != 200:
             click.echo("Getting comments of %s failed, reason: %s" %
@@ -149,15 +157,12 @@ class PkgGitRepo(object):
         return resp.json()
 
     def get_pr_list(self, filter=None):
-        click.echo("Getting PR list for %s/%s"  % (
+        click.echo("Getting PR list for %s/%s" % (
             self.gitee_org, self.repo_name))
         url = 'https://gitee.com/api/v5/repos/%s/%s/pulls' % (
             self.gitee_org, self.repo_name)
-        param = {"access_token": "%s" % self.gitee_pat}
-        if filter:
-            param.update(filter)
-        resp = requests.get(url, params=param)
+        resp = requests.get(url, params=filter)
         if resp.status_code != 200:
-            click.echo("Getting PR list failed, reason: %s" %
-                       (resp.reason), err=True)
+            click.echo("Getting PR list failed, reason: %s" % resp.reason,
+                       err=True)
         return resp.json()
