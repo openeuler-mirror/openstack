@@ -117,6 +117,7 @@ pypi_name_fix:
   jinja2: Jinja2
   logbook: Logbook
   openstack.nose-plugin: openstack.nose_plugin
+  prometheus_client: prometheus-client
   pygments: Pygments
   pyjwt: PyJWT
   pympler: Pympler
@@ -185,6 +186,7 @@ black_list:
   - openstack.nose_plugin
   - django-babel
   - CouchDB
+  - unicodecsv
 
 # <pypi name> : <license>
 pypi_license:
