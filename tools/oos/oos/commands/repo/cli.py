@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import shutil
 
 import click
 import csv
@@ -26,8 +27,8 @@ def __get_repos(repo_name, repos_file):
     if repo_name:
         repos.add(repo_name)
     else:
-        repos = pandas.read_csv(repos_file)
-        repos_df = pandas.DataFrame(repos, columns=["repo_name"])
+        repo_data = pandas.read_csv(repos_file)
+        repos_df = pandas.DataFrame(repo_data, columns=["repo_name"])
         if repos_df.empty:
             raise click.ClickException(
                 "You must specify repos file or specific repo name!")
@@ -36,8 +37,8 @@ def __get_repos(repo_name, repos_file):
     return repos
 
 
-def __prepare_community_repo(gitee_pat, gitee_email, work_branch,
-                             community_path):
+def __prepare_local_repo(gitee_pat, gitee_email, work_branch,
+                         repo_org, repo_name, repo_path):
     git_user, g_email = gitee.get_user_info(gitee_pat)
     git_email = gitee_email or g_email
     if not git_email:
@@ -45,17 +46,20 @@ def __prepare_community_repo(gitee_pat, gitee_email, work_branch,
             "Your email was not publicized in gitee, need to manually "
             "specified by -e or --gitee-email")
 
-    community_repo = PkgGitRepo(gitee_pat, 'openeuler',
-                                git_user, git_email,
-                                repo_name='community')
-    community_dir = community_path or os.path.join(Path.home(), 'community')
-    if os.path.exists(community_dir):
-        community_repo.repo_dir = community_dir
+    local_repo = PkgGitRepo(gitee_pat, repo_org,
+                            git_user, git_email,
+                            repo_name=repo_name)
+    if repo_path and os.path.exists(repo_path):
+        local_repo.repo_dir = repo_path
     else:
-        community_repo.fork_repo()
-        community_repo.clone_repo(str(Path.home()))
-    community_repo.add_branch(work_branch, 'master')
-    return community_repo
+        repo_dir = os.path.join(Path.home(), repo_name)
+        if os.path.exists(repo_dir):
+            local_repo.repo_dir = repo_dir
+        else:
+            local_repo.fork_repo()
+            local_repo.clone_repo(str(Path.home()))
+    local_repo.add_branch(work_branch, 'master')
+    return local_repo
 
 
 def __find_repo_yaml_file(repo_name, community_path, gitee_org):
@@ -73,6 +77,90 @@ def __find_repo_yaml_file(repo_name, community_path, gitee_org):
     return lines[0][:-1]
 
 
+def __parse_project_from_branch(branch, is_mainline=False):
+    meta_dir_base = 'OBS_PRJ_meta'
+    is_multi = False
+
+    if branch == 'master':
+        main_pro = 'openEuler'
+        obs_pro = main_pro + ':Mainline' if is_mainline else ':Epol'
+
+    elif 'oepkg' in branch:
+        parts = branch.split('_')
+        main_pro = parts[2].replace('oe', 'openEuler').replace('-', ':')
+        stack = parts[1].replace('-', ':')
+        obs_pro = main_pro + ':' + parts[0] + ':' + stack
+    elif 'Multi-Version' in branch:
+        is_multi = True
+        parts = branch.split('_')
+        main_pro = parts[2].replace('-', ':')
+        stack = parts[1].replace('-', ':')
+        obs_pro = main_pro + ':Epol:' + parts[0] + ':' + stack
+    else:
+        main_pro = obs_pro = branch.replace('-', ':')
+        if not is_mainline:
+            obs_pro = main_pro + ":Epol"
+
+    meta_dir = os.path.join(meta_dir_base, branch)
+    if is_multi:
+        meta_dir = os.path.join(meta_dir_base, 'multi_version', branch)
+
+    return main_pro, obs_pro, meta_dir, is_multi
+
+
+def __prepare_obs_project(obs_dir, branch, is_mainline=False,
+                          gitee_user=None):
+    main_pro, obs_pro, meta_dir, multi = __parse_project_from_branch(
+        branch, is_mainline)
+
+    if multi:
+        project_dir = os.path.join(obs_dir, 'multi_version',
+                                   branch, obs_pro)
+    else:
+        project_dir = os.path.join(obs_dir, branch, obs_pro)
+
+    if not os.path.exists(project_dir):
+        # the obs project does not exist, create it first
+        os.makedirs(project_dir)
+        meta_dir = os.path.join(obs_dir, meta_dir)
+        os.mkdir(meta_dir)
+        prefix = main_pro.replace(':', '_').lower()
+        mpro = '    <path project="%s:selfbuild:BaseOS"' % main_pro
+        x86_repo = 'repository="%s_standard_x86_64"/>\n' % prefix
+        aarch64_repo = 'repository="%s_standard_aarch64"/>\n' % prefix
+        x86_epol = 'repository="%s_epol_x86_64"/>\n' % prefix
+        aarch64_epol = 'repository="%s_epol_aarch64"/>\n' % prefix
+
+        meta_file = os.path.join(meta_dir, obs_pro)
+        with open(meta_file, 'w', encoding='utf-8') as f:
+            f.write('<project name="%(obs_pro)s">\n'
+                    '  <title/>\n'
+                    '  <description/>\n'
+                    '  <person userid="Admin" role="maintainer"/>\n'
+                    '  <person userid="%(gitee_user)s" role="maintainer"/>\n'
+                    '  <build>\n'
+                    '    <enable/>\n'
+                    '  </build>\n'
+                    '  <repository name="standard_x86_64">\n'
+                    '%(mpro)s %(x86_repo)s'
+                    '%(mpro)s %(x86_epol)s'
+                    '    <arch>x86_64</arch>\n'
+                    '  </repository>\n'
+                    '  <repository name="standard_aarch64">\n'
+                    '%(mpro)s %(aarch64_repo)s'
+                    '%(mpro)s %(aarch64_epol)s'
+                    '    <arch>aarch64</arch>\n'
+                    '  </repository>\n'
+                    '</project>\n' % {'obs_pro': obs_pro,
+                                      'gitee_user': gitee_user,
+                                      'mpro': mpro,
+                                      'x86_repo': x86_repo,
+                                      'aarch64_repo': aarch64_repo,
+                                      'x86_epol': x86_epol,
+                                      'aarch64_epol': aarch64_epol})
+    return project_dir
+
+
 def __get_failed_info(repo, gitee_org, param):
     repo_obj = PkgGitRepo(gitee_org=gitee_org, repo_name=repo)
     prs = repo_obj.get_pr_list(param)
@@ -84,7 +172,7 @@ def __get_failed_info(repo, gitee_org, param):
             if list(filter(lambda label: label['name'] == 'ci_successful',
                            pr['labels'])):
                 continue
-        except:
+        except Exception:
             return results
 
         # PR链接 责任人
@@ -148,8 +236,9 @@ def group():
 def branch_create(repos_file, repo, branches, gitee_pat, gitee_email,
                   gitee_org, community_path, work_branch, do_push):
     repos = __get_repos(repo, repos_file)
-    community_repo = __prepare_community_repo(
-        gitee_pat, gitee_email, work_branch, community_path)
+    community_repo = __prepare_local_repo(
+        gitee_pat, gitee_email, work_branch,
+        'openeuler', 'community', community_path)
 
     for repo in repos:
         yaml_file = __find_repo_yaml_file(
@@ -205,8 +294,9 @@ def branch_create(repos_file, repo, branches, gitee_pat, gitee_email,
 def branch_delete(repos_file, repo, branch, gitee_pat, gitee_email,
                   gitee_org, community_path, work_branch, do_push):
     repos = __get_repos(repo, repos_file)
-    community_repo = __prepare_community_repo(
-        gitee_pat, gitee_email, work_branch, community_path)
+    community_repo = __prepare_local_repo(
+        gitee_pat, gitee_email, work_branch,
+        'openeuler', 'community', community_path)
 
     for repo in repos:
         yaml_file = __find_repo_yaml_file(
@@ -232,6 +322,106 @@ def branch_delete(repos_file, repo, branch, gitee_pat, gitee_email,
     community_repo.commit(commit_msg, do_push)
     if do_push:
         community_repo.create_pr(work_branch, 'master', commit_msg)
+
+
+@group.command(name="obs-create", help='Add repos into OBS project')
+@click.option("-rf", "--repos-file",
+              help="File of openEuler repos in csv, includes 'repo_name' "
+                   "column now")
+@click.option("-r", "--repo", help="Repo name to put into OBS project")
+@click.option("-b", "--branch", required=True,
+              help="The branch name of repo to put into OBS project")
+@click.option("--mainline", is_flag=True,
+              help='Whether to put repo into mainline of project')
+@click.option("-t", "--gitee-pat", envvar='GITEE_PAT', required=True,
+              help="Gitee personal access token")
+@click.option("-e", "--gitee-email", envvar='GITEE_EMAIL',
+              help="Email address for git commit changes, automatically "
+                   "query from gitee if you have public in gitee")
+@click.option("--obs-path",
+              help="Path of src-openeuler/obs_meta in local")
+@click.option("-w", "--work-branch", default='obs-add-repo',
+              help="Local working branch of src-openeuler/obs_meta")
+@click.option('-dp', '--do-push', is_flag=True,
+              help="Do PUSH or not, if push it will create pr")
+def obs_create(repos_file, repo, branch, mainline, gitee_pat, gitee_email,
+               obs_path, work_branch, do_push):
+    repos = __get_repos(repo, repos_file)
+    obs_repo = __prepare_local_repo(
+        gitee_pat, gitee_email, work_branch,
+        'src-openeuler', 'obs_meta', obs_path)
+
+    project_dir = __prepare_obs_project(obs_repo.repo_dir,
+                                        branch, mainline,
+                                        obs_repo.gitee_user)
+
+    for repo in repos:
+        repo_dir = os.path.join(project_dir, repo)
+        if os.path.exists(repo_dir):
+            print("The repo %s is already in project %s" % (
+                repo, project_dir))
+            continue
+        os.mkdir(repo_dir)
+        _service_file = os.path.join(repo_dir, '_service')
+        with open(_service_file, 'w', encoding='utf-8') as f:
+            f.write('<services>\n'
+                    '    <service name="tar_scm_kernel_repo">\n'
+                    '      <param name="scm">repo</param>\n'
+                    '      <param name="url">next/%s/%s</param>\n'
+                    '    </service>\n'
+                    '</services>\n' % (branch, repo))
+
+    commit_msg = 'Put repos into OBS project'
+    obs_repo.commit(commit_msg, do_push)
+    if do_push:
+        obs_repo.create_pr(work_branch, 'master', commit_msg)
+
+
+@group.command(name="obs-delete", help='Remove repos from OBS project')
+@click.option("-rf", "--repos-file",
+              help="File of openEuler repos in csv, includes 'repo_name' "
+                   "column now")
+@click.option("-r", "--repo", help="Repo name to remove from OBS project")
+@click.option("-b", "--branch", required=True,
+              help="The branch name of repo to remove from OBS project")
+@click.option("-t", "--gitee-pat", envvar='GITEE_PAT', required=True,
+              help="Gitee personal access token")
+@click.option("-e", "--gitee-email", envvar='GITEE_EMAIL',
+              help="Email address for git commit changes, automatically "
+                   "query from gitee if you have public in gitee")
+@click.option("--obs-path",
+              help="Path of src-openeuler/obs_meta in local")
+@click.option("-w", "--work-branch", default='obs-remove-repo',
+              help="Local working branch of src-openeuler/obs_meta")
+@click.option('-dp', '--do-push', is_flag=True,
+              help="Do PUSH or not, if push it will create pr")
+def obs_delete(repos_file, repo, branch, gitee_pat, gitee_email,
+               obs_path, work_branch, do_push):
+    repos = __get_repos(repo, repos_file)
+    obs_repo = __prepare_local_repo(
+        gitee_pat, gitee_email, work_branch,
+        'src-openeuler', 'obs_meta', obs_path)
+
+    branch_dir = os.path.join(obs_repo.repo_dir, branch)
+    if not os.path.exists(branch_dir):
+        print("The branch %s does not exist in obs %s" % (
+            branch, obs_repo.repo_dir))
+        return
+    for repo in repos:
+        cmd = 'find %s -name %s' % (branch_dir, repo)
+        lines = os.popen(cmd).readlines()
+        if not lines:
+            print("The repo %s does not exist under branch %s" % (
+                repo, branch_dir))
+            continue
+        repo_dir = lines[0][:-1]
+        shutil.rmtree(repo_dir)
+        print("Remove repo %s successful!!" % repo_dir)
+
+    commit_msg = 'Remove repos from OBS project'
+    obs_repo.commit(commit_msg, do_push)
+    if do_push:
+        obs_repo.create_pr(work_branch, 'master', commit_msg)
 
 
 @group.command(name='pr-comment', help='Add comment for PR')

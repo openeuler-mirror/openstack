@@ -253,6 +253,85 @@ oos repo branch-delete --repos-file repos.csv -b openEuler-21.09 -b openEuler-22
     [可选] 指定是否执行push到gitee仓库上并提交PR，如果不指定则只会提交到本地的仓库中
 ```
 
+## 软件包放入OBS工程
+
+可以使用`oos repo obs-create`命令将openEuler软件仓放入OBS工程，如果没有对应OBS工程，此命令会同时创建对应OBS工程
+
+- 将单个软件放入OBS工程，以将openstack-nova放入openEuler:22.09:Epol工程为例，需要指定repo名，分支名以及Gitee账号信息：
+```shell script
+oos repo obs-create --repo openstack-nova -b openEuler-22.09 -t GITEE_PAT
+```
+
+- 将软件包放入OBS工程，默认是放入OBS对应工程的Epol仓，如果需要放入Mainline仓，可以通过--mainline参数来指定
+
+以将openstack-releases放入openEuler:22.09:Mainline仓为例，需要指定repo名，分支名以及Gitee账号信息：
+```shell script
+oos repo obs-create --repo openstack-releases -b openEuler-22.09 --mainline -t GITEE_PAT
+```
+
+- 将多个软件放入OBS工程，以将repos.csv中软件放入openEuler:22.03:LTS:SP1:Epol:Multi-Version:OpenStacack:Train支为例，并提交pr：
+```shell script
+oos repo obs-create --repos-file repos.csv -b Multi-Version_OpenStack-Train_openEuler-22.03-LTS-SP1 -t GITEE_PAT --do-push
+```
+
+该命令所支持的参数如下：
+
+```
+-t, --gitee-pat
+    [必选] 个人Gitee账户personal access token，可以使用GITEE_PAT环境变量指定
+-e, --gitee-email
+    [可选] 个人Gitee账户email地址，可使用GITEE_EMAIL指定, 若在Gitee账户公开，可通过Token自动获取
+-r, --repo
+    [可选] 软件仓名，和--repos-file参数二选一
+-rf, --repos-file
+    [可选] openEuler社区软件仓库名的.csv文件，目前只需要包含`repo_name`一列，和--repo参数二选一
+-b, --branch
+    [必选] 指定要放入OBS工程的对应repo的分支
+--mainline
+    [可选] 是否将软件包放到对应工程的mainline仓，默认放入Epol仓
+--obs-path
+    [可选] src-openeuler/obs_meta项目本地仓路径
+-w, --work-branch
+    [可选] 本地工作分支，默认为openstack-create-branch
+-dp, --do-push
+    [可选] 指定是否执行push到gitee仓库上并提交PR，如果不指定则只会提交到本地的仓库中
+```
+
+## 软件包从OBS工程移除
+
+可以使用`oos repo obs-delete`命令将openEuler软件仓从OBS工程移除
+
+- 将单个软件从OBS工程移除，以将python-mox从openEuler:21.09:Epol工程移除为例，需要指定repo名，分支名以及Gitee账号信息：
+```shell script
+oos repo obs-delete --repo python-mox -b openEuler-21.09 -t GITEE_PAT
+```
+
+- 将多个软件从OBS工程移除，以将repos.csv中软件从openEuler:22.03:LTS:Epol:Multi-Version:OpenStacack:Train工程移除支为例，并提交pr：
+```shell script
+oos repo obs-delete --repos-file repos.csv -b Multi-Version_OpenStack-Train_openEuler-22.03-LTS -t GITEE_PAT --do-push
+```
+
+该命令所支持的参数如下：
+
+```
+-t, --gitee-pat
+    [必选] 个人Gitee账户personal access token，可以使用GITEE_PAT环境变量指定
+-e, --gitee-email
+    [可选] 个人Gitee账户email地址，可使用GITEE_EMAIL指定, 若在Gitee账户公开，可通过Token自动获取
+-r, --repo
+    [可选] 软件仓名，和--repos-file参数二选一
+-rf, --repos-file
+    [可选] openEuler社区软件仓库名的.csv文件，目前只需要包含`repo_name`一列，和--repo参数二选一
+-b, --branch
+    [必选] 指定要放入OBS工程的对应repo的分支
+--obs-path
+    [可选] src-openeuler/obs_meta项目本地仓路径
+-w, --work-branch
+    [可选] 本地工作分支，默认为openstack-create-branch
+-dp, --do-push
+    [可选] 指定是否执行push到gitee仓库上并提交PR，如果不指定则只会提交到本地的仓库中
+```
+
 ## 环境和依赖
 上述`oos spec build`和`oos spec push`命令需要依赖于`rpmbuild`工具，因此需要安装以下相关软件包：
 ```shell script
