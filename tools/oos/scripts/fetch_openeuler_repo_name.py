@@ -98,7 +98,7 @@ def parser_local(path, target_sigs):
 
 
 @click.command()
-@click.option('--sig', default=[], help='"The sig format should be like: sig1,sig2,sig3...')
+@click.option('--sig', default='', help='"The sig format should be like: sig1,sig2,sig3...')
 @click.option('--path', default='./community', help='"The community repo')
 @click.argument('way', type=click.Choice(['local', 'remote']))
 def parser(sig, path, way):
