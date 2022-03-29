@@ -6,11 +6,13 @@ gnocchi: sig-openstack
 google-api-core: sig-openstack
 google-auth-httplib2: sig-openstack
 googleapis-common-protos: sig-openstack
+hostha: sig-openstack
 kafka-python: sig-openstack
 liberasurecode: sig-openstack
 networking-baremetal: sig-openstack
 networking-generic-switch: sig-openstack
 novnc: sig-openstack
+openstack: sig-openstack
 openstack-aodh: sig-openstack
 openstack-ceilometer: sig-openstack
 openstack-cinder: sig-openstack
