@@ -59,8 +59,9 @@ def parser_remote(target_sigs):
                 sub_rpms_tree = get_tree(node['sha'])
                 for rpm in sub_rpms_tree:
                     rpm_name = get_project_name(rpm['sha'])
-                    if result.get(rpm_name) and result.get(rpm_name) != sig_name:
-                        print(f"Warning: the{rpm_name} contains in different sig")
+                    exist_sig = result.get(rpm_name)
+                    if exist_sig and exist_sig != sig_name:
+                        print(f"Warning: the {rpm_name} contains in different sig: {exist_sig}, {sig_name}")
                     result[rpm_name] = sig_name
                     print(f"Adding {rpm_name} in {sig_name} sig")
     return result
@@ -91,8 +92,9 @@ def parser_local(path, target_sigs):
         if target_sigs and sig_name not in target_sigs:
             continue
         project_name = file.split('/')[-1].split('.yaml')[0]
-        if result.get(project_name) and result.get(project_name) != sig_name:
-            print(f"Warning: the{project_name} contains in different sig")
+        exist_sig = result.get(project_name)
+        if exist_sig and exist_sig != sig_name:
+            print(f"Warning: the {project_name} contains in different sig: {exist_sig}, {sig_name}")
         result[project_name] = sig_name
     return result
 
