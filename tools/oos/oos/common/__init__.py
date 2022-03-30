@@ -16,6 +16,7 @@ OPENEULER_SIG_REPO = None
 OPENSTACK_RELEASE_MAP = None
 ANSIBLE_PLAYBOOK_DIR = None
 ANSIBLE_INVENTORY_DIR = None
+KEY_DIR = None
 CONFIG = None
 SQL_DB = '/etc/oos/data.db'
 
@@ -36,6 +37,7 @@ for conf_path in search_paths:
     openstack_release = os.path.join(conf_path, "openstack_release.yaml")
     playbook_path = os.path.join(conf_path, "playbooks")
     inventory_path = os.path.join(conf_path, "inventory")
+    key_path = os.path.join(conf_path, "key_pair")
     if os.path.isfile(cons) and not CONSTANTS:
         CONSTANTS = yaml.safe_load(open(cons, encoding="utf-8"))
     if os.path.isfile(pkg_tpl) and not SPEC_TEMPLET_DIR:
@@ -50,6 +52,8 @@ for conf_path in search_paths:
         ANSIBLE_PLAYBOOK_DIR = playbook_path
     if os.path.isdir(inventory_path) and not ANSIBLE_INVENTORY_DIR:
         ANSIBLE_INVENTORY_DIR = inventory_path
+    if os.path.isdir(key_path) and not KEY_DIR:
+        KEY_DIR = key_path
 
 for fp in conf_paths:
     if os.path.exists(fp):
@@ -84,3 +88,5 @@ if not ANSIBLE_INVENTORY_DIR:
     raise click.ClickException("ansible inventory dir is missing")
 if not CONFIG:
     raise click.ClickException("Unable to locate config file")
+if not KEY_DIR:
+    raise click.ClickException("Unable to locate key pair file")

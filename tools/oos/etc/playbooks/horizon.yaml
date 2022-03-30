@@ -10,7 +10,7 @@
     - name: Initialize dashboard config file
       shell: |
         sed -i "s/^OPENSTACK_HOST.*/OPENSTACK_HOST = \"{{ hostvars['controller']['ansible_default_ipv4']['address'] }}\"/" /etc/openstack-dashboard/local_settings
-        sed -i "s/^ALLOWED_HOSTS.*/ALLOWED_HOSTS = [\"localhost\", \"{{ allowed_host }}\"]/" /etc/openstack-dashboard/local_settings
+        sed -i "s/^ALLOWED_HOSTS.*/ALLOWED_HOSTS = [\"localhost\", \"{{ horizon_allowed_host }}\"]/" /etc/openstack-dashboard/local_settings
 
     - name: Update dashboard config file
       blockinfile:
