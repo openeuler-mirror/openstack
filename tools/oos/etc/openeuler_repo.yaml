@@ -3537,7 +3537,7 @@ opendesign: sig-OpenDesign
 opendesign-backend: sig-OpenDesign
 opendesign-build: sig-OpenDesign
 opendesign-components: sig-OpenDesign
-opendesign-datapertus: sig-OpenDesign
+opendesign-datastat: sig-OpenDesign
 opendesign-deployment: sig-OpenDesign
 opendesign-internship: sig-OpenDesign
 opendesign-miniprogram: sig-OpenDesign
