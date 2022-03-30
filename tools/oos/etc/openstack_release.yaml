@@ -2364,7 +2364,7 @@ yoga:
   heat-dashboard: 7.0.0.0rc1
   heat-tempest-plugin: 1.5.0
   heat-translator: 2.5.0
-  horizon: 22.0.0
+  horizon: 22.1.0
   ironic: 20.1.0
   ironic-inspector: 10.11.0
   ironic-lib: 5.2.0
@@ -2405,7 +2405,7 @@ yoga:
   monasca-statsd: 2.4.0
   monasca-tempest-plugin: 2.4.0
   monasca-ui: 6.0.0.0rc1
-  murano: 13.0.0.0rc1
+  murano: 13.0.0.0rc2
   murano-agent: 9.0.0.0rc1
   murano-dashboard: 13.0.0.0rc1
   murano-tempest-plugin: 2.4.0
@@ -2529,7 +2529,7 @@ yoga:
   python-watcherclient: 3.4.0
   python-zaqarclient: 2.3.0
   python-zunclient: 4.4.0
-  sahara: 16.0.0.0rc1
+  sahara: 16.0.0.0rc2
   sahara-dashboard: 16.0.0.0rc1
   sahara-extra: 15.0.0.0rc1
   sahara-image-elements: 16.0.0.0rc1
@@ -2556,7 +2556,7 @@ yoga:
   telemetry_tempest_plugin: 1.6.0
   tempest: 30.0.0
   tosca-parser: 2.5.1
-  trove: 17.0.0.0rc1
+  trove: 17.0.0.0rc2
   trove-dashboard: 18.0.0.0rc1
   trove_tempest_plugin: 1.4.0
   vitrage: 8.0.1
