@@ -1,6 +1,7 @@
 {
     "_meta": {
         "hostvars": {
+            {% if oos_env_type == 'cluster' %}
             "compute01": {
                 "ansible_host": "{{ compute01_ip }}",
                 "cinder_block_device": "{{ cinder_block_device }}",
@@ -63,6 +64,7 @@
                 "nova_conductor_workers": "{{ nova_conductor_workers }}",
                 "nova_scheduler_workers": "{{ nova_scheduler_workers }}"
             },
+            {% endif %}
             "controller": {
                 "ansible_host": "{{ controller_ip }}",
                 "horizon_allowed_host": "{{ horizon_allowed_host }}",
@@ -108,6 +110,7 @@
             "ungrouped"
         ]
     },
+    {% if oos_env_type == 'cluster' %}
     "compute": {
         "children": [
             "compute1",
@@ -124,21 +127,6 @@
             "compute02"
         ]
     },
-    "dashboard": {
-        "hosts": [
-            "controller"
-        ]
-    },
-    "kolla": {
-        "hosts": [
-            "controller"
-        ]
-    },
-    "network": {
-        "hosts": [
-            "controller"
-        ]
-    },
     "storage": {
         "children": [
             "storage1",
@@ -153,6 +141,33 @@
     "storage2": {
         "hosts": [
             "compute02"
+        ]
+    },
+    {% else %}
+    "compute": {
+        "hosts": [
+            "controller"
+        ]
+    },
+    "storage": {
+        "hosts": [
+            "controller"
+        ]
+    },
+    {% endif %}
+    "dashboard": {
+        "hosts": [
+            "controller"
+        ]
+    },
+    "kolla": {
+        "hosts": [
+            "controller"
+        ]
+    },
+    "network": {
+        "hosts": [
+            "controller"
         ]
     }
 }

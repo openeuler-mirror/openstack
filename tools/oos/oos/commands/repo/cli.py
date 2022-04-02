@@ -84,7 +84,6 @@ def __parse_project_from_branch(branch, is_mainline=False):
     if branch == 'master':
         main_pro = 'openEuler'
         obs_pro = main_pro + ':Mainline' if is_mainline else ':Epol'
-
     elif 'oepkg' in branch:
         parts = branch.split('_')
         main_pro = parts[2].replace('oe', 'openEuler').replace('-', ':')

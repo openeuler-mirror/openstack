@@ -37,6 +37,7 @@ def parse_inventory(inventory_template_dir, config):
                      'neutron_api_workers': config.get('environment', 'neutron_api_workers'),
                      'horizon_allowed_host': config.get('environment', 'horizon_allowed_host'),
                      'kolla_openeuler_plugin': config.get('environment', 'kolla_openeuler_plugin'),
+                     'oos_env_type': os.environ.get('OOS_ENV_TYPE'),
                     }
     output = template.render(template_vars)
     return output
