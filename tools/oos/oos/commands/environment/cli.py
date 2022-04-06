@@ -241,12 +241,12 @@ def _run_action(target, action):
     connect.close()
     if len(ips) == 1:
         os.environ.setdefault('CONTROLLER_IP', ips[0][0])
-        os.environ.setdefault('COMPUTE01_IP', ips[0][0])
-        os.environ.setdefault('COMPUTE02_IP', ips[0][0])
+        os.environ.setdefault('OOS_ENV_TYPE', 'all_in_one')
     elif len(ips) == 3:
         os.environ.setdefault('CONTROLLER_IP', ips[0][0])
         os.environ.setdefault('COMPUTE01_IP', ips[1][0])
         os.environ.setdefault('COMPUTE02_IP', ips[2][0])
+        os.environ.setdefault('OOS_ENV_TYPE', 'cluster')
     else:
         raise click.ClickException(f"Can't find the environment {target}")
     inventory_file = os.path.join(ANSIBLE_INVENTORY_DIR, 'oos_inventory.py')

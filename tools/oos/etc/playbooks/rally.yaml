@@ -6,4 +6,4 @@
       yum:
         name:
           - openstack-rally
-          - openstack-rally-plugin
+          - openstack-rally-plugins
