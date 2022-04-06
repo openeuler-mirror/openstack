@@ -1908,7 +1908,7 @@ wallaby:
   openstack-cyborg: 6.0.0
   openstack-heat: 16.0.0
   openstack-placement: 5.0.1
-  openstacksdk: 0.55.0
+  openstacksdk: 0.55.1
   os-brick: 4.3.3
   os-ken: 1.4.1
   os-net-config: 14.2.0
