@@ -47,51 +47,32 @@ OpenStack 是一个社区，也是一个项目。它提供了一个部署云的�
 openEuler 20.03-LTS-SP3 版本官方认证的第三方 oepkg yum 源已经支持 Openstack-Rocky 版本，用户可以配置好 oepkg yum 源后根据此文档进行 OpenStack 部署。
 
 
-## 软件包多版本约定
-
-openEuler 20.03-LTS-SP3 版本支持 OpenStack 的 Queens、Rocky 和 Train 版本，有些软件包存在多版本，对于OpenStack Queens 和 Rocky 版本的安装，这些多版本软件包的安装我们需要指出对应版本号，
-以 OpenStack Nova 为例，可以使用 `yum list --showduplicates |grep openstack-nova` 列出对应nova服务的版本，这里我们选择对应 Rocky 版本，以下安装文档均以 ‘$RockyVer’ 来表示。
-
-涉及的软件包：
-
-openstack-keystone 及其子包
-
-openstack-glance 及其子包
-
-openstack-nova 及其子包
-
-openstack-neutron 及其子包
-
-openstack-cinder 及其子包
-
-openstack-dashboard 及其子包
-
-openstack-ironic 及其子包
-
-openstack-tempest
-
-openstack-kolla
-
-openstack-kolla-ansible
-
-openstack-trove 及其子包
-
-novnc
-
-diskimage-builder
-
 ## 准备环境
 ### OpenStack yum源配置
 
-配置 20.03-LTS-SP3 官方认证的第三方源 oepkg，以x86_64为例
+配置 20.03-LTS-SP3 官方认证的第三方源 oepkg
 
 ```shell
 $ cat << EOF >> /etc/yum.repos.d/OpenStack_Rocky.repo
 [openstack_rocky]
 name=OpenStack_Rocky
-baseurl=https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP3/budding-openeuler/openstack/rocky/x86_64/
+baseurl=https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP3/budding-openeuler/openstack/rocky/$basearch/
 gpgcheck=0
 enabled=1
+EOF
+```
+
+***注意***
+
+如果环境启用了Epol源，需要提高rocky仓的优先级，设置priority=1：
+```shell
+$ cat << EOF >> /etc/yum.repos.d/OpenStack_Rocky.repo
+[openstack_rocky]
+name=OpenStack_Rocky
+baseurl=https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP3/budding-openeuler/openstack/rocky/$basearch/
+gpgcheck=0
+enabled=1
+priority=1
 EOF
 ```
 
@@ -204,7 +185,7 @@ $ yum clean all && yum makecache
 2. 执行如下命令，安装软件包。
 
     ```shell
-    $ yum install openstack-keystone-$RockyVer httpd python2-mod_wsgi
+    $ yum install openstack-keystone httpd python2-mod_wsgi
     ```
 
 3. 配置keystone，编辑 `/etc/keystone/keystone.conf` 文件。在[database]部分，配置数据库入口。在[token]部分，配置token provider
@@ -396,7 +377,7 @@ $ yum clean all && yum makecache
 	安装软件包：
 
 	```shell
-	$ yum install openstack-glance-$RockyVer
+	$ yum install openstack-glance
 	```
 	配置glance：
 
@@ -567,9 +548,9 @@ $ yum clean all && yum makecache
     安装软件包：
 
     ```shell
-    $ yum install openstack-nova-api-$RockyVer openstack-nova-conductor-$RockyVer \
-      openstack-nova-novncproxy-$RockyVer openstack-nova-scheduler-$RockyVer openstack-nova-compute-$RockyVer \
-      openstack-nova-placement-api-$RockyVer openstack-nova-console-$RockyVer
+    $ yum install openstack-nova-api openstack-nova-conductor \
+      openstack-nova-novncproxy openstack-nova-scheduler openstack-nova-compute \
+      openstack-nova-placement-api openstack-nova-console
     ```
 
     配置nova：
@@ -861,8 +842,8 @@ $ yum clean all && yum makecache
     安装软件包：
 
     ```shell
-    $ yum install openstack-neutron-$RockyVer openstack-neutron-ml2-$RockyVer \
-    openstack-neutron-linuxbridge-$RockyVer ebtables ipset
+    $ yum install openstack-neutron openstack-neutron-ml2 \
+    openstack-neutron-linuxbridge ebtables ipset
     ```
     配置neutron：
 
@@ -1144,7 +1125,7 @@ $ yum clean all && yum makecache
     安装软件包：
 
     ```shell
-    $ yum install openstack-cinder-$RockyVer
+    $ yum install openstack-cinder
     ```
     配置cinder：
 
@@ -1223,7 +1204,7 @@ $ yum clean all && yum makecache
 
     ```shell
     $ yum install lvm2 device-mapper-persistent-data scsi-target-utils python2-keystone \
-    openstack-cinder-volume-$RockyVer
+    openstack-cinder-volume
     ```
 
     创建LVM物理卷 /dev/sdb：
@@ -1285,7 +1266,7 @@ $ yum clean all && yum makecache
     安装软件包：
 
     ```shell
-    $ yum install ceph-common python2-rados python2-rbd python2-keystone openstack-cinder-volume-$RockyVer
+    $ yum install ceph-common python2-rados python2-rbd python2-keystone openstack-cinder-volume
     ```
     
     在[DEFAULT]部分，启用LVM后端，配置镜像服务API的位置。
@@ -1394,7 +1375,7 @@ $ yum clean all && yum makecache
 1. 安装软件包
 
     ```shell
-    $ yum install openstack-dashboard-$RockyVer
+    $ yum install openstack-dashboard
     ```
 2. 修改文件`/usr/share/openstack-dashboard/openstack_dashboard/local/local_settings.py`
    
@@ -1466,7 +1447,7 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
 
 1. 安装Tempest
     ```shell
-    $ yum install openstack-tempest-$RockyVer
+    $ yum install openstack-tempest
     ```
 2. 初始化目录
 
@@ -1512,7 +1493,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 2. 安装软件包
 
    ```shell
-   yum install openstack-ironic-api-$RockyVer openstack-ironic-conductor-$RockyVer python2-ironicclient
+   yum install openstack-ironic-api openstack-ironic-conductor python2-ironicclient
    ```
 
    启动服务
@@ -1764,7 +1745,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    1. 安装工具：
 
       ```shell
-      $ pip install ironic-python-agent-builder-$RockyVer
+      $ pip install ironic-python-agent-builder
       ```
 
    2. 修改以下文件中的python解释器：
@@ -1886,7 +1867,7 @@ yum install openstack-kolla-plugin openstack-kolla-ansible-plugin
 不支持 openEuler 版本：
 
 ```shell
-yum install openstack-kolla-$RockyVer openstack-kolla-ansible-$RockyVer
+yum install openstack-kolla openstack-kolla-ansible
 ```
 
 安装完后，就可以使用`kolla-ansible`, `kolla-build`, `kolla-genpwd`, `kolla-mergepwd`等命令了。
@@ -1938,7 +1919,7 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
    1、安装**Trove**包
 
    ```shell
-   $ yum install openstack-trove-$RockyVer python2-troveclient
+   $ yum install openstack-trove python2-troveclient
    ```
    2、配置`/etc/trove/trove.conf`
 
