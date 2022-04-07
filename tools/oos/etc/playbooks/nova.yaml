@@ -56,7 +56,7 @@
       shell: |
         cat << EOF > /etc/nova/nova.conf
         [DEFAULT]
-        osapi_compute_workers = {{ nova_api_workders }}
+        osapi_compute_workers = {{ nova_api_workers }}
         metadata_workers = {{ nova_metadata_api_workers }}
         enabled_apis = osapi_compute,metadata
         transport_url = rabbit://openstack:{{ rabbitmq_password }}@{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5672/

@@ -30,7 +30,7 @@ def parse_inventory(inventory_template_dir, config):
                      'swift_hash_path_prefix': config.get('environment', 'swift_hash_path_prefix'),
                      'glance_api_workers': config.get('environment', 'glance_api_workers'),
                      'cinder_api_workers': config.get('environment', 'cinder_api_workers'),
-                     'nova_api_workders': config.get('environment', 'nova_api_workders'),
+                     'nova_api_workers': config.get('environment', 'nova_api_workers'),
                      'nova_metadata_api_workers': config.get('environment', 'nova_metadata_api_workers'),
                      'nova_conductor_workers': config.get('environment', 'nova_conductor_workers'),
                      'nova_scheduler_workers': config.get('environment', 'nova_scheduler_workers'),
@@ -38,6 +38,7 @@ def parse_inventory(inventory_template_dir, config):
                      'horizon_allowed_host': config.get('environment', 'horizon_allowed_host'),
                      'kolla_openeuler_plugin': config.get('environment', 'kolla_openeuler_plugin'),
                      'oos_env_type': os.environ.get('OOS_ENV_TYPE'),
+                     'openstack_release': os.environ.get('OpenStack_Release')
                     }
     output = template.render(template_vars)
     return output

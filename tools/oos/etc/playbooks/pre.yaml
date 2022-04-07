@@ -1,3 +1,12 @@
+- name: Config OpenStack yum repo
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install openstack-releases package
+      yum:
+        name:
+        - openstack-release-{{ openstack_release }}
+      ignore_errors: yes
 - name: Install Database
   hosts: all
   become: yes

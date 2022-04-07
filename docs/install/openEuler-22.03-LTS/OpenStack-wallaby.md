@@ -2810,6 +2810,12 @@ openstack endpoint create --region RegionOne alarming admin http://controller:80
 yum install openstack-aodh-api openstack-aodh-evaluator openstack-aodh-notifier openstack-aodh-listener openstack-aodh-expirer python3-aodhclient
 ```
 
+***注意***
+
+aodh依赖的软件包pytho3-pyparsing在openEuler的OS仓不适配，需要覆盖安装OpenStack对应版本，可以使用`yum list |grep pyparsing |grep OpenStack | awk '{print $2}'`获取对应的版本
+
+VERSION,然后再`yum install -y python3-pyparsing-VERSION`覆盖安装适配的pyparsing
+
 4. 修改配置文件
 
 ```

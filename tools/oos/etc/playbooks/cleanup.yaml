@@ -51,7 +51,7 @@
           - openstack-nova-compute
           - openstack-placement-api
           - openstack-rally
-          - openstack-rally-plugin
+          - openstack-rally-plugins
           - openstack-swift-proxy
           - openstack-swift-account
           - openstack-swift-container
@@ -66,6 +66,7 @@
           - rabbitmq-server
           - redis
           - httpd
+          - openstack-release-{{ openstack_release }}
         autoremove: true
         state: absent
 

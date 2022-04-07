@@ -46,7 +46,7 @@ all:
     swift_hash_path_prefix: has
     glance_api_workers: 2
     cinder_api_workers: 2
-    nova_api_workders: 2
+    nova_api_workers: 2
     nova_metadata_api_workers: 2
     nova_conductor_workers: 2
     nova_scheduler_workers: 2
