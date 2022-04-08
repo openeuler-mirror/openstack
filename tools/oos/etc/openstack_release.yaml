@@ -1526,7 +1526,7 @@ victoria:
   compute-hyperv: 11.0.0
   cyborg-tempest-plugin: 1.1.0
   debtcollector: 2.2.0
-  designate: 11.0.1
+  designate: 11.0.2
   designate-dashboard: 11.0.0
   designate-tempest-plugin: 0.9.0
   ec2-api: 11.1.0
@@ -2323,6 +2323,7 @@ xena:
   zun-ui: 8.0.0
 yoga:
   adjutant-ui: 4.0.0
+  ansible-collection-kolla: 1.0.0.0rc1
   ansible-role-atos-hsm: 3.0.0
   ansible-role-lunasa-hsm: 3.0.0
   ansible-role-thales-hsm: 3.0.0
@@ -2377,6 +2378,8 @@ yoga:
   keystone_tempest_plugin: 0.9.0
   keystoneauth1: 4.5.0
   keystonemiddleware: 9.4.0
+  kolla: 14.0.0.0rc1
+  kolla-ansible: 14.0.0.0rc1
   kuryr-kubernetes: 6.0.0
   kuryr-lib: 2.5.0
   kuryr-libnetwork: 9.0.0
