@@ -68,6 +68,7 @@ Picard: sig-bio
 PilotGo: sig-ops
 PilotGo-plugins: sig-ops
 PilotGo-web: sig-ops
+Preempt_RT: sig-industrial-control
 PyPAM: Others
 PyQt4: sig-python-modules
 PyYAML: sig-python-modules
