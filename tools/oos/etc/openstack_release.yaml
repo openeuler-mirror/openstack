@@ -1613,7 +1613,7 @@ victoria:
   octavia-dashboard: 6.0.1
   octavia-lib: 2.2.0
   octavia-tempest-plugin: 1.5.0
-  openstack-cyborg: 5.0.0
+  openstack-cyborg: 5.0.1
   openstack-heat: 15.1.0
   openstack-placement: 4.0.0
   openstack-release-test: 3.3.1
@@ -1973,7 +1973,7 @@ wallaby:
   puppet-senlin: 5.4.0
   puppet-swift: 18.5.0
   puppet-tacker: 18.4.0
-  puppet-tempest: 18.4.0
+  puppet-tempest: 18.5.0
   puppet-tripleo: 14.2.2
   puppet-trove: 18.4.0
   puppet-vitrage: 8.4.0
@@ -2239,7 +2239,7 @@ xena:
   puppet-senlin: 6.4.0
   puppet-swift: 19.4.0
   puppet-tacker: 19.4.0
-  puppet-tempest: 19.4.0
+  puppet-tempest: 19.5.0
   puppet-trove: 19.4.0
   puppet-vitrage: 9.4.0
   puppet-vswitch: 15.4.0
@@ -2351,7 +2351,7 @@ yoga:
   designate: 14.0.0
   designate-dashboard: 14.0.0
   designate-tempest-plugin: 0.13.0
-  ec2-api: 14.0.0
+  ec2-api: 14.0.1
   ec2api-tempest-plugin: 1.4.0
   freezer: 12.0.0
   freezer-api: 12.0.0
@@ -2557,7 +2557,7 @@ yoga:
   tacker-horizon: 5.0.0
   tap-as-a-service: 9.0.0
   telemetry_tempest_plugin: 1.6.0
-  tempest: 30.0.0
+  tempest: 30.1.0
   tosca-parser: 2.5.1
   trove: 17.0.0
   trove-dashboard: 18.0.0
