@@ -16,15 +16,22 @@
         description: Telemetry
         endpoint: http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:8042
   tasks:
+    - name: Get pyparsing version of OpenStack
+      shell: |
+        yum list |grep pyparsing |grep OpenStack | awk '{print $2}'
+      register: pyparing_version
+
     - name: Install aodh package
       yum:
         name:
+          - python3-pyparsing-{{ pyparing_version.stdout }}
           - openstack-aodh-api
           - openstack-aodh-evaluator
           - openstack-aodh-notifier
           - openstack-aodh-listener
           - openstack-aodh-expirer 
           - python3-aodhclient
+        allow_downgrade: true
 
     - name: Initialize config file
       shell: |

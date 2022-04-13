@@ -28,10 +28,11 @@
                 "cinder_api_workers": "{{ cinder_api_workers }}",
                 "glance_api_workers": "{{ glance_api_workers }}",
                 "neutron_api_workers": "{{ neutron_api_workers }}",
-                "nova_api_workders": "{{ nova_api_workders }}",
+                "nova_api_workers": "{{ nova_api_workers }}",
                 "nova_metadata_api_workers": "{{ nova_metadata_api_workers }}",
                 "nova_conductor_workers": "{{ nova_conductor_workers }}",
-                "nova_scheduler_workers": "{{ nova_scheduler_workers }}"
+                "nova_scheduler_workers": "{{ nova_scheduler_workers }}",
+                "openstack_release": "{{ openstack_release }}"
             },
             "compute02": {
                 "ansible_host": "{{ compute02_ip }}",
@@ -59,10 +60,11 @@
                 "cinder_api_workers": "{{ cinder_api_workers }}",
                 "glance_api_workers": "{{ glance_api_workers }}",
                 "neutron_api_workers": "{{ neutron_api_workers }}",
-                "nova_api_workders": "{{ nova_api_workders }}",
+                "nova_api_workers": "{{ nova_api_workers }}",
                 "nova_metadata_api_workers": "{{ nova_metadata_api_workers }}",
                 "nova_conductor_workers": "{{ nova_conductor_workers }}",
-                "nova_scheduler_workers": "{{ nova_scheduler_workers }}"
+                "nova_scheduler_workers": "{{ nova_scheduler_workers }}",
+                "openstack_release": "{{ openstack_release }}"
             },
             {% endif %}
             "controller": {
@@ -93,10 +95,11 @@
                 "cinder_api_workers": "{{ cinder_api_workers }}",
                 "glance_api_workers": "{{ glance_api_workers }}",
                 "neutron_api_workers": "{{ neutron_api_workers }}",
-                "nova_api_workders": "{{ nova_api_workders }}",
+                "nova_api_workers": "{{ nova_api_workers }}",
                 "nova_metadata_api_workers": "{{ nova_metadata_api_workers }}",
                 "nova_conductor_workers": "{{ nova_conductor_workers }}",
-                "nova_scheduler_workers": "{{ nova_scheduler_workers }}"
+                "nova_scheduler_workers": "{{ nova_scheduler_workers }}",
+                "openstack_release": "{{ openstack_release }}"
             }
         }
     },

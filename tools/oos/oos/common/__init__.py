@@ -70,7 +70,7 @@ if not Path(SQL_DB).exists():
     connect = sqlite3.connect(SQL_DB)
     cur = connect.cursor()
     cur.execute('''CREATE TABLE resource
-                   (provider, name, uuid, ip, flavor, openeuler_release, create_time)''')
+                   (provider, name, uuid, ip, flavor, openeuler_release, openstack_release, create_time)''')
     connect.commit()
     connect.close()
 

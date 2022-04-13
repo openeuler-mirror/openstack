@@ -11,11 +11,17 @@ from huaweicloudsdkcore.http.http_config import HttpConfig
 from huaweicloudsdkecs.v2 import *
 import prettytable
 
-from oos.common import ANSIBLE_PLAYBOOK_DIR, ANSIBLE_INVENTORY_DIR, KEY_DIR, CONFIG, SQL_DB
+from oos.commands.environment import sqlite_ops
+from oos.common import ANSIBLE_PLAYBOOK_DIR, ANSIBLE_INVENTORY_DIR, KEY_DIR, CONFIG
 
 
 # TODO: Update the mapping or make it discoverable
-OPENEULER_RELEASE = ['20.03-lts-sp1', '20.03-lts-sp2', '20.03-lts-sp3', '22.03-lts']
+OE_OS_RELEASE = {
+    '20.03-lts-sp1': ['train'],
+    '20.03-lts-sp2': ['rocky', 'queens'],
+    '20.03-lts-sp3': ['rocky', 'queens', 'train'],
+    '22.03-lts': ['train', 'wallaby']
+}
 FLAVOR_MAPPING = {
     'small_x86': 'c6.large.2',
     'medium_x86': 'c6.xlarge.2',
@@ -26,8 +32,8 @@ FLAVOR_MAPPING = {
 }
 
 IMAGE_MAPPING = {
-    '22.03-lts_x86': '',
-    '22.03-lts_aarch64': '',
+    '22.03-lts_x86': '399dcb80-53ed-495c-96c5-807bb2b134a0',
+    '22.03-lts_aarch64': 'cdf284dd-86fa-4d2d-be59-c317d9d59d51',
     '20.03-lts-sp1_x86': "479b599f-2e7d-49d7-89ba-1c134d5a7eb3",
     '20.03-lts-sp1_aarch64': "ee1c6b7e-fcc7-422a-aeee-2d62eb647703",
     '20.03-lts-sp2_x86': "7db7ef61-9b3f-4a36-9525-ebe5257010cd",
@@ -42,7 +48,7 @@ VPC_MAPPING = {
     VPC_ID: '14d4d0d0-8999-49b4-ad73-7b777edf395f'
 }
 
-TABLE_COLUMN = ['Provider', 'Name', 'UUID', 'IP', 'Flavor', 'openEuler_release', 'create_time']
+TABLE_COLUMN = ['Provider', 'Name', 'UUID', 'IP', 'Flavor', 'openEuler_release', 'OpenStack_release', 'create_time']
 
 OPENEULER_DEFAULT_USER = "root"
 OPENEULER_DEFAULT_PASSWORD = "openEuler12#$"
@@ -78,38 +84,36 @@ def _init_ecs_client():
 @group.command(name='list', help='List environment')
 def list():
     table = prettytable.PrettyTable(TABLE_COLUMN)
-    connect = sqlite3.connect(SQL_DB)
-    cur = connect.cursor()
-    for raw in cur.execute('SELECT * FROM resource ORDER BY create_time'):
+    res = sqlite_ops.list_targets()
+    for raw in res:
         table.add_row(raw)
-    connect.close()
     print(table)
 
 
 @group.command(name='create', help='Create environment')
-@click.option('-r', '--release', required=True, type=click.Choice(OPENEULER_RELEASE))
-@click.option('-f', '--flavor', required=True, type=click.Choice(['small', 'medium', 'large']))
-@click.option('-a', '--arch', required=True, type=click.Choice(['x86', 'aarch64']))
-@click.option('-n', '--name', required=True, help='The cluster/all_in_one name')
+@click.option('-r', '--release', required=True,
+              type=click.Choice(OE_OS_RELEASE.keys()))
+@click.option('-f', '--flavor', required=True,
+              type=click.Choice(['small', 'medium', 'large']))
+@click.option('-a', '--arch', required=True,
+              type=click.Choice(['x86', 'aarch64']))
+@click.option('-n', '--name', required=True,
+              help='The cluster/all_in_one name')
 @click.argument('target', type=click.Choice(['cluster', 'all_in_one']))
 def create(release, flavor, arch, name, target):
     # TODO:
     # 1. 支持秘钥注入，当前openEuler云镜像不支持该功能
     if name in ['all_in_one', 'cluster']:
         raise click.ClickException("Can not name all_in_one or cluster.")
-    connect = sqlite3.connect(SQL_DB)
-    cur = connect.cursor()
-    cur.execute(f"SELECT * from resource where name = '{name}'")
-    vm = cur.fetchall()
+    vm = sqlite_ops.get_target_column(target=name, col_name='*')
     if vm:
         raise click.ClickException("The target name should be unique.")
-    connect.close()
 
     find_sshpass = subprocess.getoutput("which sshpass")
     has_sshpass = find_sshpass and find_sshpass.find("no sshpass") == -1
     if not has_sshpass:
-        print("Warning: sshpass is not installed. It'll fail to sync key-pair "
-              "to the target VMs. Please do the sync step by hand.")
+        print("Warning: sshpass is not installed. It'll fail to sync "
+              "key-pair to the target VMs. Please do the sync step by hand.")
     provider, ecs_client = _init_ecs_client()
     request = CreateServersRequest()
     listPrePaidServerDataVolumeDataVolumesServer = [
@@ -198,12 +202,8 @@ def create(release, flavor, arch, name, target):
             subprocess.getoutput(cmd)
             print(f"All is done, you can now login the target with the key in "
                   f"{KEY_DIR}")
-        connect = sqlite3.connect(SQL_DB)
-        cur = connect.cursor()
-        cur.execute(f"INSERT INTO resource VALUES ('{provider}', '{name}','{server_id}','{ip}','{flavor}','{release}','{created}')")
-        connect.commit()
-        connect.close()
-        table.add_row([provider, name, server_id, ip, flavor, release, created])
+        sqlite_ops.insert_target(provider, name, server_id, ip, flavor, release, None, created)
+        table.add_row([provider, name, server_id, ip, flavor, release, None, created])
     print(table)
 
 
@@ -212,9 +212,8 @@ def create(release, flavor, arch, name, target):
 @click.argument('name', type=str)
 def delete(name):
     _, ecs_client = _init_ecs_client()
-    connect = sqlite3.connect(SQL_DB)
-    cur = connect.cursor()
-    for server_id in cur.execute(f"SELECT uuid from resource where name = '{name}'"):
+    server_info = sqlite_ops.get_target_column(name, 'uuid')
+    for server_id in server_info:
         request = DeleteServersRequest()
         listServerIdServersbody = [
             ServerId(
@@ -228,17 +227,11 @@ def delete(name):
         )
         response = ecs_client.delete_servers(request)
         print(response)
-    cur.execute(f"DELETE from resource where name = '{name}'")
-    connect.commit()
-    connect.close()
+    sqlite_ops.delete_target(name)
 
 
 def _run_action(target, action):
-    connect = sqlite3.connect(SQL_DB)
-    cur = connect.cursor()
-    cur.execute(f"SELECT ip from resource where name = '{target}'")
-    ips = cur.fetchall()
-    connect.close()
+    ips = sqlite_ops.get_target_column(target, 'ip')
     if len(ips) == 1:
         os.environ.setdefault('CONTROLLER_IP', ips[0][0])
         os.environ.setdefault('OOS_ENV_TYPE', 'all_in_one')
@@ -266,15 +259,24 @@ def _run_action(target, action):
 
 
 @group.command(name='setup', help='Setup OpenStack Cluster')
+@click.option('-r', '--release', required=True,
+              help='OpenStack release to install, like train, wallaby...')
 @click.argument('target')
-def setup(target):
+def setup(release, target):
+    oe = sqlite_ops.get_target_column(target, 'openEuler_release')[0][0]
+    if release.lower() not in OE_OS_RELEASE[oe]:
+        print("%s does not support openstack %s" % (oe, release))
+        return
     if target in ['all_in_one', 'cluster']:
         inventory_file = os.path.join(ANSIBLE_INVENTORY_DIR, target+'.yaml')
         playbook_entry = os.path.join(ANSIBLE_PLAYBOOK_DIR, 'entry.yaml')
         cmd = ['ansible-playbook', '-i', inventory_file, playbook_entry]
         subprocess.call(cmd)
     else:
+        os.environ.setdefault('OpenStack_Release', release.lower())
         _run_action(target, 'entry')
+        sql = 'UPDATE resource SET openstack_release=?'
+        sqlite_ops.exe_sql(sql, (release.lower(),))
 
 
 @group.command(name='init',
@@ -311,4 +313,9 @@ def clean(target):
         cmd = ['ansible-playbook', '-i', inventory_file, playbook_entry]
         subprocess.call(cmd)
     else:
+        res = sqlite_ops.get_target_column(target, 'openstack_release')
+        os.environ.setdefault('OpenStack_Release', res[0][0])
         _run_action(target, 'cleanup')
+        sql = 'UPDATE resource SET openstack_release=?'
+        sqlite_ops.exe_sql(sql, (None,))
+        os.environ.pop('OpenStack_Release')
