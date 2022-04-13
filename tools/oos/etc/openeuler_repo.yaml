@@ -1449,7 +1449,7 @@ httpd: Networking
 httpry: Application
 httpunit: sig-Java
 hue: sig-ai-bigdata
-hunspell: Desktop
+hunspell: Application
 hunspell-ak: Application
 hunspell-am: Application
 hunspell-ar: Application
@@ -1470,7 +1470,7 @@ hunspell-da: Application
 hunspell-de: Application
 hunspell-dsb: Application
 hunspell-el: Application
-hunspell-en: Desktop
+hunspell-en: Application
 hunspell-eo: Application
 hunspell-es: Application
 hunspell-et: Application
