@@ -9,7 +9,7 @@ BareBonesBrowserLaunch: sig-Java
 CPython: Compiler
 CUnit: Base-service
 CharLS: Desktop
-ComputeLibrary: sig-ai-bigdata
+ComputeLibrary: ai
 Control-FREEC: sig-bio
 Cython: Programming-language
 DCache: Storage
@@ -82,7 +82,7 @@ SDL: Programming-language
 SDL2: Others
 SDL_sound: dev-utils
 SuperLU: dev-utils
-SuperLUMT: sig-ai-bigdata
+SuperLUMT: ai
 TCP_option_address: Kernel
 TeXamator: Base-service
 Thunar: xfce
@@ -105,7 +105,7 @@ abrt-java-connector: Application
 abrt-server-info-page: Application
 abseil-cpp: Base-service
 accountsservice: Desktop
-accumulo: sig-ai-bigdata
+accumulo: bigdata
 acl: Base-service
 acme-tiny: Application
 acpica-tools: Base-service
@@ -128,7 +128,7 @@ aide: Base-service
 airline: Base-service
 alertmanager: sig-CloudNative
 allegro: Private
-alluxio: sig-ai-bigdata
+alluxio: bigdata
 allwinner-kernel: sig-RaspberryPi
 alpine: Application
 alsa-firmware: Computing
@@ -138,7 +138,7 @@ alsa-tools: Computing
 alsa-utils: Application
 amanda: Application
 amavis: Application
-ambari: sig-ai-bigdata
+ambari: bigdata
 ament_cmake: sig-ROS
 ament_cmake_ros: sig-ROS
 ament_index: sig-ROS
@@ -243,10 +243,10 @@ aries-proxy-impl: Base-service
 aries-quiesce-api: dev-utils
 aries-util: dev-utils
 ark: sig-KDE
-arm-ml-examples: sig-ai-bigdata
+arm-ml-examples: ai
 arm-trusted-firmware: Base-service
 armadillo: dev-utils
-armnn: sig-ai-bigdata
+armnn: ai
 arp-scan: Networking
 arpack: sig-epol
 arpack-ng: Computing
@@ -271,7 +271,7 @@ at-spi2-core: Desktop
 atf: Base-service
 atinject: sig-Java
 atk: Desktop
-atkmm: Runtime
+atkmm: GNOME
 atlas: Runtime
 atmel-firmware: Networking
 atomic: sig-Ostree-Assembly
@@ -334,7 +334,7 @@ bash: Base-service
 bash-argsparse: dev-utils
 bash-completion: Base-service
 batik: sig-Java
-bazel: sig-ai-bigdata
+bazel: ai
 bc: Base-service
 bcache-tools: Storage
 bcc: dev-utils
@@ -353,7 +353,7 @@ beust-jcommander: dev-utils
 bgenix: sig-bio
 bgmprovider: Compiler
 biber: sig-perl-modules
-bigtop: sig-ai-bigdata
+bigtop: bigdata
 bind: Networking
 bind-dyndb-ldap: Networking
 binutils: Compiler
@@ -369,7 +369,7 @@ bishengjdk-build: Compiler
 bishengjdk-riscv: Compiler
 bison: Base-service
 blackbox_exporter: sig-CloudNative
-blaze: sig-ai-bigdata
+blaze: bigdata
 blesschess: sig-minzuchess
 blis: sig-epol
 blivet-gui: sig-OS-Builder
@@ -433,6 +433,7 @@ caja: sig-mate-desktop
 caja-extensions: sig-mate-desktop
 cal10n: dev-utils
 calc: Application
+calls: GNOME
 canal: DB
 canfestival: sig-industrial-control
 canfestival-xenomai: sig-industrial-control
@@ -637,7 +638,6 @@ d-feet: Desktop
 daala: sig-epol
 dain-snappy: sig-Java
 dash: Application
-datafu: sig-ai-bigdata
 datanucleus-api-jdo: sig-Java
 datanucleus-core: sig-Java
 datanucleus-maven-parent: sig-Java
@@ -739,7 +739,7 @@ dleyna-connector-dbus: dev-utils
 dleyna-core: dev-utils
 dleyna-renderer: GNOME
 dleyna-server: Application
-dlib: sig-ai-bigdata
+dlib: ai
 dlm: Application
 dmidecode: Computing
 dmraid: Storage
@@ -832,11 +832,11 @@ eglexternalplatform: Programming-language
 ehcache-core: sig-Java
 ehcache-parent: sig-Java
 ehcache-sizeof-agent: sig-Java
-eigen: sig-ai-bigdata
+eigen: ai
 eigen3: sig-epol
 eigen3_cmake_module: sig-ROS
 elfutils: Base-service
-eli5: sig-ai-bigdata
+eli5: ai
 elinks: Application
 elixir: Application
 emacs: Desktop
@@ -850,13 +850,13 @@ enchant2: Programming-language
 engine-db-query: oVirt
 engrampa: sig-UKUI
 enscript: Application
-ensmallen: sig-ai-bigdata
+ensmallen: ai
 entr: System-tool
 environment-modules: Base-service
 eog: GNOME
 eom: sig-mate-desktop
 epiphany: Desktop
-epstool: sig-ai-bigdata
+epstool: bigdata
 epydoc: Base-service
 erlang: Programming-language
 erlang-eflame: Programming-language
@@ -979,12 +979,12 @@ flatpak: Programming-language
 flatpak-builder: GNOME
 flex: Base-service
 flexiblas: sig-epol
-flink: sig-ai-bigdata
+flink: bigdata
 flite: Others
 fltk: Desktop
 fluid-soundfont: Private
 fluidsynth: Application
-flume: sig-ai-bigdata
+flume: bigdata
 fmpp: Application
 fmt: dev-utils
 folks: GNOME
@@ -1024,7 +1024,7 @@ fribidi: Desktop
 fros: Desktop
 fstrm: sig-epol
 fswatch: System-tool
-ftgl: sig-ai-bigdata
+ftgl: bigdata
 ftp: Networking
 fuse: Storage
 fuse-exfat: Application
@@ -1119,7 +1119,7 @@ giflib: Desktop
 gigolo: xfce
 gimp: Others
 gio-qt: Desktop
-giraph: sig-ai-bigdata
+giraph: bigdata
 git: Base-service
 git-basics: sig-OSCourse
 git-cola: dev-utils
@@ -1130,7 +1130,7 @@ git-tools: dev-utils
 gitbook-theme-hugo: Infrastructure
 gjs: Desktop
 gl-manpages: Application
-gl2ps: sig-ai-bigdata
+gl2ps: bigdata
 gl_dependency: sig-ROS
 glade: Desktop
 glade3: sig-mate-desktop
@@ -1163,7 +1163,7 @@ glibc: Computing
 glibmm24: Others
 globalization: G11N
 glog: Application
-glpk: sig-ai-bigdata
+glpk: ai
 glslang: sig-epol
 gluster_exporter: sig-CloudNative
 glusterfs: Storage
@@ -1187,6 +1187,8 @@ gnome-characters: GNOME
 gnome-clocks: Desktop
 gnome-color-manager: GNOME
 gnome-common: Programming-language
+gnome-connections: GNOME
+gnome-console: GNOME
 gnome-contacts: Desktop
 gnome-control-center: GNOME
 gnome-desktop: Application
@@ -1232,6 +1234,7 @@ gnome-shell-theme-flat-remix: GNOME
 gnome-software: Desktop
 gnome-system-monitor: Desktop
 gnome-terminal: Desktop
+gnome-text-editor: GNOME
 gnome-themes-standard: GNOME
 gnome-tour: GNOME
 gnome-tweaks: GNOME
@@ -1360,6 +1363,7 @@ gtkmm24: dev-utils
 gtkmm30: Others
 gtksourceview3: Others
 gtksourceview4: sig-mate-desktop
+gtksourceview5: GNOME
 gtkspell: sig-recycle
 gtkspell3: dev-utils
 gtkspellmm30: dev-utils
@@ -1383,8 +1387,8 @@ gzip: Base-service
 h2: DB
 ha-api: sig-Ha
 ha-web: sig-Ha
-hadoop: sig-ai-bigdata
-hadoop-3.1: sig-ai-bigdata
+hadoop: bigdata
+hadoop-3.1: bigdata
 hamcrest: dev-utils
 hands-on: sig-OSCourse
 haproxy: System-tool
@@ -1399,7 +1403,7 @@ hawtdispatch: dev-utils
 hawtjni: sig-Java
 hawtjni-runtime: Private
 hazelcast: Application
-hbase: sig-ai-bigdata
+hbase: bigdata
 hddtemp: xfce
 hdf: Application
 hdf5: Runtime
@@ -1423,7 +1427,7 @@ hibernate4: sig-Java
 hicolor-icon-theme: Desktop
 highlight: oVirt
 hiredis: Base-service
-hive: sig-ai-bigdata
+hive: bigdata
 hivex: System-tool
 hostha: sig-openstack
 hostname: Networking
@@ -1448,7 +1452,7 @@ httpcomponents-project: dev-utils
 httpd: Networking
 httpry: Application
 httpunit: sig-Java
-hue: sig-ai-bigdata
+hue: bigdata
 hunspell: Application
 hunspell-ak: Application
 hunspell-am: Application
@@ -1619,7 +1623,7 @@ i40e: Networking
 iSulad: iSulad
 iSulad-img: iSulad
 iavf: Networking
-ibis: sig-ai-bigdata
+ibis: bigdata
 ibus: Desktop
 ibus-hangul: Desktop
 ibus-kkc: Desktop
@@ -1644,7 +1648,7 @@ idlj-maven-plugin: sig-Java
 idm-console-framework: Application
 iftop: dev-utils
 igh-ethercat-xenomai: sig-industrial-control
-ignite: sig-ai-bigdata
+ignite: bigdata
 ignition: sig-OKD
 iio-sensor-proxy: Application
 ilmbase: Programming-language
@@ -1660,7 +1664,7 @@ imgbased: oVirt
 imlib2: sig-UKUI
 imsettings: Desktop
 imwheel: sig-UKUI
-incubator-mxnet: sig-ai-bigdata
+incubator-mxnet: ai
 indent: Application
 indicator-china-weather: sig-UKUI
 infiniband-diags: sig-recycle
@@ -1969,7 +1973,7 @@ junit-addons: sig-Java
 junit5: dev-utils
 junitperf: sig-Java
 juniversalchardet: sig-Java
-jupyter: sig-ai-bigdata
+jupyter: bigdata
 jvnet-parent: sig-Java
 jwnl: sig-Java
 jxrlib: Desktop
@@ -1978,7 +1982,7 @@ jzlib: Application
 kabi-dw: Kernel
 kacst-fonts: Desktop
 kae_driver: sig-AccLib
-kafka: sig-ai-bigdata
+kafka: bigdata
 kafka-python: sig-openstack
 kata-containers: sig-CloudNative
 kata-micro-kernel: sig-CloudNative
@@ -2359,7 +2363,7 @@ libhangul: System-tool
 libharu: sig-epol
 libhbaapi: Base-service
 libhbalinux: Others
-libhdfs: sig-ai-bigdata
+libhdfs: bigdata
 libhugetlbfs: Computing
 libibmad: sig-recycle
 libical: Base-service
@@ -2373,7 +2377,7 @@ libimagequant: Programming-language
 libimobiledevice: Desktop
 libindicator: Programming-language
 libinput: Computing
-libiodbc: sig-ai-bigdata
+libiodbc: bigdata
 libipt: Computing
 libiptcdata: Desktop
 libisal: Desktop
@@ -2518,6 +2522,7 @@ libsndfile: Computing
 libsodium: Others
 libsolv: sig-OS-Builder
 libsoup: Desktop
+libsoup3: GNOME
 libspatialaudio: sig-epol
 libspatialite: dev-utils
 libspectre: Programming-language
@@ -2529,7 +2534,7 @@ libstatgrab: sig-UKUI
 libstatistics_collector: sig-ROS
 libstemmer: Programming-language
 libstoragemgmt: Runtime
-libsvm: sig-ai-bigdata
+libsvm: ai
 libsysstat: sig-UKUI
 libtalloc: Storage
 libtar: Base-service
@@ -2593,6 +2598,7 @@ libwpg: dev-utils
 libx86emu: Desktop
 libxcb: Desktop
 libxcrypt: Base-service
+libxcvt: GNOME
 libxfce4ui: xfce
 libxfce4util: xfce
 libxkbcommon: Desktop
@@ -2603,7 +2609,7 @@ libxmlb: Others
 libxmlpp: sig-compat-winapp
 libxshmfence: Desktop
 libxslt: Base-service
-libxsmm: sig-ai-bigdata
+libxsmm: ai
 libyami: Application
 libyaml: Base-service
 libyaml_vendor: sig-ROS
@@ -2619,7 +2625,7 @@ lightdm: Desktop
 lightdm-gtk: Desktop
 lightdm-gtk-greeter: sig-recycle
 lightdm-kiran-greeter: sig-KIRAN-DESKTOP
-lightgbm: sig-ai-bigdata
+lightgbm: ai
 lighttpd: Networking
 lilv: sig-epol
 lilypond: sig-desktop-apps
@@ -2720,7 +2726,7 @@ lxterminal: xfce
 lynx: Application
 lz4: Base-service
 lz4-java: sig-Java
-lzip: sig-ai-bigdata
+lzip: bigdata
 lzma: sig-recycle
 lzma-java: sig-Java
 lzo: Base-service
@@ -2731,7 +2737,7 @@ m2crypto: Runtime
 m4: Base-service
 mac-robber: Others
 madan-fonts: Desktop
-mahout: sig-ai-bigdata
+mahout: bigdata
 mailcap: Base-service
 maildrop: Application
 mailman: Application
@@ -2900,7 +2906,7 @@ minlog: dev-utils
 mkeuleros: Private
 mksh: System-tool
 mlocate: Base-service
-mlpack: sig-ai-bigdata
+mlpack: ai
 mm-common: GNOME
 mobile-broadband-provider-info: Networking
 mocha: dev-utils
@@ -3007,7 +3013,7 @@ navigation_msgs: sig-ROS
 navilu-fonts: Desktop
 nbdkit: Others
 ncbi-blast: sig-bio
-nccl: sig-MindSpore
+nccl: ai
 ncdu: dev-utils
 ncompress: Base-service
 ncurses: Base-service
@@ -3423,7 +3429,7 @@ nodejsporter: dev-utils
 nodelet_core: sig-ROS
 nodeunit: sig-nodejs
 noggit: sig-Java
-notebook: sig-ai-bigdata
+notebook: bigdata
 notepadqq: Desktop
 notification-daemon: Networking
 nototools: Programming-language
@@ -3484,7 +3490,7 @@ ocaml-ounit: Application
 ocaml-xml-light: dev-utils
 oci-systemd-hook: sig-recycle
 ocl-icd: Base-service
-octave: sig-ai-bigdata
+octave: ai
 oddjob: Base-service
 oec-application: sig-Compatibility-Infra
 oec-hardware: sig-Compatibility-Infra
@@ -3492,16 +3498,16 @@ oecp: sig-Compatibility-Infra
 oemaker: sig-OS-Builder
 ogdi: dev-utils
 ohc: sig-Java
-okhttp: sig-MindSpore
+okhttp: ai
 okteta: sig-KDE
 oldstandard-sfd-fonts: Application
-ompi: sig-MindSpore
+ompi: ai
 onboard: Others
-oneDNN: sig-ai-bigdata
+oneDNN: ai
 ongres-scram: dev-utils
 ongres-stringprep: sig-Java
 oniguruma: Base-service
-oozie: sig-ai-bigdata
+oozie: bigdata
 opa-psm2: dev-utils
 open-chinese-fonts: sig-mate-desktop
 open-iscsi: Storage
@@ -3526,14 +3532,14 @@ openapi-spec-validator: sig-python-modules
 openblas: Programming-language
 openbox: Desktop
 opencc: Others
-opencl: sig-ai-bigdata
-opencl-clhpp: sig-MindSpore
-opencl-filesystem: sig-ai-bigdata
-opencl-headers: sig-ai-bigdata
+opencl: ai
+opencl-clhpp: ai
+opencl-filesystem: ai
+opencl-headers: ai
 openconnect: Application
 opencore-amr: Desktop
 opencryptoki: dev-utils
-opencv: sig-ai-bigdata
+opencv: ai
 opendesign: sig-OpenDesign
 opendesign-backend: sig-OpenDesign
 opendesign-build: sig-OpenDesign
@@ -3547,7 +3553,7 @@ openeuler-docker-images: sig-CloudNative
 openeuler-jenkins: sig-Gatekeeper
 openeuler-obs: sig-Gatekeeper
 openeuler-os-build: sig-Gatekeeper
-openeuler-wiki-bot: sig-ai-bigdata
+openeuler-wiki-bot: bigdata
 opengauss-dcf: DB
 opengauss-server: DB
 openhpi: System-tool
@@ -3565,11 +3571,11 @@ openldap: Networking
 openmotif: Private
 openmpi: Application
 opennlp: Application
-opennn: sig-ai-bigdata
+opennn: ai
 openoffice-lv: Application
 openoffice.org-dict-cs_CZ: Application
 openpgm: dev-utils
-openpmix: sig-MindSpore
+openpmix: ai
 openresty: sig-OpenResty
 openresty-openssl: sig-OpenResty
 openresty-openssl111: sig-OpenResty
@@ -3730,7 +3736,7 @@ paratype-pt-sans-fonts: Desktop
 parboiled: sig-Java
 parfait: dev-utils
 parole: xfce
-parquet-format: sig-ai-bigdata
+parquet-format: bigdata
 partclone: System-tool
 parted: Storage
 passenger: Application
@@ -5322,7 +5328,7 @@ pesign: Application
 pesign-obs-integration: sig-security-facility
 pgadmin4-server: DB
 pgpool2: DB
-phantomjs: sig-ai-bigdata
+phantomjs: bigdata
 phodav: GNOME
 phoenix: DB
 phonon: Others
@@ -5426,7 +5432,7 @@ pptp: Application
 predixy: Application
 prefetch_tuning: A-Tune
 prelink: Application
-presto: sig-ai-bigdata
+presto: bigdata
 process1: dev-utils
 procinfo: Others
 procmail: Networking
@@ -5440,12 +5446,12 @@ properties-maven-plugin: sig-Java
 proselint: Application
 protobuf: sig-CloudNative
 protobuf-c: Runtime
-protobuf2: sig-ai-bigdata
+protobuf2: bigdata
 protoparser: sig-Java
 protostream: sig-Java
 proxool: sig-Java
 proxytoys: sig-Java
-prrte: sig-MindSpore
+prrte: ai
 ps_mem: Computing
 psacct: Application
 psm: dev-utils
@@ -6013,7 +6019,7 @@ python-falcon: sig-python-modules
 python-fastavro: sig-python-modules
 python-fasteners: sig-python-modules
 python-fastimport: sig-python-modules
-python-fastjsonschema: sig-ai-bigdata
+python-fastjsonschema: bigdata
 python-fastnumbers: sig-python-modules
 python-fastpurge: sig-python-modules
 python-faust: Programming-language
@@ -6141,7 +6147,7 @@ python-hkdf: sig-python-modules
 python-hl7: sig-python-modules
 python-hole: sig-python-modules
 python-holidays: sig-python-modules
-python-horovod: sig-ai-bigdata
+python-horovod: ai
 python-hpack: sig-python-modules
 python-hstspreload: sig-python-modules
 python-html2text: sig-python-modules
@@ -6202,7 +6208,7 @@ python-ipaddress: Networking
 python-ipdb: sig-python-modules
 python-ipgetter2: sig-python-modules
 python-iptools: sig-python-modules
-python-ipykernel: sig-ai-bigdata
+python-ipykernel: bigdata
 python-ipython_genutils: sig-python-modules
 python-ironic-inspector-client: sig-openstack
 python-ironic-lib: sig-openstack
@@ -6245,8 +6251,8 @@ python-jsonpath-rw-ext: sig-python-modules
 python-jsonpointer: Base-service
 python-jsonschema: Base-service
 python-junitxml: sig-python-modules
-python-jupyter-client: sig-ai-bigdata
-python-jupyter-core: sig-ai-bigdata
+python-jupyter-client: bigdata
+python-jupyter-core: bigdata
 python-justbytes: sig-python-modules
 python-jwcrypto: sig-python-modules
 python-jwt: Base-service
@@ -6401,12 +6407,12 @@ python-mygpoclient: sig-python-modules
 python-mypy: sig-python-modules
 python-mypy-extensions: sig-openstack
 python-mysqlclient: sig-python-modules
-python-myst-parser: sig-ai-bigdata
+python-myst-parser: bigdata
 python-nb2plots: sig-python-modules
-python-nbconvert: sig-ai-bigdata
-python-nbformat: sig-ai-bigdata
-python-nbsphinx: sig-ai-bigdata
-python-nbval: sig-ai-bigdata
+python-nbconvert: bigdata
+python-nbformat: bigdata
+python-nbsphinx: bigdata
+python-nbval: bigdata
 python-nbxmpp: sig-mate-desktop
 python-ndjson-testrunner: sig-python-modules
 python-neomodel: sig-python-modules
@@ -6831,7 +6837,7 @@ python-requests-mock: sig-openstack
 python-requests-ntlm: sig-python-modules
 python-requests-oauthlib: sig-python-modules
 python-requests-toolbelt: sig-python-modules
-python-requests-unixsocket: sig-ai-bigdata
+python-requests-unixsocket: bigdata
 python-requestsexceptions: sig-openstack
 python-requirementslib: sig-openstack
 python-responses: sig-openstack
@@ -6967,7 +6973,7 @@ python-sphinxcontrib-bibtex: sig-python-modules
 python-sphinxcontrib-blockdiag: sig-python-modules
 python-sphinxcontrib-devhelp: sig-python-modules
 python-sphinxcontrib-fulltoc: sig-python-modules
-python-sphinxcontrib-github-alt: sig-ai-bigdata
+python-sphinxcontrib-github-alt: bigdata
 python-sphinxcontrib-htmlhelp: sig-python-modules
 python-sphinxcontrib-httpdomain: sig-python-modules
 python-sphinxcontrib-issuetracker: sig-python-modules
@@ -7040,7 +7046,7 @@ python-tenacity: sig-python-modules
 python-tensorboard: A-Tune
 python-tensorboard-plugin-wit: A-Tune
 python-termcolor: sig-python-modules
-python-terminado: sig-ai-bigdata
+python-terminado: bigdata
 python-terminaltables: sig-python-modules
 python-test-server: sig-python-modules
 python-testpath: sig-python-modules
@@ -7243,7 +7249,7 @@ python3-docs: sig-python-modules
 python3-mallard-ducktype: Base-service
 python_cmake_module: sig-ROS
 python_qt_binding: sig-ROS
-pytorch: sig-ai-bigdata
+pytorch: ai
 pytz: Desktop
 pyusb: dev-utils
 pywbem: Programming-language
@@ -7252,7 +7258,7 @@ pyxdg: Programming-language
 qca: sig-KDE
 qdox: Base-service
 qemu: Virt
-qfs: sig-ai-bigdata
+qfs: bigdata
 qgnomeplatform: GNOME
 qhull: Others
 qjson: sig-UKUI
@@ -7261,8 +7267,8 @@ qperf: Application
 qpid-proton: Base-service
 qpid-proton-java: sig-Java
 qrencode: Desktop
-qrupdate: sig-ai-bigdata
-qscintilla: sig-ai-bigdata
+qrupdate: bigdata
+qscintilla: bigdata
 qstardict: sig-desktop-apps
 qt: Runtime
 qt-assistant-adp: Others
@@ -7320,7 +7326,7 @@ racon: sig-bio
 radiaTest: sig-QA
 radvd: Networking
 ragel: dev-utils
-rain: sig-ai-bigdata
+rain: bigdata
 randomizedtesting: Base-service
 ranger: dev-utils
 rapidjson: Base-service
@@ -7357,8 +7363,8 @@ recode: Base-service
 redhat-menus: sig-recycle
 redis: Others
 redis-protocol: Application
-redis5: sig-ai-bigdata
-redis6: sig-ai-bigdata
+redis5: bigdata
+redis6: bigdata
 redland: Runtime
 redshift: sig-UKUI
 reflectasm: dev-utils
@@ -7852,7 +7858,7 @@ security-tool: sig-security-facility
 sed: Base-service
 selinux-policy: sig-security-facility
 sendmail: Desktop
-sentencepiece: sig-MindSpore
+sentencepiece: ai
 seqtk: sig-bio
 sequence-library: sig-Java
 serd: sig-epol
@@ -7942,7 +7948,7 @@ source-highlight: Desktop
 sox: Others
 soxr: Desktop
 spamassassin: Application
-spark: sig-ai-bigdata
+spark: bigdata
 sparsehash: sig-epol
 spatial4j: sig-Java
 spawn-fcgi: Networking
@@ -8002,7 +8008,7 @@ stax2-api: sig-Java
 staxmapper: sig-Java
 std_msgs: sig-ROS
 stix-fonts: Desktop
-storm: sig-ai-bigdata
+storm: bigdata
 strace: Computing
 stratovirt: Virt
 stream-lib: sig-Java
@@ -8019,7 +8025,7 @@ subversion: Base-service
 sudo: Base-service
 suitesparse: Others
 summer2022: sig-OSCourse
-sundials: sig-ai-bigdata
+sundials: ai
 sunpinyin: Desktop
 supermin: System-tool
 sushi: Base-service
@@ -8083,14 +8089,14 @@ tcpdump: Networking
 tcsh: Base-service
 technical-certification: sig-Compatibility-Infra
 teckit: dev-utils
-telegraf: sig-ai-bigdata
+telegraf: bigdata
 telepathy-filesystem: Desktop
 telepathy-glib: Desktop
 telepathy-logger: Desktop
 telnet: Networking
 template-glib: GNOME
 tengine: Application
-tensorflow: sig-ai-bigdata
+tensorflow: ai
 tepl: GNOME
 tesseract: Application
 tesseract-tessdata: Application
@@ -8594,7 +8600,7 @@ yaml-cpp03: Base-service
 yaml_cpp_vendor: sig-ROS
 yapet: System-tool
 yasm: Base-service
-ycsb: sig-ai-bigdata
+ycsb: bigdata
 yecht: sig-Java
 yelp: Desktop
 yelp-tools: GNOME
@@ -8618,7 +8624,7 @@ zd1211-firmware: Networking
 zenity: Desktop
 zephyr: sig-Zephyr
 zephyr-cn: sig-Zephyr
-zeppelin: sig-ai-bigdata
+zeppelin: bigdata
 zerofree: Others
 zeromq: dev-utils
 zimg: Desktop
@@ -8629,7 +8635,7 @@ zipkin: sig-epol
 zlib: Base-service
 zlog: sig-KIRAN-DESKTOP
 znerd-oss-parent: sig-Java
-zookeeper: sig-ai-bigdata
+zookeeper: bigdata
 zopfli: Base-service
 zram-generator: sig-CloudNative
 zsh: Base-service
