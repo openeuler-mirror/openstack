@@ -2374,6 +2374,9 @@ yoga:
   ironic-python-agent-builder: 4.0.1
   ironic-tempest-plugin: 2.4.0
   ironic-ui: 5.1.0
+  kayobe: 12.0.0.0rc1
+  kayobe-config: 12.0.0.0rc1
+  kayobe-config-dev: 12.0.0.0rc1
   keystone: 21.0.0
   keystone_tempest_plugin: 0.9.0
   keystoneauth1: 4.5.0
