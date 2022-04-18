@@ -558,6 +558,7 @@ compface: Application
 compiler-rt: Compiler
 compiler-test: sig-QA
 compliance: sig-compliance
+compliance-sbom: sig-compliance
 compress-lzf: Application
 comps-extras: Desktop
 concurrent-trees: dev-utils
