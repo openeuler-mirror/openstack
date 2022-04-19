@@ -137,7 +137,7 @@
 
         [network]
         public_network_id = {{ public_network_id.stdout }}
-        project_network_cidr = 172.188.0.0/16
+        project_network_cidr = 172.189.0.0/16
         floating_network_name = public-network
 
         [network-feature-enabled]
