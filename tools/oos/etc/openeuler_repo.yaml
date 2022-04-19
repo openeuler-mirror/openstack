@@ -433,6 +433,8 @@ caja: sig-mate-desktop
 caja-extensions: sig-mate-desktop
 cal10n: dev-utils
 calc: Application
+calcite: bigdata
+callaudiod: GNOME
 calls: GNOME
 canal: DB
 canfestival: sig-industrial-control
@@ -516,6 +518,7 @@ clutter-gst3: Desktop
 clutter-gtk: Desktop
 cmake: Programming-language
 cmake_modules: sig-ROS
+cmark: GNOME
 cmocka: Programming-language
 cmockery: sig-recycle
 cobbler: sig-OS-Builder
@@ -639,6 +642,7 @@ d-feet: Desktop
 daala: sig-epol
 dain-snappy: sig-Java
 dash: Application
+datafu: bigdata
 datanucleus-api-jdo: sig-Java
 datanucleus-core: sig-Java
 datanucleus-maven-parent: sig-Java
@@ -929,6 +933,7 @@ fcitx-qt5: Desktop
 fcitx-sunpinyin: Desktop
 fcoe-utils: System-tool
 fdupes: Application
+feedbackd: GNOME
 felix-bundlerepository: sig-Java
 felix-framework: sig-Java
 felix-gogo-command: sig-Java
@@ -1116,6 +1121,7 @@ gffread: sig-bio
 gflags: Programming-language
 gfs2-utils: System-tool
 ghostscript: Base-service
+gi-docgen: GNOME
 giflib: Desktop
 gigolo: xfce
 gimp: Others
@@ -2001,7 +2007,7 @@ kdevelop: sig-KDE
 kdevelopkdevelop-pg-qt: sig-KDE
 kdl_parser: sig-ROS
 kdump-anaconda-addon: Base-service
-keepalived: Programming-language
+keepalived: Networking
 kernel: Kernel
 kernel-portal: Kernel
 kexec-tools: Base-service
@@ -2224,6 +2230,7 @@ libXxf86dga: Desktop
 libXxf86misc: sig-recycle
 libXxf86vm: Desktop
 libabigail: Application
+libadwaita: GNOME
 libaec: Application
 libaesgm: Others
 libaio: Storage
@@ -6936,6 +6943,7 @@ python-slacker: sig-python-modules
 python-slip: Base-service
 python-slixmpp: sig-python-modules
 python-slugify: sig-python-modules
+python-smartypants: GNOME
 python-smmap: sig-python-modules
 python-sniffio: sig-python-modules
 python-snowballstemmer: Programming-language
@@ -7933,6 +7941,7 @@ socat: Application
 socket_wrapper: Programming-language
 soem: sig-industrial-control
 soes: sig-industrial-control
+sofia-sip: GNOME
 softhsm: sig-security-facility
 solr: Application
 sombok: Base-service
@@ -8280,7 +8289,7 @@ ukui-wallpapers: sig-UKUI
 ukui-window-switch: sig-UKUI
 ukwm: sig-UKUI
 ukylin-feedback-client: sig-UKUI
-umoci: Others
+umoci: sig-CloudNative
 umockdev: Base-service
 uname-build-checks: Base-service
 unbound: Networking
@@ -8420,6 +8429,7 @@ wisdom-advisor: A-Tune
 wmctrl: Application
 woff2: Desktop
 woodstox-core: dev-utils
+wordpress: sig-epol
 words: Base-service
 wpa_supplicant: Base-service
 wpebackend-fdo: dev-utils
