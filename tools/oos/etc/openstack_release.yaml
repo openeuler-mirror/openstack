@@ -1543,7 +1543,7 @@ victoria:
   heat-dashboard: 4.0.1
   heat-tempest-plugin: 1.1.0
   heat-translator: 2.1.0
-  horizon: 18.6.3
+  horizon: 18.6.4
   ironic: 16.0.4
   ironic-inspector: 10.4.2
   ironic-lib: 4.4.2
