@@ -45,15 +45,17 @@ openEuler OpenStack SIG致力于结合多样性算力为openstack社区贡献更
 OpenStack SIG通过用户反馈等方式收集OpenStack版本需求，经过SIG组内成员公开讨论决定OpenStack的版本演进路线。规划中的版本可能因为需求更变、人力变动等原因进行调整。OpenStack SIG欢迎更多开发者、厂商参与，共同完善openEuler的OpenStack支持。
 
 ● - 已支持
-○ - 规划中
+○ - 规划中/开发中
+▲ - 部分openEuler版本支持
 
 |                         | Queens | Rocky | Train | Ussuri | Victoria | Wallaby | Xena | Yoga |
 |:-----------------------:|:------:|:-----:|:-----:|:------:|:--------:|:-------:|:----:|:----:|
+| openEuler 20.03 LTS SP1 |        |       |   ○   |        |          |         |      |      |
 | openEuler 20.03 LTS SP2 |    ●   |   ●   |       |        |          |         |      |      |
 | openEuler 20.03 LTS SP3 |    ●   |   ●   |   ●   |        |          |         |      |      |
 |     openEuler 21.03     |        |       |       |        |     ●    |         |      |      |
 |     openEuler 21.09     |        |       |       |        |          |    ●    |      |      |
-|   openEuler 22.03 LTS   |        |       |   ○   |        |          |    ○    |      |      |
+|   openEuler 22.03 LTS   |        |       |   ●   |        |          |    ●    |      |      |
 |   openEuler 22.09       |        |       |       |        |          |         |      |   ○  |
 
 
@@ -70,23 +72,30 @@ OpenStack SIG通过用户反馈等方式收集OpenStack版本需求，经过SIG�
 | Placement  |        |       |   ●   |     ●    |    ●    |
 |   Trove    |    ●   |   ●   |   ●   |          |    ●    |
 |   Kolla    |    ●   |   ●   |   ●   |          |    ●    |
-|   Rally    |    ●   |   ●   |       |          |         |
+|   Rally    |    ▲   |   ▲   |       |          |         |
 |   Swift    |        |       |   ●   |          |    ●    |
-|    Heat    |        |       |   ●   |          |         |
-| Ceilometer |        |       |   ●   |          |         |
-|    Aodh    |        |       |   ●   |          |         |
-|   Cyborg   |        |       |   ●   |          |         |
+|    Heat    |        |       |   ●   |          |    ▲    |
+| Ceilometer |        |       |   ●   |          |    ▲    |
+|    Aodh    |        |       |   ●   |          |    ▲    |
+|   Cyborg   |        |       |   ●   |          |    ▲    |
 |   Gnocchi  |        |       |   ●   |          |    ●    |
 
-Note: openEuler 20.03 LTS SP2不支持Rally
+Note:
+
+1. openEuler 20.03 LTS SP2不支持Rally
+2. openEuler 21.09 不支持Heat、Ceilometer、Swift、Aodh和Cyborg
 
 ### oepkg软件仓地址列表
 
 Queens、Rocky版本的支持放在官方认证的第三方软件平台oepkg:
 
-20.03-LTS-SP2 Rocky： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/rocky/
+20.03-LTS-SP2 Rocky： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/queens/
+
+20.03-LTS-SP3 Rocky： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP3/budding-openeuler/openstack/rocky/
 
 20.03-LTS-SP2 Queens： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/queens/
+
+20.03-LTS-SP3 Rocky： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP3/budding-openeuler/openstack/rocky/
 
 ## 本项目目录结构
 
