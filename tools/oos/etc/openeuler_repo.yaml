@@ -305,6 +305,7 @@ avalon-framework: sig-Java
 avalon-logkit: sig-Java
 avocado: sig-QA
 avocado-vt: sig-QA
+avor: bigdata
 avro: Application
 aws-sdk-java: sig-Java
 axel: sig-epol
@@ -782,6 +783,7 @@ dracut: Base-service
 drbd: sig-Ha
 dropwatch: Networking
 drpm: Base-service
+druid: bigdata
 dsoftbus_standard: sig-embedded
 dtc: Base-service
 dtkcore: sig-DDE
@@ -1168,6 +1170,7 @@ glib-networking: GNOME
 glib2: Base-service
 glibc: Computing
 glibmm24: Others
+glm: dev-utils
 globalization: G11N
 glog: Application
 glpk: ai
@@ -1323,6 +1326,7 @@ grantlee-qt5: sig-UKUI
 graphene: GNOME
 graphite2: Desktop
 graphviz: Desktop
+greatsql: DB
 grep: Base-service
 grilo: Desktop
 grilo-plugins: GNOME
@@ -1669,6 +1673,7 @@ image_transport_plugins: sig-ROS
 imake: Desktop
 imgbased: oVirt
 imlib2: sig-UKUI
+impala: bigdata
 imsettings: Desktop
 imwheel: sig-UKUI
 incubator-mxnet: ai
@@ -2109,6 +2114,7 @@ kiran-session-manager: sig-KIRAN-DESKTOP
 kiran-themes: sig-KIRAN-DESKTOP
 kiran-wallpapers: sig-KIRAN-DESKTOP
 kiran-widgets-qt5: sig-KIRAN-DESKTOP
+kite-sdk: bigdata
 kiwi: Base-service
 kiwi-dlimage: Private
 kiwi-template-openEuler: Private
@@ -2116,6 +2122,7 @@ kmod: Computing
 kmod-drbd90: sig-Ha
 kmod-kvdo: Runtime
 kmodtool: dev-utils
+knox: bigdata
 kohsuke-pom: Application
 kpatch: Base-service
 krb5: Base-service
@@ -2128,6 +2135,7 @@ kubeedge: sig-Edge
 kubekey: sig-KubeSphere
 kubernetes: sig-CloudNative
 kubevirt: sig-CloudNative
+kudu: bigdata
 kunpengsecl: sig-security-facility
 kurdit-unikurd-web-fonts: Desktop
 kvm-bindings: Virt
@@ -2172,7 +2180,7 @@ lastpass-cli: Application
 latex2html: Others
 latexmk: sig-perl-modules
 lato-fonts: Desktop
-latrace: Base-service
+latrace: sig-recycle
 launch: sig-ROS
 launch_ros: sig-ROS
 layer-shell-qt: sig-KDE
@@ -2652,6 +2660,7 @@ live555: sig-epol
 livy: DB
 lklug-fonts: System-tool
 lksctp-tools: Application
+llama: bigdata
 lldb: dev-utils
 lldpad: Networking
 llvm: Compiler
