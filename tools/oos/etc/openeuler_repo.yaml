@@ -2107,6 +2107,7 @@ kiran-log: sig-KIRAN-DESKTOP
 kiran-menu: sig-KIRAN-DESKTOP
 kiran-panel: sig-KIRAN-DESKTOP
 kiran-qdbusxml2cpp: sig-KIRAN-DESKTOP
+kiran-qt5-integration: sig-KIRAN-DESKTOP
 kiran-screensaver: sig-KIRAN-DESKTOP
 kiran-screensaver-dialog: sig-KIRAN-DESKTOP
 kiran-session-guard: sig-KIRAN-DESKTOP
