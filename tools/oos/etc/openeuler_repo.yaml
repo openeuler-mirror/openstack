@@ -465,6 +465,7 @@ ceph-ansible: sig-ceph
 ceph-csi: sig-ceph
 ceph-deploy: sig-ceph
 ceph_dev: sig-ceph
+cereal: dev-utils
 ceres-solver: sig-epol
 certmonger: sig-security-facility
 cfitsio: dev-utils
