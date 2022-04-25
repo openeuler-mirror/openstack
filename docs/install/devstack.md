@@ -74,12 +74,14 @@
 3. 初始化devstack环境配置
 
     ```
-    创建stack用户
+    # 创建stack用户
     /opt/devstack/tools/create-stack-user.sh
-    修改目录权限
+    # 修改目录权限
     chown -R stack:stack /opt/devstack
     chmod -R 755 /opt/devstack
     chmod -R 755 /opt/stack
+    # 切换到要部署的openstack版本分支，以yoga为例，不切换的话，默认安装的是master版本的openstack
+    git checkout stable/yoga
     ```
 
 4. 初始化devstack配置文件
@@ -97,12 +99,10 @@
     RABBIT_PASSWORD=root
     SERVICE_PASSWORD=root
     ADMIN_PASSWORD=root
-    GITBRANCH=stable/yoga
     OVN_BUILD_FROM_SOURCE=True
     ```
-    这里安装的是OpenStack Yoga版本，如果想装master版，删除BRANCH配置项即可。
 
-    另外，openEuler没有提供OVN的RPM软件包，因此需要配置`OVN_BUILD_FROM_SOURCE=True`, 从源码编译OVN
+    openEuler没有提供OVN的RPM软件包，因此需要配置`OVN_BUILD_FROM_SOURCE=True`, 从源码编译OVN
 
     另外如果使用的是arm64虚拟机环境，则需要配置libvirt嵌套虚拟化，在`local.conf`中追加如下配置：
 
