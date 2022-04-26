@@ -63,5 +63,15 @@
     输出：指定OpenStack版本的目录，其中包含各个项目的json文件。
 
         example目录中包含了train版本生成的文件示例。
-    
+
+    环境变量: None
+
+5. check_openstack_ci_status.py
+
+    功能：获取openstack社区openEuler相关CI的最新5次执行结果
+
+    输入: `python3 check_openstack_ci_status.py`
+
+    输出：包含最新5次CI结果的html文件
+
     环境变量: None

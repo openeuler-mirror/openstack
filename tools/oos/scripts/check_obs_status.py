@@ -217,5 +217,6 @@ def main():
     elif output_type == 'gitee':
         create_or_update_issue(result)
 
+
 if __name__ == '__main__':
     main()
