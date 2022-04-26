@@ -53,14 +53,11 @@
 
     **openEuler master**:
 
-    
     ```
     yum remove python3-pip # 系统的pip与devstack pip冲突，需要先删除
     # master的虚机环境缺少了一些依赖，devstack不会自动安装，需要手动安装
     yum install iptables tar wget python3-devel httpd-devel iscsi-initiator-utils libvirt python3-libvirt qemu memcached
-
     ```
-
 
 3. 下载devstack
 
@@ -71,7 +68,7 @@
     git clone https://opendev.org/openstack/devstack
     ```
 
-3. 初始化devstack环境配置
+4. 初始化devstack环境配置
 
     ```
     # 创建stack用户
@@ -84,7 +81,7 @@
     git checkout stable/yoga
     ```
 
-4. 初始化devstack配置文件
+5. 初始化devstack配置文件
 
     ```
     切换到stack用户
@@ -117,46 +114,55 @@
     sudo dnf install syslinux-nonlinux
     ```
 
-    如果是在openEuler master上部署devstack，则还需要修改源码
+    **openEuler master的特殊配置**： 由于devstack还没有适配最新的openEuler，我们需要手动修复一些问题：
 
-    ```
-    vi /opt/devstack/tools/fixup_stuff.sh
-    把fixup_openeuler方法中的所有echo语句删掉
-    (echo '[openstack-ci]'
-    echo 'name=openstack'
-    echo 'baseurl=https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack-master-ci/'$arch'/'
-    echo 'enabled=1'
-    echo 'gpgcheck=0') | sudo tee -a /etc/yum.repos.d/openstack-master.repo > /dev/null
-    ```
+    1. 修改devstack源码
 
-    另外，openEuler master上的OpenStack horizon有BUG，无法正常安装。这里我们暂时不安装horizon，修改`local.conf`，新增一行：
+        ```
+        vi /opt/devstack/tools/fixup_stuff.sh
+        把fixup_openeuler方法中的所有echo语句删掉
+        (echo '[openstack-ci]'
+        echo 'name=openstack'
+        echo 'baseurl=https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack-master-ci/'$arch'/'
+        echo 'enabled=1'
+        echo 'gpgcheck=0') | sudo tee -a /etc/yum.repos.d/openstack-master.repo > /dev/null
+        ```
+    2. 修改requirements源码
 
-    ```
-    [[local|localrc]]
-    disable_service horizon
-    ```
+        Yoga版keystone的依赖`setproctitle`的devstack默认版本不支持python3.10，需要升级，手动下载requirements项目并修改
+        ```
+        cd /opt/stack
+        git clone https://opendev.org/openstack/requirements --branch stable/yoga
+        vi /opt/stack/requirements/upper-constraints.txt
+        setproctitle===1.2.3
+        ```
 
-    如果确实有对horizon的需求，则需要解决以下问题：
-    ```
-    # 1. horizon依赖的pyScss默认为1.3.7版本，不支持python3.10
-    # 解决方法：需要提前clone`requirements`项目并修改代码
-    cd /opt/stack
-    git clone https://opendev.org/openstack/requirements
-    vi /opt/stack/requirements/upper-constraints.txt
-    pyScss===1.4.0
+    3. OpenStack horizon有BUG，无法正常安装。这里我们暂时不安装horizon，修改`local.conf`，新增一行：
 
-    # 2. horizon依赖httpd的mod_wsgi插件，但目前openEuler的mod_wsgi构建异常（2022-04-25）（解决后yum install mod_wsgi即可），无法从yum安装
-    # 解决方法：手动源码build mod_wsgi并配置，该过程较复杂，这里略过
-    ```
+        ```
+        [[local|localrc]]
+        disable_service horizon
+        ```
 
-    另外，openEuler master上的dstat服务依赖的`pcp-system-tools`构建异常（2022-04-25）（解决后yum install pcp-system-tools即可），无法从yum安装，暂时先不安装dstat
+        如果确实有对horizon的需求，则需要解决以下问题：
+        ```
+        # 1. horizon依赖的pyScss默认为1.3.7版本，不支持python3.10
+        # 解决方法：需要提前clone`requirements`项目并修改代码
+        vi /opt/stack/requirements/upper-constraints.txt
+        pyScss===1.4.0
 
-    ```
-    [[local|localrc]]
-    disable_service dstat
-    ```
+        # 2. horizon依赖httpd的mod_wsgi插件，但目前openEuler的mod_wsgi构建异常（2022-04-25）（解决后yum install mod_wsgi即可），无法从yum安装
+        # 解决方法：手动源码build mod_wsgi并配置，该过程较复杂，这里略过
+        ```
 
-5. 部署OpenStack
+    4. dstat服务依赖的`pcp-system-tools`构建异常（2022-04-25）（解决后yum install pcp-system-tools即可），无法从yum安装，暂时先不安装dstat
+
+        ```
+        [[local|localrc]]
+        disable_service dstat
+        ```
+
+6. 部署OpenStack
 
     进入devstack目录，执行`./stack.sh`，等待OpenStack完成安装部署。
 
