@@ -58,6 +58,34 @@
         openstack security group rule create default --ingress --protocol icmp
         openstack security group rule create default --ingress --protocol tcp --dst-port 22
 
+    - name: Update swift configuration for tempest
+      shell: |
+        sed -i "s/operator_roles = admin,user$/operator_roles = admin,user,member/" /etc/swift/proxy-server.conf
+        sed -i "s/ keystoneauth/ formpost tempurl keystoneauth staticweb crossdomain/" /etc/swift/proxy-server.conf
+        sed -i "s/egg:swift#versioned_writes/egg:swift#versioned_writes\\nallow_versioned_writes=True/" /etc/swift/proxy-server.conf
+        cat << EOF >> /etc/swift/proxy-server.conf
+
+        [filter:staticweb]
+        use = egg:swift#staticweb
+
+        [filter:crossdomain]
+        use = egg:swift#crossdomain
+
+        [filter:tempurl]
+        use = egg:swift#tempurl
+
+        [filter:formpost]
+        use = egg:swift#formpost
+        EOF
+
+        openstack role create ResellerAdmin
+
+    - name: Restart swift-proxy service
+      systemd:
+        name: openstack-swift-proxy
+        state: restarted
+        enabled: True
+
     - name: Genereate tempest folder
       shell: |
         tempest init mytest
@@ -151,6 +179,11 @@
 
         [image-feature-enabled]
         import_image = true
+
+        [object-storage-feature-enabled]
+        # This feature need swift-container-sync daemon service be alive.
+        # openEuler doesn't provide this service currently.
+        container_sync = false
 
         [validation]
         image_ssh_user = cirros

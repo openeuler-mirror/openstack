@@ -73,17 +73,22 @@
   tasks:
     - name: Create initial rings
       shell: |
+        # TODO: let all in one works as well
         cd /etc/swift
         swift-ring-builder account.builder create 10 1 1
-        swift-ring-builder account.builder add --region 1 --zone 1 --ip "{{ hostvars['controller']['ansible_default_ipv4']['address'] }}" --port 6202  --device {{ item }} --weight 100
+        swift-ring-builder account.builder add --region 1 --zone 1 --ip "{{ hostvars['storage1']['ansible_default_ipv4']['address'] }}" --port 6202  --device {{ item }} --weight 100
+        swift-ring-builder account.builder add --region 1 --zone 1 --ip "{{ hostvars['storage2']['ansible_default_ipv4']['address'] }}" --port 6202  --device {{ item }} --weight 100
         swift-ring-builder account.builder rebalance
 
         swift-ring-builder container.builder create 10 1 1
-        swift-ring-builder container.builder add --region 1 --zone 1 --ip "{{ hostvars['controller']['ansible_default_ipv4']['address'] }}" --port 6201  --device {{ item }} --weight 100
+        swift-ring-builder container.builder add --region 1 --zone 1 --ip "{{ hostvars['storage1']['ansible_default_ipv4']['address'] }}" --port 6201  --device {{ item }} --weight 100
+        swift-ring-builder container.builder add --region 1 --zone 1 --ip "{{ hostvars['storage2']['ansible_default_ipv4']['address'] }}" --port 6201  --device {{ item }} --weight 100
+
         swift-ring-builder container.builder rebalance
 
         swift-ring-builder object.builder create 10 1 1
-        swift-ring-builder object.builder add --region 1 --zone 1 --ip "{{ hostvars['controller']['ansible_default_ipv4']['address'] }}" --port 6200  --device {{ item }} --weight 100
+        swift-ring-builder object.builder add --region 1 --zone 1 --ip "{{ hostvars['storage1']['ansible_default_ipv4']['address'] }}" --port 6200  --device {{ item }} --weight 100
+        swift-ring-builder object.builder add --region 1 --zone 1 --ip "{{ hostvars['storage2']['ansible_default_ipv4']['address'] }}" --port 6200  --device {{ item }} --weight 100
         swift-ring-builder object.builder rebalance
       with_items: "{{ swift_storage_devices }}"
 

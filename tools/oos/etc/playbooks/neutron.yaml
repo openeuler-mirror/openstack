@@ -22,6 +22,7 @@
           - openstack-neutron
           - openstack-neutron-linuxbridge
           - openstack-neutron-ml2
+          - openstack-neutron-metering-agent
           - ebtables
           - ipset
 
@@ -72,7 +73,7 @@
 
         [DEFAULT]
         core_plugin = ml2
-        service_plugins = router
+        service_plugins = router, metering
         allow_overlapping_ips = true
         transport_url = rabbit://openstack:{{ rabbitmq_password }}@{{ hostvars['controller']['ansible_default_ipv4']['address'] }}
         auth_strategy = keystone
@@ -198,6 +199,12 @@
     - name: Start neutron-l3-agent
       systemd:
         name: neutron-l3-agent
+        state: started
+        enabled: True
+
+    - name: Start neutron-metering-agent
+      systemd:
+        name: neutron-metering-agent
         state: started
         enabled: True
 

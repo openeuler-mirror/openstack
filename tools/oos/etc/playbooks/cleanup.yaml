@@ -43,6 +43,7 @@
           - openstack-neutron
           - openstack-neutron-linuxbridge
           - openstack-neutron-ml2
+          - openstack-neutron-metering-agent
           - openstack-neutron-linuxbridge
           - openstack-nova-api
           - openstack-nova-conductor
