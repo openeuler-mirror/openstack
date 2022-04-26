@@ -8255,6 +8255,7 @@ tycho-extras: sig-Java
 typesafe-config: sig-Java
 tzdata: Computing
 u2f-hidraw-policy: Others
+uadk: sig-AccLib
 uadk_engine: sig-AccLib
 uboot-tools: sig-OS-Builder
 ubu-keyring: Private
