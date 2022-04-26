@@ -46,6 +46,39 @@
       shell: |
         if [[ `uname -m` == 'aarch64' ]];then
           yum install -y edk2-aarch64
+          cat << EOF > /etc/qemu/firmware/edk2-aarch64.json
+          {
+              "description": "UEFI firmware for ARM64 virtual machines",
+              "interface-types": [
+                  "uefi"
+              ],
+              "mapping": {
+                  "device": "flash",
+                  "executable": {
+                      "filename": "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw",
+                      "format": "raw"
+                  },
+                  "nvram-template": {
+                      "filename": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
+                      "format": "raw"
+                  }
+              },
+              "targets": [
+                  {
+                      "architecture": "aarch64",
+                      "machines": [
+                          "virt-*"
+                      ]
+                  }
+              ],
+              "features": [
+
+              ],
+              "tags": [
+
+              ]
+          }
+          EOF
         fi
 
 - name: Init config file
