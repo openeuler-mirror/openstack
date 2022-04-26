@@ -23,11 +23,15 @@
         fi
 
     - name: Create test image
-      shell: openstack image create --disk-format qcow2 --container-format bare --file ./cirros-0.5.2.img --public my-image -c id -f value
+      shell: |
+        source ~/.admin-openrc
+        openstack image create --disk-format qcow2 --container-format bare --file ./cirros-0.5.2.img --public my-image -c id -f value
       register: image_id
 
     - name: Create test image alt
-      shell: openstack image create --disk-format qcow2 --container-format bare --file ./cirros-0.5.2.img --public my-image-alt  -c id -f value
+      shell: |
+        source ~/.admin-openrc
+        openstack image create --disk-format qcow2 --container-format bare --file ./cirros-0.5.2.img --public my-image-alt  -c id -f value
       register: image_id_alt
 
     - name: Create test public network

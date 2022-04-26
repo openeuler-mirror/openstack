@@ -130,6 +130,11 @@ def create(release, flavor, arch, name, target):
         volumetype="SAS",
         size=100
     )
+    listPrePaidServerSecurityGroupSecurityGroupsServer = [
+        PrePaidServerSecurityGroup(
+            id="fc28e87a-819e-42c5-8015-28f07e671842"
+        )
+    ]
     bandwidthPrePaidServerEipBandwidth = PrePaidServerEipBandwidth(
         sharetype="PER",
         size=1
@@ -158,6 +163,7 @@ def create(release, flavor, arch, name, target):
         publicip=publicipPrePaidServerPublicip,
         count=1 if target == 'all_in_one' else 3,
         is_auto_rename=False,
+        security_groups=listPrePaidServerSecurityGroupSecurityGroupsServer,
         root_volume=rootVolumePrePaidServerRootVolume,
         data_volumes=listPrePaidServerDataVolumeDataVolumesServer
     )
@@ -191,15 +197,14 @@ def create(release, flavor, arch, name, target):
             time.sleep(3)
         print("Success created the target VMs")
         if has_sshpass:
-            print("Preparing the key pair for ssh")
-            # cleanup the old known host
+            print("Preparing the mutual trust for ssh")
             cmds = [f'ssh-keygen -f ~/.ssh/known_hosts -R "{ip}"',
-                    f'ssh-keygen -R "{ip}"']
+                    f'ssh-keygen -R "{ip}"',
+                    f'sshpass -p {OPENEULER_DEFAULT_PASSWORD} ssh-copy-id -i "{KEY_DIR}/id_rsa.pub" -o StrictHostKeyChecking=no "{OPENEULER_DEFAULT_USER}@{ip}"',
+                    f'scp -i "{KEY_DIR}/id_rsa" -o StrictHostKeyChecking=no "{KEY_DIR}/id_rsa" "{OPENEULER_DEFAULT_USER}@{ip}":~/.ssh',
+                    f'ssh -i "{KEY_DIR}/id_rsa" -o StrictHostKeyChecking=no "{OPENEULER_DEFAULT_USER}@{ip}" chmod 600 ~/.ssh/id_rsa']
             for cmd in cmds:
                 subprocess.getoutput(cmd)
-            # sync key file
-            cmd = f'sshpass -p {OPENEULER_DEFAULT_PASSWORD} ssh-copy-id -i "{KEY_DIR}/id_rsa.pub" -o StrictHostKeyChecking=no "{OPENEULER_DEFAULT_USER}@{ip}"'
-            subprocess.getoutput(cmd)
             print(f"All is done, you can now login the target with the key in "
                   f"{KEY_DIR}")
         sqlite_ops.insert_target(provider, name, server_id, ip, flavor, release, None, created)
