@@ -7,6 +7,18 @@
         name:
         - openstack-release-{{ openstack_release }}
       ignore_errors: yes
+- name: Set hostname mappings
+  hosts: all
+  become: yes
+  tasks:
+    - name: Set hostname for hosts
+      shell: |
+        cat << EOF >> /etc/hosts
+        {{ hostvars['controller']['ansible_default_ipv4']['address'] }} {{ hostvars['controller']['ansible_hostname' }}
+        {{ hostvars['compute01']['ansible_default_ipv4']['address'] }} {{ hostvars['compute01']['ansible_hostname' }}
+        {{ hostvars['compute02']['ansible_default_ipv4']['address'] }} {{ hostvars['compute02']['ansible_hostname' }}
+        EOF
+      when: {{ oos_env_type }} == 'cluster'
 - name: Install Database
   hosts: all
   become: yes
