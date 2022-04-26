@@ -33,7 +33,7 @@
     - name: Create test public network
       shell: |
         source ~/.admin-openrc
-        openstack network create --external public-network --provider-network-type flat --provider-physical-network provider --default -c id -f value
+        openstack network create --external --share public-network --provider-network-type flat --provider-physical-network provider --default -c id -f value
       register: public_network_id
 
     - name: Create other network resource
@@ -44,7 +44,7 @@
         # Init the ext subnet
         openstack subnet create --subnet-range {{ default_ext_subnet_range }} --gateway {{ default_ext_subnet_gateway }} --network public-network public-subnet
         # Init the private network
-        openstack network create --internal private-network
+        openstack network create --internal --share private-network
         openstack subnet create --subnet-range 172.188.0.0/16 --network private-network private-subnet
         # Connect the simulative ext network with private network via a router 
         openstack router create my-router
