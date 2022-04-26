@@ -1509,7 +1509,7 @@ victoria:
   barbican: 11.0.0
   barbican_tempest_plugin: 1.1.0
   bifrost: 9.1.0
-  blazar: 6.0.1
+  blazar: 6.0.2
   blazar-dashboard: 4.0.0
   blazar-nova: 2.1.0
   blazar_tempest_plugin: 0.5.0
