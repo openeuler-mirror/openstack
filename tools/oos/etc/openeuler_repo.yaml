@@ -2120,6 +2120,7 @@ kite-sdk: bigdata
 kiwi: Base-service
 kiwi-dlimage: Private
 kiwi-template-openEuler: Private
+kml_adapter: sig-AccLib
 kmod: Computing
 kmod-drbd90: sig-Ha
 kmod-kvdo: Runtime
@@ -3532,6 +3533,7 @@ open-chinese-fonts: sig-mate-desktop
 open-iscsi: Storage
 open-isns: Storage
 open-sans-fonts: System-tool
+open-source-summer: sig-OSCourse
 openEuler-Advisor: sig-EasyLife
 openEuler-bootstrap: dev-utils
 openEuler-indexhtml: Base-service
@@ -6614,6 +6616,7 @@ python-pkgconfig: A-Tune
 python-pkginfo: sig-python-modules
 python-pkgwat.api: sig-python-modules
 python-plaintable: sig-python-modules
+python-platformdirs: Application
 python-player: sig-python-modules
 python-plink: sig-python-modules
 python-pluggy: Programming-language
