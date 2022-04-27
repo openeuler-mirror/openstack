@@ -157,7 +157,7 @@ def create(release, flavor, arch, name, target):
     serverPrePaidServer = PrePaidServer(
         image_ref=IMAGE_MAPPING[f"{release}_{arch}"],
         flavor_ref=FLAVOR_MAPPING[f"{flavor}_{arch}"],
-        name="oos_vm",
+        name=f"{name}_oos_vm",
         vpcid=VPC_ID,
         nics=listPrePaidServerNicNicsServer,
         publicip=publicipPrePaidServerPublicip,
