@@ -12,14 +12,7 @@
             "controller": {
                 "ansible_host": "{{ controller_ip }}",
                 "horizon_allowed_host": "{{ horizon_allowed_host }}",
-                "kolla_openeuler_plugin": "{{ kolla_openeuler_plugin }}",
-                "cinder_api_workers": "{{ cinder_api_workers }}",
-                "glance_api_workers": "{{ glance_api_workers }}",
-                "neutron_api_workers": "{{ neutron_api_workers }}",
-                "nova_api_workers": "{{ nova_api_workers }}",
-                "nova_metadata_api_workers": "{{ nova_metadata_api_workers }}",
-                "nova_conductor_workers": "{{ nova_conductor_workers }}",
-                "nova_scheduler_workers": "{{ nova_scheduler_workers }}"
+                "kolla_openeuler_plugin": "{{ kolla_openeuler_plugin }}"
             }
         }
     },
@@ -55,7 +48,14 @@
     {% endfor %}
             ],
             "openstack_release": "{{ openstack_release }}",
-            "oos_env_type": "{{ oos_env_type }}"
+            "oos_env_type": "{{ oos_env_type }}",
+            "cinder_api_workers": "{{ cinder_api_workers }}",
+            "glance_api_workers": "{{ glance_api_workers }}",
+            "neutron_api_workers": "{{ neutron_api_workers }}",
+            "nova_api_workers": "{{ nova_api_workers }}",
+            "nova_metadata_api_workers": "{{ nova_metadata_api_workers }}",
+            "nova_conductor_workers": "{{ nova_conductor_workers }}",
+            "nova_scheduler_workers": "{{ nova_scheduler_workers }}"
         }
     },
     {% if oos_env_type == 'cluster' %}

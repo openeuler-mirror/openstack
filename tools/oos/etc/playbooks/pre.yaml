@@ -7,7 +7,8 @@
         name:
         - openstack-release-{{ openstack_release }}
       ignore_errors: yes
-- name: Set hostname mappings
+
+- name: Prepare
   hosts: all
   become: yes
   tasks:
@@ -19,6 +20,13 @@
         {{ hostvars['compute02']['ansible_default_ipv4']['address'] }} {{ hostvars['compute02']['ansible_hostname'] }}
         EOF
       when: oos_env_type == 'cluster'
+
+    - name: Setup useful environment
+      set_fact:
+        controller_local_control_ip: "{{ hostvars['controller']['ansible_default_ipv4']['address'] }}"
+        compute01_local_control_ip: "{{ hostvars['compute01']['ansible_default_ipv4']['address'] }}"
+        compute02_local_control_ip: "{{ hostvars['compute02']['ansible_default_ipv4']['address'] }}"
+
 - name: Install Database
   hosts: all
   become: yes
