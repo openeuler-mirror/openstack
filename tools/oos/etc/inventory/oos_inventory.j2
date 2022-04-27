@@ -3,103 +3,23 @@
         "hostvars": {
             {% if oos_env_type == 'cluster' %}
             "compute01": {
-                "ansible_host": "{{ compute01_ip }}",
-                "cinder_block_device": "{{ cinder_block_device }}",
-                "default_ext_subnet_gateway": "{{ default_ext_subnet_gateway }}",
-                "default_ext_subnet_range": "{{ default_ext_subnet_range }}",
-                "enabled_service": [
-        {% for service in enabled_service %}
-                    "{{ service }}"{% if not loop.last %},{% endif %}
-        {% endfor %}
-                ],
-                "mysql_project_password": "{{ mysql_project_password }}",
-                "mysql_root_password": "{{ mysql_root_password }}",
-                "neutron_dataplane_interface_name": "{{ neutron_dataplane_interface_name }}",
-                "neutron_provider_interface_name": "{{ neutron_provider_interface_name }}",
-                "project_identity_password": "{{ project_identity_password }}",
-                "rabbitmq_password": "{{ rabbitmq_password }}",
-                "swift_hash_path_prefix": "{{ swift_hash_path_prefix }}",
-                "swift_hash_path_suffix": "{{ swift_hash_path_suffix }}",
-                "swift_storage_devices": [
-        {% for device in swift_storage_devices %}
-                    "{{ device }}"{% if not loop.last %},{% endif %}
-        {% endfor %}
-                ],
-                "cinder_api_workers": "{{ cinder_api_workers }}",
-                "glance_api_workers": "{{ glance_api_workers }}",
-                "neutron_api_workers": "{{ neutron_api_workers }}",
-                "nova_api_workers": "{{ nova_api_workers }}",
-                "nova_metadata_api_workers": "{{ nova_metadata_api_workers }}",
-                "nova_conductor_workers": "{{ nova_conductor_workers }}",
-                "nova_scheduler_workers": "{{ nova_scheduler_workers }}",
-                "openstack_release": "{{ openstack_release }}"
+                "ansible_host": "{{ compute01_ip }}"
             },
             "compute02": {
-                "ansible_host": "{{ compute02_ip }}",
-                "cinder_block_device": "{{ cinder_block_device }}",
-                "default_ext_subnet_gateway": "{{ default_ext_subnet_gateway }}",
-                "default_ext_subnet_range": "{{ default_ext_subnet_range }}",
-                "enabled_service": [
-        {% for service in enabled_service %}
-                    "{{ service }}"{% if not loop.last %},{% endif %}
-        {% endfor %}
-                ],
-                "mysql_project_password": "{{ mysql_project_password }}",
-                "mysql_root_password": "{{ mysql_root_password }}",
-                "neutron_dataplane_interface_name": "{{ neutron_dataplane_interface_name }}",
-                "neutron_provider_interface_name": "{{ neutron_provider_interface_name }}",
-                "project_identity_password": "{{ project_identity_password }}",
-                "rabbitmq_password": "{{ rabbitmq_password }}",
-                "swift_hash_path_prefix": "{{ swift_hash_path_prefix }}",
-                "swift_hash_path_suffix": "{{ swift_hash_path_suffix }}",
-                "swift_storage_devices": [
-        {% for device in swift_storage_devices %}
-                    "{{ device }}"{% if not loop.last %},{% endif %}
-        {% endfor %}
-                ],
-                "cinder_api_workers": "{{ cinder_api_workers }}",
-                "glance_api_workers": "{{ glance_api_workers }}",
-                "neutron_api_workers": "{{ neutron_api_workers }}",
-                "nova_api_workers": "{{ nova_api_workers }}",
-                "nova_metadata_api_workers": "{{ nova_metadata_api_workers }}",
-                "nova_conductor_workers": "{{ nova_conductor_workers }}",
-                "nova_scheduler_workers": "{{ nova_scheduler_workers }}",
-                "openstack_release": "{{ openstack_release }}"
+                "ansible_host": "{{ compute02_ip }}"
             },
             {% endif %}
             "controller": {
                 "ansible_host": "{{ controller_ip }}",
                 "horizon_allowed_host": "{{ horizon_allowed_host }}",
-                "cinder_block_device": "{{ cinder_block_device }}",
-                "default_ext_subnet_gateway": "{{ default_ext_subnet_gateway }}",
-                "default_ext_subnet_range": "{{ default_ext_subnet_range }}",
-                "enabled_service": [
-        {% for service in enabled_service %}
-                    "{{ service }}"{% if not loop.last %},{% endif %}
-        {% endfor %}
-                ],
-                "mysql_project_password": "{{ mysql_project_password }}",
-                "mysql_root_password": "root",
-                "neutron_dataplane_interface_name": "eth1",
-                "neutron_provider_interface_name": "br-ex",
                 "kolla_openeuler_plugin": "{{ kolla_openeuler_plugin }}",
-                "project_identity_password": "{{ project_identity_password }}",
-                "rabbitmq_password": "{{ rabbitmq_password }}",
-                "swift_hash_path_prefix": "{{ swift_hash_path_prefix }}",
-                "swift_hash_path_suffix": "{{ swift_hash_path_suffix }}",
-                "swift_storage_devices": [
-        {% for device in swift_storage_devices %}
-                    "{{ device }}"{% if not loop.last %},{% endif %}
-        {% endfor %}
-                ],
                 "cinder_api_workers": "{{ cinder_api_workers }}",
                 "glance_api_workers": "{{ glance_api_workers }}",
                 "neutron_api_workers": "{{ neutron_api_workers }}",
                 "nova_api_workers": "{{ nova_api_workers }}",
                 "nova_metadata_api_workers": "{{ nova_metadata_api_workers }}",
                 "nova_conductor_workers": "{{ nova_conductor_workers }}",
-                "nova_scheduler_workers": "{{ nova_scheduler_workers }}",
-                "openstack_release": "{{ openstack_release }}"
+                "nova_scheduler_workers": "{{ nova_scheduler_workers }}"
             }
         }
     },
@@ -111,7 +31,32 @@
             "network",
             "storage",
             "ungrouped"
-        ]
+        ],
+        "vars": {
+            "cinder_block_device": "{{ cinder_block_device }}",
+            "default_ext_subnet_gateway": "{{ default_ext_subnet_gateway }}",
+            "default_ext_subnet_range": "{{ default_ext_subnet_range }}",
+            "enabled_service": [
+    {% for service in enabled_service %}
+                "{{ service }}"{% if not loop.last %},{% endif %}
+    {% endfor %}
+            ],
+            "mysql_project_password": "{{ mysql_project_password }}",
+            "mysql_root_password": "{{ mysql_root_password }}",
+            "neutron_dataplane_interface_name": "{{ neutron_dataplane_interface_name }}",
+            "neutron_provider_interface_name": "{{ neutron_provider_interface_name }}",
+            "project_identity_password": "{{ project_identity_password }}",
+            "rabbitmq_password": "{{ rabbitmq_password }}",
+            "swift_hash_path_prefix": "{{ swift_hash_path_prefix }}",
+            "swift_hash_path_suffix": "{{ swift_hash_path_suffix }}",
+            "swift_storage_devices": [
+    {% for device in swift_storage_devices %}
+                "{{ device }}"{% if not loop.last %},{% endif %}
+    {% endfor %}
+            ],
+            "openstack_release": "{{ openstack_release }}",
+            "oos_env_type": "{{ oos_env_type }}"
+        }
     },
     {% if oos_env_type == 'cluster' %}
     "compute": {
