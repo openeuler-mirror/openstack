@@ -26,8 +26,8 @@
         EOF
 
     - name: Sync database schema
-      shell: su -s /bin/sh -c "keystone-manage db_sync" keystone
-    
+      shell: keystone-manage db_sync
+
     - name: Generate fernte key
       shell: |
         keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone

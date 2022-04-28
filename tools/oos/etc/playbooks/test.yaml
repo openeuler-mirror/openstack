@@ -6,10 +6,21 @@
       debug:
         msg: "Start runing tempest test. Please wait more"
 
-    - name: Run tempest test
+    - name: Run tempest test for cirros
       shell:
-        cmd: tempest run
+        cmd: tempest run --config-file etc/tempest-cirros.conf --exclude-list black_list_file 
         chdir: ~/mytest
+      async: 14400
+      poll: 10
+      register: tempest_output
+
+    - name: Fetching tempest stdout
+      async_status:
+        jid: "{{ tempest_output.ansible_job_id }}"
+      register: job_result
+      until: job_result.finished
+      delay: 5
+      retries: 10
 
     - name: Format the test result
       shell:
@@ -20,6 +31,11 @@
           subunit2html test_result
         chdir: ~/mytest
 
+    - name: Fetch the test result
+      fetch:
+        src: /root/mytest/results.html
+        dest: /tmp/results.html
+
     - name: Echo finish Info
       debug:
-        msg: "Test is finished. Please see the result file 'results.html' in tempest test forlder."
+        msg: "Test is finished. Please see the result file 'results.html' in /tmp forlder."
