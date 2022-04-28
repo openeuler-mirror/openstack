@@ -200,9 +200,7 @@ def create(release, flavor, arch, name, target):
             print("Preparing the mutual trust for ssh")
             cmds = [f'ssh-keygen -f ~/.ssh/known_hosts -R "{ip}"',
                     f'ssh-keygen -R "{ip}"',
-                    f'sshpass -p {OPENEULER_DEFAULT_PASSWORD} ssh-copy-id -i "{KEY_DIR}/id_rsa.pub" -o StrictHostKeyChecking=no "{OPENEULER_DEFAULT_USER}@{ip}"',
-                    f'scp -i "{KEY_DIR}/id_rsa" -o StrictHostKeyChecking=no "{KEY_DIR}/id_rsa" "{OPENEULER_DEFAULT_USER}@{ip}":~/.ssh',
-                    f'ssh -i "{KEY_DIR}/id_rsa" -o StrictHostKeyChecking=no "{OPENEULER_DEFAULT_USER}@{ip}" chmod 600 ~/.ssh/id_rsa']
+                    f'sshpass -p {OPENEULER_DEFAULT_PASSWORD} ssh-copy-id -i "{KEY_DIR}/id_rsa.pub" -o StrictHostKeyChecking=no "{OPENEULER_DEFAULT_USER}@{ip}"']
             for cmd in cmds:
                 subprocess.getoutput(cmd)
             print(f"All is done, you can now login the target with the key in "
@@ -279,6 +277,7 @@ def setup(release, target):
         subprocess.call(cmd)
     else:
         os.environ.setdefault('OpenStack_Release', release.lower())
+        os.environ.setdefault('keypair_dir', KEY_DIR)
         _run_action(target, 'entry')
         sql = 'UPDATE resource SET openstack_release=?'
         sqlite_ops.exe_sql(sql, (release.lower(),))
