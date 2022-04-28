@@ -175,6 +175,7 @@
         
         [libvirt]
         virt_type = qemu
+        num_pcie_ports = 28
         EOF
         if [[ `uname -m` == 'aarch64' ]];then
         cat << EOF >> /etc/nova/nova.conf

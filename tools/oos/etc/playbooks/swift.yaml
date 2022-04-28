@@ -23,11 +23,6 @@
           - memcached
           - rsync
 
-    - name: Initialize config file
-      shell: |
-        sed -i "s/controller/{{ hostvars['controller']['ansible_default_ipv4']['address'] }}/" /etc/swift/proxy-server.conf
-        sed -i "s/password = swift/password = {{ project_identity_password }}/"  /etc/swift/proxy-server.conf
-
 - name: Install Swift storage
   hosts: storage
   become: yes
@@ -71,7 +66,7 @@
   hosts: controller
   become: yes
   tasks:
-    - name: Create initial rings
+    - name: Create initial rings for cluster
       shell: |
         cd /etc/swift
         swift-ring-builder account.builder create 10 1 1
@@ -79,18 +74,34 @@
         swift-ring-builder object.builder create 10 1 1
 
         swift-ring-builder account.builder add --region 1 --zone 1 --ip "{{ compute01_local_control_ip }}" --port 6202  --device {{ item }} --weight 100
+        swift-ring-builder account.builder add --region 1 --zone 1 --ip "{{ compute02_local_control_ip }}" --port 6202  --device {{ item }} --weight 100
         swift-ring-builder container.builder add --region 1 --zone 1 --ip "{{ compute01_local_control_ip }}" --port 6201  --device {{ item }} --weight 100
+        swift-ring-builder container.builder add --region 1 --zone 1 --ip "{{ compute02_local_control_ip }}" --port 6201  --device {{ item }} --weight 100
         swift-ring-builder object.builder add --region 1 --zone 1 --ip "{{ compute01_local_control_ip }}" --port 6200  --device {{ item }} --weight 100
-        if [ '{{ oos_env_type }}' == 'cluster' ];then
-          swift-ring-builder account.builder add --region 1 --zone 1 --ip "{{ compute02_local_control_ip }}" --port 6202  --device {{ item }} --weight 100
-          swift-ring-builder container.builder add --region 1 --zone 1 --ip "{{ compute02_local_control_ip }}" --port 6201  --device {{ item }} --weight 100
-          swift-ring-builder object.builder add --region 1 --zone 1 --ip "{{ compute02_local_control_ip }}" --port 6200  --device {{ item }} --weight 100
-        fi
+        swift-ring-builder object.builder add --region 1 --zone 1 --ip "{{ compute02_local_control_ip }}" --port 6200  --device {{ item }} --weight 100
 
         swift-ring-builder account.builder rebalance
         swift-ring-builder container.builder rebalance
         swift-ring-builder object.builder rebalance
       with_items: "{{ swift_storage_devices }}"
+      when: oos_env_type == 'cluster'
+
+    - name: Create initial rings for all-in-one
+      shell: |
+        cd /etc/swift
+        swift-ring-builder account.builder create 10 1 1
+        swift-ring-builder container.builder create 10 1 1
+        swift-ring-builder object.builder create 10 1 1
+
+        swift-ring-builder account.builder add --region 1 --zone 1 --ip "{{ controller_local_control_ip }}" --port 6202  --device {{ item }} --weight 100
+        swift-ring-builder container.builder add --region 1 --zone 1 --ip "{{ controller_local_control_ip }}" --port 6201  --device {{ item }} --weight 100
+        swift-ring-builder object.builder add --region 1 --zone 1 --ip "{{ controller_local_control_ip }}" --port 6200  --device {{ item }} --weight 100
+
+        swift-ring-builder account.builder rebalance
+        swift-ring-builder container.builder rebalance
+        swift-ring-builder object.builder rebalance
+      with_items: "{{ swift_storage_devices }}"
+      when: oos_env_type == 'all_in_one'
 
     - name: Init swift config file
       shell: |
@@ -101,6 +112,93 @@
         [storage-policy:0]
         name = Policy-0
         default = yes
+        EOF
+
+    - name: Init swift proxy config file
+      shell: |
+        cat << EOF > /etc/swift/proxy-server.conf
+        [DEFAULT]
+        bind_port = 8080
+        workers = 2
+        user = swift
+        swift_dir = /etc/swift
+
+        [pipeline:main]
+        pipeline = catch_errors gatekeeper healthcheck proxy-logging cache container_sync bulk ratelimit authtoken formpost tempurl keystoneauth staticweb crossdomain container-quotas account-quotas slo dlo versioned_writes proxy-logging proxy-server
+
+        [app:proxy-server]
+        use = egg:swift#proxy
+        account_autocreate = True
+
+        [filter:catch_errors]
+        use = egg:swift#catch_errors
+
+        [filter:gatekeeper]
+        use = egg:swift#gatekeeper
+
+        [filter:healthcheck]
+        use = egg:swift#healthcheck
+
+        [filter:proxy-logging]
+        use = egg:swift#proxy_logging
+
+        [filter:cache]
+        use = egg:swift#memcache
+        memcache_servers = {{ hostvars['controller']['ansible_default_ipv4']['address'] }}:11211
+
+        [filter:container_sync]
+        use = egg:swift#container_sync
+
+        [filter:bulk]
+        use = egg:swift#bulk
+
+        [filter:ratelimit]
+        use = egg:swift#ratelimit
+
+        [filter:authtoken]
+        paste.filter_factory = keystonemiddleware.auth_token:filter_factory
+        www_authenticate_uri = http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5000
+        auth_url = http://{{ hostvars['controller']['ansible_default_ipv4']['address'] }}:5000
+        memcached_servers = {{ hostvars['controller']['ansible_default_ipv4']['address'] }}:11211
+        auth_type = password
+        project_domain_id = default
+        user_domain_id = default
+        project_name = service
+        username = swift
+        password = {{ project_identity_password }}
+        delay_auth_decision = True
+
+        [filter:keystoneauth]
+        use = egg:swift#keystoneauth
+        operator_roles = admin,user,member
+
+        [filter:container-quotas]
+        use = egg:swift#container_quotas
+
+        [filter:account-quotas]
+        use = egg:swift#account_quotas
+
+        [filter:slo]
+        use = egg:swift#slo
+
+        [filter:dlo]
+        use = egg:swift#dlo
+
+        [filter:versioned_writes]
+        use = egg:swift#versioned_writes
+        allow_versioned_writes=True
+
+        [filter:staticweb]
+        use = egg:swift#staticweb
+
+        [filter:crossdomain]
+        use = egg:swift#crossdomain
+
+        [filter:tempurl]
+        use = egg:swift#tempurl
+
+        [filter:formpost]
+        use = egg:swift#formpost
         EOF
 
     - name: ensure proper ownership of the config directory

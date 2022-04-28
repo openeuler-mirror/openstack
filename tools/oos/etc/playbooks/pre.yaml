@@ -21,19 +21,30 @@
         EOF
       when: oos_env_type == 'cluster'
 
-    - name: Setup useful environment
+    - name: Setup useful environment for cluster
       set_fact:
         controller_local_control_ip: "{{ hostvars['controller']['ansible_default_ipv4']['address'] }}"
         compute01_local_control_ip: "{{ hostvars['compute01']['ansible_default_ipv4']['address'] }}"
         compute02_local_control_ip: "{{ hostvars['compute02']['ansible_default_ipv4']['address'] }}"
+      when: oos_env_type == 'cluster'
 
-- name: Install Database
+    - name: Setup useful environment for all-in-on
+      set_fact:
+        controller_local_control_ip: "{{ hostvars['controller']['ansible_default_ipv4']['address'] }}"
+      when: oos_env_type == 'all_in_one'
+
+- name: Update python bin
   hosts: all
   become: yes
   tasks:
-    - name: Update python bin
+    - name: Install python
+      yum:
+        name:
+          - python2
+          - python3
+
+    - name: Update python bin link
       shell: |
-        yum install -y python2 python3
         rm -f /usr/bin/python
         ln -s /usr/bin/python3 /usr/bin/python
       ignore_errors: yes

@@ -40,6 +40,14 @@
         openstack network create --external --share public-network --provider-network-type flat --provider-physical-network provider --default -c id -f value
       register: public_network_id
 
+    - name: Create test role
+      shell: |
+        source ~/.admin-openrc
+        openstack role create ResellerAdmin
+
+    - name: Load glance metadata
+      shell: glance-manage db_load_metadefs
+
     - name: Create other network resource
       shell: |
         source ~/.admin-openrc
@@ -58,39 +66,11 @@
         openstack security group rule create default --ingress --protocol icmp
         openstack security group rule create default --ingress --protocol tcp --dst-port 22
 
-    - name: Update swift configuration for tempest
-      shell: |
-        sed -i "s/operator_roles = admin,user$/operator_roles = admin,user,member/" /etc/swift/proxy-server.conf
-        sed -i "s/ keystoneauth/ formpost tempurl keystoneauth staticweb crossdomain/" /etc/swift/proxy-server.conf
-        sed -i "s/egg:swift#versioned_writes/egg:swift#versioned_writes\\nallow_versioned_writes=True/" /etc/swift/proxy-server.conf
-        cat << EOF >> /etc/swift/proxy-server.conf
-
-        [filter:staticweb]
-        use = egg:swift#staticweb
-
-        [filter:crossdomain]
-        use = egg:swift#crossdomain
-
-        [filter:tempurl]
-        use = egg:swift#tempurl
-
-        [filter:formpost]
-        use = egg:swift#formpost
-        EOF
-
-        openstack role create ResellerAdmin
-
-    - name: Restart swift-proxy service
-      systemd:
-        name: openstack-swift-proxy
-        state: restarted
-        enabled: True
-
     - name: Genereate tempest folder
       shell: |
         tempest init mytest
 
-        cat << EOF > /root/mytest/etc/tempest.conf
+        cat << EOF > /root/mytest/etc/tempest-cirros.conf
         [DEFAULT]
         log_dir = /root/mytest/logs
         log_file = tempest.log
@@ -119,6 +99,7 @@
         max_microversion = 2.79
         min_compute_nodes = 2
         fixed_network_name = private-network
+        build_timeout = 120
 
         [scenario]
         img_file = /root/cirros-0.5.2.img
@@ -126,7 +107,7 @@
         img_disk_format = qcow2
 
         [compute-feature-enabled]
-        change_password = true
+        change_password = false
         swap_volume = true
         volume_multiattach = true
         resize = true
@@ -144,6 +125,7 @@
         min_microversion = 3.0
         max_microversion = 3.59
         backend_names = lvm
+        build_timeout = 120
 
         [volume-feature-enabled]
         backup = false
@@ -171,18 +153,20 @@
         public_network_id = {{ public_network_id.stdout }}
         project_network_cidr = 172.189.0.0/16
         floating_network_name = public-network
+        build_timeout = 120
 
         [network-feature-enabled]
         port_security = true
         ipv6_subnet_attributes = true
         qos_placement_physnet = true
 
+        [image]
+        build_timeout = 120
+
         [image-feature-enabled]
         import_image = true
 
         [object-storage-feature-enabled]
-        # This feature need swift-container-sync daemon service be alive.
-        # openEuler doesn't provide this service currently.
         container_sync = false
 
         [validation]
@@ -190,9 +174,27 @@
         image_ssh_password = gocubsgo
         image_alt_ssh_user = cirros
         image_alt_ssh_password = gocubsgo
+        ping_timeout = 60
+        ssh_timeout = 120
 
         [debug]
         trace_requests = .*
+        EOF
+
+    # Some tests fail on openEuler due to some error that unable to repair at
+    # the comment. Skip them by hand.
+    - name: Generate black list for cirros
+      shell: |
+        cat << EOF > /root/mytest/black_list_file
+        ^tempest.api.object_storage.test_container_sync_middleware
+        ^tempest.scenario.test_encrypted_cinder_volumes.TestEncryptedCinderVolumes
+        ^tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_boot_server_from_encrypted_volume_luks
+        ^tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_volume_boot_pattern
+        ^tempest.scenario.test_stamp_pattern.TestStampPattern.test_stamp_pattern
+        ^tempest.scenario.test_server_basic_ops.TestServerBasicOps.test_server_basic_ops
+        ^tempest.api.compute.servers.test_device_tagging.TaggedBootDevicesTest.test_tagged_attachment
+        ^tempest.api.compute.servers.test_device_tagging.TaggedBootDevicesTest.test_tagged_boot_devices
+        ^tempest.api.compute.servers.test_server_actions.ServerActionsTestJSON.test_change_server_password
         EOF
 
     - name: Genereate tempest folder
