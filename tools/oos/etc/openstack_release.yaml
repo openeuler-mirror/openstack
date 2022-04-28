@@ -1516,7 +1516,7 @@ victoria:
   castellan: 3.6.1
   ceilometer: 15.1.0
   ceilometermiddleware: 2.1.0
-  cinder: 17.3.0
+  cinder: 17.4.0
   cinder-tempest-plugin: 1.2.0
   cinderlib: 3.1.0
   cliff: 3.4.0
@@ -1544,7 +1544,7 @@ victoria:
   heat-tempest-plugin: 1.1.0
   heat-translator: 2.1.0
   horizon: 18.6.4
-  ironic: 16.0.4
+  ironic: 16.0.5
   ironic-inspector: 10.4.2
   ironic-lib: 4.4.2
   ironic-prometheus-exporter: 2.1.1
@@ -1602,7 +1602,7 @@ victoria:
   networking-midonet: 11.0.0
   networking-odl: 17.0.0
   networking-sfc: 11.0.0
-  neutron: 17.4.0
+  neutron: 17.4.1
   neutron-dynamic-routing: 17.0.0
   neutron-lib: 2.6.2
   neutron-tempest-plugin: 1.2.0
@@ -1762,7 +1762,7 @@ victoria:
   solum-tempest-plugin: 2.1.0
   stevedore: 3.2.2
   storlets: 6.0.0
-  sushy: 3.4.5
+  sushy: 3.4.6
   sushy-cli: 0.3.1
   swift: 2.26.0
   tacker: 4.1.0
@@ -1921,7 +1921,7 @@ wallaby:
   oslo.context: 3.2.1
   oslo.db: 8.5.1
   oslo.limit: 1.3.1
-  oslo.messaging: 12.7.2
+  oslo.messaging: 12.7.3
   oslo.metrics: 0.2.2
   oslo.middleware: 4.2.1
   oslo.policy: 3.7.1
@@ -1929,7 +1929,7 @@ wallaby:
   oslo.serialization: 4.1.1
   oslo.service: 2.5.1
   oslo.upgradecheck: 1.3.1
-  oslo.utils: 4.8.1
+  oslo.utils: 4.8.2
   oslo.versionedobjects: 2.4.1
   oslo.vmware: 3.8.1
   oswin-tempest-plugin: 1.2.0
