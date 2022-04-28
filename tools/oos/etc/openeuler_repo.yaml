@@ -793,6 +793,7 @@ dtkgui: sig-DDE
 dtkwidget: sig-DDE
 dtkwidget2: sig-DDE
 dtkwm: sig-DDE
+duktape: Base-service
 dump: Application
 duoyibu-ai: sig-minzuchess
 dust: Application
