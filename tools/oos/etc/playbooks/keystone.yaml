@@ -23,6 +23,11 @@
 
         [token]
         provider = fernet
+
+        [security_compliance]
+        unique_last_password_count = 2
+        lockout_failure_attempts = 2
+        lockout_duration = 5
         EOF
 
     - name: Sync database schema

@@ -42,10 +42,10 @@ IMAGE_MAPPING = {
     '20.03-lts-sp3_aarch64': '1ec9b082-9166-473b-9f78-86ba37f0774a'
 }
 
-VPC_ID = '113df13f-fbaa-4e1f-a8f0-f08d9f34dd2c'
+VPC_ID = '288ffe75-a44e-4332-9fdc-435fd5fbe51b'
 VPC_MAPPING = {
     # vpc_id: sub_net_id
-    VPC_ID: '14d4d0d0-8999-49b4-ad73-7b777edf395f'
+    VPC_ID: ['08dbb5f3-329f-4c08-9f1e-038eabef7d44', '1987d67b-1299-46b2-8f83-bc4149f1796b']
 }
 
 TABLE_COLUMN = ['Provider', 'Name', 'UUID', 'IP', 'Flavor', 'openEuler_release', 'OpenStack_release', 'create_time']
@@ -148,10 +148,10 @@ def create(release, flavor, arch, name, target):
     )
     listPrePaidServerNicNicsServer = [
         PrePaidServerNic(
-            subnet_id=VPC_MAPPING[VPC_ID]
+            subnet_id=VPC_MAPPING[VPC_ID][0]
         ),
         PrePaidServerNic(
-            subnet_id=VPC_MAPPING[VPC_ID]
+            subnet_id=VPC_MAPPING[VPC_ID][1]
         )
     ]
     serverPrePaidServer = PrePaidServer(

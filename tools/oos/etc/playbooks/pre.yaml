@@ -8,6 +8,13 @@
         - openstack-release-{{ openstack_release }}
       ignore_errors: yes
 
+    # huaweicloud mirror is broken. Enable this task once it works.
+    # - name: Update yum mirror
+    #   shell: |
+    #     sed -i "s/repo.openeuler.org/repo.huaweicloud.com/g" /etc/yum.repos.d/openEuler.repo
+    #     sed -i "s/repo.openeuler.org/repo.huaweicloud.com/g" /etc/yum.repos.d/openstack-{{ openstack_release }}.repo
+    #   ignore_errors: yes
+
 - name: Config mutual trust for root
   hosts: all
   become: yes
@@ -54,6 +61,7 @@
         name:
           - python2
           - python3
+      ignore_errors: yes
 
     - name: Update python bin link
       shell: |

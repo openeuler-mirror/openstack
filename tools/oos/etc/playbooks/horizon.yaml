@@ -11,6 +11,7 @@
       shell: |
         sed -i "s/^OPENSTACK_HOST.*/OPENSTACK_HOST = \"{{ hostvars['controller']['ansible_default_ipv4']['address'] }}\"/" /etc/openstack-dashboard/local_settings
         sed -i "s/^ALLOWED_HOSTS.*/ALLOWED_HOSTS = [\"localhost\", \"{{ horizon_allowed_host }}\"]/" /etc/openstack-dashboard/local_settings
+        sed -i "s/^OPENSTACK_KEYSTONE_URL.*/OPENSTACK_KEYSTONE_URL = \"http:\/\/%s:5000\/v3\" % OPENSTACK_HOST/" /etc/openstack-dashboard/local_settings
 
     - name: Update dashboard config file
       blockinfile:
@@ -26,7 +27,7 @@
           }
           OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT = True
           OPENSTACK_KEYSTONE_DEFAULT_DOMAIN = "Default"
-          OPENSTACK_KEYSTONE_DEFAULT_ROLE = "user"
+          OPENSTACK_KEYSTONE_DEFAULT_ROLE = "member"
 
           OPENSTACK_API_VERSIONS = {
               "identity": 3,
