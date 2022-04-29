@@ -13,6 +13,7 @@
       async: 14400
       poll: 10
       register: tempest_output
+      ignore_errors: yes
 
     - name: Fetching tempest stdout
       async_status:
@@ -21,6 +22,7 @@
       until: job_result.finished
       delay: 5
       retries: 10
+      ignore_errors: yes
 
     - name: Format the test result
       shell:
