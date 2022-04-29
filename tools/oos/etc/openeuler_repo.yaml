@@ -1052,7 +1052,7 @@ gajim: sig-mate-desktop
 galera: Others
 game-music-emu: dev-utils
 gamemode: Desktop
-gamin: Base-service
+gamin: sig-recycle
 ganglia: Base-service
 garcon: xfce
 gavl: Others
@@ -1354,9 +1354,9 @@ gssdp: Programming-language
 gssntlmssp: dev-utils
 gssproxy: Base-service
 gst-editing-services: GNOME
-gstreamer: Application
-gstreamer-plugins-base: Application
-gstreamer-plugins-good: Application
+gstreamer: sig-recycle
+gstreamer-plugins-base: sig-recycle
+gstreamer-plugins-good: sig-recycle
 gstreamer1: Desktop
 gstreamer1-libav: GNOME
 gstreamer1-plugins-bad-free: Programming-language
@@ -1634,7 +1634,7 @@ hyphen-uk: Application
 i2c-tools: Computing
 i40e: Networking
 iSulad: iSulad
-iSulad-img: iSulad
+iSulad-img: sig-CloudNative
 iavf: Networking
 ibis: bigdata
 ibus: Desktop
@@ -2963,9 +2963,9 @@ motif: Runtime
 mousepad: xfce
 mousetweaks: Application
 mozilla-filesystem: Desktop
-mozjs52: Desktop
-mozjs60: Desktop
-mozjs68: Desktop
+mozjs52: sig-recycle
+mozjs60: sig-recycle
+mozjs68: sig-recycle
 mozjs78: Desktop
 mp: sig-epol
 mpfr: Computing
@@ -3587,7 +3587,7 @@ openjdk-latest: Compiler
 openjfx11: Compiler
 openjfx8: Compiler
 openjpa: sig-Java
-openjpeg: Desktop
+openjpeg: sig-recycle
 openjpeg2: Desktop
 openldap: Networking
 openmotif: Private
