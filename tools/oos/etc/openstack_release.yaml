@@ -1553,15 +1553,15 @@ victoria:
   ironic-ui: 4.2.0
   karbor: 1.6.0
   karbor-dashboard: 1.5.1
-  kayobe: 9.3.0
-  kayobe-config: 9.2.0
+  kayobe: 9.4.0
+  kayobe-config: 9.4.0
   kayobe-config-dev: 9.3.0
   keystone: 18.1.0
   keystone_tempest_plugin: 0.5.0
   keystoneauth1: 4.2.1
   keystonemiddleware: 9.1.0
-  kolla: 11.2.1
-  kolla-ansible: 11.3.0
+  kolla: 11.3.0
+  kolla-ansible: 11.4.0
   kuryr-kubernetes: 3.1.0
   kuryr-lib: 2.1.1
   kuryr-libnetwork: 6.0.0
@@ -2337,7 +2337,7 @@ yoga:
   blazar-dashboard: 7.0.0
   blazar-nova: 2.5.0
   blazar_tempest_plugin: 0.8.0
-  castellan: 3.10.1
+  castellan: 3.10.2
   ceilometer: 18.0.0
   ceilometermiddleware: 2.4.1
   cinder: 20.0.0
@@ -2447,7 +2447,7 @@ yoga:
   oslo.config: 8.8.0
   oslo.context: 4.1.0
   oslo.db: 11.2.0
-  oslo.limit: 1.5.0
+  oslo.limit: 1.5.1
   oslo.messaging: 12.13.0
   oslo.metrics: 0.4.0
   oslo.middleware: 4.5.1
@@ -2456,7 +2456,7 @@ yoga:
   oslo.serialization: 4.3.0
   oslo.service: 2.8.0
   oslo.upgradecheck: 1.5.0
-  oslo.utils: 4.12.2
+  oslo.utils: 4.12.3
   oslo.versionedobjects: 2.6.0
   oslo.vmware: 3.10.0
   oswin-tempest-plugin: 1.4.0
