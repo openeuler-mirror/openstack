@@ -84,6 +84,38 @@
         EOF
       when: ansible_architecture == "aarch64"
 
+- name: Config mutual trust for nova
+  hosts: compute
+  become: yes
+  tasks:
+    - name: Change login shell for nova
+      shell: |
+        usermod -s /bin/bash nova
+    - name: Create directory
+      file:
+        path: /var/lib/nova/.ssh
+        owner: nova
+        group: nova
+        mode: 0755
+        state: directory
+    - name: Copy file for hosts
+      copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        mode: "{{ item.mode }}"
+        owner: nova
+        group: nova
+        remote_src: yes
+      with_items:
+        - { src: '/root/.ssh/id_rsa',dest: '/var/lib/nova/.ssh/id_rsa', mode: '0600'}
+        - { src: '/root/.ssh/authorized_keys',dest: '/var/lib/nova/.ssh/authorized_keys', mode: '0644'}
+    - name: Initialize config file
+      shell: |
+        cat << EOF > /var/lib/nova/.ssh/config
+        Host *
+        StrictHostKeyChecking no
+        EOF
+
 - name: Init config file
   hosts: all
   become: yes
