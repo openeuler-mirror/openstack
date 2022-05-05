@@ -36,6 +36,7 @@ openstack-neutron: sig-openstack
 openstack-nova: sig-openstack
 openstack-panko: sig-openstack
 openstack-placement: sig-openstack
+openstack-plugin: sig-openstack
 openstack-rally: sig-openstack
 openstack-rally-plugins: sig-openstack
 openstack-releases: sig-openstack

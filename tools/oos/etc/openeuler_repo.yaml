@@ -487,10 +487,23 @@ ci_project: Private
 cifs-utils: Storage
 cilium: sig-high-performance-network
 cim-schema: System-tool
+cinnamon: sig-cinnamon
+cinnamon-control-center: sig-cinnamon
+cinnamon-desktop: sig-cinnamon
+cinnamon-menu: sig-cinnamon
+cinnamon-screensaver: sig-cinnamon
+cinnamon-session: sig-cinnamon
+cinnamon-settings-daemon: sig-cinnamon
+cinnamon-spices-applets: sig-cinnamon
+cinnamon-spices-desklets: sig-cinnamon
+cinnamon-spices-extensions: sig-cinnamon
+cinnamon-spices-themes: sig-cinnamon
+cinnamon-themes: sig-cinnamon
 cinnamon-translations: Programming-language
 cjkuni-ukai-fonts: Desktop
 cjkuni-uming-fonts: sig-mate-desktop
 cjose: Application
+cjs: sig-cinnamon
 cjson: DB
 ck: dev-utils
 clamav: Others
@@ -2877,6 +2890,8 @@ mcpp: Base-service
 mcstrans: sig-security-facility
 mdadm: Storage
 mdb: dev-utils
+mdm: sig-cinnamon
+mdm-themes: sig-cinnamon
 meanwhile: Programming-language
 mecab: Base-service
 media-player-info: Application
@@ -2983,6 +2998,7 @@ mtdev: Base-service
 mtools: Storage
 mtr: Networking
 mtx: System-tool
+muffin: sig-cinnamon
 mugen: sig-QA
 mujs: Desktop
 multilib-rpm-config: Packaging
@@ -3043,6 +3059,8 @@ ndisc6: Programming-language
 neXtaw: dev-utils
 neethi: Networking
 nekohtml: Application
+nemo: sig-cinnamon
+nemo-extensions: sig-cinnamon
 neo4j: DB
 neofetch: dev-utils
 neon: Programming-language
@@ -3643,6 +3661,7 @@ openstack-neutron: sig-openstack
 openstack-nova: sig-openstack
 openstack-panko: sig-openstack
 openstack-placement: sig-openstack
+openstack-plugin: sig-openstack
 openstack-rally: sig-openstack
 openstack-rally-plugins: sig-openstack
 openstack-releases: sig-openstack
@@ -7827,6 +7846,7 @@ rubygem-zeitwerk: sig-Ha
 rubyporter: dev-utils
 runc: sig-CloudNative
 rust: sig-Rust
+rust-cbindgen: sig-Rust
 rust-packaging: sig-Rust
 rust-srpm-macros: sig-epol
 rustup: sig-Rust
@@ -7898,6 +7918,7 @@ sg3_utils: Storage
 sgabios: Base-service
 sgml-common: Desktop
 sgpio: Base-service
+shaderc: Desktop
 shadow: Base-service
 shapelib: Computing
 shared-desktop-ontologies: sig-UKUI
@@ -8371,6 +8392,7 @@ vconfig: Networking
 vdo: Runtime
 vdsm: oVirt
 vdsm-jsonrpc-java: oVirt
+vectorBlas: bigdata
 velocity: sig-Java
 velocity-tools: sig-Java
 vhostmd: oVirt
