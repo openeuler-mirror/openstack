@@ -2108,7 +2108,7 @@ xena:
   heat-dashboard: 6.0.0
   heat-tempest-plugin: 1.4.0
   heat-translator: 2.4.1
-  horizon: 20.1.1
+  horizon: 20.1.2
   ironic: 18.2.1
   ironic-inspector: 10.8.0
   ironic-lib: 5.0.1
