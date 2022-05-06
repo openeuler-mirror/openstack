@@ -354,6 +354,7 @@ beust-jcommander: dev-utils
 bgenix: sig-bio
 bgmprovider: Compiler
 biber: sig-perl-modules
+bigdata: bigdata
 bigtop: bigdata
 bind: Networking
 bind-dyndb-ldap: Networking
