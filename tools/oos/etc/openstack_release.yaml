@@ -1656,48 +1656,48 @@ victoria:
   panko: 9.0.0
   pankoclient: 1.1.0
   patrole: 0.10.0
-  puppet-aodh: 17.5.0
-  puppet-barbican: 17.4.0
-  puppet-ceilometer: 17.4.0
-  puppet-cinder: 17.4.0
-  puppet-cloudkitty: 6.5.0
-  puppet-designate: 17.4.0
-  puppet-ec2api: 17.4.0
+  puppet-aodh: 17.6.0
+  puppet-barbican: 17.5.0
+  puppet-ceilometer: 17.5.0
+  puppet-cinder: 17.5.0
+  puppet-cloudkitty: 6.6.0
+  puppet-designate: 17.5.0
+  puppet-ec2api: 17.5.0
   puppet-freezer: 6.4.0
-  puppet-glance: 17.6.0
+  puppet-glance: 17.7.0
   puppet-glare: 6.4.0
-  puppet-gnocchi: 17.4.0
-  puppet-heat: 17.4.0
-  puppet-horizon: 17.4.0
-  puppet-ironic: 17.4.0
-  puppet-keystone: 17.4.0
-  puppet-magnum: 17.4.0
-  puppet-manila: 17.4.0
-  puppet-mistral: 17.4.0
+  puppet-gnocchi: 17.5.0
+  puppet-heat: 17.5.0
+  puppet-horizon: 17.5.0
+  puppet-ironic: 17.5.0
+  puppet-keystone: 17.5.0
+  puppet-magnum: 17.5.0
+  puppet-manila: 17.5.0
+  puppet-mistral: 17.5.0
   puppet-monasca: 6.4.0
   puppet-murano: 17.4.0
-  puppet-neutron: 17.6.0
-  puppet-nova: 17.6.0
-  puppet-octavia: 17.4.0
-  puppet-openstack_extras: 17.4.0
-  puppet-openstacklib: 17.4.0
-  puppet-oslo: 17.4.0
-  puppet-ovn: 17.5.0
+  puppet-neutron: 17.7.0
+  puppet-nova: 17.7.0
+  puppet-octavia: 17.5.0
+  puppet-openstack_extras: 17.5.0
+  puppet-openstacklib: 17.4.1
+  puppet-oslo: 17.5.0
+  puppet-ovn: 17.6.0
   puppet-panko: 17.5.0
-  puppet-placement: 4.4.0
+  puppet-placement: 4.5.0
   puppet-qdr: 6.4.0
   puppet-rally: 5.4.0
-  puppet-sahara: 17.4.1
+  puppet-sahara: 17.5.0
   puppet-senlin: 4.4.0
-  puppet-swift: 17.4.1
-  puppet-tacker: 17.4.0
+  puppet-swift: 17.5.0
+  puppet-tacker: 17.5.0
   puppet-tempest: 17.4.0
   puppet-tripleo: 13.7.0
   puppet-trove: 17.4.0
-  puppet-vitrage: 7.4.0
-  puppet-vswitch: 13.4.0
-  puppet-watcher: 17.4.0
-  puppet-zaqar: 17.4.0
+  puppet-vitrage: 7.5.0
+  puppet-vswitch: 13.5.0
+  puppet-watcher: 17.5.0
+  puppet-zaqar: 17.5.0
   pycadf: 3.1.1
   python-adjutant: 1.0.0
   python-adjutantclient: 0.7.0
