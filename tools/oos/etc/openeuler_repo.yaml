@@ -3031,6 +3031,7 @@ mysql-selinux: sig-security-facility
 mysql5: DB
 mysqltuner: DB
 mythes: Application
+n5p-core: sig-n5p
 nafees-web-naskh-fonts: Desktop
 nagios: System-tool
 nagios-plugins: Networking
@@ -6993,7 +6994,7 @@ python-soupsieve: sig-openstack
 python-spake2: sig-python-modules
 python-spdx-lookup: sig-python-modules
 python-speaklater: sig-python-modules
-python-spec: sig-python-modules
+python-spec: sig-recycle
 python-speedtest-cli: sig-python-modules
 python-speg: sig-python-modules
 python-sphinx: Programming-language
