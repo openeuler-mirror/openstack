@@ -6905,6 +6905,7 @@ python-rosinstall: sig-python-modules
 python-routes: sig-python-modules
 python-rpdb: sig-python-modules
 python-rpkg: sig-python-modules
+python-rply: sig-python-modules
 python-rpm-generators: Base-service
 python-rpmfluff: Private
 python-rsa: sig-python-modules
