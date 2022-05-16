@@ -1648,7 +1648,7 @@ hyphen-uk: Application
 i2c-tools: Computing
 i40e: Networking
 iSulad: iSulad
-iSulad-img: sig-CloudNative
+iSulad-img: iSulad
 iavf: Networking
 ibis: bigdata
 ibus: Desktop
