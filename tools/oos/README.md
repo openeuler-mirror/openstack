@@ -145,7 +145,7 @@ oos spec push --name stevedore --version 1.28.0
 -nc, --no-check
     [可选] 指定在生成的Spec文件中不添加check步骤
 -rs, --reuse-spec
-    复用已存在的spec文件，不再重新生成。
+    [可选] 复用已存在的spec文件，不再重新生成。
 ```
 **注意：** `oos spec push`命令必选参数为`--gitee-pat` 即Gitee账号的token，可以指定
 --name，--version来提交单个包的spec，或者--projects-data指定包列表批量化提交，
