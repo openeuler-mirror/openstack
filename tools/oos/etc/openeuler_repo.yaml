@@ -86,6 +86,7 @@ SuperLUMT: ai
 TCP_option_address: Kernel
 TeXamator: Base-service
 Thunar: xfce
+UniProton: sig-embedded
 WALinuxAgent: sig-CloudNative
 WLLVM: Compiler
 X-diagnosis: sig-ops
@@ -731,9 +732,11 @@ deepin-sound-theme: sig-DDE
 deepin-system-monitor: sig-DDE
 deepin-terminal: sig-DDE
 deepin-turbo: sig-DDE
+deepin-upgrade-tool: sig-DDE
 deepin-wallpapers: sig-DDE
 dejagnu: Programming-language
 dejavu-fonts: System-tool
+delta: bigdata
 deltarpm: Base-service
 delve: dev-utils
 derby: DB
@@ -1479,6 +1482,7 @@ httpcomponents-project: dev-utils
 httpd: Networking
 httpry: Application
 httpunit: sig-Java
+hudi: bigdata
 hue: bigdata
 hunspell: Application
 hunspell-ak: Application
@@ -1664,6 +1668,7 @@ ibus-table-chinese: Desktop
 ibus-theme-tools: Desktop
 ibus-typing-booster: Desktop
 icc-profiles-openicc: Application
+iceberg: bigdata
 icedtea-web: Compiler
 icfg: Networking
 icon-naming-utils: Desktop
@@ -2639,6 +2644,7 @@ libxkbcommon: Desktop
 libxkbfile: Desktop
 libxklavier: Desktop
 libxml2: Base-service
+libxml2-rust: Base-service
 libxmlb: Others
 libxmlpp: sig-compat-winapp
 libxshmfence: Desktop
@@ -8058,6 +8064,7 @@ staxmapper: sig-Java
 std_msgs: sig-ROS
 stix-fonts: Desktop
 storm: bigdata
+stortrace: Storage
 strace: Computing
 stratovirt: Virt
 stream-lib: sig-Java
