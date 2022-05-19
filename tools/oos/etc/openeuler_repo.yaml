@@ -501,7 +501,7 @@ cinnamon-spices-desklets: sig-cinnamon
 cinnamon-spices-extensions: sig-cinnamon
 cinnamon-spices-themes: sig-cinnamon
 cinnamon-themes: sig-cinnamon
-cinnamon-translations: Programming-language
+cinnamon-translations: sig-cinnamon
 cjkuni-ukai-fonts: Desktop
 cjkuni-uming-fonts: sig-mate-desktop
 cjose: Application
@@ -8072,7 +8072,7 @@ stress-ng: dev-utils
 stringtemplate: dev-utils
 stringtemplate4: Base-service
 stringtie: sig-bio
-strongswan: Application
+strongswan: sig-security-facility
 struts: sig-Java
 stunnel: Application
 subscription-manager: sig-recycle
