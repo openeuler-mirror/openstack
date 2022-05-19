@@ -2323,7 +2323,7 @@ xena:
   zun-ui: 8.0.0
 yoga:
   adjutant-ui: 4.0.0
-  ansible-collection-kolla: 1.0.0.0rc2
+  ansible-collection-kolla: 1.0.0
   ansible-role-atos-hsm: 3.0.0
   ansible-role-lunasa-hsm: 3.0.0
   ansible-role-thales-hsm: 3.0.0
@@ -2374,15 +2374,15 @@ yoga:
   ironic-python-agent-builder: 4.0.1
   ironic-tempest-plugin: 2.4.0
   ironic-ui: 5.1.0
-  kayobe: 12.0.0.0rc2
-  kayobe-config: 12.0.0.0rc2
-  kayobe-config-dev: 12.0.0.0rc2
+  kayobe: 12.0.0
+  kayobe-config: 12.0.0
+  kayobe-config-dev: 12.0.0
   keystone: 21.0.0
   keystone_tempest_plugin: 0.9.0
   keystoneauth1: 4.5.0
   keystonemiddleware: 9.4.0
-  kolla: 14.0.0.0rc2
-  kolla-ansible: 14.0.0.0rc2
+  kolla: 14.0.0
+  kolla-ansible: 14.0.0
   kuryr-kubernetes: 6.0.0
   kuryr-lib: 2.5.0
   kuryr-libnetwork: 9.0.0
@@ -2399,7 +2399,7 @@ yoga:
   metalsmith: 1.6.2
   mistral: 14.0.0
   mistral-dashboard: 14.0.0
-  mistral-extra: 11.2.0
+  mistral-extra: 11.3.0
   mistral-lib: 2.6.0
   mistral_tempest_tests: 1.4.0
   monasca-agent: 7.0.0
