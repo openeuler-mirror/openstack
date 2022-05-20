@@ -2497,8 +2497,8 @@ yoga:
   puppet-trove: 20.3.0
   puppet-vitrage: 10.3.0
   puppet-vswitch: 16.3.0
-  puppet-watcher: 20.3.0
-  puppet-zaqar: 20.3.0
+  puppet-watcher: 20.3.1
+  puppet-zaqar: 20.3.1
   python-adjutant: 4.0.0
   python-adjutantclient: 0.10.0
   python-barbicanclient: 5.3.0
