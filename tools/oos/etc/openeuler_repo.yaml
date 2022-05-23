@@ -6,6 +6,7 @@ A-Tune-Collector: A-Tune
 A-Tune-UI: A-Tune
 AvxToNeon: sig-AccLib
 BareBonesBrowserLaunch: sig-Java
+BiSheng-Adoptium: Compiler
 CPython: Compiler
 CUnit: Base-service
 CharLS: Desktop
@@ -1652,7 +1653,7 @@ hyphen-uk: Application
 i2c-tools: Computing
 i40e: Networking
 iSulad: iSulad
-iSulad-img: iSulad
+iSulad-img: sig-CloudNative
 iavf: Networking
 ibis: bigdata
 ibus: Desktop
@@ -1720,6 +1721,7 @@ interactive_markers: sig-ROS
 internal-issue: Private
 intltool: Programming-language
 invokebinder: sig-Java
+inxi: sig-cinnamon
 ioping: Application
 ioprocess: oVirt
 iotop: Storage
@@ -2359,7 +2361,7 @@ libffado: sig-compat-winapp
 libffi: Base-service
 libfm: xfce
 libfontenc: Desktop
-libfprint: Others
+libfprint: sig-UKUI
 libfreenect: sig-epol
 libftdi: sig-embedded
 libgadu: Application
@@ -5284,6 +5286,7 @@ perl-XML-Bare: sig-perl-modules
 perl-XML-Catalog: sig-perl-modules
 perl-XML-CommonNS: sig-perl-modules
 perl-XML-DOM: sig-perl-modules
+perl-XML-Dumper: sig-cinnamon
 perl-XML-Fast: sig-perl-modules
 perl-XML-FeedPP: sig-perl-modules
 perl-XML-Flow: sig-perl-modules
@@ -8503,7 +8506,7 @@ xacro: sig-ROS
 xalan-j2: Base-service
 xapian-core: Others
 xapool: sig-Java
-xapps: Application
+xapps: sig-cinnamon
 xarchiver: xfce
 xbanish: Application
 xbean: sig-Java
