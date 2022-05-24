@@ -1,1 +1,0 @@
-{"name": "pandas", "version_dict": {"version": "0.11", "eq_version": "", "ge_version": "0.11", "lt_version": "", "ne_version": [], "upper_version": ""}, "deep": {"count": 8, "list": ["aodh", "futurist", "hacking", "oslosphinx", "openstackdocstheme", "os-api-ref", "stestr", "subunit2sql", "pandas"]}, "requires": {}}

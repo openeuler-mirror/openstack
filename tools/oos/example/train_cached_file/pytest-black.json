@@ -1,1 +1,0 @@
-{"name": "pytest-black", "version_dict": {"version": "0.3.7", "eq_version": "", "ge_version": "0.3.7", "lt_version": "", "ne_version": [], "upper_version": ""}, "deep": {"count": 8, "list": ["aodh", "futurist", "hacking", "mock", "Sphinx", "setuptools", "jaraco.packaging", "jaraco.test", "pytest-black"]}, "requires": {}}

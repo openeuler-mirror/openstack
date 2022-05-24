@@ -1,1 +1,0 @@
-{"name": "pycryptodomex", "version_dict": {"version": "3.9.0", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": [], "upper_version": "3.9.0"}, "deep": {"count": 2, "list": ["ceilometer", "pysnmp", "pycryptodomex"]}, "requires": {}}

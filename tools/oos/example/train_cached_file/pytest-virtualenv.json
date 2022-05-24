@@ -1,1 +1,0 @@
-{"name": "pytest-virtualenv", "version_dict": {"version": "1.2.7", "eq_version": "", "ge_version": "1.2.7", "lt_version": "", "ne_version": [], "upper_version": ""}, "deep": {"count": 6, "list": ["aodh", "futurist", "hacking", "mock", "Sphinx", "setuptools", "pytest-virtualenv"]}, "requires": {}}

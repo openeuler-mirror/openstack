@@ -1,1 +1,0 @@
-{"name": "entrypoints", "version_dict": {"version": "0.3", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": [], "upper_version": "0.3"}, "deep": {"count": 8, "list": ["aodh", "futurist", "hacking", "mock", "Sphinx", "setuptools", "jaraco.tidelift", "keyring", "entrypoints"]}, "requires": {}}

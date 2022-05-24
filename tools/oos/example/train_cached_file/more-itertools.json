@@ -1,1 +1,0 @@
-{"name": "more-itertools", "version_dict": {"version": "7.2.0", "eq_version": "", "ge_version": "4.0.0", "lt_version": "", "ne_version": [], "upper_version": "7.2.0"}, "deep": {"count": 7, "list": ["aodh", "futurist", "hacking", "mock", "Sphinx", "sphinxcontrib-applehelp", "pytest", "more-itertools"]}, "requires": {}}

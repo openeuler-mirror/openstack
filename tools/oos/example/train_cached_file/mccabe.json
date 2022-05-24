@@ -1,1 +1,0 @@
-{"name": "mccabe", "version_dict": {"version": "0.2.1", "eq_version": "0.2.1", "ge_version": "", "lt_version": "", "ne_version": [], "upper_version": ""}, "deep": {"count": 3, "list": ["aodh", "futurist", "hacking", "mccabe"]}, "requires": {}}

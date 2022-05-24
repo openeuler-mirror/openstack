@@ -1,1 +1,0 @@
-{"name": "cffi", "version_dict": {"version": "1.12.3", "eq_version": "", "ge_version": "1.0.0", "lt_version": "", "ne_version": [], "upper_version": "1.12.3"}, "deep": {"count": 11, "list": ["aodh", "futurist", "hacking", "oslosphinx", "openstackdocstheme", "os-api-ref", "stestr", "subunit2sql", "oslo.db", "pifpaf", "xattr", "cffi"]}, "requires": {}}
