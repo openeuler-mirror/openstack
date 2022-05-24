@@ -1,1 +1,0 @@
-{"name": "daiquiri", "version_dict": {"version": "1.6.0", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": [], "upper_version": "1.6.0"}, "deep": {"count": 10, "list": ["aodh", "futurist", "hacking", "oslosphinx", "openstackdocstheme", "os-api-ref", "stestr", "subunit2sql", "oslo.db", "pifpaf", "daiquiri"]}, "requires": {}}

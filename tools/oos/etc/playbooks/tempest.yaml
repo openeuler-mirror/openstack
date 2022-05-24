@@ -1,8 +1,0 @@
-- name: Install Tempest
-  hosts: controller
-  become: yes
-  tasks:
-    - name: Install tempest package
-      yum:
-        name:
-          - openstack-tempest

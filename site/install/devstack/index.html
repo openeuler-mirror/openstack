@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>devstack - OpenStack SIG Doc</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "devstack";
+        var mkdocs_page_input_path = "install/devstack.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> OpenStack SIG Doc
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">OpenStack SIG</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">安装指导</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">devstack</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">安装步骤</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../openEuler-20.03-LTS-SP2/OpenStack-queens/">openEuler-20.03-LTS-SP2_Queens</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../openEuler-20.03-LTS-SP2/OpenStack-rocky/">openEuler-20.03-LTS-SP2_Rocky</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../openEuler-20.03-LTS-SP3/OpenStack-queens/">openEuler-20.03-LTS-SP3_Queens</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../openEuler-20.03-LTS-SP3/OpenStack-rocky/">openEuler-20.03-LTS-SP3_Rocky</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../openEuler-20.03-LTS-SP3/OpenStack-train/">openEuler-20.03-LTS-SP3_Train</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../openEuler-21.09/OpenStack-wallaby/">openEuler-21.09_Wallaby</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../openEuler-22.03-LTS/OpenStack-train/">openEuler-22.03-LTS_Train</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../openEuler-22.03-LTS/OpenStack-wallaby/">openEuler-22.03-LTS_Wallaby</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">测试报告</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../test/openEuler-20.03-LTS-SP2/">openEuler-20.03-LTS-SP2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../test/openEuler-20.03-LTS-SP3/">openEuler-20.03-LTS-SP3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../test/openEuler-22.03-LTS/">openEuler-22.03-LTS</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">自研特性</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../spec/priority_vm/">虚拟机高低优先级</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">OpenStack SIG Doc</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>安装指导 &raquo;</li><li>devstack</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="devstackopenstack">使用Devstack安装OpenStack</h1>
+<p>目前OpenStack原生Devstack项目已经支持在openEuler上安装OpenStack，其中openEuler 20.03 LTS SP2已经过验证，并且有上游官方CI保证质量。其他版本的openEuler需要用户自行测试(2022-04-25 openEuler master分支已验证)。</p>
+<h2 id="_1">安装步骤</h2>
+<p>准备一个openEuler环境, 20.03 LTS SP2<a href="https://repo.openeuler.org/openEuler-20.03-LTS-SP2/virtual_machine_img/">虚拟机镜像地址</a>, master<a href="http://121.36.84.172/dailybuild/openEuler-Mainline/">虚拟机镜像地址</a></p>
+<ol>
+<li>
+<p>配置yum源</p>
+<p><strong>openEuler 20.03 LTS SP2</strong>：</p>
+<p>openEuler官方源中缺少了一些OpenStack需要的RPM包，因此需要先配上OpenStack SIG在oepkg中准备好的RPM源</p>
+<pre class="highlight"><code>vi /etc/yum.repos.d/openeuler.repo
+
+[openstack]
+name=openstack
+baseurl=https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack-master-ci/aarch64/
+enabled=1
+gpgcheck=0</code></pre>
+<p><strong>openEuler master</strong>:</p>
+<p>使用master的RPM源:</p>
+<pre class="highlight"><code>vi /etc/yum.repos.d/openeuler.repo
+
+[mainline]
+name=mainline
+baseurl=http://119.3.219.20:82/openEuler:/Mainline/standard_aarch64/
+gpgcheck=false
+
+[epol]
+name=epol
+baseurl=http://119.3.219.20:82/openEuler:/Epol/standard_aarch64/
+gpgcheck=false</code></pre>
+</li>
+<li>
+<p>前期准备</p>
+<p><strong>openEuler 20.03 LTS SP2</strong>：</p>
+<p>在一些版本的openEuler官方镜像的默认源中，EPOL-update的URL可能配置不正确，需要修改</p>
+<pre class="highlight"><code>vi /etc/yum.repos.d/openEuler.repo
+
+# 把[EPOL-UPDATE]URL改成
+baseurl=http://repo.openeuler.org/openEuler-20.03-LTS-SP2/EPOL/update/main/$basearch/</code></pre>
+<p><strong>openEuler master</strong>:</p>
+<pre class="highlight"><code>yum remove python3-pip # 系统的pip与devstack pip冲突，需要先删除
+# master的虚机环境缺少了一些依赖，devstack不会自动安装，需要手动安装
+yum install iptables tar wget python3-devel httpd-devel iscsi-initiator-utils libvirt python3-libvirt qemu memcached</code></pre>
+</li>
+<li>
+<p>下载devstack</p>
+<pre class="highlight"><code>yum update
+yum install git
+cd /opt/
+git clone https://opendev.org/openstack/devstack</code></pre>
+</li>
+<li>
+<p>初始化devstack环境配置</p>
+<pre class="highlight"><code># 创建stack用户
+/opt/devstack/tools/create-stack-user.sh
+# 修改目录权限
+chown -R stack:stack /opt/devstack
+chmod -R 755 /opt/devstack
+chmod -R 755 /opt/stack
+# 切换到要部署的openstack版本分支，以yoga为例，不切换的话，默认安装的是master版本的openstack
+git checkout stable/yoga</code></pre>
+</li>
+<li>
+<p>初始化devstack配置文件</p>
+<pre class="highlight"><code>切换到stack用户
+su stack
+此时，请确认stack用户的PATH环境变量是否包含了`/usr/sbin`，如果没有，则需要执行
+PATH=$PATH:/usr/sbin
+新增配置文件
+vi /opt/devstack/local.conf
+
+[[local|localrc]]
+DATABASE_PASSWORD=root
+RABBIT_PASSWORD=root
+SERVICE_PASSWORD=root
+ADMIN_PASSWORD=root
+OVN_BUILD_FROM_SOURCE=True</code></pre>
+<p>openEuler没有提供OVN的RPM软件包，因此需要配置<code>OVN_BUILD_FROM_SOURCE=True</code>, 从源码编译OVN</p>
+<p>另外如果使用的是arm64虚拟机环境，则需要配置libvirt嵌套虚拟化，在<code>local.conf</code>中追加如下配置：</p>
+<pre class="highlight"><code>[[post-config|$NOVA_CONF]]
+[libvirt]
+cpu_mode=custom
+cpu_model=cortex-a72</code></pre>
+<p>如果安装Ironic，需要提前安装依赖：</p>
+<pre class="highlight"><code class="language-bash">sudo dnf install syslinux-nonlinux</code></pre>
+<p><strong>openEuler master的特殊配置</strong>： 由于devstack还没有适配最新的openEuler，我们需要手动修复一些问题：</p>
+<ol>
+<li>
+<p>修改devstack源码</p>
+<p><pre class="highlight"><code>vi /opt/devstack/tools/fixup_stuff.sh
+把fixup_openeuler方法中的所有echo语句删掉
+(echo '[openstack-ci]'
+echo 'name=openstack'
+echo 'baseurl=https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack-master-ci/'$arch'/'
+echo 'enabled=1'
+echo 'gpgcheck=0') | sudo tee -a /etc/yum.repos.d/openstack-master.repo &gt; /dev/null</code></pre>
+    2. 修改requirements源码</p>
+<p>Yoga版keystone的依赖<code>setproctitle</code>的devstack默认版本不支持python3.10，需要升级，手动下载requirements项目并修改
+<pre class="highlight"><code>cd /opt/stack
+git clone https://opendev.org/openstack/requirements --branch stable/yoga
+vi /opt/stack/requirements/upper-constraints.txt
+setproctitle===1.2.3</code></pre></p>
+</li>
+<li>
+<p>OpenStack horizon有BUG，无法正常安装。这里我们暂时不安装horizon，修改<code>local.conf</code>，新增一行：</p>
+<pre class="highlight"><code>[[local|localrc]]
+disable_service horizon</code></pre>
+<p>如果确实有对horizon的需求，则需要解决以下问题：</p>
+<pre class="highlight"><code># 1. horizon依赖的pyScss默认为1.3.7版本，不支持python3.10
+# 解决方法：需要提前clone`requirements`项目并修改代码
+vi /opt/stack/requirements/upper-constraints.txt
+pyScss===1.4.0
+
+# 2. horizon依赖httpd的mod_wsgi插件，但目前openEuler的mod_wsgi构建异常（2022-04-25）（解决后yum install mod_wsgi即可），无法从yum安装
+# 解决方法：手动源码build mod_wsgi并配置，该过程较复杂，这里略过</code></pre>
+</li>
+<li>
+<p>dstat服务依赖的<code>pcp-system-tools</code>构建异常（2022-04-25）（解决后yum install pcp-system-tools即可），无法从yum安装，暂时先不安装dstat</p>
+<pre class="highlight"><code>[[local|localrc]]
+disable_service dstat</code></pre>
+</li>
+</ol>
+</li>
+<li>
+<p>部署OpenStack</p>
+<p>进入devstack目录，执行<code>./stack.sh</code>，等待OpenStack完成安装部署。</p>
+</li>
+</ol>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../.." class="btn btn-neutral float-left" title="OpenStack SIG"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../openEuler-20.03-LTS-SP2/OpenStack-queens/" class="btn btn-neutral float-right" title="openEuler-20.03-LTS-SP2_Queens">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../.." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../openEuler-20.03-LTS-SP2/OpenStack-queens/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

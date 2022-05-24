@@ -1,1 +1,0 @@
-{"name": "psycopg2", "version_dict": {"version": "2.8.3", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": [], "upper_version": "2.8.3"}, "deep": {"count": 10, "list": ["aodh", "futurist", "hacking", "oslosphinx", "openstackdocstheme", "os-api-ref", "stestr", "subunit2sql", "oslo.db", "sqlalchemy-migrate", "psycopg2"]}, "requires": {}}

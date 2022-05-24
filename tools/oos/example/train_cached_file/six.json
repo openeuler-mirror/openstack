@@ -1,1 +1,0 @@
-{"name": "six", "version_dict": {"version": "1.12.0", "eq_version": "", "ge_version": "1.5", "lt_version": "", "ne_version": [], "upper_version": "1.12.0"}, "deep": {"count": 3, "list": ["aodh", "croniter", "python-dateutil", "six"]}, "requires": {}}

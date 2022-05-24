@@ -1,1 +1,0 @@
-{"name": "alabaster", "version_dict": {"version": "0.7.12", "eq_version": "", "ge_version": "0.7", "lt_version": "0.8", "ne_version": [], "upper_version": "0.7.12"}, "deep": {"count": 5, "list": ["aodh", "futurist", "hacking", "mock", "Sphinx", "alabaster"]}, "requires": {}}

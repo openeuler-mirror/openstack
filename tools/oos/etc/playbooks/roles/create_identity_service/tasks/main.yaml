@@ -1,7 +1,0 @@
-- name: Create {{ service }} identity service
-  shell: |
-    source ~/.admin-openrc
-    openstack service create --name {{ service }} --description "{{ description }}" {{ type }}
-    openstack endpoint create --region RegionOne {{ type }} public {{ endpoint }}
-    openstack endpoint create --region RegionOne {{ type }} internal {{ endpoint }}
-    openstack endpoint create --region RegionOne {{ type }} admin {{ admin_endpoint | default(endpoint) }}

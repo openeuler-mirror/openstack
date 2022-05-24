@@ -1,1 +1,0 @@
-{"name": "docutils", "version_dict": {"version": "0.15.2", "eq_version": "", "ge_version": "0.12", "lt_version": "", "ne_version": [], "upper_version": "0.15.2"}, "deep": {"count": 5, "list": ["aodh", "futurist", "hacking", "mock", "Sphinx", "docutils"]}, "requires": {}}

@@ -1,1 +1,0 @@
-{"name": "freezegun", "version_dict": {"version": "0.3.12", "eq_version": "", "ge_version": "0.3.6", "lt_version": "", "ne_version": [], "upper_version": "0.3.12"}, "deep": {"count": 1, "list": ["keystone", "freezegun"]}, "requires": {}}

@@ -1,1 +1,0 @@
-{"name": "defusedxml", "version_dict": {"version": "0.6.0", "eq_version": "", "ge_version": "0.5.0", "lt_version": "", "ne_version": [], "upper_version": "0.6.0"}, "deep": {"count": 1, "list": ["cinder", "defusedxml"]}, "requires": {}}

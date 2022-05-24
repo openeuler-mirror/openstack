@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>OpenStack SIG Doc</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "OpenStack SIG";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> OpenStack SIG Doc
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href=".">OpenStack SIG</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#openstack">OpenStack版本支持列表</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#oepkg">oepkg软件仓地址列表</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#maintainer">Maintainer的加入和退出</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#maintainer_1">如何成为maintainer</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#maintainer_2">maintainer的退出</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">如何贡献</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">项目清单</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">安装指导</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="install/devstack/">devstack</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="install/openEuler-20.03-LTS-SP2/OpenStack-queens/">openEuler-20.03-LTS-SP2_Queens</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="install/openEuler-20.03-LTS-SP2/OpenStack-rocky/">openEuler-20.03-LTS-SP2_Rocky</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="install/openEuler-20.03-LTS-SP3/OpenStack-queens/">openEuler-20.03-LTS-SP3_Queens</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="install/openEuler-20.03-LTS-SP3/OpenStack-rocky/">openEuler-20.03-LTS-SP3_Rocky</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="install/openEuler-20.03-LTS-SP3/OpenStack-train/">openEuler-20.03-LTS-SP3_Train</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="install/openEuler-21.09/OpenStack-wallaby/">openEuler-21.09_Wallaby</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="install/openEuler-22.03-LTS/OpenStack-train/">openEuler-22.03-LTS_Train</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="install/openEuler-22.03-LTS/OpenStack-wallaby/">openEuler-22.03-LTS_Wallaby</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">测试报告</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="test/openEuler-20.03-LTS-SP2/">openEuler-20.03-LTS-SP2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="test/openEuler-20.03-LTS-SP3/">openEuler-20.03-LTS-SP3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="test/openEuler-22.03-LTS/">openEuler-22.03-LTS</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">自研特性</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="spec/priority_vm/">虚拟机高低优先级</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">OpenStack SIG Doc</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>OpenStack SIG</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="openeuler-openstack-sig">openEuler OpenStack SIG</h1>
+<h2 id="openstack">OpenStack版本支持列表</h2>
+<p>OpenStack SIG通过用户反馈等方式收集OpenStack版本需求，经过SIG组内成员公开讨论决定OpenStack的版本演进路线。规划中的版本可能因为需求更变、人力变动等原因进行调整。OpenStack SIG欢迎更多开发者、厂商参与，共同完善openEuler的OpenStack支持。</p>
+<p>● - 已支持
+○ - 规划中/开发中
+▲ - 部分openEuler版本支持</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">Queens</th>
+<th align="center">Rocky</th>
+<th align="center">Train</th>
+<th align="center">Ussuri</th>
+<th align="center">Victoria</th>
+<th align="center">Wallaby</th>
+<th align="center">Xena</th>
+<th align="center">Yoga</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">openEuler 20.03 LTS SP1</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">○</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">openEuler 20.03 LTS SP2</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">openEuler 20.03 LTS SP3</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">openEuler 21.03</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">●</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">openEuler 21.09</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">●</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">openEuler 22.03 LTS</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">●</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">●</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">openEuler 22.09</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">○</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">Queens</th>
+<th align="center">Rocky</th>
+<th align="center">Train</th>
+<th align="center">Victoria</th>
+<th align="center">Wallaby</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Keystone</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+</tr>
+<tr>
+<td align="center">Glance</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+</tr>
+<tr>
+<td align="center">Nova</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+</tr>
+<tr>
+<td align="center">Cinder</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+</tr>
+<tr>
+<td align="center">Neutron</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+</tr>
+<tr>
+<td align="center">Tempest</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+</tr>
+<tr>
+<td align="center">Horizon</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+</tr>
+<tr>
+<td align="center">Ironic</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+</tr>
+<tr>
+<td align="center">Placement</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+</tr>
+<tr>
+<td align="center">Trove</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center"></td>
+<td align="center">●</td>
+</tr>
+<tr>
+<td align="center">Kolla</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center"></td>
+<td align="center">●</td>
+</tr>
+<tr>
+<td align="center">Trove</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center"></td>
+<td align="center">●</td>
+</tr>
+<tr>
+<td align="center">Kolla</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center">●</td>
+<td align="center"></td>
+<td align="center">●</td>
+</tr>
+<tr>
+<td align="center">Rally</td>
+<td align="center">▲</td>
+<td align="center">▲</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">Swift</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">●</td>
+<td align="center"></td>
+<td align="center">●</td>
+</tr>
+<tr>
+<td align="center">Heat</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">●</td>
+<td align="center"></td>
+<td align="center">▲</td>
+</tr>
+<tr>
+<td align="center">Ceilometer</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">●</td>
+<td align="center"></td>
+<td align="center">▲</td>
+</tr>
+<tr>
+<td align="center">Aodh</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">●</td>
+<td align="center"></td>
+<td align="center">▲</td>
+</tr>
+<tr>
+<td align="center">Cyborg</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">●</td>
+<td align="center"></td>
+<td align="center">▲</td>
+</tr>
+<tr>
+<td align="center">Gnocchi</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">●</td>
+<td align="center"></td>
+<td align="center">●</td>
+</tr>
+</tbody>
+</table>
+<p>Note:</p>
+<ol>
+<li>openEuler 20.03 LTS SP2不支持Rally</li>
+<li>openEuler 21.09 不支持Heat、Ceilometer、Swift、Aodh和Cyborg</li>
+</ol>
+<h2 id="oepkg">oepkg软件仓地址列表</h2>
+<p>Queens、Rocky版本的支持放在SIG官方认证的第三方软件平台oepkg:</p>
+<p>20.03-LTS-SP2 Rocky： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/queens/</p>
+<p>20.03-LTS-SP3 Rocky： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP3/budding-openeuler/openstack/rocky/</p>
+<p>20.03-LTS-SP2 Queens： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/queens/</p>
+<p>20.03-LTS-SP3 Rocky： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP3/budding-openeuler/openstack/rocky/</p>
+<h2 id="maintainer">Maintainer的加入和退出</h2>
+<p>秉承开源开放的理念，OpenStack SIG在maintainer成员的加入和退出方面也有一定的规范和要求。</p>
+<h3 id="maintainer_1">如何成为maintainer</h3>
+<p>maintainer作为SIG的直接负责人，拥有代码合入、路标规划、提名maintainer等方面的权利，同时也有软件质量看护、版本开发的义务。如果您想成为OpenStack SIG的一名maintainer，需要满足以下几点要求：</p>
+<ol>
+<li>持续参与OpenStack SIG开发贡献，不小于一个openEuler release周期（一般为3个月）</li>
+<li>持续参与OpenStack SIG代码检视，review排名应不低于SIG平均量</li>
+<li>定时参加OpenStack SIG例会（一般为双周一次），一个openEuler release周期一般包括6次例会，缺席次数应不大于2次</li>
+</ol>
+<p>加分项：</p>
+<ol>
+<li>积极参加OpenStack SIG组织的各种活动，比如线上分享、线下meetup或峰会等。</li>
+<li>帮助SIG扩展运营范围，进行联合技术创新，例如主动开源新项目，吸引新的开发者、厂商加入SIG等。</li>
+</ol>
+<p>SIG maintainer每个季度会组织闭门会议，审视当前贡献数据，根据贡献者满足相关要求，经讨论达成一致后并且贡献者愿意担任maintainer一职时，SIG会向openEuler TC提出相关申请</p>
+<h3 id="maintainer_2">maintainer的退出</h3>
+<p>当SIG maintainer因为自身原因（工作变动、业务调整等原因），无法再担任maintainer一职时，可主动申请退出。</p>
+<p>SIG maintainer每半年也会例行审视当前maintainer列表，如果发现有不再适合担任maintainer的贡献者（贡献不足、不再活跃等原因），经讨论达成一致后，会向openEuler TC提出相关申请。</p>
+<h2 id="_1">如何贡献</h2>
+<p>OpenStack SIG秉承OpenStack社区4个Open原则（Open source、Open Design、Open Development、Open Community），欢迎开发者、用户、厂商以各种开源方式参与SIG贡献，包括但不限于：</p>
+<ol>
+<li><a href="https://gitee.com/openeuler/openstack/issues/new">提交Issue</a>
+    如果您在使用OpenStack时遇到了任何问题，可以向SIG提交ISSUE，包括不限于使用疑问、软件包BUG、特性需求等等。</li>
+<li>参与技术讨论
+   通过邮件列表、微信群、在线例会等方式，与SIG成员实时讨论OpenStack技术。</li>
+<li>参与SIG的软件开发测试工作<ol>
+<li>OpenStack SIG跟随openEuler版本开发的节奏，每几个月对外发布不同版本的OpenStack，每个版本包含了几百个RPM软件包，开发者可以参与到这些RPM包的开发工作中。</li>
+<li>OpenStack SIG包括一些来自厂商捐献、自主研发的项目，开发者可以参与相关项目的开发工作。</li>
+<li>openEuler新版本发布后，用户可以测试试用对应的OpenStack，相关BUG和问题可以提交到SIG。</li>
+<li>OpenStack SIG还提供了一系列提高开发效率的工具和文档，用户可以帮忙优化、完善。</li>
+</ol>
+</li>
+<li>技术预言、联合创新
+   OpenStack SIG欢迎各种形式的联合创新，邀请各位开发者以开源的方式、以SIG为平台，创造属于国人的云计算新技术。如果您有idea或开发意愿，欢迎加入SIG。</li>
+</ol>
+<p>当然，贡献形式不仅包含这些，其他任何与OpenStack相关、与开源相关的事务都可以带到SIG中。OpenStack SIG欢迎您的参与。</p>
+<h2 id="_2">项目清单</h2>
+<p>SIG包含的全部项目：<a href="https://gitee.com/openeuler/openstack/blob/master/tools/oos/etc/openeuler_sig_repo.yaml">https://gitee.com/openeuler/openstack/blob/master/tools/oos/etc/openeuler_sig_repo.yaml</a></p>
+<p>OpenStack包含项目众多，为了方便管理，设置了统一入口项目，用户、开发者对OpenStack SIG以及各OpenStack子项目有任何问题，可以在该项目中提交Issue。</p>
+<ul>
+<li><a href="https://gitee.com/openeuler/openstack">https://gitee.com/openeuler/openstack</a></li>
+</ul>
+<p>SIG同时联合各大厂商、开发者，创建了一系列自研项目：</p>
+<ul>
+<li><a href="https://gitee.com/openeuler/openstack-kolla-ansible-plugin">https://gitee.com/openeuler/openstack-kolla-ansible-plugin</a></li>
+<li><a href="https://gitee.com/openeuler/openstack-kolla-plugin">https://gitee.com/openeuler/openstack-kolla-plugin</a></li>
+<li><a href="https://gitee.com/openeuler/openstack-plugin">https://gitee.com/openeuler/openstack-plugin</a></li>
+<li><a href="https://gitee.com/openeuler/hostha">https://gitee.com/openeuler/hostha</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="install/devstack/" class="btn btn-neutral float-right" title="devstack">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="install/devstack/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.3.0
+Build Date UTC : 2022-05-24 01:45:33.829606+00:00
+-->
