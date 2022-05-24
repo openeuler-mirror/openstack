@@ -11,6 +11,7 @@
     **openEuler 20.03 LTS SP2**：
 
     openEuler官方源中缺少了一些OpenStack需要的RPM包，因此需要先配上OpenStack SIG在oepkg中准备好的RPM源
+
     ```
     vi /etc/yum.repos.d/openeuler.repo
 
@@ -23,7 +24,8 @@
 
     **openEuler master**:
 
-    使用master的RPM源
+    使用master的RPM源:
+
     ```
     vi /etc/yum.repos.d/openeuler.repo
 
@@ -109,7 +111,9 @@
     cpu_mode=custom
     cpu_model=cortex-a72
     ```
+
     如果安装Ironic，需要提前安装依赖：
+
     ```bash
     sudo dnf install syslinux-nonlinux
     ```
@@ -145,6 +149,7 @@
         ```
 
         如果确实有对horizon的需求，则需要解决以下问题：
+
         ```
         # 1. horizon依赖的pyScss默认为1.3.7版本，不支持python3.10
         # 解决方法：需要提前clone`requirements`项目并修改代码
@@ -166,7 +171,3 @@
 
     进入devstack目录，执行`./stack.sh`，等待OpenStack完成安装部署。
 
-
-部署成功的截图展示：
-
-![devstack-success](./devstack-success.png)

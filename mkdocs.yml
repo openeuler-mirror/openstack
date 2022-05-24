@@ -1,0 +1,26 @@
+site_name: OpenStack SIG Doc
+theme: readthedocs
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+nav:
+- OpenStack SIG: 'index.md'
+- 安装指导:
+  - devstack: 'install/devstack.md'
+  - openEuler-20.03-LTS-SP2_Queens: 'install/openEuler-20.03-LTS-SP2/OpenStack-queens.md'
+  - openEuler-20.03-LTS-SP2_Rocky: 'install/openEuler-20.03-LTS-SP2/OpenStack-rocky.md'
+  - openEuler-20.03-LTS-SP3_Queens: 'install/openEuler-20.03-LTS-SP3/OpenStack-queens.md'
+  - openEuler-20.03-LTS-SP3_Rocky: 'install/openEuler-20.03-LTS-SP3/OpenStack-rocky.md'
+  - openEuler-20.03-LTS-SP3_Train: 'install/openEuler-20.03-LTS-SP3/OpenStack-train.md'
+  - openEuler-21.09_Wallaby: 'install/openEuler-21.09/OpenStack-wallaby.md'
+  - openEuler-22.03-LTS_Train: 'install/openEuler-22.03-LTS/OpenStack-train.md'
+  - openEuler-22.03-LTS_Wallaby: 'install/openEuler-22.03-LTS/OpenStack-wallaby.md'
+- 测试报告:
+  - openEuler-20.03-LTS-SP2: 'test/openEuler-20.03-LTS-SP2.md'
+  - openEuler-20.03-LTS-SP3: 'test/openEuler-20.03-LTS-SP3.md'
+  - openEuler-22.03-LTS: 'test/openEuler-22.03-LTS.md'
+- 自研特性:
+  - 虚拟机高低优先级: 'spec/priority_vm.md'
