@@ -1166,7 +1166,7 @@ glade3: sig-mate-desktop
 glassfish-annotation-api: sig-Java
 glassfish-dtd-parser: dev-utils
 glassfish-ejb-api: Base-service
-glassfish-el: sig-Java
+glassfish-el: sig-recycle
 glassfish-fastinfoset: Base-service
 glassfish-gmbal: sig-Java
 glassfish-hk2: sig-Java
@@ -2272,6 +2272,7 @@ libappindicator: Desktop
 libappstream-glib: Programming-language
 libapr1: Application
 libarchive: Base-service
+libarchive-rust: Base-service
 libart_lgpl: Desktop
 libass: Application
 libassuan: Networking
@@ -3598,6 +3599,7 @@ opendesign-datastat: sig-OpenDesign
 opendesign-deployment: sig-OpenDesign
 opendesign-internship: sig-OpenDesign
 opendesign-miniprogram: sig-OpenDesign
+opendesign-resources: sig-OpenDesign
 opendesign-templates: sig-OpenDesign
 openeuler-docker-images: sig-CloudNative
 openeuler-jenkins: sig-Gatekeeper
