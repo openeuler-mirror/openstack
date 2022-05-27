@@ -40,7 +40,6 @@ Imath: Runtime
 Intel-Arch-doc: sig-Intel-Arch
 Intel-gcc: sig-Intel-Arch
 Intel-glibc: sig-Intel-Arch
-Intel-kernel: sig-Intel-Arch
 Java-Packages: sig-Java
 Judy: Base-service
 Keras: Private
@@ -643,6 +642,7 @@ cups-filters: System-tool
 cups-pk-helper: Desktop
 curator: dev-utils
 curl: Networking
+curl-rust: Networking
 curvesapi: dev-utils
 custodia: System-tool
 custom_build_tool: Application
@@ -1716,6 +1716,7 @@ install-scripts: sig-OS-Builder
 integration-test: sig-QA
 intel-cmt-cat: Programming-language
 intel-device-plugins-for-kubernetes: sig-confidential-computing
+intel-kernel: sig-Intel-Arch
 intel-sgx-ssl: sig-confidential-computing
 interactive_markers: sig-ROS
 internal-issue: Private
