@@ -12,6 +12,7 @@ CUnit: Base-service
 CharLS: Desktop
 ComputeLibrary: ai
 Control-FREEC: sig-bio
+CreateImage: sig-Gatekeeper
 Cython: Programming-language
 DCache: Storage
 DevIL: Application
@@ -84,6 +85,7 @@ SDL_sound: dev-utils
 SuperLU: dev-utils
 SuperLUMT: ai
 TCP_option_address: Kernel
+TRF: sig-HPC
 TeXamator: Base-service
 Thunar: xfce
 UniProton: sig-embedded
@@ -1467,6 +1469,7 @@ hpcrunner: sig-HPC
 hping: dev-utils
 hplip: System-tool
 hppc: Base-service
+hsak: Storage
 hspell: Application
 hsqldb: sig-Java
 hsqldb1: Application
@@ -3111,6 +3114,7 @@ nilfs-utils: Others
 nim: Programming-language
 ninja-build: Programming-language
 nispor: oVirt
+nload: dev-utils
 nmap: Networking
 nmon: dev-utils
 nmstate: oVirt
@@ -3577,7 +3581,7 @@ openEuler-pkginfo: dev-utils
 openEuler-release: Base-service
 openEuler-repos: Base-service
 openEuler-rpm-config: Base-service
-openEuler_chroot: Private
+openEuler_chroot: sig-Gatekeeper
 openRSO: Kernel
 openal-soft: Application
 openapi-schema-validator: sig-python-modules
@@ -3780,6 +3784,7 @@ paktype-naskh-basic-fonts: Desktop
 paktype-tehreer-fonts: Desktop
 pam: sig-security-facility
 pam_krb5: Application
+pam_wrapper: sig-security-facility
 pango: Desktop
 pangomm: Programming-language
 pangox-compat: sig-mate-desktop
@@ -6767,6 +6772,7 @@ python-pyocr: sig-python-modules
 python-pyotp: sig-python-modules
 python-pypandoc: sig-python-modules
 python-pyperclip: sig-python-modules
+python-pypiserver: sig-python-modules
 python-pypng: sig-python-modules
 python-pypowervm: sig-openstack
 python-pyprocdev: sig-python-modules
@@ -6967,10 +6973,12 @@ python-serpy: sig-python-modules
 python-service-identity: sig-python-modules
 python-setproctitle: sig-python-modules
 python-setuptools: Base-service
+python-setuptools-declarative-requirements: sig-python-modules
 python-setuptools-rust: sig-openstack
 python-setuptools_git: sig-python-modules
 python-setuptools_hg: sig-python-modules
 python-setuptools_scm: Programming-language
+python-setuptools_scm_git_archive: sig-python-modules
 python-sh: sig-python-modules
 python-shamir-mnemonic: sig-python-modules
 python-shodan: sig-python-modules
