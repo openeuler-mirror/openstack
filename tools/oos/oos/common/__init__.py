@@ -26,7 +26,9 @@ search_paths = ['/etc/oos/',
                 os.environ.get("OOS_CONF_DIR", ""), '/usr/local/etc/oos',
                 '/usr/etc/oos',
                 ]
-conf_paths = ['/etc/oos/oos.conf', '/usr/local/etc/oos/oos.conf']
+conf_paths = ['/etc/oos/', '/usr/local/etc/oos/',
+              os.path.join(os.path.dirname(oos.__path__[0]), 'etc')
+              ]
 
 
 for conf_path in search_paths:
@@ -43,7 +45,7 @@ for conf_path in search_paths:
     if os.path.isfile(pkg_tpl) and not SPEC_TEMPLET_DIR:
         SPEC_TEMPLET_DIR = conf_path
     if os.path.isfile(openeuler_repo) and not OPENEULER_REPO:
-        OPENEULER_REPO = yaml.safe_load(open(openeuler_repo, encoding="utf-8"))
+        OPENEULER_REPO = yaml.safe_load(open(openeuler_repo, encoding="utf-8"))['src-openeuler']
     if os.path.isfile(openeuler_sig_repo) and not OPENEULER_SIG_REPO:
         OPENEULER_SIG_REPO = yaml.safe_load(open(openeuler_sig_repo, encoding="utf-8"))
     if os.path.isfile(openstack_release) and not OPENSTACK_RELEASE_MAP:
@@ -55,7 +57,8 @@ for conf_path in search_paths:
     if os.path.isdir(key_path) and not KEY_DIR:
         KEY_DIR = key_path
 
-for fp in conf_paths:
+for conf_path in conf_paths:
+    fp = os.path.join(conf_path, "oos.conf")
     if os.path.exists(fp):
         CONFIG = configparser.ConfigParser()
         CONFIG.read(fp)

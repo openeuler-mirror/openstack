@@ -4,13 +4,8 @@ import os
 import shutil
 
 import click
-import csv
 import pandas
 import yaml
-
-from bs4 import BeautifulSoup
-from functools import partial
-from multiprocessing import Pool
 
 from oos.commands.repo.repo_class import PkgGitRepo
 from oos.common import gitee
@@ -158,49 +153,6 @@ def __prepare_obs_project(obs_dir, branch, is_mainline=False,
                                       'x86_epol': x86_epol,
                                       'aarch64_epol': aarch64_epol})
     return project_dir
-
-
-def __get_failed_info(repo, gitee_org, param):
-    repo_obj = PkgGitRepo(gitee_org=gitee_org, repo_name=repo)
-    prs = repo_obj.get_pr_list(param)
-    results = []
-
-    # 筛选失败信息
-    for pr in prs:
-        try:
-            if list(filter(lambda label: label['name'] == 'ci_successful',
-                           pr['labels'])):
-                continue
-        except Exception:
-            return results
-
-        # PR链接 责任人
-        result = [repo, pr['html_url'], pr['user']['name']]
-        comments = repo_obj.pr_get_comments(str(pr['number']))
-
-        table = []
-        for com in comments:
-            if com['body'].startswith('<table>'):
-                i = 0
-                rows = BeautifulSoup(com['body'], 'lxml').select('tr')[1:]
-                for row in rows:
-                    cols = row.find_all('td')
-                    cols = [cols[0].text.strip(), cols[1].text.strip().split(':')[-1]]
-                    a = row.find_all('a')
-                    cols.append(table[i - 1][2] if len(a) == 0 else a[0].get('href'))
-                    # cols[0]-信息 cols[1]-Failed cols[2]-链接
-                    table.append(cols)
-                    i += 1
-                break
-
-        summary = ' '.join([x[0] for x in filter(lambda row: row[1] == 'FAILED', table)])
-        link = ' '.join([x[2] for x in filter(lambda row: row[1] == 'FAILED', table)])
-
-        result.append(summary)
-        result.append(link)
-        results.append(result)
-
-    return results
 
 
 @click.group(name='repo', help='Management for openEuler repositories')
@@ -459,35 +411,44 @@ def pr_comment(gitee_pat, gitee_org, projects_data,
         repo.pr_add_comment(comment, row.pr_num)
 
 
-@group.command(name='pr-fetch', help='Fetch pull request which CI is failed')
-@click.option('-g', '--gitee-org', envvar='GITEE_ORG', show_default=True,
-              default='src-openeuler', help='Gitee organization name of openEuler')
-@click.option('-r', '--repos', help='Specify repo to get failed PR, '
-                                    'format can be like repo1,repo2,...')
-@click.option('-s', '--state', type=click.Choice(['open', 'closed', 'merged', 'all']),
-              default='open', help='Specify the state of failed PR')
-@click.option('-o', '--output', default='failed_PR_result.csv', show_default=True,
+@group.command(name='pr-fetch', help='Fetch the open pull request')
+@click.option("-t", "--gitee-pat", envvar='GITEE_PAT', required=True,
+              help="Gitee personal access token")
+@click.option('-r', '--repos', help='Specify repo to get open PR, '
+                                    'format can be like openeuler/repo1,src-openeuler/repo2,...')
+@click.option('-o', '--output', default='prs.yaml', show_default=True,
               help='Specify output file')
-def ci_failed_pr(gitee_org, repos, state, output):
+def fetch_open_pr(gitee_pat, repos, output):
     if repos is None:
-        repos = list(OPENEULER_SIG_REPO.keys())
+        repos = []
+        for key, value in OPENEULER_SIG_REPO.items():
+            for project in value.keys():
+                repos.append('%s/%s' % (key, project))
     else:
         repos = repos.split(',')
+    results = {}
+    for repo in repos:
+        gitee_org = repo.split('/')[0]
+        repo_name = repo.split('/')[1]
+        repo_obj = PkgGitRepo(gitee_pat=gitee_pat, gitee_org=gitee_org, repo_name=repo_name)
+        prs = repo_obj.get_pr_list({'state': 'open'})
 
-    param = {'state': state, 'labels': 'ci_failed'}
-
-    with Pool() as pool:
-        results = pool.map(
-            partial(__get_failed_info, gitee_org=gitee_org,
-                    param=param), repos)
-
-    # 记录最终结果
-    outputs = sum(results, [])
-    outputs.insert(0, ['Repo', 'PR Link', 'Owner', 'Summary', 'Log Link'])
-
-    if output is None:
-        output = 'failed_PR_result.csv'
-
-    with open(output, 'w', encoding='utf-8-sig') as f:
-        csv_writer = csv.writer(f)
-        csv_writer.writerows(outputs)
+        for pr in prs:
+            if not results.get(repo):
+                results[repo] = []
+            for lable in pr['labels']:
+                if lable['name'] == 'ci_failed':
+                    ci = 'failed'
+                    break
+                if lable['name'] == 'ci_successful':
+                    ci = 'success'
+                    break
+            else:
+                ci = 'unkown'
+            project_info = {
+                'url': pr['url'],
+                'title': pr['title'],
+                'ci': ci}
+            results[repo].append(project_info)
+    with open(output, 'w') as fp:
+        yaml.dump(results, fp, default_flow_style=False, encoding='utf-8', allow_unicode=True)
