@@ -117,6 +117,7 @@ CPU：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;1|&nbsp;2|&nbsp;3|&nbsp;4|&nbsp;5|&nb
 * 郭雷<guolei_yewu@cmss.chinamobile.com>
 * 马干林<maganlin_yewu@cmss.chinamobile.com>
 * 韩光宇<hanguangyu@uniontech.com>
+* 张迎<zhangy1317@foxmail.com>
 
 时间点：
 

@@ -57,6 +57,8 @@ oos spec build --projects-data projects.csv
     指定是否在生成Spec的时候打rpm包，若不指定，只生成Spec，不打RPM包
 -o, --output
     指定输出spec文件的位置，不指定的话默认生成在rpmbuild/SPECS/目录下面
+-rs, --reuse-spec
+    复用已存在的spec文件，不再重新生成。
 
 注意：必选参数为--projects-data，或者--name和--version，若同时指定这3个参数，则自动忽略
 --projects-data参数。
@@ -142,6 +144,8 @@ oos spec push --name stevedore --version 1.28.0
     [可选] 指定生成python2的软件包的Spec
 -nc, --no-check
     [可选] 指定在生成的Spec文件中不添加check步骤
+-rs, --reuse-spec
+    [可选] 复用已存在的spec文件，不再重新生成。
 ```
 **注意：** `oos spec push`命令必选参数为`--gitee-pat` 即Gitee账号的token，可以指定
 --name，--version来提交单个包的spec，或者--projects-data指定包列表批量化提交，

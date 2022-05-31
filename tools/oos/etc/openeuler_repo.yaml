@@ -6,11 +6,13 @@ A-Tune-Collector: A-Tune
 A-Tune-UI: A-Tune
 AvxToNeon: sig-AccLib
 BareBonesBrowserLaunch: sig-Java
+BiSheng-Adoptium: Compiler
 CPython: Compiler
 CUnit: Base-service
 CharLS: Desktop
 ComputeLibrary: ai
 Control-FREEC: sig-bio
+CreateImage: sig-Gatekeeper
 Cython: Programming-language
 DCache: Storage
 DevIL: Application
@@ -39,7 +41,6 @@ Imath: Runtime
 Intel-Arch-doc: sig-Intel-Arch
 Intel-gcc: sig-Intel-Arch
 Intel-glibc: sig-Intel-Arch
-Intel-kernel: sig-Intel-Arch
 Java-Packages: sig-Java
 Judy: Base-service
 Keras: Private
@@ -84,8 +85,10 @@ SDL_sound: dev-utils
 SuperLU: dev-utils
 SuperLUMT: ai
 TCP_option_address: Kernel
+TRF: sig-HPC
 TeXamator: Base-service
 Thunar: xfce
+UniProton: sig-embedded
 WALinuxAgent: sig-CloudNative
 WLLVM: Compiler
 X-diagnosis: sig-ops
@@ -354,6 +357,7 @@ beust-jcommander: dev-utils
 bgenix: sig-bio
 bgmprovider: Compiler
 biber: sig-perl-modules
+bigdata: bigdata
 bigtop: bigdata
 bind: Networking
 bind-dyndb-ldap: Networking
@@ -499,7 +503,7 @@ cinnamon-spices-desklets: sig-cinnamon
 cinnamon-spices-extensions: sig-cinnamon
 cinnamon-spices-themes: sig-cinnamon
 cinnamon-themes: sig-cinnamon
-cinnamon-translations: Programming-language
+cinnamon-translations: sig-cinnamon
 cjkuni-ukai-fonts: Desktop
 cjkuni-uming-fonts: sig-mate-desktop
 cjose: Application
@@ -640,6 +644,7 @@ cups-filters: System-tool
 cups-pk-helper: Desktop
 curator: dev-utils
 curl: Networking
+curl-rust: Networking
 curvesapi: dev-utils
 custodia: System-tool
 custom_build_tool: Application
@@ -730,9 +735,11 @@ deepin-sound-theme: sig-DDE
 deepin-system-monitor: sig-DDE
 deepin-terminal: sig-DDE
 deepin-turbo: sig-DDE
+deepin-upgrade-tool: sig-DDE
 deepin-wallpapers: sig-DDE
 dejagnu: Programming-language
 dejavu-fonts: System-tool
+delta: bigdata
 deltarpm: Base-service
 delve: dev-utils
 derby: DB
@@ -1161,7 +1168,7 @@ glade3: sig-mate-desktop
 glassfish-annotation-api: sig-Java
 glassfish-dtd-parser: dev-utils
 glassfish-ejb-api: Base-service
-glassfish-el: sig-Java
+glassfish-el: sig-recycle
 glassfish-fastinfoset: Base-service
 glassfish-gmbal: sig-Java
 glassfish-hk2: sig-Java
@@ -1462,6 +1469,7 @@ hpcrunner: sig-HPC
 hping: dev-utils
 hplip: System-tool
 hppc: Base-service
+hsak: Storage
 hspell: Application
 hsqldb: sig-Java
 hsqldb1: Application
@@ -1478,6 +1486,7 @@ httpcomponents-project: dev-utils
 httpd: Networking
 httpry: Application
 httpunit: sig-Java
+hudi: bigdata
 hue: bigdata
 hunspell: Application
 hunspell-ak: Application
@@ -1663,6 +1672,7 @@ ibus-table-chinese: Desktop
 ibus-theme-tools: Desktop
 ibus-typing-booster: Desktop
 icc-profiles-openicc: Application
+iceberg: bigdata
 icedtea-web: Compiler
 icfg: Networking
 icon-naming-utils: Desktop
@@ -1709,11 +1719,13 @@ install-scripts: sig-OS-Builder
 integration-test: sig-QA
 intel-cmt-cat: Programming-language
 intel-device-plugins-for-kubernetes: sig-confidential-computing
+intel-kernel: sig-Intel-Arch
 intel-sgx-ssl: sig-confidential-computing
 interactive_markers: sig-ROS
 internal-issue: Private
 intltool: Programming-language
 invokebinder: sig-Java
+inxi: sig-cinnamon
 ioping: Application
 ioprocess: oVirt
 iotop: Storage
@@ -2264,6 +2276,7 @@ libappindicator: Desktop
 libappstream-glib: Programming-language
 libapr1: Application
 libarchive: Base-service
+libarchive-rust: Base-service
 libart_lgpl: Desktop
 libass: Application
 libassuan: Networking
@@ -2353,7 +2366,7 @@ libffado: sig-compat-winapp
 libffi: Base-service
 libfm: xfce
 libfontenc: Desktop
-libfprint: Others
+libfprint: sig-UKUI
 libfreenect: sig-epol
 libftdi: sig-embedded
 libgadu: Application
@@ -2638,6 +2651,7 @@ libxkbcommon: Desktop
 libxkbfile: Desktop
 libxklavier: Desktop
 libxml2: Base-service
+libxml2-rust: Base-service
 libxmlb: Others
 libxmlpp: sig-compat-winapp
 libxshmfence: Desktop
@@ -3030,6 +3044,7 @@ mysql-selinux: sig-security-facility
 mysql5: DB
 mysqltuner: DB
 mythes: Application
+n5p-core: sig-n5p
 nafees-web-naskh-fonts: Desktop
 nagios: System-tool
 nagios-plugins: Networking
@@ -3099,6 +3114,7 @@ nilfs-utils: Others
 nim: Programming-language
 ninja-build: Programming-language
 nispor: oVirt
+nload: dev-utils
 nmap: Networking
 nmon: dev-utils
 nmstate: oVirt
@@ -3542,6 +3558,7 @@ okteta: sig-KDE
 oldstandard-sfd-fonts: Application
 ompi: ai
 onboard: Others
+oncn-bwm: sig-high-performance-network
 oneDNN: ai
 ongres-scram: dev-utils
 ongres-stringprep: sig-Java
@@ -3564,7 +3581,7 @@ openEuler-pkginfo: dev-utils
 openEuler-release: Base-service
 openEuler-repos: Base-service
 openEuler-rpm-config: Base-service
-openEuler_chroot: Private
+openEuler_chroot: sig-Gatekeeper
 openRSO: Kernel
 openal-soft: Application
 openapi-schema-validator: sig-python-modules
@@ -3588,6 +3605,7 @@ opendesign-datastat: sig-OpenDesign
 opendesign-deployment: sig-OpenDesign
 opendesign-internship: sig-OpenDesign
 opendesign-miniprogram: sig-OpenDesign
+opendesign-resources: sig-OpenDesign
 opendesign-templates: sig-OpenDesign
 openeuler-docker-images: sig-CloudNative
 openeuler-jenkins: sig-Gatekeeper
@@ -3766,6 +3784,7 @@ paktype-naskh-basic-fonts: Desktop
 paktype-tehreer-fonts: Desktop
 pam: sig-security-facility
 pam_krb5: Application
+pam_wrapper: sig-security-facility
 pango: Desktop
 pangomm: Programming-language
 pangox-compat: sig-mate-desktop
@@ -5276,6 +5295,7 @@ perl-XML-Bare: sig-perl-modules
 perl-XML-Catalog: sig-perl-modules
 perl-XML-CommonNS: sig-perl-modules
 perl-XML-DOM: sig-perl-modules
+perl-XML-Dumper: sig-cinnamon
 perl-XML-Fast: sig-perl-modules
 perl-XML-FeedPP: sig-perl-modules
 perl-XML-Flow: sig-perl-modules
@@ -6752,6 +6772,7 @@ python-pyocr: sig-python-modules
 python-pyotp: sig-python-modules
 python-pypandoc: sig-python-modules
 python-pyperclip: sig-python-modules
+python-pypiserver: sig-python-modules
 python-pypng: sig-python-modules
 python-pypowervm: sig-openstack
 python-pyprocdev: sig-python-modules
@@ -6903,6 +6924,7 @@ python-rosinstall: sig-python-modules
 python-routes: sig-python-modules
 python-rpdb: sig-python-modules
 python-rpkg: sig-python-modules
+python-rply: sig-python-modules
 python-rpm-generators: Base-service
 python-rpmfluff: Private
 python-rsa: sig-python-modules
@@ -6951,10 +6973,12 @@ python-serpy: sig-python-modules
 python-service-identity: sig-python-modules
 python-setproctitle: sig-python-modules
 python-setuptools: Base-service
+python-setuptools-declarative-requirements: sig-python-modules
 python-setuptools-rust: sig-openstack
 python-setuptools_git: sig-python-modules
 python-setuptools_hg: sig-python-modules
 python-setuptools_scm: Programming-language
+python-setuptools_scm_git_archive: sig-python-modules
 python-sh: sig-python-modules
 python-shamir-mnemonic: sig-python-modules
 python-shodan: sig-python-modules
@@ -6992,7 +7016,7 @@ python-soupsieve: sig-openstack
 python-spake2: sig-python-modules
 python-spdx-lookup: sig-python-modules
 python-speaklater: sig-python-modules
-python-spec: sig-python-modules
+python-spec: sig-recycle
 python-speedtest-cli: sig-python-modules
 python-speg: sig-python-modules
 python-sphinx: Programming-language
@@ -8055,6 +8079,7 @@ staxmapper: sig-Java
 std_msgs: sig-ROS
 stix-fonts: Desktop
 storm: bigdata
+stortrace: Storage
 strace: Computing
 stratovirt: Virt
 stream-lib: sig-Java
@@ -8062,7 +8087,7 @@ stress-ng: dev-utils
 stringtemplate: dev-utils
 stringtemplate4: Base-service
 stringtie: sig-bio
-strongswan: Application
+strongswan: sig-security-facility
 struts: sig-Java
 stunnel: Application
 subscription-manager: sig-recycle
@@ -8493,7 +8518,7 @@ xacro: sig-ROS
 xalan-j2: Base-service
 xapian-core: Others
 xapool: sig-Java
-xapps: Application
+xapps: sig-cinnamon
 xarchiver: xfce
 xbanish: Application
 xbean: sig-Java

@@ -1656,48 +1656,48 @@ victoria:
   panko: 9.0.0
   pankoclient: 1.1.0
   patrole: 0.10.0
-  puppet-aodh: 17.5.0
-  puppet-barbican: 17.4.0
-  puppet-ceilometer: 17.4.0
-  puppet-cinder: 17.4.0
-  puppet-cloudkitty: 6.5.0
-  puppet-designate: 17.4.0
-  puppet-ec2api: 17.4.0
+  puppet-aodh: 17.6.0
+  puppet-barbican: 17.5.0
+  puppet-ceilometer: 17.5.0
+  puppet-cinder: 17.5.0
+  puppet-cloudkitty: 6.6.0
+  puppet-designate: 17.5.0
+  puppet-ec2api: 17.5.0
   puppet-freezer: 6.4.0
-  puppet-glance: 17.6.0
+  puppet-glance: 17.7.0
   puppet-glare: 6.4.0
-  puppet-gnocchi: 17.4.0
-  puppet-heat: 17.4.0
-  puppet-horizon: 17.4.0
-  puppet-ironic: 17.4.0
-  puppet-keystone: 17.4.0
-  puppet-magnum: 17.4.0
-  puppet-manila: 17.4.0
-  puppet-mistral: 17.4.0
+  puppet-gnocchi: 17.5.0
+  puppet-heat: 17.5.0
+  puppet-horizon: 17.5.0
+  puppet-ironic: 17.5.0
+  puppet-keystone: 17.5.0
+  puppet-magnum: 17.5.0
+  puppet-manila: 17.5.0
+  puppet-mistral: 17.5.0
   puppet-monasca: 6.4.0
   puppet-murano: 17.4.0
-  puppet-neutron: 17.6.0
-  puppet-nova: 17.6.0
-  puppet-octavia: 17.4.0
-  puppet-openstack_extras: 17.4.0
-  puppet-openstacklib: 17.4.0
-  puppet-oslo: 17.4.0
-  puppet-ovn: 17.5.0
+  puppet-neutron: 17.7.0
+  puppet-nova: 17.7.0
+  puppet-octavia: 17.5.0
+  puppet-openstack_extras: 17.5.0
+  puppet-openstacklib: 17.4.1
+  puppet-oslo: 17.5.0
+  puppet-ovn: 17.6.0
   puppet-panko: 17.5.0
-  puppet-placement: 4.4.0
+  puppet-placement: 4.5.0
   puppet-qdr: 6.4.0
   puppet-rally: 5.4.0
-  puppet-sahara: 17.4.1
+  puppet-sahara: 17.5.0
   puppet-senlin: 4.4.0
-  puppet-swift: 17.4.1
-  puppet-tacker: 17.4.0
+  puppet-swift: 17.5.0
+  puppet-tacker: 17.5.0
   puppet-tempest: 17.4.0
   puppet-tripleo: 13.7.0
   puppet-trove: 17.4.0
-  puppet-vitrage: 7.4.0
-  puppet-vswitch: 13.4.0
-  puppet-watcher: 17.4.0
-  puppet-zaqar: 17.4.0
+  puppet-vitrage: 7.5.0
+  puppet-vswitch: 13.5.0
+  puppet-watcher: 17.5.0
+  puppet-zaqar: 17.5.0
   pycadf: 3.1.1
   python-adjutant: 1.0.0
   python-adjutantclient: 0.7.0
@@ -1894,7 +1894,7 @@ wallaby:
   networking-hyperv: 10.0.0
   networking-odl: 18.0.0
   networking-sfc: 12.0.0
-  neutron: 18.3.0
+  neutron: 18.4.0
   neutron-dynamic-routing: 18.1.0
   neutron-lib: 2.10.2
   neutron-tempest-plugin: 1.4.0
@@ -2036,7 +2036,7 @@ wallaby:
   solum-tempest-plugin: 2.2.0
   stevedore: 3.3.1
   storlets: 7.0.0
-  sushy: 3.7.3
+  sushy: 3.7.5
   sushy-cli: 0.4.0
   swift: 2.27.0
   tacker: 5.0.0
@@ -2165,7 +2165,7 @@ xena:
   networking-hyperv: 11.0.0
   networking-odl: 19.0.0
   networking-sfc: 13.0.0
-  neutron: 19.2.0
+  neutron: 19.3.0
   neutron-dynamic-routing: 19.1.0
   neutron-lib: 2.15.2
   neutron-tempest-plugin: 1.7.0
@@ -2197,9 +2197,9 @@ xena:
   oslo.policy: 3.8.3
   oslo.privsep: 2.6.2
   oslo.serialization: 4.2.0
-  oslo.service: 2.6.1
+  oslo.service: 2.6.2
   oslo.upgradecheck: 1.4.0
-  oslo.utils: 4.10.1
+  oslo.utils: 4.10.2
   oslo.versionedobjects: 2.5.0
   oslo.vmware: 3.9.2
   oswin-tempest-plugin: 1.3.0
@@ -2300,7 +2300,7 @@ xena:
   solum-tempest-plugin: 2.3.0
   stevedore: 3.4.0
   storlets: 8.0.0
-  sushy: 3.12.0
+  sushy: 3.12.2
   swift: 2.28.0
   tacker: 6.0.0
   tacker-horizon: 4.0.0
@@ -2323,7 +2323,7 @@ xena:
   zun-ui: 8.0.0
 yoga:
   adjutant-ui: 4.0.0
-  ansible-collection-kolla: 1.0.0.0rc1
+  ansible-collection-kolla: 1.0.0
   ansible-role-atos-hsm: 3.0.0
   ansible-role-lunasa-hsm: 3.0.0
   ansible-role-thales-hsm: 3.0.0
@@ -2374,15 +2374,15 @@ yoga:
   ironic-python-agent-builder: 4.0.1
   ironic-tempest-plugin: 2.4.0
   ironic-ui: 5.1.0
-  kayobe: 12.0.0.0rc1
-  kayobe-config: 12.0.0.0rc1
-  kayobe-config-dev: 12.0.0.0rc1
+  kayobe: 12.0.0
+  kayobe-config: 12.0.0
+  kayobe-config-dev: 12.0.0
   keystone: 21.0.0
   keystone_tempest_plugin: 0.9.0
   keystoneauth1: 4.5.0
   keystonemiddleware: 9.4.0
-  kolla: 14.0.0.0rc1
-  kolla-ansible: 14.0.0.0rc1
+  kolla: 14.0.0
+  kolla-ansible: 14.0.0
   kuryr-kubernetes: 6.0.0
   kuryr-lib: 2.5.0
   kuryr-libnetwork: 9.0.0
@@ -2399,7 +2399,7 @@ yoga:
   metalsmith: 1.6.2
   mistral: 14.0.0
   mistral-dashboard: 14.0.0
-  mistral-extra: 11.2.0
+  mistral-extra: 11.3.0
   mistral-lib: 2.6.0
   mistral_tempest_tests: 1.4.0
   monasca-agent: 7.0.0
@@ -2416,13 +2416,13 @@ yoga:
   murano-dashboard: 13.0.0
   murano-tempest-plugin: 2.4.0
   networking-bagpipe: 16.0.0
-  networking-baremetal: 5.1.0
+  networking-baremetal: 5.1.1
   networking-bgpvpn: 16.0.0
   networking-generic-switch: 6.1.0
   networking-hyperv: 12.0.0
   networking-odl: 20.0.0
   networking-sfc: 14.0.0
-  neutron: 20.0.0
+  neutron: 20.1.0
   neutron-dynamic-routing: 20.0.0
   neutron-lib: 2.20.0
   neutron-tempest-plugin: 1.9.0
@@ -2497,8 +2497,8 @@ yoga:
   puppet-trove: 20.3.0
   puppet-vitrage: 10.3.0
   puppet-vswitch: 16.3.0
-  puppet-watcher: 20.3.0
-  puppet-zaqar: 20.3.0
+  puppet-watcher: 20.3.1
+  puppet-zaqar: 20.3.1
   python-adjutant: 4.0.0
   python-adjutantclient: 0.10.0
   python-barbicanclient: 5.3.0
