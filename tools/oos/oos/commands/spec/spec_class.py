@@ -9,6 +9,7 @@ import subprocess
 import textwrap
 
 import click
+from packaging import version as p_version
 import jinja2
 import urllib.request
 
@@ -114,12 +115,10 @@ class RPMSpec(object):
     def _is_upgrade(self):
         if not self.old_version:
             return False
-        try:
-            old_version = float(self.old_version)
-            new_version = float(self.version_num)
-            return new_version > old_version
-        except ValueError:
-            return str(self.version_num) > str(self.old_version)
+
+        old_version = p_version.parse(self.old_version)
+        new_version = p_version.parse(self.version_num)
+        return new_version > old_version
 
     def _get_provide_name(self):
         return self.pkg_name if self.python2 else self.pkg_name.replace(
