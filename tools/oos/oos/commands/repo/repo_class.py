@@ -159,8 +159,8 @@ class PkgGitRepo(object):
     def get_pr_list(self, filter=None):
         click.echo("Getting PR list for %s/%s" % (
             self.gitee_org, self.repo_name))
-        url = 'https://gitee.com/api/v5/repos/%s/%s/pulls' % (
-            self.gitee_org, self.repo_name)
+        url = 'https://gitee.com/api/v5/repos/%s/%s/pulls?access_token=%s' % (
+            self.gitee_org, self.repo_name, self.gitee_pat)
         resp = requests.get(url, params=filter)
         if resp.status_code != 200:
             click.echo("Getting PR list failed, reason: %s" % resp.reason,

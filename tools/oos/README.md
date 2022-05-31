@@ -152,30 +152,28 @@ oos spec push --name stevedore --version 1.28.0
 其他参数均有默认值为可选参数。
 **注意：默认只是在本地repo提交，需要显示指定`-dp/--do-push`参数才能提交到Gitee上。**
 
-## 获取OpenStack SIG CI失败的PR列表
+## 获取OpenStack SIG PR列表
 
-该工具能够扫描OpenStack SIG下面CI跑失败的PR，梳理成列表，包含PR责任人，失败日志链接等
+该工具能够扫描OpenStack SIG包含项目的PR，梳理成列表。
 
-1. 调用oos命令， 将CI跑失败的PR信息梳理成列表输出
+1. 调用oos命令， 将PR信息梳理成列表输出
 
 ```
-oos repo pr-fetch --gitee-org GITEE_ORG -r REPO -s STATE
+oos repo pr-fetch -r REPO -t gitee-pat
 ```
 
 该命令所支持的参数如下：
 
 ```
--g, --gitee-org
-    [可选] gitee组织的名称，默认为src-openeuler，可以使用GITEE_ORG环境变量指定
+-t, --gitee-pat
+    [可选] 个人Gitee账户personal access token，可以使用GITEE_PAT环境变量指定
 -r, --repo
-    [可选] 组织仓库的名称，默认为组织下的所有仓库
--s, --state
-    [可选] Pull Request 状态，选项有open、closed、merged、all，默认为open
+    [可选] 组织仓库的名称，默认为组织下的所有仓库，格式为openeuler/xxx,src-openeuler/xxx
 -o, --output
-    [可选] 输出文件名，默认为failed_PR_result.csv
+    [可选] 输出文件名，默认为prs.yaml
 ```
 
-该命令运行完后，目录下会生成1个结果文件，默认为`failed_PR_result.csv`。
+该命令运行完后，目录下会生成1个结果文件，默认为`prs.yaml`。
 
 ## 为软件仓创建分支
 

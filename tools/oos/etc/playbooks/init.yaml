@@ -194,9 +194,10 @@
         ^tempest.scenario.test_server_basic_ops.TestServerBasicOps.test_server_basic_ops
         ^tempest.api.compute.servers.test_device_tagging.TaggedBootDevicesTest.test_tagged_attachment
         ^tempest.api.compute.servers.test_device_tagging.TaggedBootDevicesTest.test_tagged_boot_devices
+        ^tempest.api.compute.servers.test_device_tagging.TaggedBootDevicesTest_v242.test_tagged_boot_devices
         ^tempest.api.compute.servers.test_server_actions.ServerActionsTestJSON.test_change_server_password
         EOF
 
-    - name: Genereate tempest folder
+    - name: Generate tempest folder
       debug:
         msg: "The environment is ready for test, please login controller and run `tempest run` command in mytest folder.  Or run 'oos env test' command for tempest test."
