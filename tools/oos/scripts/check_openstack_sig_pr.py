@@ -10,13 +10,15 @@ import requests
 GITEE_USER_TOKEN = os.environ.get('GITEE_USER_TOKEN')
 
 
-def get_pr_list(gitee_org, repo_name):
-
+def get_pr_list(gitee_org, repo_name, count):
     url = 'https://gitee.com/api/v5/repos/%s/%s/pulls?access_token=%s' % (
         gitee_org, repo_name, GITEE_USER_TOKEN)
-    resp = requests.get(url, params={'state': 'open'})
+    resp = requests.get(url, params={'state': 'open'}, timeout=3)
     if resp.status_code != 200:
-        raise
+        if count < 5:
+            return get_pr_list(gitee_org, repo_name, count+1)
+        else:
+            raise
     return resp.json()
 
 
@@ -31,7 +33,7 @@ if __name__ == '__main__':
         for project, _ in info.items():
             project_name = '%s/%s' % (org, project)
             print("Checking %s" % project_name)
-            project_prs = get_pr_list(org, project)
+            project_prs = get_pr_list(org, project, 0)
             for pr in project_prs:
                 for lable in pr['labels']:
                     if lable['name'] == 'ci_failed':
