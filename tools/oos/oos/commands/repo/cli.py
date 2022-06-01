@@ -446,7 +446,7 @@ def fetch_open_pr(gitee_pat, repos, output):
             else:
                 ci = 'unkown'
             project_info = {
-                'url': pr['url'],
+                'url': pr['html_url'],
                 'title': pr['title'],
                 'ci': ci}
             results[repo].append(project_info)

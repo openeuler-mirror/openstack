@@ -3147,6 +3147,9 @@ src-openeuler:
   minicom: System-tool
   minimap2: dev-utils
   minlog: dev-utils
+  mint-x-icons: sig-cinnamon
+  mint-y-icons: sig-cinnamon
+  mintlocale: sig-cinnamon
   mkeuleros: Private
   mksh: System-tool
   mlocate: Base-service
