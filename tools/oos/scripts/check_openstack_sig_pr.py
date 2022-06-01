@@ -13,8 +13,11 @@ GITEE_USER_TOKEN = os.environ.get('GITEE_USER_TOKEN')
 def get_pr_list(gitee_org, repo_name, count):
     url = 'https://gitee.com/api/v5/repos/%s/%s/pulls?access_token=%s' % (
         gitee_org, repo_name, GITEE_USER_TOKEN)
-    resp = requests.get(url, params={'state': 'open'}, timeout=3)
-    if resp.status_code != 200:
+    try:
+        resp = requests.get(url, params={'state': 'open'}, timeout=3)
+        if resp.status_code != 200:
+            raise
+    except TimeoutError:
         if count < 5:
             return get_pr_list(gitee_org, repo_name, count+1)
         else:
