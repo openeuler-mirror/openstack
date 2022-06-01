@@ -63,19 +63,21 @@ for conf_path in conf_paths:
         CONFIG = configparser.ConfigParser()
         CONFIG.read(fp)
         break
-
-if not Path(SQL_DB).exists():
-    try:
-        Path(SQL_DB).parents[0].mkdir(parents=True)
-    except FileExistsError:
-        pass
-    Path(SQL_DB).touch()
-    connect = sqlite3.connect(SQL_DB)
-    cur = connect.cursor()
-    cur.execute('''CREATE TABLE resource
-                   (provider, name, uuid, ip, flavor, openeuler_release, openstack_release, create_time)''')
-    connect.commit()
-    connect.close()
+try:
+    if not Path(SQL_DB).exists():
+        try:
+            Path(SQL_DB).parents[0].mkdir(parents=True)
+        except FileExistsError:
+            pass
+        Path(SQL_DB).touch()
+        connect = sqlite3.connect(SQL_DB)
+        cur = connect.cursor()
+        cur.execute('''CREATE TABLE resource
+                    (provider, name, uuid, ip, flavor, openeuler_release, openstack_release, create_time)''')
+        connect.commit()
+        connect.close()
+except PermissionError:
+    print("Warning: Permission denied: Fail to init DB file %s . `oos env` command can't work as expect." % SQL_DB)
 
 if not CONSTANTS:
     raise click.ClickException("constants.yaml is missing")
