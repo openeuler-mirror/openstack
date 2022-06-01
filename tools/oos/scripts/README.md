@@ -38,7 +38,7 @@
 
     功能: 获取src-openEuler最新的仓库名列表, 可以指定目标sig列表
 
-    输入: `python3 fetch_openeuler_repo_name.py local`
+    输入: `python3 fetch_openeuler_repo_name.py`
 
     输出: `openeuler_repo.yaml`
 
@@ -75,3 +75,15 @@
     输出：包含最新5次CI结果的html文件
 
     环境变量: None
+
+6. check_openstack_sig_pr.py
+
+    功能: 获取OpenStack SIG 开放的PR列表
+
+    输入: `python3 check_openstack_sig_pr.py`
+
+    输出: `result_body.html`
+
+    环境变量:
+
+        `GITEE_USER_TOKEN`
