@@ -14,7 +14,7 @@ def get_pr_list(gitee_org, repo_name, count):
     url = 'https://gitee.com/api/v5/repos/%s/%s/pulls?access_token=%s' % (
         gitee_org, repo_name, GITEE_USER_TOKEN)
     try:
-        resp = requests.get(url, params={'state': 'open'}, timeout=3)
+        resp = requests.get(url, params={'state': 'open'}, timeout=3, verify=False)
         if resp.status_code != 200:
             raise
     except TimeoutError:
