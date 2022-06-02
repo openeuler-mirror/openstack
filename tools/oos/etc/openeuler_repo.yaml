@@ -145,6 +145,7 @@ openeuler:
   kml_adapter: sig-AccLib
   ksc-defender: sig-security-facility
   kunpengsecl: sig-security-facility
+  kylin-installer: sig-UKUI
   lanzhou_university_2021: sig-recycle
   lcr: iSulad
   lep: sig-embedded
@@ -265,6 +266,7 @@ openeuler:
   trucker: dev-utils
   uadk: sig-AccLib
   uadk_engine: sig-AccLib
+  ukui: sig-UKUI
   user-committee: user-committee
   vectorBlas: bigdata
   vmtop: Virt
@@ -6831,6 +6833,7 @@ src-openeuler:
   python-pluginbase: sig-python-modules
   python-pluginlib: sig-python-modules
   python-plugnplay: sig-python-modules
+  python-plum-py: sig-cinnamon
   python-plumbum: sig-python-modules
   python-ply: Base-service
   python-pocketlint: Base-service
