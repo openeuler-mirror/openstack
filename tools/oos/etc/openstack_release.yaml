@@ -1476,6 +1476,7 @@ ussuri:
   telemetry_tempest_plugin: 1.0.0
   tempest: 24.0.0
   tempest-horizon: 1.0.0
+  tempest-ussuri: last
   tooz: 2.3.1
   tosca-parser: 2.0.0
   tricircle: 8.0.0
@@ -1771,6 +1772,7 @@ victoria:
   telemetry_tempest_plugin: 1.1.0
   tempest: 25.0.1
   tempest-horizon: 1.1.0
+  tempest-victoria: last
   tooz: 2.7.2
   tosca-parser: 2.1.1
   tripleo-common: 13.3.0
