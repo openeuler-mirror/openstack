@@ -8,6 +8,8 @@ markdown_extensions:
   - pymdownx.superfences
 nav:
 - OpenStack SIG: 'index.md'
+- 贡献指导:
+  - RPM开发流程: 'contribute/rpm-packaging-reference.md'
 - 安装指导:
   - devstack: 'install/devstack.md'
   - openEuler-20.03-LTS-SP2_Queens: 'install/openEuler-20.03-LTS-SP2/OpenStack-queens.md'
