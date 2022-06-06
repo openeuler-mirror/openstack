@@ -14,6 +14,7 @@ SIG 编包时，会以共享表格的形式，将需要处理的软件包整理�
 “Project Name”列为软件项目名。“openEuler Repo”列为此项目在 openEuler gitee 上的仓库名，同时也是此项目在openEuler系统中的软件包名。所有 openEuler 的软件包仓库均存放于https://gitee.com/src-openeuler之中。“SIG”列记录软件包归属于哪个 SIG。
 
 处理时首先查看“Status”列，该列表示软件包状态。软件包共有6种状态，开发者需要根据“Status”进行相应处理。
+
 1. “OK”：当前版本直接可用，不需要处理。
 2. “Need Create Repo”：openEuler 系统中没有此软件包，需要在 Gitee 中的 src-openeuler repo 仓新建仓库。流程可参考社区指导文档：[新增软件包](https://gitee.com/openeuler/community/blob/master/zh/contributors/create-package.md)。创建并初始化仓库后，将软件包放入需要的 OBS 工程。
 3. “Need Create Branch”：仓库中没有所需分支，需要开发者创建并初始化。
@@ -21,7 +22,7 @@ SIG 编包时，会以共享表格的形式，将需要处理的软件包整理�
 5. “Need Downgrade”：降级软件包。此种情况靠后处理，与 SIG 确认后再操作。
 6. “Need Upgrade”：升级软件包。
 
-确定好软件包对应的处理类型后，需要根据版本信息进行处理。“Repo version”列为当前仓库中对应分支的软件包版本。“Required (Min) Version”则是需要的最小版本，如果其后有"(Must)"标识，则表示必须使用此版本。“Upper Version”为可以使用的最高版本。
+确定好软件包对应的处理类型后，需要根据版本信息进行处理。“Repo version”列为当前仓库中对应分支的软件包版本。“Required (Min) Version”则是需要的最小版本，如果其后有"(Must)"标识，则表示必须使用此版本。“Upper Version”为可以使用的最高版本。如果“Required (Min) Version”和“Upper Version”不同，优先使用“Required (Min) Version”。比如升级软件包，优先升级到“Required (Min) Version”。
 
 “Requires”列为软件包的依赖。“Depth”列表示软件包依赖层级。“Depth”为1的是“Depth”为0的软件包的依赖，以此类推，“Depth”高的软件包为“Depth”低的软件包的依赖。处理时应优先处理“Depth”高的行。但如果某个包，没有依赖（“Requires”为[]）,也可直接处理。如果某些包需要优先处理，应按照其“Requires”，优先处理其依赖。
 
@@ -71,6 +72,7 @@ oos spec push --name python-pyrsistent --version 0.18.1 -dp
 注意此处 `--name` 参数为表格中的“Project Name”列。
 
 `oos spec push` 命令会自动进行如下流程：
+
 1. fork `--name` 对应仓库到 pat 对应的 gitee 账户。
 2. 将仓库 clone 到本地，默认路径为 `~/rpmbuild/src-repos`。
 3. 根据 `--name` 和 `--version` 下载源码包，并生成 spec 文件(读取仓库中原有 changelog)。此阶段默认路径为 `~/rpmbuild`。
@@ -130,6 +132,7 @@ oos spec push --name python-pyrsistent --version 0.18.1 -dp -rs
 ### 测试未执行问题
 
 oos 自动生成的 spec 文件中，%check 部分默认为 `%{__python3} setup.py test`。但是在有些包中，这样并不会真正执行测试，但门禁结果也显示通过。需要开发者人工辨别。参考方法如下：
+
 1. 如果是此前已有 spec 文件，可以参考之前的 spec 中 %check 部分如何书写。如果以前写的不是 `%{__python3} setup.py test`，便需要重点注意。
 2. 进入门禁的 build details(参见上文“PR 门禁检查”部分)，查看构建日志的 %check 部分。下图为进入 build details，然后选择“文本方式查看”的日志显示截图。可以看到显示实际运行测试数为0。
 
