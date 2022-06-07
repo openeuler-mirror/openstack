@@ -195,14 +195,16 @@
 </tbody>
 </table>
 <p>“Project Name”列为软件项目名。“openEuler Repo”列为此项目在 openEuler gitee 上的仓库名，同时也是此项目在openEuler系统中的软件包名。所有 openEuler 的软件包仓库均存放于https://gitee.com/src-openeuler之中。“SIG”列记录软件包归属于哪个 SIG。</p>
-<p>处理时首先查看“Status”列，该列表示软件包状态。软件包共有6种状态，开发者需要根据“Status”进行相应处理。
-1. “OK”：当前版本直接可用，不需要处理。
-2. “Need Create Repo”：openEuler 系统中没有此软件包，需要在 Gitee 中的 src-openeuler repo 仓新建仓库。流程可参考社区指导文档：<a href="https://gitee.com/openeuler/community/blob/master/zh/contributors/create-package.md">新增软件包</a>。创建并初始化仓库后，将软件包放入需要的 OBS 工程。
-3. “Need Create Branch”：仓库中没有所需分支，需要开发者创建并初始化。
-4. “Need Init Branch”：需要初始化分支并将此分支软件包放入需要的 OBS 工程。表明分支存在，但是里面并没有任何版本的源码包，开发者需要对此分支进行初始化，上传所需版本源码包及 spec 文件等。以22.09开发周期适配 Yoga 版本为例，此任务直接在 master 分支工作。get_gitee_project_version 项目状态为“Need Init Branch””，它对应的“python-neutron-tempest-plugin”仓库的master分支，在处理前，只有 README.md 和 README.en.md 两个文件，需要开发者初始化分支。
-5. “Need Downgrade”：降级软件包。此种情况靠后处理，与 SIG 确认后再操作。
-6. “Need Upgrade”：升级软件包。</p>
-<p>确定好软件包对应的处理类型后，需要根据版本信息进行处理。“Repo version”列为当前仓库中对应分支的软件包版本。“Required (Min) Version”则是需要的最小版本，如果其后有"(Must)"标识，则表示必须使用此版本。“Upper Version”为可以使用的最高版本。</p>
+<p>处理时首先查看“Status”列，该列表示软件包状态。软件包共有6种状态，开发者需要根据“Status”进行相应处理。</p>
+<ol>
+<li>“OK”：当前版本直接可用，不需要处理。</li>
+<li>“Need Create Repo”：openEuler 系统中没有此软件包，需要在 Gitee 中的 src-openeuler repo 仓新建仓库。流程可参考社区指导文档：<a href="https://gitee.com/openeuler/community/blob/master/zh/contributors/create-package.md">新增软件包</a>。创建并初始化仓库后，将软件包放入需要的 OBS 工程。</li>
+<li>“Need Create Branch”：仓库中没有所需分支，需要开发者创建并初始化。</li>
+<li>“Need Init Branch”：需要初始化分支并将此分支软件包放入需要的 OBS 工程。表明分支存在，但是里面并没有任何版本的源码包，开发者需要对此分支进行初始化，上传所需版本源码包及 spec 文件等。以22.09开发周期适配 Yoga 版本为例，此任务直接在 master 分支工作。get_gitee_project_version 项目状态为“Need Init Branch””，它对应的“python-neutron-tempest-plugin”仓库的master分支，在处理前，只有 README.md 和 README.en.md 两个文件，需要开发者初始化分支。</li>
+<li>“Need Downgrade”：降级软件包。此种情况靠后处理，与 SIG 确认后再操作。</li>
+<li>“Need Upgrade”：升级软件包。</li>
+</ol>
+<p>确定好软件包对应的处理类型后，需要根据版本信息进行处理。“Repo version”列为当前仓库中对应分支的软件包版本。“Required (Min) Version”则是需要的最小版本，如果其后有"(Must)"标识，则表示必须使用此版本。“Upper Version”为可以使用的最高版本。如果“Required (Min) Version”和“Upper Version”不同，优先使用“Required (Min) Version”。比如升级软件包，优先升级到“Required (Min) Version”。</p>
 <p>“Requires”列为软件包的依赖。“Depth”列表示软件包依赖层级。“Depth”为1的是“Depth”为0的软件包的依赖，以此类推，“Depth”高的软件包为“Depth”低的软件包的依赖。处理时应优先处理“Depth”高的行。但如果某个包，没有依赖（“Requires”为[]）,也可直接处理。如果某些包需要优先处理，应按照其“Requires”，优先处理其依赖。</p>
 <p>处理一个软件包时，应首先在“Author”列标注自己的名字，以告诉其他开发者此包已有人处理。pr（pull request）提交后，将 pr 链接贴到“PR link”列。pr 合并后，应在“PR status”列标注“Done”。</p>
 <h2 id="sig">SIG 处理编包问题流程</h2>
@@ -229,11 +231,13 @@ oos spec push --name python-pyrsistent --version 0.18.1 -dp
 -dp, --do-push
     [可选] 指定是否执行push到gitee仓库上并提交PR，如果不指定则只会提交到本地的仓库中</code></pre>
 <p>注意此处 <code>--name</code> 参数为表格中的“Project Name”列。</p>
-<p><code>oos spec push</code> 命令会自动进行如下流程：
-1. fork <code>--name</code> 对应仓库到 pat 对应的 gitee 账户。
-2. 将仓库 clone 到本地，默认路径为 <code>~/rpmbuild/src-repos</code>。
-3. 根据 <code>--name</code> 和 <code>--version</code> 下载源码包，并生成 spec 文件(读取仓库中原有 changelog)。此阶段默认路径为 <code>~/rpmbuild</code>。
-4. 本地运行 rpm 包构建。本地运行通过后，会自动将 spec 文件及源码包更新到 git 仓库。如果有 <code>-dp</code> 参数则自动进行 push 及创建 pr 操作。如果本地构建时失败，则停止流程。</p>
+<p><code>oos spec push</code> 命令会自动进行如下流程：</p>
+<ol>
+<li>fork <code>--name</code> 对应仓库到 pat 对应的 gitee 账户。</li>
+<li>将仓库 clone 到本地，默认路径为 <code>~/rpmbuild/src-repos</code>。</li>
+<li>根据 <code>--name</code> 和 <code>--version</code> 下载源码包，并生成 spec 文件(读取仓库中原有 changelog)。此阶段默认路径为 <code>~/rpmbuild</code>。</li>
+<li>本地运行 rpm 包构建。本地运行通过后，会自动将 spec 文件及源码包更新到 git 仓库。如果有 <code>-dp</code> 参数则自动进行 push 及创建 pr 操作。如果本地构建时失败，则停止流程。</li>
+</ol>
 <p>如果本地构建失败，则可以修改生成的 spec 文件。然后执行：</p>
 <pre class="highlight"><code class="language-shell">oos spec push --name python-pyrsistent --version 0.18.1 -dp -rs
 
@@ -259,9 +263,11 @@ oos spec push --name python-pyrsistent --version 0.18.1 -dp
 <h2 id="_2">注意事项</h2>
 <p>这里对一些可能遇到的的特殊问题进行记录。</p>
 <h3 id="_3">测试未执行问题</h3>
-<p>oos 自动生成的 spec 文件中，%check 部分默认为 <code>%{__python3} setup.py test</code>。但是在有些包中，这样并不会真正执行测试，但门禁结果也显示通过。需要开发者人工辨别。参考方法如下：
-1. 如果是此前已有 spec 文件，可以参考之前的 spec 中 %check 部分如何书写。如果以前写的不是 <code>%{__python3} setup.py test</code>，便需要重点注意。
-2. 进入门禁的 build details(参见上文“PR 门禁检查”部分)，查看构建日志的 %check 部分。下图为进入 build details，然后选择“文本方式查看”的日志显示截图。可以看到显示实际运行测试数为0。</p>
+<p>oos 自动生成的 spec 文件中，%check 部分默认为 <code>%{__python3} setup.py test</code>。但是在有些包中，这样并不会真正执行测试，但门禁结果也显示通过。需要开发者人工辨别。参考方法如下：</p>
+<ol>
+<li>如果是此前已有 spec 文件，可以参考之前的 spec 中 %check 部分如何书写。如果以前写的不是 <code>%{__python3} setup.py test</code>，便需要重点注意。</li>
+<li>进入门禁的 build details(参见上文“PR 门禁检查”部分)，查看构建日志的 %check 部分。下图为进入 build details，然后选择“文本方式查看”的日志显示截图。可以看到显示实际运行测试数为0。</li>
+</ol>
 <p><img alt="check_log" src="../../img/contribute/rpm-packaging-reference/check_log.png" /></p>
 <h3 id="_4">包名不一致问题</h3>
 <p>小部分软件包可能会碰到，oos 自动生成的 spec 所使用的的包名与现有包名不一致。比如一个使用<code>-</code>,一个使用下划线<code>_</code>。此处以原本使用的包名为准，不修改原有包名。</p>
