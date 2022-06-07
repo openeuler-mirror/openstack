@@ -206,6 +206,7 @@ openeuler:
   openeuler-os-build: sig-Gatekeeper
   openeuler-wiki-bot: bigdata
   openjfx8: Compiler
+  opensd: sig-openstack
   opensource-intern: sig-OSCourse
   openstack: sig-openstack
   openstack-kolla-ansible-plugin: sig-openstack
@@ -1659,7 +1660,6 @@ src-openeuler:
   hdf: Application
   hdf5: Runtime
   hdparm: Storage
-  heketi: Storage
   hello: dev-utils
   help2man: Programming-language
   hesiod: sig-recycle
@@ -2001,6 +2001,7 @@ src-openeuler:
   jai-imageio-core: Private
   jakarta-commons-httpclient: sig-Java
   jakarta-el: dev-utils
+  jakarta-mail: sig-Java
   jakarta-oro: dev-utils
   jakarta-server-pages: dev-utils
   jakarta-servlet: sig-Java
@@ -3004,6 +3005,7 @@ src-openeuler:
   mariadb-connector-c: Base-service
   mariadb-connector-odbc: DB
   marisa: Others
+  marked: sig-UKUI
   masscan: sig-epol
   mate-applets: sig-mate-desktop
   mate-backgrounds: sig-mate-desktop
@@ -3739,6 +3741,7 @@ src-openeuler:
   ocaml-ocamlbuild: Programming-language
   ocaml-ounit: Application
   ocaml-xml-light: dev-utils
+  ocf: Storage
   oci-systemd-hook: sig-recycle
   ocl-icd: Base-service
   octave: ai
@@ -3821,6 +3824,7 @@ src-openeuler:
   opensbi: sig-RISC-V
   opensc: Base-service
   openscap: Programming-language
+  opensd: sig-openstack
   openshift-ansible: sig-OKD
   openslam_gmapping: sig-ROS
   openslide: sig-epol
@@ -6246,6 +6250,7 @@ src-openeuler:
   python-ez_setup: sig-python-modules
   python-f5-icontrol-rest: sig-python-modules
   python-fabulous: sig-python-modules
+  python-fail2ban: sig-python-modules
   python-falcon: sig-python-modules
   python-fastavro: sig-python-modules
   python-fasteners: sig-python-modules
