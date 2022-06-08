@@ -146,6 +146,7 @@ openeuler:
   ksc-defender: sig-security-facility
   kunpengsecl: sig-security-facility
   kylin-installer: sig-UKUI
+  kylin-user-guide: sig-UKUI
   lanzhou_university_2021: sig-recycle
   lcr: iSulad
   lep: sig-embedded
@@ -3138,6 +3139,7 @@ src-openeuler:
   mimepull: sig-Java
   mimick_vendor: sig-ROS
   mina-ftpserver: Application
+  mindspore: ai
   mingw-binutils: sig-compat-winapp
   mingw-crt: sig-compat-winapp
   mingw-filesystem: sig-compat-winapp
