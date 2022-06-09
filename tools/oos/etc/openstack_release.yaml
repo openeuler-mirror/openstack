@@ -2360,7 +2360,7 @@ yoga:
   freezer-dr: 12.0.0
   freezer-web-ui: 12.0.0
   freezer_tempest_plugin: 1.4.0
-  glance: 24.0.0
+  glance: 24.1.0
   glance-tempest-plugin: 0.3.0
   glance_store: 3.0.0
   heat-agents: 4.0.0
