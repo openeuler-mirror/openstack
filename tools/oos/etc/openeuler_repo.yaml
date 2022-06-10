@@ -164,6 +164,7 @@ openeuler:
   linux-operation: sig-OSCourse
   lxcfs-tools: iSulad
   marketing: Marketing
+  marvelldriver: sig-Compatibility-Infra
   mate-desktop: sig-mate-desktop
   memory-scan: Storage
   memwatch: dev-utils
@@ -432,6 +433,7 @@ src-openeuler:
   antlr4: sig-Java
   aom: Desktop
   aopalliance: sig-Java
+  apache-atlas: bigdata
   apache-commons-beanutils: sig-Java
   apache-commons-chain: Base-service
   apache-commons-cli: sig-Java
@@ -473,6 +475,7 @@ src-openeuler:
   apache-orc: DB
   apache-parent: sig-Java
   apache-poi: dev-utils
+  apache-ranger: bigdata
   apache-rat: Application
   apache-resource-bundles: sig-Java
   apache-rpm-macros: Application
@@ -3007,6 +3010,7 @@ src-openeuler:
   mariadb-connector-odbc: DB
   marisa: Others
   marked: sig-UKUI
+  marvelldriver: sig-Compatibility-Infra
   masscan: sig-epol
   mate-applets: sig-mate-desktop
   mate-backgrounds: sig-mate-desktop
