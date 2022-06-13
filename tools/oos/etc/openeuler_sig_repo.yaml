@@ -1,5 +1,6 @@
 openeuler:
   hostha: sig-openstack
+  opensd: sig-openstack
   openstack: sig-openstack
   openstack-kolla-ansible-plugin: sig-openstack
   openstack-kolla-plugin: sig-openstack
@@ -19,6 +20,7 @@ src-openeuler:
   networking-baremetal: sig-openstack
   networking-generic-switch: sig-openstack
   novnc: sig-openstack
+  opensd: sig-openstack
   openstack-aodh: sig-openstack
   openstack-ceilometer: sig-openstack
   openstack-cinder: sig-openstack

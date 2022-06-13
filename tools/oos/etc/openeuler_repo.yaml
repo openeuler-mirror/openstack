@@ -145,6 +145,8 @@ openeuler:
   kml_adapter: sig-AccLib
   ksc-defender: sig-security-facility
   kunpengsecl: sig-security-facility
+  kylin-installer: sig-UKUI
+  kylin-user-guide: sig-UKUI
   lanzhou_university_2021: sig-recycle
   lcr: iSulad
   lep: sig-embedded
@@ -153,7 +155,7 @@ openeuler:
   lib-shim-v2: iSulad
   libCoAP: sig-embedded
   libarchive-rust: Base-service
-  libboundscheck: sig-libboundscheck
+  libboundscheck: Base-service
   libcareplus: Virt
   libkae: sig-AccLib
   libvirt: Virt
@@ -162,6 +164,7 @@ openeuler:
   linux-operation: sig-OSCourse
   lxcfs-tools: iSulad
   marketing: Marketing
+  marvelldriver: sig-Compatibility-Infra
   mate-desktop: sig-mate-desktop
   memory-scan: Storage
   memwatch: dev-utils
@@ -173,7 +176,7 @@ openeuler:
   native-turbo-kernel: A-Tune
   nestos-installer: sig-CloudNative
   nodejsporter: dev-utils
-  nvme-snsd: sig-REDF
+  nvme-snsd: Storage
   nvwa: sig-ops
   oec-application: sig-Compatibility-Infra
   oec-hardware: sig-Compatibility-Infra
@@ -205,6 +208,7 @@ openeuler:
   openeuler-os-build: sig-Gatekeeper
   openeuler-wiki-bot: bigdata
   openjfx8: Compiler
+  opensd: sig-openstack
   opensource-intern: sig-OSCourse
   openstack: sig-openstack
   openstack-kolla-ansible-plugin: sig-openstack
@@ -265,6 +269,7 @@ openeuler:
   trucker: dev-utils
   uadk: sig-AccLib
   uadk_engine: sig-AccLib
+  ukui: sig-UKUI
   user-committee: user-committee
   vectorBlas: bigdata
   vmtop: Virt
@@ -428,6 +433,7 @@ src-openeuler:
   antlr4: sig-Java
   aom: Desktop
   aopalliance: sig-Java
+  apache-atlas: bigdata
   apache-commons-beanutils: sig-Java
   apache-commons-chain: Base-service
   apache-commons-cli: sig-Java
@@ -469,6 +475,7 @@ src-openeuler:
   apache-orc: DB
   apache-parent: sig-Java
   apache-poi: dev-utils
+  apache-ranger: bigdata
   apache-rat: Application
   apache-resource-bundles: sig-Java
   apache-rpm-macros: Application
@@ -1657,7 +1664,6 @@ src-openeuler:
   hdf: Application
   hdf5: Runtime
   hdparm: Storage
-  heketi: Storage
   hello: dev-utils
   help2man: Programming-language
   hesiod: sig-recycle
@@ -1999,6 +2005,7 @@ src-openeuler:
   jai-imageio-core: Private
   jakarta-commons-httpclient: sig-Java
   jakarta-el: dev-utils
+  jakarta-mail: sig-Java
   jakarta-oro: dev-utils
   jakarta-server-pages: dev-utils
   jakarta-servlet: sig-Java
@@ -2486,7 +2493,7 @@ src-openeuler:
   libbluray: Desktop
   libbonobo: Desktop
   libbonoboui: Desktop
-  libboundscheck: sig-libboundscheck
+  libboundscheck: Base-service
   libbpf: sig-high-performance-network
   libbs2b: Application
   libbsd: Base-service
@@ -3002,6 +3009,8 @@ src-openeuler:
   mariadb-connector-c: Base-service
   mariadb-connector-odbc: DB
   marisa: Others
+  marked: sig-UKUI
+  marvelldriver: sig-Compatibility-Infra
   masscan: sig-epol
   mate-applets: sig-mate-desktop
   mate-backgrounds: sig-mate-desktop
@@ -3134,6 +3143,7 @@ src-openeuler:
   mimepull: sig-Java
   mimick_vendor: sig-ROS
   mina-ftpserver: Application
+  mindspore: ai
   mingw-binutils: sig-compat-winapp
   mingw-crt: sig-compat-winapp
   mingw-filesystem: sig-compat-winapp
@@ -3702,7 +3712,7 @@ src-openeuler:
   numpy: Programming-language
   nv-codec-headers: Desktop
   nvme-cli: System-tool
-  nvme-snsd: sig-REDF
+  nvme-snsd: Storage
   nvmetcli: System-tool
   nvml: Programming-language
   nvwa: sig-ops
@@ -3737,6 +3747,7 @@ src-openeuler:
   ocaml-ocamlbuild: Programming-language
   ocaml-ounit: Application
   ocaml-xml-light: dev-utils
+  ocf: Storage
   oci-systemd-hook: sig-recycle
   ocl-icd: Base-service
   octave: ai
@@ -3819,6 +3830,7 @@ src-openeuler:
   opensbi: sig-RISC-V
   opensc: Base-service
   openscap: Programming-language
+  opensd: sig-openstack
   openshift-ansible: sig-OKD
   openslam_gmapping: sig-ROS
   openslide: sig-epol
@@ -6244,6 +6256,7 @@ src-openeuler:
   python-ez_setup: sig-python-modules
   python-f5-icontrol-rest: sig-python-modules
   python-fabulous: sig-python-modules
+  python-fail2ban: sig-python-modules
   python-falcon: sig-python-modules
   python-fastavro: sig-python-modules
   python-fasteners: sig-python-modules
@@ -6831,6 +6844,7 @@ src-openeuler:
   python-pluginbase: sig-python-modules
   python-pluginlib: sig-python-modules
   python-plugnplay: sig-python-modules
+  python-plum-py: sig-cinnamon
   python-plumbum: sig-python-modules
   python-ply: Base-service
   python-pocketlint: Base-service
