@@ -155,7 +155,7 @@ openeuler:
   lib-shim-v2: iSulad
   libCoAP: sig-embedded
   libarchive-rust: Base-service
-  libboundscheck: sig-libboundscheck
+  libboundscheck: Base-service
   libcareplus: Virt
   libkae: sig-AccLib
   libvirt: Virt
@@ -176,7 +176,7 @@ openeuler:
   native-turbo-kernel: A-Tune
   nestos-installer: sig-CloudNative
   nodejsporter: dev-utils
-  nvme-snsd: sig-REDF
+  nvme-snsd: Storage
   nvwa: sig-ops
   oec-application: sig-Compatibility-Infra
   oec-hardware: sig-Compatibility-Infra
@@ -2493,7 +2493,7 @@ src-openeuler:
   libbluray: Desktop
   libbonobo: Desktop
   libbonoboui: Desktop
-  libboundscheck: sig-libboundscheck
+  libboundscheck: Base-service
   libbpf: sig-high-performance-network
   libbs2b: Application
   libbsd: Base-service
@@ -3712,7 +3712,7 @@ src-openeuler:
   numpy: Programming-language
   nv-codec-headers: Desktop
   nvme-cli: System-tool
-  nvme-snsd: sig-REDF
+  nvme-snsd: Storage
   nvmetcli: System-tool
   nvml: Programming-language
   nvwa: sig-ops
