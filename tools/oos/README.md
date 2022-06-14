@@ -175,6 +175,40 @@ oos repo pr-fetch -r REPO -t gitee-pat
 
 该命令运行完后，目录下会生成1个结果文件，默认为`prs.yaml`。
 
+## 创建软件仓
+
+可以使用`oos repo create`命令创建openeuler或者src-openeuler软件仓
+
+- 在openeuler或者src-openeuler创建软件仓，需要提供要创建仓库的软件仓列表`.csv`文件或者指定单个软件仓，以及Gitee的账号等信息：
+```shell script
+oos repo create --repo autopage:python-autopage -t GITEE_PAT
+```
+或者指定`.csv`文件一次创建多个软件仓库，`.csv`包括pypi_name和repo_name两列：
+```shell script
+oos repo create --repos-file ~/repos.cvs -t GITEE_PAT
+```
+
+该命令所支持的参数如下：
+
+```
+-t, --gitee-pat
+    [必选] 个人Gitee账户personal access token，可以使用GITEE_PAT环境变量指定
+-e, --gitee-email
+    [可选] 个人Gitee账户email地址，可使用GITEE_EMAIL指定, 若在Gitee账户公开，可通过Token自动获取
+-o, --gitee-org
+    [可选] repo所属的gitee组织名称，默认为src-openeuler
+-r, --repo
+    [可选] 软件仓名，和--repos-file参数二选一，格式为pypi_name:repo_name
+-rf, --repos-file
+    [可选] openEuler社区软件仓库名的.csv文件，目前包含`pypi_name`和`repo_name`两列，和--repo参数二选一
+--community-path
+    [可选] openeuler/community项目本地仓路径
+-w, --work-branch
+    [可选] 本地工作分支，默认为openstack-create-repo
+-dp, --do-push
+    [可选] 指定是否执行push到gitee仓库上并提交PR，如果不指定则只会提交到本地的仓库中
+```
+
 ## 为软件仓创建分支
 
 可以使用`oos repo branch-create`命令为openeuler软件仓创建分支

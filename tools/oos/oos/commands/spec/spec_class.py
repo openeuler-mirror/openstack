@@ -15,6 +15,7 @@ import urllib.request
 
 from oos.common import CONSTANTS
 from oos.common import SPEC_TEMPLET_DIR
+from oos.common import pypi
 
 
 class RPMSpec(object):
@@ -97,11 +98,7 @@ class RPMSpec(object):
     @property
     def pkg_home(self):
         if not self._pkg_home:
-            project_urls = self.pypi_json["info"]["project_urls"]
-            if project_urls:
-                self._pkg_home = project_urls.get("Homepage")
-            else:
-                self._pkg_home = self.pypi_json["info"]["project_url"]
+            self._pkg_home = pypi.get_home_page(self.pypi_json)
         return self._pkg_home
 
     @property

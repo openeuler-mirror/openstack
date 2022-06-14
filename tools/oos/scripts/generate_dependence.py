@@ -73,6 +73,12 @@ SUPPORT_RELEASE = {
             "gnocchi": "4.3.5"
         }
     },
+    "yoga": {
+        "base_service": _SEARVICE,
+        "extra_service": {
+            "gnocchi": "4.4.1"
+        }
+    },
 }
 
 

@@ -10,6 +10,7 @@ import yaml
 from oos.commands.repo.repo_class import PkgGitRepo
 from oos.common import gitee
 from oos.common import OPENEULER_SIG_REPO
+from oos.common import pypi
 from pathlib import Path
 
 
@@ -30,6 +31,27 @@ def __get_repos(repo_name, repos_file):
         for row in repos_df.itertuples():
             repos.add(row.repo_name)
     return repos
+
+
+def __get_repo_pypi_mappings(repo_pypi_name, repo_pypi_file):
+    if not (repo_pypi_name or repo_pypi_file):
+        raise click.ClickException(
+            "You must specify repo_pypi_file or specific repo and pypi name!")
+
+    repo_pypi_mappings = {}
+    if repo_pypi_name:
+        pypi_name, repo_name = repo_pypi_name.split(":")
+        repo_pypi_mappings[pypi_name].add(repo_name)
+    else:
+        data = pandas.read_csv(repo_pypi_file)
+        repos_df = pandas.DataFrame(data, columns=["pypi_name", "repo_name"])
+        if repos_df.empty:
+            raise click.ClickException(
+                "repo_pypi_file is empty, exit!")
+        for row in repos_df.itertuples():
+            repo_pypi_mappings[row.pypi_name] = row.repo_name
+
+    return repo_pypi_mappings
 
 
 def __prepare_local_repo(gitee_pat, gitee_email, work_branch,
@@ -159,6 +181,53 @@ def __prepare_obs_project(obs_dir, branch, is_mainline=False,
 def group():
     pass
 
+
+@group.command(name="create", help='Create repo for projects')
+@click.option("-rf", "--repos-file",
+              help="File of openEuler repos in csv, includes 'pypi_name' and 'repo_name' 2 columns")
+@click.option("--repo", help="Specific one repo to create, the format is: pypi_name:repo_name")
+@click.option("-t", "--gitee-pat", envvar='GITEE_PAT', required=True,
+              help="Gitee personal access token")
+@click.option("-e", "--gitee-email", envvar='GITEE_EMAIL',
+              help="Email address for git commit changes, automatically "
+                   "query from gitee if you have public in gitee")
+@click.option("-o", "--gitee-org", envvar='GITEE_ORG', required=True,
+              default="src-openeuler", show_default=True,
+              help="Gitee organization name of repos")
+@click.option("--community-path",
+              help="Path of openeuler/community in local")
+@click.option("-w", "--work-branch", default='openstack-create-repo',
+              help="Local working branch of openeuler/community")
+@click.option('-dp', '--do-push', is_flag=True,
+              help="Do PUSH or not, if push it will create pr")
+def create(repos_file, repo, gitee_pat, gitee_email, gitee_org,
+           community_path, work_branch, do_push):
+    community_repo = __prepare_local_repo(
+        gitee_pat, gitee_email, work_branch,
+        'openeuler', 'community', community_path)
+    file_path_pre = community_repo.repo_dir + "/sig/sig-openstack/src-openeuler/"
+    pypi_repo_mappings = __get_repo_pypi_mappings(repo, repos_file)
+    for pypi_name, repo_name in pypi_repo_mappings.items():
+        pypi_json = pypi.get_json_from_pypi(pypi_name)
+        pkg_dict = {
+            'name': repo_name,
+            'description': pypi_json["info"]["summary"],
+            'upstream': pypi.get_home_page(pypi_json),
+            'branches': [
+                {
+                    'name': 'master',
+                    'type': 'protected'
+                },
+            ],
+            'type': 'public'
+        }
+        file_path = file_path_pre + repo_name[0] + '/' + repo_name + '.yaml'
+        with open(file_path, 'w', encoding='utf-8') as nf:
+            yaml.dump(pkg_dict, nf, default_flow_style=False, sort_keys=False)
+    commit_msg = 'Create repo for packages'
+    community_repo.commit(commit_msg, do_push)
+    if do_push:
+        community_repo.create_pr(work_branch, 'master', commit_msg)
 
 @group.command(name="branch-create", help='Create branches for repos')
 @click.option("-rf", "--repos-file",
