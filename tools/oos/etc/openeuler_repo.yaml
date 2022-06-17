@@ -2639,6 +2639,7 @@ src-openeuler:
   libisoburn: Base-service
   libisofs: Others
   libisofs1: Private
+  libjcat: GNOME
   libjpeg-turbo: Desktop
   libkae: sig-AccLib
   libkate: sig-recycle
