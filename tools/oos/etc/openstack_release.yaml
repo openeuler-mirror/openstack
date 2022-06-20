@@ -1822,7 +1822,7 @@ wallaby:
   cloudkitty_tempest_plugin: 2.3.0
   compute-hyperv: 12.0.0
   cyborg-tempest-plugin: 1.2.0
-  designate: 12.0.1
+  designate: 12.1.0
   designate-dashboard: 12.0.0
   designate-tempest-plugin: 0.11.0
   ec2-api: 12.0.0
@@ -1990,7 +1990,7 @@ wallaby:
   python-cinderclient: 7.4.1
   python-cloudkittyclient: 4.2.0
   python-cyborgclient: 1.3.0
-  python-designateclient: 4.2.0
+  python-designateclient: 4.2.1
   python-freezerclient: 4.2.0
   python-glanceclient: 3.3.0
   python-heatclient: 2.3.1
@@ -2255,7 +2255,7 @@ xena:
   python-cinderclient: 8.1.0
   python-cloudkittyclient: 4.3.0
   python-cyborgclient: 1.5.0
-  python-designateclient: 4.3.0
+  python-designateclient: 4.3.1
   python-freezerclient: 4.3.0
   python-glanceclient: 3.5.0
   python-heatclient: 2.4.0
@@ -2509,7 +2509,7 @@ yoga:
   python-cinderclient: 8.3.0
   python-cloudkittyclient: 4.5.0
   python-cyborgclient: 1.7.0
-  python-designateclient: 4.5.0
+  python-designateclient: 4.5.1
   python-freezerclient: 4.4.0
   python-glanceclient: 3.6.0
   python-heatclient: 2.5.1
