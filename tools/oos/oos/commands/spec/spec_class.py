@@ -21,21 +21,22 @@ from oos.common import pypi
 class RPMSpec(object):
     def __init__(self, pypi_name, version='latest', arch=None,
                  python2=False, short_description=True, add_check=True,
-                 old_changelog=None, old_version=None):
+                 old_changelog=None, old_version=None, change_log=None):
         self.pypi_name = pypi_name
         # use 'latest' as version if version is NaN
         self.version = 'latest' if version != version else version
         self.shorten_description = short_description
         self.arch = arch
         self.python2 = python2
+        self.old_changelog = old_changelog
+        self.old_version = old_version
+        self.change_log = change_log
         self.spec_path = ''
         self.source_path = ''
         self.deps_missed = set()
         self.build_failed = False
         self.check_stage_failed = False
         self.add_check = add_check
-        self.old_changelog = old_changelog
-        self.old_version = old_version
 
         self._pypi_json = None
         self._spec_name = ""
@@ -278,7 +279,8 @@ class RPMSpec(object):
                          'python2': self.python2,
                          "source_file_dir": self._source_file_dir,
                          "old_changelog": self.old_changelog,
-                         "up_down_grade": up_down_grade
+                         "up_down_grade": up_down_grade,
+                         "change_log": self.change_log,
                          }
         output = template.render(template_vars)
         with open(self.spec_path, 'w') as f:
@@ -352,3 +354,25 @@ class RPMSpec(object):
             status, _ = subprocess.getstatusoutput("yum info %s" % r)
             if status != 0 and not in_list:
                 self.deps_missed.add(r)
+
+    def download_source_by_spec(self, build_root):
+        if not os.path.exists(self.spec_path):
+            self.build_failed = True
+            click.secho(f'Spec file of {self.pypi_name} project no existed',
+                        fg='red')
+            return
+
+        status = subprocess.call(['rpmbuild',
+                                  '--undefine=_disable_source_fetch',
+                                  '-D',
+                                  f'_topdir {build_root}',
+                                  self.spec_path])
+        if status != 0:
+            self.build_failed = True
+            click.secho(f'Project: {self.pypi_name} build failed because'
+                        f' download source package failed.', fg='red')
+            return
+
+        self.source_path = os.path.join(build_root, 'SOURCES',
+                                        self._source_file)
+

@@ -130,10 +130,14 @@ mv %{buildroot}/doclist.lst .
 
 %changelog
 * {{ today }} OpenStack_SIG <openstack@openeuler.org> - {{ version }}-1
+{% if change_log %}
+- {{ change_log }}
+{% else %}
 {% if old_changelog %}
 - {{ up_down_grade }} package {{ pkg_name }} to version {{ version }}
 {% else %}
 - Init package {{ pkg_name }} of version {{ version }}
+{% endif %}
 {% endif %}
 
 {% if old_changelog %}
