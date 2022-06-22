@@ -354,6 +354,7 @@ src-openeuler:
   SDL: Programming-language
   SDL2: Others
   SDL_sound: dev-utils
+  ShellCheck: sig-CloudNative
   SuperLU: dev-utils
   SuperLUMT: ai
   TCP_option_address: Kernel
@@ -577,6 +578,7 @@ src-openeuler:
   avor: bigdata
   avro: Application
   aws-sdk-java: sig-Java
+  awscli: sig-CloudNative
   axel: sig-epol
   axiom: Base-service
   azote: Desktop
@@ -665,10 +667,12 @@ src-openeuler:
   bubblemail: GNOME
   bubblewrap: Base-service
   bucardo: DB
+  buildah: sig-CloudNative
   buildnumber-maven-plugin: sig-Java
   buildroot: dev-utils
   bullet: sig-compat-winapp
   busybox: sig-CloudNative
+  butane: sig-CloudNative
   bval: Base-service
   bwa: Application
   byacc: Programming-language
@@ -1052,6 +1056,7 @@ src-openeuler:
   dtkwidget2: sig-DDE
   dtkwm: sig-DDE
   duktape: Base-service
+  dumb-init: sig-CloudNative
   dump: Application
   dust: Application
   dvdplusrw-tools: Others
@@ -3475,7 +3480,7 @@ src-openeuler:
   nodejs-grunt-contrib-internal: sig-nodejs
   nodejs-grunt-contrib-nodeunit: sig-nodejs
   nodejs-grunt-contrib-uglify: sig-nodejs
-  nodejs-grunt-contrib-watch: sig-nodejs
+  nodejs-grunt-contrib-watch: sig-recycle
   nodejs-grunt-known-options: sig-nodejs
   nodejs-grunt-legacy-log: sig-nodejs
   nodejs-grunt-legacy-log-utils: sig-nodejs
@@ -5774,7 +5779,7 @@ src-openeuler:
   python-Flask-Principal: sig-python-modules
   python-Flask-RSTPages: sig-python-modules
   python-Flask-SQLAlchemy: sig-python-modules
-  python-Flask-Script: sig-python-modules
+  python-Flask-Script: sig-recycle
   python-Flask-Silk: sig-python-modules
   python-FormEncode: sig-python-modules
   python-GitPython: sig-python-modules
@@ -8710,6 +8715,7 @@ src-openeuler:
   xdelta: Programming-language
   xdg-dbus-proxy: Application
   xdg-desktop-portal: Desktop
+  xdg-desktop-portal-gnome: GNOME
   xdg-desktop-portal-gtk: Application
   xdg-user-dirs: Desktop
   xdg-user-dirs-gtk: Desktop
