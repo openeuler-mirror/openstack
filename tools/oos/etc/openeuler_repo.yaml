@@ -71,6 +71,7 @@ openeuler:
   curl-rust: Networking
   custom_build_tool: Application
   cve-manager: Infrastructure
+  dcs: sig-power-efficient
   dde: sig-DDE
   deepin-rpm-installer: sig-DDE
   deepin-upgrade-tool: sig-DDE
@@ -81,6 +82,7 @@ openeuler:
   dpu-core: sig-DPU
   dsoftbus_standard: sig-embedded
   duoyibu-ai: sig-minzuchess
+  eagle: sig-power-efficient
   easy-checker: sig-EasyLife
   eggo: sig-CloudNative
   embedded: sig-embedded
@@ -227,6 +229,7 @@ openeuler:
   pkgporter: dev-utils
   pkgship: sig-EasyLife
   plymouth-theme-kiran: sig-KIRAN-DESKTOP
+  powerapi: sig-power-efficient
   prefetch_tuning: A-Tune
   process1: dev-utils
   ptcr: sig-CloudNative
@@ -647,7 +650,7 @@ src-openeuler:
   boost: Computing
   booth: sig-Ha
   bootstrap: sig-nodejs
-  bootupd: sig-OS-Builder
+  bootupd: sig-OKD
   bouncycastle: dev-utils
   bowtie2: sig-bio
   box86: sig-compat-winapp
@@ -698,6 +701,7 @@ src-openeuler:
   cal10n: dev-utils
   calc: Application
   calcite: bigdata
+  calico: sig-CloudNative
   callaudiod: GNOME
   calls: GNOME
   canal: DB
@@ -925,6 +929,7 @@ src-openeuler:
   dconf: Desktop
   dconf-editor: Desktop
   dcraw: Application
+  dcs: sig-power-efficient
   ddcutil: sig-UKUI
   dde: sig-DDE
   dde-account-faces: sig-DDE
@@ -1065,6 +1070,7 @@ src-openeuler:
   dynamic_reconfigure: sig-ROS
   dyninst: Computing
   e2fsprogs: Storage
+  eagle: sig-power-efficient
   easy-checker: sig-EasyLife
   easymock: sig-Java
   ebtables: Networking
@@ -3783,6 +3789,7 @@ src-openeuler:
   open-iscsi: Storage
   open-isns: Storage
   open-sans-fonts: System-tool
+  open-vm-tools: Virt
   openEuler-Advisor: sig-EasyLife
   openEuler-indexhtml: Base-service
   openEuler-latest-release: Others
@@ -5677,6 +5684,7 @@ src-openeuler:
   postgresql-jdbc: sig-Java
   postgresql-odbc: DB
   potrace: Application
+  powerapi: sig-power-efficient
   powermock: sig-Java
   powertop: Base-service
   ppp: Networking
