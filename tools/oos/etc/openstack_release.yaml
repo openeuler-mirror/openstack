@@ -1902,7 +1902,7 @@ wallaby:
   neutron-tempest-plugin: 1.4.0
   neutron-vpnaas: 18.0.0
   neutron-vpnaas-dashboard: 4.0.0
-  nova: 23.2.0
+  nova: 23.2.1
   octavia: 8.0.1
   octavia-dashboard: 7.0.0
   octavia-lib: 2.3.1
@@ -2105,7 +2105,7 @@ xena:
   freezer_tempest_plugin: 1.3.1
   glance: 23.0.0
   glance-tempest-plugin: 0.2.0
-  glance_store: 2.7.0
+  glance_store: 2.7.1
   heat-agents: 3.0.0
   heat-dashboard: 6.0.0
   heat-tempest-plugin: 1.4.0
@@ -2173,7 +2173,7 @@ xena:
   neutron-tempest-plugin: 1.7.0
   neutron-vpnaas: 19.0.0
   neutron-vpnaas-dashboard: 5.0.0
-  nova: 24.1.0
+  nova: 24.1.1
   octavia: 9.0.1
   octavia-dashboard: 8.0.0
   octavia-lib: 2.4.1
@@ -2193,7 +2193,7 @@ xena:
   oslo.context: 3.3.2
   oslo.db: 11.0.0
   oslo.limit: 1.4.0
-  oslo.messaging: 12.9.3
+  oslo.messaging: 12.9.4
   oslo.metrics: 0.3.1
   oslo.middleware: 4.4.0
   oslo.policy: 3.8.3
@@ -2430,7 +2430,7 @@ yoga:
   neutron-tempest-plugin: 1.9.0
   neutron-vpnaas: 20.0.0
   neutron-vpnaas-dashboard: 6.0.0
-  nova: 25.0.0
+  nova: 25.0.1
   octavia: 10.0.0
   octavia-dashboard: 9.0.0
   octavia-lib: 2.5.0
