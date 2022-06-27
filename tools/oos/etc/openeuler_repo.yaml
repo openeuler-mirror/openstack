@@ -19,6 +19,7 @@ openeuler:
   Intel-gcc: sig-Intel-Arch
   Intel-glibc: sig-Intel-Arch
   Java-Packages: sig-Java
+  KPL-zlib: sig-WayCa
   KubeHawk: sig-CloudNative
   KubeHawkeyes: sig-CloudNative
   KubeOS: sig-CloudNative
