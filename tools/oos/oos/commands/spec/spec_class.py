@@ -272,7 +272,8 @@ class RPMSpec(object):
                          'base_build_requires': self._base_build_requires,
                          'dev_requires': self._dev_requires,
                          'test_requires': test_requires,
-                         'description': self._get_description(),
+                         'description':
+                             self._get_description(self.shorten_description),
                          'today': datetime.date.today().strftime("%a %b %d %Y"),
                          'add_check': self.add_check,
                          'python2': self.python2,
