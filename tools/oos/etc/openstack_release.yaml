@@ -1834,7 +1834,7 @@ wallaby:
   freezer_tempest_plugin: 1.2.0
   glance: 22.1.0
   glance-tempest-plugin: 0.1.0
-  glance_store: 2.5.0
+  glance_store: 2.5.1
   heat-agents: 2.2.0
   heat-dashboard: 5.0.0
   heat-tempest-plugin: 1.2.0
@@ -2344,6 +2344,7 @@ yoga:
   ceilometermiddleware: 2.4.1
   cinder: 20.0.0
   cinder-tempest-plugin: 1.6.0
+  cinderlib: 4.2.0
   cliff: 3.10.1
   cloudkitty: 16.0.0
   cloudkitty-dashboard: 14.0.0
