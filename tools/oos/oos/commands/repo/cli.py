@@ -2,6 +2,7 @@
 
 import os
 import shutil
+import subprocess
 
 import click
 import pandas
@@ -221,6 +222,9 @@ def create(repos_file, repo, gitee_pat, gitee_email, gitee_org,
             ],
             'type': 'public'
         }
+        repo_yaml_dir = os.path.join(file_path_pre, repo_name[0])
+        if not os.path.exists(repo_yaml_dir):
+            subprocess.run(['mkdir', repo_yaml_dir])
         file_path = file_path_pre + repo_name[0] + '/' + repo_name + '.yaml'
         with open(file_path, 'w', encoding='utf-8') as nf:
             yaml.dump(pkg_dict, nf, default_flow_style=False, sort_keys=False)
