@@ -1817,7 +1817,7 @@ wallaby:
   cinder-tempest-plugin: 1.4.0
   cinderlib: 4.0.0
   cliff: 3.7.0
-  cloudkitty: 14.0.1
+  cloudkitty: 14.0.2
   cloudkitty-dashboard: 12.0.0
   cloudkitty_tempest_plugin: 2.3.0
   compute-hyperv: 12.0.0
@@ -1825,7 +1825,7 @@ wallaby:
   designate: 12.1.0
   designate-dashboard: 12.0.0
   designate-tempest-plugin: 0.11.0
-  ec2-api: 12.0.0
+  ec2-api: 12.1.0
   ec2api-tempest-plugin: 1.2.1
   freezer: 10.0.0
   freezer-api: 10.0.0
@@ -1869,7 +1869,7 @@ wallaby:
   manila-ui: 5.1.0
   masakari: 11.0.1
   masakari-dashboard: 4.0.1
-  masakari-monitors: 11.0.2
+  masakari-monitors: 11.1.0
   metalsmith: 1.4.3
   mistral: 12.0.0
   mistral-dashboard: 12.0.1
@@ -1907,7 +1907,7 @@ wallaby:
   octavia-dashboard: 7.0.0
   octavia-lib: 2.3.1
   octavia-tempest-plugin: 1.7.0
-  openstack-cyborg: 6.0.0
+  openstack-cyborg: 6.0.1
   openstack-heat: 16.0.0
   openstack-placement: 5.0.1
   openstacksdk: 0.55.1
