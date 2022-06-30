@@ -1,5 +1,18 @@
 # openEuler OpenStack SIG
 
+## SIG 工作目标和范围
+
+- 在openEuler之上提供原生的OpenStack，构建开放可靠的云计算技术栈。
+- 定期召开会议，收集开发者、厂商诉求，讨论OpenStack社区发展。
+
+## 组织会议
+
+公开的会议时间：双周例会，周三下午3:00-4:00(北京时间)
+
+会议链接：通过微信群消息和邮件列表发出
+
+会议纪要： <https://etherpad.openeuler.org/p/sig-openstack-meetings>
+
 ## OpenStack版本支持列表
 
 OpenStack SIG通过用户反馈等方式收集OpenStack版本需求，经过SIG组内成员公开讨论决定OpenStack的版本演进路线。规划中的版本可能因为需求更变、人力变动等原因进行调整。OpenStack SIG欢迎更多开发者、厂商参与，共同完善openEuler的OpenStack支持。
@@ -10,7 +23,7 @@ OpenStack SIG通过用户反馈等方式收集OpenStack版本需求，经过SIG�
 
 |                         | Queens | Rocky | Train | Ussuri | Victoria | Wallaby | Xena | Yoga |
 |:-----------------------:|:------:|:-----:|:-----:|:------:|:--------:|:-------:|:----:|:----:|
-| openEuler 20.03 LTS SP1 |        |       |   ○   |        |          |         |      |      |
+| openEuler 20.03 LTS SP1 |        |       |   ●   |        |          |         |      |      |
 | openEuler 20.03 LTS SP2 |    ●   |   ●   |       |        |          |         |      |      |
 | openEuler 20.03 LTS SP3 |    ●   |   ●   |   ●   |        |          |         |      |      |
 |     openEuler 21.03     |        |       |       |        |     ●    |         |      |      |
@@ -49,15 +62,25 @@ Note:
 
 ## oepkg软件仓地址列表
 
-Queens、Rocky版本的支持放在SIG官方认证的第三方软件平台oepkg:
+Queens、Rocky、Train版本的支持放在SIG官方认证的第三方软件平台oepkg:
 
-20.03-LTS-SP2 Rocky： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/queens/
+- 20.03-LTS-SP1 Train: https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP1/contrib/openstack/train/
 
-20.03-LTS-SP3 Rocky： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP3/budding-openeuler/openstack/rocky/
+    该Train版本不是纯原生代码，包含了智能网卡支持的相关代码，用户使用前请自行评审
 
-20.03-LTS-SP2 Queens： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/queens/
+- 20.03-LTS-SP2 Rocky： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/queens/
 
-20.03-LTS-SP3 Rocky： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP3/budding-openeuler/openstack/rocky/
+- 20.03-LTS-SP3 Rocky： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP3/budding-openeuler/openstack/rocky/
+
+- 20.03-LTS-SP2 Queens： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/queens/
+
+- 20.03-LTS-SP3 Rocky： https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP3/budding-openeuler/openstack/rocky/
+
+另外，20.03-LTS-SP1虽然有Queens、Rocky版本的软件包，但未经过验证，请谨慎使用：
+
+- 20.03-LTS-SP1 Queens: https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP1/contrib/openstack/queens/
+
+- 20.03-LTS-SP1 Rocky: https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP1/contrib/openstack/rocky/
 
 ## Maintainer的加入和退出
 
@@ -83,6 +106,16 @@ SIG maintainer每个季度会组织闭门会议，审视当前贡献数据，根
 当SIG maintainer因为自身原因（工作变动、业务调整等原因），无法再担任maintainer一职时，可主动申请退出。
 
 SIG maintainer每半年也会例行审视当前maintainer列表，如果发现有不再适合担任maintainer的贡献者（贡献不足、不再活跃等原因），经讨论达成一致后，会向openEuler TC提出相关申请。
+
+### Maintainer列表
+
+- 陈硕[@joec88](https://gitee.com/joec88) joseph.chn1988@gmail.com
+- 李昆山[@liksh](https://gitee.com/liksh) li_kunshan@163.com
+- 黄填华[@huangtianhua](https://gitee.com/huangtianhua) huangtianhua223@gmail.com
+- 王玺源[@xiyuanwang](https://gitee.com/xiyuanwang) wangxiyuan1007@gmail.com
+- 张帆[@zh-f](https://gitee.com/zh-f) zh.f@outlook.com
+- 张迎[@zhangy1317](https://gitee.com/zhangy1317) zhangy1317@foxmail.com
+- 韩光宇[@han-guangyu](https://gitee.com/han-guangyu) hanguangyu@uniontech.com
 
 ## 如何贡献
 

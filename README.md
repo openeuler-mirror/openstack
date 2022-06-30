@@ -27,13 +27,19 @@ openEuler OpenStack SIG致力于结合多样性算力为openstack社区贡献更
 
 ### Maintainer列表
 
+#### 现任
+
 - 陈硕[@joec88](https://gitee.com/joec88) joseph.chn1988@gmail.com
 - 李昆山[@liksh](https://gitee.com/liksh) li_kunshan@163.com
 - 黄填华[@huangtianhua](https://gitee.com/huangtianhua) huangtianhua223@gmail.com
 - 王玺源[@xiyuanwang](https://gitee.com/xiyuanwang) wangxiyuan1007@gmail.com
 - 张帆[@zh-f](https://gitee.com/zh-f) zh.f@outlook.com
 - 张迎[@zhangy1317](https://gitee.com/zhangy1317) zhangy1317@foxmail.com
-- 刘胜[@sean-lau](https://gitee.com/sean-lau) liusheng2048@gmail.com - 已退休
+- 韩光宇[@han-guangyu](https://gitee.com/han-guangyu) hanguangyu@uniontech.com
+
+#### 已退休
+
+- 刘胜[@sean-lau](https://gitee.com/sean-lau) liusheng2048@gmail.com
 
 ### 联系方式
 
@@ -42,7 +48,9 @@ openEuler OpenStack SIG致力于结合多样性算力为openstack社区贡献更
 
 ## SIG官方文档
 
-SIG官方文档包括了安装指导、测试说明、特性说明等内容，[访问](https://openeuler.gitee.io/openstack)获取更多信息.
+SIG官方文档包括了安装指导、测试说明、特性说明等内容，访问如下链接获取更多信息.
+
+[https://openeuler.gitee.io/openstack](https://openeuler.gitee.io/openstack)
 
 ## 本项目目录结构
 
