@@ -30,6 +30,7 @@ openeuler:
   Preempt_RT: sig-industrial-control
   QA: sig-QA
   RISC-V: sig-RISC-V
+  TC: TC
   TCP_option_address: Kernel
   UniProton: sig-embedded
   X-diagnosis: sig-ops
@@ -236,6 +237,7 @@ openeuler:
   ptcr: sig-CloudNative
   pyisula: iSulad
   pyporter: dev-utils
+  python-multi_key_dict: sig-python-modules
   qemu: Virt
   radiaTest: sig-QA
   raspberrypi: sig-RaspberryPi
@@ -2363,6 +2365,7 @@ src-openeuler:
   kiran-menu: sig-KIRAN-DESKTOP
   kiran-panel: sig-KIRAN-DESKTOP
   kiran-qdbusxml2cpp: sig-KIRAN-DESKTOP
+  kiran-qt5-integration: sig-KIRAN-DESKTOP
   kiran-screensaver: sig-KIRAN-DESKTOP
   kiran-screensaver-dialog: sig-KIRAN-DESKTOP
   kiran-session-guard: sig-KIRAN-DESKTOP
@@ -2394,8 +2397,6 @@ src-openeuler:
   kudu: bigdata
   kunpengsecl: sig-security-facility
   kurdit-unikurd-web-fonts: Desktop
-  kvm-bindings: Virt
-  kvm-ioctls: Virt
   kwayland-integration: sig-KDE
   kwayland-server: sig-KDE
   kwin: sig-KDE
@@ -6662,7 +6663,7 @@ src-openeuler:
   python-msgpack: sig-python-modules
   python-msrest: sig-openstack
   python-mtg: sig-python-modules
-  python-multi_key_dict: sig-recycle
+  python-multi_key_dict: sig-python-modules
   python-multidict: sig-python-modules
   python-multio: sig-python-modules
   python-multipart: sig-python-modules
@@ -7575,16 +7576,20 @@ src-openeuler:
   qt5-qtcanvas3d: Programming-language
   qt5-qtcharts: sig-UKUI
   qt5-qtconnectivity: Programming-language
+  qt5-qtdatavis3d: Programming-language
   qt5-qtdeclarative: Programming-language
   qt5-qtdoc: Programming-language
   qt5-qtenginio: Others
+  qt5-qtgamepad: Programming-language
   qt5-qtgraphicaleffects: Programming-language
   qt5-qtimageformats: Programming-language
   qt5-qtlocation: Programming-language
   qt5-qtmultimedia: Programming-language
   qt5-qtquickcontrols: Programming-language
   qt5-qtquickcontrols2: Programming-language
+  qt5-qtremoteobjects: Programming-language
   qt5-qtscript: Programming-language
+  qt5-qtscxml: Programming-language
   qt5-qtsensors: Programming-language
   qt5-qtserialbus: Programming-language
   qt5-qtserialport: Programming-language
@@ -7598,6 +7603,7 @@ src-openeuler:
   qt5-qtwebengine: Others
   qt5-qtwebkit: Others
   qt5-qtwebsockets: Programming-language
+  qt5-qtwebview: Programming-language
   qt5-qtx11extras: Programming-language
   qt5-qtxmlpatterns: Programming-language
   qt5-ukui-platformtheme: sig-UKUI
