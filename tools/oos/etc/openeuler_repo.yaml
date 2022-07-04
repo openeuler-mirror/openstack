@@ -6110,6 +6110,7 @@ src-openeuler:
   python-cov-core: sig-python-modules
   python-coverage: Desktop
   python-cpio: Base-service
+  python-cppy: sig-python-modules
   python-cram: sig-python-modules
   python-crank: sig-python-modules
   python-crashtest: sig-python-modules
@@ -6159,6 +6160,7 @@ src-openeuler:
   python-deepmerge: sig-python-modules
   python-defusedxml: sig-python-modules
   python-demjson: sig-python-modules
+  python-deprecated: sig-python-modules
   python-deprecation: sig-python-modules
   python-designateclient: sig-openstack
   python-dfs-sdk: sig-openstack
