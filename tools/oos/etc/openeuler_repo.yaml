@@ -9,9 +9,9 @@ openeuler:
   BiSheng-Adoptium: Compiler
   CPython: Compiler
   CreateImage: sig-Gatekeeper
-  DyscheOS-kernel: sig-DyscheOS
-  DyscheOS-meta: sig-DyscheOS
-  DyscheOS-utils: sig-DyscheOS
+  DyscheOS-kernel: sig-recycle
+  DyscheOS-meta: sig-recycle
+  DyscheOS-utils: sig-recycle
   EulerRobot: sig-QA
   G11N: G11N
   GearOS: sig-industrial-control
@@ -653,7 +653,7 @@ src-openeuler:
   boost: Computing
   booth: sig-Ha
   bootstrap: sig-nodejs
-  bootupd: sig-OKD
+  bootupd: sig-K8sDistro
   bouncycastle: dev-utils
   bowtie2: sig-bio
   box86: sig-compat-winapp
@@ -1532,8 +1532,8 @@ src-openeuler:
   go-bindata: sig-high-performance-network
   go-compilers: sig-recycle
   go-ovirt-engine-sdk4: oVirt
-  go-rpm-macros: sig-OKD
-  go-srpm-macros: sig-OKD
+  go-rpm-macros: sig-K8sDistro
+  go-srpm-macros: sig-K8sDistro
   goaccess: Application
   gobject-introspection: Base-service
   goebpf: sig-high-performance-network
@@ -1574,7 +1574,7 @@ src-openeuler:
   google_benchmark_vendor: sig-ROS
   googleapis-common-protos: sig-openstack
   googletest: sig-ROS
-  goversioninfo: sig-OKD
+  goversioninfo: sig-K8sDistro
   gpac: sig-epol
   gpars: sig-Java
   gparted: sig-mate-desktop
@@ -1922,7 +1922,7 @@ src-openeuler:
   iftop: dev-utils
   igh-ethercat-xenomai: sig-industrial-control
   ignite: bigdata
-  ignition: sig-OKD
+  ignition: sig-K8sDistro
   iio-sensor-proxy: Application
   ilmbase: Programming-language
   im-chooser: sig-mate-desktop
@@ -2392,7 +2392,7 @@ src-openeuler:
   kscreenlocker: sig-KDE
   ksh: Base-service
   kubeedge: sig-Edge
-  kubekey: sig-KubeSphere
+  kubekey: sig-K8sDistro
   kubernetes: sig-CloudNative
   kubevirt: sig-CloudNative
   kudu: bigdata
@@ -3210,7 +3210,7 @@ src-openeuler:
   mongo-tools: DB
   mongodb: sig-recycle
   mono: Base-service
-  moosefs: sig-OKD
+  moosefs: sig-K8sDistro
   morfologik-stemming: Base-service
   morphia: dev-utils
   mosquitto: Application
@@ -3851,7 +3851,7 @@ src-openeuler:
   opensc: Base-service
   openscap: Programming-language
   opensd: sig-openstack
-  openshift-ansible: sig-OKD
+  openshift-ansible: sig-K8sDistro
   openslam_gmapping: sig-ROS
   openslide: sig-epol
   openslp: Networking
@@ -3905,7 +3905,7 @@ src-openeuler:
   orage: sig-recycle
   orc: Base-service
   orca: Desktop
-  origin: sig-OKD
+  origin: sig-K8sDistro
   orocos_kdl: sig-ROS
   orocos_kinematics_dynamics: sig-ROS
   os-maven-plugin: sig-Java
@@ -5725,7 +5725,7 @@ src-openeuler:
   ptpython: sig-python-modules
   publicsuffix-list: Base-service
   pugixml: sig-epol
-  pulp: sig-OKD
+  pulp: sig-K8sDistro
   pulseaudio: Computing
   puppet-agent-puppet-strings: sig-ops
   pushgateway: sig-CloudNative
@@ -7614,7 +7614,7 @@ src-openeuler:
   qtchooser: sig-UKUI
   qtwebkit: sig-recycle
   quartz: sig-Java
-  quay: sig-OKD
+  quay: sig-K8sDistro
   quazip-qt5: sig-UKUI
   querydsl3: sig-Java
   quilt: Application
@@ -7740,7 +7740,7 @@ src-openeuler:
   rpcsvc-proto: Application
   rpm: Base-service
   rpm-mpi-hooks: Private
-  rpm-ostree: sig-OKD
+  rpm-ostree: sig-K8sDistro
   rpm-ostree-toolbox: sig-Ostree-Assembly
   rpmdevtools: Packaging
   rpmlint: Programming-language
