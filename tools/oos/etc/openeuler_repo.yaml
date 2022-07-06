@@ -700,6 +700,7 @@ src-openeuler:
   cairo: Desktop
   cairomm: Desktop
   caja: sig-mate-desktop
+  caja-actions: sig-mate-desktop
   caja-extensions: sig-mate-desktop
   cal10n: dev-utils
   calc: Application
@@ -2463,6 +2464,7 @@ src-openeuler:
   libIDL: Base-service
   libSM: Desktop
   libX11: Desktop
+  libXNVCtrl: sig-mate-desktop
   libXScrnSaver: Programming-language
   libXau: Desktop
   libXaw: Desktop
@@ -3045,6 +3047,7 @@ src-openeuler:
   mate-polkit: sig-mate-desktop
   mate-power-manager: sig-mate-desktop
   mate-screensaver: sig-mate-desktop
+  mate-sensors-applet: sig-mate-desktop
   mate-session-manager: sig-mate-desktop
   mate-settings-daemon: sig-mate-desktop
   mate-system-monitor: sig-mate-desktop
@@ -3305,6 +3308,7 @@ src-openeuler:
   nestos-installer: sig-CloudNative
   net-snmp: Networking
   net-tools: Networking
+  netavark: sig-CloudNative
   netcdf: dev-utils
   netcdf-cxx: sig-epol
   netcf: Networking
@@ -8038,6 +8042,7 @@ src-openeuler:
   rubygem-sassc: sig-Ha
   rubygem-sassc-rails: sig-Ha
   rubygem-scoped_search: sig-ruby
+  rubygem-sd_notify: sig-ruby
   rubygem-sdoc: sig-ruby
   rubygem-secure_headers: sig-ruby
   rubygem-selenium-webdriver: sig-ruby
