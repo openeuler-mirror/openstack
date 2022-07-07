@@ -6,6 +6,8 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+  - toc:
+      permalink: true
 nav:
 - OpenStack SIG: 'index.md'
 - 贡献指导:
