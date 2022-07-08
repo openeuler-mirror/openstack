@@ -5,6 +5,7 @@ openeuler:
   A-Tune-BPF-Collection: A-Tune
   A-Tune-Collector: A-Tune
   A-Tune-UI: A-Tune
+  AppAPIChecker: sig-OSRefTools
   AvxToNeon: sig-AccLib
   BiSheng-Adoptium: Compiler
   CPython: Compiler
@@ -24,6 +25,9 @@ openeuler:
   KubeHawkeyes: sig-CloudNative
   KubeOS: sig-CloudNative
   NestOS: sig-CloudNative
+  OSAPIChecker: sig-OSRefTools
+  OSCompatibility: sig-OSRefTools
+  OSPerformance: sig-OSRefTools
   PilotGo: sig-ops
   PilotGo-plugins: sig-ops
   PilotGo-web: sig-ops
@@ -57,7 +61,7 @@ openeuler:
   blesschess: sig-minzuchess
   blog: sig-recycle
   capsule: Virt
-  ceph_dev: sig-ceph
+  ceph_dev: sig-SDS
   ci-bot: sig-Gatekeeper
   clibcni: iSulad
   cloudnative: sig-CloudNative
@@ -732,10 +736,10 @@ src-openeuler:
   cdrdao: Application
   cdrkit: sig-OS-Builder
   celt051: Runtime
-  ceph: sig-ceph
-  ceph-ansible: sig-ceph
-  ceph-csi: sig-ceph
-  ceph-deploy: sig-ceph
+  ceph: sig-SDS
+  ceph-ansible: sig-SDS
+  ceph-csi: sig-SDS
+  ceph-deploy: sig-SDS
   cereal: dev-utils
   ceres-solver: sig-epol
   certmonger: sig-security-facility
@@ -3537,6 +3541,7 @@ src-openeuler:
   nodejs-is-regex: sig-nodejs
   nodejs-is-symbol: sig-nodejs
   nodejs-is-typedarray: sig-nodejs
+  nodejs-is-unicode-supported: sig-nodejs
   nodejs-isarray: sig-nodejs
   nodejs-isexe: sig-nodejs
   nodejs-isstream: sig-nodejs
@@ -3701,6 +3706,7 @@ src-openeuler:
   nodejs-webpack: sig-nodejs
   nodejs-webpack-stats-plugin: sig-nodejs
   nodejs-websocket-driver: sig-nodejs
+  nodejs-websocket-extensions: sig-nodejs
   nodejs-which: sig-nodejs
   nodejs-window-size: sig-nodejs
   nodejs-with: sig-nodejs
@@ -8327,6 +8333,7 @@ src-openeuler:
   storm: bigdata
   strace: Computing
   stratovirt: Virt
+  stream: dev-utils
   stream-lib: sig-Java
   stress-ng: dev-utils
   stringtemplate: dev-utils
@@ -8415,7 +8422,7 @@ src-openeuler:
   test-interface: sig-Java
   test_interface_files: sig-ROS
   testng: Application
-  teuthology: sig-ceph
+  teuthology: sig-SDS
   tex-fonts-hebrew: Application
   texi2html: Application
   texinfo: Base-service
