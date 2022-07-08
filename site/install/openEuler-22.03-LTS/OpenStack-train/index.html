@@ -166,7 +166,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="openstack-train">OpenStack-Train 部署指南</h1>
+                <h1 id="openstack-train">OpenStack-Train 部署指南<a class="headerlink" href="#openstack-train" title="Permanent link">&para;</a></h1>
 <!-- TOC -->
 
 <ul>
@@ -203,11 +203,11 @@
 <li><a href="#快速安装-openstack">快速安装 OpenStack</a>
     <!-- /TOC --></li>
 </ul>
-<h2 id="openstack">OpenStack 简介</h2>
+<h2 id="openstack">OpenStack 简介<a class="headerlink" href="#openstack" title="Permanent link">&para;</a></h2>
 <p>OpenStack 是一个社区，也是一个项目。它提供了一个部署云的操作平台或工具集，为组织提供可扩展的、灵活的云计算。</p>
 <p>作为一个开源的云计算管理平台，OpenStack 由nova、cinder、neutron、glance、keystone、horizon等几个主要的组件组合起来完成具体工作。OpenStack 支持几乎所有类型的云环境，项目目标是提供实施简单、可大规模扩展、丰富、标准统一的云计算管理平台。OpenStack 通过各种互补的服务提供了基础设施即服务（IaaS）的解决方案，每个服务提供 API 进行集成。</p>
 <p>openEuler 22.03-LTS版本官方源已经支持 OpenStack-Train 版本，用户可以配置好 yum 源后根据此文档进行 OpenStack 部署。</p>
-<h2 id="_1">约定</h2>
+<h2 id="_1">约定<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>OpenStack 支持多种形态部署，此文档支持<code>ALL in One</code>以及<code>Distributed</code>两种部署方式，按照如下方式约定：</p>
 <p><code>ALL in One</code>模式:</p>
 <pre class="highlight"><code class="language-text">忽略所有可能的后缀</code></pre>
@@ -223,8 +223,8 @@
 <li>Nova</li>
 <li>Neutron</li>
 </ul>
-<h2 id="_2">准备环境</h2>
-<h3 id="_3">环境配置</h3>
+<h2 id="_2">准备环境<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">环境配置<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>启动OpenStack Train yum源</p>
@@ -252,7 +252,7 @@ hostnamectl set-hostname compute                                                
 10.0.0.12   compute</code></pre>
 </li>
 </ol>
-<h3 id="sql-database">安装 SQL DataBase</h3>
+<h3 id="sql-database">安装 SQL DataBase<a class="headerlink" href="#sql-database" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>执行如下命令，安装软件包。</p>
@@ -284,7 +284,7 @@ systemctl start mariadb.service</code></pre>
 <p><strong>根据提示进行即可</strong></p>
 </li>
 </ol>
-<h3 id="rabbitmq">安装 RabbitMQ</h3>
+<h3 id="rabbitmq">安装 RabbitMQ<a class="headerlink" href="#rabbitmq" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>执行如下命令，安装软件包。</p>
@@ -306,7 +306,7 @@ systemctl start rabbitmq-server.service</code></pre>
 <pre class="highlight"><code class="language-shell">rabbitmqctl set_permissions openstack ".*" ".*" ".*"</code></pre>
 </li>
 </ol>
-<h3 id="memcached">安装 Memcached</h3>
+<h3 id="memcached">安装 Memcached<a class="headerlink" href="#memcached" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>执行如下命令，安装依赖软件包。</p>
@@ -326,8 +326,8 @@ systemctl start memcached.service</code></pre>
 <p><strong>服务启动后，可以通过命令<code>memcached-tool controller stats</code>确保启动正常，服务可用，其中可以将<code>controller</code>替换为控制节点的管理IP地址。</strong></p>
 </li>
 </ol>
-<h2 id="openstack_1">安装 OpenStack</h2>
-<h3 id="keystone">Keystone 安装</h3>
+<h2 id="openstack_1">安装 OpenStack<a class="headerlink" href="#openstack_1" title="Permanent link">&para;</a></h2>
+<h3 id="keystone">Keystone 安装<a class="headerlink" href="#keystone" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>创建 keystone 数据库并授权。</p>
@@ -440,7 +440,7 @@ unset OS_AUTH_URL OS_PASSWORD</code></pre>
 --os-project-name myproject --os-username myuser token issue</code></pre>
 </li>
 </ol>
-<h3 id="glance">Glance 安装</h3>
+<h3 id="glance">Glance 安装<a class="headerlink" href="#glance" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>创建数据库、服务凭证和 API 端点</p>
@@ -527,7 +527,7 @@ wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img</code><
 <pre class="highlight"><code class="language-shell">openstack image list</code></pre>
 </li>
 </ol>
-<h3 id="placement">Placement安装</h3>
+<h3 id="placement">Placement安装<a class="headerlink" href="#placement" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>创建数据库、服务凭证和 API 端点</p>
@@ -595,7 +595,7 @@ openstack --os-placement-api-version 1.2 resource class list --sort-column name
 openstack --os-placement-api-version 1.6 trait list --sort-column name</code></pre>
 </li>
 </ol>
-<h3 id="nova">Nova 安装</h3>
+<h3 id="nova">Nova 安装<a class="headerlink" href="#nova" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>创建数据库、服务凭证和 API 端点</p>
@@ -799,7 +799,7 @@ systemctl start libvirtd.service openstack-nova-compute.service                 
 <pre class="highlight"><code class="language-shell">nova-status upgrade check                                                                      (CTL)</code></pre>
 </li>
 </ol>
-<h3 id="neutron">Neutron 安装</h3>
+<h3 id="neutron">Neutron 安装<a class="headerlink" href="#neutron" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>创建数据库、服务凭证和 API 端点</p>
@@ -1005,7 +1005,7 @@ systemctl restart neutron-linuxbridge-agent.service openstack-nova-compute.servi
 <pre class="highlight"><code class="language-shell">openstack network agent list</code></pre>
 </li>
 </ol>
-<h3 id="cinder">Cinder 安装</h3>
+<h3 id="cinder">Cinder 安装<a class="headerlink" href="#cinder" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>创建数据库、服务凭证和 API 端点</p>
@@ -1144,7 +1144,7 @@ systemctl start rpcbind.service nfs-server.service tgtd.service iscsid.service \
 openstack volume service list</code></pre>
 </li>
 </ol>
-<h3 id="horizon">horizon 安装</h3>
+<h3 id="horizon">horizon 安装<a class="headerlink" href="#horizon" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>安装软件包</p>
@@ -1189,7 +1189,7 @@ OPENSTACK_API_VERSIONS = {
 <p><strong>替换HOSTIP为控制节点管理平面IP地址</strong></p>
 </li>
 </ol>
-<h3 id="tempest">Tempest 安装</h3>
+<h3 id="tempest">Tempest 安装<a class="headerlink" href="#tempest" title="Permanent link">&para;</a></h3>
 <p>Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测试已安装的OpenStack环境的功能,则推荐使用该组件。否则，可以不用安装。</p>
 <ol>
 <li>
@@ -1216,7 +1216,7 @@ vi etc/tempest.conf</code></pre>
    <pre class="highlight"><code>yum install python3-cinder-tempest-plugin python3-glance-tempest-plugin python3-ironic-tempest-plugin python3-keystone-tempest-plugin python3-trove-tempest-plugin</code></pre></p>
 </li>
 </ol>
-<h3 id="ironic">Ironic 安装</h3>
+<h3 id="ironic">Ironic 安装<a class="headerlink" href="#ironic" title="Permanent link">&para;</a></h3>
 <p>Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则推荐使用该组件。否则，可以不用安装。</p>
 <ol>
 <li>设置数据库</li>
@@ -1581,12 +1581,12 @@ WantedBy=multi-user.target</code></pre>
 </li>
 </ol>
 <p>在Train中，我们还提供了ironic-inspector等服务，用户可根据自身需求安装。</p>
-<h3 id="kolla">Kolla 安装</h3>
+<h3 id="kolla">Kolla 安装<a class="headerlink" href="#kolla" title="Permanent link">&para;</a></h3>
 <p>Kolla为OpenStack服务提供生产环境可用的容器化部署的功能。</p>
 <p>Kolla的安装十分简单，只需要安装对应的RPM包即可</p>
 <pre class="highlight"><code>yum install openstack-kolla openstack-kolla-ansible</code></pre>
 <p>安装完后，就可以使用<code>kolla-ansible</code>, <code>kolla-build</code>, <code>kolla-genpwd</code>, <code>kolla-mergepwd</code>等命令进行相关的镜像制作和容器环境部署了。</p>
-<h3 id="trove">Trove 安装</h3>
+<h3 id="trove">Trove 安装<a class="headerlink" href="#trove" title="Permanent link">&para;</a></h3>
 <p>Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据库服务则推荐使用该组件。否则，可以不用安装。</p>
 <ol>
 <li>设置数据库</li>
@@ -1690,7 +1690,7 @@ systemctl start openstack-trove-api.service \
 openstack-trove-taskmanager.service \
 openstack-trove-conductor.service</code></pre></li>
 </ol>
-<h3 id="swift">Swift 安装</h3>
+<h3 id="swift">Swift 安装<a class="headerlink" href="#swift" title="Permanent link">&para;</a></h3>
 <p>Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适合存储大规模非结构化数据。</p>
 <ol>
 <li>
@@ -1867,7 +1867,7 @@ systemctl enable openstack-swift-object.service openstack-swift-object-auditor.s
 systemctl start openstack-swift-object.service openstack-swift-object-auditor.service openstack-swift-object-replicator.service openstack-swift-object-updater.service</code></pre>
 </li>
 </ol>
-<h3 id="cyborg">Cyborg 安装</h3>
+<h3 id="cyborg">Cyborg 安装<a class="headerlink" href="#cyborg" title="Permanent link">&para;</a></h3>
 <p>Cyborg为OpenStack提供加速器设备的支持，包括 GPU, FPGA, ASIC, NP, SoCs, NVMe/NOF SSDs, ODP, DPDK/SPDK等等。</p>
 <ol>
 <li>初始化对应数据库</li>
@@ -1942,7 +1942,7 @@ auth_type = password</code></pre>
 </ol>
 <pre class="highlight"><code>systemctl enable openstack-cyborg-api openstack-cyborg-conductor openstack-cyborg-agent
 systemctl start openstack-cyborg-api openstack-cyborg-conductor openstack-cyborg-agent</code></pre>
-<h3 id="aodh">Aodh 安装</h3>
+<h3 id="aodh">Aodh 安装<a class="headerlink" href="#aodh" title="Permanent link">&para;</a></h3>
 <ol>
 <li>创建数据库</li>
 </ol>
@@ -2010,7 +2010,7 @@ region_name = RegionOne</code></pre>
 <pre class="highlight"><code>systemctl enable openstack-aodh-api.service openstack-aodh-evaluator.service openstack-aodh-notifier.service openstack-aodh-listener.service
 
 systemctl start openstack-aodh-api.service openstack-aodh-evaluator.service openstack-aodh-notifier.service openstack-aodh-listener.service</code></pre>
-<h3 id="gnocchi">Gnocchi 安装</h3>
+<h3 id="gnocchi">Gnocchi 安装<a class="headerlink" href="#gnocchi" title="Permanent link">&para;</a></h3>
 <ol>
 <li>创建数据库</li>
 </ol>
@@ -2075,7 +2075,7 @@ driver = file</code></pre>
 <pre class="highlight"><code>systemctl enable openstack-gnocchi-api.service openstack-gnocchi-metricd.service
 
 systemctl start openstack-gnocchi-api.service openstack-gnocchi-metricd.service</code></pre>
-<h3 id="ceilometer">Ceilometer 安装</h3>
+<h3 id="ceilometer">Ceilometer 安装<a class="headerlink" href="#ceilometer" title="Permanent link">&para;</a></h3>
 <ol>
 <li>创建对应Keystone资源对象</li>
 </ol>
@@ -2122,7 +2122,7 @@ region_name = RegionOne</code></pre>
 <pre class="highlight"><code>systemctl enable openstack-ceilometer-notification.service openstack-ceilometer-central.service
 
 systemctl start openstack-ceilometer-notification.service openstack-ceilometer-central.service</code></pre>
-<h3 id="heat">Heat 安装</h3>
+<h3 id="heat">Heat 安装<a class="headerlink" href="#heat" title="Permanent link">&para;</a></h3>
 <ol>
 <li>创建<strong>heat</strong>数据库，并授予<strong>heat</strong>数据库正确的访问权限，替换<strong>HEAT_DBPASS</strong>为合适的密码</li>
 </ol>
@@ -2200,7 +2200,7 @@ auth_uri = http://controller:5000</code></pre>
 </ol>
 <pre class="highlight"><code>systemctl enable openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service
 systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service</code></pre>
-<h2 id="openstack_2">快速安装 OpenStack</h2>
+<h2 id="openstack_2">快速安装 OpenStack<a class="headerlink" href="#openstack_2" title="Permanent link">&para;</a></h2>
 <p>OpenStack SIG还提供了一键部署OpenStack all in one或三节点的ansible脚本，用户可以使用该脚本快速部署一套基于openEuler RPM的OpenStack环境。下面以all in one举例说明使用方法</p>
 <ol>
 <li>

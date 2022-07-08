@@ -170,10 +170,10 @@
 </tr>
 </tbody>
 </table>
-<h1 id="1">1 特性概述</h1>
+<h1 id="1">1 特性概述<a class="headerlink" href="#1" title="Permanent link">&para;</a></h1>
 <p>在openEuler 20.03 LTS SP2 release中提供OpenStack Queens、Rocky RPM安装包支持，包括项目：Keystone、Glance、Nova、Neutron、Cinder、Ironic、Trove、Kolla、Horizon、Tempest以及每个项目配套的CLI。
 openEuler 20.03 LTS SP3 release增加了OpenStack Train版本RPM安装包支持，包括项目：Keystone、Glance、Placement、Nova、Neutron、Cinder、Ironic、Trove、Kolla、Heat、Aodh、Ceilometer、Gnocchi、Swift、Horizon、Tempest以及每个项目配套的CLI。</p>
-<h1 id="2">2 特性测试信息</h1>
+<h1 id="2">2 特性测试信息<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
 <p>本节描述被测对象的版本信息和测试的时间及测试轮次，包括依赖的硬件。</p>
 <table>
 <thead>
@@ -253,8 +253,8 @@ openEuler 20.03 LTS SP3 release增加了OpenStack Train版本RPM安装包支持�
 </tr>
 </tbody>
 </table>
-<h1 id="3">3 测试结论概述</h1>
-<h2 id="31">3.1 测试整体结论</h2>
+<h1 id="3">3 测试结论概述<a class="headerlink" href="#3" title="Permanent link">&para;</a></h1>
+<h2 id="31">3.1 测试整体结论<a class="headerlink" href="#31" title="Permanent link">&para;</a></h2>
 <p>OpenStack Queens版本，共计执行Tempest用例1164个，主要覆盖了API测试和功能测试，Skip用例52个（全是openStack Queens版中已废弃的功能或接口，如Keystone V1、Cinder V1等），失败用例3个（测试用例本身问题），其他1109个用例全部通过，发现问题已解决，回归通过，无遗留风险，整体质量良好。</p>
 <p>OpenStack Rocky版本，共计执行Tempest用例1197个，主要覆盖了API测试和功能测试，Skip用例101个（全是openStack Rocky版中已废弃的功能或接口，如KeystoneV1、Cinder V1等），其他1096个用例全部通过，发现问题已解决，回归通过，无遗留风险，整体质量良好。</p>
 <p>OpenStack Train版本除了Cyborg（Cyborg安装部署正常，功能不可用）各组件基本功能正常，共计执行Tempest用例1179个，主要覆盖了API测试和功能测试，Skip用例115个（包括已废弃的功能或接口，如Keystone V1、Cinder V1等，包括一些复杂功能，比如文件注入，虚拟机配置等），其他1064个用例全部通过，共计发现问题14个（包括libvirt 1个问题），均已解决，回归通过，无遗留风险，整体质量良好。</p>
@@ -298,10 +298,10 @@ openEuler 20.03 LTS SP3 release增加了OpenStack Train版本RPM安装包支持�
 </tr>
 </tbody>
 </table>
-<h2 id="32">3.2   约束说明</h2>
+<h2 id="32">3.2   约束说明<a class="headerlink" href="#32" title="Permanent link">&para;</a></h2>
 <p>本次测试没有覆盖OpenStack Queens、Rocky版中明确废弃的功能和接口，因此不能保证已废弃的功能和接口（前文提到的Skip的用例）在openEuler 20.03 LTS SP3上能正常使用，另外Cyborg功能不可用。</p>
-<h2 id="33">3.3   遗留问题分析</h2>
-<h3 id="331-queensrocky">3.3.1 Queens&amp;Rocky遗留问题影响以及规避措施</h3>
+<h2 id="33">3.3   遗留问题分析<a class="headerlink" href="#33" title="Permanent link">&para;</a></h2>
+<h3 id="331-queensrocky">3.3.1 Queens&amp;Rocky遗留问题影响以及规避措施<a class="headerlink" href="#331-queensrocky" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -329,7 +329,7 @@ openEuler 20.03 LTS SP3 release增加了OpenStack Train版本RPM安装包支持�
 </tr>
 </tbody>
 </table>
-<h3 id="332-train">3.3.2 Train版本问题统计</h3>
+<h3 id="332-train">3.3.2 Train版本问题统计<a class="headerlink" href="#332-train" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -360,8 +360,8 @@ openEuler 20.03 LTS SP3 release增加了OpenStack Train版本RPM安装包支持�
 </tr>
 </tbody>
 </table>
-<h1 id="4">4 测试执行</h1>
-<h2 id="41">4.1 测试执行统计数据</h2>
+<h1 id="4">4 测试执行<a class="headerlink" href="#4" title="Permanent link">&para;</a></h1>
+<h2 id="41">4.1 测试执行统计数据<a class="headerlink" href="#41" title="Permanent link">&para;</a></h2>
 <p><em>本节内容根据测试用例及实际执行情况进行特性整体测试的统计，可根据第二章的测试轮次分开进行统计说明。</em></p>
 <table>
 <thead>
@@ -393,12 +393,12 @@ openEuler 20.03 LTS SP3 release增加了OpenStack Train版本RPM安装包支持�
 </tr>
 </tbody>
 </table>
-<h2 id="42">4.2 后续测试建议</h2>
+<h2 id="42">4.2 后续测试建议<a class="headerlink" href="#42" title="Permanent link">&para;</a></h2>
 <ol>
 <li>涵盖主要的性能测试</li>
 <li>覆盖更多的driver/plugin测试</li>
 </ol>
-<h1 id="5">5 附件</h1>
+<h1 id="5">5 附件<a class="headerlink" href="#5" title="Permanent link">&para;</a></h1>
 <p><em>N/A</em></p>
               
             </div>
