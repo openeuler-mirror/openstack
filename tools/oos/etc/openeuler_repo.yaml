@@ -583,6 +583,7 @@ src-openeuler:
   avocado: sig-QA
   avor: bigdata
   avro: Application
+  avro-python3: sig-openstack
   aws-sdk-java: sig-Java
   awscli: sig-CloudNative
   axel: sig-epol
@@ -2023,8 +2024,10 @@ src-openeuler:
   jacorb: sig-Java
   jaf: sig-Java
   jai-imageio-core: Private
+  jakarta-cdi: sig-Java
   jakarta-commons-httpclient: sig-Java
   jakarta-el: dev-utils
+  jakarta-interceptors: sig-Java
   jakarta-mail: sig-Java
   jakarta-oro: dev-utils
   jakarta-server-pages: dev-utils
@@ -5964,7 +5967,11 @@ src-openeuler:
   python-authheaders: sig-python-modules
   python-authres: sig-python-modules
   python-automaton: sig-openstack
+  python-autopage: sig-openstack
   python-autopep8: sig-python-modules
+  python-aws-sam-translator: sig-openstack
+  python-aws-xray-sdk: sig-openstack
+  python-awscrt: sig-openstack
   python-babelfish: sig-python-modules
   python-backcall: sig-python-modules
   python-backlash: sig-python-modules
@@ -6048,6 +6055,7 @@ src-openeuler:
   python-certifi: sig-python-modules
   python-cffi: Base-service
   python-cfgv: sig-python-modules
+  python-cfn-lint: sig-openstack
   python-chardet: Base-service
   python-charset-normalizer: Base-service
   python-check-manifest: sig-python-modules
@@ -6112,6 +6120,7 @@ src-openeuler:
   python-copr-messaging: sig-python-modules
   python-cotyledon: sig-openstack
   python-cov-core: sig-python-modules
+  python-covdefaults: sig-openstack
   python-coverage: Desktop
   python-cpio: Base-service
   python-cppy: sig-python-modules
@@ -6402,6 +6411,7 @@ src-openeuler:
   python-greenlet: Programming-language
   python-gremlinpython: sig-openstack
   python-grpcio-gcp: sig-openstack
+  python-grpcio-status: sig-openstack
   python-gssapi: Base-service
   python-guizero: sig-python-modules
   python-gunicorn: sig-python-modules
@@ -6503,6 +6513,8 @@ src-openeuler:
   python-jaraco-functools: sig-python-modules
   python-jaraco-text: sig-python-modules
   python-jaraco.packaging: sig-openstack
+  python-jaraco.path: sig-openstack
+  python-jaraco.tidelift: sig-openstack
   python-javalang: sig-python-modules
   python-jdcal: sig-python-modules
   python-jedi: sig-epol
@@ -6514,6 +6526,7 @@ src-openeuler:
   python-jira: sig-python-modules
   python-jmespath: sig-python-modules
   python-joblib: sig-python-modules
+  python-jose: sig-openstack
   python-josepy: sig-python-modules
   python-journal-brief: sig-python-modules
   python-jsmin: sig-python-modules
@@ -6870,6 +6883,7 @@ src-openeuler:
   python-pint: sig-python-modules
   python-pip: Base-service
   python-pip-api: sig-openstack
+  python-pip-run: sig-openstack
   python-pipdeptree: sig-python-modules
   python-pipreqs: sig-openstack
   python-pkgconfig: A-Tune
@@ -7019,6 +7033,7 @@ src-openeuler:
   python-pysocks: Base-service
   python-pyspf: sig-python-modules
   python-pyspiflash: sig-python-modules
+  python-pyspnego: sig-openstack
   python-pysrt: sig-python-modules
   python-pystache: sig-python-modules
   python-pystalk: sig-python-modules
@@ -7029,6 +7044,7 @@ src-openeuler:
   python-pytest-beakerlib: sig-python-modules
   python-pytest-cache: sig-python-modules
   python-pytest-catchlog: sig-python-modules
+  python-pytest-checkdocs: sig-openstack
   python-pytest-cov: Base-service
   python-pytest-datafiles: sig-python-modules
   python-pytest-django: sig-openstack
@@ -7039,6 +7055,7 @@ src-openeuler:
   python-pytest-fixture-config: Base-service
   python-pytest-flakes: sig-python-modules
   python-pytest-forked: sig-python-modules
+  python-pytest-freezegun: sig-openstack
   python-pytest-helpers-namespace: sig-python-modules
   python-pytest-html: sig-openstack
   python-pytest-httpbin: Private
@@ -7076,6 +7093,7 @@ src-openeuler:
   python-pytools: sig-python-modules
   python-pytrailer: sig-python-modules
   python-pytzdata: sig-python-modules
+  python-pyu2f: sig-openstack
   python-pyudev: Base-service
   python-pyusb: sig-python-modules
   python-pyvit: sig-python-modules
@@ -7393,14 +7411,17 @@ src-openeuler:
   python-typed-ast: sig-openstack
   python-types-enum34: sig-openstack
   python-types-ipaddress: sig-openstack
+  python-types-paramiko: sig-openstack
   python-typing: sig-python-modules
   python-typing-extensions: sig-openstack
   python-typogrify: sig-python-modules
   python-tzlocal: sig-python-modules
   python-u-msgpack-python: Base-service
+  python-uamqp: sig-openstack
   python-ucam-webauth: sig-python-modules
   python-uhashring: sig-openstack
   python-ujson: sig-openstack
+  python-uncertainties: sig-openstack
   python-unicodecsv: sig-recycle
   python-unidiff: sig-python-modules
   python-unittest2: Programming-language

@@ -8,6 +8,7 @@ openeuler:
   openstack-releases: sig-openstack
 src-openeuler:
   ansible-lint: sig-openstack
+  avro-python3: sig-openstack
   crudini: sig-openstack
   dibbler: sig-openstack
   diskimage-builder: sig-openstack
@@ -87,6 +88,10 @@ src-openeuler:
   python-arrow: sig-openstack
   python-async-generator: sig-openstack
   python-automaton: sig-openstack
+  python-autopage: sig-openstack
+  python-aws-sam-translator: sig-openstack
+  python-aws-xray-sdk: sig-openstack
+  python-awscrt: sig-openstack
   python-barbicanclient: sig-openstack
   python-beautifulsoup4: sig-openstack
   python-binary-memcached: sig-openstack
@@ -97,6 +102,7 @@ src-openeuler:
   python-cassandra-driver: sig-openstack
   python-castellan: sig-openstack
   python-ceilometermiddleware: sig-openstack
+  python-cfn-lint: sig-openstack
   python-cinder-tempest-plugin: sig-openstack
   python-cinderclient: sig-openstack
   python-cliff: sig-openstack
@@ -106,6 +112,7 @@ src-openeuler:
   python-congressclient: sig-openstack
   python-consul: sig-openstack
   python-cotyledon: sig-openstack
+  python-covdefaults: sig-openstack
   python-cursive: sig-openstack
   python-cyborgclient: sig-openstack
   python-debtcollector: sig-openstack
@@ -133,6 +140,7 @@ src-openeuler:
   python-gossip: sig-openstack
   python-gremlinpython: sig-openstack
   python-grpcio-gcp: sig-openstack
+  python-grpcio-status: sig-openstack
   python-hacking: sig-openstack
   python-heat-cfntools: sig-openstack
   python-heatclient: sig-openstack
@@ -151,6 +159,9 @@ src-openeuler:
   python-ironicclient: sig-openstack
   python-jaeger-client: sig-openstack
   python-jaraco.packaging: sig-openstack
+  python-jaraco.path: sig-openstack
+  python-jaraco.tidelift: sig-openstack
+  python-jose: sig-openstack
   python-jsondiff: sig-openstack
   python-karborclient: sig-openstack
   python-kazoo: sig-openstack
@@ -243,6 +254,7 @@ src-openeuler:
   python-pifpaf: sig-openstack
   python-pika: sig-openstack
   python-pip-api: sig-openstack
+  python-pip-run: sig-openstack
   python-pipreqs: sig-openstack
   python-pre-commit: sig-openstack
   python-proboscis: sig-openstack
@@ -256,11 +268,15 @@ src-openeuler:
   python-pyghmi: sig-openstack
   python-pylama: sig-openstack
   python-pypowervm: sig-openstack
+  python-pyspnego: sig-openstack
+  python-pytest-checkdocs: sig-openstack
   python-pytest-django: sig-openstack
   python-pytest-env: sig-openstack
+  python-pytest-freezegun: sig-openstack
   python-pytest-html: sig-openstack
   python-pytest-perf: sig-openstack
   python-pytest-randomly: sig-openstack
+  python-pyu2f: sig-openstack
   python-pyxcli: sig-openstack
   python-rbd-iscsi-client: sig-openstack
   python-reno: sig-openstack
@@ -316,9 +332,12 @@ src-openeuler:
   python-typed-ast: sig-openstack
   python-types-enum34: sig-openstack
   python-types-ipaddress: sig-openstack
+  python-types-paramiko: sig-openstack
   python-typing-extensions: sig-openstack
+  python-uamqp: sig-openstack
   python-uhashring: sig-openstack
   python-ujson: sig-openstack
+  python-uncertainties: sig-openstack
   python-vintage: sig-openstack
   python-vitrageclient: sig-openstack
   python-waiting: sig-openstack
