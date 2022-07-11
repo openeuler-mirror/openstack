@@ -30,6 +30,7 @@ pypi2pkgname:
   gitdb2: gitdb
   oslosphinx: oslo-sphinx
   ovs: openvswitch
+  pyOpenSSL: pyOpenSSL
   prometheus-client: prometheus_client
   pyenchant: enchant
   pygraphviz: graphviz
