@@ -199,6 +199,7 @@ openeuler:
   openEuler-lsb: sig-release-management
   openEuler-menus: sig-KDE
   openEuler-pkginfo: dev-utils
+  openEuler-portal: sig-OpenDesign
   openEuler-rpm-config: Base-service
   openEuler_chroot: sig-Gatekeeper
   openRSO: Kernel
