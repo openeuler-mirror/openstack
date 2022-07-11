@@ -134,7 +134,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="openstack-rocky">OpenStack-Rocky 部署指南</h1>
+                <h1 id="openstack-rocky">OpenStack-Rocky 部署指南<a class="headerlink" href="#openstack-rocky" title="Permanent link">&para;</a></h1>
 <!-- TOC -->
 
 <ul>
@@ -189,12 +189,12 @@
 </ul>
 <!-- /TOC -->
 
-<h2 id="openstack">OpenStack 简介</h2>
+<h2 id="openstack">OpenStack 简介<a class="headerlink" href="#openstack" title="Permanent link">&para;</a></h2>
 <p>OpenStack 是一个社区，也是一个项目。它提供了一个部署云的操作平台或工具集，为组织提供可扩展的、灵活的云计算。</p>
 <p>作为一个开源的云计算管理平台，OpenStack 由nova、cinder、neutron、glance、keystone、horizon等几个主要的组件组合起来完成具体工作。OpenStack 支持几乎所有类型的云环境，项目目标是提供实施简单、可大规模扩展、丰富、标准统一的云计算管理平台。OpenStack 通过各种互补的服务提供了基础设施即服务（IaaS）的解决方案，每个服务提供 API 进行集成。</p>
 <p>openEuler 20.03-LTS-SP2 版本官方认证的第三方oepkg yum 源已经支持 Openstack-Rocky 版本，用户可以配置好oepkg yum 源后根据此文档进行 OpenStack 部署。</p>
-<h2 id="_1">准备环境</h2>
-<h3 id="openstack-yum">OpenStack yum源配置</h3>
+<h2 id="_1">准备环境<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="openstack-yum">OpenStack yum源配置<a class="headerlink" href="#openstack-yum" title="Permanent link">&para;</a></h3>
 <p>配置 20.03-LTS-SP2 官方认证的第三方源 oepkg，以x86_64为例</p>
 <pre class="highlight"><code class="language-shell">$ cat &lt;&lt; EOF &gt;&gt; /etc/yum.repos.d/OpenStack_Rocky.repo
 [openstack_rocky]
@@ -204,10 +204,10 @@ gpgcheck=0
 enabled=1
 EOF</code></pre>
 <pre class="highlight"><code class="language-shell">$ yum clean all &amp;&amp; yum makecache</code></pre>
-<h3 id="_2">环境配置</h3>
+<h3 id="_2">环境配置<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>在<code>/etc/hosts</code>中添加controller信息，例如节点IP是<code>10.0.0.11</code>，则新增：</p>
 <pre class="highlight"><code>10.0.0.11   controller</code></pre>
-<h3 id="sql-database">安装 SQL DataBase</h3>
+<h3 id="sql-database">安装 SQL DataBase<a class="headerlink" href="#sql-database" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>执行如下命令，安装软件包。</p>
@@ -226,7 +226,7 @@ character-set-server = utf8</code></pre></p>
 <p>启动 DataBase 服务，并为其配置开机自启动：</p>
 <pre class="highlight"><code class="language-shell">$ systemctl enable mariadb.service
 $ systemctl start mariadb.service</code></pre>
-<h3 id="rabbitmq">安装 RabbitMQ</h3>
+<h3 id="rabbitmq">安装 RabbitMQ<a class="headerlink" href="#rabbitmq" title="Permanent link">&para;</a></h3>
 </li>
 <li>
 <p>执行如下命令，安装软件包。</p>
@@ -245,7 +245,7 @@ $ systemctl start rabbitmq-server.service</code></pre>
 <pre class="highlight"><code class="language-shell">$ rabbitmqctl set_permissions openstack ".*" ".*" ".*"</code></pre>
 </li>
 </ol>
-<h3 id="memcached">安装 Memcached</h3>
+<h3 id="memcached">安装 Memcached<a class="headerlink" href="#memcached" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>执行如下命令，安装依赖软件包。</p>
@@ -260,8 +260,8 @@ OPTIONS 修改为实际环境中控制节点的管理IP地址。</p>
 $ systemctl start memcached.service</code></pre>
 </li>
 </ol>
-<h2 id="openstack_1">安装 OpenStack</h2>
-<h3 id="keystone">Keystone 安装</h3>
+<h2 id="openstack_1">安装 OpenStack<a class="headerlink" href="#openstack_1" title="Permanent link">&para;</a></h2>
+<h3 id="keystone">Keystone 安装<a class="headerlink" href="#keystone" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>以 root 用户访问数据库，创建 keystone 数据库并授权。</p>
@@ -368,7 +368,7 @@ $ openstack role add --project myproject --user myuser myrole</code></pre>
 --os-project-name myproject --os-username myuser token issue</code></pre>
 </li>
 </ol>
-<h3 id="glance">Glance 安装</h3>
+<h3 id="glance">Glance 安装<a class="headerlink" href="#glance" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>创建数据库、服务凭证和 API 端点</p>
@@ -428,10 +428,10 @@ filesystem_store_datadir = /var/lib/glance/images/</code></pre>
 <p>在[keystone_authtoken] [paste_deploy]部分，配置身份认证服务入口</p>
 <p>```ini
 [database]</p>
-<h1 id="_3">...</h1>
+<h1 id="_3">...<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
 <p>connection = mysql+pymysql://glance:GLANCE_DBPASS@controller/glance
 [keystone_authtoken]</p>
-<h1 id="_4">...</h1>
+<h1 id="_4">...<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h1>
 <p>www_authenticate_uri  = http://controller:5000
 auth_url = http://controller:5000
 memcached_servers = controller:11211
@@ -442,7 +442,7 @@ project_name = service
 username = glance
 password = GLANCE_PASS
 [paste_deploy]</p>
-<h1 id="_5">...</h1>
+<h1 id="_5">...<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h1>
 <p>flavor = keystone
  ```</p>
 <p>其中，替换 GLANCE_DBPASS 为 glance 数据库的密码，替换 GLANCE_PASS 为 glance 用户的密码。</p>
@@ -457,7 +457,7 @@ $ systemctl start openstack-glance-api.service openstack-glance-registry.service
 <p>下载镜像
 ```shell
 $ source admin-openrc</p>
-<h1 id="arm64">注意：如果您使用的环境是鲲鹏架构，请下载arm64版本的镜像。</h1>
+<h1 id="arm64">注意：如果您使用的环境是鲲鹏架构，请下载arm64版本的镜像。<a class="headerlink" href="#arm64" title="Permanent link">&para;</a></h1>
 <p>$ wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img
    ```</p>
 <p>向Image服务上传镜像：</p>
@@ -466,7 +466,7 @@ $ glance image-create --name "cirros" --file cirros-0.4.0-x86_64-disk.img --disk
 <p>确认镜像上传并验证属性：</p>
 <p><code>shell
 $ glance image-list</code></p>
-<h3 id="nova">Nova 安装</h3>
+<h3 id="nova">Nova 安装<a class="headerlink" href="#nova" title="Permanent link">&para;</a></h3>
 </li>
 <li>
 <p>创建数据库、服务凭证和 API 端点</p>
@@ -678,7 +678,7 @@ $ openstack compute service list --service nova-compute</code></pre>
 <pre class="highlight"><code class="language-shell">$ openstack image list</code></pre>
 <p>检查cells和placement API是否运作成功，以及其他必要条件是否已具备。</p>
 <pre class="highlight"><code class="language-shell">$ nova-status upgrade check</code></pre>
-<h3 id="neutron">Neutron 安装</h3>
+<h3 id="neutron">Neutron 安装<a class="headerlink" href="#neutron" title="Permanent link">&para;</a></h3>
 </li>
 <li>
 <p>创建数据库、服务凭证和 API 端点</p>
@@ -861,7 +861,7 @@ $ systemctl start neutron-l3-agent.service</code></pre>
 <pre class="highlight"><code class="language-shell">$ openstack network agent list</code></pre>
 </li>
 </ol>
-<h3 id="cinder">Cinder 安装</h3>
+<h3 id="cinder">Cinder 安装<a class="headerlink" href="#cinder" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>创建数据库、服务凭证和 API 端点</p>
@@ -1048,7 +1048,7 @@ $ openstack volume service list</code></pre></p>
 <p>注：目前暂未对swift组件进行支持，有条件的同学可以配置对接ceph。</p>
 </li>
 </ol>
-<h3 id="horizon">Horizon 安装</h3>
+<h3 id="horizon">Horizon 安装<a class="headerlink" href="#horizon" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>安装软件包</p>
@@ -1106,7 +1106,7 @@ Alias /dashboard/static /usr/share/openstack-dashboard/static
 打开浏览器，输入网址http://<host_ip>，登录 horizon。</p>
 </li>
 </ol>
-<h3 id="tempest">Tempest 安装</h3>
+<h3 id="tempest">Tempest 安装<a class="headerlink" href="#tempest" title="Permanent link">&para;</a></h3>
 <p>Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测试已安装的OpenStack环境的功能,则推荐使用该组件。否则，可以不用安装</p>
 <ol>
 <li>安装Tempest
@@ -1124,7 +1124,7 @@ tempest.conf中需要配置当前OpenStack环境的信息，具体内容可以�
 <pre class="highlight"><code class="language-shell">$ tempest run</code></pre>
 </li>
 </ol>
-<h3 id="ironic">Ironic 安装</h3>
+<h3 id="ironic">Ironic 安装<a class="headerlink" href="#ironic" title="Permanent link">&para;</a></h3>
 <p>Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则推荐使用该组件。否则，可以不用安装。</p>
 <ol>
 <li>设置数据库</li>
@@ -1433,12 +1433,12 @@ DIB_REPOLOCATION_ironic_python_agent=https://review.opendev.org/openstack/ironic
 DIB_REPOREF_ironic_python_agent=refs/changes/43/701043/1</code></pre>
 <p>参考：<a href="https://docs.openstack.org/diskimage-builder/latest/elements/source-repositories/README.html">source-repositories</a>。</p>
 <p>指定仓库地址及版本验证成功。</p>
-<h3 id="kolla">Kolla 安装</h3>
+<h3 id="kolla">Kolla 安装<a class="headerlink" href="#kolla" title="Permanent link">&para;</a></h3>
 <p>Kolla为OpenStack服务提供生产环境可用的容器化部署的功能。openEuler 20.03 LTS SP2中引入了Kolla和Kolla-ansible服务。</p>
 <p>Kolla的安装十分简单，只需要安装对应的RPM包即可</p>
 <pre class="highlight"><code class="language-shell">$ yum install openstack-kolla openstack-kolla-ansible</code></pre>
 <p>安装完后，就可以使用<code>kolla-ansible</code>, <code>kolla-build</code>, <code>kolla-genpwd</code>, <code>kolla-mergepwd</code>等命令了。</p>
-<h3 id="trove">Trove 安装</h3>
+<h3 id="trove">Trove 安装<a class="headerlink" href="#trove" title="Permanent link">&para;</a></h3>
 <p>Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据库服务则推荐使用该组件。否则，可以不用安装。</p>
 <ol>
 <li>设置数据库</li>

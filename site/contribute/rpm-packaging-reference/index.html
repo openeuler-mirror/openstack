@@ -136,9 +136,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="sig-rpm">SIG RPM 编包流程梳理</h1>
+                <h1 id="sig-rpm">SIG RPM 编包流程梳理<a class="headerlink" href="#sig-rpm" title="Permanent link">&para;</a></h1>
 <p>OpenStack SIG 有一项长期开发工作是进行 OpenStack 各版本相关 RPM 软件包的打包维护。为了方便新加入 SIG 的开发者更快了解 SIG 编包流程，在此对 SIG 编包流程进行梳理，以供参考。</p>
-<h2 id="excel">Excel表格说明</h2>
+<h2 id="excel">Excel表格说明<a class="headerlink" href="#excel" title="Permanent link">&para;</a></h2>
 <p>SIG 编包时，会以共享表格的形式，将需要处理的软件包整理出来，供开发者协同处理。当前表格格式如下：</p>
 <table>
 <thead>
@@ -207,24 +207,24 @@
 <p>确定好软件包对应的处理类型后，需要根据版本信息进行处理。“Repo version”列为当前仓库中对应分支的软件包版本。“Required (Min) Version”则是需要的最小版本，如果其后有"(Must)"标识，则表示必须使用此版本。“Upper Version”为可以使用的最高版本。如果“Required (Min) Version”和“Upper Version”不同，优先使用“Required (Min) Version”。比如升级软件包，优先升级到“Required (Min) Version”。</p>
 <p>“Requires”列为软件包的依赖。“Depth”列表示软件包依赖层级。“Depth”为1的是“Depth”为0的软件包的依赖，以此类推，“Depth”高的软件包为“Depth”低的软件包的依赖。处理时应优先处理“Depth”高的行。但如果某个包，没有依赖（“Requires”为[]）,也可直接处理。如果某些包需要优先处理，应按照其“Requires”，优先处理其依赖。</p>
 <p>处理一个软件包时，应首先在“Author”列标注自己的名字，以告诉其他开发者此包已有人处理。pr（pull request）提交后，将 pr 链接贴到“PR link”列。pr 合并后，应在“PR status”列标注“Done”。</p>
-<h2 id="sig">SIG 处理编包问题流程</h2>
+<h2 id="sig">SIG 处理编包问题流程<a class="headerlink" href="#sig" title="Permanent link">&para;</a></h2>
 <p>目前 SIG 处理编包问题主要使用 SIG 自己编写的 oos 工具。oos 工具细节参考 <a href="https://gitee.com/openeuler/openstack/blob/master/tools/oos/README.md">oos README</a>。不同“Status”处理时涉及的“升级”、“初始化分支”、“软件包放入 OBS 工程”等操作，oos 工具有对应实现。</p>
 <p>以 Yoga 版本升级 python-pyrsistent 软件包为例，演示编包流程，帮助开发者熟悉 OpenStack SIG 基于 oos 工具的打包相关流程。在了解基础流程后，开发者可通过<a href="https://gitee.com/openeuler/openstack/blob/master/tools/oos/README.md">oos README</a>了解其余操作。python-pyrsistent 软件包信息参见上文表格。该软件包需要从0.18.0版本升级到0.18.1版本。Yoga 版本是在22.09版本开发规划中，当前为22年5月，直接提交到master分支即可。</p>
-<h3 id="cla">签署 CLA</h3>
+<h3 id="cla">签署 CLA<a class="headerlink" href="#cla" title="Permanent link">&para;</a></h3>
 <p>在openEuler社区提交贡献需要签署 <a href="https://clasign.osinfra.cn/sign/Z2l0ZWUlMkZvcGVuZXVsZXI=">CLA</a>。</p>
-<h3 id="_1">环境准备</h3>
+<h3 id="_1">环境准备<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <pre class="highlight"><code class="language-shell">dnf install rpm-build rpmdevtools git
 
 # 生成~/rpmbuild目录，oos默认工作路径也为此
 rpmdev-setuptree
 
 pip install openstack-sig-tool</code></pre>
-<h3 id="gitee-patpersonal-access-token">生成个人 Gitee 账户的 pat(personal access token)</h3>
+<h3 id="gitee-patpersonal-access-token">生成个人 Gitee 账户的 pat(personal access token)<a class="headerlink" href="#gitee-patpersonal-access-token" title="Permanent link">&para;</a></h3>
 <p>首先进入 Gitee 账户的“设置”界面。</p>
 <p><img alt="设置" src="../../img/contribute/rpm-packaging-reference/setting.png" /></p>
 <p>选择“私人令牌”，然后点击“生成新令牌”。生成后单独保存好自己的私人令牌（pat），Gitee 上无法再次查看，如果丢失只能重新生成。</p>
 <p><img alt="私人令牌" src="../../img/contribute/rpm-packaging-reference/pat.png" /></p>
-<h3 id="python-pyrsistent-spec">生成 python-pyrsistent 包的 spec 并提交</h3>
+<h3 id="python-pyrsistent-spec">生成 python-pyrsistent 包的 spec 并提交<a class="headerlink" href="#python-pyrsistent-spec" title="Permanent link">&para;</a></h3>
 <pre class="highlight"><code class="language-shell">export GITEE_PAT=&lt;your gitee pat&gt;
 oos spec push --name python-pyrsistent --version 0.18.1 -dp
 
@@ -247,7 +247,7 @@ oos spec push --name python-pyrsistent --version 0.18.1 -dp
 <p>注1：升级时要通过 <code>oos spec push</code> 命令生成 spec 文件，不要使用 <code>oos spec build</code> 命令，push 命令会保留仓库中 现有 spec 的 changelog，build 命令则直接生成新的 changelog。</p>
 <p>注2：处理错误时，可以参考仓库中现有的 spec 文件；当前 spec 除了 changlog 部分，其余为 oos 工具重新生成，前人遇到的错误，此处仍可能遇到，可参考前人操作结果问题。</p>
 <p>注3：oos 命令还支持批量处理，可以参考 oos 的 <a href="https://gitee.com/openeuler/openstack/blob/master/tools/oos/README.md">README</a> 自行尝试。</p>
-<h3 id="pr">PR 门禁检查</h3>
+<h3 id="pr">PR 门禁检查<a class="headerlink" href="#pr" title="Permanent link">&para;</a></h3>
 <p>此时在自己的 gitee 账户中可以看到 fork 过来的仓库。进入自己账号中的仓库，可通过点击如下框起位置，可进入原仓库。</p>
 <p><img alt="访问原仓库" src="../../img/contribute/rpm-packaging-reference/redirect_git_repo.png" /></p>
 <p>原仓库中可以看到自动提交的 pr。Pr 中可以看到 openeuler-ci-bot 的评论：</p>
@@ -257,19 +257,19 @@ oos spec push --name python-pyrsistent --version 0.18.1 -dp
 <pre class="highlight"><code class="language-shell">oos spec push --name python-pyrsistent --version 0.18.1 -dp -rs</code></pre>
 <p>线上会自动重新执行测试。</p>
 <p>门禁详细信息及各项结果含义参考社区的<a href="https://www.openeuler.org/zh/blog/zhengyaohui/2022-03-21-ci_guild.html">《门禁功能指导手册》</a>。</p>
-<h3 id="pr_1">PR 检视</h3>
+<h3 id="pr_1">PR 检视<a class="headerlink" href="#pr_1" title="Permanent link">&para;</a></h3>
 <p>当一个 pr 通过门禁检查后，需要由软件仓库所属 SIG 的 maintainer 进行 review。为了加速进程，门禁通过后，可以手动 @ 对应的 maintainer，请求帮忙检视。在 pr 提交后，openeuler-ci-bot 会有如下图所示评论，其中被 @ 的人即为当前仓库所属 SIG 的 maintainer。</p>
 <p><img alt="maintainer" src="../../img/contribute/rpm-packaging-reference/maintainer.png" /></p>
-<h2 id="_2">注意事项</h2>
+<h2 id="_2">注意事项<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>这里对一些可能遇到的的特殊问题进行记录。</p>
-<h3 id="_3">测试未执行问题</h3>
+<h3 id="_3">测试未执行问题<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>oos 自动生成的 spec 文件中，%check 部分默认为 <code>%{__python3} setup.py test</code>。但是在有些包中，这样并不会真正执行测试，但门禁结果也显示通过。需要开发者人工辨别。参考方法如下：</p>
 <ol>
 <li>如果是此前已有 spec 文件，可以参考之前的 spec 中 %check 部分如何书写。如果以前写的不是 <code>%{__python3} setup.py test</code>，便需要重点注意。</li>
 <li>进入门禁的 build details(参见上文“PR 门禁检查”部分)，查看构建日志的 %check 部分。下图为进入 build details，然后选择“文本方式查看”的日志显示截图。可以看到显示实际运行测试数为0。</li>
 </ol>
 <p><img alt="check_log" src="../../img/contribute/rpm-packaging-reference/check_log.png" /></p>
-<h3 id="_4">包名不一致问题</h3>
+<h3 id="_4">包名不一致问题<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>小部分软件包可能会碰到，oos 自动生成的 spec 所使用的的包名与现有包名不一致。比如一个使用<code>-</code>,一个使用下划线<code>_</code>。此处以原本使用的包名为准，不修改原有包名。</p>
 <p>作为临时的处理，开发者可以手动将 spec 文件相关地方改为原有包名。与此同时，oos 拥有 mapping 修正功能，开发者可以提交 issue，SIG 将在 oos 中进行修复。</p>
               
