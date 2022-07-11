@@ -1,5 +1,7 @@
 site_name: OpenStack SIG Doc
-theme: readthedocs
+theme:
+  name: readthedocs
+  locale: zh
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
