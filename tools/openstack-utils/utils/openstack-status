@@ -1,0 +1,294 @@
+#!/bin/sh
+#
+# Copyright (C) 2013, Red Hat, Inc.
+# Pádraig Brady <pbrady@redhat.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may
+# not use this file except in compliance with the License. You may obtain
+# a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+#
+
+systemctl --version >/dev/null 2>&1 && systemctl=1
+[ "$systemctl" ] || RUNLEVEL=$(LANG=C who -r | sed 's/.*run-level \([0-9]\).*/\1/')
+
+# Figure out what provides mysqld services, if installed locally
+get_mysql_variant() {
+    local r
+    r=$(rpm -q --whatprovides mysql-server)
+    if [ $? -ne 0 ]; then
+        return 1
+    fi
+    # using bash would be faster/less forks: r=${r/-*/}
+    r=$(echo $r | cut -f1 -d-)
+    if [ "$r" = "mysql" ]; then
+        echo mysqld
+        return 0
+    fi
+    echo $r
+}
+
+
+for conf in nova/nova.conf keystone/keystone.conf glance/glance-registry.conf; do
+    if grep -qF 'connection = mysql' /etc/$conf 2>/dev/null; then
+        mysqld=$(get_mysql_variant)
+        break
+    fi
+done
+
+rpm -q openstack-nova-common > /dev/null && nova='nova'
+rpm -q openstack-glance > /dev/null && glance='glance'
+rpm -q openstack-dashboard > /dev/null && dashboard='httpd'
+rpm -q openstack-keystone > /dev/null && keystone='keystone'
+rpm -q openstack-neutron > /dev/null && neutron='neutron' ||
+{ rpm -q openstack-quantum > /dev/null && neutron='quantum'; }
+rpm -q openstack-swift > /dev/null && swift='swift'
+rpm -q openstack-cinder > /dev/null && cinder='cinder'
+rpm -q openstack-ceilometer-common > /dev/null && ceilometer='ceilometer'
+rpm -q openstack-heat-common > /dev/null && heat='heat'
+rpm -q openstack-sahara > /dev/null && sahara='sahara'
+rpm -q openstack-trove > /dev/null && trove='trove'
+rpm -q openstack-tuskar > /dev/null && tuskar='tuskar'
+rpm -q openstack-ironic-common > /dev/null && ironic='ironic'
+rpm -q libvirt > /dev/null && libvirtd='libvirtd'
+rpm -q openvswitch > /dev/null && openvswitch='openvswitch'
+rpm -q qpid-cpp-server > /dev/null && qpidd='qpidd'
+rpm -q rabbitmq-server > /dev/null && rabbitmq='rabbitmq-server'
+rpm -q memcached > /dev/null && memcached='memcached'
+
+if test "$qpidd" && test "$rabbitmq"; then
+  # Give preference to rabbit
+  # Unless nova is installed and qpid is specifed
+  if test "$nova" && grep -q '^rpc_backend.*qpid' /etc/nova/nova.conf; then
+    rabbitmq=''
+  else
+    qpidd=''
+  fi
+fi
+
+service_installed() {
+  {
+    systemctl list-unit-files --type service --full --all ||
+    systemctl list-units --full --all --type service
+  } 2>/dev/null | grep -q "^$1\.service" ||
+  chkconfig --list $1 >//dev/null 2>&1
+}
+
+service_enabled() {
+  if [ "$systemctl" ]; then
+    systemctl --quiet is-enabled $1.service 2>/dev/null
+  else
+    chkconfig --levels $RUNLEVEL "$1"
+  fi
+}
+
+# determine the correct dbus service name
+service_installed dbus && dbus='dbus' || dbus='messagebus'
+
+if service_enabled openstack-nova-volume 2>/dev/null ||
+   service_enabled openstack-cinder-volume 2>/dev/null; then
+  for target in 'target' 'targetd' 'tgtd'; do
+    service_installed $target && break
+  done
+fi
+
+lsb_to_string() {
+  case $1 in
+  0) echo "active" ;;
+  1) echo "dead" ;;
+  2) echo "dead" ;;
+  3) echo "inactive" ;;
+  *) echo "unknown" ;;
+  esac
+}
+
+check_svc() {
+
+  printf '%-40s' "$1:"
+
+  bootstatus=$(service_enabled $1 && echo enabled || echo disabled)
+
+  if [ "$systemctl" ]; then
+    status=$(systemctl is-active $1.service 2>/dev/null)
+    # For "simple" systemd services you get
+    # "unknown" if you query a non enabled service
+    if [ "$bootstatus" = 'disabled' ]; then
+      [ $status = 'unknown' ] && status='inactive'
+    fi
+  else
+    status=$(service $1 status >/dev/null 2>/dev/null ; lsb_to_string $?)
+  fi
+
+  if [ "$bootstatus" = 'disabled' ]; then
+    bootstatus='(disabled on boot)'
+  else
+    bootstatus=''
+  fi
+
+  test "$bootstatus" && status_pad=10 || status_pad=0
+
+  printf "%-${status_pad}s%s\n" "$status" "$bootstatus"
+}
+
+
+if test "$nova"; then
+  printf "== Nova services ==\n"
+  for nova_opt in cert conductor volume cells console consoleauth xvpvncproxy spicehtml5proxy serialproxy; do
+    service_installed openstack-nova-$nova_opt && nova_opt_inst="$nova_opt_inst $nova_opt"
+  done
+  for svc in api compute network scheduler $nova_opt_inst; do check_svc "openstack-nova-$svc"; done
+fi
+
+if test "$glance"; then
+  printf "== Glance services ==\n"
+  for svc in api registry; do check_svc "openstack-glance-$svc"; done
+fi
+
+if test "$keystone"; then
+  printf "== Keystone service ==\n"
+  for svc in $keystone; do check_svc "openstack-$svc"; done
+fi
+
+if test "$dashboard"; then
+  printf "== Horizon service ==\n"
+  horizon_status="$(curl -L -s -w '%{http_code}\n' http://localhost/dashboard -o /dev/null)"
+  [ "$horizon_status" = 200 ] && horizon_status=active
+  [ "$horizon_status" = 000 ] && horizon_status=uncontactable
+  printf '%-40s%s\n' "openstack-dashboard:" "$horizon_status"
+fi
+
+if test "$neutron"; then
+  printf "== $neutron services ==\n"
+  for svc in $neutron-server; do check_svc "$svc"; done
+  # Default agents
+  for agent in dhcp l3 metadata lbaas lbaasv2; do
+    service_installed $neutron-$agent-agent &&
+    check_svc "$neutron-$agent-agent"
+  done
+  # Optional agents
+  for agent in openvswitch linuxbridge ryu nec mlnx metering; do
+    service_installed $neutron-$agent-agent &&
+    check_svc "$neutron-$agent-agent"
+  done
+fi
+
+if test "$swift"; then
+  printf "== Swift services ==\n"
+  check_svc openstack-swift-proxy
+  for ringtype in account container object; do
+    check_svc openstack-swift-$ringtype
+    for service in replicator updater auditor; do
+      if [ $ringtype != 'account' ] || [ $service != 'updater' ]; then
+        : # TODO how to check status of:
+          # swift-init $ringtype-$service
+      fi
+    done
+  done
+fi
+
+if test "$cinder"; then
+  printf "== Cinder services ==\n"
+  service_installed openstack-cinder-backup && backup=backup
+  for service in api scheduler volume $backup; do
+    check_svc openstack-cinder-$service
+  done
+fi
+
+if test "$ceilometer"; then
+  printf "== Ceilometer services ==\n"
+  service_installed openstack-ceilometer-alarm-notifier && notifier=alarm-notifier
+  service_installed openstack-ceilometer-alarm-evaluator && evaluator=alarm-evaluator
+  service_installed openstack-ceilometer-notification && notification=notification
+  for service in api central compute collector $notifier $evaluator $notification; do
+    check_svc openstack-ceilometer-$service
+  done
+fi
+
+if test "$heat"; then
+  printf "== Heat services ==\n"
+  for service in api api-cfn api-cloudwatch engine; do
+    check_svc openstack-heat-$service
+  done
+fi
+
+if test "$sahara"; then
+  printf "== Sahara services ==\n"
+  if service_enabled 'openstack-sahara-engine'; then
+    sahara_services='api engine'
+  elif service_enabled 'openstack-sahara-api'; then
+    sahara_services='api'
+  else
+    sahara_services='all'
+  fi
+  for service in $sahara_services; do
+    check_svc openstack-sahara-$service
+  done
+fi
+
+if test "$trove"; then
+  printf "== Trove services ==\n"
+  for service in api taskmanager conductor; do
+    check_svc openstack-trove-$service
+  done
+fi
+
+if test "$tuskar"; then
+  printf "== Tuskar services ==\n"
+  for service in api; do
+    check_svc openstack-tuskar-$service
+  done
+fi
+
+if test "$ironic"; then
+  printf "== Ironic services ==\n"
+  for service in api conductor; do
+    check_svc openstack-ironic-$service
+  done
+fi
+
+printf "== Support services ==\n"
+for svc in $mysqld $libvirtd $openvswitch $dbus $target $qpidd $rabbitmq $memcached; do
+  check_svc "$svc"
+done
+
+if test "$keystone"; then
+  printf "== Keystone users ==\n"
+  if ! test "$OS_USERNAME"; then
+    echo "Warning keystonerc not sourced" >&2
+  else
+    keystonerc=1
+    openstack user list
+  fi
+fi
+
+if test "$keystonerc" && test "$glance"; then
+  printf "== Glance images ==\n"
+  glance image-list
+fi
+
+if test "$nova"; then
+  if ! test "$keystonerc" && ! test "$NOVA_USERNAME"; then
+    test "$keystone" || echo "Warning novarc not sourced" >&2
+  else
+    printf "== Nova managed services ==\n"
+    nova service-list
+
+    printf "== Nova networks ==\n"
+    nova network-list
+
+    printf "== Nova instance flavors ==\n"
+    # Check direct access
+    nova flavor-list
+
+    printf "== Nova instances ==\n"
+    # Check access through the API
+    nova list --all-tenants # instances
+  fi
+fi
