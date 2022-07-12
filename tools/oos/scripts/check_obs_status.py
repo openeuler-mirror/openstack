@@ -5,21 +5,16 @@ import os
 import sys
 
 import markdown
+from oos.common import OPENEULER_SIG_REPO
 import requests
 import xmltodict
-import yaml
 
 
 BRANCHS = [
-    'openEuler:20.03:LTS:SP2:oepkg:openstack:queens',
-    'openEuler:20.03:LTS:SP2:oepkg:openstack:rocky',
-    'openEuler:20.03:LTS:SP2:oepkg:openstack:common',
     'openEuler:20.03:LTS:SP3:oepkg:openstack:queens',
     'openEuler:20.03:LTS:SP3:oepkg:openstack:rocky',
     'openEuler:20.03:LTS:SP3:oepkg:openstack:common',
     'openEuler:20.03:LTS:SP3:Epol',
-    'openEuler:21.03:Epol',
-    'openEuler:21.09:Epol',
     'openEuler:22.03:LTS:Next:Epol:Multi-Version:OpenStack:Train',
     'openEuler:22.03:LTS:Next:Epol:Multi-Version:OpenStack:Wallaby',
     'openEuler:22.03:LTS:Epol:Multi-Version:OpenStack:Train',
@@ -34,19 +29,10 @@ PROJECT_MARKDOWN_FORMAT = '[%(project)s](%(url)s)'
 GITEE_ISSUE_LIST_URL = 'https://gitee.com/api/v5/repos/openeuler/openstack/issues?state=open&labels=kind/obs-failed&sort=created&direction=desc&page=1&per_page=20'
 GITEE_ISSUE_CREATE_URL = 'https://gitee.com/api/v5/repos/openeuler/issues'
 GITEE_ISSUE_UPDATE_URL = 'https://gitee.com/api/v5/repos/openeuler/issues/%s'
-SIG_PROJECT_URL = 'https://gitee.com/openeuler/community/raw/master/sig/sig-openstack/sig-info.yaml'
 
 OBS_USER_NAME = os.environ.get('OBS_USER_NAME')
 OBS_USER_PASSWORD = os.environ.get('OBS_USER_PASSWORD')
 GITEE_USER_TOKEN = os.environ.get('GITEE_USER_TOKEN')
-
-
-def get_openstack_sig_project():
-    project_list = []
-    sig_dict = yaml.safe_load(requests.get(SIG_PROJECT_URL).content.decode())
-    for item in sig_dict['repositories']:
-        project_list.append(item['repo'].split('/')[-1])
-    return project_list
 
 
 # The result dict format will be like:
@@ -61,7 +47,7 @@ def get_openstack_sig_project():
 #     'branch_name': 'Unknown',
 # }
 def check_status():
-    white_list = get_openstack_sig_project()
+    white_list = list(OPENEULER_SIG_REPO['src-openeuler'].keys())
     branch_session = requests.session()
     branch_session.auth = (OBS_USER_NAME, OBS_USER_PASSWORD)
     result = {}
