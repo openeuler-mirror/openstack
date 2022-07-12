@@ -8418,6 +8418,7 @@ src-openeuler:
   tengine: Application
   tensorflow: ai
   tepl: GNOME
+  terminator: GNOME
   tesseract: Application
   tesseract-tessdata: Application
   test-interface: sig-Java
