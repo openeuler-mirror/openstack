@@ -92,12 +92,14 @@ src-openeuler:
   python-aws-sam-translator: sig-openstack
   python-aws-xray-sdk: sig-openstack
   python-awscrt: sig-openstack
+  python-azure-core: sig-openstack
   python-barbicanclient: sig-openstack
   python-beautifulsoup4: sig-openstack
   python-binary-memcached: sig-openstack
   python-blazarclient: sig-openstack
   python-brotlipy: sig-openstack
   python-bunch: sig-openstack
+  python-cairosvg: sig-openstack
   python-capacity: sig-openstack
   python-cassandra-driver: sig-openstack
   python-castellan: sig-openstack
@@ -113,6 +115,7 @@ src-openeuler:
   python-consul: sig-openstack
   python-cotyledon: sig-openstack
   python-covdefaults: sig-openstack
+  python-coverage-enable-subprocess: sig-openstack
   python-cursive: sig-openstack
   python-cyborgclient: sig-openstack
   python-debtcollector: sig-openstack
@@ -124,6 +127,7 @@ src-openeuler:
   python-doc8: sig-openstack
   python-dracclient: sig-openstack
   python-easy-server: sig-openstack
+  python-easy-vault: sig-openstack
   python-elasticsearch2: sig-openstack
   python-elementpath: sig-openstack
   python-etcd3: sig-openstack
@@ -131,6 +135,7 @@ src-openeuler:
   python-flake8-docstrings: sig-openstack
   python-flake8-logging-format: sig-openstack
   python-flux: sig-openstack
+  python-furo: sig-openstack
   python-futurist: sig-openstack
   python-fuzzywuzzy: sig-openstack
   python-glance-store: sig-openstack
@@ -138,6 +143,7 @@ src-openeuler:
   python-glanceclient: sig-openstack
   python-gnocchiclient: sig-openstack
   python-gossip: sig-openstack
+  python-graphql-core: sig-openstack
   python-gremlinpython: sig-openstack
   python-grpcio-gcp: sig-openstack
   python-grpcio-status: sig-openstack
@@ -158,11 +164,13 @@ src-openeuler:
   python-ironic-ui: sig-openstack
   python-ironicclient: sig-openstack
   python-jaeger-client: sig-openstack
+  python-jaraco.envs: sig-openstack
   python-jaraco.packaging: sig-openstack
   python-jaraco.path: sig-openstack
   python-jaraco.tidelift: sig-openstack
   python-jose: sig-openstack
   python-jsondiff: sig-openstack
+  python-jsonpickle: sig-openstack
   python-karborclient: sig-openstack
   python-kazoo: sig-openstack
   python-keystone-tempest-plugin: sig-openstack
@@ -263,17 +271,27 @@ src-openeuler:
   python-psycopg2cffi: sig-openstack
   python-purestorage: sig-openstack
   python-pycadf: sig-openstack
+  python-pycountry: sig-openstack
+  python-pydata-sphinx-theme: sig-openstack
   python-pydotplus: sig-openstack
   python-pyeclib: sig-openstack
+  python-pyforge: sig-openstack
   python-pyghmi: sig-openstack
   python-pylama: sig-openstack
+  python-pymongocrypt: sig-openstack
+  python-pyodbc: sig-openstack
   python-pypowervm: sig-openstack
   python-pyspnego: sig-openstack
+  python-pytest-black: sig-openstack
   python-pytest-checkdocs: sig-openstack
   python-pytest-django: sig-openstack
+  python-pytest-easy-server: sig-openstack
+  python-pytest-enabler: sig-openstack
   python-pytest-env: sig-openstack
   python-pytest-freezegun: sig-openstack
   python-pytest-html: sig-openstack
+  python-pytest-mpl: sig-openstack
+  python-pytest-mypy: sig-openstack
   python-pytest-perf: sig-openstack
   python-pytest-randomly: sig-openstack
   python-pyu2f: sig-openstack
@@ -300,6 +318,7 @@ src-openeuler:
   python-sentinels: sig-openstack
   python-setuptools-rust: sig-openstack
   python-soupsieve: sig-openstack
+  python-sphinx-autodoc-typehints: sig-openstack
   python-sphinx-testing: sig-openstack
   python-sphinxcontrib-autoprogram: sig-openstack
   python-sphinxcontrib-programoutput: sig-openstack
@@ -312,10 +331,12 @@ src-openeuler:
   python-storpool: sig-openstack
   python-storpool.spopenstack: sig-openstack
   python-subunit2sql: sig-openstack
+  python-suds-community: sig-openstack
   python-suds-jurko: sig-openstack
   python-sushy: sig-openstack
   python-sushy-oem-idrac: sig-openstack
   python-swiftclient: sig-openstack
+  python-sybil: sig-openstack
   python-sysv-ipc: sig-openstack
   python-tablib: sig-openstack
   python-taskflow: sig-openstack
@@ -326,10 +347,12 @@ src-openeuler:
   python-tooz: sig-openstack
   python-towncrier: sig-openstack
   python-transaction: sig-openstack
+  python-trio: sig-openstack
   python-trove-dashboard: sig-openstack
   python-trove-tempest-plugin: sig-openstack
   python-troveclient: sig-openstack
   python-typed-ast: sig-openstack
+  python-types-cryptography: sig-openstack
   python-types-enum34: sig-openstack
   python-types-ipaddress: sig-openstack
   python-types-paramiko: sig-openstack

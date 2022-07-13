@@ -37,6 +37,7 @@ openeuler:
   TC: TC
   TCP_option_address: Kernel
   UniProton: sig-embedded
+  WasmEngine: sig-CloudNative
   X-diagnosis: sig-ops
   aarch32-rootfs-builder: sig-Yocto
   abichecker: dev-utils
@@ -176,6 +177,7 @@ openeuler:
   mate-desktop: sig-mate-desktop
   memory-scan: Storage
   memwatch: dev-utils
+  micro-certification: sig-OSCourse
   migration-assistant: sig-Migration
   mugen: sig-QA
   n5p-core: sig-n5p
@@ -374,6 +376,7 @@ src-openeuler:
   Thunar: xfce
   WALinuxAgent: sig-CloudNative
   WLLVM: Compiler
+  WasmEngine: sig-CloudNative
   X-diagnosis: sig-ops
   Xaw3d: Desktop
   XmlSchema: Application
@@ -5979,6 +5982,7 @@ src-openeuler:
   python-aws-sam-translator: sig-openstack
   python-aws-xray-sdk: sig-openstack
   python-awscrt: sig-openstack
+  python-azure-core: sig-openstack
   python-babelfish: sig-python-modules
   python-backcall: sig-python-modules
   python-backlash: sig-python-modules
@@ -6045,6 +6049,7 @@ src-openeuler:
   python-cachetools: sig-python-modules
   python-cachez: sig-python-modules
   python-cairocffi: sig-python-modules
+  python-cairosvg: sig-openstack
   python-canonicaljson: sig-python-modules
   python-capacity: sig-openstack
   python-capturer: sig-python-modules
@@ -6129,6 +6134,7 @@ src-openeuler:
   python-cov-core: sig-python-modules
   python-covdefaults: sig-openstack
   python-coverage: Desktop
+  python-coverage-enable-subprocess: sig-openstack
   python-cpio: Base-service
   python-cppy: sig-python-modules
   python-cram: sig-python-modules
@@ -6269,6 +6275,7 @@ src-openeuler:
   python-duecredit: sig-python-modules
   python-dulwich: sig-python-modules
   python-easy-server: sig-openstack
+  python-easy-vault: sig-openstack
   python-easyargs: sig-python-modules
   python-easygui: sig-python-modules
   python-ecdsa: sig-python-modules
@@ -6368,6 +6375,7 @@ src-openeuler:
   python-funcparserlib: sig-python-modules
   python-funcsigs: Programming-language
   python-furl: sig-python-modules
+  python-furo: sig-openstack
   python-fusepy: sig-python-modules
   python-futures: Programming-language
   python-futurist: sig-openstack
@@ -6414,6 +6422,7 @@ src-openeuler:
   python-gpxpy: sig-python-modules
   python-grabbit: sig-python-modules
   python-grabserial: sig-python-modules
+  python-graphql-core: sig-openstack
   python-graphviz: sig-python-modules
   python-greenlet: Programming-language
   python-gremlinpython: sig-openstack
@@ -6519,6 +6528,7 @@ src-openeuler:
   python-jaraco-collections: sig-python-modules
   python-jaraco-functools: sig-python-modules
   python-jaraco-text: sig-python-modules
+  python-jaraco.envs: sig-openstack
   python-jaraco.packaging: sig-openstack
   python-jaraco.path: sig-openstack
   python-jaraco.tidelift: sig-openstack
@@ -6546,6 +6556,7 @@ src-openeuler:
   python-jsonpatch: Base-service
   python-jsonpath-rw: sig-python-modules
   python-jsonpath-rw-ext: sig-python-modules
+  python-jsonpickle: sig-openstack
   python-jsonpointer: Base-service
   python-jsonschema: Base-service
   python-junitxml: sig-python-modules
@@ -6969,11 +6980,13 @@ src-openeuler:
   python-pyclipper: sig-python-modules
   python-pycodestyle: sig-python-modules
   python-pycollada: sig-python-modules
+  python-pycountry: sig-openstack
   python-pycparser: Base-service
   python-pycryptodome: sig-python-modules
   python-pycryptodomex: sig-python-modules
   python-pycscope: sig-python-modules
   python-pycurl: Base-service
+  python-pydata-sphinx-theme: sig-openstack
   python-pydbus: Base-service
   python-pydenticon: sig-python-modules
   python-pydicom: sig-python-modules
@@ -6985,6 +6998,7 @@ src-openeuler:
   python-pyephem: sig-python-modules
   python-pyface: sig-python-modules
   python-pyfakefs: sig-python-modules
+  python-pyforge: sig-openstack
   python-pyftdi: sig-python-modules
   python-pyftpdlib: sig-python-modules
   python-pygal: sig-python-modules
@@ -7008,11 +7022,13 @@ src-openeuler:
   python-pymoc: sig-python-modules
   python-pymod2pkg: sig-python-modules
   python-pymongo: Programming-language
+  python-pymongocrypt: sig-openstack
   python-pynacl: sig-python-modules
   python-pynetdicom: sig-python-modules
   python-pyngus: sig-python-modules
   python-pynvml: sig-python-modules
   python-pyocr: sig-python-modules
+  python-pyodbc: sig-openstack
   python-pyotp: sig-python-modules
   python-pypandoc: sig-python-modules
   python-pyperclip: sig-python-modules
@@ -7049,6 +7065,7 @@ src-openeuler:
   python-pytest-arraydiff: sig-python-modules
   python-pytest-asyncio: sig-python-modules
   python-pytest-beakerlib: sig-python-modules
+  python-pytest-black: sig-openstack
   python-pytest-cache: sig-python-modules
   python-pytest-catchlog: sig-python-modules
   python-pytest-checkdocs: sig-openstack
@@ -7056,6 +7073,8 @@ src-openeuler:
   python-pytest-datafiles: sig-python-modules
   python-pytest-django: sig-openstack
   python-pytest-doctestplus: sig-python-modules
+  python-pytest-easy-server: sig-openstack
+  python-pytest-enabler: sig-openstack
   python-pytest-env: sig-openstack
   python-pytest-expect: Base-service
   python-pytest-faulthandler: sig-python-modules
@@ -7070,7 +7089,9 @@ src-openeuler:
   python-pytest-lazy-fixture: sig-python-modules
   python-pytest-metadata: sig-python-modules
   python-pytest-mock: Base-service
+  python-pytest-mpl: sig-openstack
   python-pytest-multihost: sig-python-modules
+  python-pytest-mypy: sig-openstack
   python-pytest-openfiles: sig-python-modules
   python-pytest-ordering: sig-python-modules
   python-pytest-pep8: sig-python-modules
@@ -7272,6 +7293,7 @@ src-openeuler:
   python-speg: sig-python-modules
   python-sphinx: Programming-language
   python-sphinx-argparse: sig-python-modules
+  python-sphinx-autodoc-typehints: sig-openstack
   python-sphinx-bootstrap-theme: sig-python-modules
   python-sphinx-epytext: sig-python-modules
   python-sphinx-feature-classification: sig-python-modules
@@ -7334,6 +7356,7 @@ src-openeuler:
   python-subliminal: sig-python-modules
   python-subprocess32: sig-recycle
   python-subunit2sql: sig-openstack
+  python-suds-community: sig-openstack
   python-suds-jurko: sig-openstack
   python-suds2: sig-python-modules
   python-supersmoother: sig-python-modules
@@ -7345,6 +7368,7 @@ src-openeuler:
   python-svg.path: sig-python-modules
   python-svgwrite: sig-python-modules
   python-swiftclient: sig-openstack
+  python-sybil: sig-openstack
   python-sympy: sig-python-modules
   python-systemd: Base-service
   python-sysv-ipc: sig-openstack
@@ -7401,6 +7425,7 @@ src-openeuler:
   python-transaction: sig-openstack
   python-translationstring: sig-python-modules
   python-treelib: sig-ops
+  python-trio: sig-openstack
   python-trove-dashboard: sig-openstack
   python-trove-tempest-plugin: sig-openstack
   python-troveclient: sig-openstack
@@ -7416,6 +7441,7 @@ src-openeuler:
   python-txWS: sig-python-modules
   python-txZMQ: sig-python-modules
   python-typed-ast: sig-openstack
+  python-types-cryptography: sig-openstack
   python-types-enum34: sig-openstack
   python-types-ipaddress: sig-openstack
   python-types-paramiko: sig-openstack
