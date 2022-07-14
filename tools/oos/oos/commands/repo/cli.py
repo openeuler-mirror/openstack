@@ -101,7 +101,7 @@ def __parse_project_from_branch(branch, is_mainline=False):
 
     if branch == 'master':
         main_pro = 'openEuler'
-        obs_pro = main_pro + ':Mainline' if is_mainline else ':Epol'
+        obs_pro = main_pro + (':Mainline' if is_mainline else ':Epol')
     elif 'oepkg' in branch:
         parts = branch.split('_')
         main_pro = parts[2].replace('oe', 'openEuler').replace('-', ':')
@@ -129,7 +129,6 @@ def __prepare_obs_project(obs_dir, branch, is_mainline=False,
                           gitee_user=None):
     main_pro, obs_pro, meta_dir, multi = __parse_project_from_branch(
         branch, is_mainline)
-
     if multi:
         project_dir = os.path.join(obs_dir, 'multi_version',
                                    branch, obs_pro)
@@ -387,13 +386,25 @@ def obs_create(repos_file, repo, branch, mainline, gitee_pat, gitee_email,
             continue
         os.mkdir(repo_dir)
         _service_file = os.path.join(repo_dir, '_service')
-        with open(_service_file, 'w', encoding='utf-8') as f:
-            f.write('<services>\n'
-                    '    <service name="tar_scm_kernel_repo">\n'
-                    '      <param name="scm">repo</param>\n'
-                    '      <param name="url">next/%s/%s</param>\n'
-                    '    </service>\n'
-                    '</services>\n' % (branch, repo))
+        if branch == 'master':
+            with open(_service_file, 'w', encoding='utf-8') as f:
+                f.write('<services>\n'
+                        '    <service name="tar_scm">\n'
+                        '      <param name="scm">git</param>\n'
+                        '      <param name="url">git@gitee.com:src-openeuler/%s.git</param>\n'
+                        '      <param name="exclude">*</param>\n'
+                        '      <param name="extract">*</param>\n'
+                        '      <param name="revision">%s</param>\n'
+                        '    </service>\n'
+                        '</services>\n' % (repo, branch))
+        else:
+            with open(_service_file, 'w', encoding='utf-8') as f:
+                f.write('<services>\n'
+                        '    <service name="tar_scm_kernel_repo">\n'
+                        '      <param name="scm">repo</param>\n'
+                        '      <param name="url">next/%s/%s</param>\n'
+                        '    </service>\n'
+                        '</services>\n' % (branch, repo))
 
     commit_msg = 'Put repos into OBS project'
     obs_repo.commit(commit_msg, do_push)
