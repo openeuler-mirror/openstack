@@ -285,6 +285,7 @@ openeuler:
   trucker: dev-utils
   uadk: sig-AccLib
   uadk_engine: sig-AccLib
+  ubackup: sig-Migration
   ukui: sig-UKUI
   user-committee: user-committee
   vectorBlas: bigdata
@@ -344,6 +345,7 @@ src-openeuler:
   ModemManager: Networking
   NetworkManager: Networking
   NetworkManager-libreswan: System-tool
+  NetworkManager-pptp: System-tool
   NutShell-Kernel: sig-RISC-V
   NutShell-riscv-glibc: sig-RISC-V
   NutShell-riscv-pk: sig-RISC-V
@@ -8737,6 +8739,7 @@ src-openeuler:
   tzdata: Computing
   u2f-hidraw-policy: Others
   uadk_engine: sig-AccLib
+  ubackup: sig-Migration
   uboot-tools: sig-OS-Builder
   ubu-keyring: Private
   ubuntukylin-default-settings: sig-UKUI
