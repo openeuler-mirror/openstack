@@ -81,6 +81,26 @@ def _init_ecs_client():
     return provider, ecs_client
 
 
+def _has_sshpass():
+    find_sshpass = subprocess.getoutput("which sshpass")
+    has_sshpass = find_sshpass and find_sshpass.find("no sshpass") == -1
+    if not has_sshpass:
+        print("Warning: sshpass is not installed. It'll fail to sync "
+              "key-pair to the target VMs. Please do the sync step by hand.")
+    return has_sshpass
+
+
+def _setup_sshpass(ip, password=OPENEULER_DEFAULT_PASSWORD):
+    print("Preparing the mutual trust for ssh")
+    cmds = [f'ssh-keygen -f ~/.ssh/known_hosts -R "{ip}"',
+            f'ssh-keygen -R "{ip}"',
+            f'sshpass -p {password} ssh-copy-id -i "{KEY_DIR}/id_rsa.pub" -o StrictHostKeyChecking=no "{OPENEULER_DEFAULT_USER}@{ip}"']
+    for cmd in cmds:
+        subprocess.getoutput(cmd)
+    print(f"All is done, you can now login the target with the key in "
+            f"{KEY_DIR}")
+
+
 @group.command(name='list', help='List environment')
 def list():
     table = prettytable.PrettyTable(TABLE_COLUMN)
@@ -109,11 +129,6 @@ def create(release, flavor, arch, name, target):
     if vm:
         raise click.ClickException("The target name should be unique.")
 
-    find_sshpass = subprocess.getoutput("which sshpass")
-    has_sshpass = find_sshpass and find_sshpass.find("no sshpass") == -1
-    if not has_sshpass:
-        print("Warning: sshpass is not installed. It'll fail to sync "
-              "key-pair to the target VMs. Please do the sync step by hand.")
     provider, ecs_client = _init_ecs_client()
     request = CreateServersRequest()
     listPrePaidServerDataVolumeDataVolumesServer = [
@@ -196,15 +211,8 @@ def create(release, flavor, arch, name, target):
                 break
             time.sleep(3)
         print("Success created the target VMs")
-        if has_sshpass:
-            print("Preparing the mutual trust for ssh")
-            cmds = [f'ssh-keygen -f ~/.ssh/known_hosts -R "{ip}"',
-                    f'ssh-keygen -R "{ip}"',
-                    f'sshpass -p {OPENEULER_DEFAULT_PASSWORD} ssh-copy-id -i "{KEY_DIR}/id_rsa.pub" -o StrictHostKeyChecking=no "{OPENEULER_DEFAULT_USER}@{ip}"']
-            for cmd in cmds:
-                subprocess.getoutput(cmd)
-            print(f"All is done, you can now login the target with the key in "
-                  f"{KEY_DIR}")
+        if _has_sshpass():
+            _setup_sshpass(ip)
         sqlite_ops.insert_target(provider, name, server_id, ip, flavor, release, None, created)
         table.add_row([provider, name, server_id, ip, flavor, release, None, created])
     print(table)
@@ -214,22 +222,24 @@ def create(release, flavor, arch, name, target):
                help='Delete environment by cluster/all_in_one name')
 @click.argument('name', type=str)
 def delete(name):
-    _, ecs_client = _init_ecs_client()
-    server_info = sqlite_ops.get_target_column(name, 'uuid')
-    for server_id in server_info:
-        request = DeleteServersRequest()
-        listServerIdServersbody = [
-            ServerId(
-                id=server_id[0]
+    provider = sqlite_ops.get_target_column(name, 'provider')
+    if not provider[0][0].startswith('system:'):
+        _, ecs_client = _init_ecs_client()
+        server_info = sqlite_ops.get_target_column(name, 'uuid')
+        for server_id in server_info:
+            request = DeleteServersRequest()
+            listServerIdServersbody = [
+                ServerId(
+                    id=server_id[0]
+                )
+            ]
+            request.body = DeleteServersRequestBody(
+                servers=listServerIdServersbody,
+                delete_volume=True,
+                delete_publicip=True
             )
-        ]
-        request.body = DeleteServersRequestBody(
-            servers=listServerIdServersbody,
-            delete_volume=True,
-            delete_publicip=True
-        )
-        response = ecs_client.delete_servers(request)
-        print(response)
+            response = ecs_client.delete_servers(request)
+            print(response)
     sqlite_ops.delete_target(name)
 
 
@@ -323,3 +333,35 @@ def clean(target):
         sql = 'UPDATE resource SET openstack_release=?'
         sqlite_ops.exe_sql(sql, (None,))
         os.environ.pop('OpenStack_Release')
+
+
+@group.command(name='manage', help='Manage the target into oos control')
+@click.option('-n', '--name', required=True,
+              help='The cluster/all_in_one name')
+@click.option('-i', '--ip', required=True,
+              help='The target VM ips, the format should be like ip1,ip2,...')
+@click.option('-r', '--release', required=True,
+              type=click.Choice(OE_OS_RELEASE.keys()))
+@click.option('-p', '--password', required=False,
+              type=str, help='The target VM login password')
+def manage(name, ip, release, password):
+    vm = sqlite_ops.get_target_column(target=name, col_name='*')
+    if vm:
+        raise click.ClickException("The target name should be unique.")
+    provider = 'system:managed'
+    server_id = 'N/A'
+    flavor = 'N/A'
+    ip_list = ip.split(',')
+    table = prettytable.PrettyTable(TABLE_COLUMN)
+    try:
+        for each_ip in ip_list:
+            sqlite_ops.insert_target(provider, name, server_id, each_ip, flavor, release, None, None)
+            if _has_sshpass():
+                if password:
+                    _setup_sshpass(each_ip, password)
+                else:
+                    _setup_sshpass(each_ip)
+            table.add_row([provider, name, server_id, each_ip, flavor, release, None, None])
+    except:
+        raise
+    print(table)
