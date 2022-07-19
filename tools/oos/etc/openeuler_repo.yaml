@@ -832,6 +832,7 @@ src-openeuler:
   canopennode: sig-industrial-control
   capstone: Base-service
   capsule: Virt
+  caribou: sig-cinnamon
   cartographer: sig-ROS
   cartographer_ros: sig-ROS
   cassandra-java-driver: sig-Java
@@ -878,6 +879,7 @@ src-openeuler:
   cinnamon-control-center: sig-cinnamon
   cinnamon-desktop: sig-cinnamon
   cinnamon-menu: sig-cinnamon
+  cinnamon-mozjs78: sig-cinnamon
   cinnamon-screensaver: sig-cinnamon
   cinnamon-session: sig-cinnamon
   cinnamon-settings-daemon: sig-cinnamon
@@ -7008,6 +7010,7 @@ src-openeuler:
   python-pact: sig-openstack
   python-paho-mqtt: sig-python-modules
   python-pallets-sphinx-themes: sig-python-modules
+  python-pam: sig-cinnamon
   python-pamela: sig-python-modules
   python-pandas: sig-python-modules
   python-pandocfilters: sig-python-modules
@@ -7571,6 +7574,7 @@ src-openeuler:
   python-threadpoolctl: sig-python-modules
   python-timeout-decorator: sig-python-modules
   python-timeunit: sig-python-modules
+  python-tinycss2: sig-cinnamon
   python-tinydb: sig-python-modules
   python-tinyrpc: sig-python-modules
   python-toml: sig-python-modules
@@ -7695,6 +7699,7 @@ src-openeuler:
   python-wurlitzer: sig-python-modules
   python-www-authenticate: sig-python-modules
   python-wxnatpy: sig-python-modules
+  python-xapp: sig-cinnamon
   python-xarray: sig-python-modules
   python-xattr: sig-openstack
   python-xcffib: sig-python-modules
@@ -8673,6 +8678,7 @@ src-openeuler:
   time-api: sig-Java
   time-shutdown: sig-UKUI
   timedatex: Base-service
+  tint2: sig-cinnamon
   tinycdb: Runtime
   tinyxml: sig-compat-winapp
   tinyxml2: Programming-language
