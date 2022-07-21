@@ -56,7 +56,7 @@ def __get_repo_pypi_mappings(repo_pypi_name, repo_pypi_file):
 
 
 def __prepare_local_repo(gitee_pat, gitee_email, work_branch,
-                         repo_org, repo_name, repo_path):
+                         repo_org, repo_name, repo_path, reuse_branch=False):
     git_user, g_email = gitee.get_user_info(gitee_pat)
     git_email = gitee_email or g_email
     if not git_email:
@@ -76,7 +76,7 @@ def __prepare_local_repo(gitee_pat, gitee_email, work_branch,
         else:
             local_repo.fork_repo()
             local_repo.clone_repo(str(Path.home()))
-    local_repo.add_branch(work_branch, 'master')
+    local_repo.add_branch(work_branch, 'master', reuse_branch)
     return local_repo
 
 
@@ -198,13 +198,16 @@ def group():
               help="Path of openeuler/community in local")
 @click.option("-w", "--work-branch", default='openstack-create-repo',
               help="Local working branch of openeuler/community")
+@click.option("--reuse-branch", is_flag=True,
+              help="To reuse local working branch and will not raise "
+              "exception if the branch exists")
 @click.option('-dp', '--do-push', is_flag=True,
               help="Do PUSH or not, if push it will create pr")
 def create(repos_file, repo, gitee_pat, gitee_email, gitee_org,
-           community_path, work_branch, do_push):
+           community_path, work_branch, reuse_branch, do_push):
     community_repo = __prepare_local_repo(
         gitee_pat, gitee_email, work_branch,
-        'openeuler', 'community', community_path)
+        'openeuler', 'community', community_path, reuse_branch)
     file_path_pre = community_repo.repo_dir + "/sig/sig-openstack/src-openeuler/"
     pypi_repo_mappings = __get_repo_pypi_mappings(repo, repos_file)
     for pypi_name, repo_name in pypi_repo_mappings.items():
@@ -228,7 +231,7 @@ def create(repos_file, repo, gitee_pat, gitee_email, gitee_org,
         with open(file_path, 'w', encoding='utf-8') as nf:
             yaml.dump(pkg_dict, nf, default_flow_style=False, sort_keys=False)
     commit_msg = 'Create repo for packages'
-    community_repo.commit(commit_msg, do_push)
+    community_repo.commit(commit_msg, do_push, reuse_branch)
     if do_push:
         community_repo.create_pr(work_branch, 'master', commit_msg)
 
@@ -254,14 +257,17 @@ def create(repos_file, repo, gitee_pat, gitee_email, gitee_org,
               help="Path of openeuler/community in local")
 @click.option("-w", "--work-branch", default='openstack-create-branch',
               help="Local working branch of openeuler/community")
+@click.option("--reuse-branch", is_flag=True,
+              help="To reuse local working branch and will not raise "
+              "exception if the branch exists")
 @click.option('-dp', '--do-push', is_flag=True,
               help="Do PUSH or not, if push it will create pr")
 def branch_create(repos_file, repo, branches, gitee_pat, gitee_email,
-                  gitee_org, community_path, work_branch, do_push):
+                  gitee_org, community_path, work_branch, reuse_branch, do_push):
     repos = __get_repos(repo, repos_file)
     community_repo = __prepare_local_repo(
         gitee_pat, gitee_email, work_branch,
-        'openeuler', 'community', community_path)
+        'openeuler', 'community', community_path, reuse_branch)
 
     for repo in repos:
         yaml_file = __find_repo_yaml_file(
@@ -287,7 +293,7 @@ def branch_create(repos_file, repo, branches, gitee_pat, gitee_email,
             yaml.dump(data, nf, default_flow_style=False, sort_keys=False)
 
     commit_msg = 'Create branches for OpenStack packages'
-    community_repo.commit(commit_msg, do_push)
+    community_repo.commit(commit_msg, do_push, reuse_branch)
     if do_push:
         community_repo.create_pr(work_branch, 'master', commit_msg)
 
@@ -312,14 +318,18 @@ def branch_create(repos_file, repo, branches, gitee_pat, gitee_email,
               help="Path of openeuler/community in local")
 @click.option("-w", "--work-branch", default='openstack-delete-branch',
               help="Local working branch of openeuler/community")
+@click.option("--reuse-branch", is_flag=True,
+              help="To reuse local working branch and will not raise "
+              "exception if the branch exists")
 @click.option('-dp', '--do-push', is_flag=True,
               help="Do PUSH or not, if push it will create pr")
 def branch_delete(repos_file, repo, branch, gitee_pat, gitee_email,
-                  gitee_org, community_path, work_branch, do_push):
+                  gitee_org, community_path, work_branch, reuse_branch,
+                  do_push):
     repos = __get_repos(repo, repos_file)
     community_repo = __prepare_local_repo(
         gitee_pat, gitee_email, work_branch,
-        'openeuler', 'community', community_path)
+        'openeuler', 'community', community_path, reuse_branch)
 
     for repo in repos:
         yaml_file = __find_repo_yaml_file(
@@ -342,7 +352,7 @@ def branch_delete(repos_file, repo, branch, gitee_pat, gitee_email,
             yaml.dump(data, nf, default_flow_style=False, sort_keys=False)
 
     commit_msg = 'Delete branches for OpenStack packages'
-    community_repo.commit(commit_msg, do_push)
+    community_repo.commit(commit_msg, do_push, reuse_branch)
     if do_push:
         community_repo.create_pr(work_branch, 'master', commit_msg)
 
@@ -365,14 +375,17 @@ def branch_delete(repos_file, repo, branch, gitee_pat, gitee_email,
               help="Path of src-openeuler/obs_meta in local")
 @click.option("-w", "--work-branch", default='obs-add-repo',
               help="Local working branch of src-openeuler/obs_meta")
+@click.option("--reuse-branch", is_flag=True,
+              help="To reuse local working branch and will not raise "
+              "exception if the branch exists")
 @click.option('-dp', '--do-push', is_flag=True,
               help="Do PUSH or not, if push it will create pr")
 def obs_create(repos_file, repo, branch, mainline, gitee_pat, gitee_email,
-               obs_path, work_branch, do_push):
+               obs_path, work_branch, reuse_branch, do_push):
     repos = __get_repos(repo, repos_file)
     obs_repo = __prepare_local_repo(
         gitee_pat, gitee_email, work_branch,
-        'src-openeuler', 'obs_meta', obs_path)
+        'src-openeuler', 'obs_meta', obs_path, reuse_branch)
 
     project_dir = __prepare_obs_project(obs_repo.repo_dir,
                                         branch, mainline,
@@ -407,7 +420,7 @@ def obs_create(repos_file, repo, branch, mainline, gitee_pat, gitee_email,
                         '</services>\n' % (branch, repo))
 
     commit_msg = 'Put repos into OBS project'
-    obs_repo.commit(commit_msg, do_push)
+    obs_repo.commit(commit_msg, do_push, reuse_branch)
     if do_push:
         obs_repo.create_pr(work_branch, 'master', commit_msg)
 
@@ -428,14 +441,17 @@ def obs_create(repos_file, repo, branch, mainline, gitee_pat, gitee_email,
               help="Path of src-openeuler/obs_meta in local")
 @click.option("-w", "--work-branch", default='obs-remove-repo',
               help="Local working branch of src-openeuler/obs_meta")
+@click.option("--reuse-branch", is_flag=True,
+              help="To reuse local working branch and will not raise "
+              "exception if the branch exists")
 @click.option('-dp', '--do-push', is_flag=True,
               help="Do PUSH or not, if push it will create pr")
 def obs_delete(repos_file, repo, branch, gitee_pat, gitee_email,
-               obs_path, work_branch, do_push):
+               obs_path, work_branch, reuse_branch, do_push):
     repos = __get_repos(repo, repos_file)
     obs_repo = __prepare_local_repo(
         gitee_pat, gitee_email, work_branch,
-        'src-openeuler', 'obs_meta', obs_path)
+        'src-openeuler', 'obs_meta', obs_path, reuse_branch)
 
     branch_dir = os.path.join(obs_repo.repo_dir, branch)
     if not os.path.exists(branch_dir):
@@ -454,7 +470,7 @@ def obs_delete(repos_file, repo, branch, gitee_pat, gitee_email,
         print("Remove repo %s successful!!" % repo_dir)
 
     commit_msg = 'Remove repos from OBS project'
-    obs_repo.commit(commit_msg, do_push)
+    obs_repo.commit(commit_msg, do_push, reuse_branch)
     if do_push:
         obs_repo.create_pr(work_branch, 'master', commit_msg)
 
