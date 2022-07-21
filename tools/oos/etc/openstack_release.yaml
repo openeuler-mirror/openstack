@@ -2440,7 +2440,7 @@ yoga:
   openstack-heat: 18.0.0
   openstack-placement: 7.0.0
   openstacksdk: 0.61.0
-  os-brick: 5.2.1
+  os-brick: 5.2.2
   os-ken: 2.3.1
   os-win: 5.6.0
   os_vif: 2.7.1
