@@ -80,14 +80,23 @@ SUPPORT_RELEASE = {
         }
     },
 }
+PYTHON_REGEX = {
+    'python_version_gt_regex': ([r"(?<=python_version>)[0-9\.'\"]+", r"(?<=python_version >) [0-9\.'\"]+"], '>='),
+    'python_version_ge_regex': ([r"(?<=python_version>=)[0-9\.'\"]+", r"(?<=python_version >=) [0-9\.'\"]+"], '>'),
+    'python_version_le_regex': ([r"(?<=python_version<=)[0-9\.'\"]+", r"(?<=python_version <=) [0-9\.'\"]+"], '<'),
+    'python_version_lt_regex': ([r"(?<=python_version<)[0-9\.'\"]+", r"(?<=python_version <) [0-9\.'\"]+"], '<='),
+    'python_version_eq_regex': ([r"(?<=python_version==)[0-9\.'\"]+", r"(?<=python_version ==) [0-9\.'\"]+"], '!='),
+}
 
 
 class Project(object):
-    def __init__(self, name, version,
+    def __init__(self, name, version, core, runtime,
                  eq_version='', ge_version='', lt_version='', ne_version=None,
                  upper_version='', deep_count=0, deep_list=None, requires=None):
         self.name = name
         self.version = version
+        self.core = bool(core)
+        self.runtime = runtime
         self.eq_version = eq_version
         self.ge_version = ge_version
         self.lt_version = lt_version
@@ -100,10 +109,14 @@ class Project(object):
 
         self.dep_file = [
             "requirements.txt",
-            "test-requirements.txt",
-            "driver-requirements.txt",
-            "doc/requirements.txt"
         ]
+        if not self.core:
+            self.dep_file.extend(
+                ["test-requirements.txt",
+                "driver-requirements.txt",
+                "doc/requirements.txt",
+                ]
+            )
 
     def _refresh(self, local_project):
         is_out_of_date = False
@@ -134,6 +147,22 @@ class Project(object):
         with open(file_path, 'w', encoding='utf8') as fp:
             json.dump(self.to_dict(), fp, ensure_ascii=False)
 
+    def _python_version_check(self, regex_list, target, compare):
+        for regex in regex_list:
+            if re.search(regex, target):
+                version =  re.search(regex, target).group().replace("'", "").replace('"', '')
+                if compare == '>=' and p_version.parse(version) >= p_version.parse(self.runtime):
+                    return False
+                if compare == '>' and p_version.parse(version) > p_version.parse(self.runtime):
+                    return False
+                if compare == '<=' and p_version.parse(version) <= p_version.parse(self.runtime):
+                    return False
+                if compare == '<' and p_version.parse(version) < p_version.parse(self.runtime):
+                    return False
+                if compare == '!=' and p_version.parse(version) != p_version.parse(self.runtime):
+                    return False
+        return True
+
     def _is_legal(self, line):
         """check the input requires line is legal or not"""
         if line == '':
@@ -143,19 +172,12 @@ class Project(object):
         # win32 and dev requires should be excluded.
         if re.search(r"(sys_platform|extra|platform_system)[ ]*==[ \\'\"]*(win32|dev|Windows)", line):
             return False
+        if self.core and re.search(r"extra[ ]*==.*", line):
+            return False
         if re.search(r"python_version[ ]*==[ \\'\"]*2\.7", line):
             return False
-        python_version_ge_regex = [r"(?<=python_version>=)[0-9\.'\"]+", r"(?<=python_version >=) [0-9\.'\"]+"]
-        python_version_lt_regex = [r"(?<=python_version<)[0-9\.'\"]+", r"(?<=python_version <) [0-9\.'\"]+"]
-        python_version_eq_regex = [r"(?<=python_version==)[0-9\.'\"]+", r"(?<=python_version <) [0-9\.'\"]+"]
-        for regex in python_version_ge_regex:
-            if re.search(regex, line) and re.search(regex, line).group() in ['3.9', "'3.9'", '"3.9"']:
-                return False
-        for regex in python_version_lt_regex:
-            if re.search(regex, line) and re.search(regex, line).group() in ['3.8', "'3.8'", '"3.8"']:
-                return False
-        for regex in python_version_eq_regex:
-            if re.search(regex, line) and re.search(regex, line).group() not in ['3.8', "'3.8'", '"3.8"']:
+        for _, value in PYTHON_REGEX.items():
+            if not self._python_version_check(value[0], line, value[1]):
                 return False
         return True
 
@@ -226,6 +248,8 @@ class Project(object):
     def from_dict(cls, **args):
         name = args['name']
         version = args['version_dict']['version']
+        core = args['core']
+        runtime = args['runtime']
         eq_version = args['version_dict']['eq_version']
         ge_version = args['version_dict']['ge_version']
         lt_version = args['version_dict']['lt_version']
@@ -235,13 +259,15 @@ class Project(object):
         deep_list = args['deep']['list']
         requires = args['requires']
         return cls(
-            name, version, eq_version, ge_version, lt_version,
+            name, version, core, runtime, eq_version, ge_version, lt_version,
             ne_version, upper_version, deep_count, deep_list, requires
         )
 
     def to_dict(self):
         return {
             'name': self.name,
+            'core': self.core,
+            'runtime': self.runtime,
             'version_dict': {
                 'version': self.version,
                 'eq_version': self.eq_version,
@@ -259,12 +285,13 @@ class Project(object):
 
 
 class InitDependence(object):
-    def __init__(self, openstack_release, projects):
+    def __init__(self, openstack_release, core, runtime, projects):
         self.pypi_cache_path =  "./%s_cached_file" % openstack_release
         self.unknown_file = self.pypi_cache_path + "/" + "unknown"
         self.unknown_list = []
         self.loaded_list = []
-
+        self.core = core
+        self.runtime = runtime
         self.project_dict = dict()
         if projects:
             for project in projects.split(","):
@@ -322,7 +349,7 @@ class InitDependence(object):
             version = version_range['version']
             version = CONSTANTS['pypi_version_fix'].get("%s-%s" % (name, version), version)
             child_project_obj = Project(
-                name, version, eq_version=version_range['eq_version'], ge_version=version_range['ge_version'],
+                name, version, self.core, self.runtime, eq_version=version_range['eq_version'], ge_version=version_range['ge_version'],
                 lt_version=version_range['lt_version'], ne_version=version_range['ne_version'],
                 upper_version=version_range['upper_version'],
                 deep_count=project_obj.deep_count+1, deep_list=copy.deepcopy(project_obj.deep_list)
@@ -352,12 +379,13 @@ class InitDependence(object):
             if project_name not in list(all_project) and file_name.endswith('.json'):
                 print("%s is required by nothing, remove it." % project_name)
                 os.remove(self.pypi_cache_path + '/' + file_name)
-        with open(self.unknown_file, 'r') as fp:
-            content = fp.readlines()
-        with open(self.unknown_file, 'w') as fp:
-            for project in content:
-                if project.split('\n')[0] + '.json' not in file_list:
-                    fp.write(project)
+        if Path(self.unknown_file).exists():
+            with open(self.unknown_file, 'r') as fp:
+                content = fp.readlines()
+            with open(self.unknown_file, 'w') as fp:
+                for project in content:
+                    if project.split('\n')[0] + '.json' not in file_list:
+                        fp.write(project)
 
     def init_all_dep(self):
         """download and cache all related requirement file"""
@@ -365,14 +393,16 @@ class InitDependence(object):
             return
         self._pre()
         for name, version in self.project_dict.items():
-            project_obj = Project(name, version, eq_version=version)
+            project_obj = Project(name, version, self.core, self.runtime, eq_version=version)
             self._cache_dependencies(project_obj)
         self._post()
 
 @click.command()
 @click.option('-p', '--projects', default=None, help='Specify the projects to be generated. Format should be like project1,project2')
+@click.option('-c', '--core', is_flag=True, help='Only fetch core depencence.')
+@click.option('-r', '--runtime', default='3.10', help='Target python runtime version')
 @click.argument('release', type=click.Choice(SUPPORT_RELEASE.keys()))
-def run(projects, release):
+def run(projects, core, runtime, release):
     upper_url = "https://opendev.org/openstack/requirements/raw/branch/stable/%s/upper-constraints.txt" % release
     upper_projects = requests.get(upper_url, verify=True).content.decode().split('\n')
     for upper_project in upper_projects:
@@ -382,7 +412,7 @@ def run(projects, release):
         project_version = project_version.split(';')[0]
         UPPER[project_name] = project_version
 
-    InitDependence(release, projects).init_all_dep()
+    InitDependence(release, core, runtime, projects).init_all_dep()
 
 
 if __name__ == '__main__':

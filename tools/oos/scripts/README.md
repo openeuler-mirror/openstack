@@ -54,7 +54,7 @@
 
     功能：生成指定OpenStack版本指定项目的依赖项目json文件。
 
-    输入: `python3 generate_dependence.py --project xxx yyy`
+    输入: `python3 generate_dependence.py --core --runtime 3.10 --project xxx yyy`
 
         例如:
         `python3 generate_dependence.py --project nova train`

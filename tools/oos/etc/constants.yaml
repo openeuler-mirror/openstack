@@ -99,6 +99,7 @@ pypi2reponame:
   systemd-python: python-systemd
   zope.component: zope-component
   zope.interface: zope-interface
+  flask-cors: Flask-Cors
 
 # Some projects' name in pypi json file doesn't correct, this mapping fix it.
 # Wrong name : Right name(pypi name)
@@ -133,6 +134,7 @@ pypi_name_fix:
   sqlalchemy: SQLAlchemy
   webob: WebOb
   werkzeug: Werkzeug
+  importlib_metadata: importlib-metadata
 
 # Some project's version doesn't exist, this mapping correct the version.
 pypi_version_fix:
@@ -179,6 +181,8 @@ black_list:
   - mox
   - enum34
   - futures
+  - qpid-tools
+  - qpid-python
   # Some projects are removed from openEuler.
   # The projects which relies on this kind of projects should be removed as well.
   - nose
@@ -188,6 +192,15 @@ black_list:
   - django-babel
   - CouchDB
   - unicodecsv
+  # SOme projects are not necessary for openEuler OpenStack
+  - aws-xray-sdk
+  - pcre
+  - ibm_db_sa
+  - azure-servicebus
+  - collective.checkdocs
+  - backports.unittest-mock
+  - jaraco.classes
+  - librabbitmq
 
 # <pypi name> : <license>
 pypi_license:
