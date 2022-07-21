@@ -262,8 +262,8 @@ openeuler:
   security-committee: security-committee
   security-facility: sig-security-facility
   security-tool: sig-security-facility
-  service_capability: sig-Service-Standardization
-  service_trainning: sig-Service-Standardization
+  service_capability: sig-Talent-and-Service
+  service_trainning: sig-Talent-and-Service
   sig-Edge: sig-Edge
   sig-OSCourse: sig-OSCourse
   sig-OpenBoard: sig-OpenBoard
