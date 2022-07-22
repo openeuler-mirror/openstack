@@ -120,6 +120,7 @@ openeuler:
   install-scripts: sig-OS-Builder
   integration-test: sig-QA
   intel-kernel: sig-Intel-Arch
+  intel-qemu: sig-Intel-Arch
   isula-build: iSulad
   isula-transform: iSulad
   itrustee_client: sig-confidential-computing
