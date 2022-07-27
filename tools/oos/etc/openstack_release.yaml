@@ -1896,7 +1896,7 @@ wallaby:
   networking-hyperv: 10.0.0
   networking-odl: 18.0.0
   networking-sfc: 12.0.0
-  neutron: 18.4.0
+  neutron: 18.5.0
   neutron-dynamic-routing: 18.1.0
   neutron-lib: 2.10.2
   neutron-tempest-plugin: 1.4.0
@@ -2015,7 +2015,7 @@ wallaby:
   python-tripleoclient: 16.4.0
   python-troveclient: 7.0.0
   python-vitrageclient: 4.3.0
-  python-watcher: 6.0.0
+  python-watcher: 6.0.1
   python-watcherclient: 3.2.0
   python-zaqarclient: 2.1.0
   python-zunclient: 4.2.0
@@ -2058,7 +2058,7 @@ wallaby:
   vitrage: 7.4.0
   vitrage-dashboard: 3.3.0
   vitrage-tempest-plugin: 5.3.0
-  watcher-dashboard: 5.0.0
+  watcher-dashboard: 5.0.1
   watcher-tempest-plugin: 2.2.0
   zaqar: 12.0.0
   zaqar-ui: 10.0.0
@@ -2167,7 +2167,7 @@ xena:
   networking-hyperv: 11.0.0
   networking-odl: 19.0.0
   networking-sfc: 13.0.0
-  neutron: 19.3.0
+  neutron: 19.4.0
   neutron-dynamic-routing: 19.1.0
   neutron-lib: 2.15.2
   neutron-tempest-plugin: 1.7.0
@@ -2425,7 +2425,7 @@ yoga:
   networking-hyperv: 12.0.0
   networking-odl: 20.0.0
   networking-sfc: 14.0.0
-  neutron: 20.1.0
+  neutron: 20.2.0
   neutron-dynamic-routing: 20.0.0
   neutron-lib: 2.20.0
   neutron-tempest-plugin: 1.9.0
