@@ -20,6 +20,7 @@ openeuler:
   Intel-gcc: sig-Intel-Arch
   Intel-glibc: sig-Intel-Arch
   Java-Packages: sig-Java
+  KPL-gmssl: sig-WayCa
   KPL-zlib: sig-WayCa
   KubeHawk: sig-CloudNative
   KubeHawkeyes: sig-CloudNative
@@ -1101,6 +1102,7 @@ src-openeuler:
   deepin-menu: sig-DDE
   deepin-movie: sig-DDE
   deepin-music: sig-DDE
+  deepin-pw-check: sig-DDE
   deepin-qml-widgets: sig-DDE
   deepin-reader: sig-DDE
   deepin-rpm-installer: sig-DDE
@@ -1298,7 +1300,7 @@ src-openeuler:
   expresso: sig-nodejs
   extfuse: Storage
   extlinux-bootloader: Private
-  extra-cmake-modules: sig-UKUI
+  extra-cmake-modules: sig-KDE
   extra166y: sig-Java
   ezmorph: dev-utils
   f29-backgrounds: Private
@@ -1832,6 +1834,7 @@ src-openeuler:
   hspell: Application
   hsqldb: sig-Java
   hsqldb1: Application
+  htmlcxx: Desktop
   htop: dev-utils
   htrace: Base-service
   htslib: sig-bio
@@ -2404,20 +2407,20 @@ src-openeuler:
   keycloak-httpd-client-install: sig-security-facility
   keyrings-filesystem: Others
   keyutils: sig-security-facility
-  kf5: sig-UKUI
+  kf5: sig-KDE
   kf5-attica: sig-KDE
   kf5-bluez-qt: sig-KDE
   kf5-frameworkintegration: sig-KDE
   kf5-kactivities: sig-KDE
-  kf5-karchive: sig-UKUI
-  kf5-kauth: sig-UKUI
+  kf5-karchive: sig-KDE
+  kf5-kauth: sig-KDE
   kf5-kbookmarks: sig-KDE
   kf5-kcmutils: sig-KDE
-  kf5-kcodecs: sig-UKUI
+  kf5-kcodecs: sig-KDE
   kf5-kcompletion: sig-KDE
-  kf5-kconfig: sig-UKUI
-  kf5-kconfigwidgets: sig-UKUI
-  kf5-kcoreaddons: sig-UKUI
+  kf5-kconfig: sig-KDE
+  kf5-kconfigwidgets: sig-KDE
+  kf5-kcoreaddons: sig-KDE
   kf5-kcrash: sig-KDE
   kf5-kdbusaddons: sig-KDE
   kf5-kdeclarative: sig-KDE
@@ -2426,14 +2429,14 @@ src-openeuler:
   kf5-kdesignerplugin: sig-KDE
   kf5-kdesu: sig-KDE
   kf5-kdewebkit: sig-KDE
-  kf5-kdoctools: sig-UKUI
+  kf5-kdoctools: sig-KDE
   kf5-kemoticons: sig-KDE
   kf5-kglobalaccel: sig-KDE
-  kf5-kguiaddons: sig-UKUI
+  kf5-kguiaddons: sig-KDE
   kf5-khtml: sig-KDE
-  kf5-ki18n: sig-UKUI
+  kf5-ki18n: sig-KDE
   kf5-kiconthemes: sig-KDE
-  kf5-kidletime: sig-UKUI
+  kf5-kidletime: sig-KDE
   kf5-kinit: sig-KDE
   kf5-kio: sig-KDE
   kf5-kirigami2: sig-KDE
@@ -2454,13 +2457,13 @@ src-openeuler:
   kf5-ktextwidgets: sig-KDE
   kf5-kunitconversion: sig-KDE
   kf5-kwallet: sig-KDE
-  kf5-kwayland: sig-UKUI
-  kf5-kwidgetsaddons: sig-UKUI
-  kf5-kwindowsystem: sig-UKUI
+  kf5-kwayland: sig-KDE
+  kf5-kwidgetsaddons: sig-KDE
+  kf5-kwindowsystem: sig-KDE
   kf5-kxmlgui: sig-KDE
   kf5-networkmanager-qt: sig-KDE
   kf5-plasma: sig-KDE
-  kf5-solid: sig-UKUI
+  kf5-solid: sig-KDE
   kf5-sonnet: sig-KDE
   kf5-syntax-highlighting: sig-KDE
   kf5-threadweaver: sig-KDE
@@ -3095,6 +3098,7 @@ src-openeuler:
   lucene: sig-Java
   lucene3: sig-Java
   lucene4: sig-Java
+  lucenepp: Desktop
   luksmeta: Storage
   lunar-date: sig-KIRAN-DESKTOP
   lutok: Base-service
@@ -3286,6 +3290,7 @@ src-openeuler:
   migration-assistant: sig-Migration
   mikmod: Application
   mimepull: sig-Java
+  mimetic: Desktop
   mimick_vendor: sig-ROS
   mina-ftpserver: Application
   mindspore: ai
@@ -5801,7 +5806,7 @@ src-openeuler:
   pkgship: sig-EasyLife
   pki-core: Application
   plasma-breeze: sig-KDE
-  plasma-wayland-protocols: sig-UKUI
+  plasma-wayland-protocols: sig-KDE
   platform: sig-epol
   platform_build: sig-recycle
   platform_frameworks_base: sig-recycle
@@ -8960,6 +8965,7 @@ src-openeuler:
   xcb-util-keysyms: Programming-language
   xcb-util-renderutil: Programming-language
   xcb-util-wm: Programming-language
+  xclip: Application
   xdelta: Programming-language
   xdg-dbus-proxy: Application
   xdg-desktop-portal: Desktop
