@@ -1892,7 +1892,7 @@ wallaby:
   networking-bagpipe: 14.0.0
   networking-baremetal: 4.0.0
   networking-bgpvpn: 14.0.0
-  networking-generic-switch: 5.0.0
+  networking-generic-switch: 5.0.1
   networking-hyperv: 10.0.0
   networking-odl: 18.0.0
   networking-sfc: 12.0.0
