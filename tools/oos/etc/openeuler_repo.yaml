@@ -34,6 +34,7 @@ openeuler:
   PilotGo-web: sig-ops
   Preempt_RT: sig-industrial-control
   QA: sig-QA
+  QARobot: sig-QA
   RISC-V: sig-RISC-V
   TC: TC
   TCP_option_address: Kernel
@@ -626,6 +627,7 @@ src-openeuler:
   apr: Base-service
   apr-util: Base-service
   aqute-bnd: sig-Java
+  arangodb: sig-ops
   argbash: Application
   argon2: Base-service
   args4j: sig-Java
@@ -1006,6 +1008,7 @@ src-openeuler:
   crontabs: Base-service
   crudini: sig-openstack
   crun: sig-CloudNative
+  cryfs: sig-DDE
   cryptacular: dev-utils
   crypto-policies: sig-security-facility
   cryptopp: sig-security-facility
@@ -5917,6 +5920,7 @@ src-openeuler:
   pv: Base-service
   pwgen: sig-recycle
   py3c: sig-python-modules
+  pyArango: sig-ops
   pyOpenSSL: sig-security-facility
   pyScss: sig-python-modules
   pyang: sig-high-performance-network
@@ -6781,6 +6785,7 @@ src-openeuler:
   python-libNeuroML: sig-python-modules
   python-libarchive-c: sig-python-modules
   python-libcloud: sig-python-modules
+  python-libconf: sig-ops
   python-libevdev: sig-python-modules
   python-liblinear: sig-python-modules
   python-libmount: sig-python-modules
