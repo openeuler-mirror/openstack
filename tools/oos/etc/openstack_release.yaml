@@ -1842,7 +1842,7 @@ wallaby:
   horizon: 19.3.0
   ironic: 17.0.4
   ironic-inspector: 10.6.1
-  ironic-lib: 4.6.3
+  ironic-lib: 4.6.4
   ironic-prometheus-exporter: 2.2.0
   ironic-python-agent: 7.0.2
   ironic-python-agent-builder: 2.8.0
@@ -1935,7 +1935,7 @@ wallaby:
   oslo.versionedobjects: 2.4.1
   oslo.vmware: 3.8.1
   oswin-tempest-plugin: 1.2.0
-  ovn-octavia-provider: 1.0.0
+  ovn-octavia-provider: 1.0.1
   ovsdbapp: 1.9.3
   panko: 10.0.0
   pankoclient: 1.2.0
@@ -2084,7 +2084,7 @@ xena:
   castellan: 3.9.1
   ceilometer: 17.0.1
   ceilometermiddleware: 2.3.0
-  cinder: 19.1.0
+  cinder: 19.1.1
   cinder-tempest-plugin: 1.5.0
   cinderlib: 4.1.0
   cliff: 3.9.0
@@ -2182,7 +2182,7 @@ xena:
   openstack-heat: 17.0.1
   openstack-placement: 6.0.0
   openstacksdk: 0.59.0
-  os-brick: 5.0.2
+  os-brick: 5.0.3
   os-ken: 2.1.0
   os-win: 5.5.0
   os_vif: 2.6.0
