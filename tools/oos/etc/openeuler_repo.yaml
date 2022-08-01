@@ -252,6 +252,7 @@ openeuler:
   raspberrypi: sig-RaspberryPi
   raspberrypi-build: sig-RaspberryPi
   raspberrypi-kernel: sig-RaspberryPi
+  re2-rust: Base-service
   release-management: sig-release-management
   release-tools: sig-EasyLife
   reproducible-builds: sig-reproducible-builds
@@ -347,6 +348,7 @@ src-openeuler:
   Lmod: Application
   ModemManager: Networking
   NetworkManager: Networking
+  NetworkManager-l2tp: Networking
   NetworkManager-libreswan: System-tool
   NetworkManager-pptp: System-tool
   NutShell-Kernel: sig-RISC-V
@@ -1834,6 +1836,7 @@ src-openeuler:
   hping: dev-utils
   hplip: System-tool
   hppc: Base-service
+  hsak: Storage
   hspell: Application
   hsqldb: sig-Java
   hsqldb1: Application
@@ -2381,6 +2384,9 @@ src-openeuler:
   jxrlib: Desktop
   jython: sig-Java
   jzlib: Application
+  k3s: sig-K8sDistro
+  k3s-containerd: sig-K8sDistro
+  k3s-selinux: sig-K8sDistro
   kabi-dw: Kernel
   kacst-fonts: Desktop
   kae_driver: sig-AccLib
@@ -7914,6 +7920,7 @@ src-openeuler:
   resource_retriever: sig-ROS
   rest: Desktop
   resteasy: sig-Java
+  restic: sig-Migration
   rfkill: System-tool
   rhash: Runtime
   rhino: sig-Java
