@@ -5,6 +5,7 @@ openeuler:
   A-Tune-BPF-Collection: A-Tune
   A-Tune-Collector: A-Tune
   A-Tune-UI: A-Tune
+  A-guard: sig-Gatekeeper
   AppAPIChecker: sig-OSRefTools
   AvxToNeon: sig-AccLib
   BiSheng-Adoptium: Compiler
@@ -1461,6 +1462,7 @@ src-openeuler:
   gc: Base-service
   gcab: GNOME
   gcc: Compiler
+  gcc-12: Compiler
   gcc-cross: Compiler
   gcc_secure: Others
   gcolor2: sig-mate-desktop
@@ -6842,7 +6844,6 @@ src-openeuler:
   python-matplotlib: sig-python-modules
   python-mccabe: sig-python-modules
   python-mdx_gh_links: sig-python-modules
-  python-med: sig-python-modules
   python-meh: Base-service
   python-memcached: sig-python-modules
   python-memory-profiler: sig-openstack
