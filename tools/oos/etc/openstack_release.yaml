@@ -2051,7 +2051,7 @@ wallaby:
   tripleo-heat-templates: 14.3.0
   tripleo-image-elements: 13.1.2
   tripleo-puppet-elements: 14.1.2
-  tripleo-validations: 14.2.1
+  tripleo-validations: 14.3.0
   trove: 15.0.0
   trove-dashboard: 16.0.1
   trove_tempest_plugin: 1.2.0
