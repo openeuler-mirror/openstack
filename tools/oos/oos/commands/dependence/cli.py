@@ -38,7 +38,7 @@ class CountDependence(object):
                     ])
 
     def _get_repo_version(self, repo_name, compare_branch):
-        print('fetch %s info from gitee' % repo_name)
+        print('fetch %s info from gitee, branch: %s' % (repo_name, compare_branch))
         if not gitee.has_branch('src-openeuler', repo_name, compare_branch, self.token):
             return '', False
         repo_version = gitee.get_gitee_project_version('src-openeuler', repo_name, compare_branch, self.token)
@@ -74,7 +74,7 @@ class CountDependence(object):
                 return repo_version, status
         return repo_version,'Need Upgrade'
 
-    def _generate_with_compare(self, file_list, compare_branch):
+    def _generate_with_compare(self, file_list, compare_from, compare_branch):
         with open(self.output, "w") as csv_file:
             writer=csv.writer(csv_file)
             writer.writerow(["Project Name", "openEuler Repo", "SIG", "Repo version",
@@ -100,6 +100,12 @@ class CountDependence(object):
                     repo_version, status = self._get_version_and_status(repo_name,
                         project_version, project_eq_version, project_lt_version,
                         project_ne_version, project_upper_version, compare_branch)
+                    if status != 'OK' and compare_from != compare_branch:
+                        _, origin_status = self._get_version_and_status(repo_name,
+                            project_version, project_eq_version, project_lt_version,
+                            project_ne_version, project_upper_version, compare_from)
+                        if origin_status == 'OK':
+                            status += '(Sync Only)'
                     if project_version and project_version == project_eq_version:
                         project_version += '(Must)'
                     writer.writerow([
@@ -117,13 +123,13 @@ class CountDependence(object):
                         ]
                     )
 
-    def get_all_dep(self, compare, compare_branch):
+    def get_all_dep(self, compare, compare_from, compare_branch):
         """fetch all related dependent packages"""
         file_list = os.listdir(self.location)
         if not compare:
             self._generate_without_compare(file_list)
         else:
-            self._generate_with_compare(file_list, compare_branch)
+            self._generate_with_compare(file_list, compare_from, compare_branch)
 
 
 @click.group(name='dependence', help='package dependence related commands')
@@ -133,11 +139,12 @@ def group():
 
 @group.command(name='generate', help='generate required package list for the specified OpenStack release')
 @click.option('-c', '--compare', is_flag=True, help='Check the project in openEuler community or not')
+@click.option('-cf', '--compare-from', default='master', help='The base branch which will be compared.')
 @click.option('-cb', '--compare-branch', default='master', help='Branch to compare with')
 @click.option('-o', '--output', default='result', help='Output file name, default: result.csv')
 @click.option('-t', '--token', help='Personal gitee access token used for fetching info from gitee')
 @click.argument('location', type=click.Path(dir_okay=True))
-def generate(compare, compare_branch, output, token, location):
+def generate(compare, compare_from, compare_branch, output, token, location):
     myobj = CountDependence(output, token, location)
-    myobj.get_all_dep(compare, compare_branch)
+    myobj.get_all_dep(compare, compare_from, compare_branch)
     print("Success generate dependencies, the result is saved into %s file" % output)    

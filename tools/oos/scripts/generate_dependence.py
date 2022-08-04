@@ -413,6 +413,7 @@ def run(projects, core, runtime, release):
         UPPER[project_name] = project_version
 
     InitDependence(release, core, runtime, projects).init_all_dep()
+    print("All is done. Please check the generated file in %s_cached_file" % release)
 
 
 if __name__ == '__main__':
