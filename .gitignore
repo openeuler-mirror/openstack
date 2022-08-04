@@ -9,3 +9,4 @@ ChangeLog
 dist/
 *.egg-info/
 build/
+*_cached_file/
