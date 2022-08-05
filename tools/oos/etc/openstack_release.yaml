@@ -1855,8 +1855,8 @@ wallaby:
   keystone_tempest_plugin: 0.7.0
   keystoneauth1: 4.3.1
   keystonemiddleware: 9.2.0
-  kolla: 12.3.0
-  kolla-ansible: 12.5.0
+  kolla: 12.4.0
+  kolla-ansible: 12.6.0
   kuryr-kubernetes: 4.0.1
   kuryr-lib: 2.3.0
   kuryr-libnetwork: 7.0.0
@@ -1933,7 +1933,7 @@ wallaby:
   oslo.upgradecheck: 1.3.1
   oslo.utils: 4.8.2
   oslo.versionedobjects: 2.4.1
-  oslo.vmware: 3.8.1
+  oslo.vmware: 3.8.2
   oswin-tempest-plugin: 1.2.0
   ovn-octavia-provider: 1.0.1
   ovsdbapp: 1.9.3
@@ -2045,7 +2045,7 @@ wallaby:
   tacker-horizon: 3.0.0
   telemetry_tempest_plugin: 1.3.0
   tempest: 27.0.0
-  tooz: 2.8.2
+  tooz: 2.8.3
   tosca-parser: 2.3.0
   tripleo-common: 15.4.0
   tripleo-heat-templates: 14.3.0
@@ -2126,8 +2126,8 @@ xena:
   keystone_tempest_plugin: 0.8.0
   keystoneauth1: 4.4.0
   keystonemiddleware: 9.3.0
-  kolla: 13.2.0
-  kolla-ansible: 13.2.0
+  kolla: 13.3.0
+  kolla-ansible: 13.3.0
   kuryr-kubernetes: 5.0.0
   kuryr-lib: 2.4.0
   kuryr-libnetwork: 8.0.0
@@ -2203,7 +2203,7 @@ xena:
   oslo.upgradecheck: 1.4.0
   oslo.utils: 4.10.2
   oslo.versionedobjects: 2.5.0
-  oslo.vmware: 3.9.2
+  oslo.vmware: 3.9.3
   oswin-tempest-plugin: 1.3.0
   ovn-octavia-provider: 1.1.1
   ovsdbapp: 1.12.2
@@ -2300,7 +2300,7 @@ xena:
   solum: 11.0.0
   solum-dashboard: 7.0.0
   solum-tempest-plugin: 2.3.0
-  stevedore: 3.4.0
+  stevedore: 3.4.1
   storlets: 8.0.0
   sushy: 3.12.2
   swift: 2.28.0
@@ -2384,8 +2384,8 @@ yoga:
   keystone_tempest_plugin: 0.9.0
   keystoneauth1: 4.5.0
   keystonemiddleware: 9.4.0
-  kolla: 14.2.0
-  kolla-ansible: 14.2.0
+  kolla: 14.3.0
+  kolla-ansible: 14.3.0
   kuryr-kubernetes: 6.0.0
   kuryr-lib: 2.5.0
   kuryr-libnetwork: 9.0.0
