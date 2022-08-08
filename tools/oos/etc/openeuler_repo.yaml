@@ -8863,6 +8863,10 @@ src-openeuler:
   uwsgi: Application
   v2v-conversion-host: oVirt
   v4l-utils: System-tool
+  vagrant: Virt
+  vagrant-hostmanager: Virt
+  vagrant-libvirt: Virt
+  vagrant-lxc: Virt
   vala: GNOME
   valgrind: Programming-language
   vamp-plugin-sdk: Desktop
