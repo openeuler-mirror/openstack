@@ -53,7 +53,7 @@ class PkgGitRepo(object):
         subprocess.call(["git", "clone", clone_url, repo_dir])
         self.repo_dir = os.path.join(src_dir, self.repo_name)
 
-    def add_branch(self, src_branch, dest_branch):
+    def add_branch(self, src_branch, dest_branch, reuse_branch=False):
         url = "https://gitee.com/api/v5/repos/{gitee_org}/{repo_name}/" \
               "branches/{dest_branch}".format(gitee_org=self.gitee_org,
                                               repo_name=self.repo_name,
@@ -82,16 +82,19 @@ class PkgGitRepo(object):
                   "dest_branch": dest_branch}
         click.echo("CMD: %s" % cmd)
         status = subprocess.call(cmd, shell=True)
-        if status != 0:
+        if not reuse_branch and status != 0:
             raise Exception("Add branch %s for repo %s FAILED!!" % (
                 src_branch, self.repo_name))
 
-    def commit(self, commit_message, do_push=True):
+    def commit(self, commit_message, do_push=True, amend=False):
         click.echo("Commit changes for %s/%s" % (
             self.gitee_org, self.repo_name))
+        _commit_cmd = 'git commit -am "%(commit_message)s";'
+        if amend:
+              _commit_cmd = 'git commit --amend -m "%(commit_message)s";'
         commit_cmd = 'cd %(repo_dir)s/; ' \
                      'git add .; ' \
-                     'git commit -am "%(commit_message)s";' \
+                     f"{_commit_cmd}" \
                      'git remote set-url origin https://%(gitee_user)s:' \
                      '%(gitee_pat)s@gitee.com/%(gitee_user)s/%(repo_name)s;' \
                      % {"repo_dir": self.repo_dir,

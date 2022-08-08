@@ -28,6 +28,7 @@ pypi2pkgname:
   alabaster: sphinx-theme-alabaster
   dnspython: dns
   gitdb2: gitdb
+  jaraco.packaging: jaraco.packaging
   oslosphinx: oslo-sphinx
   ovs: openvswitch
   pyOpenSSL: pyOpenSSL
@@ -40,6 +41,7 @@ pypi2pkgname:
   python-qpid-proton: qpid-proton
   python-subunit: subunit
   repoze.lru: repoze-lru
+  rst.linker: rst.linker
   semantic-version: semantic_version
   smmap2: smmap
   systemd-python: systemd
