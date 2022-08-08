@@ -128,8 +128,10 @@ oos dependence generate train_cached_file
 ```
 -c, --compare
     结果是否与openeuler社区仓库进行比对，生成建议
--cb, --compare-branch'
+-cb, --compare-branch
     指定openEuler比对的仓库分支，默认是master
+-cf, --compare-from
+    指定openEuler比对的仓库基础分支，用来给出sync分支建议，默认是master
 -t, --token
     如果使用了-c，需要同时指定gitee token，否则gitee可能会拒接访问。
     或者配置环境变量GITEE_PAT也行。
