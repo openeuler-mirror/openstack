@@ -155,9 +155,24 @@ class SpecHandle(object):
             spec_obj.check_deps()
             if spec_obj.deps_missed:
                 self.missed_deps.append({pypi_name: list(spec_obj.deps_missed)})
-
             self._copy_spec_source(spec_obj, repo_obj)
-            commit_msg = "Update package %s of version %s" % (pypi_name, version)
+
+            if self.change_log:
+                commit_msg = self.change_log
+            elif old_changelog:
+                if old_version:
+                    up_down_grade = ('Upgrade' if spec_obj.is_upgrade()
+                                     else "Downgrade")
+                    commit_msg = (f'{up_down_grade} package {spec_obj.pkg_name}'
+                                  f' to version {spec_obj.version}')
+                # Prevent extreme cases, have old_changelog without old_version
+                else:
+                    commit_msg = (f'Update package {spec_obj.pkg_name}'
+                                  f' to version {spec_obj.version}')
+            else:
+                commit_msg = (f'Init package {spec_obj.pkg_name}'
+                              f' of version {spec_obj.version}')
+
             repo_obj.commit(commit_msg, do_push=self.push)
             repo_obj.create_pr(self.src_branch, self.dest_branch, commit_msg)
 
@@ -229,7 +244,10 @@ def group():
 @click.option('-q', '--query',
               help="Filter, fuzzy match the 'pypi_name' of projects list, e.g. "
                    "'-q novaclient.")
-@click.option('-cl', '--change-log', help="Changelog comment")
+@click.option('-cl', '--change-log',
+              help="Changelog comment. When using the --push option, this"
+                   " option value is also used as the commit message and PR"
+                   " title.")
 @click.option('--base', type=click.Choice(['local', 'upstream']),
               help='Specify where the spec is based.'
                    ' If it is "local", a new Changlog is generated, if it is'

@@ -110,7 +110,7 @@ class RPMSpec(object):
     def version_num(self):
         return self.pypi_json["info"]["version"]
 
-    def _is_upgrade(self):
+    def is_upgrade(self):
         if not self.old_version:
             return False
 
@@ -258,7 +258,7 @@ class RPMSpec(object):
                                  loader=jinja2.FileSystemLoader(
                                      SPEC_TEMPLET_DIR))
         template = env.get_template('package.spec.j2')
-        up_down_grade = 'Upgrade' if self._is_upgrade() else "Downgrade"
+        up_down_grade = 'Upgrade' if self.is_upgrade() else "Downgrade"
 
         test_requires = self._test_requires if self.add_check else []
         template_vars = {'spec_name': self.spec_name,
