@@ -281,6 +281,7 @@ openeuler:
   sync-bot: sig-EasyLife
   syscontainer-tools: iSulad
   sysmonitor: sig-ops
+  talent-assessment: sig-OpenDesign
   tarsier: sig-high-performance-network
   technical-certification: sig-Compatibility-Infra
   test-tools: sig-QA
@@ -3062,6 +3063,7 @@ src-openeuler:
   lmbench: dev-utils
   lmdb: Base-service
   lmfit: Application
+  loci: sig-openstack
   lockdev: Computing
   lodash: sig-nodejs
   log4cplus: dev-utils
@@ -4013,6 +4015,9 @@ src-openeuler:
   openstack-glance: sig-openstack
   openstack-heat: sig-openstack
   openstack-heat-agents: sig-openstack
+  openstack-helm: sig-openstack
+  openstack-helm-images: sig-openstack
+  openstack-helm-infra: sig-openstack
   openstack-horizon: sig-openstack
   openstack-ironic: sig-openstack
   openstack-ironic-inspector: sig-openstack
@@ -8782,6 +8787,7 @@ src-openeuler:
   ukui-biometric-auth: sig-UKUI
   ukui-biometric-manager: sig-UKUI
   ukui-bluetooth: sig-UKUI
+  ukui-clock: sig-UKUI
   ukui-control-center: sig-UKUI
   ukui-desktop-environment: sig-UKUI
   ukui-greeter: sig-UKUI

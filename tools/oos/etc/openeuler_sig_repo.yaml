@@ -18,6 +18,7 @@ src-openeuler:
   googleapis-common-protos: sig-openstack
   kafka-python: sig-openstack
   liberasurecode: sig-openstack
+  loci: sig-openstack
   networking-baremetal: sig-openstack
   networking-generic-switch: sig-openstack
   novnc: sig-openstack
@@ -29,6 +30,9 @@ src-openeuler:
   openstack-glance: sig-openstack
   openstack-heat: sig-openstack
   openstack-heat-agents: sig-openstack
+  openstack-helm: sig-openstack
+  openstack-helm-images: sig-openstack
+  openstack-helm-infra: sig-openstack
   openstack-horizon: sig-openstack
   openstack-ironic: sig-openstack
   openstack-ironic-inspector: sig-openstack
