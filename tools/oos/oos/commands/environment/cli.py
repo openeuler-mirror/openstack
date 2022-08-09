@@ -20,7 +20,8 @@ OE_OS_RELEASE = {
     '20.03-lts-sp1': ['train'],
     '20.03-lts-sp2': ['rocky', 'queens'],
     '20.03-lts-sp3': ['rocky', 'queens', 'train'],
-    '22.03-lts': ['train', 'wallaby']
+    '22.03-lts': ['train', 'wallaby'],
+    '22.09': ['yoga']
 }
 FLAVOR_MAPPING = {
     'small_x86': 'c6.large.2',
@@ -39,7 +40,9 @@ IMAGE_MAPPING = {
     '20.03-lts-sp2_x86': "7db7ef61-9b3f-4a36-9525-ebe5257010cd",
     '20.03-lts-sp2_aarch64': "fcbbd404-1945-4791-b8c2-98216dcf0eaa",
     '20.03-lts-sp3_x86': '7f7961bf-2d5f-4370-ae07-03f33b0b3565',
-    '20.03-lts-sp3_aarch64': '1ec9b082-9166-473b-9f78-86ba37f0774a'
+    '20.03-lts-sp3_aarch64': '1ec9b082-9166-473b-9f78-86ba37f0774a',
+    '22.09_aarch64': '69a38497-1860-4399-bafa-ed0593517943',
+    '22.09_x86': '2889d3a5-feed-4b2a-9830-20db0b4ef64c'
 }
 
 VPC_ID = '288ffe75-a44e-4332-9fdc-435fd5fbe51b'

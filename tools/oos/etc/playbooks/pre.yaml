@@ -47,7 +47,7 @@
         compute02_local_control_ip: "{{ hostvars['compute02']['ansible_default_ipv4']['address'] }}"
       when: oos_env_type == 'cluster'
 
-    - name: Setup useful environment for all-in-on
+    - name: Setup useful environment for all-in-one
       set_fact:
         controller_local_control_ip: "{{ hostvars['controller']['ansible_default_ipv4']['address'] }}"
       when: oos_env_type == 'all_in_one'
