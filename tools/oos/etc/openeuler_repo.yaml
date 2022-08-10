@@ -780,6 +780,7 @@ src-openeuler:
   booth: sig-Ha
   bootstrap: sig-nodejs
   bootupd: sig-K8sDistro
+  botan2: sig-KDE
   bouncycastle: dev-utils
   bowtie2: sig-bio
   box86: sig-compat-winapp
@@ -9060,6 +9061,7 @@ src-openeuler:
   xhtml2fo-style-xsl: Private
   xinetd: Networking
   xkeyboard-config: Desktop
+  xl2tpd: Networking
   xml-commons-apis: Application
   xml-commons-resolver: Base-service
   xml-maven-plugin: sig-Java
