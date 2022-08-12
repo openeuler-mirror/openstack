@@ -1904,7 +1904,7 @@ wallaby:
   neutron-vpnaas-dashboard: 4.0.0
   nova: 23.2.1
   octavia: 8.0.1
-  octavia-dashboard: 7.0.0
+  octavia-dashboard: 7.0.1
   octavia-lib: 2.3.1
   octavia-tempest-plugin: 1.7.0
   openstack-cyborg: 6.0.1
@@ -2051,7 +2051,7 @@ wallaby:
   tripleo-heat-templates: 14.3.0
   tripleo-image-elements: 13.1.2
   tripleo-puppet-elements: 14.1.2
-  tripleo-validations: 14.3.0
+  tripleo-validations: 14.3.1
   trove: 15.0.0
   trove-dashboard: 16.0.1
   trove_tempest_plugin: 1.2.0
@@ -2347,7 +2347,7 @@ yoga:
   cinderlib: 4.2.0
   cliff: 3.10.1
   cloudkitty: 16.0.0
-  cloudkitty-dashboard: 14.0.0
+  cloudkitty-dashboard: 14.0.1
   cloudkitty_tempest_plugin: 2.5.0
   compute-hyperv: 14.0.0
   cyborg-tempest-plugin: 1.4.0
