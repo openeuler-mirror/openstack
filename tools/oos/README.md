@@ -63,7 +63,8 @@ oos spec build --projects-data projects.csv --base local --push
 -q, --query
     过滤器，模糊匹配projects-data中的软件包名称，通常用于重新生成软件包列表中的某一个，如‘-q cinderclient’
 -cl, --change_log
-    自定义Spec的changlog。如不指定，则使用默认模板生成。
+    自定义Spec的changlog。如不指定，则使用默认模板生成；如果指定，并且同时使用`--push`参数，则commit
+    message和PR title同样使用指定内容。
 --base
     可选值为“local”或“upstream”，如果值为“local”，本地构建新的spec；如果值为“upstream”，在上游
     spec基础上构建新的spec，继承上游spec的changelog
