@@ -1,6 +1,6 @@
 - name: Install Swift controller
   hosts: controller
-  become: yes
+  become: true
   roles:
     - role: create_identity_user
       vars:
@@ -25,7 +25,7 @@
 
 - name: Install Swift storage
   hosts: storage
-  become: yes
+  become: true
   tasks:
     - name: Install packages
       yum:
@@ -64,7 +64,7 @@
 
 - name: Create the initial rings and init config file
   hosts: controller
-  become: yes
+  become: true
   tasks:
     - name: Create initial rings for cluster
       shell: |
@@ -207,7 +207,7 @@
 
 - name: distribute rings and config file from controller to storage nodes
   hosts: storage
-  become: yes
+  become: true
   tasks:
     - name: copy rings from controller to storage nodes
       synchronize:
@@ -227,7 +227,7 @@
 
 - name: Start controller services
   hosts: controller
-  become: yes
+  become: true
   tasks:
     - name: Start openstack-swift-proxy service
       systemd:
@@ -237,7 +237,7 @@
 
 - name: Start storage services
   hosts: storage
-  become: yes
+  become: true
   tasks:
     - name: Start swift account services
       systemd:

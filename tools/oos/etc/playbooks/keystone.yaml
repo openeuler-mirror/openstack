@@ -1,6 +1,6 @@
 - name: Install openstack-keystone
   hosts: controller
-  become: yes
+  become: true
   roles:
     - role: init_database
       vars:

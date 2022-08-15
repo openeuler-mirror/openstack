@@ -1,29 +1,6 @@
 # OpenStack-Wallaby 部署指南
 
-<!-- TOC -->
-
-- [OpenStack-Wallaby 部署指南](#openstack-wallaby-部署指南)
-  - [OpenStack 简介](#openstack-简介)
-  - [约定](#约定)
-  - [准备环境](#准备环境)
-    - [环境配置](#环境配置)
-    - [安装 SQL DataBase](#安装-sql-database)
-    - [安装 RabbitMQ](#安装-rabbitmq)
-    - [安装 Memcached](#安装-memcached)
-  - [安装 OpenStack](#安装-openstack)
-    - [Keystone 安装](#keystone-安装)
-    - [Glance 安装](#glance-安装)
-    - [Placement安装](#placement安装)
-    - [Nova 安装](#nova-安装)
-    - [Neutron 安装](#neutron-安装)
-    - [Cinder 安装](#cinder-安装)
-    - [horizon 安装](#horizon-安装)
-    - [Tempest 安装](#tempest-安装)
-    - [Ironic 安装](#ironic-安装)
-    - [Kolla 安装](#kolla-安装)
-    - [Trove 安装](#trove-安装)
-    - [Swift 安装](#swift-安装)
-    <!-- /TOC -->
+[TOC]
 
 ## OpenStack 简介
 

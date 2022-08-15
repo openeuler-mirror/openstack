@@ -1,6 +1,6 @@
 - name: Install Database
   hosts: controller
-  become: yes
+  become: true
   tasks:
     - name: Install Database package
       yum:

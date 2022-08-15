@@ -1,6 +1,6 @@
 - name: Install Rally
   hosts: controller
-  become: yes
+  become: true
   tasks:
     - name: Install rally package
       yum:

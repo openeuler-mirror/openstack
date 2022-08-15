@@ -1,35 +1,6 @@
 # OpenStack-Train 部署指南
 
-<!-- TOC -->
-
-- [OpenStack-Train 部署指南](#openstack-train-部署指南)
-  - [OpenStack 简介](#openstack-简介)
-  - [约定](#约定)
-  - [准备环境](#准备环境)
-    - [环境配置](#环境配置)
-    - [安装 SQL DataBase](#安装-sql-database)
-    - [安装 RabbitMQ](#安装-rabbitmq)
-    - [安装 Memcached](#安装-memcached)
-  - [安装 OpenStack](#安装-openstack)
-    - [Keystone 安装](#keystone-安装)
-    - [Glance 安装](#glance-安装)
-    - [Placement安装](#placement安装)
-    - [Nova 安装](#nova-安装)
-    - [Neutron 安装](#neutron-安装)
-    - [Cinder 安装](#cinder-安装)
-    - [horizon 安装](#horizon-安装)
-    - [Tempest 安装](#tempest-安装)
-    - [Ironic 安装](#ironic-安装)
-    - [Kolla 安装](#kolla-安装)
-    - [Trove 安装](#trove-安装)
-    - [Swift 安装](#swift-安装)
-    - [Cyborg 安装](#cyborg-安装)
-    - [Aodh 安装](#aodh-安装)
-    - [Gnocchi 安装](#gnocchi-安装)
-    - [Ceilometer 安装](#ceilometer-安装)
-    - [Heat 安装](#heat-安装)
-  - [快速安装 OpenStack](#快速安装-openstack)
-    <!-- /TOC -->
+[TOC]
 
 ## OpenStack 简介
 
@@ -2866,7 +2837,7 @@ OpenStack SIG还提供了一键部署OpenStack all in one或三节点的ansible�
 
 3. 刷新ansible配置
 
-    打开`/usr/local/etc/inventory/all_in_one.yaml`，根据当前机器环境和需求修改对应配置。内容如下
+    打开`/usr/local/etc/oos/inventory/all_in_one.yaml`，根据当前机器环境和需求修改对应配置。内容如下
 
     ```shell
     all:
@@ -2938,7 +2909,7 @@ OpenStack SIG还提供了一键部署OpenStack all in one或三节点的ansible�
     | neutron_provider_interface_name  | neutron L3网桥名称  |
     | default_ext_subnet_range  | neutron私网IP段  |
     | default_ext_subnet_gateway  | neutron私网gateway  |
-    | neutron_dataplane_interface_name  | neutron使用的网卡，推荐使用一张新的网卡，以免和现有网卡冲突，发现all in one主机断连的情况  |
+    | neutron_dataplane_interface_name  | neutron使用的网卡，推荐使用一张新的网卡，以免和现有网卡冲突，防止all in one主机断连的情况  |
     | cinder_block_device  |  cinder使用的卷设备名 |
     | swift_storage_devices  | swift使用的卷设备名  |
 

@@ -1,6 +1,6 @@
 - name: Initialize test resource
   hosts: controller
-  become: yes
+  become: true
   tasks:
     - name: Install required package
       yum:
@@ -182,7 +182,7 @@
         EOF
 
     # Some tests fail on openEuler due to some error that unable to repair at
-    # the comment. Skip them by hand.
+    # the moment. Skip them by hand.
     - name: Generate black list for cirros
       shell: |
         cat << EOF > /root/mytest/black_list_file

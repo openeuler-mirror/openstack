@@ -1,7 +1,7 @@
 # TODO: cyborg now is all-in-one mode. Add cluster support in the future.
 - name: Install Cyborg
   hosts: controller
-  become: yes
+  become: true
   roles:
     - role: init_database
       vars:

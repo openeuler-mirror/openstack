@@ -1,6 +1,6 @@
 - name: Install trove controller
   hosts: controller
-  become: yes
+  become: true
   roles:
     - role: init_database
       vars:
@@ -24,7 +24,7 @@
 
 - name: Init config file
   hosts: controller
-  become: yes
+  become: true
   tasks:
     - name: Initialize /etc/trove/trove.conf
       shell: |
@@ -76,7 +76,7 @@
 
 - name: Sync database
   hosts: controller
-  become: yes
+  become: true
   tasks:
     - name: Sync database
       shell: |
@@ -84,7 +84,7 @@
 
 - name: Complete trove install
   hosts: controller
-  become: yes
+  become: true
   tasks:
     - name: Start openstack-trove-api service
       systemd:

@@ -1,6 +1,6 @@
 - name: Install Memcached
   hosts: controller
-  become: yes
+  become: true
   tasks:
     - name: Install Memcached package
       yum:

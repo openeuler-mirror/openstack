@@ -1,6 +1,6 @@
 - name: Install Kolla
   hosts: kolla
-  become: yes
+  become: true
   tasks:
     - name: Install kolla package
       yum:

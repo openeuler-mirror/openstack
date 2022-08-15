@@ -1,6 +1,6 @@
 - name: Install openstack dashboard
   hosts: dashboard
-  become: yes
+  become: true
   tasks:
     - name: Install horizon package
       yum:
