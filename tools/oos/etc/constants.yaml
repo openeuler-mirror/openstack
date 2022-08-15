@@ -91,6 +91,7 @@ pypi2reponame:
   python-json-logger: python-json_logger
   python-subunit: subunit
   repoze.lru: repoze-lru
+  rtslib-fb: rtslib
   ruamel.yaml: ruamel-yaml
   semantic-version: python-semantic_version
   setuptools-git: setuptools_git
@@ -98,6 +99,7 @@ pypi2reponame:
   sphinx_feature_classification: sphinx-feature-classification
   sphinx-rtd-theme: python-sphinx_rtd_theme
   sphinxcontrib.autoprogram: sphinxcontrib-autoprogram
+  suds-community: suds2
   systemd-python: python-systemd
   zope.component: zope-component
   zope.interface: zope-interface
