@@ -90,6 +90,7 @@ openeuler:
   docs: doc
   dpdk: sig-high-performance-network
   dpu-core: sig-DPU
+  dpu-utilities: sig-DPU
   dsoftbus_standard: sig-embedded
   duoyibu-ai: sig-minzuchess
   eagle: sig-power-efficient
@@ -1183,6 +1184,7 @@ src-openeuler:
   doxygen: Application
   dpdk: sig-high-performance-network
   dpkg: Others
+  dpu-utilities: sig-DPU
   dracut: Base-service
   drbd: sig-Ha
   dropwatch: Networking
