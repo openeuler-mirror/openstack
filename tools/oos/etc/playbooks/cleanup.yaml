@@ -1,6 +1,6 @@
 - name: Clean up OpenStack environment
   hosts: all
-  become: yes
+  become: true
   tasks:
     - name: Cleanup block storage
       shell: |

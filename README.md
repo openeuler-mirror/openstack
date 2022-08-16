@@ -57,9 +57,8 @@ SIG官方文档包括了安装指导、测试说明、特性说明等内容，�
 ```none
 └── docs                                          "文档"
 └── example                                       "示例文件"
-└── templet                                       "RPM打包规范"
+└── template                                      "RPM打包规范"
 └── tools                                         "openstack打包、依赖分析等工作"
     └── oos                                       "OpenStack SIG开发工具"
     └── docker                                    "OpenStack SIG开发基础容器环境"
 ```
-

@@ -1,5 +1,7 @@
 # 使用Devstack安装OpenStack
 
+[TOC]
+
 目前OpenStack原生Devstack项目已经支持在openEuler上安装OpenStack，其中openEuler 20.03 LTS SP2已经过验证，并且有上游官方CI保证质量。其他版本的openEuler需要用户自行测试(2022-04-25 openEuler master分支已验证)。
 
 ## 安装步骤

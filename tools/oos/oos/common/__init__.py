@@ -10,7 +10,7 @@ import oos
 
 
 CONSTANTS = None
-SPEC_TEMPLET_DIR = None
+SPEC_TEMPLATE_DIR = None
 OPENEULER_REPO = None
 OPENEULER_SIG_REPO = None
 OPENSTACK_RELEASE_MAP = None
@@ -42,8 +42,8 @@ for conf_path in search_paths:
     key_path = os.path.join(conf_path, "key_pair")
     if os.path.isfile(cons) and not CONSTANTS:
         CONSTANTS = yaml.safe_load(open(cons, encoding="utf-8"))
-    if os.path.isfile(pkg_tpl) and not SPEC_TEMPLET_DIR:
-        SPEC_TEMPLET_DIR = conf_path
+    if os.path.isfile(pkg_tpl) and not SPEC_TEMPLATE_DIR:
+        SPEC_TEMPLATE_DIR = conf_path
     if os.path.isfile(openeuler_repo) and not OPENEULER_REPO:
         OPENEULER_REPO = yaml.safe_load(open(openeuler_repo, encoding="utf-8"))['src-openeuler']
     if os.path.isfile(openeuler_sig_repo) and not OPENEULER_SIG_REPO:
@@ -81,7 +81,7 @@ except PermissionError:
 
 if not CONSTANTS:
     raise click.ClickException("constants.yaml is missing")
-if not SPEC_TEMPLET_DIR:
+if not SPEC_TEMPLATE_DIR:
     raise click.ClickException("package.spec.j2 is missing")
 if not OPENEULER_REPO:
     raise click.ClickException("openeuler_repo is missing")

@@ -1,6 +1,6 @@
 - name: Config OpenStack yum repo
   hosts: all
-  become: yes
+  become: true
   tasks:
     - name: Install openstack-releases package
       yum:
@@ -17,7 +17,7 @@
 
 - name: Config mutual trust for root
   hosts: all
-  become: yes
+  become: true
   tasks:
     - name: Copy file for hosts
       copy:
@@ -29,7 +29,7 @@
 
 - name: Prepare
   hosts: all
-  become: yes
+  become: true
   tasks:
     - name: Set hostname for hosts
       shell: |
@@ -54,7 +54,7 @@
 
 - name: Update python bin
   hosts: all
-  become: yes
+  become: true
   tasks:
     - name: Install python
       yum:

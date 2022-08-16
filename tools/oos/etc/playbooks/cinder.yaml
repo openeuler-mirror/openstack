@@ -1,7 +1,7 @@
 # TODO: Add cinder-backup support
 - name: Install Cinder controller
   hosts: controller
-  become: yes
+  become: true
   roles:
     - role: init_database
       vars:
@@ -31,7 +31,7 @@
 
 - name: Install Cinder storage
   hosts: storage
-  become: yes
+  become: true
   tasks:
     - name: Install cinder package
       yum:
@@ -51,7 +51,7 @@
 
 - name: Config Cinder
   hosts: all
-  become: yes
+  become: true
   tasks:
     - name: Initialize cinder config file
       shell: |
@@ -91,7 +91,7 @@
 
 - name: Complete Cinder controller
   hosts: controller
-  become: yes
+  become: true
   tasks:
     - name: Sync cinder database
       shell: su -s /bin/sh -c "cinder-manage db sync" cinder
@@ -110,7 +110,7 @@
 
 - name: Complete Cinder storage
   hosts: storage
-  become: yes
+  become: true
   tasks:
     - name: Update tgtd config file
       shell: |
@@ -132,7 +132,7 @@
 
 - name: Complete Nova compute
   hosts: compute
-  become: yes
+  become: true
   tasks:
     - name: Start iscsid service
       systemd:

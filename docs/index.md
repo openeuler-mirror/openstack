@@ -31,29 +31,27 @@ OpenStack SIG通过用户反馈等方式收集OpenStack版本需求，经过SIG�
 |   openEuler 22.03 LTS   |        |       |   ●   |        |          |    ●    |      |      |
 |   openEuler 22.09       |        |       |       |        |          |         |      |   ○  |
 
-
-|            | Queens | Rocky | Train | Victoria | Wallaby |
-|:---------: |:------:|:-----:|:-----:|:--------:|:-------:|
-|  Keystone  |    ●   |   ●   |   ●   |     ●    |    ●    |
-|   Glance   |    ●   |   ●   |   ●   |     ●    |    ●    |
-|    Nova    |    ●   |   ●   |   ●   |     ●    |    ●    |
-|   Cinder   |    ●   |   ●   |   ●   |     ●    |    ●    |
-|  Neutron   |    ●   |   ●   |   ●   |     ●    |    ●    |
-|  Tempest   |    ●   |   ●   |   ●   |     ●    |    ●    |
-|  Horizon   |    ●   |   ●   |   ●   |     ●    |    ●    |
-|   Ironic   |    ●   |   ●   |   ●   |     ●    |    ●    |
-| Placement  |        |       |   ●   |     ●    |    ●    |
-|   Trove    |    ●   |   ●   |   ●   |          |    ●    |
-|   Kolla    |    ●   |   ●   |   ●   |          |    ●    |
-|   Trove    |    ●   |   ●   |   ●   |          |    ●    |
-|   Kolla    |    ●   |   ●   |   ●   |          |    ●    |
-|   Rally    |    ▲   |   ▲   |       |          |         |
-|   Swift    |        |       |   ●   |          |    ●    |
-|    Heat    |        |       |   ●   |          |    ▲    |
-| Ceilometer |        |       |   ●   |          |    ▲    |
-|    Aodh    |        |       |   ●   |          |    ▲    |
-|   Cyborg   |        |       |   ●   |          |    ▲    |
-|   Gnocchi  |        |       |   ●   |          |    ●    |
+|            | Queens | Rocky | Train | Victoria | Wallaby | Yoga |
+|:---------: |:------:|:-----:|:-----:|:--------:|:-------:|:----:|
+|  Keystone  |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |
+|   Glance   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |
+|    Nova    |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |
+|   Cinder   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |
+|  Neutron   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |
+|  Tempest   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |
+|  Horizon   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |
+|   Ironic   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |
+| Placement  |        |       |   ●   |     ●    |    ●    |   ●  |
+|   Trove    |    ●   |   ●   |   ●   |          |    ●    |   ●  |
+|   Kolla    |    ●   |   ●   |   ●   |          |    ●    |   ●  |
+|   Rally    |    ▲   |   ▲   |       |          |         |      |
+|   Swift    |        |       |   ●   |          |    ●    |   ●  |
+|    Heat    |        |       |   ●   |          |    ▲    |   ●  |
+| Ceilometer |        |       |   ●   |          |    ▲    |   ●  |
+|    Aodh    |        |       |   ●   |          |    ▲    |   ●  |
+|   Cyborg   |        |       |   ●   |          |    ▲    |   ●  |
+|   Gnocchi  |        |       |   ●   |          |    ●    |   ●  |
+| OpenStack-helm |    |       |       |          |         |   ●  |
 
 Note:
 
@@ -149,4 +147,4 @@ SIG同时联合各大厂商、开发者，创建了一系列自研项目：
 - <https://gitee.com/openeuler/openstack-kolla-plugin>
 - <https://gitee.com/openeuler/openstack-plugin>
 - <https://gitee.com/openeuler/hostha>
-
+- <https://gitee.com/openeuler/opensd>

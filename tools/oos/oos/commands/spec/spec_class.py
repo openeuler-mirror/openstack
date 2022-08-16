@@ -14,7 +14,7 @@ import jinja2
 import urllib.request
 
 from oos.common import CONSTANTS
-from oos.common import SPEC_TEMPLET_DIR
+from oos.common import SPEC_TEMPLATE_DIR
 from oos.common import pypi
 
 
@@ -256,7 +256,7 @@ class RPMSpec(object):
             return
         env = jinja2.Environment(trim_blocks=True, lstrip_blocks=True,
                                  loader=jinja2.FileSystemLoader(
-                                     SPEC_TEMPLET_DIR))
+                                     SPEC_TEMPLATE_DIR))
         template = env.get_template('package.spec.j2')
         up_down_grade = 'Upgrade' if self.is_upgrade() else "Downgrade"
 

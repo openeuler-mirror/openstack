@@ -1,6 +1,6 @@
 - name: Install Tempest
   hosts: controller
-  become: yes
+  become: true
   tasks:
     - name: Install tempest package
       yum:

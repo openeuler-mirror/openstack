@@ -1,6 +1,6 @@
 - name: Install Nova controller
   hosts: controller
-  become: yes
+  become: true
   roles:
     - role: init_database
       vars:
@@ -34,7 +34,7 @@
 
 - name: Install Nova compute
   hosts: compute
-  become: yes
+  become: true
   tasks:
     - name: Install nova-compute package
       yum:
@@ -86,7 +86,7 @@
 
 - name: Config mutual trust for nova
   hosts: compute
-  become: yes
+  become: true
   tasks:
     - name: Change login shell for nova
       shell: |
@@ -118,7 +118,7 @@
 
 - name: Init config file
   hosts: all
-  become: yes
+  become: true
   tasks:
     - name: Initialize config file
       shell: |
@@ -199,7 +199,7 @@
 # TODO: add kvm support
 - name: Update Nova compute
   hosts: compute
-  become: yes
+  become: true
   tasks:
     - name: Update config file
       shell: |
@@ -229,7 +229,7 @@
 
 - name: Complete Nova controller install
   hosts: controller
-  become: yes
+  become: true
   tasks:
     - name: Sync database
       shell: |
@@ -265,7 +265,7 @@
 
 - name: Complete Nova compute install
   hosts: compute
-  become: yes
+  become: true
   tasks:
     - name: Start libvirtd service
       systemd:
@@ -281,7 +281,7 @@
 
 - name: Discover compute node
   hosts: controller
-  become: yes
+  become: true
   tasks:
     - name: Discover compute node
       shell: su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova 
