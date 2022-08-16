@@ -95,6 +95,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS/OpenStack-wallaby/">openEuler-22.03-LTS_Wallaby</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.09/OpenStack-yoga/">openEuler-22.09_Yoga</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">测试报告</span></p>
               <ul>
@@ -103,6 +105,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../../test/openEuler-20.03-LTS-SP3/">openEuler-20.03-LTS-SP3</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../test/openEuler-22.03-LTS/">openEuler-22.03-LTS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../test/openEuler-22.09.md">openEuler-22.09</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">自研特性</span></p>
@@ -135,63 +139,42 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="openstack-rocky">OpenStack-Rocky 部署指南<a class="headerlink" href="#openstack-rocky" title="Permanent link">&para;</a></h1>
-<!-- TOC -->
-
+<div class="toc">
 <ul>
-<li>
-<p><a href="#openstack-rocky-部署指南">OpenStack-Rocky 部署指南</a></p>
+<li><a href="#openstack-rocky">OpenStack-Rocky 部署指南</a><ul>
+<li><a href="#openstack">OpenStack 简介</a></li>
+<li><a href="#_1">准备环境</a><ul>
+<li><a href="#openstack-yum">OpenStack yum源配置</a></li>
+<li><a href="#_2">环境配置</a></li>
+<li><a href="#sql-database">安装 SQL DataBase</a></li>
+<li><a href="#rabbitmq">安装 RabbitMQ</a></li>
+<li><a href="#memcached">安装 Memcached</a></li>
+</ul>
 </li>
-<li>
-<p><a href="#openstack-简介">OpenStack 简介</a></p>
-</li>
-<li>
-<p><a href="#准备环境">准备环境</a></p>
-<ul>
-<li><a href="#环境配置">环境配置</a></li>
-<li><a href="#安装-sql-database">安装 SQL DataBase</a></li>
-<li><a href="#安装-rabbitmq">安装 RabbitMQ</a></li>
-<li><a href="#安装-memcached">安装 Memcached</a></li>
-<li>
-<p><a href="#安装-openstack">安装 OpenStack</a></p>
-</li>
-<li>
-<p><a href="#keystone-安装">Keystone 安装</a></p>
-</li>
-<li>
-<p><a href="#glance-安装">Glance 安装</a></p>
-</li>
-<li>
-<p><a href="#nova-安装">Nova 安装</a></p>
-</li>
-<li>
-<p><a href="#neutron-安装">Neutron 安装</a></p>
-</li>
-<li>
-<p><a href="#cinder-安装">Cinder 安装</a></p>
-</li>
-<li>
-<p><a href="#Horizon-安装">Horizon 安装</a></p>
-</li>
-<li>
-<p><a href="#tempest-安装">Tempest 安装</a></p>
-</li>
-<li>
-<p><a href="#ironic-安装">Ironic 安装</a></p>
-</li>
-<li>
-<p><a href="#kolla-安装">Kolla 安装</a></p>
-</li>
-<li>
-<p><a href="#Trove-安装">Trove 安装</a></p>
-</li>
-<li>
-<p><a href="#Rally-安装">Rally 安装</a></p>
-</li>
+<li><a href="#openstack_1">安装 OpenStack</a><ul>
+<li><a href="#keystone">Keystone 安装</a></li>
+<li><a href="#glance">Glance 安装</a></li>
 </ul>
 </li>
 </ul>
-<!-- /TOC -->
-
+</li>
+<li><a href="#_3">...</a></li>
+<li><a href="#_4">...</a></li>
+<li><a href="#_5">...</a></li>
+<li><a href="#arm64">注意：如果您使用的环境是鲲鹏架构，请下载arm64版本的镜像。</a><ul>
+<li><a href="#nova">Nova 安装</a></li>
+<li><a href="#neutron">Neutron 安装</a></li>
+<li><a href="#cinder">Cinder 安装</a></li>
+<li><a href="#horizon">Horizon 安装</a></li>
+<li><a href="#tempest">Tempest 安装</a></li>
+<li><a href="#ironic">Ironic 安装</a></li>
+<li><a href="#kolla">Kolla 安装</a></li>
+<li><a href="#trove">Trove 安装</a></li>
+<li><a href="#rally">Rally 安装</a></li>
+</ul>
+</li>
+</ul>
+</div>
 <h2 id="openstack">OpenStack 简介<a class="headerlink" href="#openstack" title="Permanent link">&para;</a></h2>
 <p>OpenStack 是一个社区，也是一个项目。它提供了一个部署云的操作平台或工具集，为组织提供可扩展的、灵活的云计算。</p>
 <p>作为一个开源的云计算管理平台，OpenStack 由 nova、cinder、neutron、glance、keystone、horizon 等几个主要的组件组合起来完成具体工作。OpenStack 支持几乎所有类型的云环境，项目目标是提供实施简单、可大规模扩展、丰富、标准统一的云计算管理平台。OpenStack 通过各种互补的服务提供了基础设施即服务（IaaS）的解决方案，每个服务提供 API 进行集成。</p>

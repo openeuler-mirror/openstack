@@ -125,6 +125,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS/OpenStack-wallaby/">openEuler-22.03-LTS_Wallaby</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.09/OpenStack-yoga/">openEuler-22.09_Yoga</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">测试报告</span></p>
               <ul>
@@ -133,6 +135,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../../test/openEuler-20.03-LTS-SP3/">openEuler-20.03-LTS-SP3</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../test/openEuler-22.03-LTS/">openEuler-22.03-LTS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../test/openEuler-22.09.md">openEuler-22.09</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">自研特性</span></p>
@@ -165,41 +169,42 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="openstack-train">OpenStack-Train 部署指南<a class="headerlink" href="#openstack-train" title="Permanent link">&para;</a></h1>
-<!-- TOC -->
-
+<div class="toc">
 <ul>
-<li><a href="#openstack-train-部署指南">OpenStack-Train 部署指南</a></li>
-<li><a href="#openstack-简介">OpenStack 简介</a></li>
-<li><a href="#约定">约定</a></li>
-<li><a href="#准备环境">准备环境</a><ul>
-<li><a href="#环境配置">环境配置</a></li>
-<li><a href="#安装-sql-database">安装 SQL DataBase</a></li>
-<li><a href="#安装-rabbitmq">安装 RabbitMQ</a></li>
-<li><a href="#安装-memcached">安装 Memcached</a></li>
+<li><a href="#openstack-train">OpenStack-Train 部署指南</a><ul>
+<li><a href="#openstack">OpenStack 简介</a></li>
+<li><a href="#_1">约定</a></li>
+<li><a href="#_2">准备环境</a><ul>
+<li><a href="#_3">环境配置</a></li>
+<li><a href="#sql-database">安装 SQL DataBase</a></li>
+<li><a href="#rabbitmq">安装 RabbitMQ</a></li>
+<li><a href="#memcached">安装 Memcached</a></li>
 </ul>
 </li>
-<li><a href="#安装-openstack">安装 OpenStack</a><ul>
-<li><a href="#keystone-安装">Keystone 安装</a></li>
-<li><a href="#glance-安装">Glance 安装</a></li>
-<li><a href="#placement安装">Placement安装</a></li>
-<li><a href="#nova-安装">Nova 安装</a></li>
-<li><a href="#neutron-安装">Neutron 安装</a></li>
-<li><a href="#cinder-安装">Cinder 安装</a></li>
-<li><a href="#horizon-安装">horizon 安装</a></li>
-<li><a href="#tempest-安装">Tempest 安装</a></li>
-<li><a href="#ironic-安装">Ironic 安装</a></li>
-<li><a href="#kolla-安装">Kolla 安装</a></li>
-<li><a href="#trove-安装">Trove 安装</a></li>
-<li><a href="#swift-安装">Swift 安装</a></li>
-<li><a href="#cyborg-安装">Cyborg 安装</a></li>
-<li><a href="#aodh-安装">Aodh 安装</a></li>
-<li><a href="#gnocchi-安装">Gnocchi 安装</a></li>
-<li><a href="#ceilometer-安装">Ceilometer 安装</a></li>
-<li><a href="#heat-安装">Heat 安装</a>
-<!-- /TOC --></li>
+<li><a href="#openstack_1">安装 OpenStack</a><ul>
+<li><a href="#keystone">Keystone 安装</a></li>
+<li><a href="#glance">Glance 安装</a></li>
+<li><a href="#placement">Placement安装</a></li>
+<li><a href="#nova">Nova 安装</a></li>
+<li><a href="#neutron">Neutron 安装</a></li>
+<li><a href="#cinder">Cinder 安装</a></li>
+<li><a href="#horizon">horizon 安装</a></li>
+<li><a href="#tempest">Tempest 安装</a></li>
+<li><a href="#ironic">Ironic 安装</a></li>
+<li><a href="#kolla">Kolla 安装</a></li>
+<li><a href="#trove">Trove 安装</a></li>
+<li><a href="#swift">Swift 安装</a></li>
+<li><a href="#cyborg">Cyborg 安装</a></li>
+<li><a href="#aodh">Aodh 安装</a></li>
+<li><a href="#gnocchi">Gnocchi 安装</a></li>
+<li><a href="#ceilometer">Ceilometer 安装</a></li>
+<li><a href="#heat">Heat 安装</a></li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+</div>
 <h2 id="openstack">OpenStack 简介<a class="headerlink" href="#openstack" title="Permanent link">&para;</a></h2>
 <p>OpenStack 是一个社区，也是一个项目。它提供了一个部署云的操作平台或工具集，为组织提供可扩展的、灵活的云计算。</p>
 <p>作为一个开源的云计算管理平台，OpenStack 由nova、cinder、neutron、glance、keystone、horizon等几个主要的组件组合起来完成具体工作。OpenStack 支持几乎所有类型的云环境，项目目标是提供实施简单、可大规模扩展、丰富、标准统一的云计算管理平台。OpenStack 通过各种互补的服务提供了基础设施即服务（IaaS）的解决方案，每个服务提供 API 进行集成。</p>
