@@ -3166,7 +3166,6 @@ src-openeuler:
   man-db: Base-service
   man-pages: Base-service
   man2html: sig-epol
-  manifest: Private
   mapserver: Application
   marco: sig-mate-desktop
   mariadb: DB
@@ -4711,7 +4710,6 @@ src-openeuler:
   perl-Graphics-ColorNamesLite-WWW: sig-perl-modules
   perl-Growl-GNTP: sig-perl-modules
   perl-Guard: sig-perl-modules
-  perl-HTML-Defang: sig-perl-modules
   perl-HTML-Encoding: sig-perl-modules
   perl-HTML-FillInForm: sig-perl-modules
   perl-HTML-Form: sig-perl-modules
@@ -5603,7 +5601,6 @@ src-openeuler:
   perl-Thread-Queue: sig-perl-modules
   perl-Thread-SigMask: sig-perl-modules
   perl-Throwable: sig-perl-modules
-  perl-Tie-Cache: sig-perl-modules
   perl-Tie-Cycle: sig-perl-modules
   perl-Tie-DBI: sig-perl-modules
   perl-Tie-DataUUID: sig-perl-modules
@@ -7406,7 +7403,6 @@ src-openeuler:
   python-ryu: sig-openstack
   python-s3transfer: sig-python-modules
   python-saharaclient: sig-openstack
-  python-saml: sig-python-modules
   python-sanction: sig-python-modules
   python-scales: sig-python-modules
   python-scandir: sig-python-modules
@@ -7441,7 +7437,6 @@ src-openeuler:
   python-setuptools_git: sig-python-modules
   python-setuptools_hg: sig-python-modules
   python-setuptools_scm: Programming-language
-  python-setuptools_scm_git_archive: sig-python-modules
   python-sh: sig-python-modules
   python-shamir-mnemonic: sig-python-modules
   python-shodan: sig-python-modules
