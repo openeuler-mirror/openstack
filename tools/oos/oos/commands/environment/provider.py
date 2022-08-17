@@ -63,7 +63,7 @@ class HuaweiCloudProvider(Provider):
             CONFIG.get(self.provider, 'image_format') % {'release': self.release, 'arch': self.arch},
             CONFIG.get(self.provider, 'image_format') % {'release': self.release, 'arch': arch_alt},
         ]
-        if self.release != self.release.upper():
+        if self.release and self.release != self.release.upper():
             self.image_name_list.extend([
                 CONFIG.get(self.provider, 'image_format') % {'release': self.release.upper(), 'arch': self.arch},
                 CONFIG.get(self.provider, 'image_format') % {'release': self.release.upper(), 'arch': arch_alt},
