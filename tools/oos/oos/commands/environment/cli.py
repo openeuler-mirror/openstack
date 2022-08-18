@@ -49,11 +49,17 @@ def create(release, flavor, arch, name, target):
         provider_object = provider.HuaweiCloudProvider(release, flavor, arch, name, target)
 
     servers = provider_object.create_servers()
-    table = prettytable.PrettyTable(constants.TABLE_COLUMN)
-    for server_id, ip, created in servers:
+    vm_table = prettytable.PrettyTable(constants.TABLE_COLUMN)
+    detail_table = prettytable.PrettyTable(['IP', 'NIC', 'Block Device'])
+    for server_id, ip, created, key_inject_OK in servers:
         sqlite_ops.insert_target(provider_name, name, server_id, ip, flavor, release, None, created)
-        table.add_row([provider_name, name, server_id, ip, flavor, release, None, created])
-    print(table)
+        vm_table.add_row([provider_name, name, server_id, ip, flavor, release, None, created])
+        if key_inject_OK:
+            nic_info, block_device_info = provider.Provider.check_target_detail(ip)
+            detail_table.add_row([ip, nic_info, block_device_info])
+    print(vm_table)
+    if detail_table.rows:
+        print(detail_table)
 
 
 @group.command(name='delete',
@@ -62,9 +68,11 @@ def create(release, flavor, arch, name, target):
 def delete(name):
     provider_name = sqlite_ops.get_target_column(name, 'provider')[0][0]
     server_info = sqlite_ops.get_target_column(name, 'uuid')
+    provider_object = None
     if provider_name == 'huaweicloud':
         provider_object = provider.HuaweiCloudProvider()
-    provider_object.delete_servers(server_info)
+    if provider_object:
+        provider_object.delete_servers(server_info)
     sqlite_ops.delete_target(name)
 
 
@@ -85,7 +93,7 @@ def _run_action(target, action):
     private_key = os.path.join(KEY_DIR, 'id_rsa')
     user = 'root'
 
-    if 'openEuler' in platform.platform() or 'oe1' in platform.platform():
+    if 'openEuler' in platform.platform() or 'oe' in platform.platform():
         os.chmod(private_key, 0o400)
 
     cmd = ['ansible-playbook', '-i', inventory_file,
