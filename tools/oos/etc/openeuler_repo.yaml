@@ -100,6 +100,7 @@ openeuler:
   etmem: Storage
   eulerfs: Kernel
   eulerfs-test: Kernel
+  evs: sig-high-performance-network
   extfuse: Storage
   gazelle: sig-high-performance-network
   gazelle-cni: sig-recycle
@@ -294,6 +295,7 @@ openeuler:
   uadk_engine: sig-AccLib
   ubackup: sig-Migration
   ukui: sig-UKUI
+  umdk: sig-high-performance-network
   user-committee: user-committee
   vectorBlas: bigdata
   vmtop: Virt
@@ -1460,6 +1462,7 @@ src-openeuler:
   garcon: xfce
   gavl: Others
   gawk: Base-service
+  gazebo: sig-ROS
   gazebo_ros_pkgs: sig-ROS
   gazelle: sig-high-performance-network
   gazelle-cni: sig-recycle
@@ -1778,6 +1781,7 @@ src-openeuler:
   gtkspell: sig-recycle
   gtkspell3: dev-utils
   gtkspellmm30: dev-utils
+  gts: sig-ROS
   guacamole: Networking
   guava: dev-utils
   guava20: sig-Java
@@ -1794,6 +1798,14 @@ src-openeuler:
   gvfs: Desktop
   gvisor: sig-CloudNative
   gyp: Application
+  gz-cmake: sig-ROS
+  gz-common: sig-ROS
+  gz-fuel-tools: sig-ROS
+  gz-math: sig-ROS
+  gz-msgs: sig-ROS
+  gz-tools: sig-ROS
+  gz-transport: sig-ROS
+  gz-utils: sig-ROS
   gzip: Base-service
   h2: DB
   ha-api: sig-Ha
@@ -3924,6 +3936,7 @@ src-openeuler:
   oec-hardware: sig-Compatibility-Infra
   oemaker: sig-OS-Builder
   ogdi: dev-utils
+  ogre: sig-ROS
   ohc: sig-Java
   okhttp: ai
   okteta: sig-KDE
@@ -5662,7 +5675,6 @@ src-openeuler:
   perl-UUID-Tiny: sig-perl-modules
   perl-Unicode-CaseFold: sig-perl-modules
   perl-Unicode-Casing: sig-perl-modules
-  perl-Unicode-CheckUTF8: sig-perl-modules
   perl-Unicode-CheckUTF8-PP: sig-perl-modules
   perl-Unicode-Collate: sig-perl-modules
   perl-Unicode-EastAsianWidth: sig-perl-modules
@@ -5898,6 +5910,7 @@ src-openeuler:
   prefetch_tuning: A-Tune
   prelink: Application
   presto: bigdata
+  process1: dev-utils
   procinfo: Others
   procmail: Networking
   procps-ng: Computing
@@ -7865,6 +7878,7 @@ src-openeuler:
   querydsl3: sig-Java
   quilt: Application
   quota: Storage
+  qwt: sig-ROS
   qwt_dependency: sig-ROS
   rabbitmq-java-client: sig-Java
   rabbitmq-server: Application
@@ -7985,6 +7999,7 @@ src-openeuler:
   rospack: sig-ROS
   rpcbind: Networking
   rpcsvc-proto: Application
+  rpg_svo: sig-ROS
   rpm: Base-service
   rpm-mpi-hooks: Private
   rpm-ostree: sig-K8sDistro
@@ -8388,6 +8403,7 @@ src-openeuler:
   screen: Base-service
   scrub: Application
   scsi-target-utils: Others
+  sdformat: sig-ROS
   sdparm: Storage
   seabios: Others
   seahorse: Desktop
@@ -8447,6 +8463,7 @@ src-openeuler:
   skopeo: sig-CloudNative
   skylark: Virt
   slam_gmapping: sig-ROS
+  slam_gmapping_ros2: sig-ROS
   slang: Base-service
   slapi-nis: Application
   sleuthkit: Others
@@ -9143,6 +9160,7 @@ src-openeuler:
   ykpers: dev-utils
   yocto-opkg-utils: sig-Yocto
   yocto-pseudo: sig-Yocto
+  yolov5: sig-ROS
   you-get: Application
   youker-assistant: sig-UKUI
   yp-tools: Desktop
