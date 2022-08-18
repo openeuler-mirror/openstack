@@ -32,11 +32,26 @@ class Provider:
         print("Preparing the mutual trust for ssh")
         cmds = [f'ssh-keygen -f ~/.ssh/known_hosts -R "{ip}"',
                 f'ssh-keygen -R "{ip}"',
-                f'sshpass -p {password} ssh-copy-id -i "{KEY_DIR}/id_rsa.pub" -o StrictHostKeyChecking=no "{constants.OPENEULER_DEFAULT_USER}@{ip}"']
+                f'sshpass -p {password} ssh-copy-id -i "{KEY_DIR}/id_rsa.pub" -o StrictHostKeyChecking=no "{constants.OPENEULER_DEFAULT_USER}@{ip}"',
+                f"ssh -i {KEY_DIR}/id_rsa {constants.OPENEULER_DEFAULT_USER}@{ip} -- echo OK"
+               ]
         for cmd in cmds:
-            print(subprocess.getoutput(cmd))
-        print(f"All is done, you can now login the target with the key in "
-                f"{KEY_DIR}")
+            ret = subprocess.run(cmd, shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+            if ret.returncode != 0:
+                print("Failed to inject ssh key for the target, please do it by hand.")
+                return False
+        print(f"You can now login the target with the key in {KEY_DIR}")
+        return True
+
+    @staticmethod
+    def check_target_detail(ip):
+        get_nic_command = "cat /proc/net/dev | awk '{i++; if(i>2){print $1}}' | sed 's/^[\t]*//g' | sed 's/[:]*$//g'"
+        get_blk_command = "lsblk -ndo NAME"
+        nic_cmd = f"ssh -i {KEY_DIR}/id_rsa {constants.OPENEULER_DEFAULT_USER}@{ip} -- {get_nic_command}"
+        blk_cmd = f"ssh -i {KEY_DIR}/id_rsa {constants.OPENEULER_DEFAULT_USER}@{ip} -- {get_blk_command}"
+        nic_res = subprocess.run(nic_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8')
+        blk_res = subprocess.run(blk_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8')
+        return nic_res.stdout.replace('\n', ' '), blk_res.stdout.replace('\n', ' ')
 
 
 class HuaweiCloudProvider(Provider):
@@ -242,9 +257,11 @@ class HuaweiCloudProvider(Provider):
                 if ip and created:
                     break
                 time.sleep(3)
+            key_inject_OK = False
             if self._has_sshpass():
-                self._setup_sshpass(ip)
-            result.append((server_id, ip, created))
+                if self._setup_sshpass(ip):
+                    key_inject_OK = True
+            result.append((server_id, ip, created, key_inject_OK))
             print("Success created the target VM")
         return result
 
@@ -268,12 +285,11 @@ class HuaweiCloudProvider(Provider):
 class ManagedProvider(Provider):
     def __init__(self, ip, password):
         super().__init__()
-        self.ip
-        self.password
+        self.ip = ip
+        self.password = password
 
     def manage(self):
         if self._has_sshpass():
+            # TODO: 以key方式登录target并注入oos秘钥
             if self.password:
                 self._setup_sshpass(self.ip, self.password)
-            else:
-                self._setup_sshpass(self.ip)
