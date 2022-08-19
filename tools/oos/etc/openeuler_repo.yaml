@@ -522,7 +522,6 @@ src-openeuler:
   adcli: Base-service
   adobe-mappings-cmap: Desktop
   adobe-mappings-pdf: Desktop
-  adobe-source-code-pro-fonts: Private
   adwaita-icon-theme: Desktop
   adwaita-qt: Desktop
   aesh: sig-Java
@@ -2097,7 +2096,6 @@ src-openeuler:
   iniparser: dev-utils
   initial-setup: System-tool
   initscripts: Networking
-  inkscape: Private
   inotify-tools: Application
   inst-source-utils: sig-perl-modules
   install-scripts: sig-OS-Builder
@@ -5967,7 +5965,6 @@ src-openeuler:
   pyparsing: Base-service
   pyparted: Base-service
   pyporter: dev-utils
-  pysendfile: Private
   pyserial: Base-service
   pytest: Programming-language
   python-3parclient: sig-openstack
@@ -6769,7 +6766,6 @@ src-openeuler:
   python-karborclient: sig-openstack
   python-kazoo: sig-openstack
   python-kdcproxy: sig-python-modules
-  python-keras-applications: Private
   python-keras-rl2: A-Tune
   python-kerberos: sig-python-modules
   python-keyczar: sig-python-modules
@@ -6968,7 +6964,6 @@ src-openeuler:
   python-num2words: sig-python-modules
   python-numexpr: Private
   python-numpoly: sig-python-modules
-  python-numpydoc: Private
   python-oauth2client: sig-python-modules
   python-oauthlib: Base-service
   python-octaviaclient: sig-openstack
@@ -8736,7 +8731,6 @@ src-openeuler:
   tog-pegasus: System-tool
   tokyocabinet: Base-service
   tomcat: Application
-  tomcat-native: Private
   tomcat-taglibs-parent: sig-Java
   tomcat-taglibs-standard: Application
   tomcatjss: Base-service
