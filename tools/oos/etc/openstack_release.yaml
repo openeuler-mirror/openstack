@@ -1803,7 +1803,7 @@ wallaby:
   aodh: 12.0.0
   aodhclient: 2.2.0
   automaton: 2.3.1
-  barbican: 12.0.0
+  barbican: 12.0.1
   barbican_tempest_plugin: 1.3.0
   bifrost: 10.2.0
   blazar: 7.0.1
@@ -1851,7 +1851,7 @@ wallaby:
   kayobe: 10.3.0
   kayobe-config: 10.2.0
   kayobe-config-dev: 10.3.0
-  keystone: 19.0.0
+  keystone: 19.0.1
   keystone_tempest_plugin: 0.7.0
   keystoneauth1: 4.3.1
   keystonemiddleware: 9.2.0
@@ -1985,7 +1985,7 @@ wallaby:
   python-adjutant: 2.0.0
   python-adjutantclient: 0.8.0
   python-barbicanclient: 5.1.0
-  python-blazarclient: 3.2.0
+  python-blazarclient: 3.2.1
   python-brick-cinderclient-ext: 1.3.0
   python-cinderclient: 7.4.1
   python-cloudkittyclient: 4.2.0
@@ -2250,7 +2250,7 @@ xena:
   python-adjutant: 3.0.0
   python-adjutantclient: 0.9.0
   python-barbicanclient: 5.2.0
-  python-blazarclient: 3.3.1
+  python-blazarclient: 3.3.2
   python-brick-cinderclient-ext: 1.4.0
   python-cinderclient: 8.1.0
   python-cloudkittyclient: 4.3.0
@@ -2505,7 +2505,7 @@ yoga:
   python-adjutant: 4.0.0
   python-adjutantclient: 0.10.0
   python-barbicanclient: 5.3.0
-  python-blazarclient: 3.4.0
+  python-blazarclient: 3.4.1
   python-brick-cinderclient-ext: 1.5.0
   python-cinderclient: 8.3.0
   python-cloudkittyclient: 4.5.0
