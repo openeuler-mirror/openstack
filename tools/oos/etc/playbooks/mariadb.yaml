@@ -21,6 +21,13 @@
         character-set-server = utf8
         EOF
 
+    - name: Make sure mysqld pid folder exist
+      file:
+        path: /var/run/mysqld
+        state: directory
+        owner: mysql
+        group: mysql
+
     - name: Start Database
       systemd:
         name: mariadb
