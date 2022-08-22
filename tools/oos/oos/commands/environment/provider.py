@@ -143,10 +143,10 @@ class HuaweiCloudProvider(Provider):
                     id=sg_id
                 )
             ]
-            print("Found security group %s" % self.sg_name)
+            print("Found security group: %s\n" % self.sg_name)
             return security_group
         else:
-            raise click.ClickException("No security group named %s." % self.sg_name)
+            raise click.ClickException("No security group named: %s\n" % self.sg_name)
 
     def _prepare_eip(self):
         bandwidthPrePaidServerEipBandwidth = PrePaidServerEipBandwidth(
@@ -172,8 +172,8 @@ class HuaweiCloudProvider(Provider):
                 vpc_id = vpc.id
                 break
         if not vpc_id:
-            raise click.ClickException("No vpc named %s." % self.vpc_name)
-        print("Found vpc %s" % self.vpc_name)
+            raise click.ClickException("No vpc named: %s\n" % self.vpc_name)
+        print("Found vpc: %s\n" % self.vpc_name)
         return vpc_id
 
     def _prepare_nic(self, vpc_id):
@@ -191,10 +191,10 @@ class HuaweiCloudProvider(Provider):
                 subnet2_id = subnet.id
                 continue
         if not subnet1_id or not subnet2_id:
-            raise click.ClickException("No subnet named %s or %s." % (self.subnet1_name, self.subnet2_name))
+            raise click.ClickException("No subnet named: %s or %s\n" % (self.subnet1_name, self.subnet2_name))
         nic = [PrePaidServerNic(subnet_id=subnet1_id),
                PrePaidServerNic(subnet_id=subnet2_id)]
-        print("Found nic %s,%s" % (self.subnet1_name, self.subnet2_name))
+        print("Found nic: %s,%s\n" % (self.subnet1_name, self.subnet2_name))
         return nic
 
     def _prepare_image(self):
@@ -205,10 +205,10 @@ class HuaweiCloudProvider(Provider):
         for image in response.images:
             if image.name in self.image_name_list:
                 image_id = image.id
-                print("Found image %s" % image.name)
+                print("Found image: %s\n" % image.name)
                 break
         if not image_id:
-            raise click.ClickException("No image named " + ",".join(image for image in self.image_name_list))
+            raise click.ClickException("No image named: " + ",".join(image for image in self.image_name_list) + "\n")
         return image_id
 
     def _prepare_request(self):
@@ -246,7 +246,7 @@ class HuaweiCloudProvider(Provider):
                     response = self.ecs_client.show_server(request)
                 except exceptions.ClientRequestException as ex:
                     if ex.status_code == 404:
-                        time.sleep(3)
+                        time.sleep(5)
                         continue
                 for _, addresses in response.server.addresses.items():
                     for address in addresses:
@@ -256,13 +256,13 @@ class HuaweiCloudProvider(Provider):
                             break
                 if ip and created:
                     break
-                time.sleep(3)
+                time.sleep(5)
             key_inject_OK = False
             if self._has_sshpass():
                 if self._setup_sshpass(ip):
                     key_inject_OK = True
             result.append((server_id, ip, created, key_inject_OK))
-            print("Success created the target VM")
+            print("Success created the target VM\n")
         return result
 
     def delete_servers(self, server_info):

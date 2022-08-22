@@ -21,10 +21,21 @@
         yum list |grep pyparsing |grep OpenStack | awk '{print $2}'
       register: pyparing_version
 
-    - name: Install aodh package
+    - name: Install versioned pyparsing package
       yum:
         name:
           - python3-pyparsing-{{ pyparing_version.stdout }}
+      when: pyparing_version.stdout != ''
+
+    - name: Install unversioned pyparsing package
+      yum:
+        name:
+          - python3-pyparsing
+      when: pyparing_version.stdout == ''
+
+    - name: Install aodh package
+      yum:
+        name:
           - openstack-aodh-api
           - openstack-aodh-evaluator
           - openstack-aodh-notifier
