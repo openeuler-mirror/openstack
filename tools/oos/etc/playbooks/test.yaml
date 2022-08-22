@@ -37,6 +37,7 @@
       fetch:
         src: /root/mytest/results.html
         dest: /tmp/results.html
+        flat: true
 
     - name: Echo finish Info
       debug:
