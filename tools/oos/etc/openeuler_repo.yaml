@@ -1387,6 +1387,7 @@ src-openeuler:
   firewalld: Networking
   fish: Desktop
   flac: Computing
+  flamegraph: sig-ops
   flang: Compiler
   flatbuffers: dev-utils
   flatpak: Programming-language
