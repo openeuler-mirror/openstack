@@ -1805,7 +1805,7 @@ wallaby:
   automaton: 2.3.1
   barbican: 12.0.1
   barbican_tempest_plugin: 1.3.0
-  bifrost: 10.2.0
+  bifrost: 10.2.1
   blazar: 7.0.1
   blazar-dashboard: 5.0.0
   blazar-nova: 2.2.0
@@ -1841,7 +1841,7 @@ wallaby:
   heat-translator: 2.3.0
   horizon: 19.3.0
   ironic: 17.0.4
-  ironic-inspector: 10.6.1
+  ironic-inspector: 10.6.2
   ironic-lib: 4.6.4
   ironic-prometheus-exporter: 2.2.0
   ironic-python-agent: 7.0.2
@@ -1870,7 +1870,7 @@ wallaby:
   masakari: 11.0.1
   masakari-dashboard: 4.0.1
   masakari-monitors: 11.1.0
-  metalsmith: 1.4.3
+  metalsmith: 1.4.4
   mistral: 12.0.0
   mistral-dashboard: 12.0.1
   mistral-extra: 11.0.0
