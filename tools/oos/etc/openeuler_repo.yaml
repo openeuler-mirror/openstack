@@ -114,6 +114,7 @@ openeuler:
   ha-api: sig-Ha
   ha-web: sig-Ha
   hands-on: sig-OSCourse
+  hikptool: sig-WayCa
   hostha: sig-openstack
   hpc: sig-HPC
   hpcrunner: sig-HPC
@@ -240,6 +241,8 @@ openeuler:
   patch-tracking: sig-EasyLife
   peking_university_2021: sig-recycle
   perlporter: dev-utils
+  pin-gcc-client: Compiler
+  pin-server: Compiler
   pkgporter: dev-utils
   pkgship: sig-EasyLife
   plymouth-theme-kiran: sig-KIRAN-DESKTOP
@@ -4173,7 +4176,7 @@ src-openeuler:
   passwd_group_generator: sig-security-facility
   patch: Base-service
   patch-tracking: sig-EasyLife
-  patchelf: sig-epol
+  patchelf: sig-embedded
   patchutils: Application
   pavucontrol: Application
   pax: Application
@@ -5820,6 +5823,8 @@ src-openeuler:
   pig: DB
   pigpio: sig-RaspberryPi
   pigz: Base-service
+  pin-gcc-client: Compiler
+  pin-server: Compiler
   pinentry: Desktop
   pinfo: System-tool
   pipewire: Desktop
@@ -8192,6 +8197,7 @@ src-openeuler:
   rubygem-listen: sig-ruby
   rubygem-little-plugger: sig-ruby
   rubygem-locale: sig-ops
+  rubygem-log4r: sig-ruby
   rubygem-logging: sig-ruby
   rubygem-loofah: sig-ruby
   rubygem-mail: sig-ruby
@@ -8218,6 +8224,7 @@ src-openeuler:
   rubygem-net-ldap: sig-ruby
   rubygem-net-ping: sig-ops
   rubygem-net-scp: sig-ruby
+  rubygem-net-sftp: sig-ruby
   rubygem-net-ssh: sig-ruby
   rubygem-netrc: sig-ruby
   rubygem-nio4r: sig-ruby
@@ -9154,6 +9161,7 @@ src-openeuler:
   yelp-xsl: Desktop
   ykpers: dev-utils
   yocto-opkg-utils: sig-Yocto
+  yocto-poky: sig-Yocto
   yocto-pseudo: sig-Yocto
   yolov5: sig-ROS
   you-get: Application
