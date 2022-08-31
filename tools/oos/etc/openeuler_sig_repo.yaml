@@ -6,6 +6,7 @@ openeuler:
   openstack-kolla-plugin: sig-openstack
   openstack-plugin: sig-openstack
   openstack-releases: sig-openstack
+  pyisula: sig-openstack
 src-openeuler:
   ansible-lint: sig-openstack
   avro-python3: sig-openstack
@@ -167,6 +168,7 @@ src-openeuler:
   python-ironic-tempest-plugin: sig-openstack
   python-ironic-ui: sig-openstack
   python-ironicclient: sig-openstack
+  python-isula: sig-openstack
   python-jaeger-client: sig-openstack
   python-jaraco.envs: sig-openstack
   python-jaraco.packaging: sig-openstack
