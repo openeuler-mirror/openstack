@@ -16,6 +16,7 @@ openeuler:
   DyscheOS-utils: sig-recycle
   EulerRobot: sig-QA
   G11N: G11N
+  GNFC: sig-high-performance-network
   GearOS: sig-industrial-control
   Intel-Arch-doc: sig-Intel-Arch
   Intel-gcc: sig-Intel-Arch
@@ -193,6 +194,7 @@ openeuler:
   nestos-assembler: sig-CloudNative
   nestos-config: sig-CloudNative
   nestos-installer: sig-CloudNative
+  nestos-website: sig-CloudNative
   nodejsporter: dev-utils
   nvme-snsd: Storage
   nvwa: sig-ops
@@ -250,7 +252,7 @@ openeuler:
   prefetch_tuning: A-Tune
   process1: dev-utils
   ptcr: sig-CloudNative
-  pyisula: iSulad
+  pyisula: sig-openstack
   pyporter: dev-utils
   python-multi_key_dict: sig-python-modules
   qemu: Virt
@@ -3180,6 +3182,7 @@ src-openeuler:
   man-db: Base-service
   man-pages: Base-service
   man2html: sig-epol
+  mandoc: sig-epol
   mapserver: Application
   marco: sig-mate-desktop
   mariadb: DB
@@ -4065,6 +4068,7 @@ src-openeuler:
   openvswitch-kmod: sig-recycle
   openwebbeans: sig-Java
   openwsman: System-tool
+  optimized-routines: Compiler
   options: dev-utils
   optipng: Application
   opus: Computing
@@ -6724,6 +6728,7 @@ src-openeuler:
   python-iso8601: Programming-language
   python-isodate: sig-python-modules
   python-isort: sig-python-modules
+  python-isula: sig-openstack
   python-itsdangerous: Programming-language
   python-jaeger-client: sig-openstack
   python-jaraco-classes: sig-python-modules
@@ -8157,6 +8162,9 @@ src-openeuler:
   rubygem-fluent-plugin-elasticsearch: sig-ops
   rubygem-fluentd: sig-ruby
   rubygem-fog-core: sig-ruby
+  rubygem-fog-json: sig-ruby
+  rubygem-fog-libvirt: sig-ruby
+  rubygem-fog-xml: sig-ruby
   rubygem-font-awesome-sass: sig-ruby
   rubygem-formatador: sig-ruby
   rubygem-friendly_id: sig-ruby
@@ -8290,6 +8298,7 @@ src-openeuler:
   rubygem-rspec2-core: sig-ruby
   rubygem-rspec2-expectations: sig-ruby
   rubygem-rspec2-mocks: sig-ruby
+  rubygem-ruby-libvirt: sig-ruby
   rubygem-ruby-progressbar: sig-ruby
   rubygem-ruby-rc4: sig-ruby
   rubygem-ruby-shadow: sig-ruby
@@ -8722,6 +8731,7 @@ src-openeuler:
   timedatex: Base-service
   tint2: sig-cinnamon
   tinycdb: Runtime
+  tinyproxy: Networking
   tinyxml: sig-compat-winapp
   tinyxml2: Programming-language
   tinyxml2_vendor: sig-ROS
