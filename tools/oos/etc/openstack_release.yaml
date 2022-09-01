@@ -1921,7 +1921,7 @@ wallaby:
   oslo.cache: 2.7.1
   oslo.config: 8.5.1
   oslo.context: 3.2.1
-  oslo.db: 8.5.1
+  oslo.db: 8.5.2
   oslo.limit: 1.3.1
   oslo.messaging: 12.7.3
   oslo.metrics: 0.2.2
@@ -2557,7 +2557,7 @@ yoga:
   solum-tempest-plugin: 2.4.0
   stevedore: 3.5.0
   storlets: 9.0.0
-  sushy: 4.1.1
+  sushy: 4.1.2
   swift: 2.29.1
   tacker: 7.0.0
   tacker-horizon: 5.0.0
