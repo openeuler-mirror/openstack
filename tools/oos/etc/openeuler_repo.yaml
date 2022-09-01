@@ -9117,6 +9117,7 @@ src-openeuler:
   xorg-x11-apps: Desktop
   xorg-x11-docs: Desktop
   xorg-x11-drivers: Desktop
+  xorg-x11-drv-amdgpu: Desktop
   xorg-x11-drv-armsoc: Desktop
   xorg-x11-drv-ati: Desktop
   xorg-x11-drv-dummy: Desktop
