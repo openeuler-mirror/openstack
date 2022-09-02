@@ -98,6 +98,7 @@ openeuler:
   easy-checker: sig-EasyLife
   eggo: sig-CloudNative
   embedded: sig-embedded
+  embedded-ipc: sig-embedded
   etmem: Storage
   eulerfs: Kernel
   eulerfs-test: Kernel
@@ -169,7 +170,6 @@ openeuler:
   lfs-course: sig-OSCourse
   li-wen: sig-EasyLife
   lib-shim-v2: iSulad
-  libCoAP: sig-embedded
   libarchive-rust: Base-service
   libboundscheck: Base-service
   libcareplus: Virt
