@@ -1848,15 +1848,15 @@ wallaby:
   ironic-python-agent-builder: 2.8.0
   ironic-tempest-plugin: 2.2.0
   ironic-ui: 4.3.0
-  kayobe: 10.3.0
+  kayobe: 10.4.0
   kayobe-config: 10.2.0
   kayobe-config-dev: 10.3.0
   keystone: 19.0.1
   keystone_tempest_plugin: 0.7.0
   keystoneauth1: 4.3.1
   keystonemiddleware: 9.2.0
-  kolla: 12.4.0
-  kolla-ansible: 12.6.0
+  kolla: 12.5.0
+  kolla-ansible: 12.7.0
   kuryr-kubernetes: 4.0.1
   kuryr-lib: 2.3.0
   kuryr-libnetwork: 7.0.0
@@ -1876,15 +1876,15 @@ wallaby:
   mistral-extra: 11.0.0
   mistral-lib: 2.4.0
   mistral_tempest_tests: 1.2.0
-  monasca-agent: 5.0.0
+  monasca-agent: 5.0.1
   monasca-api: 6.0.0
   monasca-common: 3.3.0
   monasca-events-api: 3.0.0
-  monasca-notification: 4.0.0
+  monasca-notification: 4.0.1
   monasca-persister: 4.0.0
   monasca-statsd: 2.2.0
   monasca-tempest-plugin: 2.2.1
-  monasca-ui: 4.0.0
+  monasca-ui: 4.1.0
   murano: 11.0.0
   murano-agent: 7.0.0
   murano-dashboard: 11.0.0
@@ -2119,15 +2119,15 @@ xena:
   ironic-python-agent-builder: 3.0.0
   ironic-tempest-plugin: 2.3.1
   ironic-ui: 5.0.0
-  kayobe: 11.2.0
+  kayobe: 11.3.0
   kayobe-config: 11.1.0
   kayobe-config-dev: 11.2.0
   keystone: 20.0.0
   keystone_tempest_plugin: 0.8.0
   keystoneauth1: 4.4.0
   keystonemiddleware: 9.3.0
-  kolla: 13.3.0
-  kolla-ansible: 13.3.0
+  kolla: 13.4.0
+  kolla-ansible: 13.4.0
   kuryr-kubernetes: 5.0.0
   kuryr-lib: 2.4.0
   kuryr-libnetwork: 8.0.0
@@ -2377,15 +2377,15 @@ yoga:
   ironic-python-agent-builder: 4.0.1
   ironic-tempest-plugin: 2.4.0
   ironic-ui: 5.1.0
-  kayobe: 12.2.0
+  kayobe: 12.3.0
   kayobe-config: 12.0.0
   kayobe-config-dev: 12.2.0
   keystone: 21.0.0
   keystone_tempest_plugin: 0.9.0
   keystoneauth1: 4.5.0
   keystonemiddleware: 9.4.0
-  kolla: 14.3.0
-  kolla-ansible: 14.3.0
+  kolla: 14.4.0
+  kolla-ansible: 14.4.0
   kuryr-kubernetes: 6.0.0
   kuryr-lib: 2.5.0
   kuryr-libnetwork: 9.0.0
