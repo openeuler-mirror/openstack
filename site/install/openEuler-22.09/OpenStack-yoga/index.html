@@ -71,6 +71,62 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">openEuler-22.09_Yoga</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">约定</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#openstack">部署OpenStack</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rpm">基于RPM部署</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">环境准备</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">部署服务</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#keystone">Keystone</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#glance">Glance</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#placement">Placement</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#nova">Nova</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#neutron">Neutron</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#cinder">Cinder</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#horizon">Horizon</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#ironic">Ironic</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#trove">Trove</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#swift">Swift</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#cyborg">Cyborg</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#aodh">Aodh</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#gnocchi">Gnocchi</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#ceilometer">Ceilometer</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#heat">Heat</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#tempest">Tempest</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#devstack">基于Devstack部署</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#openstack-sigoos">基于OpenStack SIG开发工具oos部署</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#openstack-sigopensd">基于OpenStack SIG部署工具opensd部署</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#openstack-helm">基于OpenStack helm部署</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#openstack-kolla">基于OpenStack Kolla部署</a>
+    </li>
     </ul>
                   </li>
               </ul>
@@ -114,7 +170,91 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="openstack-yoga">OpenStack-Yoga 部署指南<a class="headerlink" href="#openstack-yoga" title="Permanent link">&para;</a></h1>
+                <h1 id="openstack-yoga">OpenStack Yoga 部署指南<a class="headerlink" href="#openstack-yoga" title="Permanent link">&para;</a></h1>
+<div class="toc">
+<ul>
+<li><a href="#openstack-yoga">OpenStack Yoga 部署指南</a><ul>
+<li><a href="#_1">约定</a></li>
+<li><a href="#openstack">部署OpenStack</a></li>
+<li><a href="#rpm">基于RPM部署</a><ul>
+<li><a href="#_2">环境准备</a></li>
+<li><a href="#_3">部署服务</a><ul>
+<li><a href="#keystone">Keystone</a></li>
+<li><a href="#glance">Glance</a></li>
+<li><a href="#placement">Placement</a></li>
+<li><a href="#nova">Nova</a></li>
+<li><a href="#neutron">Neutron</a></li>
+<li><a href="#cinder">Cinder</a></li>
+<li><a href="#horizon">Horizon</a></li>
+<li><a href="#ironic">Ironic</a></li>
+<li><a href="#trove">Trove</a></li>
+<li><a href="#swift">Swift</a></li>
+<li><a href="#cyborg">Cyborg</a></li>
+<li><a href="#aodh">Aodh</a></li>
+<li><a href="#gnocchi">Gnocchi</a></li>
+<li><a href="#ceilometer">Ceilometer</a></li>
+<li><a href="#heat">Heat</a></li>
+<li><a href="#tempest">Tempest</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#devstack">基于Devstack部署</a></li>
+<li><a href="#openstack-sigoos">基于OpenStack SIG开发工具oos部署</a></li>
+<li><a href="#openstack-sigopensd">基于OpenStack SIG部署工具opensd部署</a></li>
+<li><a href="#openstack-helm">基于OpenStack helm部署</a></li>
+<li><a href="#openstack-kolla">基于OpenStack Kolla部署</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>本文档是openEuler OpenStack SIG编写的基于openEuler 22.09的OpenStack部署指南，内容由SIG贡献者提供。在阅读过程中，如果您有任何疑问或者发现任何问题，请<a href="https://gitee.com/openeuler/openstack#%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F">联系</a>SIG维护人员，或者直接<a href="https://gitee.com/openeuler/openstack/issues">提交issue</a></p>
+<h2 id="_1">约定<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本章节描述文档中的一些通用约定。</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">test</td>
+<td align="center">test</td>
+</tr>
+<tr>
+<td align="center">test</td>
+<td align="center">test</td>
+</tr>
+</tbody>
+</table>
+<h2 id="openstack">部署OpenStack<a class="headerlink" href="#openstack" title="Permanent link">&para;</a></h2>
+<p>OpenStack SIG提供了多种基于openEuler部署OpenStack的方法，以满足不同的用户场景，请按需选择。</p>
+<h2 id="rpm">基于RPM部署<a class="headerlink" href="#rpm" title="Permanent link">&para;</a></h2>
+<h3 id="_2">环境准备<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h3 id="_3">部署服务<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h4 id="keystone">Keystone<a class="headerlink" href="#keystone" title="Permanent link">&para;</a></h4>
+<h4 id="glance">Glance<a class="headerlink" href="#glance" title="Permanent link">&para;</a></h4>
+<h4 id="placement">Placement<a class="headerlink" href="#placement" title="Permanent link">&para;</a></h4>
+<h4 id="nova">Nova<a class="headerlink" href="#nova" title="Permanent link">&para;</a></h4>
+<h4 id="neutron">Neutron<a class="headerlink" href="#neutron" title="Permanent link">&para;</a></h4>
+<h4 id="cinder">Cinder<a class="headerlink" href="#cinder" title="Permanent link">&para;</a></h4>
+<h4 id="horizon">Horizon<a class="headerlink" href="#horizon" title="Permanent link">&para;</a></h4>
+<h4 id="ironic">Ironic<a class="headerlink" href="#ironic" title="Permanent link">&para;</a></h4>
+<h4 id="trove">Trove<a class="headerlink" href="#trove" title="Permanent link">&para;</a></h4>
+<h4 id="swift">Swift<a class="headerlink" href="#swift" title="Permanent link">&para;</a></h4>
+<h4 id="cyborg">Cyborg<a class="headerlink" href="#cyborg" title="Permanent link">&para;</a></h4>
+<h4 id="aodh">Aodh<a class="headerlink" href="#aodh" title="Permanent link">&para;</a></h4>
+<h4 id="gnocchi">Gnocchi<a class="headerlink" href="#gnocchi" title="Permanent link">&para;</a></h4>
+<h4 id="ceilometer">Ceilometer<a class="headerlink" href="#ceilometer" title="Permanent link">&para;</a></h4>
+<h4 id="heat">Heat<a class="headerlink" href="#heat" title="Permanent link">&para;</a></h4>
+<h4 id="tempest">Tempest<a class="headerlink" href="#tempest" title="Permanent link">&para;</a></h4>
+<h2 id="devstack">基于Devstack部署<a class="headerlink" href="#devstack" title="Permanent link">&para;</a></h2>
+<h2 id="openstack-sigoos">基于OpenStack SIG开发工具oos部署<a class="headerlink" href="#openstack-sigoos" title="Permanent link">&para;</a></h2>
+<h2 id="openstack-sigopensd">基于OpenStack SIG部署工具opensd部署<a class="headerlink" href="#openstack-sigopensd" title="Permanent link">&para;</a></h2>
+<h2 id="openstack-helm">基于OpenStack helm部署<a class="headerlink" href="#openstack-helm" title="Permanent link">&para;</a></h2>
+<h2 id="openstack-kolla">基于OpenStack Kolla部署<a class="headerlink" href="#openstack-kolla" title="Permanent link">&para;</a></h2>
               
             </div>
           </div><footer>
