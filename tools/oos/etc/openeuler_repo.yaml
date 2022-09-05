@@ -568,6 +568,7 @@ src-openeuler:
   ant-antunit: Base-service
   ant-contrib: sig-Java
   anthy: Others
+  anthy-unicode: sig-KDE
   antlr: dev-utils
   antlr-maven-plugin: Application
   antlr3: sig-Java
@@ -674,6 +675,7 @@ src-openeuler:
   assertj-core: Programming-language
   assimp: Others
   astream: Kernel
+  astyle: sig-KDE
   asymptote: dev-utils
   at: Base-service
   at-spi2-atk: Desktop
@@ -779,6 +781,7 @@ src-openeuler:
   blueman: sig-UKUI
   bluez: Base-service
   blur-effect: Desktop
+  bogofilter: sig-UKUI
   boilerpipe: Application
   bolt: System-tool
   bond_core: sig-ROS
@@ -802,6 +805,7 @@ src-openeuler:
   brotli: Base-service
   brpc: dev-utils
   bsf: dev-utils
+  bsfilter: sig-UKUI
   bsh: sig-Java
   btrfs-progs: Storage
   bubblemail: GNOME
@@ -856,6 +860,7 @@ src-openeuler:
   castor-maven-plugin: sig-Java
   catatonit: sig-CloudNative
   catch1: dev-utils
+  catdoc: sig-KDE
   catfish: xfce
   catkin: sig-ROS
   cbi-plugins: Base-service
@@ -925,6 +930,7 @@ src-openeuler:
   clibcni: iSulad
   cliquer: sig-epol
   clitest: Application
+  cln: sig-KDE
   cloc: dev-utils
   cloog: sig-compat-winapp
   closure-compiler: sig-nodejs
@@ -1180,6 +1186,7 @@ src-openeuler:
   docker-client-java: sig-CloudNative
   docker-compose: sig-CloudNative
   dogtail: Others
+  dolphin: sig-KDE
   dom4j: sig-Java
   doracms: sig-cms
   dos2unix: Base-service
@@ -1216,6 +1223,7 @@ src-openeuler:
   eagle: sig-power-efficient
   easy-checker: sig-EasyLife
   easymock: sig-Java
+  ebook-tools: sig-KDE
   ebtables: Networking
   ecj: dev-utils
   eclipse: sig-Java
@@ -1241,6 +1249,7 @@ src-openeuler:
   ed: Base-service
   ed25519-java: sig-Java
   edac-utils: sig-recycle
+  edgex-go: sig-Edge
   edk2: Virt
   efi-rpm-macros: sig-OS-Builder
   efibootmgr: sig-OS-Builder
@@ -1727,6 +1736,7 @@ src-openeuler:
   gpgme: Base-service
   gphoto2: Base-service
   gpm: Desktop
+  gpsd: sig-KDE
   gradle: sig-Java
   grafana: Application
   grantlee: sig-UKUI
@@ -2410,26 +2420,36 @@ src-openeuler:
   k3s-containerd: sig-K8sDistro
   k3s-selinux: sig-K8sDistro
   kabi-dw: Kernel
+  kaccounts-integration: sig-KDE
   kacst-fonts: Desktop
+  kactivitymanagerd: sig-KDE
   kae_driver: sig-AccLib
   kafka: bigdata
   kafka-python: sig-openstack
   kata-containers: sig-CloudNative
   kata-micro-kernel: sig-CloudNative
   kata_integration: sig-CloudNative
+  kate: sig-KDE
   katello: sig-ops
   katran: sig-high-performance-network
   kbackup: sig-KDE
   kbd: Desktop
   kbox: sig-ops
   kbuild-standalone: Kernel
+  kcron: sig-KDE
+  kde-cli-tools: sig-KDE
+  kde-connect: sig-KDE
   kde-filesystem: System-tool
   kde-settings: Desktop
   kdecoration: sig-KDE
   kdevelop: sig-KDE
+  kdevelop-pg-qt: sig-KDE
   kdevelopkdevelop-pg-qt: sig-KDE
   kdl_parser: sig-ROS
+  kdnssd: sig-KDE
+  kdsoap: sig-KDE
   kdump-anaconda-addon: Base-service
+  keditbookmarks: sig-KDE
   keepalived: Networking
   kernel: Kernel
   kexec-tools: Base-service
@@ -2439,10 +2459,15 @@ src-openeuler:
   keyrings-filesystem: Others
   keyutils: sig-security-facility
   kf5: sig-KDE
+  kf5-akonadi-server: sig-KDE
   kf5-attica: sig-KDE
+  kf5-baloo: sig-KDE
   kf5-bluez-qt: sig-KDE
   kf5-frameworkintegration: sig-KDE
+  kf5-grantleetheme: sig-KDE
   kf5-kactivities: sig-KDE
+  kf5-kactivities-stats: sig-KDE
+  kf5-kapidox: sig-KDE
   kf5-karchive: sig-KDE
   kf5-kauth: sig-KDE
   kf5-kbookmarks: sig-KDE
@@ -2451,8 +2476,10 @@ src-openeuler:
   kf5-kcompletion: sig-KDE
   kf5-kconfig: sig-KDE
   kf5-kconfigwidgets: sig-KDE
+  kf5-kcontacts: sig-KDE
   kf5-kcoreaddons: sig-KDE
   kf5-kcrash: sig-KDE
+  kf5-kdav: sig-KDE
   kf5-kdbusaddons: sig-KDE
   kf5-kdeclarative: sig-KDE
   kf5-kded: sig-KDE
@@ -2460,14 +2487,18 @@ src-openeuler:
   kf5-kdesignerplugin: sig-KDE
   kf5-kdesu: sig-KDE
   kf5-kdewebkit: sig-KDE
+  kf5-kdnssd: sig-KDE
   kf5-kdoctools: sig-KDE
   kf5-kemoticons: sig-KDE
+  kf5-kfilemetadata: sig-KDE
   kf5-kglobalaccel: sig-KDE
   kf5-kguiaddons: sig-KDE
+  kf5-kholidays: sig-KDE
   kf5-khtml: sig-KDE
   kf5-ki18n: sig-KDE
   kf5-kiconthemes: sig-KDE
   kf5-kidletime: sig-KDE
+  kf5-kimageformats: sig-KDE
   kf5-kinit: sig-KDE
   kf5-kio: sig-KDE
   kf5-kirigami2: sig-KDE
@@ -2475,13 +2506,19 @@ src-openeuler:
   kf5-kitemviews: sig-KDE
   kf5-kjobwidgets: sig-KDE
   kf5-kjs: sig-KDE
+  kf5-kjsembed: sig-KDE
+  kf5-kmediaplayer: sig-KDE
   kf5-knewstuff: sig-KDE
   kf5-knotifications: sig-KDE
   kf5-knotifyconfig: sig-KDE
+  kf5-kontactinterface: sig-KDE
   kf5-kpackage: sig-KDE
   kf5-kparts: sig-KDE
+  kf5-kpeople: sig-KDE
   kf5-kplotting: sig-KDE
   kf5-kpty: sig-KDE
+  kf5-kquickcharts: sig-KDE
+  kf5-kross: sig-KDE
   kf5-krunner: sig-KDE
   kf5-kservice: sig-KDE
   kf5-ktexteditor: sig-KDE
@@ -2492,14 +2529,23 @@ src-openeuler:
   kf5-kwidgetsaddons: sig-KDE
   kf5-kwindowsystem: sig-KDE
   kf5-kxmlgui: sig-KDE
+  kf5-kxmlrpcclient: sig-KDE
+  kf5-libkdepim: sig-KDE
+  kf5-mailcommon: sig-KDE
+  kf5-modemmanager-qt: sig-KDE
   kf5-networkmanager-qt: sig-KDE
   kf5-plasma: sig-KDE
+  kf5-prison: sig-KDE
+  kf5-purpose: sig-KDE
   kf5-solid: sig-KDE
   kf5-sonnet: sig-KDE
   kf5-syntax-highlighting: sig-KDE
   kf5-threadweaver: sig-KDE
+  khelpcenter: sig-KDE
   khmeros-fonts: System-tool
+  khotkeys: sig-KDE
   kim-api: Application
+  kio-extras: sig-KDE
   kiran-authentication-service: sig-KIRAN-DESKTOP
   kiran-avatar-editor: sig-KIRAN-DESKTOP
   kiran-biometrics: sig-KIRAN-DESKTOP
@@ -2536,12 +2582,15 @@ src-openeuler:
   kiwi: Base-service
   kiwi-dlimage: Private
   kiwi-template-openEuler: Private
+  kmenuedit: sig-KDE
   kmod: Computing
   kmod-drbd90: sig-Ha
   kmod-kvdo: Runtime
   kmodtool: dev-utils
   knox: bigdata
   kohsuke-pom: Application
+  konsole5: sig-KDE
+  kontact: sig-KDE
   kpatch: Base-service
   krb5: Base-service
   kronosnet: Networking
@@ -2549,6 +2598,7 @@ src-openeuler:
   ksc-defender: sig-security-facility
   kscreenlocker: sig-KDE
   ksh: Base-service
+  ksystemstats: sig-KDE
   kubeedge: sig-Edge
   kubekey: sig-K8sDistro
   kubernetes: sig-CloudNative
@@ -2556,9 +2606,11 @@ src-openeuler:
   kudu: bigdata
   kunpengsecl: sig-security-facility
   kurdit-unikurd-web-fonts: Desktop
+  kuserfeedback: sig-KDE
   kwayland-integration: sig-KDE
   kwayland-server: sig-KDE
   kwin: sig-KDE
+  kwrited: sig-KDE
   kxml: sig-Java
   kylin-burner: sig-UKUI
   kylin-calculator: sig-UKUI
@@ -2650,6 +2702,8 @@ src-openeuler:
   libXxf86misc: sig-recycle
   libXxf86vm: Desktop
   libabigail: Application
+  libaccounts-glib: sig-KDE
+  libaccounts-qt: sig-KDE
   libadwaita: GNOME
   libaec: Application
   libaesgm: Others
@@ -2690,6 +2744,7 @@ src-openeuler:
   libcec: sig-epol
   libcgroup: sig-CloudNative
   libchamplain: GNOME
+  libchewing: sig-KDE
   libclc: Base-service
   libcomps: Base-service
   libconfig: Base-service
@@ -2713,6 +2768,7 @@ src-openeuler:
   libdca: sig-epol
   libdeflate: sig-bio
   libdmapsharing: Application
+  libdmtx: sig-KDE
   libdmx: Desktop
   libdnet: Networking
   libdnf: sig-OS-Builder
@@ -2742,6 +2798,7 @@ src-openeuler:
   libewf: Others
   libexif: Desktop
   libfabric: Programming-language
+  libfakekey: sig-KDE
   libfastcommon: Storage
   libfastjson: Base-service
   libffado: sig-compat-winapp
@@ -2912,6 +2969,7 @@ src-openeuler:
   libproxy: Networking
   libpsl: Base-service
   libpwquality: sig-security-facility
+  libqalculate: sig-KDE
   libqb: Computing
   libqmi: Networking
   libqtxdg: sig-UKUI
@@ -3178,6 +3236,8 @@ src-openeuler:
   makeself: oVirt
   malaga: Private
   malaga-suomi-voikko: Private
+  maliit-framework: sig-KDE
+  maliit-keyboard: sig-KDE
   mallard-rng: Programming-language
   man-db: Base-service
   man-pages: Base-service
@@ -3293,6 +3353,8 @@ src-openeuler:
   mdm-themes: sig-cinnamon
   meanwhile: Programming-language
   mecab: Base-service
+  mecab-ipadic: sig-UKUI
+  mecab-jumandic: sig-UKUI
   media-player-info: Application
   media_export: sig-ROS
   meld: sig-desktop-apps
@@ -4149,6 +4211,8 @@ src-openeuler:
   ovirt-setup-lib: oVirt
   ovirt-vmconsole: oVirt
   ovirt-web-ui: oVirt
+  oxygen-icon-theme: sig-KDE
+  oxygen-sounds: sig-KDE
   p11-kit: Base-service
   p7zip: dev-utils
   pacemaker: sig-Ha
@@ -5842,7 +5906,21 @@ src-openeuler:
   pkgship: sig-EasyLife
   pki-core: Application
   plasma-breeze: sig-KDE
+  plasma-desktop: sig-KDE
+  plasma-discover: sig-KDE
+  plasma-integration: sig-KDE
+  plasma-mediacenter: sig-KDE
+  plasma-oxygen: sig-KDE
+  plasma-pa: sig-KDE
+  plasma-pass: sig-KDE
+  plasma-pk-updates: sig-KDE
+  plasma-sdk: sig-KDE
+  plasma-systemmonitor: sig-KDE
+  plasma-systemsettings: sig-KDE
+  plasma-thunderbolt: sig-KDE
+  plasma-vault: sig-KDE
   plasma-wayland-protocols: sig-KDE
+  plasma-workspace: sig-KDE
   platform: sig-epol
   platform_build: sig-recycle
   platform_frameworks_base: sig-recycle
@@ -5949,6 +6027,7 @@ src-openeuler:
   pugixml: sig-epol
   pulp: sig-K8sDistro
   pulseaudio: Computing
+  pulseaudio-qt: sig-KDE
   puppet-agent-puppet-strings: sig-ops
   pushgateway: sig-CloudNative
   pv: Base-service
@@ -7619,6 +7698,7 @@ src-openeuler:
   python-tinyrpc: sig-python-modules
   python-toml: sig-python-modules
   python-tomli: sig-python-modules
+  python-tomli-w: sig-python-modules
   python-toolz: sig-python-modules
   python-tooz: sig-openstack
   python-tornado: Programming-language
@@ -7826,6 +7906,7 @@ src-openeuler:
   qperf: Application
   qpid-proton: Base-service
   qpid-proton-java: sig-Java
+  qqc2-desktop-style: sig-KDE
   qrencode: Desktop
   qrupdate: bigdata
   qscintilla: bigdata
@@ -7847,6 +7928,7 @@ src-openeuler:
   qt5-qtdeclarative: Programming-language
   qt5-qtdoc: Programming-language
   qt5-qtenginio: Others
+  qt5-qtfeedback: sig-KDE
   qt5-qtgamepad: Programming-language
   qt5-qtgraphicaleffects: Programming-language
   qt5-qtimageformats: Programming-language
@@ -8060,6 +8142,7 @@ src-openeuler:
   ruby: sig-ruby
   ruby-augeas: sig-ruby
   ruby-common: sig-ruby
+  ruby-mecab: sig-UKUI
   rubygem-Ascii85: sig-ruby
   rubygem-RedCloth: sig-ruby
   rubygem-ZenTest: sig-ruby
@@ -8415,6 +8498,8 @@ src-openeuler:
   screen: Base-service
   scrub: Application
   scsi-target-utils: Others
+  sddm: sig-KDE
+  sddm-kcm: sig-KDE
   sdformat: sig-ROS
   sdparm: Storage
   seabios: Others
@@ -8459,6 +8544,7 @@ src-openeuler:
   si-units: Base-service
   siege: sig-epol
   sigar: sig-Java
+  signon: sig-KDE
   signpost-core: sig-Java
   sil-abyssinica-fonts: System-tool
   sil-nuosu-fonts: Desktop
