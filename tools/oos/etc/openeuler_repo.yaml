@@ -104,6 +104,11 @@ openeuler:
   eulerfs-test: Kernel
   evs: sig-high-performance-network
   extfuse: Storage
+  gala-anteater: sig-ops
+  gala-docs: sig-ops
+  gala-gopher: sig-ops
+  gala-ragdoll: sig-ops
+  gala-spider: sig-ops
   gazelle: sig-high-performance-network
   gazelle-cni: sig-recycle
   gcc: Compiler
@@ -2055,6 +2060,7 @@ src-openeuler:
   hyphen-tk: Application
   hyphen-uk: Application
   i2c-tools: Computing
+  i3: Desktop
   i40e: Networking
   iSulad: iSulad
   iSulad-img: sig-CloudNative
