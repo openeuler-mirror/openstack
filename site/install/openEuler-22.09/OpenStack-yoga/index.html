@@ -78,8 +78,18 @@
     <li class="toctree-l2"><a class="reference internal" href="#rpm">基于RPM部署</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#_2">环境准备</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_3">时钟同步</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_3">部署服务</a>
+    <li class="toctree-l4"><a class="reference internal" href="#_4">安装数据库</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_5">安装消息队列</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_6">安装缓存服务</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">部署服务</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#keystone">Keystone</a>
     </li>
@@ -177,8 +187,14 @@
 <li><a href="#_1">约定</a></li>
 <li><a href="#openstack">部署OpenStack</a></li>
 <li><a href="#rpm">基于RPM部署</a><ul>
-<li><a href="#_2">环境准备</a></li>
-<li><a href="#_3">部署服务</a><ul>
+<li><a href="#_2">环境准备</a><ul>
+<li><a href="#_3">时钟同步</a></li>
+<li><a href="#_4">安装数据库</a></li>
+<li><a href="#_5">安装消息队列</a></li>
+<li><a href="#_6">安装缓存服务</a></li>
+</ul>
+</li>
+<li><a href="#_7">部署服务</a><ul>
 <li><a href="#keystone">Keystone</a></li>
 <li><a href="#glance">Glance</a></li>
 <li><a href="#placement">Placement</a></li>
@@ -220,12 +236,8 @@
 </thead>
 <tbody>
 <tr>
-<td align="center">test</td>
-<td align="center">test</td>
-</tr>
-<tr>
-<td align="center">test</td>
-<td align="center">test</td>
+<td align="center">RABBIT_PASS</td>
+<td align="center">rabbitmq的密码，由用户设置，在OpenStack各个服务配置中使用</td>
 </tr>
 </tbody>
 </table>
@@ -233,7 +245,119 @@
 <p>OpenStack SIG提供了多种基于openEuler部署OpenStack的方法，以满足不同的用户场景，请按需选择。</p>
 <h2 id="rpm">基于RPM部署<a class="headerlink" href="#rpm" title="Permanent link">&para;</a></h2>
 <h3 id="_2">环境准备<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<h3 id="_3">部署服务<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>本文档基于OpenStack经典的三节点环境进行部署，三个节点分别是控制节点(Controller)、计算节点(Compute)、存储节点(Storage)，其中存储节点一般只部署存储服务，在资源有限的情况下，可以不单独部署该节点，把存储节点上的服务部署到计算节点即可。</p>
+<p>首先准备三个openEuler 22.09环境，根据您的环境，下载对应的镜像并安装即可：<a href="https://repo.openeuler.org/openEuler-21.09/ISO/">ISO镜像</a>、<a href="https://repo.openeuler.org/openEuler-21.09/virtual_machine_img/">qcow2镜像</a>。</p>
+<p>下面的安装按照如下拓扑进行：
+<pre class="highlight"><code>controller：192.168.0.2
+compute：   192.168.0.3
+storage：   192.168.0.4</code></pre>
+如果您的环境IP不同，请按照您的环境IP修改相应的配置文件即可。</p>
+<p>本文档的三节点服务拓扑如下图所示(只包含Keystone、Glance、Nova、Cinder、Neutron这几个核心服务，其他服务请参考具体部署章节)：</p>
+<p><img alt="topology" src="../../../img/install/topology.png" /></p>
+<p>在正式部署之前，需要对每个节点做如下配置和检查：</p>
+<ol>
+<li>
+<p>保证EPOL yum源已配置</p>
+<p>打开<code>/etc/yum.repos.d/openEuler.repo</code>文件，检查<code>[EPOL]</code>源是否存在，若不存在，则添加如下内容:
+<pre class="highlight"><code>[EPOL]
+name=EPOL
+baseurl=http://repo.openeuler.org/openEuler-22.09/EPOL/main/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=http://repo.openeuler.org/openEuler-22.09/OS/$basearch/RPM-GPG-KEY-openEuler</code></pre>
+不论改不改这个文件，新机器的第一步都要更新一下yum源，执行<code>yum update</code>。</p>
+</li>
+<li>
+<p>修改主机名以及映射</p>
+<p>每个节点分别修改主机名，以controller为例：</p>
+<pre class="highlight"><code>hostnamectl set-hostname controller
+
+vi /etc/hostname
+内容修改为controller</code></pre>
+<p>然后修改每个节点的<code>/etc/hosts</code>文件，新增如下内容:</p>
+<pre class="highlight"><code>192.168.0.2   controller
+192.168.0.3   compute
+192.168.0.4   storage</code></pre>
+</li>
+</ol>
+<h4 id="_3">时钟同步<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<p>集群环境时刻要求每个节点的时间一致，一般由时钟同步软件保证。本文使用<code>chrony</code>软件。步骤如下：</p>
+<p><strong>Controller节点</strong>：</p>
+<ol>
+<li>安装服务
+    <pre class="highlight"><code>yum install chrony</code></pre></li>
+<li>修改<code>/etc/chrony.conf</code>配置文件，新增一行
+    <pre class="highlight"><code># 表示允许哪些IP从本节点同步时钟
+allow 192.168.0.0/24</code></pre></li>
+<li>重启服务
+    <pre class="highlight"><code>systemctl restart chronyd</code></pre></li>
+</ol>
+<p><strong>其他节点</strong>
+1. 安装服务
+    <pre class="highlight"><code>yum install chrony</code></pre>
+2. 修改<code>/etc/chrony.conf</code>配置文件，新增一行
+    <pre class="highlight"><code># NTP_SERVER是controller IP，表示从这个机器获取时间，这里我们填192.168.0.2，或者在`/etc/hosts`里配置好的controller名字即可。
+server NTP_SERVER iburst</code></pre>
+    同时，要把<code>pool pool.ntp.org iburst</code>这一行注释掉，表示不从公网同步时钟。</p>
+<ol>
+<li>重启服务
+    <pre class="highlight"><code>systemctl restart chronyd</code></pre></li>
+</ol>
+<p>配置完成后，检查一下结果，在其他非controller节点执行<code>chronyc sources</code>，返回结果类似如下内容，表示成功从controller同步时钟。
+<pre class="highlight"><code>MS Name/IP address         Stratum Poll Reach LastRx Last sample
+===============================================================================
+^* 192.168.0.2                 4   6     7     0  -1406ns[  +55us] +/-   16ms
+</code></pre></p>
+<h4 id="_4">安装数据库<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>数据库安装在控制节点，这里推荐使用mariadb。</p>
+<ol>
+<li>安装软件包</li>
+</ol>
+<pre class="highlight"><code>yum install mariadb mariadb-server python3-PyMySQL</code></pre>
+<ol>
+<li>新增配置文件<code>/etc/my.cnf.d/openstack.cnf</code>，内容如下</li>
+</ol>
+<pre class="highlight"><code>[mysqld]
+bind-address = 192.168.0.2
+default-storage-engine = innodb
+innodb_file_per_table = on
+max_connections = 4096
+collation-server = utf8_general_ci
+character-set-server = utf8</code></pre>
+<ol>
+<li>启动服务器</li>
+</ol>
+<pre class="highlight"><code>systemctl start mariadb</code></pre>
+<ol>
+<li>初始化数据库，根据提示进行即可</li>
+</ol>
+<pre class="highlight"><code>mysql_secure_installation</code></pre>
+<ol>
+<li>验证，根据第四步设置的密码，检查是否能登录mariadb</li>
+</ol>
+<pre class="highlight"><code>mysql -uroot -p</code></pre>
+<h4 id="_5">安装消息队列<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<p>消息队列安装在控制节点，这里推荐使用rabbitmq。</p>
+<ol>
+<li>安装软件包
+<pre class="highlight"><code>yum install rabbitmq-server</code></pre></li>
+<li>启动服务
+<pre class="highlight"><code>systemctl start rabbitmq-server</code></pre></li>
+<li>配置openstack用户，<code>RABBIT_PASS</code>是openstack服务登录消息队里的密码，需要和后面各个服务的配置保持一致。
+<pre class="highlight"><code>rabbitmqctl add_user openstack RABBIT_PASS
+rabbitmqctl set_permissions openstack ".*" ".*" ".*"</code></pre></li>
+</ol>
+<h4 id="_6">安装缓存服务<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p>消息队列安装在控制节点，这里推荐使用Memcached。</p>
+<ol>
+<li>安装软件包
+<pre class="highlight"><code>yum install memcached python3-memcached</code></pre></li>
+<li>修改配置文件<code>/etc/sysconfig/memcached</code>
+<pre class="highlight"><code>OPTIONS="-l 127.0.0.1,::1,controller"</code></pre></li>
+<li>启动服务
+<pre class="highlight"><code>systemctl start memcached</code></pre></li>
+</ol>
+<h3 id="_7">部署服务<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <h4 id="keystone">Keystone<a class="headerlink" href="#keystone" title="Permanent link">&para;</a></h4>
 <h4 id="glance">Glance<a class="headerlink" href="#glance" title="Permanent link">&para;</a></h4>
 <h4 id="placement">Placement<a class="headerlink" href="#placement" title="Permanent link">&para;</a></h4>
