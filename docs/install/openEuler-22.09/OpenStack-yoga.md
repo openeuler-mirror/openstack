@@ -200,11 +200,741 @@ systemctl start memcached
 #### Horizon
 #### Ironic
 #### Trove
+
+Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据库服务则推荐使用该组件。否则，可以不用安装。
+
+**Controller节点**
+
+1. 创建数据库。
+
+    数据库服务在数据库中存储信息，创建一个trove用户可以访问的trove数据库，替换TROVE_DBPASS为合适的密码。
+    ```sql
+    CREATE DATABASE trove CHARACTER SET utf8;
+    GRANT ALL PRIVILEGES ON trove.* TO 'trove'@'localhost' IDENTIFIED BY 'TROVE_DBPASS';
+    GRANT ALL PRIVILEGES ON trove.* TO 'trove'@'%' IDENTIFIED BY 'TROVE_DBPASS';
+    ```
+
+2. 创建服务凭证以及API端点。
+
+    创建服务凭证。
+    ```bash
+    # 创建trove用户
+    openstack user create --domain default --password-prompt trove
+    # 添加admin角色
+    openstack role add --project service --user trove admin
+    # 创建database服务
+    openstack service create --name trove --description "Database service" database
+    ```
+
+    创建API端点。
+    ```bash
+    openstack endpoint create --region RegionOne database public http://controller:8779/v1.0/%\(tenant_id\)s
+    openstack endpoint create --region RegionOne database internal http://controller:8779/v1.0/%\(tenant_id\)s
+    openstack endpoint create --region RegionOne database admin http://controller:8779/v1.0/%\(tenant_id\)s
+    ```
+
+3. 安装Trove。
+    ```bash
+    yum install openstack-trove python-troveclient
+    ```
+
+4. 修改配置文件。
+
+    编辑/etc/trove/trove.conf。
+    ```ini
+    [DEFAULT]
+    bind_host=192.168.0.2
+    log_dir = /var/log/trove
+    network_driver = trove.network.neutron.NeutronDriver
+    network_label_regex=.*
+    management_security_groups = <manage security group>
+    nova_keypair = trove-mgmt
+    default_datastore = mysql
+    taskmanager_manager = trove.taskmanager.manager.Manager
+    trove_api_workers = 5
+    transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
+    reboot_time_out = 300
+    usage_timeout = 900
+    agent_call_high_timeout = 1200
+    use_syslog = False
+    debug = True
+
+    [database]
+    connection = mysql+pymysql://trove:TROVE_DBPASS@controller/trove
+
+    [keystone_authtoken]
+    auth_url = http://controller:5000/v3/
+    auth_type = password
+    project_domain_name = Default
+    project_name = service
+    user_domain_name = Default
+    password = trove
+    username = TROVE_PASS
+    
+    [service_credentials]
+    auth_url = http://controller:5000/v3/
+    region_name = RegionOne
+    project_name = service
+    project_domain_name = Default
+    user_domain_name = Default
+    username = trove
+    password = TROVE_PASS
+
+    [mariadb]
+    tcp_ports = 3306,4444,4567,4568
+
+    [mysql]
+    tcp_ports = 3306
+
+    [postgresql]
+    tcp_ports = 5432
+    ```
+
+    **解释：**
+
+    > `[Default]`分组中`bind_host`配置为Trove控制节点的IP。\
+    > `transport_url` 为`RabbitMQ`连接信息，`RABBIT_PASS`替换为RabbitMQ的密码。\
+    > `[database]`分组中的`connection` 为前面在mysql中为Trove创建的数据库信息。\
+    > Trove的用户信息中`TROVE_PASSWORD`替换为实际trove用户的密码。
+
+    编辑/etc/trove/trove-guestagent.conf。
+    ```ini
+    [DEFAULT]
+    log_file = trove-guestagent.log
+    log_dir = /var/log/trove/
+    ignore_users = os_admin
+    control_exchange = trove
+    transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
+    rpc_backend = rabbit
+    command_process_timeout = 60
+    use_syslog = False
+    debug = True
+
+    [service_credentials]
+    auth_url = http://controller:5000/v3/
+    region_name = RegionOne
+    project_name = service
+    password = TROVE_PASS
+    project_domain_name = Default
+    user_domain_name = Default
+    username = trove
+
+    [mysql]
+    docker_image = your-registry/your-repo/mysql
+    backup_docker_image = your-registry/your-repo/db-backup-mysql:1.1.0
+    ```
+
+    **解释：** 
+
+    > `guestagent`是trove中一个独立组件，需要预先内置到Trove通过Nova创建的虚拟机镜像中，在创建好数据库实例后，会起guestagent进程，负责通过消息队列（RabbitMQ）向Trove上报心跳，因此需要配置RabbitMQ的用户和密码信息。\
+    > `transport_url` 为`RabbitMQ`连接信息，`RABBIT_PASS`替换为RabbitMQ的密码。\
+    > Trove的用户信息中`TROVE_PASSWORD`替换为实际trove用户的密码。\
+    > 从Victoria版开始，Trove使用一个统一的镜像来跑不同类型的数据库，数据库服务运行在Guest虚拟机的Docker容器中。
+
+
+5. 数据库同步。
+    ```bash
+    su -s /bin/sh -c "trove-manage db_sync" trove
+    ```
+
+6. 完成安装。
+    ```bash
+    # 配置服务自启
+    systemctl enable openstack-trove-api.service openstack-trove-taskmanager.service \ 
+    openstack-trove-conductor.service
+
+    # 启动服务
+    systemctl start openstack-trove-api.service openstack-trove-taskmanager.service \ 
+    openstack-trove-conductor.service
+    ```
+
 #### Swift
+
+Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适合存储大规模非结构化数据。
+
+**Controller节点**
+
+1. 创建服务凭证以及API端点。
+
+    创建服务凭证。
+    ```bash
+    # 创建swift用户
+    openstack user create --domain default --password-prompt swift
+    # 添加admin角色
+    openstack role add --project service --user swift admin
+    # 创建对象存储服务
+    openstack service create --name swift --description "OpenStack Object Storage" object-store
+    ```
+
+    创建API端点。
+    ```bash
+    openstack endpoint create --region RegionOne object-store public http://controller:8080/v1/AUTH_%\(project_id\)s
+    openstack endpoint create --region RegionOne object-store internal http://controller:8080/v1/AUTH_%\(project_id\)s
+    openstack endpoint create --region RegionOne object-store admin http://controller:8080/v1 
+    ```
+
+2. 安装Swift。
+    ```bash
+    yum install openstack-swift-proxy python3-swiftclient python3-keystoneclient \ 
+    python3-keystonemiddleware memcached
+    ```
+
+3. 配置proxy-server。
+
+    Swift RPM包里已经包含了一个基本可用的proxy-server.conf，只需要手动修改其中的ip和SWIFT_PASS即可。
+    ```ini
+    vim /etc/swift/proxy-server.conf
+
+    [filter:authtoken]
+    paste.filter_factory = keystonemiddleware.auth_token:filter_factory
+    www_authenticate_uri = http://controller:5000
+    auth_url = http://controller:5000
+    memcached_servers = controller:11211
+    auth_type = password
+    project_domain_id = default
+    user_domain_id = default
+    project_name = service
+    username = swift
+    password = SWIFT_PASS
+    delay_auth_decision = True
+    service_token_roles_required = True
+    ```
+
+**Storage节点**
+
+1. 安装支持的程序包。
+    ```bash
+    yum install openstack-swift-account openstack-swift-container openstack-swift-object
+    yum install xfsprogs rsync
+    ```
+
+2. 将设备/dev/sdb和/dev/sdc格式化为XFS。
+    ```bash
+    mkfs.xfs /dev/sdb
+    mkfs.xfs /dev/sdc
+    ```
+
+3. 创建挂载点目录结构。
+    ```bash
+    mkdir -p /srv/node/sdb
+    mkdir -p /srv/node/sdc
+    ```
+
+4. 找到新分区的UUID。
+    ```bash
+    blkid
+    ```
+
+5. 编辑/etc/fstab文件并将以下内容添加到其中。
+    ```bash
+    UUID="<UUID-from-output-above>" /srv/node/sdb xfs noatime 0 2
+    UUID="<UUID-from-output-above>" /srv/node/sdc xfs noatime 0 2
+    ```
+
+6. 挂载设备。
+    ```bash
+    mount /srv/node/sdb
+    mount /srv/node/sdc
+    ```
+
+    ***注意***
+
+    **如果用户不需要容灾功能，以上步骤只需要创建一个设备即可，同时可以跳过下面的rsync配置。**
+
+7. （可选）创建或编辑/etc/rsyncd.conf文件以包含以下内容:
+    ```ini
+    [DEFAULT]
+    uid = swift
+    gid = swift
+    log file = /var/log/rsyncd.log
+    pid file = /var/run/rsyncd.pid
+    address = MANAGEMENT_INTERFACE_IP_ADDRESS
+    
+    [account]
+    max connections = 2
+    path = /srv/node/
+    read only = False
+    lock file = /var/lock/account.lock
+    
+    [container]
+    max connections = 2
+    path = /srv/node/
+    read only = False
+    lock file = /var/lock/container.lock
+    
+    [object]
+    max connections = 2
+    path = /srv/node/
+    read only = False
+    lock file = /var/lock/object.lock
+    ```
+
+    **替换MANAGEMENT_INTERFACE_IP_ADDRESS为存储节点上管理网络的IP地址**
+
+    启动rsyncd服务并配置它在系统启动时启动:
+    ```shell
+    systemctl enable rsyncd.service
+    systemctl start rsyncd.service
+    ```
+
+8. 配置存储节点。
+
+    编辑/etc/swift目录的account-server.conf、container-server.conf和object-server.conf文件，替换bind_ip为存储节点上管理网络的IP地址。
+    ```ini
+    [DEFAULT]
+    bind_ip = 192.168.0.4
+    ```
+
+    确保挂载点目录结构的正确所有权。
+    ```bash
+    chown -R swift:swift /srv/node
+    ```
+
+    创建recon目录并确保其拥有正确的所有权。
+    ```bash
+    mkdir -p /var/cache/swift
+    chown -R root:swift /var/cache/swift
+    chmod -R 775 /var/cache/swift
+    ```
+
+**Controller节点创建并分发环**
+
+1. 创建账号环。
+
+    切换到`/etc/swift`目录。
+    ```bash
+    cd /etc/swift
+    ```
+
+    创建基础`account.builder`文件。
+    ```bash
+    swift-ring-builder account.builder create 10 1 1
+    ```
+
+    将每个存储节点添加到环中。
+    ```bash
+    swift-ring-builder account.builder add --region 1 --zone 1 \
+    --ip STORAGE_NODE_MANAGEMENT_INTERFACE_IP_ADDRESS \ 
+    --port 6202  --device DEVICE_NAME \ 
+    --weight 100
+    ```
+
+    > 替换STORAGE_NODE_MANAGEMENT_INTERFACE_IP_ADDRESS为存储节点上管理网络的IP地址。\
+    > 替换DEVICE_NAME为同一存储节点上的存储设备名称。
+
+    ***注意***
+
+    **对每个存储节点上的每个存储设备重复此命令**
+
+    验证账号环内容。
+    ```shell
+    swift-ring-builder account.builder
+    ```
+    
+    重新平衡账号环。
+    ```shell
+    swift-ring-builder account.builder rebalance
+    ```
+
+2. 创建容器环。
+   
+    切换到`/etc/swift`目录。
+    
+    创建基础`container.builder`文件。
+    ```shell
+    swift-ring-builder container.builder create 10 1 1
+    ```
+    
+    将每个存储节点添加到环中。
+    ```shell
+    swift-ring-builder container.builder add --region 1 --zone 1 \
+    --ip STORAGE_NODE_MANAGEMENT_INTERFACE_IP_ADDRESS 
+    --port 6201 --device DEVICE_NAME \
+    --weight 100
+    ```
+    
+    >替换STORAGE_NODE_MANAGEMENT_INTERFACE_IP_ADDRESS为存储节点上管理网络的IP地址。\
+    >替换DEVICE_NAME为同一存储节点上的存储设备名称。
+    
+    ***注意***
+
+    **对每个存储节点上的每个存储设备重复此命令**
+    
+    验证容器环内容。
+    ```shell
+    swift-ring-builder container.builder
+    ```
+    
+    重新平衡容器环。
+    ```shell
+    swift-ring-builder container.builder rebalance
+    ```
+
+3. 创建对象环。
+   
+    切换到`/etc/swift`目录。
+    
+    创建基础`object.builder`文件。
+    ```shell
+    swift-ring-builder object.builder create 10 1 1
+    ```
+    
+    将每个存储节点添加到环中。
+    ```shell
+     swift-ring-builder object.builder add --region 1 --zone 1 \
+     --ip STORAGE_NODE_MANAGEMENT_INTERFACE_IP_ADDRESS \
+     --port 6200 --device DEVICE_NAME \
+     --weight 100
+    ```
+    
+    >替换STORAGE_NODE_MANAGEMENT_INTERFACE_IP_ADDRESS为存储节点上管理网络的IP地址。\
+    >替换DEVICE_NAME为同一存储节点上的存储设备名称。
+    
+    ***注意***
+
+    **对每个存储节点上的每个存储设备重复此命令**
+    
+    验证对象环内容。
+    ```shell
+    swift-ring-builder object.builder
+    ```
+    
+    重新平衡对象环。
+    ```shell
+    swift-ring-builder object.builder rebalance
+    ```
+
+4. 分发环配置文件。
+
+    将`account.ring.gz`，`container.ring.gz`以及 `object.ring.gz`文件复制到每个存储节点和运行代理服务的任何其他节点上的`/etc/swift`目录。
+
+5. 编辑配置文件/etc/swift/swift.conf。
+    ```ini
+    [swift-hash]
+    swift_hash_path_suffix = test-hash
+    swift_hash_path_prefix = test-hash
+
+    [storage-policy:0]
+    name = Policy-0
+    default = yes
+    ```
+
+    **用唯一值替换 test-hash**
+
+    将swift.conf文件复制到/etc/swift每个存储节点和运行代理服务的任何其他节点上的目录。
+    
+    在所有节点上，确保配置目录的正确所有权。
+    ```shell
+    chown -R root:swift /etc/swift
+    ```
+
+**完成安装**
+
+在控制节点和运行代理服务的任何其他节点上，启动对象存储代理服务及其依赖项，并将它们配置为在系统启动时启动。
+```bash
+systemctl enable openstack-swift-proxy.service memcached.service
+systemctl start openstack-swift-proxy.service memcached.service
+```
+
+在存储节点上，启动对象存储服务并将它们配置为在系统启动时启动。
+```bash
+systemctl enable openstack-swift-account.service \
+openstack-swift-account-auditor.service \
+openstack-swift-account-reaper.service \
+openstack-swift-account-replicator.service \
+openstack-swift-container.service \
+openstack-swift-container-auditor.service \
+openstack-swift-container-replicator.service \
+openstack-swift-container-updater.service \
+openstack-swift-object.service \
+openstack-swift-object-auditor.service \
+openstack-swift-object-replicator.service \
+openstack-swift-object-updater.service
+
+systemctl start openstack-swift-account.service \
+openstack-swift-account-auditor.service \
+openstack-swift-account-reaper.service \
+openstack-swift-account-replicator.service \
+openstack-swift-container.service \
+openstack-swift-container-auditor.service \
+openstack-swift-container-replicator.service \
+openstack-swift-container-updater.service \
+openstack-swift-object.service \
+openstack-swift-object-auditor.service \
+openstack-swift-object-replicator.service \
+openstack-swift-object-updater.service
+```
+
 #### Cyborg
 #### Aodh
+Aodh可以根据由Ceilometer或者Gnocchi收集的监控数据创建告警，并设置触发规则。
+
+**Controller节点**
+
+1. 创建数据库。
+
+    ```sql
+    CREATE DATABASE aodh;
+    GRANT ALL PRIVILEGES ON aodh.* TO 'aodh'@'localhost' IDENTIFIED BY 'AODH_DBPASS';
+    GRANT ALL PRIVILEGES ON aodh.* TO 'aodh'@'%' IDENTIFIED BY 'AODH_DBPASS';
+    ```
+
+2. 创建服务凭证以及API端点。
+
+    创建服务凭证。
+    ```bash
+    openstack user create --domain default --password-prompt aodh
+    openstack role add --project service --user aodh admin
+    openstack service create --name aodh --description "Telemetry" alarming
+    ```
+
+    创建API端点。
+    ```bash
+    openstack endpoint create --region RegionOne alarming public http://controller:8042
+    openstack endpoint create --region RegionOne alarming internal http://controller:8042
+    openstack endpoint create --region RegionOne alarming admin http://controller:8042
+    ```
+
+3. 安装Aodh。
+    ```bash
+    yum install openstack-aodh-api openstack-aodh-evaluator \
+    openstack-aodh-notifier openstack-aodh-listener \
+    openstack-aodh-expirer python3-aodhclient
+    ```
+
+4. 修改配置文件。
+    ```ini
+    vim /etc/aodh/aodh.conf
+
+    [database]
+    connection = mysql+pymysql://aodh:AODH_DBPASS@controller/aodh
+
+    [DEFAULT]
+    transport_url = rabbit://openstack:RABBIT_PASS@controller
+    auth_strategy = keystone
+
+    [keystone_authtoken]
+    www_authenticate_uri = http://controller:5000
+    auth_url = http://controller:5000
+    memcached_servers = controller:11211
+    auth_type = password
+    project_domain_id = default
+    user_domain_id = default
+    project_name = service
+    username = aodh
+    password = AODH_PASS
+
+    [service_credentials]
+    auth_type = password
+    auth_url = http://controller:5000/v3
+    project_domain_id = default
+    user_domain_id = default
+    project_name = service
+    username = aodh
+    password = AODH_PASS
+    interface = internalURL
+    region_name = RegionOne
+    ```
+
+5. 同步数据库。
+    ```bash
+    aodh-dbsync
+    ```
+
+6. 完成安装。
+    ```bash
+    # 配置服务自启
+    systemctl enable openstack-aodh-api.service openstack-aodh-evaluator.service \
+    openstack-aodh-notifier.service openstack-aodh-listener.service
+
+    # 启动服务
+    systemctl start openstack-aodh-api.service openstack-aodh-evaluator.service \
+    openstack-aodh-notifier.service openstack-aodh-listener.service
+    ```
+
 #### Gnocchi
+Gnocchi是一个开源的时间序列数据库，可以对接Ceilometer。
+
+**Controller节点**
+
+1. 创建数据库。
+    ```sql
+    CREATE DATABASE gnocchi;
+    GRANT ALL PRIVILEGES ON gnocchi.* TO 'gnocchi'@'localhost' IDENTIFIED BY 'GNOCCHI_DBPASS';
+    GRANT ALL PRIVILEGES ON gnocchi.* TO 'gnocchi'@'%' IDENTIFIED BY 'GNOCCHI_DBPASS';
+    ```
+
+2. 创建服务凭证以及API端点。
+    
+    创建服务凭证。
+    ```bash
+    openstack user create --domain default --password-prompt gnocchi
+    openstack role add --project service --user gnocchi admin
+    openstack service create --name gnocchi --description "Metric Service" metric
+    ```
+
+    创建API端点。
+    ```bash
+    openstack endpoint create --region RegionOne metric public http://controller:8041
+    openstack endpoint create --region RegionOne metric internal http://controller:8041
+    openstack endpoint create --region RegionOne metric admin http://controller:8041
+    ```
+
+3. 安装Gnocchi。
+    ```bash
+    yum install openstack-gnocchi-api openstack-gnocchi-metricd python3-gnocchiclient
+    ```
+
+4. 修改配置文件。
+    ```ini
+    vim /etc/gnocchi/gnocchi.conf
+    [api]
+    auth_mode = keystone
+    port = 8041
+    uwsgi_mode = http-socket
+
+    [keystone_authtoken]
+    auth_type = password
+    auth_url = http://controller:5000/v3
+    project_domain_name = Default
+    user_domain_name = Default
+    project_name = service
+    username = gnocchi
+    password = GNOCCHI_PASS
+    interface = internalURL
+    region_name = RegionOne
+
+    [indexer]
+    url = mysql+pymysql://gnocchi:GNOCCHI_DBPASS@controller/gnocchi
+
+    [storage]
+    # coordination_url is not required but specifying one will improve
+    # performance with better workload division across workers.
+    # coordination_url = redis://controller:6379
+    file_basepath = /var/lib/gnocchi
+    driver = file
+    ```
+
+5. 同步数据库。
+    ```bash
+    gnocchi-upgrade
+    ```
+
+6. 完成安装。
+    ```bash
+    # 配置服务自启
+    systemctl enable openstack-gnocchi-api.service openstack-gnocchi-metricd.service
+
+    # 启动服务
+    systemctl start openstack-gnocchi-api.service openstack-gnocchi-metricd.service
+    ```
+
 #### Ceilometer
+Ceilometer是OpenStack中负责数据收集的服务。
+
+**Controller节点**
+
+1. 创建服务凭证。
+    ```bash
+    openstack user create --domain default --password-prompt ceilometer
+    openstack role add --project service --user ceilometer admin
+    openstack service create --name ceilometer --description "Telemetry" metering
+    ```
+
+2. 安装Ceilometer软件包。
+    ```bash
+    yum install openstack-ceilometer-notification openstack-ceilometer-central
+    ```
+
+3. 编辑配置文件/etc/ceilometer/pipeline.yaml。 
+    ```yaml
+    publishers:
+        # set address of Gnocchi
+        # + filter out Gnocchi-related activity meters (Swift driver)
+        # + set default archive policy
+        - gnocchi://?filter_project=service&archive_policy=low
+    ```
+
+4. 编辑配置文件/etc/ceilometer/ceilometer.conf。
+    ```ini
+    [DEFAULT]
+    transport_url = rabbit://openstack:RABBIT_PASS@controller
+
+    [service_credentials]
+    auth_type = password
+    auth_url = http://controller:5000/v3
+    project_domain_id = default
+    user_domain_id = default
+    project_name = service
+    username = ceilometer
+    password = CEILOMETER_PASS
+    interface = internalURL
+    region_name = RegionOne
+    ```
+
+5. 数据库同步。
+    ```bash
+    ceilometer-upgrade
+    ```
+    
+6. 完成控制节点Ceilometer安装。
+    ```bash
+    # 配置服务自启
+    systemctl enable openstack-ceilometer-notification.service openstack-ceilometer-central.service
+    # 启动服务
+    systemctl start openstack-ceilometer-notification.service openstack-ceilometer-central.service
+    ```
+
+**Compute节点**
+
+1. 安装Ceilometer软件包。
+    ```bash
+    yum install openstack-ceilometer-compute
+    yum install openstack-ceilometer-ipmi       # 可选
+    ```
+
+2. 编辑配置文件/etc/ceilometer/ceilometer.conf。
+    ```ini
+    [DEFAULT]
+    transport_url = rabbit://openstack:RABBIT_PASS@controller
+
+    [service_credentials]
+    auth_url = http://controller:5000
+    project_domain_id = default
+    user_domain_id = default
+    auth_type = password
+    username = ceilometer
+    project_name = service
+    password = CEILOMETER_PASS
+    interface = internalURL
+    region_name = RegionOne
+    ```
+
+3. 编辑配置文件/etc/nova/nova.conf。
+    ```ini
+    [DEFAULT]
+    instance_usage_audit = True
+    instance_usage_audit_period = hour
+
+    [notifications]
+    notify_on_state_change = vm_and_task_state
+
+    [oslo_messaging_notifications]
+    driver = messagingv2
+    ```
+
+4. 完成安装。
+    ```bash
+    systemctl enable openstack-ceilometer-compute.service
+    systemctl start openstack-ceilometer-compute.service
+    systemctl enable openstack-ceilometer-ipmi.service         # 可选
+    systemctl start openstack-ceilometer-ipmi.service          # 可选
+    
+    # 重启nova-compute服务
+    systemctl restart openstack-nova-compute.service
+    ```
+    
+
 #### Heat
 #### Tempest
 ## 基于Devstack部署
