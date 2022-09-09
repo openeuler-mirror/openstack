@@ -16,7 +16,10 @@
 | KEYSTONE_DBPASS | keystone服务数据库密码，在keystone配置中使用|
 | GLANCE_PASS | glance服务keystone用户的密码，在glance配置中使用|
 | GLANCE_DBPASS | glance服务数据库密码，在glance配置中使用|
+| HEAT_PASS | 在keystone注册的heat用户密码，在heat配置中使用|
 | HEAT_DBPASS | heat服务数据库密码，在heat配置中使用 |
+| CYBORG_PASS | 在keystone注册的cyborg用户密码，在cyborg配置中使用|
+| CYBORG_DBPASS | cyborg服务数据库密码，在cyborg配置中使用 |
 
 ## 部署OpenStack
 
@@ -498,6 +501,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 #### Placement
 #### Nova
 #### Neutron
+
 #### Cinder
 
 **Controller节点**：
@@ -1173,6 +1177,115 @@ openstack-swift-object-updater.service
 ```
 
 #### Cyborg
+Cyborg为OpenStack提供加速器设备的支持，包括 GPU, FPGA, ASIC, NP, SoCs, NVMe/NOF SSDs, ODP, DPDK/SPDK等等。
+
+**Controller节点**
+
+1. 初始化对应数据库
+
+```
+mysql -u root -p
+
+MariaDB [(none)]> CREATE DATABASE cyborg;
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON cyborg.* TO 'cyborg'@'localhost' IDENTIFIED BY 'CYBORG_DBPASS';
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON cyborg.* TO 'cyborg'@'%' IDENTIFIED BY 'CYBORG_DBPASS';
+MariaDB [(none)]> exit;
+```
+
+2. 创建用户和服务，并记住创建cybory用户时输入的密码，用于配置CYBORG_PASS
+```
+source ~/.admin-openrc
+$ openstack user create --domain default --password-prompt cyborg
+$ openstack role add --project service --user cyborg admin
+$ openstack service create --name cyborg --description "Acceleration Service" accelerator
+```
+
+3. 使用uwsgi部署Cyborg api服务
+```
+$ openstack endpoint create --region RegionOne accelerator public http://controller/accelerator/v2
+$ openstack endpoint create --region RegionOne accelerator internal http://controller/accelerator/v2
+$ openstack endpoint create --region RegionOne accelerator admin http://controller/accelerator/v2
+```
+
+4. 安装Cyborg
+
+```
+yum install openstack-cyborg
+```
+
+5. 配置Cyborg
+
+修改`/etc/cyborg/cyborg.conf`
+
+```
+[DEFAULT]
+transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
+use_syslog = False
+state_path = /var/lib/cyborg
+debug = True
+
+[api]
+host_ip = 0.0.0.0
+
+[database]
+connection = mysql+pymysql://cyborg:CYBORG_DBPASS@controller/cyborg
+
+[service_catalog]
+cafile = /opt/stack/data/ca-bundle.pem
+project_domain_id = default
+user_domain_id = default
+project_name = service
+password = CYBORG_PASS
+username = cyborg
+auth_url = http://controller:5000/v3/
+auth_type = password
+
+[placement]
+project_domain_name = Default
+project_name = service
+user_domain_name = Default
+password = password
+username = PLACEMENT_PASS
+auth_url = http://controller:5000/v3/
+auth_type = password
+auth_section = keystone_authtoken
+
+[nova]
+project_domain_name = Default
+project_name = service
+user_domain_name = Default
+password = NOVA_PASS
+username = nova
+auth_url = http://controller:5000/v3/
+auth_type = password
+auth_section = keystone_authtoken
+
+[keystone_authtoken]
+memcached_servers = localhost:11211
+signing_dir = /var/cache/cyborg/api
+cafile = /opt/stack/data/ca-bundle.pem
+project_domain_name = Default
+project_name = service
+user_domain_name = Default
+password = CYBORG_PASS
+username = cyborg
+auth_url = http://controller:5000/v3/
+auth_type = password
+```
+
+6. 同步数据库表格
+
+```
+cyborg-dbsync --config-file /etc/cyborg/cyborg.conf upgrade
+```
+
+7. 启动Cyborg服务
+
+```
+systemctl enable openstack-cyborg-api openstack-cyborg-conductor openstack-cyborg-agent
+systemctl start openstack-cyborg-api openstack-cyborg-conductor openstack-cyborg-agent
+```
+
 #### Aodh
 Aodh可以根据由Ceilometer或者Gnocchi收集的监控数据创建告警，并设置触发规则。
 
@@ -1460,6 +1573,8 @@ MariaDB [(none)]> exit;
 2. 创建服务凭证，创建**heat**用户，并为其增加**admin**角色
 
 ```
+source ~/.admin-openrc
+
 openstack user create --domain default --password-prompt heat
 openstack role add --project service --user heat admin
 ```
