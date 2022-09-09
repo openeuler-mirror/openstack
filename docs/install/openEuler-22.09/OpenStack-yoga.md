@@ -16,6 +16,7 @@
 | KEYSTONE_DBPASS | keystone服务数据库密码，在keystone配置中使用|
 | GLANCE_PASS | glance服务keystone用户的密码，在glance配置中使用|
 | GLANCE_DBPASS | glance服务数据库密码，在glance配置中使用|
+| HEAT_DBPASS | heat服务数据库密码，在heat配置中使用 |
 
 ## 部署OpenStack
 
@@ -1442,6 +1443,118 @@ Ceilometer是OpenStack中负责数据收集的服务。
     
 
 #### Heat
+Heat是 OpenStack 自动编排服务，基于描述性的模板来编排复合云应用，也称为`Orchestration Service`。Heat 的各服务一般安装在`Controller`节点上。
+
+**Controller节点**
+1. 创建**heat**数据库，并授予**heat**数据库正确的访问权限，替换**HEAT_DBPASS**为合适的密码
+
+```
+mysql -u root -p
+
+MariaDB [(none)]> CREATE DATABASE heat;
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'localhost' IDENTIFIED BY 'HEAT_DBPASS';
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'%' IDENTIFIED BY 'HEAT_DBPASS';
+MariaDB [(none)]> exit;
+```
+
+2. 创建服务凭证，创建**heat**用户，并为其增加**admin**角色
+
+```
+openstack user create --domain default --password-prompt heat
+openstack role add --project service --user heat admin
+```
+
+3. 创建**heat**和**heat-cfn**服务及其对应的API端点
+
+```
+openstack service create --name heat --description "Orchestration" orchestration
+openstack service create --name heat-cfn --description "Orchestration"  cloudformation
+openstack endpoint create --region RegionOne orchestration public http://controller:8004/v1/%\(tenant_id\)s
+openstack endpoint create --region RegionOne orchestration internal http://controller:8004/v1/%\(tenant_id\)s
+openstack endpoint create --region RegionOne orchestration admin http://controller:8004/v1/%\(tenant_id\)s
+openstack endpoint create --region RegionOne cloudformation public http://controller:8000/v1
+openstack endpoint create --region RegionOne cloudformation internal http://controller:8000/v1
+openstack endpoint create --region RegionOne cloudformation admin http://controller:8000/v1
+```
+
+4. 创建stack管理的额外信息
+
+    创建 **heat** domain
+    ```
+    openstack domain create --description "Stack projects and users" heat
+    ```
+    在 **heat** domain下创建 **heat_domain_admin** 用户，并记下输入的密码，用于配置下面的`HEAT_DOMAIN_PASS`
+    ```
+    openstack user create --domain heat --password-prompt heat_domain_admin
+    ```
+    为 **heat_domain_admin** 用户增加 **admin** 角色
+    ```
+    openstack role add --domain heat --user-domain heat --user heat_domain_admin admin
+    ```
+    创建 **heat_stack_owner** 角色
+    ```
+    openstack role create heat_stack_owner
+    ```
+    创建 **heat_stack_user** 角色
+    ```
+    openstack role create heat_stack_user
+    ```
+
+5. 安装软件包
+
+```
+yum install openstack-heat-api openstack-heat-api-cfn openstack-heat-engine
+```
+
+6. 修改配置文件`/etc/heat/heat.conf`
+
+```
+[DEFAULT]
+transport_url = rabbit://openstack:RABBIT_PASS@controller
+heat_metadata_server_url = http://controller:8000
+heat_waitcondition_server_url = http://controller:8000/v1/waitcondition
+stack_domain_admin = heat_domain_admin
+stack_domain_admin_password = HEAT_DOMAIN_PASS
+stack_user_domain_name = heat
+
+[database]
+connection = mysql+pymysql://heat:HEAT_DBPASS@controller/heat
+
+[keystone_authtoken]
+www_authenticate_uri = http://controller:5000
+auth_url = http://controller:5000
+memcached_servers = controller:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = heat
+password = HEAT_PASS
+
+[trustee]
+auth_type = password
+auth_url = http://controller:5000
+username = heat
+password = HEAT_PASS
+user_domain_name = default
+
+[clients_keystone]
+auth_uri = http://controller:5000
+```
+
+7. 初始化**heat**数据库表
+
+```
+su -s /bin/sh -c "heat-manage db_sync" heat
+```
+
+8. 启动服务
+
+```
+systemctl enable openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service
+systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service
+```
+
 #### Tempest
 
 Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测试已安装的OpenStack环境的功能,则推荐使用该组件。否则，可以不用安装。
@@ -1482,6 +1595,91 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
    ```
 
 ## 基于OpenStack SIG开发工具oos部署
+`oos`(openEuler OpenStack SIG)是OpenStack SIG提供的命令行工具。其中`oos env`系列命令提供了一键部署OpenStack （`all in one`或三节点`cluster`）的ansible脚本，用户可以使用该脚本快速部署一套基于 openEuler RPM 的 OpenStack 环境。`oos`工具支持对接云provider（目前仅支持华为云provider）和主机纳管两种方式来部署 OpenStack 环境，下面以对接华为云部署一套`all in one`的OpenStack环境为例说明`oos`工具的使用方法。
+1. 安装`oos`工具
+
+    ```shell
+    pip install openstack-sig-tool
+    ```
+2. 配置对接华为云provider的信息
+
+   打开`/usr/local/etc/oos/oos.conf`文件，修改配置为您拥有的华为云资源信息：
+    ```
+    [huaweicloud]
+    ak = 
+    sk = 
+    region = ap-southeast-3
+    root_volume_size = 100
+    data_volume_size = 100
+    security_group_name = oos
+    image_format = openEuler-%%(release)s-%%(arch)s
+    vpc_name = oos_vpc
+    subnet1_name = oos_subnet1
+    subnet2_name = oos_subnet2
+   ```
+3. 配置 OpenStack 环境信息
+
+   打开`/usr/local/etc/oos/oos.conf`文件，根据当前机器环境和需求修改配置。内容如下：
+    ```shell
+    [environment]
+    mysql_root_password = root
+    mysql_project_password = root
+    rabbitmq_password = root
+    project_identity_password = root
+    enabled_service = keystone,neutron,cinder,placement,nova,glance,horizon,aodh,ceilometer,cyborg,gnocchi,kolla,heat,swift,trove,tempest
+    neutron_provider_interface_name = br-ex
+    default_ext_subnet_range = 10.100.100.0/24
+    default_ext_subnet_gateway = 10.100.100.1
+    neutron_dataplane_interface_name = eth1
+    cinder_block_device = vdb
+    swift_storage_devices = vdc
+    swift_hash_path_suffix = ash
+    swift_hash_path_prefix = has
+    glance_api_workers = 2
+    cinder_api_workers = 2
+    nova_api_workers = 2
+    nova_metadata_api_workers = 2
+    nova_conductor_workers = 2
+    nova_scheduler_workers = 2
+    neutron_api_workers = 2
+    horizon_allowed_host = *
+    kolla_openeuler_plugin = false
+    ```
+
+    **关键配置**
+
+    | 配置项   | 解释 |
+    |---|---|
+    | enabled_service  |  安装服务列表，根据用户需求自行删减 |
+    | neutron_provider_interface_name  | neutron L3网桥名称  |
+    | default_ext_subnet_range  | neutron私网IP段  |
+    | default_ext_subnet_gateway  | neutron私网gateway  |
+    | neutron_dataplane_interface_name  | neutron使用的网卡，推荐使用一张新的网卡，以免和现有网卡冲突，防止all in one主机断连的情况  |
+    | cinder_block_device  |  cinder使用的卷设备名 |
+    | swift_storage_devices  | swift使用的卷设备名 |
+    | kolla_openeuler_plugin | 是否启用kolla plugin。设置为True，kolla将支持部署openEuler容器 |
+
+4. 华为云上面创建一台openEuler 22.09的x86_64虚拟机，用于部署`all in one` 的 OpenStack
+    ```
+    oos env create -r 22.09 -f small -a x86 -n test-oos all_in_one
+    ```
+    具体的参数可以使用`oos env create --help`命令查看
+
+5. 部署OpenStack `all in one` 环境
+    ```
+    oos env setup test-oos -r yoga
+    ```
+    具体的参数可以使用`oos env setup --help`命令查看
+
+6. 初始化tempest环境
+
+    如果用户想使用该环境运行tempest测试的话，可以执行命令`oos env init`，会自动把tempest需要的OpenStack资源自动创建好
+    ```
+    oos env init test-oos
+    ```
+
+    命令执行成功后，在用户的根目录下会生成mytest目录，进入其中就可以执行tempest run命令了。
+
 ## 基于OpenStack SIG部署工具opensd部署
 
 opensd用于批量地脚本化部署openstack各组件服务。
