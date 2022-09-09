@@ -2004,7 +2004,7 @@ wallaby:
   python-monascaclient: 2.3.0
   python-muranoclient: 2.2.0
   python-neutronclient: 7.3.0
-  python-novaclient: 17.4.0
+  python-novaclient: 17.4.1
   python-octaviaclient: 2.3.1
   python-openstackclient: 5.5.1
   python-saharaclient: 3.3.0
