@@ -20,6 +20,12 @@
 | HEAT_DBPASS | heat服务数据库密码，在heat配置中使用 |
 | CYBORG_PASS | 在keystone注册的cyborg用户密码，在cyborg配置中使用|
 | CYBORG_DBPASS | cyborg服务数据库密码，在cyborg配置中使用 |
+| NEUTRON_PASS | 在keystone注册的neutron用户密码，在neutron配置中使用|
+| NEUTRON_DBPASS | neutron服务数据库密码，在neutron配置中使用 |
+| NOVA_PASS | 在keystone注册的nova用户密码，在nova,cyborg,neutron等配置中使用 |
+| PROVIDER_INTERFACE_NAME | 物理网络接口的名称，在neutron配置中使用 |
+| OVERLAY_INTERFACE_IP_ADDRESS | Controller控制节点的管理ip地址，在neutron配置中使用 |
+| METADATA_SECRET | metadata proxy的secret密码，在nova和neutron配置中使用 |
 
 ## 部署OpenStack
 
@@ -501,6 +507,240 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 #### Placement
 #### Nova
 #### Neutron
+
+**Controller节点**
+
+1. 创建数据库、服务凭证和 API 服务端点
+
+    创建数据库：
+
+    ```
+    mysql -u root -p
+
+    MariaDB [(none)]> CREATE DATABASE neutron;
+    MariaDB [(none)]> GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'localhost' IDENTIFIED BY 'NEUTRON_DBPASS';
+    MariaDB [(none)]> GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'%' IDENTIFIED BY 'NEUTRON_DBPASS';
+    MariaDB [(none)]> exit;
+    ```
+    创建用户和服务，并记住创建neutron用户时输入的密码，用于配置NEUTRON_PASS：
+
+    ```shell
+    source ~/.admin-openrc
+    openstack user create --domain default --password-prompt neutron
+    openstack role add --project service --user neutron admin
+    openstack service create --name neutron --description "OpenStack Networking" network
+    ```
+    部署 Neutron API 服务：
+
+    ```shell
+    openstack endpoint create --region RegionOne network public http://controller:9696
+    openstack endpoint create --region RegionOne network internal http://controller:9696
+    openstack endpoint create --region RegionOne network admin http://controller:9696
+    ```
+2. 安装软件包
+
+    ```shell
+    yum install -y openstack-neutron openstack-neutron-linuxbridge ebtables ipset openstack-neutron-ml2
+    ```
+3. 配置Neutron
+    修改/etc/neutron/neutron.conf
+    ```
+    [database]
+    connection = mysql+pymysql://neutron:NEUTRON_DBPASS@controller/neutron
+
+    [DEFAULT]
+    core_plugin = ml2
+    service_plugins = router
+    allow_overlapping_ips = true
+    transport_url = rabbit://openstack:RABBIT_PASS@controller
+    auth_strategy = keystone
+    notify_nova_on_port_status_changes = true
+    notify_nova_on_port_data_changes = true
+
+    [keystone_authtoken]
+    www_authenticate_uri = http://controller:5000
+    auth_url = http://controller:5000
+    memcached_servers = controller:11211
+    auth_type = password
+    project_domain_name = Default
+    user_domain_name = Default
+    project_name = service
+    username = neutron
+    password = NEUTRON_PASS
+
+    [nova]
+    auth_url = http://controller:5000
+    auth_type = password
+    project_domain_name = Default
+    user_domain_name = Default
+    region_name = RegionOne
+    project_name = service
+    username = nova
+    password = NOVA_PASS
+
+    [oslo_concurrency]
+    lock_path = /var/lib/neutron/tmp
+    ```
+
+    配置ML2，ML2具体配置可以根据用户需求自行修改，本文使用的是provider network + linuxbridge**
+    
+    修改/etc/neutron/plugins/ml2/ml2_conf.ini
+    ```shell
+    [ml2]
+    type_drivers = flat,vlan,vxlan
+    tenant_network_types = vxlan
+    mechanism_drivers = linuxbridge,l2population
+    extension_drivers = port_security
+
+    [ml2_type_flat]
+    flat_networks = provider
+
+    [ml2_type_vxlan]
+    vni_ranges = 1:1000
+
+    [securitygroup]
+    enable_ipset = true
+    ```
+    修改/etc/neutron/plugins/ml2/linuxbridge_agent.ini
+    ```
+    [linux_bridge]
+    physical_interface_mappings = provider:PROVIDER_INTERFACE_NAME
+
+    [vxlan]
+    enable_vxlan = true
+    local_ip = OVERLAY_INTERFACE_IP_ADDRESS
+    l2_population = true
+
+    [securitygroup]
+    enable_security_group = true
+    firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
+    ```
+
+    配置Layer-3代理
+    修改/etc/neutron/l3_agent.ini
+
+    ```shell
+    [DEFAULT]
+    interface_driver = linuxbridge
+    ```
+
+    配置DHCP代理
+    修改/etc/neutron/dhcp_agent.ini
+    ```
+    [DEFAULT]
+    interface_driver = linuxbridge
+    dhcp_driver = neutron.agent.linux.dhcp.Dnsmasq
+    enable_isolated_metadata = true
+    ```
+
+    配置metadata代理
+    修改/etc/neutron/metadata_agent.ini
+    ```shell
+    [DEFAULT]
+    nova_metadata_host = controller
+    metadata_proxy_shared_secret = METADATA_SECRET
+    ```
+4. 配置nova服务使用neutron，修改/etc/nova/nova.conf
+    ```
+    [neutron]
+    auth_url = http://controller:5000
+    auth_type = password
+    project_domain_name = default
+    user_domain_name = default
+    region_name = RegionOne
+    project_name = service
+    username = neutron
+    password = NEUTRON_PASS
+    service_metadata_proxy = true
+    metadata_proxy_shared_secret = METADATA_SECRET
+    ```
+5. 创建/etc/neutron/plugin.ini的符号链接
+
+    ```shell
+    ln -s /etc/neutron/plugins/ml2/ml2_conf.ini /etc/neutron/plugin.ini
+    ```
+6. 同步数据库
+    ```
+    su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
+    ```
+7. 重启nova api服务
+    ```
+    systemctl restart openstack-nova-api
+    ```
+8. 启动网络服务
+
+    ```shell
+    systemctl enable neutron-server.service neutron-linuxbridge-agent.service \
+    neutron-dhcp-agent.service neutron-metadata-agent.service neutron-l3-agent.service
+    systemctl start neutron-server.service neutron-linuxbridge-agent.service \
+    neutron-dhcp-agent.service neutron-metadata-agent.service neutron-l3-agent.service
+    ```
+
+**Compute节点**
+1. 安装软件包
+    ```
+    yum install openstack-neutron-linuxbridge ebtables ipset -y
+    ```
+2. 配置Neutron
+
+    修改/etc/neutron/neutron.conf
+    ```
+    [DEFAULT]
+    transport_url = rabbit://openstack:RABBIT_PASS@controller
+    auth_strategy = keystone
+
+    [keystone_authtoken]
+    www_authenticate_uri = http://controller:5000
+    auth_url = http://controller:5000
+    memcached_servers = controller:11211
+    auth_type = password
+    project_domain_name = Default
+    user_domain_name = Default
+    project_name = service
+    username = neutron
+    password = NEUTRON_PASS
+
+    [oslo_concurrency]
+    lock_path = /var/lib/neutron/tmp
+    ```
+
+    修改/etc/neutron/plugins/ml2/ml2_conf.ini
+    ```
+    [linux_bridge]
+    physical_interface_mappings = provider:PROVIDER_INTERFACE_NAME
+
+    [vxlan]
+    enable_vxlan = true
+    local_ip = OVERLAY_INTERFACE_IP_ADDRESS
+    l2_population = true
+
+    [securitygroup]
+    enable_security_group = true
+    firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
+    ```
+
+    配置nova compute服务使用neutron，修改/etc/nova/nova.conf
+    ```
+    [neutron]
+    auth_url = http://controller:5000
+    auth_type = password
+    project_domain_name = default
+    user_domain_name = default
+    region_name = RegionOne
+    project_name = service
+    username = neutron
+    password = NEUTRON_PASS
+    ```
+3. 重启nova-compute服务
+    ```
+    systemctl restart openstack-nova-compute.service
+    ```
+4. 启动Neutron linuxbridge agent服务
+
+    ```
+    systemctl enable neutron-linuxbridge-agent
+    systemctl start neutron-linuxbridge-agent
+    ```
 
 #### Cinder
 
