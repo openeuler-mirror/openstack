@@ -260,6 +260,7 @@ openeuler:
   pyisula: sig-openstack
   pyporter: dev-utils
   python-multi_key_dict: sig-python-modules
+  qax-gm-certificates: sig-security-facility
   qemu: Virt
   radiaTest: sig-QA
   raspberrypi: sig-RaspberryPi
@@ -3069,6 +3070,7 @@ src-openeuler:
   libvdpau: Runtime
   libverto: Base-service
   libvirt: Virt
+  libvirt-dbus: Virt
   libvirt-glib: Virt
   libvirt-python: Virt
   libvisual: Computing
@@ -6002,6 +6004,7 @@ src-openeuler:
   prefetch_tuning: A-Tune
   prelink: Application
   presto: bigdata
+  procenv: dev-utils
   process1: dev-utils
   procinfo: Others
   procmail: Networking
@@ -7901,6 +7904,7 @@ src-openeuler:
   pywbem: Programming-language
   pyxattr: Base-service
   pyxdg: Programming-language
+  qax-gm-certificates: sig-security-facility
   qca: sig-KDE
   qdox: Base-service
   qemu: Virt
