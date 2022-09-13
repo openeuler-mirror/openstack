@@ -387,6 +387,46 @@
 <td align="center">GLANCE_DBPASS</td>
 <td align="center">glance服务数据库密码，在glance配置中使用</td>
 </tr>
+<tr>
+<td align="center">HEAT_PASS</td>
+<td align="center">在keystone注册的heat用户密码，在heat配置中使用</td>
+</tr>
+<tr>
+<td align="center">HEAT_DBPASS</td>
+<td align="center">heat服务数据库密码，在heat配置中使用</td>
+</tr>
+<tr>
+<td align="center">CYBORG_PASS</td>
+<td align="center">在keystone注册的cyborg用户密码，在cyborg配置中使用</td>
+</tr>
+<tr>
+<td align="center">CYBORG_DBPASS</td>
+<td align="center">cyborg服务数据库密码，在cyborg配置中使用</td>
+</tr>
+<tr>
+<td align="center">NEUTRON_PASS</td>
+<td align="center">在keystone注册的neutron用户密码，在neutron配置中使用</td>
+</tr>
+<tr>
+<td align="center">NEUTRON_DBPASS</td>
+<td align="center">neutron服务数据库密码，在neutron配置中使用</td>
+</tr>
+<tr>
+<td align="center">NOVA_PASS</td>
+<td align="center">在keystone注册的nova用户密码，在nova,cyborg,neutron等配置中使用</td>
+</tr>
+<tr>
+<td align="center">PROVIDER_INTERFACE_NAME</td>
+<td align="center">物理网络接口的名称，在neutron配置中使用</td>
+</tr>
+<tr>
+<td align="center">OVERLAY_INTERFACE_IP_ADDRESS</td>
+<td align="center">Controller控制节点的管理ip地址，在neutron配置中使用</td>
+</tr>
+<tr>
+<td align="center">METADATA_SECRET</td>
+<td align="center">metadata proxy的secret密码，在nova和neutron配置中使用</td>
+</tr>
 </tbody>
 </table>
 <h2 id="openstack">部署OpenStack<a class="headerlink" href="#openstack" title="Permanent link">&para;</a></h2>
@@ -716,6 +756,195 @@ wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-aarch64-disk.img</code>
 <h4 id="placement">Placement<a class="headerlink" href="#placement" title="Permanent link">&para;</a></h4>
 <h4 id="nova">Nova<a class="headerlink" href="#nova" title="Permanent link">&para;</a></h4>
 <h4 id="neutron">Neutron<a class="headerlink" href="#neutron" title="Permanent link">&para;</a></h4>
+<p><strong>Controller节点</strong></p>
+<ol>
+<li>
+<p>创建数据库、服务凭证和 API 服务端点</p>
+<p>创建数据库：</p>
+<p><pre class="highlight"><code>mysql -u root -p
+
+MariaDB [(none)]&gt; CREATE DATABASE neutron;
+MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'localhost' IDENTIFIED BY 'NEUTRON_DBPASS';
+MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'%' IDENTIFIED BY 'NEUTRON_DBPASS';
+MariaDB [(none)]&gt; exit;</code></pre>
+创建用户和服务，并记住创建neutron用户时输入的密码，用于配置NEUTRON_PASS：</p>
+<p><pre class="highlight"><code class="language-shell">source ~/.admin-openrc
+openstack user create --domain default --password-prompt neutron
+openstack role add --project service --user neutron admin
+openstack service create --name neutron --description "OpenStack Networking" network</code></pre>
+部署 Neutron API 服务：</p>
+<p><pre class="highlight"><code class="language-shell">openstack endpoint create --region RegionOne network public http://controller:9696
+openstack endpoint create --region RegionOne network internal http://controller:9696
+openstack endpoint create --region RegionOne network admin http://controller:9696</code></pre>
+2. 安装软件包</p>
+<p><pre class="highlight"><code class="language-shell">yum install -y openstack-neutron openstack-neutron-linuxbridge ebtables ipset openstack-neutron-ml2</code></pre>
+3. 配置Neutron
+修改/etc/neutron/neutron.conf
+<pre class="highlight"><code>[database]
+connection = mysql+pymysql://neutron:NEUTRON_DBPASS@controller/neutron
+
+[DEFAULT]
+core_plugin = ml2
+service_plugins = router
+allow_overlapping_ips = true
+transport_url = rabbit://openstack:RABBIT_PASS@controller
+auth_strategy = keystone
+notify_nova_on_port_status_changes = true
+notify_nova_on_port_data_changes = true
+
+[keystone_authtoken]
+www_authenticate_uri = http://controller:5000
+auth_url = http://controller:5000
+memcached_servers = controller:11211
+auth_type = password
+project_domain_name = Default
+user_domain_name = Default
+project_name = service
+username = neutron
+password = NEUTRON_PASS
+
+[nova]
+auth_url = http://controller:5000
+auth_type = password
+project_domain_name = Default
+user_domain_name = Default
+region_name = RegionOne
+project_name = service
+username = nova
+password = NOVA_PASS
+
+[oslo_concurrency]
+lock_path = /var/lib/neutron/tmp</code></pre></p>
+<p>配置ML2，ML2具体配置可以根据用户需求自行修改，本文使用的是provider network + linuxbridge**</p>
+<p>修改/etc/neutron/plugins/ml2/ml2_conf.ini
+<pre class="highlight"><code class="language-shell">[ml2]
+type_drivers = flat,vlan,vxlan
+tenant_network_types = vxlan
+mechanism_drivers = linuxbridge,l2population
+extension_drivers = port_security
+
+[ml2_type_flat]
+flat_networks = provider
+
+[ml2_type_vxlan]
+vni_ranges = 1:1000
+
+[securitygroup]
+enable_ipset = true</code></pre>
+修改/etc/neutron/plugins/ml2/linuxbridge_agent.ini
+<pre class="highlight"><code>[linux_bridge]
+physical_interface_mappings = provider:PROVIDER_INTERFACE_NAME
+
+[vxlan]
+enable_vxlan = true
+local_ip = OVERLAY_INTERFACE_IP_ADDRESS
+l2_population = true
+
+[securitygroup]
+enable_security_group = true
+firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver</code></pre></p>
+<p>配置Layer-3代理
+修改/etc/neutron/l3_agent.ini</p>
+<pre class="highlight"><code class="language-shell">[DEFAULT]
+interface_driver = linuxbridge</code></pre>
+<p>配置DHCP代理
+修改/etc/neutron/dhcp_agent.ini
+<pre class="highlight"><code>[DEFAULT]
+interface_driver = linuxbridge
+dhcp_driver = neutron.agent.linux.dhcp.Dnsmasq
+enable_isolated_metadata = true</code></pre></p>
+<p>配置metadata代理
+修改/etc/neutron/metadata_agent.ini
+<pre class="highlight"><code class="language-shell">[DEFAULT]
+nova_metadata_host = controller
+metadata_proxy_shared_secret = METADATA_SECRET</code></pre>
+4. 配置nova服务使用neutron，修改/etc/nova/nova.conf
+<pre class="highlight"><code>[neutron]
+auth_url = http://controller:5000
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+region_name = RegionOne
+project_name = service
+username = neutron
+password = NEUTRON_PASS
+service_metadata_proxy = true
+metadata_proxy_shared_secret = METADATA_SECRET</code></pre>
+5. 创建/etc/neutron/plugin.ini的符号链接</p>
+<p><pre class="highlight"><code class="language-shell">ln -s /etc/neutron/plugins/ml2/ml2_conf.ini /etc/neutron/plugin.ini</code></pre>
+6. 同步数据库
+<pre class="highlight"><code>su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron</code></pre>
+7. 重启nova api服务
+<pre class="highlight"><code>systemctl restart openstack-nova-api</code></pre>
+8. 启动网络服务</p>
+<pre class="highlight"><code class="language-shell">systemctl enable neutron-server.service neutron-linuxbridge-agent.service \
+neutron-dhcp-agent.service neutron-metadata-agent.service neutron-l3-agent.service
+systemctl start neutron-server.service neutron-linuxbridge-agent.service \
+neutron-dhcp-agent.service neutron-metadata-agent.service neutron-l3-agent.service</code></pre>
+</li>
+</ol>
+<p><strong>Compute节点</strong>
+1. 安装软件包
+    <pre class="highlight"><code>yum install openstack-neutron-linuxbridge ebtables ipset -y</code></pre>
+2. 配置Neutron</p>
+<pre class="highlight"><code>修改/etc/neutron/neutron.conf
+```
+[DEFAULT]
+transport_url = rabbit://openstack:RABBIT_PASS@controller
+auth_strategy = keystone
+
+[keystone_authtoken]
+www_authenticate_uri = http://controller:5000
+auth_url = http://controller:5000
+memcached_servers = controller:11211
+auth_type = password
+project_domain_name = Default
+user_domain_name = Default
+project_name = service
+username = neutron
+password = NEUTRON_PASS
+
+[oslo_concurrency]
+lock_path = /var/lib/neutron/tmp
+```
+
+修改/etc/neutron/plugins/ml2/ml2_conf.ini
+```
+[linux_bridge]
+physical_interface_mappings = provider:PROVIDER_INTERFACE_NAME
+
+[vxlan]
+enable_vxlan = true
+local_ip = OVERLAY_INTERFACE_IP_ADDRESS
+l2_population = true
+
+[securitygroup]
+enable_security_group = true
+firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
+```
+
+配置nova compute服务使用neutron，修改/etc/nova/nova.conf
+```
+[neutron]
+auth_url = http://controller:5000
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+region_name = RegionOne
+project_name = service
+username = neutron
+password = NEUTRON_PASS
+```
+</code></pre>
+<ol>
+<li>重启nova-compute服务
+    <code>systemctl restart openstack-nova-compute.service</code></li>
+<li>
+<p>启动Neutron linuxbridge agent服务</p>
+<pre class="highlight"><code>systemctl enable neutron-linuxbridge-agent
+systemctl start neutron-linuxbridge-agent</code></pre>
+</li>
+</ol>
 <h4 id="cinder">Cinder<a class="headerlink" href="#cinder" title="Permanent link">&para;</a></h4>
 <p><strong>Controller节点</strong>：</p>
 <ol>
@@ -1254,6 +1483,102 @@ openstack-swift-object-auditor.service \
 openstack-swift-object-replicator.service \
 openstack-swift-object-updater.service</code></pre></p>
 <h4 id="cyborg">Cyborg<a class="headerlink" href="#cyborg" title="Permanent link">&para;</a></h4>
+<p>Cyborg为OpenStack提供加速器设备的支持，包括 GPU, FPGA, ASIC, NP, SoCs, NVMe/NOF SSDs, ODP, DPDK/SPDK等等。</p>
+<p><strong>Controller节点</strong></p>
+<ol>
+<li>初始化对应数据库</li>
+</ol>
+<pre class="highlight"><code>mysql -u root -p
+
+MariaDB [(none)]&gt; CREATE DATABASE cyborg;
+MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON cyborg.* TO 'cyborg'@'localhost' IDENTIFIED BY 'CYBORG_DBPASS';
+MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON cyborg.* TO 'cyborg'@'%' IDENTIFIED BY 'CYBORG_DBPASS';
+MariaDB [(none)]&gt; exit;</code></pre>
+<ol>
+<li>
+<p>创建用户和服务，并记住创建cybory用户时输入的密码，用于配置CYBORG_PASS
+<pre class="highlight"><code>source ~/.admin-openrc
+$ openstack user create --domain default --password-prompt cyborg
+$ openstack role add --project service --user cyborg admin
+$ openstack service create --name cyborg --description "Acceleration Service" accelerator</code></pre></p>
+</li>
+<li>
+<p>使用uwsgi部署Cyborg api服务
+<pre class="highlight"><code>$ openstack endpoint create --region RegionOne accelerator public http://controller/accelerator/v2
+$ openstack endpoint create --region RegionOne accelerator internal http://controller/accelerator/v2
+$ openstack endpoint create --region RegionOne accelerator admin http://controller/accelerator/v2</code></pre></p>
+</li>
+<li>
+<p>安装Cyborg</p>
+</li>
+</ol>
+<pre class="highlight"><code>yum install openstack-cyborg</code></pre>
+<ol>
+<li>配置Cyborg</li>
+</ol>
+<p>修改<code>/etc/cyborg/cyborg.conf</code></p>
+<pre class="highlight"><code>[DEFAULT]
+transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
+use_syslog = False
+state_path = /var/lib/cyborg
+debug = True
+
+[api]
+host_ip = 0.0.0.0
+
+[database]
+connection = mysql+pymysql://cyborg:CYBORG_DBPASS@controller/cyborg
+
+[service_catalog]
+cafile = /opt/stack/data/ca-bundle.pem
+project_domain_id = default
+user_domain_id = default
+project_name = service
+password = CYBORG_PASS
+username = cyborg
+auth_url = http://controller:5000/v3/
+auth_type = password
+
+[placement]
+project_domain_name = Default
+project_name = service
+user_domain_name = Default
+password = password
+username = PLACEMENT_PASS
+auth_url = http://controller:5000/v3/
+auth_type = password
+auth_section = keystone_authtoken
+
+[nova]
+project_domain_name = Default
+project_name = service
+user_domain_name = Default
+password = NOVA_PASS
+username = nova
+auth_url = http://controller:5000/v3/
+auth_type = password
+auth_section = keystone_authtoken
+
+[keystone_authtoken]
+memcached_servers = localhost:11211
+signing_dir = /var/cache/cyborg/api
+cafile = /opt/stack/data/ca-bundle.pem
+project_domain_name = Default
+project_name = service
+user_domain_name = Default
+password = CYBORG_PASS
+username = cyborg
+auth_url = http://controller:5000/v3/
+auth_type = password</code></pre>
+<ol>
+<li>同步数据库表格</li>
+</ol>
+<pre class="highlight"><code>cyborg-dbsync --config-file /etc/cyborg/cyborg.conf upgrade</code></pre>
+<ol>
+<li>启动Cyborg服务</li>
+</ol>
+<pre class="highlight"><code>systemctl enable openstack-cyborg-api openstack-cyborg-conductor openstack-cyborg-agent
+systemctl start openstack-cyborg-api openstack-cyborg-conductor openstack-cyborg-agent</code></pre>
 <h4 id="aodh">Aodh<a class="headerlink" href="#aodh" title="Permanent link">&para;</a></h4>
 <p>Aodh可以根据由Ceilometer或者Gnocchi收集的监控数据创建告警，并设置触发规则。</p>
 <p><strong>Controller节点</strong></p>
@@ -1493,6 +1818,95 @@ systemctl restart openstack-nova-compute.service</code></pre></p>
 </li>
 </ol>
 <h4 id="heat">Heat<a class="headerlink" href="#heat" title="Permanent link">&para;</a></h4>
+<p>Heat是 OpenStack 自动编排服务，基于描述性的模板来编排复合云应用，也称为<code>Orchestration Service</code>。Heat 的各服务一般安装在<code>Controller</code>节点上。</p>
+<p><strong>Controller节点</strong>
+1. 创建<strong>heat</strong>数据库，并授予<strong>heat</strong>数据库正确的访问权限，替换<strong>HEAT_DBPASS</strong>为合适的密码</p>
+<pre class="highlight"><code>mysql -u root -p
+
+MariaDB [(none)]&gt; CREATE DATABASE heat;
+MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'localhost' IDENTIFIED BY 'HEAT_DBPASS';
+MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'%' IDENTIFIED BY 'HEAT_DBPASS';
+MariaDB [(none)]&gt; exit;</code></pre>
+<ol>
+<li>创建服务凭证，创建<strong>heat</strong>用户，并为其增加<strong>admin</strong>角色</li>
+</ol>
+<pre class="highlight"><code>source ~/.admin-openrc
+
+openstack user create --domain default --password-prompt heat
+openstack role add --project service --user heat admin</code></pre>
+<ol>
+<li>创建<strong>heat</strong>和<strong>heat-cfn</strong>服务及其对应的API端点</li>
+</ol>
+<pre class="highlight"><code>openstack service create --name heat --description "Orchestration" orchestration
+openstack service create --name heat-cfn --description "Orchestration"  cloudformation
+openstack endpoint create --region RegionOne orchestration public http://controller:8004/v1/%\(tenant_id\)s
+openstack endpoint create --region RegionOne orchestration internal http://controller:8004/v1/%\(tenant_id\)s
+openstack endpoint create --region RegionOne orchestration admin http://controller:8004/v1/%\(tenant_id\)s
+openstack endpoint create --region RegionOne cloudformation public http://controller:8000/v1
+openstack endpoint create --region RegionOne cloudformation internal http://controller:8000/v1
+openstack endpoint create --region RegionOne cloudformation admin http://controller:8000/v1</code></pre>
+<ol>
+<li>
+<p>创建stack管理的额外信息</p>
+<p>创建 <strong>heat</strong> domain
+<pre class="highlight"><code>openstack domain create --description "Stack projects and users" heat</code></pre>
+在 <strong>heat</strong> domain下创建 <strong>heat_domain_admin</strong> 用户，并记下输入的密码，用于配置下面的<code>HEAT_DOMAIN_PASS</code>
+<pre class="highlight"><code>openstack user create --domain heat --password-prompt heat_domain_admin</code></pre>
+为 <strong>heat_domain_admin</strong> 用户增加 <strong>admin</strong> 角色
+<pre class="highlight"><code>openstack role add --domain heat --user-domain heat --user heat_domain_admin admin</code></pre>
+创建 <strong>heat_stack_owner</strong> 角色
+<pre class="highlight"><code>openstack role create heat_stack_owner</code></pre>
+创建 <strong>heat_stack_user</strong> 角色
+<pre class="highlight"><code>openstack role create heat_stack_user</code></pre></p>
+</li>
+<li>
+<p>安装软件包</p>
+</li>
+</ol>
+<pre class="highlight"><code>yum install openstack-heat-api openstack-heat-api-cfn openstack-heat-engine</code></pre>
+<ol>
+<li>修改配置文件<code>/etc/heat/heat.conf</code></li>
+</ol>
+<pre class="highlight"><code>[DEFAULT]
+transport_url = rabbit://openstack:RABBIT_PASS@controller
+heat_metadata_server_url = http://controller:8000
+heat_waitcondition_server_url = http://controller:8000/v1/waitcondition
+stack_domain_admin = heat_domain_admin
+stack_domain_admin_password = HEAT_DOMAIN_PASS
+stack_user_domain_name = heat
+
+[database]
+connection = mysql+pymysql://heat:HEAT_DBPASS@controller/heat
+
+[keystone_authtoken]
+www_authenticate_uri = http://controller:5000
+auth_url = http://controller:5000
+memcached_servers = controller:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = heat
+password = HEAT_PASS
+
+[trustee]
+auth_type = password
+auth_url = http://controller:5000
+username = heat
+password = HEAT_PASS
+user_domain_name = default
+
+[clients_keystone]
+auth_uri = http://controller:5000</code></pre>
+<ol>
+<li>初始化<strong>heat</strong>数据库表</li>
+</ol>
+<pre class="highlight"><code>su -s /bin/sh -c "heat-manage db_sync" heat</code></pre>
+<ol>
+<li>启动服务</li>
+</ol>
+<pre class="highlight"><code>systemctl enable openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service
+systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service</code></pre>
 <h4 id="tempest">Tempest<a class="headerlink" href="#tempest" title="Permanent link">&para;</a></h4>
 <p>Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测试已安装的OpenStack环境的功能,则推荐使用该组件。否则，可以不用安装。</p>
 <p><strong>Controller节点</strong>：</p>
@@ -1522,6 +1936,83 @@ vi etc/tempest.conf</code></pre>
 </li>
 </ol>
 <h2 id="openstack-sigoos">基于OpenStack SIG开发工具oos部署<a class="headerlink" href="#openstack-sigoos" title="Permanent link">&para;</a></h2>
+<p><code>oos</code>(openEuler OpenStack SIG)是OpenStack SIG提供的命令行工具。其中<code>oos env</code>系列命令提供了一键部署OpenStack （<code>all in one</code>或三节点<code>cluster</code>）的ansible脚本，用户可以使用该脚本快速部署一套基于 openEuler RPM 的 OpenStack 环境。<code>oos</code>工具支持对接云provider（目前仅支持华为云provider）和主机纳管两种方式来部署 OpenStack 环境，下面以对接华为云部署一套<code>all in one</code>的OpenStack环境为例说明<code>oos</code>工具的使用方法。
+1. 安装<code>oos</code>工具</p>
+<pre class="highlight"><code>```shell
+pip install openstack-sig-tool
+```
+</code></pre>
+<ol>
+<li>配置对接华为云provider的信息</li>
+</ol>
+<p>打开<code>/usr/local/etc/oos/oos.conf</code>文件，修改配置为您拥有的华为云资源信息：
+    <code>[huaweicloud]
+    ak = 
+    sk = 
+    region = ap-southeast-3
+    root_volume_size = 100
+    data_volume_size = 100
+    security_group_name = oos
+    image_format = openEuler-%%(release)s-%%(arch)s
+    vpc_name = oos_vpc
+    subnet1_name = oos_subnet1
+    subnet2_name = oos_subnet2</code>
+3. 配置 OpenStack 环境信息</p>
+<p>打开<code>/usr/local/etc/oos/oos.conf</code>文件，根据当前机器环境和需求修改配置。内容如下：
+    <pre class="highlight"><code class="language-shell">[environment]
+mysql_root_password = root
+mysql_project_password = root
+rabbitmq_password = root
+project_identity_password = root
+enabled_service = keystone,neutron,cinder,placement,nova,glance,horizon,aodh,ceilometer,cyborg,gnocchi,kolla,heat,swift,trove,tempest
+neutron_provider_interface_name = br-ex
+default_ext_subnet_range = 10.100.100.0/24
+default_ext_subnet_gateway = 10.100.100.1
+neutron_dataplane_interface_name = eth1
+cinder_block_device = vdb
+swift_storage_devices = vdc
+swift_hash_path_suffix = ash
+swift_hash_path_prefix = has
+glance_api_workers = 2
+cinder_api_workers = 2
+nova_api_workers = 2
+nova_metadata_api_workers = 2
+nova_conductor_workers = 2
+nova_scheduler_workers = 2
+neutron_api_workers = 2
+horizon_allowed_host = *
+kolla_openeuler_plugin = false</code></pre></p>
+<pre class="highlight"><code>**关键配置**
+
+| 配置项   | 解释 |
+|---|---|
+| enabled_service  |  安装服务列表，根据用户需求自行删减 |
+| neutron_provider_interface_name  | neutron L3网桥名称  |
+| default_ext_subnet_range  | neutron私网IP段  |
+| default_ext_subnet_gateway  | neutron私网gateway  |
+| neutron_dataplane_interface_name  | neutron使用的网卡，推荐使用一张新的网卡，以免和现有网卡冲突，防止all in one主机断连的情况  |
+| cinder_block_device  |  cinder使用的卷设备名 |
+| swift_storage_devices  | swift使用的卷设备名 |
+| kolla_openeuler_plugin | 是否启用kolla plugin。设置为True，kolla将支持部署openEuler容器 |
+</code></pre>
+<ol>
+<li>
+<p>华为云上面创建一台openEuler 22.09的x86_64虚拟机，用于部署<code>all in one</code> 的 OpenStack
+    <pre class="highlight"><code>oos env create -r 22.09 -f small -a x86 -n test-oos all_in_one</code></pre>
+    具体的参数可以使用<code>oos env create --help</code>命令查看</p>
+</li>
+<li>
+<p>部署OpenStack <code>all in one</code> 环境
+    <pre class="highlight"><code>oos env setup test-oos -r yoga</code></pre>
+    具体的参数可以使用<code>oos env setup --help</code>命令查看</p>
+</li>
+<li>
+<p>初始化tempest环境</p>
+<p>如果用户想使用该环境运行tempest测试的话，可以执行命令<code>oos env init</code>，会自动把tempest需要的OpenStack资源自动创建好
+<pre class="highlight"><code>oos env init test-oos</code></pre></p>
+<p>命令执行成功后，在用户的根目录下会生成mytest目录，进入其中就可以执行tempest run命令了。</p>
+</li>
+</ol>
 <h2 id="openstack-sigopensd">基于OpenStack SIG部署工具opensd部署<a class="headerlink" href="#openstack-sigopensd" title="Permanent link">&para;</a></h2>
 <p>opensd用于批量地脚本化部署openstack各组件服务。</p>
 <h3 id="_8">部署步骤<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
