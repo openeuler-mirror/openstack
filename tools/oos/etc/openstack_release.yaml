@@ -1855,7 +1855,7 @@ wallaby:
   keystone_tempest_plugin: 0.7.0
   keystoneauth1: 4.3.1
   keystonemiddleware: 9.2.0
-  kolla: 12.5.0
+  kolla: 12.6.0
   kolla-ansible: 12.7.0
   kuryr-kubernetes: 4.0.1
   kuryr-lib: 2.3.0
@@ -2126,7 +2126,7 @@ xena:
   keystone_tempest_plugin: 0.8.0
   keystoneauth1: 4.4.0
   keystonemiddleware: 9.3.0
-  kolla: 13.4.0
+  kolla: 13.5.0
   kolla-ansible: 13.4.0
   kuryr-kubernetes: 5.0.0
   kuryr-lib: 2.4.0
@@ -2384,7 +2384,7 @@ yoga:
   keystone_tempest_plugin: 0.9.0
   keystoneauth1: 4.5.0
   keystonemiddleware: 9.4.0
-  kolla: 14.4.0
+  kolla: 14.5.0
   kolla-ansible: 14.4.0
   kuryr-kubernetes: 6.0.0
   kuryr-lib: 2.5.0
