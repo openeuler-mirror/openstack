@@ -54,7 +54,9 @@ storage：   192.168.0.4
 
 本文档的三节点服务拓扑如下图所示(只包含Keystone、Glance、Nova、Cinder、Neutron这几个核心服务，其他服务请参考具体部署章节)：
 
-![topology](../../img/install/topology.png)
+![topology1](../../img/install/topology1.PNG)
+![topology2](../../img/install/topology2.PNG)
+![topology3](../../img/install/topology3.PNG)
 
 在正式部署之前，需要对每个节点做如下配置和检查：
 
