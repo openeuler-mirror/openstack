@@ -4296,6 +4296,7 @@ src-openeuler:
   perl-Any-Moose: sig-perl-modules
   perl-Any-URI-Escape: sig-perl-modules
   perl-AnyEvent: sig-perl-modules
+  perl-AnyEvent-I3: sig-perl-modules
   perl-Apache-LogFormat-Compiler: sig-perl-modules
   perl-Apache-Session: sig-perl-modules
   perl-Apache-Session-Wrapper: sig-perl-modules
