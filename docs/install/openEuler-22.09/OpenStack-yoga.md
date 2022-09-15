@@ -4,7 +4,7 @@
 
 本文档是openEuler OpenStack SIG编写的基于openEuler 22.09的OpenStack部署指南，内容由SIG贡献者提供。在阅读过程中，如果您有任何疑问或者发现任何问题，请[联系](https://gitee.com/openeuler/openstack#%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F)SIG维护人员，或者直接[提交issue](https://gitee.com/openeuler/openstack/issues)
 
-## 约定
+**约定**
 
 本章节描述文档中的一些通用约定。
 
@@ -33,8 +33,6 @@
 | IRONIC_PASSWORD | 在keystone注册的ironic用户密码，在ironic配置中使用 |
 | IRONIC_INSPECTOR_DBPASSWORD | ironic-inspector服务数据库密码，在ironic-inspector配置中使用|
 | IRONIC_INSPECTOR_PASSWORD | 在keystone注册的ironic-inspector用户密码，在ironic-inspector配置中使用 |
-
-## 部署OpenStack
 
 OpenStack SIG提供了多种基于openEuler部署OpenStack的方法，以满足不同的用户场景，请按需选择。
 
@@ -3768,20 +3766,31 @@ opensd -i /usr/local/share/opensd/ansible/inventory/multinode deploy --forks 50 
 OpenStack-Helm 较为复杂，建议在一个新系统上部署。整个部署将占用约 30GB 的磁盘空间。安装时请使用 root 用户。
 
 ### 前置设置
+
 在开始安装 OpenStack-Helm 前，可能需要对系统进行一些基础设置，包括主机名和时间等。请参考“基于RPM部署”章节的有关信息。
 
-### 自动安装
 openEuler 22.09 中已经包含了 OpenStack-Helm 软件包。首先安装对应的软件包和补丁：
+
 ```
-yum install openstack-helm
-yum install openstack-plugin
+yum install openstack-helm openstack-helm-infra openstack-helm-images loci
 ```
+
+这里安装的是原生openstack-helm，默认不支持openEuler，因此如果想在openEuler上使用openstack-helm，还需要安装plugin插件，本章节是对plugin的使用说明。
+
+```
+yum install openstack-plugin-openstack-helm-openeuler-support
+```
+
+### 自动安装
+
 OpenStack-Helm 安装文件将被放置到系统的 `/usr/share/openstack-helm` 目录。
 
 openEuler 提供的软件包中包含一个简易的安装向导程序，位于 `/usr/bin/openstack-helm` 。执行命令进入向导程序：
+
 ```
 openstack-helm
 ```
+
 ```
 Welcome to OpenStack-Helm installation program for openEuler. I will guide you through the installation. 
 Please refer to https://docs.openstack.org/openstack-helm/latest/ to get more information about OpenStack-Helm. 
@@ -3794,7 +3803,9 @@ c: Check if all pods in Kubernetes are working
 e: Exit
 Your choice? [i/c/e]: 
 ```
+
 输入 `i` 并点击回车进入下一级页面：
+
 ```
 Welcome to OpenStack-Helm installation program for openEuler. I will guide you through the installation. 
 Please refer to https://docs.openstack.org/openstack-helm/latest/ to get more information about OpenStack-Helm. 
@@ -3814,6 +3825,7 @@ c: CEPH storage backend
 b: Go back to parent menu
 Your choice? [n/c/b]: 
 ```
+
 OpenStack-Helm 提供了两种存储方法：`NFS` 和 `Ceph`。用户可根据需要输入 `n` 来选择 `NFS` 存储后端或者 `c` 来选择 `Ceph` 存储后端。
 
 选择完成存储后端后，用户将有机会完成确认。收到提示时，按下回车以开始安装。安装过程中，程序将顺序执行一系列安装脚本以完成部署。这一过程可能需要持续几十分钟，安装过程中请确保磁盘空间充足以及互联网连接畅通。
@@ -3823,6 +3835,7 @@ OpenStack-Helm 提供了两种存储方法：`NFS` 和 `Ceph`。用户可根据�
 若您未观察到上述的现象，则恭喜您完成了部署。请参考“使用 OpenStack-Helm”一节来开始使用。
 
 ### 手动安装
+
 若您在自动安装的过程中遇到了错误，或者希望手动安装来控制整个安装流程，您可以参照以下顺序执行安装流程：
 ```
 cd /usr/share/openstack-helm/openstack-helm
@@ -3865,6 +3878,7 @@ cd /usr/share/openstack-helm/openstack-helm
 安装完成后，您可以使用 `kubectl get pods -A` 来查看当前系统上的 Pod 的运行情况。
 
 ### 使用 OpenStack-Helm
+
 系统部署完成后，OpenStack CLI 界面将被部署在 `/usr/local/bin/openstack`。参照下面的例子来使用 OpenStack CLI：
 ```
 export OS_CLOUD=openstack_helm
@@ -3885,4 +3899,65 @@ Password： password
 ```
 此时，您应当可以看到熟悉的 OpenStack 控制面板了。
 
-## 基于OpenStack Kolla部署
+## 新特性的安装
+
+### Kolla支持iSula
+
+Kolla是OpenStack基于Docker和ansible的容器化部署方案，包含了Kolla和Kolla-ansible两个项目。Kolla是容器镜像制作工具，Kolla-ansible是容器镜像部署工具。其中Kolla-ansible只支持在openEuler LTS上使用，openEuler创新版暂不支持。使用openEuler 22.09，用户可以基于Kolla制作相应的容器镜像。同时OpenStack SIG在openEuler 22.09中新增了Kolla对iSula运行时的支持，具体步骤如下：
+
+1. 安装Kolla
+
+    ```
+    yum install openstack-kolla docker
+    ```
+
+    安装完成后，就可以使用`kolla-build`命令制作基于Docker容器镜像了，非常简单，如果用户想尝试基于isula的方式，可以继续操作
+
+2. 安装OpenStack iSula插件
+
+    ```
+    yum install openstack-plugin-kolla-isula-support
+    ```
+
+3. 启动isula-build服务
+
+    第二步会自动安装iSulad和isula-builder服务，isulad会自动启动，但isula-builder不对，需要手动拉起
+   ```
+    systemctl start isula-builder
+   ```
+
+4. 配置kolla
+    在`kolla.conf`中的[Default]里新增`base_runtime`
+    ```
+    vim /etc/kolla/kolla.conf
+
+    base_runtime=isula
+    ```
+
+5. 至此安装完成，使用`kolla-build`即可基于isula制作镜像了，执行完后，执行`isula images`查看镜像。
+
+### Nova支持高低优先级虚拟机特性
+
+高低优先级虚拟机特性是OpenStack SIG在openEuler 22.09中基于OpenStack Yoga开发的Nova特性，该特性允许用户指定虚拟机的优先级，基于不同的优先级，OpenStack自动分配不同的绑核策略，配合openEuler自研的`skylark` QOS服务，实现高低优先级虚拟机对资源的合理使用。具体细节可以参考[特性文档](../../../spec/../docs/spec/priority_vm.md)。本文档主要描述安装步骤。
+
+1. 按照前面章节部署好一套OpenStack环境（非容器），然后先安装plugin。
+
+    ```
+    yum install openstack-plugin-priority-vm
+    ```
+
+2. 配置数据库
+
+    本特性对Nova的数据表进行了扩充，因此需要同步数据库
+
+    ```
+    nova-manage api_db sync
+    nova-manage db sync
+    ```
+
+3. 重启nova服务
+   在控制节点和计算节点分别执行
+
+    ```
+    systemctl restart openstack-nova-*
+    ```
