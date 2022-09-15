@@ -71,25 +71,21 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">openEuler-22.09_Yoga</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#_1">约定</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#openstack">部署OpenStack</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#rpm">基于RPM部署</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#_2">环境准备</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_1">环境准备</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#_3">时钟同步</a>
+    <li class="toctree-l4"><a class="reference internal" href="#_2">时钟同步</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#_4">安装数据库</a>
+    <li class="toctree-l4"><a class="reference internal" href="#_3">安装数据库</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#_5">安装消息队列</a>
+    <li class="toctree-l4"><a class="reference internal" href="#_4">安装消息队列</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#_6">安装缓存服务</a>
+    <li class="toctree-l4"><a class="reference internal" href="#_5">安装缓存服务</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_7">部署服务</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">部署服务</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#keystone">Keystone</a>
     </li>
@@ -131,7 +127,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#openstack-sigopensd">基于OpenStack SIG部署工具opensd部署</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#_8">部署步骤</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">部署步骤</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#1">1. 部署前需要确认的信息</a>
     </li>
@@ -203,19 +199,25 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#openstack-helm">基于OpenStack helm部署</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#_9">简介</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">简介</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_10">前置设置</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">前置设置</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_11">自动安装</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_10">自动安装</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_12">手动安装</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_11">手动安装</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#openstack-helm_1">使用 OpenStack-Helm</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#openstack-kolla">基于OpenStack Kolla部署</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_12">新特性的安装</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#kollaisula">Kolla支持iSula</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#nova_1">Nova支持高低优先级虚拟机特性</a>
+    </li>
+        </ul>
     </li>
     </ul>
                   </li>
@@ -264,17 +266,15 @@
 <div class="toc">
 <ul>
 <li><a href="#openstack-yoga">OpenStack Yoga 部署指南</a><ul>
-<li><a href="#_1">约定</a></li>
-<li><a href="#openstack">部署OpenStack</a></li>
 <li><a href="#rpm">基于RPM部署</a><ul>
-<li><a href="#_2">环境准备</a><ul>
-<li><a href="#_3">时钟同步</a></li>
-<li><a href="#_4">安装数据库</a></li>
-<li><a href="#_5">安装消息队列</a></li>
-<li><a href="#_6">安装缓存服务</a></li>
+<li><a href="#_1">环境准备</a><ul>
+<li><a href="#_2">时钟同步</a></li>
+<li><a href="#_3">安装数据库</a></li>
+<li><a href="#_4">安装消息队列</a></li>
+<li><a href="#_5">安装缓存服务</a></li>
 </ul>
 </li>
-<li><a href="#_7">部署服务</a><ul>
+<li><a href="#_6">部署服务</a><ul>
 <li><a href="#keystone">Keystone</a></li>
 <li><a href="#glance">Glance</a></li>
 <li><a href="#placement">Placement</a></li>
@@ -297,7 +297,7 @@
 </li>
 <li><a href="#openstack-sigoos">基于OpenStack SIG开发工具oos部署</a></li>
 <li><a href="#openstack-sigopensd">基于OpenStack SIG部署工具opensd部署</a><ul>
-<li><a href="#_8">部署步骤</a></li>
+<li><a href="#_7">部署步骤</a></li>
 <li><a href="#1">1. 部署前需要确认的信息</a></li>
 <li><a href="#2-ceph-pool">2. ceph pool与认证创建（可选）</a><ul>
 <li><a href="#21-pool">2.1 创建pool:</a></li>
@@ -340,20 +340,24 @@
 </ul>
 </li>
 <li><a href="#openstack-helm">基于OpenStack helm部署</a><ul>
-<li><a href="#_9">简介</a></li>
-<li><a href="#_10">前置设置</a></li>
-<li><a href="#_11">自动安装</a></li>
-<li><a href="#_12">手动安装</a></li>
+<li><a href="#_8">简介</a></li>
+<li><a href="#_9">前置设置</a></li>
+<li><a href="#_10">自动安装</a></li>
+<li><a href="#_11">手动安装</a></li>
 <li><a href="#openstack-helm_1">使用 OpenStack-Helm</a></li>
 </ul>
 </li>
-<li><a href="#openstack-kolla">基于OpenStack Kolla部署</a></li>
+<li><a href="#_12">新特性的安装</a><ul>
+<li><a href="#kollaisula">Kolla支持iSula</a></li>
+<li><a href="#nova_1">Nova支持高低优先级虚拟机特性</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
 <p>本文档是openEuler OpenStack SIG编写的基于openEuler 22.09的OpenStack部署指南，内容由SIG贡献者提供。在阅读过程中，如果您有任何疑问或者发现任何问题，请<a href="https://gitee.com/openeuler/openstack#%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F">联系</a>SIG维护人员，或者直接<a href="https://gitee.com/openeuler/openstack/issues">提交issue</a></p>
-<h2 id="_1">约定<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p><strong>约定</strong></p>
 <p>本章节描述文档中的一些通用约定。</p>
 <table>
 <thead>
@@ -457,10 +461,9 @@
 </tr>
 </tbody>
 </table>
-<h2 id="openstack">部署OpenStack<a class="headerlink" href="#openstack" title="Permanent link">&para;</a></h2>
 <p>OpenStack SIG提供了多种基于openEuler部署OpenStack的方法，以满足不同的用户场景，请按需选择。</p>
 <h2 id="rpm">基于RPM部署<a class="headerlink" href="#rpm" title="Permanent link">&para;</a></h2>
-<h3 id="_2">环境准备<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h3 id="_1">环境准备<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>本文档基于OpenStack经典的三节点环境进行部署，三个节点分别是控制节点(Controller)、计算节点(Compute)、存储节点(Storage)，其中存储节点一般只部署存储服务，在资源有限的情况下，可以不单独部署该节点，把存储节点上的服务部署到计算节点即可。</p>
 <p>首先准备三个openEuler 22.09环境，根据您的环境，下载对应的镜像并安装即可：<a href="https://repo.openeuler.org/openEuler-21.09/ISO/">ISO镜像</a>、<a href="https://repo.openeuler.org/openEuler-21.09/virtual_machine_img/">qcow2镜像</a>。</p>
 <p>下面的安装按照如下拓扑进行：
@@ -469,7 +472,9 @@ compute：   192.168.0.3
 storage：   192.168.0.4</code></pre>
 如果您的环境IP不同，请按照您的环境IP修改相应的配置文件即可。</p>
 <p>本文档的三节点服务拓扑如下图所示(只包含Keystone、Glance、Nova、Cinder、Neutron这几个核心服务，其他服务请参考具体部署章节)：</p>
-<p><img alt="topology" src="../../../img/install/topology.png" /></p>
+<p><img alt="topology1" src="../../../img/install/topology1.PNG" />
+<img alt="topology2" src="../../../img/install/topology2.PNG" />
+<img alt="topology3" src="../../../img/install/topology3.PNG" /></p>
 <p>在正式部署之前，需要对每个节点做如下配置和检查：</p>
 <ol>
 <li>
@@ -496,7 +501,7 @@ vi /etc/hostname
 192.168.0.4   storage</code></pre>
 </li>
 </ol>
-<h4 id="_3">时钟同步<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<h4 id="_2">时钟同步<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
 <p>集群环境时刻要求每个节点的时间一致，一般由时钟同步软件保证。本文使用<code>chrony</code>软件。步骤如下：</p>
 <p><strong>Controller节点</strong>：</p>
 <ol>
@@ -524,7 +529,7 @@ server NTP_SERVER iburst</code></pre>
 ===============================================================================
 ^* 192.168.0.2                 4   6     7     0  -1406ns[  +55us] +/-   16ms
 </code></pre></p>
-<h4 id="_4">安装数据库<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<h4 id="_3">安装数据库<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
 <p>数据库安装在控制节点，这里推荐使用mariadb。</p>
 <ol>
 <li>
@@ -554,7 +559,7 @@ character-set-server = utf8</code></pre>
 <pre class="highlight"><code>mysql -uroot -p</code></pre>
 </li>
 </ol>
-<h4 id="_5">安装消息队列<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<h4 id="_4">安装消息队列<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
 <p>消息队列安装在控制节点，这里推荐使用rabbitmq。</p>
 <ol>
 <li>安装软件包
@@ -565,7 +570,7 @@ character-set-server = utf8</code></pre>
     <pre class="highlight"><code>rabbitmqctl add_user openstack RABBIT_PASS
 rabbitmqctl set_permissions openstack ".*" ".*" ".*"</code></pre></li>
 </ol>
-<h4 id="_6">安装缓存服务<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<h4 id="_5">安装缓存服务<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
 <p>消息队列安装在控制节点，这里推荐使用Memcached。</p>
 <ol>
 <li>安装软件包
@@ -575,7 +580,7 @@ rabbitmqctl set_permissions openstack ".*" ".*" ".*"</code></pre></li>
 <li>启动服务
     <pre class="highlight"><code>systemctl start memcached</code></pre></li>
 </ol>
-<h3 id="_7">部署服务<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<h3 id="_6">部署服务<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <h4 id="keystone">Keystone<a class="headerlink" href="#keystone" title="Permanent link">&para;</a></h4>
 <p><strong>Controller节点</strong>：</p>
 <ol>
@@ -3051,7 +3056,7 @@ kolla_openeuler_plugin = false</code></pre></p>
 </ol>
 <h2 id="openstack-sigopensd">基于OpenStack SIG部署工具opensd部署<a class="headerlink" href="#openstack-sigopensd" title="Permanent link">&para;</a></h2>
 <p>opensd用于批量地脚本化部署openstack各组件服务。</p>
-<h3 id="_8">部署步骤<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<h3 id="_7">部署步骤<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <h3 id="1">1. 部署前需要确认的信息<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>装操作系统时，需将selinux设置为disable</li>
@@ -3430,17 +3435,18 @@ opensd -i /usr/local/share/opensd/ansible/inventory/multinode deploy --forks 50
 单服务部署：
 opensd -i /usr/local/share/opensd/ansible/inventory/multinode deploy --forks 50 -t service_name</code></pre>
 <h2 id="openstack-helm">基于OpenStack helm部署<a class="headerlink" href="#openstack-helm" title="Permanent link">&para;</a></h2>
-<h3 id="_9">简介<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<h3 id="_8">简介<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <p><a href="https://wiki.openstack.org/wiki/Openstack-helm">OpenStack-Helm</a> 是一个用来允许用户在 <a href="https://kubernetes.io/">Kubernetes</a> 上部署 OpenStack 组件的项目。该项目提供了 OpenStack 各个组件的 <a href="https://helm.sh/">Helm</a> Chart，并提供了一系列脚本来供用户完成安装流程。</p>
 <p>OpenStack-Helm 较为复杂，建议在一个新系统上部署。整个部署将占用约 30GB 的磁盘空间。安装时请使用 root 用户。</p>
-<h3 id="_10">前置设置<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<h3 id="_9">前置设置<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <p>在开始安装 OpenStack-Helm 前，可能需要对系统进行一些基础设置，包括主机名和时间等。请参考“基于RPM部署”章节的有关信息。</p>
-<h3 id="_11">自动安装<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
-<p>openEuler 22.09 中已经包含了 OpenStack-Helm 软件包。首先安装对应的软件包和补丁：
-<pre class="highlight"><code>yum install openstack-helm
-yum install openstack-plugin</code></pre>
-OpenStack-Helm 安装文件将被放置到系统的 <code>/usr/share/openstack-helm</code> 目录。</p>
-<p>openEuler 提供的软件包中包含一个简易的安装向导程序，位于 <code>/usr/bin/openstack-helm</code> 。执行命令进入向导程序：
+<p>openEuler 22.09 中已经包含了 OpenStack-Helm 软件包。首先安装对应的软件包和补丁：</p>
+<pre class="highlight"><code>yum install openstack-helm openstack-helm-infra openstack-helm-images loci</code></pre>
+<p>这里安装的是原生openstack-helm，默认不支持openEuler，因此如果想在openEuler上使用openstack-helm，还需要安装plugin插件，本章节是对plugin的使用说明。</p>
+<pre class="highlight"><code>yum install openstack-plugin-openstack-helm-openeuler-support</code></pre>
+<h3 id="_10">自动安装<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>OpenStack-Helm 安装文件将被放置到系统的 <code>/usr/share/openstack-helm</code> 目录。</p>
+<p>openEuler 提供的软件包中包含一个简易的安装向导程序，位于 <code>/usr/bin/openstack-helm</code> 。执行命令进入向导程序：</p>
 <pre class="highlight"><code>openstack-helm</code></pre>
 <pre class="highlight"><code>Welcome to OpenStack-Helm installation program for openEuler. I will guide you through the installation. 
 Please refer to https://docs.openstack.org/openstack-helm/latest/ to get more information about OpenStack-Helm. 
@@ -3452,7 +3458,7 @@ i: Start automated installation
 c: Check if all pods in Kubernetes are working
 e: Exit
 Your choice? [i/c/e]: </code></pre>
-输入 <code>i</code> 并点击回车进入下一级页面：
+<p>输入 <code>i</code> 并点击回车进入下一级页面：</p>
 <pre class="highlight"><code>Welcome to OpenStack-Helm installation program for openEuler. I will guide you through the installation. 
 Please refer to https://docs.openstack.org/openstack-helm/latest/ to get more information about OpenStack-Helm. 
 We recommend doing this on a new bare metal or virtual OS installation. 
@@ -3470,11 +3476,11 @@ n: NFS storage backend
 c: CEPH storage backend
 b: Go back to parent menu
 Your choice? [n/c/b]: </code></pre>
-OpenStack-Helm 提供了两种存储方法：<code>NFS</code> 和 <code>Ceph</code>。用户可根据需要输入 <code>n</code> 来选择 <code>NFS</code> 存储后端或者 <code>c</code> 来选择 <code>Ceph</code> 存储后端。</p>
+<p>OpenStack-Helm 提供了两种存储方法：<code>NFS</code> 和 <code>Ceph</code>。用户可根据需要输入 <code>n</code> 来选择 <code>NFS</code> 存储后端或者 <code>c</code> 来选择 <code>Ceph</code> 存储后端。</p>
 <p>选择完成存储后端后，用户将有机会完成确认。收到提示时，按下回车以开始安装。安装过程中，程序将顺序执行一系列安装脚本以完成部署。这一过程可能需要持续几十分钟，安装过程中请确保磁盘空间充足以及互联网连接畅通。</p>
 <p>安装过程中执行到的脚本会将一些 Helm Chart 部署到系统上。由于目标系统环境复杂多变，某些特定的 Helm Chart 可能无法顺利被部署。这种情况下，您会注意到输出信息的最后包含等待 Pod 就位但超时的提示。若发生此类现象，您可能需要通过下一节给出的手动安装方法来定位问题所在。</p>
 <p>若您未观察到上述的现象，则恭喜您完成了部署。请参考“使用 OpenStack-Helm”一节来开始使用。</p>
-<h3 id="_12">手动安装<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<h3 id="_11">手动安装<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
 <p>若您在自动安装的过程中遇到了错误，或者希望手动安装来控制整个安装流程，您可以参照以下顺序执行安装流程：
 <pre class="highlight"><code>cd /usr/share/openstack-helm/openstack-helm
 
@@ -3528,7 +3534,54 @@ openstack stack list</code></pre>
 User Name： admin
 Password： password</code></pre>
 此时，您应当可以看到熟悉的 OpenStack 控制面板了。</p>
-<h2 id="openstack-kolla">基于OpenStack Kolla部署<a class="headerlink" href="#openstack-kolla" title="Permanent link">&para;</a></h2>
+<h2 id="_12">新特性的安装<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<h3 id="kollaisula">Kolla支持iSula<a class="headerlink" href="#kollaisula" title="Permanent link">&para;</a></h3>
+<p>Kolla是OpenStack基于Docker和ansible的容器化部署方案，包含了Kolla和Kolla-ansible两个项目。Kolla是容器镜像制作工具，Kolla-ansible是容器镜像部署工具。其中Kolla-ansible只支持在openEuler LTS上使用，openEuler创新版暂不支持。使用openEuler 22.09，用户可以基于Kolla制作相应的容器镜像。同时OpenStack SIG在openEuler 22.09中新增了Kolla对iSula运行时的支持，具体步骤如下：</p>
+<ol>
+<li>
+<p>安装Kolla</p>
+<pre class="highlight"><code>yum install openstack-kolla docker</code></pre>
+<p>安装完成后，就可以使用<code>kolla-build</code>命令制作基于Docker容器镜像了，非常简单，如果用户想尝试基于isula的方式，可以继续操作</p>
+</li>
+<li>
+<p>安装OpenStack iSula插件</p>
+<pre class="highlight"><code>yum install openstack-plugin-kolla-isula-support</code></pre>
+</li>
+<li>
+<p>启动isula-build服务</p>
+<p>第二步会自动安装iSulad和isula-builder服务，isulad会自动启动，但isula-builder不对，需要手动拉起
+   <pre class="highlight"><code> systemctl start isula-builder</code></pre></p>
+</li>
+<li>
+<p>配置kolla
+    在<code>kolla.conf</code>中的[Default]里新增<code>base_runtime</code>
+    <pre class="highlight"><code>vim /etc/kolla/kolla.conf
+
+base_runtime=isula</code></pre></p>
+</li>
+<li>
+<p>至此安装完成，使用<code>kolla-build</code>即可基于isula制作镜像了，执行完后，执行<code>isula images</code>查看镜像。</p>
+</li>
+</ol>
+<h3 id="nova_1">Nova支持高低优先级虚拟机特性<a class="headerlink" href="#nova_1" title="Permanent link">&para;</a></h3>
+<p>高低优先级虚拟机特性是OpenStack SIG在openEuler 22.09中基于OpenStack Yoga开发的Nova特性，该特性允许用户指定虚拟机的优先级，基于不同的优先级，OpenStack自动分配不同的绑核策略，配合openEuler自研的<code>skylark</code> QOS服务，实现高低优先级虚拟机对资源的合理使用。具体细节可以参考<a href="../../../spec/../docs/spec/priority_vm.md">特性文档</a>。本文档主要描述安装步骤。</p>
+<ol>
+<li>
+<p>按照前面章节部署好一套OpenStack环境（非容器），然后先安装plugin。</p>
+<pre class="highlight"><code>yum install openstack-plugin-priority-vm</code></pre>
+</li>
+<li>
+<p>配置数据库</p>
+<p>本特性对Nova的数据表进行了扩充，因此需要同步数据库</p>
+<pre class="highlight"><code>nova-manage api_db sync
+nova-manage db sync</code></pre>
+</li>
+<li>
+<p>重启nova服务
+   在控制节点和计算节点分别执行</p>
+<pre class="highlight"><code>systemctl restart openstack-nova-*</code></pre>
+</li>
+</ol>
               
             </div>
           </div><footer>
