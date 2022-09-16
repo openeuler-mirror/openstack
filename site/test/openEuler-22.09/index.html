@@ -82,6 +82,36 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">openEuler-22.09</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">1 特性概述</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2 特性测试信息</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">3 测试结论概述</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31">3.1 测试整体结论</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32">3.2   约束说明</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#33">3.3   遗留问题分析</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#331">3.3.1 遗留问题影响以及规避措施</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#332">3.3.2 问题统计</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4">4 测试执行</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#41">4.1 测试执行统计数据</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#42">4.2 后续测试建议</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5">5 附件</a>
+    </li>
     </ul>
                   </li>
               </ul>
@@ -114,7 +144,299 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="openeuler-2209">openEuler 22.09 测试报告<a class="headerlink" href="#openeuler-2209" title="Permanent link">&para;</a></h1>
+                <h1 id="openeuler-2209-openstack-yoga-opensd">openEuler 22.09 OpenStack Yoga + OpenSD + 虚拟机高低优先级特性测试报告<a class="headerlink" href="#openeuler-2209-openstack-yoga-opensd" title="Permanent link">&para;</a></h1>
+<p><img alt="openEuler ico" src="../../img/openEuler.png" /></p>
+<p>版权所有 © 2022  openEuler社区
+您对“本文档”的复制、使用、修改及分发受知识共享(Creative Commons)署名—相同方式共享4.0国际公共许可协议(以下简称“CC BY-SA 4.0”)的约束。为了方便用户理解，您可以通过访问<a href="https://creativecommons.org/licenses/by-sa/4.0/">https://creativecommons.org/licenses/by-sa/4.0/</a>了解CC BY-SA 4.0的概要 (但不是替代)。CC BY-SA 4.0的完整协议内容您可以访问如下网址获取：<a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode。">https://creativecommons.org/licenses/by-sa/4.0/legalcode。</a></p>
+<p>修订记录</p>
+<table>
+<thead>
+<tr>
+<th align="left">日期</th>
+<th align="left">修订版本</th>
+<th align="left">修改描述</th>
+<th align="left">作者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2022-09-15</td>
+<td align="left">1</td>
+<td align="left">初稿</td>
+<td align="left">韩光宇</td>
+</tr>
+<tr>
+<td align="left">2022-09-16</td>
+<td align="left">2</td>
+<td align="left">格式整改，新增opensd测试报告,新增虚拟机高低优先级特性测试报告</td>
+<td align="left">王玺源</td>
+</tr>
+</tbody>
+</table>
+<p>关键词：</p>
+<p>OpenStack、opensd</p>
+<p>摘要：</p>
+<p>在 <code>openEuler 22.09</code> 版本中提供 <code>OpenStack Yoga</code> 版本的 <code>RPM</code> 安装包，方便用户快速部署 <code>OpenStack</code>。</p>
+<p>opensd是中国联通在openEuler开源的OpenStack部署工具，在<code>openEuler 22.09</code>中提供对<code>OpenStack Yoga</code>的支持。</p>
+<p><code>虚拟机高低优先级</code>特性是OpenStack SIG自研的OpenStack特性，该特性允许用户指定虚拟机的优先级，基于不同的优先级，OpenStack自动分配不同的绑核策略，配合openEuler自研的<code>skylark</code> QOS服务，实现高低优先级虚拟机对资源的合理使用。</p>
+<p>缩略语清单：</p>
+<table>
+<thead>
+<tr>
+<th align="left">缩略语</th>
+<th align="left">英文全名</th>
+<th align="left">中文解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">CLI</td>
+<td align="left">Command Line Interface</td>
+<td align="left">命令行工具</td>
+</tr>
+<tr>
+<td align="left">ECS</td>
+<td align="left">Elastic Cloud Server</td>
+<td align="left">弹性云服务器</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1">1 特性概述<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>在 <code>openEuler 22.09</code> 版本中提供 <code>OpenStack Yoga</code> 版本的<code>RPM</code>安装包，包括以下项目以及每个项目配套的 <code>CLI</code>。</p>
+</li>
+<li>
+<p>Keystone</p>
+</li>
+<li>Neutron</li>
+<li>Cinder</li>
+<li>Nova</li>
+<li>Placement</li>
+<li>Glance</li>
+<li>Horizon</li>
+<li>Aodh</li>
+<li>Ceilometer</li>
+<li>Cyborg</li>
+<li>Gnocchi</li>
+<li>Heat</li>
+<li>Swift</li>
+<li>Ironic</li>
+<li>Kolla</li>
+<li>Trove</li>
+<li>
+<p>Tempest</p>
+</li>
+<li>
+<p>在 <code>openEuler 22.09</code> 版本中提供<code>opensd</code>的安装包以及对<code>openEuler</code>和<code>OpenStack Yoga</code>的支持能力。</p>
+</li>
+<li>
+<p>在 <code>openEuler 22.09</code> 版本中提供<code>openstack-plugin-priority-vm</code>安装包，支持虚拟机高低优先级特性。</p>
+</li>
+</ol>
+<h2 id="2">2 特性测试信息<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>本节描述被测对象的版本信息和测试的时间及测试轮次，包括依赖的硬件。</p>
+<table>
+<thead>
+<tr>
+<th align="left">版本名称</th>
+<th align="left">测试起始时间</th>
+<th align="left">测试结束时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">openEuler 22.09 RC1<br>(OpenStack Yoga版本各组件的安装部署测试；opensd安装能力测试；虚拟机高低优先级特性安装测试)</td>
+<td align="left">2022.08.10</td>
+<td align="left">2022.08.17</td>
+</tr>
+<tr>
+<td align="left">openEuler 22.09 RC2<br>(OpenStack Yoga版本基本功能测试，包括虚拟机、卷</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">网络相关资源的增删改查；opensd支持openEuler的能力测试；虚拟机高低优先级特性功能测试)</td>
+<td align="left">2022.08.18</td>
+<td align="left">2022.08.23</td>
+</tr>
+<tr>
+<td align="left">openEuler 22.09 RC3<br>(OpenStack Yoga版本tempest集成测试；opensd支持OpenStack Yoga的能力测试；虚拟机高低优先级特性问题回归测试)</td>
+<td align="left">2022.08.24</td>
+<td align="left">2022.09.07</td>
+</tr>
+<tr>
+<td align="left">openEuler 22.09 RC4<br>(OpenStack Yoga版本问题回归测试；opensd问题回归测试)</td>
+<td align="left">2022.09.08</td>
+<td align="left">2022.09.15</td>
+</tr>
+</tbody>
+</table>
+<p>描述特性测试的硬件环境信息</p>
+<table>
+<thead>
+<tr>
+<th align="left">硬件型号</th>
+<th align="left">硬件配置信息</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">华为云ECS</td>
+<td align="left">Intel Cascade Lake 3.0GHz 8U16G</td>
+<td align="left">x86虚拟机</td>
+</tr>
+<tr>
+<td align="left">联通云ECS</td>
+<td align="left">Intel(R) Xeon(R) Silver 4114 2.20GHz 8U16G</td>
+<td align="left">X86虚拟机</td>
+</tr>
+<tr>
+<td align="left">华为 2288H V5</td>
+<td align="left">Intel Xeon Gold 6146 3.20GHz 48U192G</td>
+<td align="left">X86物理机</td>
+</tr>
+<tr>
+<td align="left">联通云ECS</td>
+<td align="left">Huawei Kunpeng 920 2.6GHz 4U8G</td>
+<td align="left">arm64虚拟机</td>
+</tr>
+<tr>
+<td align="left">飞腾S2500</td>
+<td align="left">FT-S2500 2.1GHz 8U16G</td>
+<td align="left">arm64虚拟机</td>
+</tr>
+<tr>
+<td align="left">飞腾S2500</td>
+<td align="left">FT-S2500,64 Core@2.1GHz*2; 512GB DDR4 RAM</td>
+<td align="left">arm64物理机</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3 测试结论概述<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<h3 id="31">3.1 测试整体结论<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<p><code>OpenStack Yoga</code> 版本，共计执行 <code>Tempest</code> 用例 <code>1452</code> 个，主要覆盖了 <code>API</code> 测试和功能测试，通过 <code>7*24</code> 的长稳测试，<code>Skip</code> 用例 <code>95</code> 个（ <code>OpenStack Yoga</code> 版中已废弃的功能或接口，如Keystone V1、Cinder V1等），失败用例 <code>0</code> 个（FLAT网络未实际联通及存在一些超时问题），其他 <code>1357</code> 个用例通过，发现问题已解决，回归通过，无遗留风险，整体质量良好。</p>
+<p><code>opensd</code>支持<code>Yoga</code>版本<code>mariadb、rabbitmq、memcached、ceph_client、keystone、glance、cinder、placement、nova、neutron</code>共10个项目的部署，发现问题已解决，回归通过，无遗留风险。</p>
+<p><code>虚拟机高低优先级特性</code>，发现问题已解决，回归通过，无遗留风险。</p>
+<table>
+<thead>
+<tr>
+<th align="left">测试活动</th>
+<th align="left">tempest集成测试</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">接口测试</td>
+<td align="left">API全覆盖</td>
+</tr>
+<tr>
+<td align="left">功能测试</td>
+<td align="left">Yoga版本覆盖Tempest所有相关测试用例1452个，其中Skip 95个，Fail 0个, 其他全通过。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="left">测试活动</th>
+<th align="left">功能测试</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">功能测试</td>
+<td align="left">虚拟机（KVM、Qemu)、存储（lvm、NFS、Ceph后端）、网络资源（linuxbridge、openvswitch）管理操作正常</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32">3.2   约束说明<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<p>本次测试没有覆盖 <code>OpenStack Yoga</code> 版中明确废弃的功能和接口，因此不能保证已废弃的功能和接口（前文提到的Skip的用例）在 <code>openEuler 22.09</code> 上能正常使用。</p>
+<p>opensd 只支持测试范围内的服务部署，其他服务未经过测试，不保证质量。</p>
+<p><code>虚拟机高低优先级特性</code>需要配合openEuelr 22.09 skylark服务使用。</p>
+<h3 id="33">3.3   遗留问题分析<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
+<h4 id="331">3.3.1 遗留问题影响以及规避措施<a class="headerlink" href="#331" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th align="left">问题单号</th>
+<th align="left">问题描述</th>
+<th align="left">问题级别</th>
+<th align="left">问题影响和规避措施</th>
+<th align="left">当前状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">N/A</td>
+<td align="left">N/A</td>
+<td align="left">N/A</td>
+<td align="left">N/A</td>
+<td align="left">N/A</td>
+</tr>
+</tbody>
+</table>
+<h4 id="332">3.3.2 问题统计<a class="headerlink" href="#332" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">问题总数</th>
+<th align="left">严重</th>
+<th align="left">主要</th>
+<th align="left">次要</th>
+<th align="left">不重要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">数目</td>
+<td align="left">4</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">1</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">百分比</td>
+<td align="left">100</td>
+<td align="left">25</td>
+<td align="left">59</td>
+<td align="left">25</td>
+<td align="left">0</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4 测试执行<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<h3 id="41">4.1 测试执行统计数据<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<p><em>本节内容根据测试用例及实际执行情况进行特性整体测试的统计，可根据第二章的测试轮次分开进行统计说明。</em></p>
+<table>
+<thead>
+<tr>
+<th align="left">版本名称</th>
+<th align="left">测试用例数</th>
+<th align="left">用例执行结果</th>
+<th align="left">发现问题单数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">openEuler 22.09 OpenStack Yoga</td>
+<td align="left">1452</td>
+<td align="left">通过1357个，skip 95个，Fail 0个</td>
+<td align="left">3</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42">4.2 后续测试建议<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
+<ol>
+<li>涵盖主要的性能测试</li>
+<li>覆盖更多的driver/plugin测试</li>
+<li>opensd测试验证更多OpenStack服务。</li>
+</ol>
+<h2 id="5">5 附件<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<p><em>N/A</em></p>
               
             </div>
           </div><footer>
