@@ -42,6 +42,7 @@ openeuler:
   TCP_option_address: Kernel
   UniProton: sig-embedded
   WasmEngine: sig-CloudNative
+  WayCa: sig-WayCa
   X-diagnosis: sig-ops
   aarch32-rootfs-builder: sig-Yocto
   abichecker: dev-utils
@@ -6376,9 +6377,12 @@ src-openeuler:
   python-cjdns: sig-python-modules
   python-click: Programming-language
   python-click-completion: sig-python-modules
+  python-click-didyoumean: sig-python-modules
   python-click-help-colors: sig-python-modules
   python-click-log: sig-python-modules
   python-click-man: sig-python-modules
+  python-click-plugins: sig-python-modules
+  python-click-repl: sig-python-modules
   python-click-threading: sig-python-modules
   python-clickclick: sig-python-modules
   python-cliff: sig-openstack
@@ -6607,6 +6611,7 @@ src-openeuler:
   python-fabulous: sig-python-modules
   python-falcon: sig-python-modules
   python-fastavro: sig-python-modules
+  python-fastecdsa: sig-python-modules
   python-fasteners: sig-python-modules
   python-fastimport: sig-python-modules
   python-fastjsonschema: bigdata
@@ -9112,6 +9117,7 @@ src-openeuler:
   xcb-util-keysyms: Programming-language
   xcb-util-renderutil: Programming-language
   xcb-util-wm: Programming-language
+  xcb-util-xrm: Desktop
   xclip: Application
   xdelta: Programming-language
   xdg-dbus-proxy: Application
