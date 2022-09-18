@@ -7,7 +7,7 @@ import click
 import yaml
 
 import oos
-
+from oos.common.utils import make_private_key_available
 
 CONSTANTS = None
 SPEC_TEMPLATE_DIR = None
@@ -95,3 +95,6 @@ if not CONFIG:
     raise click.ClickException("Unable to locate config file")
 if not KEY_DIR:
     raise click.ClickException("Unable to locate key pair file")
+
+private_key = os.path.join(KEY_DIR, 'id_rsa')
+make_private_key_available()

@@ -293,3 +293,6 @@ class ManagedProvider(Provider):
             # TODO: 以key方式登录target并注入oos秘钥
             if self.password:
                 self._setup_sshpass(self.ip, self.password)
+            else:
+                print("Warning: -p/--password is not provided. Unable to sync "
+                "key-pair to the target Machines. Please do the sync step by hand.")
