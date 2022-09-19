@@ -295,6 +295,7 @@ openeuler:
   sync-bot: sig-EasyLife
   syscontainer-tools: iSulad
   sysmonitor: sig-ops
+  taishan-oslab: sig-OSCourse
   talent-assessment: sig-OpenDesign
   tarsier: sig-high-performance-network
   technical-certification: sig-Compatibility-Infra
@@ -2719,7 +2720,6 @@ src-openeuler:
   libao: Runtime
   libappindicator: Desktop
   libappstream-glib: Programming-language
-  libapr1: Application
   libarchive: Base-service
   libart_lgpl: Desktop
   libass: Application
