@@ -24,7 +24,10 @@ if __name__ == '__main__':
         output_body += '| Number| Result | Time | LOG |\n'
         output_body += '|-|-|-|-|\n'
         for i in range(5):
-            output_body += '| %s| **%s** | %s | %s |\n' % (i, res[i]['result'], res[i]['start_time'], res[i]['log_url'])
+            try:
+                output_body += '| %s| **%s** | %s | %s |\n' % (i, res[i]['result'], res[i]['start_time'], res[i]['log_url'])
+            except IndexError:
+                break
         output_body += '\n'
 
     with open('result_body.html', 'w') as f:
