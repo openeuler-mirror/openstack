@@ -5,7 +5,7 @@ import markdown
 import requests
 
 
-jobs = ['kolla-ansible-openeuler-source', 'devstack-platform-openEuler-22.09']
+jobs = ['kolla-ansible-openeuler-source', 'devstack-platform-openEuler-22.03']
 zuul_url = 'https://zuul.opendev.org/api/tenant/openstack/builds?job_name=%s'
 
 
