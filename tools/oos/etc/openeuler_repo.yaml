@@ -68,6 +68,7 @@ openeuler:
   blog: sig-recycle
   capsule: Virt
   ceph_dev: sig-SDS
+  certificate-center: sig-OpenDesign
   ci-bot: sig-Gatekeeper
   clibcni: iSulad
   cloudnative: sig-CloudNative
@@ -90,6 +91,7 @@ openeuler:
   digest-list-tools: sig-security-facility
   dim_tools: sig-security-facility
   docs: doc
+  docs-debug: sig-OpenDesign
   dpdk: sig-high-performance-network
   dpu-core: sig-DPU
   dpu-utilities: sig-DPU
@@ -114,6 +116,7 @@ openeuler:
   gazelle-cni: sig-recycle
   gcc: Compiler
   gcc-anti-sca: Compiler
+  gcc-for-openEuler: Compiler
   geo-coding: dev-utils
   git-basics: sig-OSCourse
   gitbook-theme-hugo: Infrastructure
@@ -256,7 +259,6 @@ openeuler:
   plymouth-theme-kiran: sig-KIRAN-DESKTOP
   powerapi: sig-power-efficient
   prefetch_tuning: A-Tune
-  process1: dev-utils
   ptcr: sig-CloudNative
   pyisula: sig-openstack
   pyporter: dev-utils
@@ -294,6 +296,7 @@ openeuler:
   sw-committee: sig-sw-arch
   sync-bot: sig-EasyLife
   syscontainer-tools: iSulad
+  sysmaster: dev-utils
   sysmonitor: sig-ops
   taishan-oslab: sig-OSCourse
   talent-assessment: sig-OpenDesign
@@ -1493,6 +1496,7 @@ src-openeuler:
   gcc: Compiler
   gcc-12: Compiler
   gcc-cross: Compiler
+  gcc-for-openEuler: Compiler
   gcc_secure: Others
   gcolor2: sig-mate-desktop
   gcr: Desktop
@@ -6007,7 +6011,6 @@ src-openeuler:
   prelink: Application
   presto: bigdata
   procenv: dev-utils
-  process1: dev-utils
   procinfo: Others
   procmail: Networking
   procps-ng: Computing
@@ -8716,6 +8719,7 @@ src-openeuler:
   sysget: dev-utils
   syslinux: sig-OS-Builder
   syslinux-tftpboot: Private
+  sysmaster: dev-utils
   sysmonitor: sig-ops
   sysprof: Desktop
   sysrepo: sig-industrial-control
