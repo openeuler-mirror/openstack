@@ -170,6 +170,7 @@ openeuler:
   kiran-widgets-qt5: sig-KIRAN-DESKTOP
   kml_adapter: sig-AccLib
   ksc-defender: sig-security-facility
+  kunpeng-competition: sig-OSCourse
   kunpengsecl: sig-security-facility
   kylin-installer: sig-UKUI
   kylin-user-guide: sig-UKUI
