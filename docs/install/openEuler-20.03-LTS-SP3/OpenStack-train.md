@@ -61,7 +61,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     [EPOL]
     name=EPOL
-    baseurl=http://repo.openeuler.org/openEuler-20.03-LTS-SP3/EPOL/$basearch/
+    baseurl=http://repo.openeuler.org/openEuler-20.03-LTS-SP3/EPOL/main/$basearch/
     enabled=1
     gpgcheck=1
     gpgkey=http://repo.openeuler.org/openEuler-20.03-LTS-SP3/OS/$basearch/RPM-GPG-KEY-openEuler
