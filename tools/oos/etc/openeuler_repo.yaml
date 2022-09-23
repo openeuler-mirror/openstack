@@ -188,6 +188,7 @@ openeuler:
   libwd: sig-AccLib
   libxml2-rust: Base-service
   linux-operation: sig-OSCourse
+  llvm-project: Compiler
   lxcfs-tools: iSulad
   marketing: Marketing
   marvelldriver: sig-Compatibility-Infra
@@ -6028,6 +6029,7 @@ src-openeuler:
   protoparser: sig-Java
   protostream: sig-Java
   proxool: sig-Java
+  proxychains-ng: Application
   proxytoys: sig-Java
   prrte: ai
   ps_mem: Computing
