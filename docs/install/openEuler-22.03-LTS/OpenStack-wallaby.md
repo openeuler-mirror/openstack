@@ -3067,125 +3067,103 @@ systemctl enable openstack-heat-api.service openstack-heat-api-cfn.service opens
 systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service
 ```
 
-## 快速安装 OpenStack
+## 基于OpenStack SIG开发工具oos快速部署
 
-OpenStack SIG还提供了一键部署OpenStack all in one或三节点的ansible脚本，用户可以使用该脚本快速部署一套基于openEuler RPM的OpenStack环境。下面以all in one举例说明使用方法
+`oos`(openEuler OpenStack SIG)是OpenStack SIG提供的命令行工具。其中`oos env`系列命令提供了一键部署OpenStack （`all in one`或三节点`cluster`）的ansible脚本，用户可以使用该脚本快速部署一套基于 openEuler RPM 的 OpenStack 环境。`oos`工具支持对接云provider（目前仅支持华为云provider）和主机纳管两种方式来部署 OpenStack 环境，下面以对接华为云部署一套`all in one`的OpenStack环境为例说明`oos`工具的使用方法。
 
-1. 安装OpenStack SIG工具
+1. 安装`oos`工具
 
     ```shell
     pip install openstack-sig-tool
     ```
 
-2. 配置openstack yum 源
+2. 配置对接华为云provider的信息
 
-    ```shell
-    yum install openstack-release-wallaby
+   打开`/usr/local/etc/oos/oos.conf`文件，修改配置为您拥有的华为云资源信息：
     ```
+    [huaweicloud]
+    ak = 
+    sk = 
+    region = ap-southeast-3
+    root_volume_size = 100
+    data_volume_size = 100
+    security_group_name = oos
+    image_format = openEuler-%%(release)s-%%(arch)s
+    vpc_name = oos_vpc
+    subnet1_name = oos_subnet1
+    subnet2_name = oos_subnet2
+   ```
 
-    **注意**：如果你的环境的YUM源没有启用EPOL，需要同时配置EPOL
+3. 配置 OpenStack 环境信息
 
+   打开`/usr/local/etc/oos/oos.conf`文件，根据当前机器环境和需求修改配置。内容如下：
     ```shell
-    vi /etc/yum.repos.d/openEuler.repo
-
-    [EPOL]
-    name=EPOL
-    baseurl=http://repo.openeuler.org/openEuler-22.03-LTS/EPOL/main/$basearch/
-    enabled=1
-    gpgcheck=1
-    gpgkey=http://repo.openeuler.org/openEuler-22.03-LTS/OS/$basearch/RPM-GPG-KEY-openEuler
-    EOF
-
-3. 刷新ansible配置
-
-    打开`/usr/local/etc/oos/inventory/all_in_one.yaml`，根据当前机器环境和需求修改对应配置。内容如下
-
-    ```shell
-    all:
-      hosts:
-        controller:
-          ansible_host: <IP>
-          ansible_ssh_private_key_file: <FILE_PATH>
-          ansible_ssh_user: root
-      vars:
-        mysql_root_password: root
-        mysql_project_password: root
-        rabbitmq_password: root
-        project_identity_password: root
-        enabled_service:
-          - keystone
-          - neutron
-          - cinder
-          - placement
-          - nova
-          - glance
-          - horizon
-          - aodh
-          - ceilometer
-          - cyborg
-          - gnocchi
-          - kolla
-          - heat
-          - swift
-          - trove
-          - tempest
-        neutron_provider_interface_name: br-ex
-        default_ext_subnet_range: 10.100.100.0/24
-        default_ext_subnet_gateway: 10.100.100.1
-        neutron_dataplane_interface_name: eth1
-        cinder_block_device: vdb
-        swift_storage_devices:
-          - vdc
-        swift_hash_path_suffix: ash
-        swift_hash_path_prefix: has
-      children:
-        compute:
-          hosts: controller
-        storage:
-          hosts: controller
-        network:
-          hosts: controller
-          vars:
-            test-key: test-value
-        dashboard:
-          hosts: controller
-          vars:
-            allowed_host: '*'
-        kolla:
-          hosts: controller
-          vars:
-            # We add openEuler OS support for kolla in OpenStack Queens/Rocky release
-            # Set this var to true if you want to use it in Q/R
-            openeuler_plugin: false
+    [environment]
+    mysql_root_password = root
+    mysql_project_password = root
+    rabbitmq_password = root
+    project_identity_password = root
+    enabled_service = keystone,neutron,cinder,placement,nova,glance,horizon,aodh,ceilometer,cyborg,gnocchi,kolla,heat,swift,trove,tempest
+    neutron_provider_interface_name = br-ex
+    default_ext_subnet_range = 10.100.100.0/24
+    default_ext_subnet_gateway = 10.100.100.1
+    neutron_dataplane_interface_name = eth1
+    cinder_block_device = vdb
+    swift_storage_devices = vdc
+    swift_hash_path_suffix = ash
+    swift_hash_path_prefix = has
+    glance_api_workers = 2
+    cinder_api_workers = 2
+    nova_api_workers = 2
+    nova_metadata_api_workers = 2
+    nova_conductor_workers = 2
+    nova_scheduler_workers = 2
+    neutron_api_workers = 2
+    horizon_allowed_host = *
+    kolla_openeuler_plugin = false
     ```
 
     **关键配置**
 
     | 配置项   | 解释 |
     |---|---|
-    | ansible_host  |  all in one节点IP |
-    | ansible_ssh_private_key_file  | ansible脚本登录all in one节点时使用的登录秘钥 |
-    | ansible_ssh_user  |  ansible脚本登录all in one节点时使用的登录用户 |
     | enabled_service  |  安装服务列表，根据用户需求自行删减 |
     | neutron_provider_interface_name  | neutron L3网桥名称  |
     | default_ext_subnet_range  | neutron私网IP段  |
     | default_ext_subnet_gateway  | neutron私网gateway  |
     | neutron_dataplane_interface_name  | neutron使用的网卡，推荐使用一张新的网卡，以免和现有网卡冲突，防止all in one主机断连的情况  |
     | cinder_block_device  |  cinder使用的卷设备名 |
-    | swift_storage_devices  | swift使用的卷设备名  |
+    | swift_storage_devices  | swift使用的卷设备名 |
+    | kolla_openeuler_plugin | 是否启用kolla plugin。设置为True，kolla将支持部署openEuler容器 |
 
-4. 执行安装命令
+4. 华为云上面创建一台openEuler 22.03-LTS的x86_64虚拟机，用于部署`all in one` 的 OpenStack
+    ```
+    # sshpass在`oos env create`过程中被使用，用于配置对目标虚拟机的免密访问
+    dnf install sshpass
+    oos env create -r 22.03-lts -f small -a x86 -n test-oos all_in_one
+    ```
+    具体的参数可以使用`oos env create --help`命令查看
 
-    ```shell
-    oos env setup all_in_one
+5. 部署OpenStack `all in one` 环境
+    ```
+    oos env setup test-oos -r wallaby
+    ```
+    具体的参数可以使用`oos env setup --help`命令查看
+
+6. 初始化tempest环境
+
+    如果用户想使用该环境运行tempest测试的话，可以执行命令`oos env init`，会自动把tempest需要的OpenStack资源自动创建好
+    ```
+    oos env init test-oos
     ```
 
-    该命令执行后，OpenStack all in one环境就部署成功了
+    命令执行成功后，在用户的根目录下会生成mytest目录，进入其中就可以执行tempest run命令了。
 
-    环境变量文件在当前用户的根目录下，名叫`.admin-openrc`
+如果是以主机纳管的方式部署 OpenStack 环境，总体逻辑与上文对接华为云时一致，1、3、5、6步操作不变，去除第2步对华为云provider信息的配置，第4步由在华为云上创建虚拟机改为纳管主机操作。
 
-5. 初始化tempest环境
-
-    如果用户想使用该环境运行tempest测试的话，可以执行命令`oos env init all_in_one`，会自动把tempest需要的OpenStack资源自动创建好。
-
-    命令执行成功后，在用户的根目录下会生成`mytest`目录，进入其中就可以执行`tempest run`命令了。
+```shell
+# sshpass在`oos env create`过程中被使用，用于配置对目标主机的免密访问
+dnf install sshpass
+oos env manage -r 22.03-lts -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n test-oos
+```
+替换`TARGET_MACHINE_IP`为目标机ip、`TARGET_MACHINE_PASSWD`为目标机密码。具体的参数可以使用`oos env manage --help`命令查看。

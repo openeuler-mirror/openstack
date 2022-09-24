@@ -1,3 +1,5 @@
+import os
+
 from oos.common import CONSTANTS
 from oos.common import OPENEULER_REPO
 
@@ -12,3 +14,7 @@ def get_openeuler_repo_name_and_sig(pypi_name):
         return 'openstack-'+openeuler_name, OPENEULER_REPO['openstack-'+openeuler_name]
     else:
         return '', ''
+
+
+def make_private_key_available(private_key):
+    os.chmod(private_key, 0o400)

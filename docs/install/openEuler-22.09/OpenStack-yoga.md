@@ -29,10 +29,10 @@
 | PLACEMENT_PASS | 在keystone注册的placement用户密码，在placement配置中使用 |
 | NOVA_DBPASS |  nova服务数据库密码，在nova配置中使用 |
 | NOVA_PASS | 在keystone注册的nova用户密码，在nova,cyborg,neutron等配置中使用 |
-| IRONIC_DBPASSWORD | ironic服务数据库密码，在ironic配置中使用 |
-| IRONIC_PASSWORD | 在keystone注册的ironic用户密码，在ironic配置中使用 |
-| IRONIC_INSPECTOR_DBPASSWORD | ironic-inspector服务数据库密码，在ironic-inspector配置中使用|
-| IRONIC_INSPECTOR_PASSWORD | 在keystone注册的ironic-inspector用户密码，在ironic-inspector配置中使用 |
+| IRONIC_DBPASS | ironic服务数据库密码，在ironic配置中使用 |
+| IRONIC_PASS | 在keystone注册的ironic用户密码，在ironic配置中使用 |
+| IRONIC_INSPECTOR_DBPASS | ironic-inspector服务数据库密码，在ironic-inspector配置中使用|
+| IRONIC_INSPECTOR_PASS | 在keystone注册的ironic-inspector用户密码，在ironic-inspector配置中使用 |
 
 OpenStack SIG提供了多种基于openEuler部署OpenStack的方法，以满足不同的用户场景，请按需选择。
 
@@ -1087,6 +1087,14 @@ Placement服务安装在控制节点。
       QEMU: Checking if device /dev/kvm exists                                   : FAIL (Check that CPU and firmware supports virtualization and kvm module is loaded)
     ```
 
+    - 编辑`/etc/nova/nova.conf`的`[libvirt]`部分：
+
+      ```ini
+      [libvirt]
+      # ...
+      virt_type = qemu
+      ```
+
     显示PASS时，表示支持硬件加速，不需要进行额外的配置。
 
     ```
@@ -1108,7 +1116,7 @@ Placement服务安装在控制节点。
 
     - 编辑`/etc/qemu/firmware/edk2-aarch64.json`
 
-      ```ini
+      ```json
       {
           "description": "UEFI firmware for ARM64 virtual machines",
           "interface-types": [
@@ -1660,16 +1668,16 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
 1. 设置数据库
 
-   裸金属服务在数据库中存储信息，创建一个**ironic**用户可以访问的**ironic**数据库，替换**IRONIC_DBPASSWORD**为合适的密码
+   裸金属服务在数据库中存储信息，创建一个**ironic**用户可以访问的**ironic**数据库，替换**IRONIC_DBPASS**为合适的密码
 
    ```sql
    mysql -u root -p
    
    MariaDB [(none)]> CREATE DATABASE ironic CHARACTER SET utf8;
    MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic.* TO 'ironic'@'localhost' \
-   IDENTIFIED BY 'IRONIC_DBPASSWORD';
+   IDENTIFIED BY 'IRONIC_DBPASS';
    MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic.* TO 'ironic'@'%' \
-   IDENTIFIED BY 'IRONIC_DBPASSWORD';
+   IDENTIFIED BY 'IRONIC_DBPASS';
    MariaDB [(none)]> exit
    Bye
    ```
@@ -1678,17 +1686,17 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
    - 创建Bare Metal服务用户
 
-   替换`IRONIC_PASSWORD`为ironic用户密码，`IRONIC_INSPECTOR_PASSWORD`为ironic_inspector用户密码。
+   替换`IRONIC_PASS`为ironic用户密码，`IRONIC_INSPECTOR_PASS`为ironic_inspector用户密码。
 
    ```shell
-   openstack user create --password IRONIC_PASSWORD \
+   openstack user create --password IRONIC_PASS \
      --email ironic@example.com ironic
    openstack role add --project service --user ironic admin
    openstack service create --name ironic \
      --description "Ironic baremetal provisioning service" baremetal
    
    openstack service create --name ironic-inspector --description     "Ironic inspector baremetal provisioning service" baremetal-introspection
-   openstack user create --password IRONIC_INSPECTOR_PASSWORD --email ironic_inspector@example.com ironic-inspector
+   openstack user create --password IRONIC_INSPECTOR_PASS --email ironic_inspector@example.com ironic-inspector
    openstack role add --project service --user ironic-inspector admin
    ```
 
@@ -1713,15 +1721,15 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
    配置文件路径/etc/ironic/ironic.conf
 
-   - 通过**connection**选项配置数据库的位置，如下所示，替换**IRONIC_DBPASSWORD**为**ironic**用户的密码，替换**DB_IP**为DB服务器所在的IP地址：
+   - 通过**connection**选项配置数据库的位置，如下所示，替换**IRONIC_DBPASS**为**ironic**用户的密码，替换**DB_IP**为DB服务器所在的IP地址：
 
    ```ini
    [database]
    
    # The SQ LAlchemy connection string used to connect to the
    # database (string value)
-   # connection = mysql+pymysql://ironic:IRONIC_DBPASSWORD@DB_IP/ironic
-   connection = mysql+pymysql://ironic:IRONIC_DBPASSWORD@controller/ironic
+   # connection = mysql+pymysql://ironic:IRONIC_DBPASS@DB_IP/ironic
+   connection = mysql+pymysql://ironic:IRONIC_DBPASS@controller/ironic
    ```
 
    - 通过以下选项配置ironic-api服务使用RabbitMQ消息代理，替换**RPC_\***为RabbitMQ的详细地址和凭证
@@ -1737,7 +1745,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
    用户也可自行使用json-rpc方式替换rabbitmq
 
-   - 配置ironic-api服务使用身份认证服务的凭证，替换**PUBLIC_IDENTITY_IP**为身份认证服务器的公共IP，替换**PRIVATE_IDENTITY_IP**为身份认证服务器的私有IP，替换**IRONIC_PASSWORD**为身份认证服务中**ironic**用户的密码，替换**RABBIT_PASS**为RabbitMQ中openstack账户的密码。：
+   - 配置ironic-api服务使用身份认证服务的凭证，替换**PUBLIC_IDENTITY_IP**为身份认证服务器的公共IP，替换**PRIVATE_IDENTITY_IP**为身份认证服务器的私有IP，替换**IRONIC_PASS**为身份认证服务中**ironic**用户的密码，替换**RABBIT_PASS**为RabbitMQ中openstack账户的密码。：
 
    ```ini
    [DEFAULT]
@@ -1775,7 +1783,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    # Service username. (string value)
    username=ironic
    # Service account password. (string value)
-   password=IRONIC_PASSWORD
+   password=IRONIC_PASS
    # Service tenant name. (string value)
    project_name=service
    # Domain name containing project (string value)
@@ -1842,14 +1850,14 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
      my_ip = 192.168.0.2
      ```
      
-   - 配置数据库的位置，ironic-conductor应该使用和ironic-api相同的配置。替换**IRONIC_DBPASSWORD**为**ironic**用户的密码：
+   - 配置数据库的位置，ironic-conductor应该使用和ironic-api相同的配置。替换**IRONIC_DBPASS**为**ironic**用户的密码：
 
      ```ini
      [database]
      
      # The SQLAlchemy connection string to use to connect to the
      # database. (string value)
-     connection = mysql+pymysql://ironic:IRONIC_DBPASSWORD@controller/ironic
+     connection = mysql+pymysql://ironic:IRONIC_DBPASS@controller/ironic
      ```
 
    - 通过以下选项配置ironic-api服务使用RabbitMQ消息代理，ironic-conductor应该使用和ironic-api相同的配置，替换**RABBIT_PASS**为RabbitMQ中openstack账户的密码：
@@ -1891,7 +1899,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
      动态密码认证插件基于其他选项发现合适的身份认证服务API版本
      ```
 
-     替换IRONIC_PASSWORD为ironic用户密码。
+     替换IRONIC_PASS为ironic用户密码。
 
      ```ini
      [neutron]
@@ -1903,7 +1911,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
      # Username (string value)
      username=ironic
      # User's password (string value)
-     password=IRONIC_PASSWORD
+     password=IRONIC_PASS
      # Project name to scope to (string value)
      project_name=service
      # Domain ID containing project (string value)
@@ -1927,7 +1935,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
      auth_url = http://controller:5000
      auth_type = password
      username = ironic
-     password = IRONIC_PASSWORD
+     password = IRONIC_PASS
      project_domain_name = default
      user_domain_name = default
      region_name = RegionOne
@@ -1938,7 +1946,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
      project_domain_id = default
      user_domain_id = default
      project_name = service
-     password = IRONIC_PASSWORD
+     password = IRONIC_PASS
      username = ironic
      auth_url = http://controller:5000
      auth_type = password
@@ -2004,21 +2012,21 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    MariaDB [(none)]> CREATE DATABASE ironic_inspector CHARACTER SET utf8;
    
    MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic_inspector.* TO 'ironic_inspector'@'localhost' \
-   IDENTIFIED BY 'IRONIC_INSPECTOR_DBPASSWORD';
+   IDENTIFIED BY 'IRONIC_INSPECTOR_DBPASS';
    MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic_inspector.* TO 'ironic_inspector'@'%' \
-   IDENTIFIED BY 'IRONIC_INSPECTOR_DBPASSWORD';
+   IDENTIFIED BY 'IRONIC_INSPECTOR_DBPASS';
    MariaDB [(none)]> exit
    Bye
    ```
 
    - 配置`/etc/ironic-inspector/inspector.conf`
 
-     通过**connection**选项配置数据库的位置，如下所示，替换**IRONIC_INSPECTOR_DBPASSWORD**为**ironic_inspector**用户的密码
+     通过**connection**选项配置数据库的位置，如下所示，替换**IRONIC_INSPECTOR_DBPASS**为**ironic_inspector**用户的密码
 
    ```ini
    [database]
    backend = sqlalchemy
-   connection = mysql+pymysql://ironic_inspector:IRONIC_INSPECTOR_DBPASSWORD@controller/ironic_inspector
+   connection = mysql+pymysql://ironic_inspector:IRONIC_INSPECTOR_DBPASS@controller/ironic_inspector
    min_pool_size = 100
    max_pool_size = 500
    pool_timeout = 30
@@ -3196,11 +3204,13 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
 
 ## 基于OpenStack SIG开发工具oos部署
 `oos`(openEuler OpenStack SIG)是OpenStack SIG提供的命令行工具。其中`oos env`系列命令提供了一键部署OpenStack （`all in one`或三节点`cluster`）的ansible脚本，用户可以使用该脚本快速部署一套基于 openEuler RPM 的 OpenStack 环境。`oos`工具支持对接云provider（目前仅支持华为云provider）和主机纳管两种方式来部署 OpenStack 环境，下面以对接华为云部署一套`all in one`的OpenStack环境为例说明`oos`工具的使用方法。
+
 1. 安装`oos`工具
 
     ```shell
     pip install openstack-sig-tool
     ```
+
 2. 配置对接华为云provider的信息
 
    打开`/usr/local/etc/oos/oos.conf`文件，修改配置为您拥有的华为云资源信息：
@@ -3217,6 +3227,7 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
     subnet1_name = oos_subnet1
     subnet2_name = oos_subnet2
    ```
+
 3. 配置 OpenStack 环境信息
 
    打开`/usr/local/etc/oos/oos.conf`文件，根据当前机器环境和需求修改配置。内容如下：
@@ -3261,6 +3272,8 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
 
 4. 华为云上面创建一台openEuler 22.09的x86_64虚拟机，用于部署`all in one` 的 OpenStack
     ```
+    # sshpass在`oos env create`过程中被使用，用于配置对目标虚拟机的免密访问
+    dnf install sshpass
     oos env create -r 22.09 -f small -a x86 -n test-oos all_in_one
     ```
     具体的参数可以使用`oos env create --help`命令查看
@@ -3279,6 +3292,15 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
     ```
 
     命令执行成功后，在用户的根目录下会生成mytest目录，进入其中就可以执行tempest run命令了。
+
+如果是以主机纳管的方式部署 OpenStack 环境，总体逻辑与上文对接华为云时一致，1、3、5、6步操作不变，去除第2步对华为云provider信息的配置，第4步由在华为云上创建虚拟机改为纳管主机操作。
+
+```shell
+# sshpass在`oos env create`过程中被使用，用于配置对目标主机的免密访问
+dnf install sshpass
+oos env manage -r 22.09 -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n test-oos
+```
+替换`TARGET_MACHINE_IP`为目标机ip、`TARGET_MACHINE_PASSWD`为目标机密码。具体的参数可以使用`oos env manage --help`命令查看。
 
 ## 基于OpenStack SIG部署工具opensd部署
 

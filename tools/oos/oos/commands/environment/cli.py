@@ -1,5 +1,4 @@
 import os
-import platform
 import subprocess
 
 import click
@@ -93,9 +92,6 @@ def _run_action(target, action):
     private_key = os.path.join(KEY_DIR, 'id_rsa')
     user = 'root'
 
-    if 'openEuler' in platform.platform() or 'oe' in platform.platform():
-        os.chmod(private_key, 0o400)
-
     cmd = ['ansible-playbook', '-i', inventory_file,
             '--private-key', private_key,
             '--user', user,
@@ -172,11 +168,11 @@ def clean(target):
 @click.option('-n', '--name', required=True,
               help='The cluster/all_in_one name')
 @click.option('-i', '--ip', required=True,
-              help='The target VM ips, the format should be like ip1,ip2,...')
+              help='The target machine ips, the format should be like ip1,ip2,...')
 @click.option('-r', '--release', required=True,
               type=click.Choice(constants.OE_OS_RELEASE.keys()))
 @click.option('-p', '--password', required=False,
-              type=str, help='The target VM login password')
+              type=str, help='The target machine login password')
 def manage(name, ip, release, password):
     vm = sqlite_ops.get_target_column(target=name, col_name='*')
     if vm:
