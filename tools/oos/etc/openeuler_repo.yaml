@@ -48,6 +48,12 @@ openeuler:
   abichecker: dev-utils
   allwinner-kernel: sig-RaspberryPi
   anbox: sig-recycle
+  aops-apollo: sig-ops
+  aops-ceres: sig-ops
+  aops-diana: sig-ops
+  aops-hermes: sig-ops
+  aops-vulcanus: sig-ops
+  aops-zeus: sig-ops
   api-guarder: sig-EasyLife
   astream: Kernel
   async-libfuse: iSulad
@@ -589,6 +595,12 @@ src-openeuler:
   antlr4: sig-Java
   aom: Desktop
   aopalliance: sig-Java
+  aops-apollo: sig-ops
+  aops-ceres: sig-ops
+  aops-diana: sig-ops
+  aops-hermes: sig-ops
+  aops-vulcanus: sig-ops
+  aops-zeus: sig-ops
   apache-atlas: bigdata
   apache-commons-beanutils: sig-Java
   apache-commons-chain: Base-service
@@ -1070,6 +1082,7 @@ src-openeuler:
   d-feet: Desktop
   daala: sig-epol
   dain-snappy: sig-Java
+  daos: sig-SDS
   dash: Application
   datafu: bigdata
   datanucleus-api-jdo: sig-Java
@@ -3206,6 +3219,7 @@ src-openeuler:
   lucenepp: Desktop
   luksmeta: Storage
   lunar-date: sig-KIRAN-DESKTOP
+  lustre: sig-SDS
   lutok: Base-service
   lv2: sig-epol
   lvm2: Storage
