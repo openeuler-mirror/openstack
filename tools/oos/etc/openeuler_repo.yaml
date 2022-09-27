@@ -97,7 +97,7 @@ openeuler:
   digest-list-tools: sig-security-facility
   dim_tools: sig-security-facility
   docs: doc
-  docs-debug: sig-OpenDesign
+  docs-accompany-reading: sig-OpenDesign
   dpdk: sig-high-performance-network
   dpu-core: sig-DPU
   dpu-utilities: sig-DPU
@@ -106,6 +106,7 @@ openeuler:
   eagle: sig-power-efficient
   easy-checker: sig-EasyLife
   eggo: sig-CloudNative
+  elfin-parser: sig-HPC
   embedded: sig-embedded
   embedded-ipc: sig-embedded
   etmem: Storage
