@@ -2124,65 +2124,65 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
         
    5. 注意
 
-原生的openstack里的pxe配置文件的模版不支持arm64架构，需要自己对原生openstack代码进行修改：
+	原生的openstack里的pxe配置文件的模版不支持arm64架构，需要自己对原生openstack代码进行修改：
 
-在W版中，社区的ironic仍然不支持arm64位的uefi pxe启动，表现为生成的grub.cfg文件(一般位于/tftpboot/下)格式不对而导致pxe启动失败，如下：
+	在W版中，社区的ironic仍然不支持arm64位的uefi pxe启动，表现为生成的grub.cfg文件(一般位于/tftpboot/下)格式不对而导致pxe启动失败，如下：
 
-生成的错误配置文件：
+	生成的错误配置文件：
 
-![erro](/Users/andy_lee/Downloads/erro.png)
+	![ironic-err](../../img/install/ironic-err.png)
 
-如上图所示，arm架构里寻找vmlinux和ramdisk镜像的命令分别是linux和initrd，上图所示的标红命令是x86架构下的uefi pxe启动。
+	如上图所示，arm架构里寻找vmlinux和ramdisk镜像的命令分别是linux和initrd，上图所示的标红命令是x86架构下的uefi pxe启动。
 
-需要用户对生成grub.cfg的代码逻辑自行修改。
+	需要用户对生成grub.cfg的代码逻辑自行修改。
 
-ironic向ipa发送查询命令执行状态请求的tls报错：
+	ironic向ipa发送查询命令执行状态请求的tls报错：
 
-w版的ipa和ironic默认都会开启tls认证的方式向对方发送请求，跟据官网的说明进行关闭即可。
+	w版的ipa和ironic默认都会开启tls认证的方式向对方发送请求，跟据官网的说明进行关闭即可。
 
-1. 修改ironic配置文件(/etc/ironic/ironic.conf)下面的配置中添加ipa-insecure=1：
+	1. 修改ironic配置文件(/etc/ironic/ironic.conf)下面的配置中添加ipa-insecure=1：
 
-```
-[agent]
-verify_ca = False
+	```
+	[agent]
+	verify_ca = False
  
-[pxe]
-pxe_append_params = nofb nomodeset vga=normal coreos.autologin ipa-insecure=1
-```
+	[pxe]
+	pxe_append_params = nofb nomodeset vga=normal coreos.autologin ipa-insecure=1
+	```
 
-2) ramdisk镜像中添加ipa配置文件/etc/ironic_python_agent/ironic_python_agent.conf并配置tls的配置如下：
+	2) ramdisk镜像中添加ipa配置文件/etc/ironic_python_agent/ironic_python_agent.conf并配置tls的配置如下：
 
-/etc/ironic_python_agent/ironic_python_agent.conf (需要提前创建/etc/ironic_python_agent目录）
+	/etc/ironic_python_agent/ironic_python_agent.conf (需要提前创建/etc/ironic_python_agent目录）
 
-```
-[DEFAULT]
-enable_auto_tls = False
-```
+	```
+	[DEFAULT]
+	enable_auto_tls = False
+	```
 
-设置权限：
+	设置权限：
 
-```
-chown -R ipa.ipa /etc/ironic_python_agent/
-```
+	```
+	chown -R ipa.ipa /etc/ironic_python_agent/
+	```
 
-3. 修改ipa服务的服务启动文件，添加配置文件选项
+	3. 修改ipa服务的服务启动文件，添加配置文件选项
 
-   vim usr/lib/systemd/system/ironic-python-agent.service
+	vim usr/lib/systemd/system/ironic-python-agent.service
 
-   ```
-   [Unit]
-   Description=Ironic Python Agent
-   After=network-online.target
+ 	```
+	[Unit]
+	Description=Ironic Python Agent
+	After=network-online.target
     
-   [Service]
-   ExecStartPre=/sbin/modprobe vfat
-   ExecStart=/usr/local/bin/ironic-python-agent --config-file /etc/ironic_python_agent/ironic_python_agent.conf
-   Restart=always
-   RestartSec=30s
+	[Service]
+	ExecStartPre=/sbin/modprobe vfat
+	ExecStart=/usr/local/bin/ironic-python-agent --config-file /etc/ironic_python_agent/ironic_python_agent.conf
+	Restart=always
+	RestartSec=30s
     
-   [Install]
-   WantedBy=multi-user.target
-   ```
+	[Install]
+	WantedBy=multi-user.target
+	```
 
    
 
