@@ -2012,7 +2012,7 @@ wallaby:
   python-solumclient: 3.3.0
   python-swiftclient: 3.11.1
   python-tackerclient: 1.6.0
-  python-tripleoclient: 16.4.0
+  python-tripleoclient: 16.5.0
   python-troveclient: 7.0.0
   python-vitrageclient: 4.3.0
   python-watcher: 6.0.1
