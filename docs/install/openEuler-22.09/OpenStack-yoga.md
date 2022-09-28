@@ -50,7 +50,7 @@ controller：192.168.0.2
 compute：   192.168.0.3
 storage：   192.168.0.4
 ```
-如果您的环境IP不同，请按照您的环境IP修改相应的配置文件即可。
+如果您的环境IP不同，请按照您的环境IP修改相应的配置文件。
 
 本文档的三节点服务拓扑如下图所示(只包含Keystone、Glance、Nova、Cinder、Neutron这几个核心服务，其他服务请参考具体部署章节)：
 
@@ -113,28 +113,33 @@ storage：   192.168.0.4
     ```
 
 **其他节点**
+
 1. 安装服务
     ```
     yum install chrony
     ```
+
 2. 修改`/etc/chrony.conf`配置文件，新增一行
+
     ```
     # NTP_SERVER是controller IP，表示从这个机器获取时间，这里我们填192.168.0.2，或者在`/etc/hosts`里配置好的controller名字即可。
     server NTP_SERVER iburst
     ```
+
     同时，要把`pool pool.ntp.org iburst`这一行注释掉，表示不从公网同步时钟。
 
 3. 重启服务
+
     ```
     systemctl restart chronyd
     ```
 
 配置完成后，检查一下结果，在其他非controller节点执行`chronyc sources`，返回结果类似如下内容，表示成功从controller同步时钟。
+
 ```
 MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ===============================================================================
 ^* 192.168.0.2                 4   6     7     0  -1406ns[  +55us] +/-   16ms
-
 ```
 
 #### 安装数据库
@@ -213,9 +218,10 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
     ```
 
 ### 部署服务
+
 #### Keystone
 
-**Controller节点**：
+Keystone是OpenStack提供的鉴权服务，是整个OpenStack的入口，提供了租户隔离、用户认证、服务发现等功能，必须安装。
 
 1. 创建 keystone 数据库并授权
 
@@ -390,6 +396,8 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 
 #### Glance
 
+Glance是OpenStack提供的镜像服务，负责虚拟机、裸机镜像的上传与下载，必须安装。
+
 **Controller节点**：
 
 1. 创建 glance 数据库并授权
@@ -513,7 +521,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 
 #### Placement
 
-Placement服务安装在控制节点。
+Placement是OpenStack提供的资源调度组件，一般不面向用户，由Nova等组件调用，安装在控制节点。
 
 安装、配置Placement服务前，需要先创建相应的数据库、服务凭证和API endpoints。
 
@@ -603,7 +611,6 @@ Placement服务安装在控制节点。
 
        ```ini
        [placement_database]
-       # ...
        connection = mysql+pymysql://placement:PLACEMENT_DBPASS@controller/placement
        ```
 
@@ -613,11 +620,9 @@ Placement服务安装在控制节点。
 
        ```ini
        [api]
-       # ...
        auth_strategy = keystone
        
        [keystone_authtoken]
-       # ...
        auth_url = http://controller:5000/v3
        memcached_servers = controller:11211
        auth_type = password
@@ -722,6 +727,8 @@ Placement服务安装在控制节点。
 
 #### Nova
 
+Nova是OpenStack的计算服务，负责虚拟机的创建、发放等功能。
+
 **Controller节点**
 
 在控制节点执行以下操作。
@@ -825,7 +832,6 @@ Placement服务安装在控制节点。
 
        ```ini
        [DEFAULT]
-       # ...
        enabled_apis = osapi_compute,metadata
        transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
        my_ip = 192.168.0.2
@@ -838,11 +844,9 @@ Placement服务安装在控制节点。
      
        ```ini
        [api_database]
-       # ...
        connection = mysql+pymysql://nova:NOVA_DBPASS@controller/nova_api
        
        [database]
-       # ...
        connection = mysql+pymysql://nova:NOVA_DBPASS@controller/nova
        ```
      
@@ -852,11 +856,9 @@ Placement服务安装在控制节点。
      
        ```ini
        [api]
-       # ...
        auth_strategy = keystone
        
        [keystone_authtoken]
-       # ...
        auth_url = http://controller:5000/v3
        memcached_servers = controller:11211
        auth_type = password
@@ -874,7 +876,6 @@ Placement服务安装在控制节点。
        ```ini
        [vnc]
        enabled = true
-       # ...
        server_listen = $my_ip
        server_proxyclient_address = $my_ip
        ```
@@ -883,7 +884,6 @@ Placement服务安装在控制节点。
      
        ```ini
        [glance]
-       # ...
        api_servers = http://controller:9292
        ```
      
@@ -891,7 +891,6 @@ Placement服务安装在控制节点。
      
        ```ini
        [oslo_concurrency]
-       # ...
        lock_path = /var/lib/nova/tmp
        ```
      
@@ -899,7 +898,6 @@ Placement服务安装在控制节点。
      
        ```ini
        [placement]
-       # ...
        region_name = RegionOne
        project_domain_name = Default
        project_name = service
@@ -976,7 +974,6 @@ Placement服务安装在控制节点。
 
       ```ini
       [DEFAULT]
-      # ...
       enabled_apis = osapi_compute,metadata
       transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
       my_ip = 192.168.0.3
@@ -991,11 +988,9 @@ Placement服务安装在控制节点。
 
       ```ini
       [api]
-      # ...
       auth_strategy = keystone
       
       [keystone_authtoken]
-      # ...
       auth_url = http://controller:5000/v3
       memcached_servers = controller:11211
       auth_type = password
@@ -1013,7 +1008,6 @@ Placement服务安装在控制节点。
       ```ini
       [vnc]
       enabled = true
-      # ...
       server_listen = $my_ip
       server_proxyclient_address = $my_ip
       novncproxy_base_url = http://controller:6080/vnc_auto.html
@@ -1023,7 +1017,6 @@ Placement服务安装在控制节点。
 
       ```ini
       [glance]
-      # ...
       api_servers = http://controller:9292
       ```
 
@@ -1031,7 +1024,6 @@ Placement服务安装在控制节点。
 
       ```ini
       [oslo_concurrency]
-      # ...
       lock_path = /var/lib/nova/tmp
       ```
 
@@ -1039,7 +1031,6 @@ Placement服务安装在控制节点。
 
       ```ini
       [placement]
-      # ...
       region_name = RegionOne
       project_domain_name = Default
       project_name = service
@@ -1066,7 +1057,6 @@ Placement服务安装在控制节点。
 
       ```ini
       [libvirt]
-      # ...
       virt_type = qemu
       ```
 
@@ -1091,7 +1081,6 @@ Placement服务安装在控制节点。
 
       ```ini
       [libvirt]
-      # ...
       virt_type = qemu
       ```
 
@@ -1103,7 +1092,7 @@ Placement服务安装在控制节点。
 
 5. 配置qemu（仅arm64）
 
-    仅当处理器为arm64架构时需要执行此操作，处理器为x86_64架构时不需执行。
+    仅当处理器为arm64架构时需要执行此操作。
 
     - 编辑`/etc/libvirt/qemu.conf`:
 
@@ -1218,6 +1207,8 @@ Placement服务安装在控制节点。
     ```
 
 #### Neutron
+
+Neutron是OpenStack的网络服务，提供虚拟交换机、IP路由、DHCP等功能。
 
 **Controller节点**
 
@@ -1366,11 +1357,13 @@ Placement服务安装在控制节点。
     service_metadata_proxy = true
     metadata_proxy_shared_secret = METADATA_SECRET
     ```
+
 5. 创建/etc/neutron/plugin.ini的符号链接
 
     ```shell
     ln -s /etc/neutron/plugins/ml2/ml2_conf.ini /etc/neutron/plugin.ini
     ```
+
 6. 同步数据库
     ```
     su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
@@ -1389,6 +1382,7 @@ Placement服务安装在控制节点。
     ```
 
 **Compute节点**
+
 1. 安装软件包
     ```
     yum install openstack-neutron-linuxbridge ebtables ipset -y
@@ -1456,6 +1450,8 @@ Placement服务安装在控制节点。
 
 #### Cinder
 
+Cinder是OpenStack的存储服务，提供块设备的创建、发放、备份等功能。
+
 **Controller节点**：
 
 1. 初始化数据库
@@ -1519,23 +1515,23 @@ Placement服务安装在控制节点。
 
 5. 数据库同步
 
-```
-su -s /bin/sh -c "cinder-manage db sync" cinder
-```
+    ```
+    su -s /bin/sh -c "cinder-manage db sync" cinder
+    ```
 
 6. 修改nova配置`/etc/nova/nova.conf`
 
-```
-[cinder]
-os_region_name = RegionOne
-```
+    ```
+    [cinder]
+    os_region_name = RegionOne
+    ```
 
 7. 启动服务
 
-```
-systemctl restart openstack-nova-api
-systemctl start openstack-cinder-api openstack-cinder-scheduler
-```
+    ```
+    systemctl restart openstack-nova-api
+    systemctl start openstack-cinder-api openstack-cinder-scheduler
+    ```
 
 **Storage节点**：
 
@@ -1611,6 +1607,7 @@ Cinder支持很多类型的后端存储，本指导使用最简单的lvm为参�
     ```
 
 至此，Cinder服务的部署已全部完成，可以在controller通过以下命令进行简单的验证
+
 ```
 source ~/.admin-openrc
 openstack storage service list
@@ -2671,116 +2668,120 @@ openstack-swift-object-updater.service
 ```
 
 #### Cyborg
+
 Cyborg为OpenStack提供加速器设备的支持，包括 GPU, FPGA, ASIC, NP, SoCs, NVMe/NOF SSDs, ODP, DPDK/SPDK等等。
 
 **Controller节点**
 
 1. 初始化对应数据库
 
-```
-mysql -u root -p
+    ```
+    mysql -u root -p
 
-MariaDB [(none)]> CREATE DATABASE cyborg;
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON cyborg.* TO 'cyborg'@'localhost' IDENTIFIED BY 'CYBORG_DBPASS';
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON cyborg.* TO 'cyborg'@'%' IDENTIFIED BY 'CYBORG_DBPASS';
-MariaDB [(none)]> exit;
-```
+    MariaDB [(none)]> CREATE DATABASE cyborg;
+    MariaDB [(none)]> GRANT ALL PRIVILEGES ON cyborg.* TO 'cyborg'@'localhost' IDENTIFIED BY 'CYBORG_DBPASS';
+    MariaDB [(none)]> GRANT ALL PRIVILEGES ON cyborg.* TO 'cyborg'@'%' IDENTIFIED BY 'CYBORG_DBPASS';
+    MariaDB [(none)]> exit;
+    ```
 
 2. 创建用户和服务，并记住创建cybory用户时输入的密码，用于配置CYBORG_PASS
-```
-source ~/.admin-openrc
-$ openstack user create --domain default --password-prompt cyborg
-$ openstack role add --project service --user cyborg admin
-$ openstack service create --name cyborg --description "Acceleration Service" accelerator
-```
+
+    ```
+    source ~/.admin-openrc
+    openstack user create --domain default --password-prompt cyborg
+    openstack role add --project service --user cyborg admin
+    openstack service create --name cyborg --description "Acceleration Service" accelerator
+    ```
 
 3. 使用uwsgi部署Cyborg api服务
-```
-$ openstack endpoint create --region RegionOne accelerator public http://controller/accelerator/v2
-$ openstack endpoint create --region RegionOne accelerator internal http://controller/accelerator/v2
-$ openstack endpoint create --region RegionOne accelerator admin http://controller/accelerator/v2
-```
+
+    ```
+    openstack endpoint create --region RegionOne accelerator public http://controller/accelerator/v2
+    openstack endpoint create --region RegionOne accelerator internal http://controller/accelerator/v2
+    openstack endpoint create --region RegionOne accelerator admin http://controller/accelerator/v2
+    ```
 
 4. 安装Cyborg
 
-```
-yum install openstack-cyborg
-```
+    ```
+    yum install openstack-cyborg
+    ```
 
 5. 配置Cyborg
 
-修改`/etc/cyborg/cyborg.conf`
+    修改`/etc/cyborg/cyborg.conf`
 
-```
-[DEFAULT]
-transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
-use_syslog = False
-state_path = /var/lib/cyborg
-debug = True
+    ```
+    [DEFAULT]
+    transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
+    use_syslog = False
+    state_path = /var/lib/cyborg
+    debug = True
 
-[api]
-host_ip = 0.0.0.0
+    [api]
+    host_ip = 0.0.0.0
 
-[database]
-connection = mysql+pymysql://cyborg:CYBORG_DBPASS@controller/cyborg
+    [database]
+    connection = mysql+pymysql://cyborg:CYBORG_DBPASS@controller/cyborg
 
-[service_catalog]
-cafile = /opt/stack/data/ca-bundle.pem
-project_domain_id = default
-user_domain_id = default
-project_name = service
-password = CYBORG_PASS
-username = cyborg
-auth_url = http://controller:5000/v3/
-auth_type = password
+    [service_catalog]
+    cafile = /opt/stack/data/ca-bundle.pem
+    project_domain_id = default
+    user_domain_id = default
+    project_name = service
+    password = CYBORG_PASS
+    username = cyborg
+    auth_url = http://controller:5000/v3/
+    auth_type = password
 
-[placement]
-project_domain_name = Default
-project_name = service
-user_domain_name = Default
-password = password
-username = PLACEMENT_PASS
-auth_url = http://controller:5000/v3/
-auth_type = password
-auth_section = keystone_authtoken
+    [placement]
+    project_domain_name = Default
+    project_name = service
+    user_domain_name = Default
+    password = password
+    username = PLACEMENT_PASS
+    auth_url = http://controller:5000/v3/
+    auth_type = password
+    auth_section = keystone_authtoken
 
-[nova]
-project_domain_name = Default
-project_name = service
-user_domain_name = Default
-password = NOVA_PASS
-username = nova
-auth_url = http://controller:5000/v3/
-auth_type = password
-auth_section = keystone_authtoken
+    [nova]
+    project_domain_name = Default
+    project_name = service
+    user_domain_name = Default
+    password = NOVA_PASS
+    username = nova
+    auth_url = http://controller:5000/v3/
+    auth_type = password
+    auth_section = keystone_authtoken
 
-[keystone_authtoken]
-memcached_servers = localhost:11211
-signing_dir = /var/cache/cyborg/api
-cafile = /opt/stack/data/ca-bundle.pem
-project_domain_name = Default
-project_name = service
-user_domain_name = Default
-password = CYBORG_PASS
-username = cyborg
-auth_url = http://controller:5000/v3/
-auth_type = password
-```
+    [keystone_authtoken]
+    memcached_servers = localhost:11211
+    signing_dir = /var/cache/cyborg/api
+    cafile = /opt/stack/data/ca-bundle.pem
+    project_domain_name = Default
+    project_name = service
+    user_domain_name = Default
+    password = CYBORG_PASS
+    username = cyborg
+    auth_url = http://controller:5000/v3/
+    auth_type = password
+    ```
 
 6. 同步数据库表格
 
-```
-cyborg-dbsync --config-file /etc/cyborg/cyborg.conf upgrade
-```
+    ```
+    cyborg-dbsync --config-file /etc/cyborg/cyborg.conf upgrade
+    ```
 
 7. 启动Cyborg服务
 
-```
-systemctl enable openstack-cyborg-api openstack-cyborg-conductor openstack-cyborg-agent
-systemctl start openstack-cyborg-api openstack-cyborg-conductor openstack-cyborg-agent
-```
+    ```
+    systemctl enable openstack-cyborg-api openstack-cyborg-conductor openstack-cyborg-agent
+    systemctl start openstack-cyborg-api openstack-cyborg-conductor openstack-cyborg-agent
+    ```
 
 #### Aodh
+
 Aodh可以根据由Ceilometer或者Gnocchi收集的监控数据创建告警，并设置触发规则。
 
 **Controller节点**
@@ -2867,6 +2868,7 @@ Aodh可以根据由Ceilometer或者Gnocchi收集的监控数据创建告警，�
     ```
 
 #### Gnocchi
+
 Gnocchi是一个开源的时间序列数据库，可以对接Ceilometer。
 
 **Controller节点**
@@ -2944,6 +2946,7 @@ Gnocchi是一个开源的时间序列数据库，可以对接Ceilometer。
     ```
 
 #### Ceilometer
+
 Ceilometer是OpenStack中负责数据收集的服务。
 
 **Controller节点**
@@ -3050,41 +3053,43 @@ Ceilometer是OpenStack中负责数据收集的服务。
     
 
 #### Heat
+
 Heat是 OpenStack 自动编排服务，基于描述性的模板来编排复合云应用，也称为`Orchestration Service`。Heat 的各服务一般安装在`Controller`节点上。
 
 **Controller节点**
+
 1. 创建**heat**数据库，并授予**heat**数据库正确的访问权限，替换**HEAT_DBPASS**为合适的密码
 
-```
-mysql -u root -p
+    ```
+    mysql -u root -p
 
-MariaDB [(none)]> CREATE DATABASE heat;
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'localhost' IDENTIFIED BY 'HEAT_DBPASS';
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'%' IDENTIFIED BY 'HEAT_DBPASS';
-MariaDB [(none)]> exit;
-```
+    MariaDB [(none)]> CREATE DATABASE heat;
+    MariaDB [(none)]> GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'localhost' IDENTIFIED BY 'HEAT_DBPASS';
+    MariaDB [(none)]> GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'%' IDENTIFIED BY 'HEAT_DBPASS';
+    MariaDB [(none)]> exit;
+    ```
 
 2. 创建服务凭证，创建**heat**用户，并为其增加**admin**角色
 
-```
-source ~/.admin-openrc
+    ```
+    source ~/.admin-openrc
 
-openstack user create --domain default --password-prompt heat
-openstack role add --project service --user heat admin
-```
+    openstack user create --domain default --password-prompt heat
+    openstack role add --project service --user heat admin
+    ```
 
 3. 创建**heat**和**heat-cfn**服务及其对应的API端点
 
-```
-openstack service create --name heat --description "Orchestration" orchestration
-openstack service create --name heat-cfn --description "Orchestration"  cloudformation
-openstack endpoint create --region RegionOne orchestration public http://controller:8004/v1/%\(tenant_id\)s
-openstack endpoint create --region RegionOne orchestration internal http://controller:8004/v1/%\(tenant_id\)s
-openstack endpoint create --region RegionOne orchestration admin http://controller:8004/v1/%\(tenant_id\)s
-openstack endpoint create --region RegionOne cloudformation public http://controller:8000/v1
-openstack endpoint create --region RegionOne cloudformation internal http://controller:8000/v1
-openstack endpoint create --region RegionOne cloudformation admin http://controller:8000/v1
-```
+    ```
+    openstack service create --name heat --description "Orchestration" orchestration
+    openstack service create --name heat-cfn --description "Orchestration"  cloudformation
+    openstack endpoint create --region RegionOne orchestration public http://controller:8004/v1/%\(tenant_id\)s
+    openstack endpoint create --region RegionOne orchestration internal http://controller:8004/v1/%\(tenant_id\)s
+    openstack endpoint create --region RegionOne orchestration admin http://controller:8004/v1/%\(tenant_id\)s
+    openstack endpoint create --region RegionOne cloudformation public http://controller:8000/v1
+    openstack endpoint create --region RegionOne cloudformation internal http://controller:8000/v1
+    openstack endpoint create --region RegionOne cloudformation admin http://controller:8000/v1
+    ```
 
 4. 创建stack管理的额外信息
 
@@ -3111,58 +3116,58 @@ openstack endpoint create --region RegionOne cloudformation admin http://control
 
 5. 安装软件包
 
-```
-yum install openstack-heat-api openstack-heat-api-cfn openstack-heat-engine
-```
+    ```
+    yum install openstack-heat-api openstack-heat-api-cfn openstack-heat-engine
+    ```
 
 6. 修改配置文件`/etc/heat/heat.conf`
 
-```
-[DEFAULT]
-transport_url = rabbit://openstack:RABBIT_PASS@controller
-heat_metadata_server_url = http://controller:8000
-heat_waitcondition_server_url = http://controller:8000/v1/waitcondition
-stack_domain_admin = heat_domain_admin
-stack_domain_admin_password = HEAT_DOMAIN_PASS
-stack_user_domain_name = heat
+    ```
+    [DEFAULT]
+    transport_url = rabbit://openstack:RABBIT_PASS@controller
+    heat_metadata_server_url = http://controller:8000
+    heat_waitcondition_server_url = http://controller:8000/v1/waitcondition
+    stack_domain_admin = heat_domain_admin
+    stack_domain_admin_password = HEAT_DOMAIN_PASS
+    stack_user_domain_name = heat
 
-[database]
-connection = mysql+pymysql://heat:HEAT_DBPASS@controller/heat
+    [database]
+    connection = mysql+pymysql://heat:HEAT_DBPASS@controller/heat
 
-[keystone_authtoken]
-www_authenticate_uri = http://controller:5000
-auth_url = http://controller:5000
-memcached_servers = controller:11211
-auth_type = password
-project_domain_name = default
-user_domain_name = default
-project_name = service
-username = heat
-password = HEAT_PASS
+    [keystone_authtoken]
+    www_authenticate_uri = http://controller:5000
+    auth_url = http://controller:5000
+    memcached_servers = controller:11211
+    auth_type = password
+    project_domain_name = default
+    user_domain_name = default
+    project_name = service
+    username = heat
+    password = HEAT_PASS
 
-[trustee]
-auth_type = password
-auth_url = http://controller:5000
-username = heat
-password = HEAT_PASS
-user_domain_name = default
+    [trustee]
+    auth_type = password
+    auth_url = http://controller:5000
+    username = heat
+    password = HEAT_PASS
+    user_domain_name = default
 
-[clients_keystone]
-auth_uri = http://controller:5000
-```
+    [clients_keystone]
+    auth_uri = http://controller:5000
+    ```
 
 7. 初始化**heat**数据库表
 
-```
-su -s /bin/sh -c "heat-manage db_sync" heat
-```
+    ```
+    su -s /bin/sh -c "heat-manage db_sync" heat
+    ```
 
 8. 启动服务
 
-```
-systemctl enable openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service
-systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service
-```
+    ```
+    systemctl enable openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service
+    systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service
+    ```
 
 #### Tempest
 
@@ -3204,6 +3209,7 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
    ```
 
 ## 基于OpenStack SIG开发工具oos部署
+
 `oos`(openEuler OpenStack SIG)是OpenStack SIG提供的命令行工具。其中`oos env`系列命令提供了一键部署OpenStack （`all in one`或三节点`cluster`）的ansible脚本，用户可以使用该脚本快速部署一套基于 openEuler RPM 的 OpenStack 环境。`oos`工具支持对接云provider（目前仅支持华为云provider）和主机纳管两种方式来部署 OpenStack 环境，下面以对接华为云部署一套`all in one`的OpenStack环境为例说明`oos`工具的使用方法。
 
 1. 安装`oos`工具
@@ -3301,6 +3307,7 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
 dnf install sshpass
 oos env manage -r 22.09 -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n test-oos
 ```
+
 替换`TARGET_MACHINE_IP`为目标机ip、`TARGET_MACHINE_PASSWD`为目标机密码。具体的参数可以使用`oos env manage --help`命令查看。
 
 ## 基于OpenStack SIG部署工具opensd部署
