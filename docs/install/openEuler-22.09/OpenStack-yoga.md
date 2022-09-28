@@ -527,203 +527,203 @@ Placement是OpenStack提供的资源调度组件，一般不面向用户，由No
 
 1. 创建数据库
 
-   - 使用root用户访问数据库服务：
+    - 使用root用户访问数据库服务：
 
-     ```shell
-     mysql -u root -p
-     ```
+        ```shell
+        mysql -u root -p
+        ```
 
-   - 创建placement数据库：
+    - 创建placement数据库：
 
-     ```sql
-     MariaDB [(none)]> CREATE DATABASE placement;
-     ```
+        ```sql
+        MariaDB [(none)]> CREATE DATABASE placement;
+        ```
 
-   - 授权数据库访问：
+    - 授权数据库访问：
 
-     ```sql
-     MariaDB [(none)]> GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'localhost' \
-       IDENTIFIED BY 'PLACEMENT_DBPASS';
-     MariaDB [(none)]> GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'%' \
-       IDENTIFIED BY 'PLACEMENT_DBPASS';
-     ```
+        ```sql
+        MariaDB [(none)]> GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'localhost' \
+          IDENTIFIED BY 'PLACEMENT_DBPASS';
+        MariaDB [(none)]> GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'%' \
+          IDENTIFIED BY 'PLACEMENT_DBPASS';
+        ```
 
-     替换`PLACEMENT_DBPASS`为placement数据库访问密码。
+        替换`PLACEMENT_DBPASS`为placement数据库访问密码。
 
-   - 退出数据库访问客户端：
+    - 退出数据库访问客户端：
 
-     ```shell
-     exit
-     ```
+        ```shell
+        exit
+        ```
 
 2. 配置用户和Endpoints
 
-   - source admin凭证，以获取admin命令行权限：
+    - source admin凭证，以获取admin命令行权限：
 
-     ```shell
-     source ~/.admin-openrc
-     ```
+        ```shell
+        source ~/.admin-openrc
+        ```
 
-   - 创建placement用户并设置用户密码：
+    - 创建placement用户并设置用户密码：
 
-     ```shell
-     openstack user create --domain default --password-prompt placement
-     
-     User Password:
-     Repeat User Password:
-     ```
+        ```shell
+        openstack user create --domain default --password-prompt placement
+        
+        User Password:
+        Repeat User Password:
+        ```
 
-   - 添加placement用户到service project并指定admin角色：
+    - 添加placement用户到service project并指定admin角色：
 
-     ```shell
-     openstack role add --project service --user placement admin
-     ```
+        ```shell
+        openstack role add --project service --user placement admin
+        ```
 
-   - 创建placement服务实体：
+    - 创建placement服务实体：
 
-     ```shell
-     openstack service create --name placement \
-       --description "Placement API" placement
-     ```
+        ```shell
+        openstack service create --name placement \
+          --description "Placement API" placement
+        ```
 
-   - 创建Placement API服务endpoints：
+    - 创建Placement API服务endpoints：
 
-     ```shell
-     openstack endpoint create --region RegionOne \
-       placement public http://controller:8778
-     openstack endpoint create --region RegionOne \
-       placement internal http://controller:8778
-     openstack endpoint create --region RegionOne \
-       placement admin http://controller:8778
-     ```
+        ```shell
+        openstack endpoint create --region RegionOne \
+          placement public http://controller:8778
+        openstack endpoint create --region RegionOne \
+          placement internal http://controller:8778
+        openstack endpoint create --region RegionOne \
+          placement admin http://controller:8778
+        ```
 
 3. 安装及配置组件
 
-   - 安装软件包：
+    - 安装软件包：
 
-     ```shell
-     dnf install openstack-placement-api
-     ```
+        ```shell
+        dnf install openstack-placement-api
+        ```
 
-   - 编辑`/etc/placement/placement.conf`配置文件，完成如下操作：
+    - 编辑`/etc/placement/placement.conf`配置文件，完成如下操作：
 
-     - 在`[placement_database]`部分，配置数据库入口：
+        - 在`[placement_database]`部分，配置数据库入口：
 
-       ```ini
-       [placement_database]
-       connection = mysql+pymysql://placement:PLACEMENT_DBPASS@controller/placement
-       ```
+            ```ini
+            [placement_database]
+            connection = mysql+pymysql://placement:PLACEMENT_DBPASS@controller/placement
+            ```
 
-       替换`PLACEMENT_DBPASS`为placement数据库的密码。
+            替换`PLACEMENT_DBPASS`为placement数据库的密码。
 
-     - 在`[api]`和`[keystone_authtoken]`部分，配置身份认证服务入口：
+        - 在`[api]`和`[keystone_authtoken]`部分，配置身份认证服务入口：
 
-       ```ini
-       [api]
-       auth_strategy = keystone
-       
-       [keystone_authtoken]
-       auth_url = http://controller:5000/v3
-       memcached_servers = controller:11211
-       auth_type = password
-       project_domain_name = Default
-       user_domain_name = Default
-       project_name = service
-       username = placement
-       password = PLACEMENT_PASS
-       ```
-
-       替换`PLACEMENT_PASS`为placement用户的密码。
-
-   - 数据库同步，填充Placement数据库：
+            ```ini
+            [api]
+            auth_strategy = keystone
+            
+            [keystone_authtoken]
+            auth_url = http://controller:5000/v3
+            memcached_servers = controller:11211
+            auth_type = password
+            project_domain_name = Default
+            user_domain_name = Default
+            project_name = service
+            username = placement
+            password = PLACEMENT_PASS
+            ```
      
-     ```shell
-     su -s /bin/sh -c "placement-manage db sync" placement
-     ```
+            替换`PLACEMENT_PASS`为placement用户的密码。
+
+    - 数据库同步，填充Placement数据库：
+     
+        ```shell
+        su -s /bin/sh -c "placement-manage db sync" placement
+        ```
 
 4. 启动服务
 
-   重启httpd服务：
+    重启httpd服务：
 
-   ```shell
-   systemctl restart httpd
-   ```
+    ```shell
+    systemctl restart httpd
+    ```
 
 5. 验证
 
     - source admin凭证，以获取admin命令行权限
 
-      ```shell
-      source ~/.admin-openrc
-      ```
+        ```shell
+        source ~/.admin-openrc
+        ```
 
     - 执行状态检查：
 
-      ```shell
-      placement-status upgrade check
-      ```
+        ```shell
+        placement-status upgrade check
+        ```
 
-      ```
-      +----------------------------------------------------------------------+
-      | Upgrade Check Results                                                |
-      +----------------------------------------------------------------------+
-      | Check: Missing Root Provider IDs                                     |
-      | Result: Success                                                      |
-      | Details: None                                                        |
-      +----------------------------------------------------------------------+
-      | Check: Incomplete Consumers                                          |
-      | Result: Success                                                      |
-      | Details: None                                                        |
-      +----------------------------------------------------------------------+
-      | Check: Policy File JSON to YAML Migration                            |
-      | Result: Failure                                                      |
-      | Details: Your policy file is JSON-formatted which is deprecated. You |
-      |   need to switch to YAML-formatted file. Use the                     |
-      |   ``oslopolicy-convert-json-to-yaml`` tool to convert the            |
-      |   existing JSON-formatted files to YAML in a backwards-              |
-      |   compatible manner: https://docs.openstack.org/oslo.policy/         |
-      |   latest/cli/oslopolicy-convert-json-to-yaml.html.                   |
-      +----------------------------------------------------------------------+
-      ```
+        ```
+        +----------------------------------------------------------------------+
+        | Upgrade Check Results                                                |
+        +----------------------------------------------------------------------+
+        | Check: Missing Root Provider IDs                                     |
+        | Result: Success                                                      |
+        | Details: None                                                        |
+        +----------------------------------------------------------------------+
+        | Check: Incomplete Consumers                                          |
+        | Result: Success                                                      |
+        | Details: None                                                        |
+        +----------------------------------------------------------------------+
+        | Check: Policy File JSON to YAML Migration                            |
+        | Result: Failure                                                      |
+        | Details: Your policy file is JSON-formatted which is deprecated. You |
+        |   need to switch to YAML-formatted file. Use the                     |
+        |   ``oslopolicy-convert-json-to-yaml`` tool to convert the            |
+        |   existing JSON-formatted files to YAML in a backwards-              |
+        |   compatible manner: https://docs.openstack.org/oslo.policy/         |
+        |   latest/cli/oslopolicy-convert-json-to-yaml.html.                   |
+        +----------------------------------------------------------------------+
+        ```
     
-      “Policy File JSON to YAML Migration”检查项的结果为Failure。这是因为在Placement项目中，JSON格式的policy文件从Wallaby版本开始已处于`deprecated`状态。可以参考提示，使用[oslopolicy-convert-json-to-yaml](https://docs.openstack.org/oslo.policy/latest/cli/oslopolicy-convert-json-to-yaml.html)工具将现有的JSON格式policy文件转化为YAML格式。
+        “Policy File JSON to YAML Migration”检查项的结果为Failure。这是因为在Placement项目中，JSON格式的policy文件从Wallaby版本开始已处于`deprecated`状态。可  以参考提示，使用[oslopolicy-convert-json-to-yaml](https://docs.openstack.org/oslo.policy/latest/cli/oslopolicy-convert-json-to-yaml.html)工具  将现有的JSON格式policy文件转化为YAML格式。
     
-      ```shell
-      oslopolicy-convert-json-to-yaml  --namespace placement \
-        --policy-file /etc/placement/policy.json \
-        --output-file /etc/placement/policy.yaml
-      mv /etc/placement/policy.json{,.bak}
-      ```
+        ```shell
+        oslopolicy-convert-json-to-yaml  --namespace placement \
+          --policy-file /etc/placement/policy.json \
+          --output-file /etc/placement/policy.yaml
+        mv /etc/placement/policy.json{,.bak}
+        ```
     
-      注：当前环境中此问题可忽略，不影响运行。
+        注：当前环境中此问题可忽略，不影响运行。
     
     - 针对placement API运行命令：
     
-      - 安装osc-placement插件：
+        - 安装osc-placement插件：
     
-        ```shell
-        dnf install python3-osc-placement
-        ```
+            ```shell
+            dnf install python3-osc-placement
+            ```
     
-      - 列出可用的资源类别及特性：
+        - 列出可用的资源类别及特性：
     
-        ```shell
-        openstack --os-placement-api-version 1.2 resource class list --sort-column name
-        +----------------------------+
-        | name                       |
-        +----------------------------+
-        | DISK_GB                    |
-        | FPGA                       |
-        | ...                        |
-        
-        openstack --os-placement-api-version 1.6 trait list --sort-column name
-        +---------------------------------------+
-        | name                                  |
-        +---------------------------------------+
-        | COMPUTE_ACCELERATORS                  |
-        | COMPUTE_ARCH_AARCH64                  |
-        | ...                                   |
-        ```
+            ```shell
+            openstack --os-placement-api-version 1.2 resource class list --sort-column name
+            +----------------------------+
+            | name                       |
+            +----------------------------+
+            | DISK_GB                    |
+            | FPGA                       |
+            | ...                        |
+            
+            openstack --os-placement-api-version 1.6 trait list --sort-column name
+            +---------------------------------------+
+            | name                                  |
+            +---------------------------------------+
+            | COMPUTE_ACCELERATORS                  |
+            | COMPUTE_ARCH_AARCH64                  |
+            | ...                                   |
+            ```
 
 #### Nova
 
@@ -735,228 +735,228 @@ Nova是OpenStack的计算服务，负责虚拟机的创建、发放等功能。
 
 1. 创建数据库
 
-   - 使用root用户访问数据库服务：
+    - 使用root用户访问数据库服务：
 
-     ```shell
-     mysql -u root -p
-     ```
+        ```shell
+        mysql -u root -p
+        ```
 
-   - 创建`nova_api`、`nova`和`nova_cell0`数据库：
+    - 创建`nova_api`、`nova`和`nova_cell0`数据库：
 
-     ```sql
-     MariaDB [(none)]> CREATE DATABASE nova_api;
-     MariaDB [(none)]> CREATE DATABASE nova;
-     MariaDB [(none)]> CREATE DATABASE nova_cell0;
-     ```
+        ```sql
+        MariaDB [(none)]> CREATE DATABASE nova_api;
+        MariaDB [(none)]> CREATE DATABASE nova;
+        MariaDB [(none)]> CREATE DATABASE nova_cell0;
+        ```
 
-   - 授权数据库访问：
+    - 授权数据库访问：
 
-     ```sql
-     MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'localhost' \
-       IDENTIFIED BY 'NOVA_DBPASS';
-     MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'%' \
-       IDENTIFIED BY 'NOVA_DBPASS';
-     
-     MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'localhost' \
-       IDENTIFIED BY 'NOVA_DBPASS';
-     MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' \
-       IDENTIFIED BY 'NOVA_DBPASS';
-     
-     MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_cell0.* TO 'nova'@'localhost' \
-       IDENTIFIED BY 'NOVA_DBPASS';
-     MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_cell0.* TO 'nova'@'%' \
-       IDENTIFIED BY 'NOVA_DBPASS';
-     ```
+        ```sql
+        MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'localhost' \
+          IDENTIFIED BY 'NOVA_DBPASS';
+        MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'%' \
+          IDENTIFIED BY 'NOVA_DBPASS';
+        
+        MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'localhost' \
+          IDENTIFIED BY 'NOVA_DBPASS';
+        MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' \
+          IDENTIFIED BY 'NOVA_DBPASS';
+        
+        MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_cell0.* TO 'nova'@'localhost' \
+          IDENTIFIED BY 'NOVA_DBPASS';
+        MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_cell0.* TO 'nova'@'%' \
+          IDENTIFIED BY 'NOVA_DBPASS';
+        ```
 
-     替换`NOVA_DBPASS`为nova相关数据库访问密码。
+        替换`NOVA_DBPASS`为nova相关数据库访问密码。
 
-   - 退出数据库访问客户端：
+    - 退出数据库访问客户端：
 
-     ```sql
-     exit
-     ```
+        ```sql
+        exit
+        ```
 
 2. 配置用户和Endpoints
 
-   - source admin凭证，以获取admin命令行权限：
+    - source admin凭证，以获取admin命令行权限：
 
-     ```shell
-     source ~/.admin-openrc
-     ```
+        ```shell
+        source ~/.admin-openrc
+        ```
 
-   - 创建nova用户并设置用户密码：
+    - 创建nova用户并设置用户密码：
 
-     ```shell
-     openstack user create --domain default --password-prompt nova
-     
-     User Password:
-     Repeat User Password:
-     ```
+        ```shell
+        openstack user create --domain default --password-prompt nova
+        
+        User Password:
+        Repeat User Password:
+        ```
 
-   - 添加nova用户到service project并指定admin角色：
+    - 添加nova用户到service project并指定admin角色：
 
-     ```shell
-     openstack role add --project service --user nova admin
-     ```
+        ```shell
+        openstack role add --project service --user nova admin
+        ```
 
-   - 创建nova服务实体：
+    - 创建nova服务实体：
 
-     ```shell
-     openstack service create --name nova \
-       --description "OpenStack Compute" compute
-     ```
+        ```shell
+        openstack service create --name nova \
+          --description "OpenStack Compute" compute
+        ```
 
-   - 创建Nova API服务endpoints：
+    - 创建Nova API服务endpoints：
 
-     ```shell
-     openstack endpoint create --region RegionOne \
-       compute public http://controller:8774/v2.1
-     openstack endpoint create --region RegionOne \
-       compute internal http://controller:8774/v2.1
-     openstack endpoint create --region RegionOne \
-       compute admin http://controller:8774/v2.1
-     ```
+        ```shell
+        openstack endpoint create --region RegionOne \
+          compute public http://controller:8774/v2.1
+        openstack endpoint create --region RegionOne \
+          compute internal http://controller:8774/v2.1
+        openstack endpoint create --region RegionOne \
+          compute admin http://controller:8774/v2.1
+        ```
 
 3. 安装及配置组件
 
-   - 安装软件包：
+    - 安装软件包：
 
-     ```shell
-     dnf install openstack-nova-api openstack-nova-conductor \
-       openstack-nova-novncproxy openstack-nova-scheduler
-     ```
+        ```shell
+        dnf install openstack-nova-api openstack-nova-conductor \
+          openstack-nova-novncproxy openstack-nova-scheduler
+        ```
 
-   - 编辑`/etc/nova/nova.conf`配置文件，完成如下操作：
+    - 编辑`/etc/nova/nova.conf`配置文件，完成如下操作：
 
-     - 在`[default]`部分，启用计算和元数据的API，配置RabbitMQ消息队列入口，使用controller节点管理IP配置my_ip，显式定义log_dir：
+        - 在`[default]`部分，启用计算和元数据的API，配置RabbitMQ消息队列入口，使用controller节点管理IP配置my_ip，显式定义log_dir：
 
-       ```ini
-       [DEFAULT]
-       enabled_apis = osapi_compute,metadata
-       transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
-       my_ip = 192.168.0.2
-       log_dir = /var/log/nova
-       ```
-       
-       替换`RABBIT_PASS`为RabbitMQ中openstack账户的密码。
-       
-     - 在`[api_database]`和`[database]`部分，配置数据库入口：
+            ```ini
+            [DEFAULT]
+            enabled_apis = osapi_compute,metadata
+            transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
+            my_ip = 192.168.0.2
+            log_dir = /var/log/nova
+            ```
+        
+            替换`RABBIT_PASS`为RabbitMQ中openstack账户的密码。
+        
+        - 在`[api_database]`和`[database]`部分，配置数据库入口：
+        
+            ```ini
+            [api_database]
+            connection = mysql+pymysql://nova:NOVA_DBPASS@controller/nova_api
+            
+            [database]
+            connection = mysql+pymysql://nova:NOVA_DBPASS@controller/nova
+            ```
+        
+            替换`NOVA_DBPASS`为nova相关数据库的密码。
+        
+        - 在`[api]`和`[keystone_authtoken]`部分，配置身份认证服务入口：
+        
+            ```ini
+            [api]
+            auth_strategy = keystone
+            
+            [keystone_authtoken]
+            auth_url = http://controller:5000/v3
+            memcached_servers = controller:11211
+            auth_type = password
+            project_domain_name = Default
+            user_domain_name = Default
+            project_name = service
+            username = nova
+            password = NOVA_PASS
+            ```
+        
+            替换`NOVA_PASS`为nova用户的密码。
      
-       ```ini
-       [api_database]
-       connection = mysql+pymysql://nova:NOVA_DBPASS@controller/nova_api
-       
-       [database]
-       connection = mysql+pymysql://nova:NOVA_DBPASS@controller/nova
-       ```
+        - 在`[vnc]`部分，启用并配置远程控制台入口：
+        
+            ```ini
+            [vnc]
+            enabled = true
+            server_listen = $my_ip
+            server_proxyclient_address = $my_ip
+            ```
+        
+        - 在`[glance]`部分，配置镜像服务API的地址：
+        
+            ```ini
+            [glance]
+            api_servers = http://controller:9292
+            ```
+        
+        - 在`[oslo_concurrency]`部分，配置lock path：
+        
+            ```ini
+            [oslo_concurrency]
+            lock_path = /var/lib/nova/tmp
+            ```
+        
+        - [placement]部分，配置placement服务的入口：
+        
+            ```ini
+            [placement]
+            region_name = RegionOne
+            project_domain_name = Default
+            project_name = service
+            auth_type = password
+            user_domain_name = Default
+            auth_url = http://controller:5000/v3
+            username = placement
+            password = PLACEMENT_PASS
+            ```
+        
+            替换`PLACEMENT_PASS`为placement用户的密码。
      
-       替换`NOVA_DBPASS`为nova相关数据库的密码。
-     
-     - 在`[api]`和`[keystone_authtoken]`部分，配置身份认证服务入口：
-     
-       ```ini
-       [api]
-       auth_strategy = keystone
-       
-       [keystone_authtoken]
-       auth_url = http://controller:5000/v3
-       memcached_servers = controller:11211
-       auth_type = password
-       project_domain_name = Default
-       user_domain_name = Default
-       project_name = service
-       username = nova
-       password = NOVA_PASS
-       ```
-     
-       替换`NOVA_PASS`为nova用户的密码。
-     
-     - 在`[vnc]`部分，启用并配置远程控制台入口：
-     
-       ```ini
-       [vnc]
-       enabled = true
-       server_listen = $my_ip
-       server_proxyclient_address = $my_ip
-       ```
-     
-     - 在`[glance]`部分，配置镜像服务API的地址：
-     
-       ```ini
-       [glance]
-       api_servers = http://controller:9292
-       ```
-     
-     - 在`[oslo_concurrency]`部分，配置lock path：
-     
-       ```ini
-       [oslo_concurrency]
-       lock_path = /var/lib/nova/tmp
-       ```
-     
-     - [placement]部分，配置placement服务的入口：
-     
-       ```ini
-       [placement]
-       region_name = RegionOne
-       project_domain_name = Default
-       project_name = service
-       auth_type = password
-       user_domain_name = Default
-       auth_url = http://controller:5000/v3
-       username = placement
-       password = PLACEMENT_PASS
-       ```
-     
-       替换`PLACEMENT_PASS`为placement用户的密码。
-     
-   - 数据库同步：
+    - 数据库同步：
 
-     - 同步nova-api数据库：
+        - 同步nova-api数据库：
 
-       ```shell
-       su -s /bin/sh -c "nova-manage api_db sync" nova
-       ```
-
-     - 注册cell0数据库：
-
-       ```shell
-       su -s /bin/sh -c "nova-manage cell_v2 map_cell0" nova
-       ```
-
-     - 创建cell1 cell：
-
-       ```shell
-       su -s /bin/sh -c "nova-manage cell_v2 create_cell --name=cell1 --verbose" nova
-       ```
-
-     - 同步nova数据库：
-
-       ```shell
-       su -s /bin/sh -c "nova-manage db sync" nova
-       ```
-
-     - 验证cell0和cell1注册正确：
-
-       ```shell
-       su -s /bin/sh -c "nova-manage cell_v2 list_cells" nova
-       ```
+            ```shell
+            su -s /bin/sh -c "nova-manage api_db sync" nova
+            ```
+        
+        - 注册cell0数据库：
+        
+            ```shell
+            su -s /bin/sh -c "nova-manage cell_v2 map_cell0" nova
+            ```
+        
+        - 创建cell1 cell：
+        
+            ```shell
+            su -s /bin/sh -c "nova-manage cell_v2 create_cell --name=cell1 --verbose" nova
+            ```
+        
+        - 同步nova数据库：
+        
+            ```shell
+            su -s /bin/sh -c "nova-manage db sync" nova
+            ```
+        
+        - 验证cell0和cell1注册正确：
+        
+            ```shell
+            su -s /bin/sh -c "nova-manage cell_v2 list_cells" nova
+            ```
 
 4. 启动服务
 
-   ```shell
-   systemctl enable \
-     openstack-nova-api.service \
-     openstack-nova-scheduler.service \
-     openstack-nova-conductor.service \
-     openstack-nova-novncproxy.service
-   
-   systemctl start \
-     openstack-nova-api.service \
-     openstack-nova-scheduler.service \
-     openstack-nova-conductor.service \
-     openstack-nova-novncproxy.service
-   ```
+    ```shell
+    systemctl enable \
+      openstack-nova-api.service \
+      openstack-nova-scheduler.service \
+      openstack-nova-conductor.service \
+      openstack-nova-novncproxy.service
+    
+    systemctl start \
+      openstack-nova-api.service \
+      openstack-nova-scheduler.service \
+      openstack-nova-conductor.service \
+      openstack-nova-novncproxy.service
+    ```
 
 **Compute节点**
 
@@ -972,76 +972,76 @@ Nova是OpenStack的计算服务，负责虚拟机的创建、发放等功能。
 
     - 在`[default]`部分，启用计算和元数据的API，配置RabbitMQ消息队列入口，使用Compute节点管理IP配置my_ip，显式定义compute_driver、instances_path、log_dir：
 
-      ```ini
-      [DEFAULT]
-      enabled_apis = osapi_compute,metadata
-      transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
-      my_ip = 192.168.0.3
-      compute_driver = libvirt.LibvirtDriver
-      instances_path = /var/lib/nova/instances
-      log_dir = /var/log/nova
-      ```
+        ```ini
+        [DEFAULT]
+        enabled_apis = osapi_compute,metadata
+        transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
+        my_ip = 192.168.0.3
+        compute_driver = libvirt.LibvirtDriver
+        instances_path = /var/lib/nova/instances
+        log_dir = /var/log/nova
+        ```
 
-      替换`RABBIT_PASS`为RabbitMQ中openstack账户的密码。
+        替换`RABBIT_PASS`为RabbitMQ中openstack账户的密码。
 
     - 在`[api]`和`[keystone_authtoken]`部分，配置身份认证服务入口：
 
-      ```ini
-      [api]
-      auth_strategy = keystone
-      
-      [keystone_authtoken]
-      auth_url = http://controller:5000/v3
-      memcached_servers = controller:11211
-      auth_type = password
-      project_domain_name = Default
-      user_domain_name = Default
-      project_name = service
-      username = nova
-      password = NOVA_PASS
-      ```
+        ```ini
+        [api]
+        auth_strategy = keystone
+        
+        [keystone_authtoken]
+        auth_url = http://controller:5000/v3
+        memcached_servers = controller:11211
+        auth_type = password
+        project_domain_name = Default
+        user_domain_name = Default
+        project_name = service
+        username = nova
+        password = NOVA_PASS
+        ```
 
-      替换`NOVA_PASS`为nova用户的密码。
+        替换`NOVA_PASS`为nova用户的密码。
 
     - 在`[vnc]`部分，启用并配置远程控制台入口：
 
-      ```ini
-      [vnc]
-      enabled = true
-      server_listen = $my_ip
-      server_proxyclient_address = $my_ip
-      novncproxy_base_url = http://controller:6080/vnc_auto.html
-      ```
+        ```ini
+        [vnc]
+        enabled = true
+        server_listen = $my_ip
+        server_proxyclient_address = $my_ip
+        novncproxy_base_url = http://controller:6080/vnc_auto.html
+        ```
 
     - 在`[glance]`部分，配置镜像服务API的地址：
 
-      ```ini
-      [glance]
-      api_servers = http://controller:9292
-      ```
+        ```ini
+        [glance]
+        api_servers = http://controller:9292
+        ```
 
     - 在`[oslo_concurrency]`部分，配置lock path：
 
-      ```ini
-      [oslo_concurrency]
-      lock_path = /var/lib/nova/tmp
-      ```
+        ```ini
+        [oslo_concurrency]
+        lock_path = /var/lib/nova/tmp
+        ```
 
     - [placement]部分，配置placement服务的入口：
 
-      ```ini
-      [placement]
-      region_name = RegionOne
-      project_domain_name = Default
-      project_name = service
-      auth_type = password
-      user_domain_name = Default
-      auth_url = http://controller:5000/v3
-      username = placement
-      password = PLACEMENT_PASS
-      ```
+        ```ini
+        [placement]
+        region_name = RegionOne
+        project_domain_name = Default
+        project_name = service
+        auth_type = password
+        user_domain_name = Default
+        auth_url = http://controller:5000/v3
+        username = placement
+        password = PLACEMENT_PASS
+        ```
 
-      替换`PLACEMENT_PASS`为placement用户的密码。
+        替换`PLACEMENT_PASS`为placement用户的密码。
 
 3. 确认计算节点是否支持虚拟机硬件加速（x86_64）
 
@@ -1055,10 +1055,10 @@ Nova是OpenStack的计算服务，负责虚拟机的创建、发放等功能。
 
     - 编辑`/etc/nova/nova.conf`的`[libvirt]`部分：
 
-      ```ini
-      [libvirt]
-      virt_type = qemu
-      ```
+        ```ini
+        [libvirt]
+        virt_type = qemu
+        ```
 
     如果返回值为1或更大的值，则支持硬件加速，不需要进行额外的配置。
 
@@ -1079,10 +1079,10 @@ Nova是OpenStack的计算服务，负责虚拟机的创建、发放等功能。
 
     - 编辑`/etc/nova/nova.conf`的`[libvirt]`部分：
 
-      ```ini
-      [libvirt]
-      virt_type = qemu
-      ```
+        ```ini
+        [libvirt]
+        virt_type = qemu
+        ```
 
     显示PASS时，表示支持硬件加速，不需要进行额外的配置。
 
@@ -1096,48 +1096,48 @@ Nova是OpenStack的计算服务，负责虚拟机的创建、发放等功能。
 
     - 编辑`/etc/libvirt/qemu.conf`:
 
-      ```ini
-      nvram = ["/usr/share/AAVMF/AAVMF_CODE.fd: \
-               /usr/share/AAVMF/AAVMF_VARS.fd", \
-               "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw: \
-               /usr/share/edk2/aarch64/vars-template-pflash.raw"]
-      ```
+        ```ini
+        nvram = ["/usr/share/AAVMF/AAVMF_CODE.fd: \
+                 /usr/share/AAVMF/AAVMF_VARS.fd", \
+                 "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw: \
+                 /usr/share/edk2/aarch64/vars-template-pflash.raw"]
+        ```
 
     - 编辑`/etc/qemu/firmware/edk2-aarch64.json`
 
-      ```json
-      {
-          "description": "UEFI firmware for ARM64 virtual machines",
-          "interface-types": [
-              "uefi"
-          ],
-          "mapping": {
-              "device": "flash",
-              "executable": {
-                  "filename": "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw",
-                  "format": "raw"
-              },
-              "nvram-template": {
-                  "filename": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
-                  "format": "raw"
-              }
-          },
-          "targets": [
-              {
-                  "architecture": "aarch64",
-                  "machines": [
-                      "virt-*"
-                  ]
-              }
-          ],
-          "features": [
-      
-          ],
-          "tags": [
-      
-          ]
-      }
-      ```
+        ```json
+        {
+            "description": "UEFI firmware for ARM64 virtual machines",
+            "interface-types": [
+                "uefi"
+            ],
+            "mapping": {
+                "device": "flash",
+                "executable": {
+                    "filename": "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw",
+                    "format": "raw"
+                },
+                "nvram-template": {
+                    "filename": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
+                    "format": "raw"
+                }
+            },
+            "targets": [
+                {
+                    "architecture": "aarch64",
+                    "machines": [
+                        "virt-*"
+                    ]
+                }
+            ],
+            "features": [
+        
+            ],
+            "tags": [
+        
+            ]
+        }
+        ```
 
 6. 启动服务
 
@@ -1152,33 +1152,33 @@ Nova是OpenStack的计算服务，负责虚拟机的创建、发放等功能。
 
 1. 添加计算节点到openstack集群
 
-   - source admin凭证，以获取admin命令行权限：
+    - source admin凭证，以获取admin命令行权限：
 
-     ```shell
-     source ~/.admin-openrc
-     ```
+        ```shell
+        source ~/.admin-openrc
+        ```
 
-   - 确认nova-compute服务已识别到数据库中：
+    - 确认nova-compute服务已识别到数据库中：
 
-     ```shell
-     openstack compute service list --service nova-compute
-     ```
+        ```shell
+        openstack compute service list --service nova-compute
+        ```
      
-   - 发现计算节点，将计算节点添加到cell数据库：
+    - 发现计算节点，将计算节点添加到cell数据库：
 
-     ```shell
-     su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova
-     ```
-     
-     ```
-     Modules with known eventlet monkey patching issues were imported prior to eventlet monkey patching: urllib3. This warning can usually be ignored if the caller is only importing and not executing nova code.
-     Found 2 cell mappings.
-     Skipping cell0 since it does not contain hosts.
-     Getting computes from cell 'cell1': 6dae034e-b2d9-4a6c-b6f0-60ada6a6ddc2
-     Checking host mapping for compute host 'compute': 6286a86f-09d7-4786-9137-1185654c9e2e
-     Creating host mapping for compute host 'compute': 6286a86f-09d7-4786-9137-1185654c9e2e
-     Found 1 unmapped computes in cell: 6dae034e-b2d9-4a6c-b6f0-60ada6a6ddc2
-     ```
+        ```shell
+        su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova
+        ```
+        
+        ```
+        Modules with known eventlet monkey patching issues were imported prior to eventlet monkey patching: urllib3. This warning can usually be    ignored if the caller is only importing and not executing nova code.
+        Found 2 cell mappings.
+        Skipping cell0 since it does not contain hosts.
+        Getting computes from cell 'cell1': 6dae034e-b2d9-4a6c-b6f0-60ada6a6ddc2
+        Checking host mapping for compute host 'compute': 6286a86f-09d7-4786-9137-1185654c9e2e
+        Creating host mapping for compute host 'compute': 6286a86f-09d7-4786-9137-1185654c9e2e
+        Found 1 unmapped computes in cell: 6dae034e-b2d9-4a6c-b6f0-60ada6a6ddc2
+        ```
 
 2. 验证
 
@@ -1410,7 +1410,7 @@ Neutron是OpenStack的网络服务，提供虚拟交换机、IP路由、DHCP等�
      lock_path = /var/lib/neutron/tmp
      ```
 
-   - 修改/etc/neutron/plugins/ml2/ml2_conf.ini
+   - 修改/etc/neutron/plugins/ml2/linuxbridge_agent.ini
      ```
      [linux_bridge]
      physical_interface_mappings = provider:PROVIDER_INTERFACE_NAME
@@ -1456,7 +1456,7 @@ Cinder是OpenStack的存储服务，提供块设备的创建、发放、备份�
 
 1. 初始化数据库
 
-    `CINDER_DBPASS`是用户自定义的密码。
+    `CINDER_DBPASS`是用户自定义的cinder数据库密码。
     ```
     mysql -u root -p
 
@@ -1666,540 +1666,536 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
 1. 设置数据库
 
-   裸金属服务在数据库中存储信息，创建一个**ironic**用户可以访问的**ironic**数据库，替换**IRONIC_DBPASS**为合适的密码
+    裸金属服务在数据库中存储信息，创建一个**ironic**用户可以访问的**ironic**数据库，替换**IRONIC_DBPASS**为合适的密码
 
-   ```sql
-   mysql -u root -p
-   
-   MariaDB [(none)]> CREATE DATABASE ironic CHARACTER SET utf8;
-   MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic.* TO 'ironic'@'localhost' \
-   IDENTIFIED BY 'IRONIC_DBPASS';
-   MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic.* TO 'ironic'@'%' \
-   IDENTIFIED BY 'IRONIC_DBPASS';
-   MariaDB [(none)]> exit
-   Bye
-   ```
+    ```sql
+    mysql -u root -p
+    
+    MariaDB [(none)]> CREATE DATABASE ironic CHARACTER SET utf8;
+    MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic.* TO 'ironic'@'localhost' \
+    IDENTIFIED BY 'IRONIC_DBPASS';
+    MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic.* TO 'ironic'@'%' \
+    IDENTIFIED BY 'IRONIC_DBPASS';
+    MariaDB [(none)]> exit
+    Bye
+    ```
 
 2. 创建服务用户认证
 
-   - 创建Bare Metal服务用户
+    - 创建Bare Metal服务用户
 
-   替换`IRONIC_PASS`为ironic用户密码，`IRONIC_INSPECTOR_PASS`为ironic_inspector用户密码。
+        替换`IRONIC_PASS`为ironic用户密码，`IRONIC_INSPECTOR_PASS`为ironic_inspector用户密码。
 
-   ```shell
-   openstack user create --password IRONIC_PASS \
-     --email ironic@example.com ironic
-   openstack role add --project service --user ironic admin
-   openstack service create --name ironic \
-     --description "Ironic baremetal provisioning service" baremetal
-   
-   openstack service create --name ironic-inspector --description     "Ironic inspector baremetal provisioning service" baremetal-introspection
-   openstack user create --password IRONIC_INSPECTOR_PASS --email ironic_inspector@example.com ironic-inspector
-   openstack role add --project service --user ironic-inspector admin
-   ```
+        ```shell
+        openstack user create --password IRONIC_PASS \
+          --email ironic@example.com ironic
+        openstack role add --project service --user ironic admin
+        openstack service create --name ironic \
+          --description "Ironic baremetal provisioning service" baremetal
+        
+        openstack service create --name ironic-inspector --description     "Ironic inspector baremetal provisioning service" baremetal-introspection
+        openstack user create --password IRONIC_INSPECTOR_PASS --email ironic_inspector@example.com ironic-inspector
+        openstack role add --project service --user ironic-inspector admin
+        ```
 
-   - 创建Bare Metal服务访问入口
+    - 创建Bare Metal服务访问入口
 
-   ```shell
-   openstack endpoint create --region RegionOne baremetal admin http://192.168.0.2:6385
-   openstack endpoint create --region RegionOne baremetal public http://192.168.0.2:6385
-   openstack endpoint create --region RegionOne baremetal internal http://192.168.0.2:6385
-   openstack endpoint create --region RegionOne baremetal-introspection internal http://192.168.0.2:5050/v1
-   openstack endpoint create --region RegionOne baremetal-introspection public http://192.168.0.2:5050/v1
-   openstack endpoint create --region RegionOne baremetal-introspection admin http://192.168.0.2:5050/v1
-   ```
+        ```shell
+        openstack endpoint create --region RegionOne baremetal admin http://192.168.0.2:6385
+        openstack endpoint create --region RegionOne baremetal public http://192.168.0.2:6385
+        openstack endpoint create --region RegionOne baremetal internal http://192.168.0.2:6385
+        openstack endpoint create --region RegionOne baremetal-introspection internal http://192.168.0.2:5050/v1
+        openstack endpoint create --region RegionOne baremetal-introspection public http://192.168.0.2:5050/v1
+        openstack endpoint create --region RegionOne baremetal-introspection admin http://192.168.0.2:5050/v1
+        ```
 
 3. 安装组件
 
-   ```shell
-   dnf install openstack-ironic-api openstack-ironic-conductor python3-ironicclient
-   ```
+    ```shell
+    dnf install openstack-ironic-api openstack-ironic-conductor python3-ironicclient
+    ```
 
 4. 配置ironic-api服务
 
-   配置文件路径/etc/ironic/ironic.conf
+    配置文件路径/etc/ironic/ironic.conf
 
-   - 通过**connection**选项配置数据库的位置，如下所示，替换**IRONIC_DBPASS**为**ironic**用户的密码，替换**DB_IP**为DB服务器所在的IP地址：
+    - 通过**connection**选项配置数据库的位置，如下所示，替换**IRONIC_DBPASS**为**ironic**用户的密码，替换**DB_IP**为DB服务器所在的IP地址：
 
-   ```ini
-   [database]
-   
-   # The SQ LAlchemy connection string used to connect to the
-   # database (string value)
-   # connection = mysql+pymysql://ironic:IRONIC_DBPASS@DB_IP/ironic
-   connection = mysql+pymysql://ironic:IRONIC_DBPASS@controller/ironic
-   ```
+        ```ini
+        [database]
+        
+        # The SQ LAlchemy connection string used to connect to the
+        # database (string value)
+        # connection = mysql+pymysql://ironic:IRONIC_DBPASS@DB_IP/ironic
+        connection = mysql+pymysql://ironic:IRONIC_DBPASS@controller/ironic
+        ```
+    
+    - 通过以下选项配置ironic-api服务使用RabbitMQ消息代理，替换**RPC_\***为RabbitMQ的详细地址和凭证
+    
+        ```ini
+        [DEFAULT]
+        
+        # A URL representing the messaging driver to use and its full
+        # configuration. (string value)
+        # transport_url = rabbit://RPC_USER:RPC_PASSWORD@RPC_HOST:RPC_PORT/
+        transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
+        ```
+    
+        用户也可自行使用json-rpc方式替换rabbitmq
+     
+    - 配置ironic-api服务使用身份认证服务的凭证，替换**PUBLIC_IDENTITY_IP**为身份认证服务器的公共IP，替换**PRIVATE_IDENTITY_IP**为身份认证服务器的私有IP，替换     **IRONIC_PASS**为身份认证服务中**ironic**用户的密码，替换**RABBIT_PASS**为RabbitMQ中openstack账户的密码。：
+     
+        ```ini
+        [DEFAULT]
+        
+        # Authentication strategy used by ironic-api: one of
+        # "keystone" or "noauth". "noauth" should not be used in a
+        # production environment because all authentication will be
+        # disabled. (string value)
+        
+        auth_strategy=keystone
+        host = controller
+        memcache_servers = controller:11211
+        enabled_network_interfaces = flat,noop,neutron
+        default_network_interface = noop
+        enabled_hardware_types = ipmi
+        enabled_boot_interfaces = pxe
+        enabled_deploy_interfaces = direct
+        default_deploy_interface = direct
+        enabled_inspect_interfaces = inspector
+        enabled_management_interfaces = ipmitool
+        enabled_power_interfaces = ipmitool
+        enabled_rescue_interfaces = no-rescue,agent
+        isolinux_bin = /usr/share/syslinux/isolinux.bin
+        logging_context_format_string = %(asctime)s.%(msecs)03d %(process)d %(levelname)s %(name)s [%(global_request_id)s %(request_id)s %     (user_identity)s] %(instance)s%(message)s
+        
+        [keystone_authtoken]
+        # Authentication type to load (string value)
+        auth_type=password
+        # Complete public Identity API endpoint (string value)
+        # www_authenticate_uri=http://PUBLIC_IDENTITY_IP:5000
+        www_authenticate_uri=http://controller:5000
+        # Complete admin Identity API endpoint. (string value)
+        # auth_url=http://PRIVATE_IDENTITY_IP:5000
+        auth_url=http://controller:5000
+        # Service username. (string value)
+        username=ironic
+        # Service account password. (string value)
+        password=IRONIC_PASS
+        # Service tenant name. (string value)
+        project_name=service
+        # Domain name containing project (string value)
+        project_domain_name=Default
+        # User's domain name (string value)
+        user_domain_name=Default
+        
+        [agent]
+        deploy_logs_collect = always
+        deploy_logs_local_path = /var/log/ironic/deploy
+        deploy_logs_storage_backend = local
+        image_download_source = http
+        stream_raw_images = false
+        force_raw_images = false
+        verify_ca = False
+        
+        [oslo_concurrency]
+        
+        [oslo_messaging_notifications]
+        transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
+        topics = notifications
+        driver = messagingv2
+        
+        [oslo_messaging_rabbit]
+        amqp_durable_queues = True
+        rabbit_ha_queues = True
+        
+        [pxe]
+        ipxe_enabled = false
+        pxe_append_params = nofb nomodeset vga=normal coreos.autologin ipa-insecure=1
+        image_cache_size = 204800
+        tftp_root=/var/lib/tftpboot/cephfs/
+        tftp_master_path=/var/lib/tftpboot/cephfs/master_images
+        
+        [dhcp]
+        dhcp_provider = none
+        ```
 
-   - 通过以下选项配置ironic-api服务使用RabbitMQ消息代理，替换**RPC_\***为RabbitMQ的详细地址和凭证
+    - 创建裸金属服务数据库表
 
-   ```ini
-   [DEFAULT]
-   
-   # A URL representing the messaging driver to use and its full
-   # configuration. (string value)
-   # transport_url = rabbit://RPC_USER:RPC_PASSWORD@RPC_HOST:RPC_PORT/
-   transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
-   ```
+        ```shell
+        ironic-dbsync --config-file /etc/ironic/ironic.conf create_schema
+        ```
 
-   用户也可自行使用json-rpc方式替换rabbitmq
+    - 重启ironic-api服务
 
-   - 配置ironic-api服务使用身份认证服务的凭证，替换**PUBLIC_IDENTITY_IP**为身份认证服务器的公共IP，替换**PRIVATE_IDENTITY_IP**为身份认证服务器的私有IP，替换**IRONIC_PASS**为身份认证服务中**ironic**用户的密码，替换**RABBIT_PASS**为RabbitMQ中openstack账户的密码。：
-
-   ```ini
-   [DEFAULT]
-   
-   # Authentication strategy used by ironic-api: one of
-   # "keystone" or "noauth". "noauth" should not be used in a
-   # production environment because all authentication will be
-   # disabled. (string value)
-   
-   auth_strategy=keystone
-   host = controller
-   memcache_servers = controller:11211
-   enabled_network_interfaces = flat,noop,neutron
-   default_network_interface = noop
-   enabled_hardware_types = ipmi
-   enabled_boot_interfaces = pxe
-   enabled_deploy_interfaces = direct
-   default_deploy_interface = direct
-   enabled_inspect_interfaces = inspector
-   enabled_management_interfaces = ipmitool
-   enabled_power_interfaces = ipmitool
-   enabled_rescue_interfaces = no-rescue,agent
-   isolinux_bin = /usr/share/syslinux/isolinux.bin
-   logging_context_format_string = %(asctime)s.%(msecs)03d %(process)d %(levelname)s %(name)s [%(global_request_id)s %(request_id)s %(user_identity)s] %(instance)s%(message)s
-   
-   [keystone_authtoken]
-   # Authentication type to load (string value)
-   auth_type=password
-   # Complete public Identity API endpoint (string value)
-   # www_authenticate_uri=http://PUBLIC_IDENTITY_IP:5000
-   www_authenticate_uri=http://controller:5000
-   # Complete admin Identity API endpoint. (string value)
-   # auth_url=http://PRIVATE_IDENTITY_IP:5000
-   auth_url=http://controller:5000
-   # Service username. (string value)
-   username=ironic
-   # Service account password. (string value)
-   password=IRONIC_PASS
-   # Service tenant name. (string value)
-   project_name=service
-   # Domain name containing project (string value)
-   project_domain_name=Default
-   # User's domain name (string value)
-   user_domain_name=Default
-   
-   [agent]
-   deploy_logs_collect = always
-   deploy_logs_local_path = /var/log/ironic/deploy
-   deploy_logs_storage_backend = local
-   image_download_source = http
-   stream_raw_images = false
-   force_raw_images = false
-   verify_ca = False
-   
-   [oslo_concurrency]
-   
-   [oslo_messaging_notifications]
-   transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
-   topics = notifications
-   driver = messagingv2
-   
-   [oslo_messaging_rabbit]
-   amqp_durable_queues = True
-   rabbit_ha_queues = True
-   
-   [pxe]
-   ipxe_enabled = false
-   pxe_append_params = nofb nomodeset vga=normal coreos.autologin ipa-insecure=1
-   image_cache_size = 204800
-   tftp_root=/var/lib/tftpboot/cephfs/
-   tftp_master_path=/var/lib/tftpboot/cephfs/master_images
-   
-   [dhcp]
-   dhcp_provider = none
-   ```
-
-   - 创建裸金属服务数据库表
-
-   ```shell
-   ironic-dbsync --config-file /etc/ironic/ironic.conf create_schema
-   ```
-
-   - 重启ironic-api服务
-
-   ```shell
-   sudo systemctl restart openstack-ironic-api
-   ```
+        ```shell
+        sudo systemctl restart openstack-ironic-api
+        ```
 
 5. 配置ironic-conductor服务
 
-   如下为ironic-conductor服务自身的标准配置，ironic-conductor服务可以与ironic-api服务分布于不同节点，本指南中均部署与控制节点，所以重复的配置项可跳过。
+    如下为ironic-conductor服务自身的标准配置，ironic-conductor服务可以与ironic-api服务分布于不同节点，本指南中均部署与控制节点，所以重复的配置项可跳过。
 
-   - 替换使用conductor服务所在host的IP配置my_ip：
+    - 替换使用conductor服务所在host的IP配置my_ip：
 
-     ```ini
-     [DEFAULT]
+        ```ini
+        [DEFAULT]
+        
+        # IP address of this host. If unset, will determine the IP
+        # programmatically. If unable to do so, will use "127.0.0.1".
+        # (string value)
+        # my_ip=HOST_IP
+        my_ip = 192.168.0.2
+        ```
      
-     # IP address of this host. If unset, will determine the IP
-     # programmatically. If unable to do so, will use "127.0.0.1".
-     # (string value)
-     # my_ip=HOST_IP
-     my_ip = 192.168.0.2
-     ```
-     
-   - 配置数据库的位置，ironic-conductor应该使用和ironic-api相同的配置。替换**IRONIC_DBPASS**为**ironic**用户的密码：
+    - 配置数据库的位置，ironic-conductor应该使用和ironic-api相同的配置。替换**IRONIC_DBPASS**为**ironic**用户的密码：
 
-     ```ini
-     [database]
-     
-     # The SQLAlchemy connection string to use to connect to the
-     # database. (string value)
-     connection = mysql+pymysql://ironic:IRONIC_DBPASS@controller/ironic
-     ```
+        ```ini
+        [database]
+        
+        # The SQLAlchemy connection string to use to connect to the
+        # database. (string value)
+        connection = mysql+pymysql://ironic:IRONIC_DBPASS@controller/ironic
+        ```
 
-   - 通过以下选项配置ironic-api服务使用RabbitMQ消息代理，ironic-conductor应该使用和ironic-api相同的配置，替换**RABBIT_PASS**为RabbitMQ中openstack账户的密码：
+    - 通过以下选项配置ironic-api服务使用RabbitMQ消息代理，ironic-conductor应该使用和ironic-api相同的配置，替换**RABBIT_PASS**为RabbitMQ中openstack账户的密码：
 
-     ```ini
-     [DEFAULT]
-     
-     # A URL representing the messaging driver to use and its full
-     # configuration. (string value)
-     transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
-     ```
+        ```ini
+        [DEFAULT]
+        
+        # A URL representing the messaging driver to use and its full
+        # configuration. (string value)
+        transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
+        ```
 
-     用户也可自行使用json-rpc方式替换rabbitmq
+        用户也可自行使用json-rpc方式替换rabbitmq
 
-   - 配置凭证访问其他OpenStack服务
+    - 配置凭证访问其他OpenStack服务
 
-     为了与其他OpenStack服务进行通信，裸金属服务在请求其他服务时需要使用服务用户与OpenStack Identity服务进行认证。这些用户的凭据必须在与相应服务相关的每个配置文件中进行配置。
+        为了与其他OpenStack服务进行通信，裸金属服务在请求其他服务时需要使用服务用户与OpenStack Identity服务进行认证。这些用户的凭据必须在与相应服务相关的每个配置文件中进行配置。
 
-     ```shell
-     [neutron] - 访问OpenStack网络服务
-     [glance] - 访问OpenStack镜像服务
-     [swift] - 访问OpenStack对象存储服务
-     [cinder] - 访问OpenStack块存储服务
-     [inspector] - 访问OpenStack裸金属introspection服务
-     [service_catalog] - 一个特殊项用于保存裸金属服务使用的凭证，该凭证用于发现注册在OpenStack身份认证服务目录中的自己的API URL端点
-     ```
+        ```shell
+        [neutron] - 访问OpenStack网络服务
+        [glance] - 访问OpenStack镜像服务
+        [swift] - 访问OpenStack对象存储服务
+        [cinder] - 访问OpenStack块存储服务
+        [inspector] - 访问OpenStack裸金属introspection服务
+        [service_catalog] - 一个特殊项用于保存裸金属服务使用的凭证，该凭证用于发现注册在OpenStack身份认证服务目录中的自己的API URL端点
+        ```
 
-     简单起见，可以对所有服务使用同一个服务用户。为了向后兼容，该用户应该和ironic-api服务的[keystone_authtoken]所配置的为同一个用户。但这不是必须的，也可以为每个服务创建并配置不同的服务用户。
+        简单起见，可以对所有服务使用同一个服务用户。为了向后兼容，该用户应该和ironic-api服务的[keystone_authtoken]所配置的为同一个用户。但这不是必须的，也可以为每个服务创建并配置不同的服务用户。
 
-     在下面的示例中，用户访问OpenStack网络服务的身份验证信息配置为：
+        在下面的示例中，用户访问OpenStack网络服务的身份验证信息配置为：
 
-     ```
-     网络服务部署在名为RegionOne的身份认证服务域中，仅在服务目录中注册公共端点接口
-     
-     请求时使用特定的CA SSL证书进行HTTPS连接
-     
-     与ironic-api服务配置相同的服务用户
-     
-     动态密码认证插件基于其他选项发现合适的身份认证服务API版本
-     ```
+        ```
+        网络服务部署在名为RegionOne的身份认证服务域中，仅在服务目录中注册公共端点接口
+        
+        请求时使用特定的CA SSL证书进行HTTPS连接
+        
+        与ironic-api服务配置相同的服务用户
+        
+        动态密码认证插件基于其他选项发现合适的身份认证服务API版本
+        ```
 
-     替换IRONIC_PASS为ironic用户密码。
+        替换IRONIC_PASS为ironic用户密码。
 
-     ```ini
-     [neutron]
-     
-     # Authentication type to load (string value)
-     auth_type = password
-     # Authentication URL (string value)
-     auth_url=https://IDENTITY_IP:5000/
-     # Username (string value)
-     username=ironic
-     # User's password (string value)
-     password=IRONIC_PASS
-     # Project name to scope to (string value)
-     project_name=service
-     # Domain ID containing project (string value)
-     project_domain_id=default
-     # User's domain id (string value)
-     user_domain_id=default
-     # PEM encoded Certificate Authority to use when verifying
-     # HTTPs connections. (string value)
-     cafile=/opt/stack/data/ca-bundle.pem
-     # The default region_name for endpoint URL discovery. (string
-     # value)
-     region_name = RegionOne
-     # List of interfaces, in order of preference, for endpoint
-     # URL. (list value)
-     valid_interfaces=public
-     
-     # 其他参考配置
-     [glance]
-     endpoint_override = http://controller:9292
-     www_authenticate_uri = http://controller:5000
-     auth_url = http://controller:5000
-     auth_type = password
-     username = ironic
-     password = IRONIC_PASS
-     project_domain_name = default
-     user_domain_name = default
-     region_name = RegionOne
-     project_name = service
-     
-     [service_catalog]  
-     region_name = RegionOne
-     project_domain_id = default
-     user_domain_id = default
-     project_name = service
-     password = IRONIC_PASS
-     username = ironic
-     auth_url = http://controller:5000
-     auth_type = password
-     ```
+        ```ini
+        [neutron]
+        
+        # Authentication type to load (string value)
+        auth_type = password
+        # Authentication URL (string value)
+        auth_url=https://IDENTITY_IP:5000/
+        # Username (string value)
+        username=ironic
+        # User's password (string value)
+        password=IRONIC_PASS
+        # Project name to scope to (string value)
+        project_name=service
+        # Domain ID containing project (string value)
+        project_domain_id=default
+        # User's domain id (string value)
+        user_domain_id=default
+        # PEM encoded Certificate Authority to use when verifying
+        # HTTPs connections. (string value)
+        cafile=/opt/stack/data/ca-bundle.pem
+        # The default region_name for endpoint URL discovery. (string
+        # value)
+        region_name = RegionOne
+        # List of interfaces, in order of preference, for endpoint
+        # URL. (list value)
+        valid_interfaces=public
+        
+        # 其他参考配置
+        [glance]
+        endpoint_override = http://controller:9292
+        www_authenticate_uri = http://controller:5000
+        auth_url = http://controller:5000
+        auth_type = password
+        username = ironic
+        password = IRONIC_PASS
+        project_domain_name = default
+        user_domain_name = default
+        region_name = RegionOne
+        project_name = service
+        
+        [service_catalog]  
+        region_name = RegionOne
+        project_domain_id = default
+        user_domain_id = default
+        project_name = service
+        password = IRONIC_PASS
+        username = ironic
+        auth_url = http://controller:5000
+        auth_type = password
+        ```
 
-     默认情况下，为了与其他服务进行通信，裸金属服务会尝试通过身份认证服务的服务目录发现该服务合适的端点。如果希望对一个特定服务使用一个不同的端点，则在裸金属服务的配置文件中通过endpoint_override选项进行指定：
+        默认情况下，为了与其他服务进行通信，裸金属服务会尝试通过身份认证服务的服务目录发现该服务合适的端点。如果希望对一个特定服务使用一个不同的端点，则在裸金属服务的配置文件中通过endpoint_override选项进行指定：
 
-     ```ini
-     [neutron]
-     ...
-     endpoint_override = <NEUTRON_API_ADDRESS>
-     ```
+        ```ini
+        [neutron]
+        endpoint_override = <NEUTRON_API_ADDRESS>
+        ```
 
-   - 配置允许的驱动程序和硬件类型
+    - 配置允许的驱动程序和硬件类型
 
-     通过设置enabled_hardware_types设置ironic-conductor服务允许使用的硬件类型：
+        通过设置enabled_hardware_types设置ironic-conductor服务允许使用的硬件类型：
 
-     ```ini
-     [DEFAULT]
-     ...
-     enabled_hardware_types = ipmi
-     ```
+        ```ini
+        [DEFAULT]
+        enabled_hardware_types = ipmi
+        ```
 
-     配置硬件接口：
+        配置硬件接口：
 
-     ```ini
-     enabled_boot_interfaces = pxe
-     enabled_deploy_interfaces = direct,iscsi
-     enabled_inspect_interfaces = inspector
-     enabled_management_interfaces = ipmitool
-     enabled_power_interfaces = ipmitool
-     ```
+        ```ini
+        enabled_boot_interfaces = pxe
+        enabled_deploy_interfaces = direct,iscsi
+        enabled_inspect_interfaces = inspector
+        enabled_management_interfaces = ipmitool
+        enabled_power_interfaces = ipmitool
+        ```
 
-     配置接口默认值：
+        配置接口默认值：
 
-     ```ini
-     [DEFAULT]
-     default_deploy_interface = direct
-     default_network_interface = neutron
-     ```
+        ```ini
+        [DEFAULT]
+        default_deploy_interface = direct
+        default_network_interface = neutron
+        ```
 
-     如果启用了任何使用Direct deploy的驱动，必须安装和配置镜像服务的Swift后端。Ceph对象网关(RADOS网关)也支持作为镜像服务的后端。
+        如果启用了任何使用Direct deploy的驱动，必须安装和配置镜像服务的Swift后端。Ceph对象网关(RADOS网关)也支持作为镜像服务的后端。
 
-   - 重启ironic-conductor服务
+    - 重启ironic-conductor服务
 
-     ```shell
-     sudo systemctl restart openstack-ironic-conductor
-     ```
+        ```shell
+        sudo systemctl restart openstack-ironic-conductor
+        ```
 
 6. 配置ironic-inspector服务
 
-   - 安装组件
+    - 安装组件
 
-   ```shell
-   dnf install openstack-ironic-inspector
-   ```
+        ```shell
+        dnf install openstack-ironic-inspector
+        ```
 
-   - 创建数据库
+    - 创建数据库
 
-   ```sql
-   # mysql -u root -p
-   
-   MariaDB [(none)]> CREATE DATABASE ironic_inspector CHARACTER SET utf8;
-   
-   MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic_inspector.* TO 'ironic_inspector'@'localhost' \
-   IDENTIFIED BY 'IRONIC_INSPECTOR_DBPASS';
-   MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic_inspector.* TO 'ironic_inspector'@'%' \
-   IDENTIFIED BY 'IRONIC_INSPECTOR_DBPASS';
-   MariaDB [(none)]> exit
-   Bye
-   ```
+        ```sql
+        # mysql -u root -p
+        
+        MariaDB [(none)]> CREATE DATABASE ironic_inspector CHARACTER SET utf8;
+        
+        MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic_inspector.* TO 'ironic_inspector'@'localhost' \
+        IDENTIFIED BY 'IRONIC_INSPECTOR_DBPASS';
+        MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic_inspector.* TO 'ironic_inspector'@'%' \
+        IDENTIFIED BY 'IRONIC_INSPECTOR_DBPASS';
+        MariaDB [(none)]> exit
+        Bye
+        ```
 
-   - 配置`/etc/ironic-inspector/inspector.conf`
+    - 配置`/etc/ironic-inspector/inspector.conf`
 
-     通过**connection**选项配置数据库的位置，如下所示，替换**IRONIC_INSPECTOR_DBPASS**为**ironic_inspector**用户的密码
+        通过**connection**选项配置数据库的位置，如下所示，替换**IRONIC_INSPECTOR_DBPASS**为**ironic_inspector**用户的密码
 
-   ```ini
-   [database]
-   backend = sqlalchemy
-   connection = mysql+pymysql://ironic_inspector:IRONIC_INSPECTOR_DBPASS@controller/ironic_inspector
-   min_pool_size = 100
-   max_pool_size = 500
-   pool_timeout = 30
-   max_retries = 5
-   max_overflow = 200
-   db_retry_interval = 2
-   db_inc_retry_interval = True
-   db_max_retry_interval = 2
-   db_max_retries = 5
-   ```
+        ```ini
+        [database]
+        backend = sqlalchemy
+        connection = mysql+pymysql://ironic_inspector:IRONIC_INSPECTOR_DBPASS@controller/ironic_inspector
+        min_pool_size = 100
+        max_pool_size = 500
+        pool_timeout = 30
+        max_retries = 5
+        max_overflow = 200
+        db_retry_interval = 2
+        db_inc_retry_interval = True
+        db_max_retry_interval = 2
+        db_max_retries = 5
+        ```
 
-   - 配置消息队列通信地址
+    - 配置消息队列通信地址
 
-   ```ini
-   [DEFAULT] 
-   transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
-   ```
+        ```ini
+        [DEFAULT] 
+        transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
+        ```
 
-   - 设置keystone认证
+    - 设置keystone认证
 
-   ```ini
-   [DEFAULT]
-   
-   auth_strategy = keystone
-   timeout = 900
-   rootwrap_config = /etc/ironic-inspector/rootwrap.conf
-   logging_context_format_string = %(asctime)s.%(msecs)03d %(process)d %(levelname)s %(name)s [%(global_request_id)s %(request_id)s %(user_identity)s] %(instance)s%(message)s
-   log_dir = /var/log/ironic-inspector
-   state_path = /var/lib/ironic-inspector
-   use_stderr = False
-   
-   [ironic]
-   api_endpoint = http://IRONIC_API_HOST_ADDRRESS:6385
-   auth_type = password
-   auth_url = http://PUBLIC_IDENTITY_IP:5000
-   auth_strategy = keystone
-   ironic_url = http://IRONIC_API_HOST_ADDRRESS:6385
-   os_region = RegionOne
-   project_name = service
-   project_domain_name = Default
-   user_domain_name = Default
-   username = IRONIC_SERVICE_USER_NAME
-   password = IRONIC_SERVICE_USER_PASSWORD
-   
-   [keystone_authtoken]
-   auth_type = password
-   auth_url = http://controller:5000
-   www_authenticate_uri = http://controller:5000
-   project_domain_name = default
-   user_domain_name = default
-   project_name = service
-   username = ironic_inspector
-   password = IRONICPASSWD
-   region_name = RegionOne
-   memcache_servers = controller:11211
-   token_cache_time = 300
-   
-   [processing]
-   add_ports = active
-   processing_hooks = $default_processing_hooks,local_link_connection,lldp_basic
-   ramdisk_logs_dir = /var/log/ironic-inspector/ramdisk
-   always_store_ramdisk_logs = true
-   store_data =none
-   power_off = false
-   
-   [pxe_filter]
-   driver = iptables
-   
-   [capabilities]
-   boot_mode=True
-   ```
+        ```ini
+        [DEFAULT]
+        
+        auth_strategy = keystone
+        timeout = 900
+        rootwrap_config = /etc/ironic-inspector/rootwrap.conf
+        logging_context_format_string = %(asctime)s.%(msecs)03d %(process)d %(levelname)s %(name)s [%(global_request_id)s %(request_id)s %     (user_identity)s] %(instance)s%(message)s
+        log_dir = /var/log/ironic-inspector
+        state_path = /var/lib/ironic-inspector
+        use_stderr = False
+        
+        [ironic]
+        api_endpoint = http://IRONIC_API_HOST_ADDRRESS:6385
+        auth_type = password
+        auth_url = http://PUBLIC_IDENTITY_IP:5000
+        auth_strategy = keystone
+        ironic_url = http://IRONIC_API_HOST_ADDRRESS:6385
+        os_region = RegionOne
+        project_name = service
+        project_domain_name = Default
+        user_domain_name = Default
+        username = IRONIC_SERVICE_USER_NAME
+        password = IRONIC_SERVICE_USER_PASSWORD
+        
+        [keystone_authtoken]
+        auth_type = password
+        auth_url = http://controller:5000
+        www_authenticate_uri = http://controller:5000
+        project_domain_name = default
+        user_domain_name = default
+        project_name = service
+        username = ironic_inspector
+        password = IRONICPASSWD
+        region_name = RegionOne
+        memcache_servers = controller:11211
+        token_cache_time = 300
+        
+        [processing]
+        add_ports = active
+        processing_hooks = $default_processing_hooks,local_link_connection,lldp_basic
+        ramdisk_logs_dir = /var/log/ironic-inspector/ramdisk
+        always_store_ramdisk_logs = true
+        store_data =none
+        power_off = false
+        
+        [pxe_filter]
+        driver = iptables
+        
+        [capabilities]
+        boot_mode=True
+        ```
 
-   - 配置ironic inspector dnsmasq服务
+    - 配置ironic inspector dnsmasq服务
 
-   ```ini
-   # 配置文件地址：/etc/ironic-inspector/dnsmasq.conf
-   port=0
-   interface=enp3s0                         #替换为实际监听网络接口
-   dhcp-range=192.168.0.40,192.168.0.50   #替换为实际dhcp地址范围
-   bind-interfaces
-   enable-tftp
-   
-   dhcp-match=set:efi,option:client-arch,7
-   dhcp-match=set:efi,option:client-arch,9
-   dhcp-match=aarch64, option:client-arch,11
-   dhcp-boot=tag:aarch64,grubaa64.efi
-   dhcp-boot=tag:!aarch64,tag:efi,grubx64.efi
-   dhcp-boot=tag:!aarch64,tag:!efi,pxelinux.0
-   
-   tftp-root=/tftpboot                       #替换为实际tftpboot目录
-   log-facility=/var/log/dnsmasq.log
-   ```
+        ```ini
+        # 配置文件地址：/etc/ironic-inspector/dnsmasq.conf
+        port=0
+        interface=enp3s0                         #替换为实际监听网络接口
+        dhcp-range=192.168.0.40,192.168.0.50   #替换为实际dhcp地址范围
+        bind-interfaces
+        enable-tftp
+        
+        dhcp-match=set:efi,option:client-arch,7
+        dhcp-match=set:efi,option:client-arch,9
+        dhcp-match=aarch64, option:client-arch,11
+        dhcp-boot=tag:aarch64,grubaa64.efi
+        dhcp-boot=tag:!aarch64,tag:efi,grubx64.efi
+        dhcp-boot=tag:!aarch64,tag:!efi,pxelinux.0
+        
+        tftp-root=/tftpboot                       #替换为实际tftpboot目录
+        log-facility=/var/log/dnsmasq.log
+        ```
 
-   - 关闭ironic provision网络子网的dhcp
+    - 关闭ironic provision网络子网的dhcp
 
-   ```shell
-   openstack subnet set --no-dhcp 72426e89-f552-4dc4-9ac7-c4e131ce7f3c
-   ```
+        ```shell
+        openstack subnet set --no-dhcp 72426e89-f552-4dc4-9ac7-c4e131ce7f3c
+        ```
 
-   - 初始化ironic-inspector服务的数据库
+    - 初始化ironic-inspector服务的数据库
+    
+        ```shell
+        ironic-inspector-dbsync --config-file /etc/ironic-inspector/inspector.conf upgrade
+        ```
 
-   在控制节点执行：
+    - 启动服务
 
-   ```shell
-   ironic-inspector-dbsync --config-file /etc/ironic-inspector/inspector.conf upgrade
-   ```
-
-   - 启动服务
-
-   ```shell
-   systemctl enable --now openstack-ironic-inspector.service
-   systemctl enable --now openstack-ironic-inspector-dnsmasq.service
-   ```
+        ```shell
+        systemctl enable --now openstack-ironic-inspector.service
+        systemctl enable --now openstack-ironic-inspector-dnsmasq.service
+        ```
 
 7. 配置httpd服务
 
-   - 创建ironic要使用的httpd的root目录并设置属主属组，目录路径要和/etc/ironic/ironic.conf中[deploy]组中http_root 配置项指定的路径要一致。
-
-     ```shell
-     mkdir -p /var/lib/ironic/httproot
-     chown ironic.ironic /var/lib/ironic/httproot
-     ```
-
-   - 安装和配置httpd服务
-
-      - 安装httpd服务，已有请忽略
+    - 创建ironic要使用的httpd的root目录并设置属主属组，目录路径要和/etc/ironic/ironic.conf中[deploy]组中http_root 配置项指定的路径要一致。
 
         ```shell
-        yum install httpd -y
+        mkdir -p /var/lib/ironic/httproot
+        chown ironic.ironic /var/lib/ironic/httproot
         ```
 
-      - 创建/etc/httpd/conf.d/openstack-ironic-httpd.conf文件，内容如下：
+    - 安装和配置httpd服务
 
-        ```
-        Listen 8080
-        
-        <VirtualHost *:8080>
-            ServerName ironic.openeuler.com
-        
-            ErrorLog "/var/log/httpd/openstack-ironic-httpd-error_log"
-            CustomLog "/var/log/httpd/openstack-ironic-httpd-access_log" "%h %l %u %t \"%r\" %>s %b"
-        
-            DocumentRoot "/var/lib/ironic/httproot"
-            <Directory "/var/lib/ironic/httproot">
-                Options Indexes FollowSymLinks
-                Require all granted
-            </Directory>
-            LogLevel warn
-            AddDefaultCharset UTF-8
-            EnableSendfile on
-        </VirtualHost>
-        ```
+        - 安装httpd服务，已有请忽略
 
-        注意监听的端口要和/etc/ironic/ironic.conf里[deploy]选项中http_url配置项中指定的端口一致。
+            ```shell
+            yum install httpd -y
+            ```
 
-      - 重启httpd服务。
+        - 创建/etc/httpd/conf.d/openstack-ironic-httpd.conf文件，内容如下：
 
-        ```shell
-        systemctl restart httpd
-        ```
+            ```
+            Listen 8080
+            
+            <VirtualHost *:8080>
+                ServerName ironic.openeuler.com
+            
+                ErrorLog "/var/log/httpd/openstack-ironic-httpd-error_log"
+                CustomLog "/var/log/httpd/openstack-ironic-httpd-access_log" "%h %l %u %t \"%r\" %>s %b"
+            
+                DocumentRoot "/var/lib/ironic/httproot"
+                <Directory "/var/lib/ironic/httproot">
+                    Options Indexes FollowSymLinks
+                    Require all granted
+                </Directory>
+                LogLevel warn
+                AddDefaultCharset UTF-8
+                EnableSendfile on
+            </VirtualHost>
+            ```
+
+            注意监听的端口要和/etc/ironic/ironic.conf里[deploy]选项中http_url配置项中指定的端口一致。
+
+        - 重启httpd服务。
+
+            ```shell
+            systemctl restart httpd
+            ```
 
 8. deploy ramdisk镜像下载或制作
 
-   部署一个裸机节点总共需要两组镜像：deploy images和user images。Deploy images上运行有ironic-python-agent(IPA)服务，Ironic通过它进行裸机节点的控制和部署。user images 则被安装裸机节点上，供用户最终使用。
+    部署一个裸机节点总共需要两组镜像：deploy images和user images。Deploy images上运行有ironic-python-agent(IPA)服务，Ironic通过它进行裸机节点的控制和部署。deploy imags 用于准备物理机环境，user images 则被安装裸机节点上，供用户最终使用。
 
-   ramdisk镜像支持通过ironic-python-agent服务或disk-image-builder工具制作，也可以使用社区最新的ironic-python-agent-builder。用户也可以自行选择其他工具制作。
-   若使用原生工具，则需要安装对应的软件包。
+    ramdisk镜像支持通过ironic-python-agent服务或disk-image-builder工具制作，也可以使用社区最新的ironic-python-agent-builder。用户也可以自行选择其他工具制作。
+    若使用原生工具，则需要安装对应的软件包。
 
-   ```shell
-   dnf install openstack-ironic-python-agent
-   或者
-   dnf install diskimage-builder
-   ```
+    ```shell
+    dnf install openstack-ironic-python-agent
+    或者
+    dnf install diskimage-builder
+    ```
 
-   具体的使用方法可以参考[官方文档](https://docs.openstack.org/ironic/yoga/install/deploy-ramdisk.html)，同时官方也有提供制作好的deploy镜像，可尝试下载。
+    具体的使用方法可以参考[官方文档](https://docs.openstack.org/ironic/yoga/install/deploy-ramdisk.html)，同时官方也有提供制作好的deploy镜像，可尝试下载。
 
 #### Trove
 
@@ -3220,7 +3216,8 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
 
 2. 配置对接华为云provider的信息
 
-   打开`/usr/local/etc/oos/oos.conf`文件，修改配置为您拥有的华为云资源信息：
+    打开`/usr/local/etc/oos/oos.conf`文件，修改配置为您拥有的华为云资源信息：
+
     ```
     [huaweicloud]
     ak = 
@@ -3233,11 +3230,12 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
     vpc_name = oos_vpc
     subnet1_name = oos_subnet1
     subnet2_name = oos_subnet2
-   ```
+    ```
 
 3. 配置 OpenStack 环境信息
 
-   打开`/usr/local/etc/oos/oos.conf`文件，根据当前机器环境和需求修改配置。内容如下：
+    打开`/usr/local/etc/oos/oos.conf`文件，根据当前机器环境和需求修改配置。内容如下：
+
     ```shell
     [environment]
     mysql_root_password = root
@@ -3278,23 +3276,28 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
     | kolla_openeuler_plugin | 是否启用kolla plugin。设置为True，kolla将支持部署openEuler容器 |
 
 4. 华为云上面创建一台openEuler 22.09的x86_64虚拟机，用于部署`all in one` 的 OpenStack
-    ```
+
+    ```shell
     # sshpass在`oos env create`过程中被使用，用于配置对目标虚拟机的免密访问
     dnf install sshpass
     oos env create -r 22.09 -f small -a x86 -n test-oos all_in_one
     ```
+
     具体的参数可以使用`oos env create --help`命令查看
 
 5. 部署OpenStack `all in one` 环境
-    ```
+
+    ```shell
     oos env setup test-oos -r yoga
     ```
+
     具体的参数可以使用`oos env setup --help`命令查看
 
 6. 初始化tempest环境
 
     如果用户想使用该环境运行tempest测试的话，可以执行命令`oos env init`，会自动把tempest需要的OpenStack资源自动创建好
-    ```
+
+    ```shell
     oos env init test-oos
     ```
 
