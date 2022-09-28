@@ -332,61 +332,61 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 
 10. 依次创建domain, projects, users, roles
 
-    需要先安装python3-openstackclient
+   - 需要先安装python3-openstackclient
 
-    ```shell
-    yum install python3-openstackclient
-    ```
+     ```shell
+     yum install python3-openstackclient
+     ```
 
-    导入环境变量
+   - 导入环境变量
 
-    ```shell
-    source ~/.admin-openrc
-    ```
+     ```shell
+     source ~/.admin-openrc
+     ```
 
-    创建project `service`，其中 domain `default` 在 keystone-manage bootstrap 时已创建
+   - 创建project `service`，其中 domain `default` 在 keystone-manage bootstrap 时已创建
 
-    ```shell
-    openstack domain create --description "An Example Domain" example
-    ```
+     ```shell
+     openstack domain create --description "An Example Domain" example
+     ```
 
-    ```shell
-    openstack project create --domain default --description "Service Project" service
-    ```
+     ```shell
+     openstack project create --domain default --description "Service Project" service
+     ```
 
-    创建（non-admin）project `myproject`，user `myuser` 和 role `myrole`，为 `myproject` 和 `myuser` 添加角色`myrole`
+   - 创建（non-admin）project `myproject`，user `myuser` 和 role `myrole`，为 `myproject` 和 `myuser` 添加角色`myrole`
 
-    ```shell
-    openstack project create --domain default --description "Demo Project" myproject
-    openstack user create --domain default --password-prompt myuser
-    openstack role create myrole
-    openstack role add --project myproject --user myuser myrole
-    ```
+     ```shell
+     openstack project create --domain default --description "Demo Project" myproject
+     openstack user create --domain default --password-prompt myuser
+     openstack role create myrole
+     openstack role add --project myproject --user myuser myrole
+     ```
 
 11. 验证
 
-    取消临时环境变量OS_AUTH_URL和OS_PASSWORD：
+   - 取消临时环境变量OS_AUTH_URL和OS_PASSWORD：
 
-    ```shell
-    source ~/.admin-openrc
-    unset OS_AUTH_URL OS_PASSWORD
-    ```
+     ```shell
+     source ~/.admin-openrc
+     unset OS_AUTH_URL OS_PASSWORD
+     ```
 
-    为admin用户请求token：
+   - 为admin用户请求token：
 
-    ```shell
-    openstack --os-auth-url http://controller:5000/v3 \
-    --os-project-domain-name Default --os-user-domain-name Default \
-    --os-project-name admin --os-username admin token issue
-    ```
+     ```shell
+     openstack --os-auth-url http://controller:5000/v3 \
+     --os-project-domain-name Default --os-user-domain-name Default \
+     --os-project-name admin --os-username admin token issue
+     ```
 
-    为myuser用户请求token：
+   - 为myuser用户请求token：
 
-    ```shell
-    openstack --os-auth-url http://controller:5000/v3 \
-    --os-project-domain-name Default --os-user-domain-name Default \
-    --os-project-name myproject --os-username myuser token issue
-    ```
+     ```shell
+     openstack --os-auth-url http://controller:5000/v3 \
+     --os-project-domain-name Default --os-user-domain-name Default \
+     --os-project-name myproject --os-username myuser token issue
+     ```
 
 #### Glance
 
@@ -482,34 +482,34 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 
 7. 验证
 
-    下载镜像
+   - 下载镜像
 
-    ```shell
-    source ~/.admin-openrc
+     ```shell
+     source ~/.admin-openrc
     
-    x86镜像下载：
-    wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img
+     x86镜像下载：
+     wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img
 	
-    arm镜像下载：
-    wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-aarch64-disk.img
-    ```
+     arm镜像下载：
+     wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-aarch64-disk.img
+     ```
 
-    ***注意***
+     ***注意***
 
-    **如果您使用的环境是鲲鹏架构，请下载aarch64版本的镜像；已对镜像cirros-0.5.2-aarch64-disk.img进行测试。**
+     **如果您使用的环境是鲲鹏架构，请下载aarch64版本的镜像；已对镜像cirros-0.5.2-aarch64-disk.img进行测试。**
 
-    向Image服务上传镜像：
+   - 向Image服务上传镜像：
 
-    ```shell
-    openstack image create --disk-format qcow2 --container-format bare \
-                           --file cirros-0.4.0-x86_64-disk.img --public cirros
-    ```
+     ```shell
+     openstack image create --disk-format qcow2 --container-format bare \
+                            --file cirros-0.4.0-x86_64-disk.img --public cirros
+     ```
 
-    确认镜像上传并验证属性：
+   - 确认镜像上传并验证属性：
 
-    ```shell
-    openstack image list
-    ```
+     ```shell
+     openstack image list
+     ```
 
 #### Placement
 
@@ -1223,134 +1223,135 @@ Placement服务安装在控制节点。
 
 1. 创建数据库、服务凭证和 API 服务端点
 
-    创建数据库：
+   - 创建数据库：
 
-    ```
-    mysql -u root -p
+     ```
+     mysql -u root -p
 
-    MariaDB [(none)]> CREATE DATABASE neutron;
-    MariaDB [(none)]> GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'localhost' IDENTIFIED BY 'NEUTRON_DBPASS';
-    MariaDB [(none)]> GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'%' IDENTIFIED BY 'NEUTRON_DBPASS';
-    MariaDB [(none)]> exit;
-    ```
-    创建用户和服务，并记住创建neutron用户时输入的密码，用于配置NEUTRON_PASS：
+     MariaDB [(none)]> CREATE DATABASE neutron;
+     MariaDB [(none)]> GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'localhost' IDENTIFIED BY 'NEUTRON_DBPASS';
+     MariaDB [(none)]> GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'%' IDENTIFIED BY 'NEUTRON_DBPASS';
+     MariaDB [(none)]> exit;
+     ```
+   - 创建用户和服务，并记住创建neutron用户时输入的密码，用于配置NEUTRON_PASS：
 
-    ```shell
-    source ~/.admin-openrc
-    openstack user create --domain default --password-prompt neutron
-    openstack role add --project service --user neutron admin
-    openstack service create --name neutron --description "OpenStack Networking" network
-    ```
-    部署 Neutron API 服务：
+     ```shell
+     source ~/.admin-openrc
+     openstack user create --domain default --password-prompt neutron
+     openstack role add --project service --user neutron admin
+     openstack service create --name neutron --description "OpenStack Networking" network
+     ```
+   - 部署 Neutron API 服务：
 
-    ```shell
-    openstack endpoint create --region RegionOne network public http://controller:9696
-    openstack endpoint create --region RegionOne network internal http://controller:9696
-    openstack endpoint create --region RegionOne network admin http://controller:9696
-    ```
+     ```shell
+     openstack endpoint create --region RegionOne network public http://controller:9696
+     openstack endpoint create --region RegionOne network internal http://controller:9696
+     openstack endpoint create --region RegionOne network admin http://controller:9696
+     ```
 2. 安装软件包
 
     ```shell
     yum install -y openstack-neutron openstack-neutron-linuxbridge ebtables ipset openstack-neutron-ml2
     ```
 3. 配置Neutron
-    修改/etc/neutron/neutron.conf
-    ```
-    [database]
-    connection = mysql+pymysql://neutron:NEUTRON_DBPASS@controller/neutron
-
-    [DEFAULT]
-    core_plugin = ml2
-    service_plugins = router
-    allow_overlapping_ips = true
-    transport_url = rabbit://openstack:RABBIT_PASS@controller
-    auth_strategy = keystone
-    notify_nova_on_port_status_changes = true
-    notify_nova_on_port_data_changes = true
-
-    [keystone_authtoken]
-    www_authenticate_uri = http://controller:5000
-    auth_url = http://controller:5000
-    memcached_servers = controller:11211
-    auth_type = password
-    project_domain_name = Default
-    user_domain_name = Default
-    project_name = service
-    username = neutron
-    password = NEUTRON_PASS
-
-    [nova]
-    auth_url = http://controller:5000
-    auth_type = password
-    project_domain_name = Default
-    user_domain_name = Default
-    region_name = RegionOne
-    project_name = service
-    username = nova
-    password = NOVA_PASS
-
-    [oslo_concurrency]
-    lock_path = /var/lib/neutron/tmp
-    ```
-
-    配置ML2，ML2具体配置可以根据用户需求自行修改，本文使用的是provider network + linuxbridge**
     
-    修改/etc/neutron/plugins/ml2/ml2_conf.ini
-    ```shell
-    [ml2]
-    type_drivers = flat,vlan,vxlan
-    tenant_network_types = vxlan
-    mechanism_drivers = linuxbridge,l2population
-    extension_drivers = port_security
+   - 修改/etc/neutron/neutron.conf
+     ```
+     [database]
+     connection = mysql+pymysql://neutron:NEUTRON_DBPASS@controller/neutron
 
-    [ml2_type_flat]
-    flat_networks = provider
+     [DEFAULT]
+     core_plugin = ml2
+     service_plugins = router
+     allow_overlapping_ips = true
+     transport_url = rabbit://openstack:RABBIT_PASS@controller
+     auth_strategy = keystone
+     notify_nova_on_port_status_changes = true
+     notify_nova_on_port_data_changes = true
 
-    [ml2_type_vxlan]
-    vni_ranges = 1:1000
+     [keystone_authtoken]
+     www_authenticate_uri = http://controller:5000
+     auth_url = http://controller:5000
+     memcached_servers = controller:11211
+     auth_type = password
+     project_domain_name = Default
+     user_domain_name = Default
+     project_name = service
+     username = neutron
+     password = NEUTRON_PASS
 
-    [securitygroup]
-    enable_ipset = true
-    ```
-    修改/etc/neutron/plugins/ml2/linuxbridge_agent.ini
-    ```
-    [linux_bridge]
-    physical_interface_mappings = provider:PROVIDER_INTERFACE_NAME
+     [nova]
+     auth_url = http://controller:5000
+     auth_type = password
+     project_domain_name = Default
+     user_domain_name = Default
+     region_name = RegionOne
+     project_name = service
+     username = nova
+     password = NOVA_PASS
 
-    [vxlan]
-    enable_vxlan = true
-    local_ip = OVERLAY_INTERFACE_IP_ADDRESS
-    l2_population = true
+     [oslo_concurrency]
+     lock_path = /var/lib/neutron/tmp
+     ```
 
-    [securitygroup]
-    enable_security_group = true
-    firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
-    ```
+   - 配置ML2，ML2具体配置可以根据用户需求自行修改，本文使用的是provider network + linuxbridge**
+    
+   - 修改/etc/neutron/plugins/ml2/ml2_conf.ini
+     ```shell
+     [ml2]
+     type_drivers = flat,vlan,vxlan
+     tenant_network_types = vxlan
+     mechanism_drivers = linuxbridge,l2population
+     extension_drivers = port_security
 
-    配置Layer-3代理
-    修改/etc/neutron/l3_agent.ini
+     [ml2_type_flat]
+     flat_networks = provider
+ 
+     [ml2_type_vxlan]
+     vni_ranges = 1:1000
 
-    ```shell
-    [DEFAULT]
-    interface_driver = linuxbridge
-    ```
+     [securitygroup]
+     enable_ipset = true
+     ```
+   - 修改/etc/neutron/plugins/ml2/linuxbridge_agent.ini
+     ```
+     [linux_bridge]
+     physical_interface_mappings = provider:PROVIDER_INTERFACE_NAME
 
-    配置DHCP代理
-    修改/etc/neutron/dhcp_agent.ini
-    ```
-    [DEFAULT]
-    interface_driver = linuxbridge
-    dhcp_driver = neutron.agent.linux.dhcp.Dnsmasq
-    enable_isolated_metadata = true
-    ```
+     [vxlan]
+     enable_vxlan = true
+     local_ip = OVERLAY_INTERFACE_IP_ADDRESS
+     l2_population = true
 
-    配置metadata代理
-    修改/etc/neutron/metadata_agent.ini
-    ```shell
-    [DEFAULT]
-    nova_metadata_host = controller
-    metadata_proxy_shared_secret = METADATA_SECRET
-    ```
+     [securitygroup]
+     enable_security_group = true
+     firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
+     ```
+
+   - 配置Layer-3代理
+   - 修改/etc/neutron/l3_agent.ini
+
+     ```shell
+     [DEFAULT]
+     interface_driver = linuxbridge
+     ```
+
+     配置DHCP代理
+     修改/etc/neutron/dhcp_agent.ini
+     ```
+     [DEFAULT]
+     interface_driver = linuxbridge
+     dhcp_driver = neutron.agent.linux.dhcp.Dnsmasq
+     enable_isolated_metadata = true
+     ```
+
+   - 配置metadata代理
+   - 修改/etc/neutron/metadata_agent.ini
+     ```shell
+     [DEFAULT]
+     nova_metadata_host = controller
+     metadata_proxy_shared_secret = METADATA_SECRET
+     ```
 4. 配置nova服务使用neutron，修改/etc/nova/nova.conf
     ```
     [neutron]
@@ -1394,54 +1395,54 @@ Placement服务安装在控制节点。
     ```
 2. 配置Neutron
 
-    修改/etc/neutron/neutron.conf
-    ```
-    [DEFAULT]
-    transport_url = rabbit://openstack:RABBIT_PASS@controller
-    auth_strategy = keystone
+   - 修改/etc/neutron/neutron.conf
+     ```
+     [DEFAULT]
+     transport_url = rabbit://openstack:RABBIT_PASS@controller
+     auth_strategy = keystone
 
-    [keystone_authtoken]
-    www_authenticate_uri = http://controller:5000
-    auth_url = http://controller:5000
-    memcached_servers = controller:11211
-    auth_type = password
-    project_domain_name = Default
-    user_domain_name = Default
-    project_name = service
-    username = neutron
-    password = NEUTRON_PASS
+     [keystone_authtoken]
+     www_authenticate_uri = http://controller:5000
+     auth_url = http://controller:5000
+     memcached_servers = controller:11211
+     auth_type = password
+     project_domain_name = Default
+     user_domain_name = Default
+     project_name = service
+     username = neutron
+     password = NEUTRON_PASS
 
-    [oslo_concurrency]
-    lock_path = /var/lib/neutron/tmp
-    ```
+     [oslo_concurrency]
+     lock_path = /var/lib/neutron/tmp
+     ```
 
-    修改/etc/neutron/plugins/ml2/ml2_conf.ini
-    ```
-    [linux_bridge]
-    physical_interface_mappings = provider:PROVIDER_INTERFACE_NAME
+   - 修改/etc/neutron/plugins/ml2/ml2_conf.ini
+     ```
+     [linux_bridge]
+     physical_interface_mappings = provider:PROVIDER_INTERFACE_NAME
 
-    [vxlan]
-    enable_vxlan = true
-    local_ip = OVERLAY_INTERFACE_IP_ADDRESS
-    l2_population = true
+     [vxlan]
+     enable_vxlan = true
+     local_ip = OVERLAY_INTERFACE_IP_ADDRESS
+     l2_population = true
 
-    [securitygroup]
-    enable_security_group = true
-    firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
-    ```
+     [securitygroup]
+     enable_security_group = true
+     firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
+     ```
 
-    配置nova compute服务使用neutron，修改/etc/nova/nova.conf
-    ```
-    [neutron]
-    auth_url = http://controller:5000
-    auth_type = password
-    project_domain_name = default
-    user_domain_name = default
-    region_name = RegionOne
-    project_name = service
-    username = neutron
-    password = NEUTRON_PASS
-    ```
+   - 配置nova compute服务使用neutron，修改/etc/nova/nova.conf
+     ```
+     [neutron]
+     auth_url = http://controller:5000
+     auth_type = password
+     project_domain_name = default
+     user_domain_name = default
+     region_name = RegionOne
+     project_name = service
+     username = neutron
+     password = NEUTRON_PASS
+     ```
 3. 重启nova-compute服务
     ```
     systemctl restart openstack-nova-compute.service
