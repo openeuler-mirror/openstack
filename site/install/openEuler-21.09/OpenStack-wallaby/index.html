@@ -1719,12 +1719,10 @@ DIB_REPOREF_ironic_python_agent=refs/changes/43/701043/1
 </li>
 <li>
 <p>注意</p>
-</li>
-</ol>
 <p>原生的openstack里的pxe配置文件的模版不支持arm64架构，需要自己对原生openstack代码进行修改：</p>
 <p>在W版中，社区的ironic仍然不支持arm64位的uefi pxe启动，表现为生成的grub.cfg文件(一般位于/tftpboot/下)格式不对而导致pxe启动失败，如下：</p>
 <p>生成的错误配置文件：</p>
-<p><img alt="erro" src="/Users/andy_lee/Downloads/erro.png" /></p>
+<p><img alt="ironic-err" src="../../../img/install/ironic-err.png" /></p>
 <p>如上图所示，arm架构里寻找vmlinux和ramdisk镜像的命令分别是linux和initrd，上图所示的标红命令是x86架构下的uefi pxe启动。</p>
 <p>需要用户对生成grub.cfg的代码逻辑自行修改。</p>
 <p>ironic向ipa发送查询命令执行状态请求的tls报错：</p>
@@ -1759,6 +1757,8 @@ RestartSec=30s
 
 [Install]
 WantedBy=multi-user.target</code></pre>
+</li>
+</ol>
 <h3 id="kolla">Kolla 安装<a class="headerlink" href="#kolla" title="Permanent link">&para;</a></h3>
 <p>Kolla为OpenStack服务提供生产环境可用的容器化部署的功能。openEuler 21.09中引入了Kolla和Kolla-ansible服务。</p>
 <p>Kolla的安装十分简单，只需要安装对应的RPM包即可</p>
