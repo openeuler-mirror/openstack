@@ -671,7 +671,7 @@ EOF</code></pre>
 </li>
 <li>
 <p>依次创建domain, projects, users, roles</p>
-</li>
+<ul>
 <li>
 <p>需要先安装python3-openstackclient</p>
 <pre class="highlight"><code class="language-shell">dnf install python3-openstackclient</code></pre>
@@ -692,9 +692,11 @@ openstack user create --domain default --password-prompt myuser
 openstack role create myrole
 openstack role add --project myproject --user myuser myrole</code></pre>
 </li>
+</ul>
+</li>
 <li>
 <p>验证</p>
-</li>
+<ul>
 <li>
 <p>取消临时环境变量OS_AUTH_URL和OS_PASSWORD：</p>
 <pre class="highlight"><code class="language-shell">source ~/.admin-openrc
@@ -711,6 +713,8 @@ unset OS_AUTH_URL OS_PASSWORD</code></pre>
 <pre class="highlight"><code class="language-shell">openstack --os-auth-url http://controller:5000/v3 \
 --os-project-domain-name Default --os-user-domain-name Default \
 --os-project-name myproject --os-username myuser token issue</code></pre>
+</li>
+</ul>
 </li>
 </ol>
 <h4 id="glance">Glance<a class="headerlink" href="#glance" title="Permanent link">&para;</a></h4>
@@ -789,7 +793,7 @@ systemctl start openstack-glance-api.service</code></pre>
 </li>
 <li>
 <p>验证</p>
-</li>
+<ul>
 <li>
 <p>下载镜像</p>
 <pre class="highlight"><code class="language-shell">source ~/.admin-openrc
@@ -805,11 +809,13 @@ wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-aarch64-disk.img</code>
 <li>
 <p>向Image服务上传镜像：</p>
 <pre class="highlight"><code class="language-shell">openstack image create --disk-format qcow2 --container-format bare \
-                       --file cirros-0.4.0-x86_64-disk.img --public cirros</code></pre>
+                    --file cirros-0.4.0-x86_64-disk.img --public cirros</code></pre>
 </li>
 <li>
 <p>确认镜像上传并验证属性：</p>
 <pre class="highlight"><code class="language-shell">openstack image list</code></pre>
+</li>
+</ul>
 </li>
 </ol>
 <h4 id="placement">Placement<a class="headerlink" href="#placement" title="Permanent link">&para;</a></h4>
@@ -1381,31 +1387,39 @@ Found 1 unmapped computes in cell: 6dae034e-b2d9-4a6c-b6f0-60ada6a6ddc2</code></
 <ol>
 <li>
 <p>创建数据库、服务凭证和 API 服务端点</p>
-</li>
+<ul>
 <li>
 <p>创建数据库：</p>
-<p><pre class="highlight"><code>mysql -u root -p
+<pre class="highlight"><code>mysql -u root -p
 
 MariaDB [(none)]&gt; CREATE DATABASE neutron;
 MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'localhost' IDENTIFIED BY 'NEUTRON_DBPASS';
 MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'%' IDENTIFIED BY 'NEUTRON_DBPASS';
 MariaDB [(none)]&gt; exit;</code></pre>
-   - 创建用户和服务，并记住创建neutron用户时输入的密码，用于配置NEUTRON_PASS：</p>
-<p><pre class="highlight"><code class="language-shell">source ~/.admin-openrc
+</li>
+<li>
+<p>创建用户和服务，并记住创建neutron用户时输入的密码，用于配置NEUTRON_PASS：</p>
+<pre class="highlight"><code class="language-shell">source ~/.admin-openrc
 openstack user create --domain default --password-prompt neutron
 openstack role add --project service --user neutron admin
 openstack service create --name neutron --description "OpenStack Networking" network</code></pre>
-   - 部署 Neutron API 服务：</p>
-<p><pre class="highlight"><code class="language-shell">openstack endpoint create --region RegionOne network public http://controller:9696
-openstack endpoint create --region RegionOne network internal http://controller:9696
-openstack endpoint create --region RegionOne network admin http://controller:9696</code></pre>
-2. 安装软件包</p>
-<p><pre class="highlight"><code class="language-shell">dnf install -y openstack-neutron openstack-neutron-linuxbridge ebtables ipset openstack-neutron-ml2</code></pre>
-3. 配置Neutron</p>
 </li>
 <li>
+<p>部署 Neutron API 服务：</p>
+<pre class="highlight"><code class="language-shell">openstack endpoint create --region RegionOne network public http://controller:9696
+openstack endpoint create --region RegionOne network internal http://controller:9696
+openstack endpoint create --region RegionOne network admin http://controller:9696</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>安装软件包</p>
+<p><pre class="highlight"><code class="language-shell">dnf install -y openstack-neutron openstack-neutron-linuxbridge ebtables ipset openstack-neutron-ml2</code></pre>
+3. 配置Neutron</p>
+<ul>
+<li>
 <p>修改/etc/neutron/neutron.conf
-     <pre class="highlight"><code>[database]
+    <pre class="highlight"><code>[database]
 connection = mysql+pymysql://neutron:NEUTRON_DBPASS@controller/neutron
 
 [DEFAULT]
@@ -1446,7 +1460,7 @@ lock_path = /var/lib/neutron/tmp</code></pre></p>
 </li>
 <li>
 <p>修改/etc/neutron/plugins/ml2/ml2_conf.ini
-     <pre class="highlight"><code class="language-shell">[ml2]
+    <pre class="highlight"><code class="language-shell">[ml2]
 type_drivers = flat,vlan,vxlan
 tenant_network_types = vxlan
 mechanism_drivers = linuxbridge,l2population
@@ -1463,7 +1477,7 @@ enable_ipset = true</code></pre></p>
 </li>
 <li>
 <p>修改/etc/neutron/plugins/ml2/linuxbridge_agent.ini
-     <pre class="highlight"><code>[linux_bridge]
+    <pre class="highlight"><code>[linux_bridge]
 physical_interface_mappings = provider:PROVIDER_INTERFACE_NAME
 
 [vxlan]
@@ -1483,8 +1497,8 @@ firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver</
 <pre class="highlight"><code class="language-shell">[DEFAULT]
 interface_driver = linuxbridge</code></pre>
 <p>配置DHCP代理
- 修改/etc/neutron/dhcp_agent.ini
- <pre class="highlight"><code>[DEFAULT]
+修改/etc/neutron/dhcp_agent.ini
+<pre class="highlight"><code>[DEFAULT]
 interface_driver = linuxbridge
 dhcp_driver = neutron.agent.linux.dhcp.Dnsmasq
 enable_isolated_metadata = true</code></pre></p>
@@ -1492,13 +1506,14 @@ enable_isolated_metadata = true</code></pre></p>
 <li>
 <p>配置metadata代理</p>
 </li>
-<li>修改/etc/neutron/metadata_agent.ini
-     <pre class="highlight"><code class="language-shell">[DEFAULT]
-nova_metadata_host = controller
-metadata_proxy_shared_secret = METADATA_SECRET</code></pre></li>
 <li>
-<p>配置nova服务使用neutron，修改/etc/nova/nova.conf
-    <pre class="highlight"><code>[neutron]
+<p>修改/etc/neutron/metadata_agent.ini
+    <pre class="highlight"><code class="language-shell">[DEFAULT]
+nova_metadata_host = controller
+metadata_proxy_shared_secret = METADATA_SECRET</code></pre></p>
+</li>
+<li>配置nova服务使用neutron，修改/etc/nova/nova.conf
+<pre class="highlight"><code>[neutron]
 auth_url = http://controller:5000
 auth_type = password
 project_domain_name = default
@@ -1508,7 +1523,8 @@ project_name = service
 username = neutron
 password = NEUTRON_PASS
 service_metadata_proxy = true
-metadata_proxy_shared_secret = METADATA_SECRET</code></pre></p>
+metadata_proxy_shared_secret = METADATA_SECRET</code></pre></li>
+</ul>
 </li>
 <li>
 <p>创建/etc/neutron/plugin.ini的符号链接</p>
@@ -1534,10 +1550,10 @@ neutron-dhcp-agent.service neutron-metadata-agent.service neutron-l3-agent.servi
     <pre class="highlight"><code>dnf install openstack-neutron-linuxbridge ebtables ipset -y</code></pre></li>
 <li>
 <p>配置Neutron</p>
-</li>
+<ul>
 <li>
 <p>修改/etc/neutron/neutron.conf
-     <pre class="highlight"><code>[DEFAULT]
+    <pre class="highlight"><code>[DEFAULT]
 transport_url = rabbit://openstack:RABBIT_PASS@controller
 auth_strategy = keystone
 
@@ -1557,7 +1573,7 @@ lock_path = /var/lib/neutron/tmp</code></pre></p>
 </li>
 <li>
 <p>修改/etc/neutron/plugins/ml2/linuxbridge_agent.ini
-     <pre class="highlight"><code>[linux_bridge]
+    <pre class="highlight"><code>[linux_bridge]
 physical_interface_mappings = provider:PROVIDER_INTERFACE_NAME
 
 [vxlan]
@@ -1571,7 +1587,7 @@ firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver</
 </li>
 <li>
 <p>配置nova compute服务使用neutron，修改/etc/nova/nova.conf
-     <pre class="highlight"><code>[neutron]
+    <pre class="highlight"><code>[neutron]
 auth_url = http://controller:5000
 auth_type = password
 project_domain_name = default
@@ -1582,9 +1598,9 @@ username = neutron
 password = NEUTRON_PASS</code></pre></p>
 </li>
 <li>重启nova-compute服务
-    <pre class="highlight"><code>systemctl restart openstack-nova-compute.service</code></pre></li>
-<li>
-<p>启动Neutron linuxbridge agent服务</p>
+<pre class="highlight"><code>systemctl restart openstack-nova-compute.service</code></pre></li>
+<li>启动Neutron linuxbridge agent服务</li>
+</ul>
 <pre class="highlight"><code>systemctl enable neutron-linuxbridge-agent
 systemctl start neutron-linuxbridge-agent</code></pre>
 </li>
@@ -3672,7 +3688,7 @@ base_runtime=isula</code></pre></p>
 </li>
 </ol>
 <h3 id="nova_1">Nova支持高低优先级虚拟机特性<a class="headerlink" href="#nova_1" title="Permanent link">&para;</a></h3>
-<p>高低优先级虚拟机特性是OpenStack SIG在openEuler 22.09中基于OpenStack Yoga开发的Nova特性，该特性允许用户指定虚拟机的优先级，基于不同的优先级，OpenStack自动分配不同的绑核策略，配合openEuler自研的<code>skylark</code> QOS服务，实现高低优先级虚拟机对资源的合理使用。具体细节可以参考<a href="../../../spec/../docs/spec/priority_vm.md">特性文档</a>。本文档主要描述安装步骤。</p>
+<p>高低优先级虚拟机特性是OpenStack SIG在openEuler 22.09中基于OpenStack Yoga开发的Nova特性，该特性允许用户指定虚拟机的优先级，基于不同的优先级，OpenStack自动分配不同的绑核策略，配合openEuler自研的<code>skylark</code> QOS服务，实现高低优先级虚拟机对资源的合理使用。具体细节可以参考<a href="../../../spec/priority_vm/">特性文档</a>。本文档主要描述安装步骤。</p>
 <ol>
 <li>
 <p>按照前面章节部署好一套OpenStack环境（非容器），然后先安装plugin。</p>
