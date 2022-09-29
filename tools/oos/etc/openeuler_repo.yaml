@@ -4041,6 +4041,7 @@ src-openeuler:
   ompi: ai
   onboard: Others
   oncn-bwm: sig-high-performance-network
+  oneDAL: ai
   oneDNN: ai
   ongres-scram: dev-utils
   ongres-stringprep: sig-Java
