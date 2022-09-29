@@ -2818,7 +2818,8 @@ systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openst
 
 2. 配置对接华为云provider的信息
 
-   打开`/usr/local/etc/oos/oos.conf`文件，修改配置为您拥有的华为云资源信息：
+    打开`/usr/local/etc/oos/oos.conf`文件，修改配置为您拥有的华为云资源信息：
+    
     ```
     [huaweicloud]
     ak = 
@@ -2831,11 +2832,12 @@ systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openst
     vpc_name = oos_vpc
     subnet1_name = oos_subnet1
     subnet2_name = oos_subnet2
-   ```
+    ```
 
 3. 配置 OpenStack 环境信息
 
-   打开`/usr/local/etc/oos/oos.conf`文件，根据当前机器环境和需求修改配置。内容如下：
+    打开`/usr/local/etc/oos/oos.conf`文件，根据当前机器环境和需求修改配置。内容如下：
+
     ```shell
     [environment]
     mysql_root_password = root
@@ -2876,23 +2878,28 @@ systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openst
     | kolla_openeuler_plugin | 是否启用kolla plugin。设置为True，kolla将支持部署openEuler容器 |
 
 4. 华为云上面创建一台openEuler 22.03-LTS的x86_64虚拟机，用于部署`all in one` 的 OpenStack
-    ```
+
+    ```shell
     # sshpass在`oos env create`过程中被使用，用于配置对目标虚拟机的免密访问
     dnf install sshpass
     oos env create -r 22.03-lts -f small -a x86 -n test-oos all_in_one
     ```
+
     具体的参数可以使用`oos env create --help`命令查看
 
 5. 部署OpenStack `all in one` 环境
-    ```
+
+    ```shell
     oos env setup test-oos -r train
     ```
+
     具体的参数可以使用`oos env setup --help`命令查看
 
 6. 初始化tempest环境
 
     如果用户想使用该环境运行tempest测试的话，可以执行命令`oos env init`，会自动把tempest需要的OpenStack资源自动创建好
-    ```
+
+    ```shell
     oos env init test-oos
     ```
 
@@ -2905,4 +2912,5 @@ systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openst
 dnf install sshpass
 oos env manage -r 22.03-lts -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n test-oos
 ```
+
 替换`TARGET_MACHINE_IP`为目标机ip、`TARGET_MACHINE_PASSWD`为目标机密码。具体的参数可以使用`oos env manage --help`命令查看。
