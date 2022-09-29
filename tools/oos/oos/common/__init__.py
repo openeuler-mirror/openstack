@@ -7,7 +7,7 @@ import click
 import yaml
 
 import oos
-from oos.common.utils import make_private_key_available
+
 
 CONSTANTS = None
 SPEC_TEMPLATE_DIR = None
@@ -96,5 +96,5 @@ if not CONFIG:
 if not KEY_DIR:
     raise click.ClickException("Unable to locate key pair file")
 
-private_key = os.path.join(KEY_DIR, 'id_rsa')
-make_private_key_available()
+# Make sure ssh key file works with right permission.
+os.chmod(os.path.join(KEY_DIR, 'id_rsa'), 0o400)
