@@ -100,7 +100,7 @@ storage：   192.168.0.4
 
 1. 安装服务
     ```
-    yum install chrony
+    dnf install chrony
     ```
 2. 修改`/etc/chrony.conf`配置文件，新增一行
     ```
@@ -116,7 +116,7 @@ storage：   192.168.0.4
 
 1. 安装服务
     ```
-    yum install chrony
+    dnf install chrony
     ```
 
 2. 修改`/etc/chrony.conf`配置文件，新增一行
@@ -149,7 +149,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 1. 安装软件包
 
     ```
-    yum install mariadb mariadb-server python3-PyMySQL
+    dnf install mariadb mariadb-server python3-PyMySQL
     ```
 
 2. 新增配置文件`/etc/my.cnf.d/openstack.cnf`，内容如下
@@ -188,7 +188,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 
 1. 安装软件包
     ```
-    yum install rabbitmq-server
+    dnf install rabbitmq-server
     ```
 2. 启动服务
     ```
@@ -206,7 +206,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 
 1. 安装软件包
     ```
-    yum install memcached python3-memcached
+    dnf install memcached python3-memcached
     ```
 2. 修改配置文件`/etc/sysconfig/memcached`
     ```
@@ -243,7 +243,7 @@ Keystone是OpenStack提供的鉴权服务，是整个OpenStack的入口，提供
 2. 安装软件包
 
     ```shell
-    yum install openstack-keystone httpd mod_wsgi
+    dnf install openstack-keystone httpd mod_wsgi
     ```
 
 3. 配置keystone相关配置
@@ -341,7 +341,7 @@ Keystone是OpenStack提供的鉴权服务，是整个OpenStack的入口，提供
    - 需要先安装python3-openstackclient
 
      ```shell
-     yum install python3-openstackclient
+     dnf install python3-openstackclient
      ```
 
    - 导入环境变量
@@ -436,7 +436,7 @@ Glance是OpenStack提供的镜像服务，负责虚拟机、裸机镜像的上�
 3. 安装软件包
 
     ```shell
-    yum install openstack-glance
+    dnf install openstack-glance
     ```
 
 4. 修改 glance 配置文件
@@ -686,7 +686,7 @@ Placement是OpenStack提供的资源调度组件，一般不面向用户，由No
         +----------------------------------------------------------------------+
         ```
     
-        “Policy File JSON to YAML Migration”检查项的结果为Failure。这是因为在Placement项目中，JSON格式的policy文件从Wallaby版本开始已处于`deprecated`状态。可  以参考提示，使用[oslopolicy-convert-json-to-yaml](https://docs.openstack.org/oslo.policy/latest/cli/oslopolicy-convert-json-to-yaml.html)工具  将现有的JSON格式policy文件转化为YAML格式。
+        这里可以看到``Policy File JSON to YAML Migration``的结果为Failure。这是因为在Placement中，JSON格式的policy文件从Wallaby版本开始已处于`deprecated`状态。可以参考提示，使用[oslopolicy-convert-json-to-yaml](https://docs.openstack.org/oslo.policy/latest/cli/oslopolicy-convert-json-to-yaml.html)工具  将现有的JSON格式policy文件转化为YAML格式。
     
         ```shell
         oslopolicy-convert-json-to-yaml  --namespace placement \
@@ -1051,14 +1051,12 @@ Nova是OpenStack的计算服务，负责虚拟机的创建、发放等功能。
     egrep -c '(vmx|svm)' /proc/cpuinfo
     ```
 
-    如果返回值为0则不支持硬件加速，需要配置libvirt使用QEMU而不是默认的KVM。
+    如果返回值为0则不支持硬件加速，需要配置libvirt使用QEMU而不是默认的KVM。编辑`/etc/nova/nova.conf`的`[libvirt]`部分：
 
-    - 编辑`/etc/nova/nova.conf`的`[libvirt]`部分：
-
-        ```ini
-        [libvirt]
-        virt_type = qemu
-        ```
+    ```ini
+    [libvirt]
+    virt_type = qemu
+    ```
 
     如果返回值为1或更大的值，则支持硬件加速，不需要进行额外的配置。
 
@@ -1068,26 +1066,26 @@ Nova是OpenStack的计算服务，负责虚拟机的创建、发放等功能。
 
     ```shell
     virt-host-validate
-    # 该命令由libvirt软件带来，此时libvirt应已作为openstack-nova-compute依赖被安装，环境中已有此命令
+    # 该命令由libvirt提供，此时libvirt应已作为openstack-nova-compute依赖被安装，环境中已有此命令
     ```
 
     显示FAIL时，表示不支持硬件加速，需要配置libvirt使用QEMU而不是默认的KVM。
 
     ```
-      QEMU: Checking if device /dev/kvm exists                                   : FAIL (Check that CPU and firmware supports virtualization and kvm module is loaded)
+    QEMU: Checking if device /dev/kvm exists: FAIL (Check that CPU and firmware supports virtualization and kvm module is loaded)
     ```
 
-    - 编辑`/etc/nova/nova.conf`的`[libvirt]`部分：
+    编辑`/etc/nova/nova.conf`的`[libvirt]`部分：
 
-        ```ini
-        [libvirt]
-        virt_type = qemu
-        ```
+    ```ini
+    [libvirt]
+    virt_type = qemu
+    ```
 
     显示PASS时，表示支持硬件加速，不需要进行额外的配置。
 
     ```
-      QEMU: Checking if device /dev/kvm exists                                   : PASS
+    QEMU: Checking if device /dev/kvm exists: PASS
     ```
 
 5. 配置qemu（仅arm64）
@@ -1169,7 +1167,8 @@ Nova是OpenStack的计算服务，负责虚拟机的创建、发放等功能。
         ```shell
         su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova
         ```
-        
+        结果如下：
+
         ```
         Modules with known eventlet monkey patching issues were imported prior to eventlet monkey patching: urllib3. This warning can usually be    ignored if the caller is only importing and not executing nova code.
         Found 2 cell mappings.
@@ -1182,29 +1181,29 @@ Nova是OpenStack的计算服务，负责虚拟机的创建、发放等功能。
 
 2. 验证
 
-    列出服务组件，验证每个流程都成功启动和注册：
-    
-    ```shell
-    openstack compute service list
-    ```
-    
-    列出身份服务中的API端点，验证与身份服务的连接：
-    
-    ```shell
-    openstack catalog list
-    ```
-    
-    列出镜像服务中的镜像，验证与镜像服务的连接：
-    
-    ```shell
-    openstack image list
-    ```
-    
-    检查cells是否运作成功，以及其他必要条件是否已具备。
-    
-    ```shell
-    nova-status upgrade check
-    ```
+    - 列出服务组件，验证每个流程都成功启动和注册：
+
+      ```shell
+      openstack compute service list
+      ```
+
+    - 列出身份服务中的API端点，验证与身份服务的连接：
+
+      ```shell
+      openstack catalog list
+      ```
+
+    - 列出镜像服务中的镜像，验证与镜像服务的连接：
+
+      ```shell
+      openstack image list
+      ```
+
+    - 检查cells是否运作成功，以及其他必要条件是否已具备。
+
+      ```shell
+      nova-status upgrade check
+      ```
 
 #### Neutron
 
@@ -1242,7 +1241,7 @@ Neutron是OpenStack的网络服务，提供虚拟交换机、IP路由、DHCP等�
 2. 安装软件包
 
     ```shell
-    yum install -y openstack-neutron openstack-neutron-linuxbridge ebtables ipset openstack-neutron-ml2
+    dnf install -y openstack-neutron openstack-neutron-linuxbridge ebtables ipset openstack-neutron-ml2
     ```
 3. 配置Neutron
     
@@ -1385,7 +1384,7 @@ Neutron是OpenStack的网络服务，提供虚拟交换机、IP路由、DHCP等�
 
 1. 安装软件包
     ```
-    yum install openstack-neutron-linuxbridge ebtables ipset -y
+    dnf install openstack-neutron-linuxbridge ebtables ipset -y
     ```
 2. 配置Neutron
 
@@ -1484,7 +1483,7 @@ Cinder是OpenStack的存储服务，提供块设备的创建、发放、备份�
 3. 安装软件包
 
     ```
-    yum install openstack-cinder-api openstack-cinder-scheduler
+    dnf install openstack-cinder-api openstack-cinder-scheduler
     ```
 
 4. 修改cinder配置文件`/etc/cinder/cinder.conf`
@@ -1542,7 +1541,7 @@ Cinder支持很多类型的后端存储，本指导使用最简单的lvm为参�
 1. 安装软件包
 
     ```
-    yum install lvm2 device-mapper-persistent-data scsi-target-utils rpcbind nfs-utils openstack-cinder-volume openstack-cinder-backup
+    dnf install lvm2 device-mapper-persistent-data scsi-target-utils rpcbind nfs-utils openstack-cinder-volume openstack-cinder-backup
     ```
 
 2. 配置lvm卷组
@@ -1621,7 +1620,7 @@ Horizon是OpenStack提供的前端页面，可以让用户通过网页鼠标的�
 1. 安装软件包
 
     ```
-    yum install openstack-dashboard
+    dnf install openstack-dashboard
     ```
 
 2. 修改配置文件`/etc/openstack-dashboard/local_settings`
@@ -2149,7 +2148,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
         - 安装httpd服务，已有请忽略
 
             ```shell
-            yum install httpd -y
+            dnf install httpd -y
             ```
 
         - 创建/etc/httpd/conf.d/openstack-ironic-httpd.conf文件，内容如下：
@@ -2233,7 +2232,7 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
 
 3. 安装Trove。
     ```bash
-    yum install openstack-trove python-troveclient
+    dnf install openstack-trove python-troveclient
     ```
 
 4. 修改配置文件。
@@ -2373,7 +2372,7 @@ Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适�
 
 2. 安装Swift。
     ```bash
-    yum install openstack-swift-proxy python3-swiftclient python3-keystoneclient \ 
+    dnf install openstack-swift-proxy python3-swiftclient python3-keystoneclient \ 
     python3-keystonemiddleware memcached
     ```
 
@@ -2402,8 +2401,8 @@ Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适�
 
 1. 安装支持的程序包。
     ```bash
-    yum install openstack-swift-account openstack-swift-container openstack-swift-object
-    yum install xfsprogs rsync
+    dnf install openstack-swift-account openstack-swift-container openstack-swift-object
+    dnf install xfsprogs rsync
     ```
 
 2. 将设备/dev/sdb和/dev/sdc格式化为XFS。
@@ -2626,42 +2625,42 @@ Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适�
     chown -R root:swift /etc/swift
     ```
 
-**完成安装**
+6. 完成安装
 
-在控制节点和运行代理服务的任何其他节点上，启动对象存储代理服务及其依赖项，并将它们配置为在系统启动时启动。
-```bash
-systemctl enable openstack-swift-proxy.service memcached.service
-systemctl start openstack-swift-proxy.service memcached.service
-```
+  在控制节点和运行代理服务的任何其他节点上，启动对象存储代理服务及其依赖项，并将它们配置为在系统启动时启动。
+  ```bash
+  systemctl enable openstack-swift-proxy.service memcached.service
+  systemctl start openstack-swift-proxy.service memcached.service
+  ```
 
-在存储节点上，启动对象存储服务并将它们配置为在系统启动时启动。
-```bash
-systemctl enable openstack-swift-account.service \
-openstack-swift-account-auditor.service \
-openstack-swift-account-reaper.service \
-openstack-swift-account-replicator.service \
-openstack-swift-container.service \
-openstack-swift-container-auditor.service \
-openstack-swift-container-replicator.service \
-openstack-swift-container-updater.service \
-openstack-swift-object.service \
-openstack-swift-object-auditor.service \
-openstack-swift-object-replicator.service \
-openstack-swift-object-updater.service
+  在存储节点上，启动对象存储服务并将它们配置为在系统启动时启动。
+  ```bash
+  systemctl enable openstack-swift-account.service \
+  openstack-swift-account-auditor.service \
+  openstack-swift-account-reaper.service \
+  openstack-swift-account-replicator.service \
+  openstack-swift-container.service \
+  openstack-swift-container-auditor.service \
+  openstack-swift-container-replicator.service \
+  openstack-swift-container-updater.service \
+  openstack-swift-object.service \
+  openstack-swift-object-auditor.service \
+  openstack-swift-object-replicator.service \
+  openstack-swift-object-updater.service
 
-systemctl start openstack-swift-account.service \
-openstack-swift-account-auditor.service \
-openstack-swift-account-reaper.service \
-openstack-swift-account-replicator.service \
-openstack-swift-container.service \
-openstack-swift-container-auditor.service \
-openstack-swift-container-replicator.service \
-openstack-swift-container-updater.service \
-openstack-swift-object.service \
-openstack-swift-object-auditor.service \
-openstack-swift-object-replicator.service \
-openstack-swift-object-updater.service
-```
+  systemctl start openstack-swift-account.service \
+  openstack-swift-account-auditor.service \
+  openstack-swift-account-reaper.service \
+  openstack-swift-account-replicator.service \
+  openstack-swift-container.service \
+  openstack-swift-container-auditor.service \
+  openstack-swift-container-replicator.service \
+  openstack-swift-container-updater.service \
+  openstack-swift-object.service \
+  openstack-swift-object-auditor.service \
+  openstack-swift-object-replicator.service \
+  openstack-swift-object-updater.service
+  ```
 
 #### Cyborg
 
@@ -2700,7 +2699,7 @@ Cyborg为OpenStack提供加速器设备的支持，包括 GPU, FPGA, ASIC, NP, S
 4. 安装Cyborg
 
     ```
-    yum install openstack-cyborg
+    dnf install openstack-cyborg
     ```
 
 5. 配置Cyborg
@@ -2808,7 +2807,7 @@ Aodh可以根据由Ceilometer或者Gnocchi收集的监控数据创建告警，�
 
 3. 安装Aodh。
     ```bash
-    yum install openstack-aodh-api openstack-aodh-evaluator \
+    dnf install openstack-aodh-api openstack-aodh-evaluator \
     openstack-aodh-notifier openstack-aodh-listener \
     openstack-aodh-expirer python3-aodhclient
     ```
@@ -2894,7 +2893,7 @@ Gnocchi是一个开源的时间序列数据库，可以对接Ceilometer。
 
 3. 安装Gnocchi。
     ```bash
-    yum install openstack-gnocchi-api openstack-gnocchi-metricd python3-gnocchiclient
+    dnf install openstack-gnocchi-api openstack-gnocchi-metricd python3-gnocchiclient
     ```
 
 4. 修改配置文件。
@@ -2956,7 +2955,7 @@ Ceilometer是OpenStack中负责数据收集的服务。
 
 2. 安装Ceilometer软件包。
     ```bash
-    yum install openstack-ceilometer-notification openstack-ceilometer-central
+    dnf install openstack-ceilometer-notification openstack-ceilometer-central
     ```
 
 3. 编辑配置文件/etc/ceilometer/pipeline.yaml。 
@@ -3002,8 +3001,8 @@ Ceilometer是OpenStack中负责数据收集的服务。
 
 1. 安装Ceilometer软件包。
     ```bash
-    yum install openstack-ceilometer-compute
-    yum install openstack-ceilometer-ipmi       # 可选
+    dnf install openstack-ceilometer-compute
+    dnf install openstack-ceilometer-ipmi       # 可选
     ```
 
 2. 编辑配置文件/etc/ceilometer/ceilometer.conf。
@@ -3113,7 +3112,7 @@ Heat是 OpenStack 自动编排服务，基于描述性的模板来编排复合�
 5. 安装软件包
 
     ```
-    yum install openstack-heat-api openstack-heat-api-cfn openstack-heat-engine
+    dnf install openstack-heat-api openstack-heat-api-cfn openstack-heat-engine
     ```
 
 6. 修改配置文件`/etc/heat/heat.conf`
@@ -3174,7 +3173,7 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
 1. 安装Tempest
 
     ```shell
-    yum install openstack-tempest
+    dnf install openstack-tempest
     ```
 
 2. 初始化目录
@@ -3201,7 +3200,7 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
 5. 安装tempest扩展（可选）
    OpenStack各个服务本身也提供了一些tempest测试包，用户可以安装这些包来丰富tempest的测试内容。在Yoga中，我们提供了Cinder、Glance、Keystone、Ironic、Trove的扩展测试，用户可以执行如下命令进行安装使用：
    ```
-   yum install python3-cinder-tempest-plugin python3-glance-tempest-plugin python3-ironic-tempest-plugin python3-keystone-tempest-plugin python3-trove-tempest-plugin
+   dnf install python3-cinder-tempest-plugin python3-glance-tempest-plugin python3-ironic-tempest-plugin python3-keystone-tempest-plugin python3-trove-tempest-plugin
    ```
 
 ## 基于OpenStack SIG开发工具oos部署
@@ -3491,7 +3490,7 @@ vim /usr/local/bin/opensd-auto-ssh
 
 ```shell
 ## 安装expect后执行脚本
-yum install expect -y
+dnf install expect -y
 opensd-auto-ssh
 ```
 
@@ -3508,7 +3507,7 @@ ssh-copy-id root@x.x.x.x
 #### 7.1 生成随机密码
 安装 python3-pbr, python3-utils, python3-pyyaml, python3-oslo-utils并随机生成密码
 ```shell
-yum install python3-pbr python3-utils python3-pyyaml python3-oslo-utils -y
+dnf install python3-pbr python3-utils python3-pyyaml python3-oslo-utils -y
 # 执行命令生成密码
 opensd-genpwd
 # 检查密码是否生成
@@ -3740,7 +3739,7 @@ miner_package_state: "present"
 #### 7.4 检查所有节点ssh连接状态
 
 ```shell
-yum install ansible -y
+dnf install ansible -y
 ansible all -i /usr/local/share/opensd/ansible/inventory/multinode -m ping
 
 # 执行结果显示每台主机都是"SUCCESS"即说明连接状态没问题,示例：
@@ -3807,13 +3806,13 @@ OpenStack-Helm 较为复杂，建议在一个新系统上部署。整个部署�
 openEuler 22.09 中已经包含了 OpenStack-Helm 软件包。首先安装对应的软件包和补丁：
 
 ```
-yum install openstack-helm openstack-helm-infra openstack-helm-images loci
+dnf install openstack-helm openstack-helm-infra openstack-helm-images loci
 ```
 
 这里安装的是原生openstack-helm，默认不支持openEuler，因此如果想在openEuler上使用openstack-helm，还需要安装plugin插件，本章节是对plugin的使用说明。
 
 ```
-yum install openstack-plugin-openstack-helm-openeuler-support
+dnf install openstack-plugin-openstack-helm-openeuler-support
 ```
 
 ### 自动安装
@@ -3943,7 +3942,7 @@ Kolla是OpenStack基于Docker和ansible的容器化部署方案，包含了Kolla
 1. 安装Kolla
 
     ```
-    yum install openstack-kolla docker
+    dnf install openstack-kolla docker
     ```
 
     安装完成后，就可以使用`kolla-build`命令制作基于Docker容器镜像了，非常简单，如果用户想尝试基于isula的方式，可以继续操作
@@ -3951,7 +3950,7 @@ Kolla是OpenStack基于Docker和ansible的容器化部署方案，包含了Kolla
 2. 安装OpenStack iSula插件
 
     ```
-    yum install openstack-plugin-kolla-isula-support
+    dnf install openstack-plugin-kolla-isula-support
     ```
 
 3. 启动isula-build服务
@@ -3978,7 +3977,7 @@ Kolla是OpenStack基于Docker和ansible的容器化部署方案，包含了Kolla
 1. 按照前面章节部署好一套OpenStack环境（非容器），然后先安装plugin。
 
     ```
-    yum install openstack-plugin-priority-vm
+    dnf install openstack-plugin-priority-vm
     ```
 
 2. 配置数据库
