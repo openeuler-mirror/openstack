@@ -293,22 +293,28 @@ Keystone是OpenStack提供的鉴权服务，是整个OpenStack的入口，提供
 
 7. 配置Apache HTTP server
 
-    ```shell
-    vim /etc/httpd/conf/httpd.conf
+   - 打开httpd.conf并配置
 
-    ServerName controller
-    ```
+     ```shell
+     #需要修改的配置文件路径
+     vim /etc/httpd/conf/httpd.conf
+    
+     #修改以下项，如果没有则新添加
+     ServerName controller
+     ```
 
-    ```shell
-    ln -s /usr/share/keystone/wsgi-keystone.conf /etc/httpd/conf.d/
-    ```
+   - 创建软连接
 
-    ***解释***
+     ```shell
+     ln -s /usr/share/keystone/wsgi-keystone.conf /etc/httpd/conf.d/
+     ```
 
-    配置 `ServerName` 项引用控制节点
+     ***解释***
 
-    ***注意***
-    **如果 `ServerName` 项不存在则需要创建**
+     配置 `ServerName` 项引用控制节点
+
+     ***注意***
+     **如果 `ServerName` 项不存在则需要创建**
 
 8. 启动Apache HTTP服务
 
@@ -419,19 +425,39 @@ Glance是OpenStack提供的镜像服务，负责虚拟机、裸机镜像的上�
 
 2. 初始化 glance 资源对象
 
-    ```shell
-    source ~/.admin-openrc
-    
-	#创建用户时，命令行会提示输入密码，请输入自定义的密码，下文涉及到`GLANCE_PASS`的地方替换成该密码即可。
-    openstack user create --domain default --password-prompt glance
-	
-    openstack role add --project service --user glance admin
-    openstack service create --name glance --description "OpenStack Image" image
-	
-    openstack endpoint create --region RegionOne image public http://controller:9292
-    openstack endpoint create --region RegionOne image internal http://controller:9292
-    openstack endpoint create --region RegionOne image admin http://controller:9292
-    ```
+   - 导入环境变量
+
+     ```shell
+     source ~/.admin-openrc
+     ```
+
+   - 创建用户时，命令行会提示输入密码，请输入自定义的密码，下文涉及到`GLANCE_PASS`的地方替换成该密码即可。
+
+     ```shell
+     openstack user create --domain default --password-prompt glance
+     User Password:
+     Repeat User Password:
+     ```
+
+   - 添加glance用户到service project并指定admin角色：
+
+     ```shell
+     openstack role add --project service --user glance admin
+     ```
+
+   - 创建glance服务实体：
+
+     ```shell
+     openstack service create --name glance --description "OpenStack Image" image
+     ```
+
+   - 创建glance API服务：
+
+     ```shell
+     openstack endpoint create --region RegionOne image public http://controller:9292
+     openstack endpoint create --region RegionOne image internal http://controller:9292
+     openstack endpoint create --region RegionOne image admin http://controller:9292
+     ```
 
 3. 安装软件包
 
