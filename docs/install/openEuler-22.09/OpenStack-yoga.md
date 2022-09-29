@@ -149,7 +149,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 1. 安装软件包
 
     ```
-    dnf install mariadb mariadb-server python3-PyMySQL
+    dnf install mysql-config mariadb mariadb-server python3-PyMySQL
     ```
 
 2. 新增配置文件`/etc/my.cnf.d/openstack.cnf`，内容如下
@@ -174,6 +174,94 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 
     ```
     mysql_secure_installation
+    ```
+
+    示例如下：
+
+    ```shell
+    NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
+        SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
+
+    In order to log into MariaDB to secure it, we'll need the current
+    password for the root user. If you've just installed MariaDB, and
+    haven't set the root password yet, you should just press enter here.
+
+    Enter current password for root (enter for none): 
+    
+    #这里输入密码，由于我们是初始化DB，直接回车就行
+
+    OK, successfully used password, moving on...
+
+    Setting the root password or using the unix_socket ensures that nobody
+    can log into the MariaDB root user without the proper authorisation.
+
+    You already have your root account protected, so you can safely answer 'n'.
+
+    # 这里根据提示输入N
+
+    Switch to unix_socket authentication [Y/n] N
+
+    Enabled successfully!
+    Reloading privilege tables..
+    ... Success!
+
+
+    You already have your root account protected, so you can safely answer 'n'.
+
+    # 输入Y，修改密码
+
+    Change the root password? [Y/n] Y
+
+    New password: 
+    Re-enter new password: 
+    Password updated successfully!
+    Reloading privilege tables..
+    ... Success!
+
+
+    By default, a MariaDB installation has an anonymous user, allowing anyone
+    to log into MariaDB without having to have a user account created for
+    them.  This is intended only for testing, and to make the installation
+    go a bit smoother.  You should remove them before moving into a
+    production environment.
+
+    # 输入Y，删除匿名用户
+
+    Remove anonymous users? [Y/n] Y
+    ... Success!
+
+    Normally, root should only be allowed to connect from 'localhost'.  This
+    ensures that someone cannot guess at the root password from the network.
+
+    # 输入Y，关闭root远程登录权限
+
+    Disallow root login remotely? [Y/n] Y
+    ... Success!
+
+    By default, MariaDB comes with a database named 'test' that anyone can
+    access.  This is also intended only for testing, and should be removed
+    before moving into a production environment.
+
+    # 输入Y，删除test数据库
+
+    Remove test database and access to it? [Y/n] Y
+    - Dropping test database...
+    ... Success!
+    - Removing privileges on test database...
+    ... Success!
+
+    Reloading the privilege tables will ensure that all changes made so far
+    will take effect immediately.
+
+    # 输入Y，重载配置
+
+    Reload privilege tables now? [Y/n] Y
+    ... Success!
+
+    Cleaning up...
+
+    All done!  If you've completed all of the above steps, your MariaDB
+    installation should now be secure.
     ```
 
 5. 验证，根据第四步设置的密码，检查是否能登录mariadb
