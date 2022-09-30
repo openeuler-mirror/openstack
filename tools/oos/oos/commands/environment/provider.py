@@ -278,8 +278,12 @@ class HuaweiCloudProvider(Provider):
                 delete_volume=True,
                 delete_publicip=True
             )
-            response = self.ecs_client.delete_servers(request)
-            print(response)
+            try:
+                response = self.ecs_client.delete_servers(request)
+                print(response)
+            except exceptions.ClientRequestException as ex:
+                if ex.status_code == 404:
+                    continue
 
 
 class ManagedProvider(Provider):
