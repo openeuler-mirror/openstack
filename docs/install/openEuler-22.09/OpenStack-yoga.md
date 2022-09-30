@@ -3329,13 +3329,19 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
 
 1. 安装`oos`工具
 
+    oos工具在不断演进，兼容性、可用性不能时刻保证，建议使用已验证的本版，这里选择`1.0.6`
     ```shell
-    pip install openstack-sig-tool
+    pip install openstack-sig-tool==1.0.6
     ```
 
 2. 配置对接华为云provider的信息
 
-    打开`/usr/local/etc/oos/oos.conf`文件，修改配置为您拥有的华为云资源信息：
+    打开`/usr/local/etc/oos/oos.conf`文件，修改配置为您拥有的华为云资源信息，AK/SK是用户的华为云登录密钥，其他配置保持默认即可（默认使用新加坡region），需要提前在云上创建对应的资源，包括：
+
+    - 一个安全组，名字默认是`oos`
+    - 一个openEuler镜像，名称格式是openEuler-%(release)s-%(arch)s，例如`openEuler-22.09-arm64`
+    - 一个VPC，名称是`oos_vpc`
+    - 该VPC下面两个子网，名称是`oos_subnet1`、`oos_subnet2`
 
     ```
     [huaweicloud]
@@ -3392,7 +3398,7 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
     | neutron_dataplane_interface_name  | neutron使用的网卡，推荐使用一张新的网卡，以免和现有网卡冲突，防止all in one主机断连的情况  |
     | cinder_block_device  |  cinder使用的卷设备名 |
     | swift_storage_devices  | swift使用的卷设备名 |
-    | kolla_openeuler_plugin | 是否启用kolla plugin。设置为True，kolla将支持部署openEuler容器 |
+    | kolla_openeuler_plugin | 是否启用kolla plugin。设置为True，kolla将支持部署openEuler容器(只在openEuler LTS上支持) |
 
 4. 华为云上面创建一台openEuler 22.09的x86_64虚拟机，用于部署`all in one` 的 OpenStack
 
@@ -3420,9 +3426,24 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
     oos env init test-oos
     ```
 
-    命令执行成功后，在用户的根目录下会生成mytest目录，进入其中就可以执行tempest run命令了。
+7. 执行tempest测试
 
-如果是以主机纳管的方式部署 OpenStack 环境，总体逻辑与上文对接华为云时一致，1、3、5、6步操作不变，去除第2步对华为云provider信息的配置，第4步由在华为云上创建虚拟机改为纳管主机操作。
+    用户可以使用oos自动执行：
+
+    ```shell
+    oos env test test-oos
+    ```
+
+    也可以手动登录目标节点，进入根目录下的`mytest`目录，手动执行`tempest run`
+
+
+如果是以主机纳管的方式部署 OpenStack 环境，总体逻辑与上文对接华为云时一致，1、3、5、6步操作不变，跳过第2步对华为云provider信息的配置，在第4步改为纳管主机操作。
+
+被纳管的虚机需要保证：
+
+- 至少有一张给oos使用的网卡，名称与配置保持一致，相关配置`neutron_dataplane_interface_name`
+- 至少有一块给oos使用的硬盘，名称与配置保持一致，相关配置`cinder_block_device`
+- 如果要部署swift服务，则需要新增一块硬盘，名称与配置保持一致，相关配置`swift_storage_devices`
 
 ```shell
 # sshpass在`oos env create`过程中被使用，用于配置对目标主机的免密访问

@@ -35,8 +35,6 @@ def list():
               help='The cluster/all_in_one name')
 @click.argument('target', type=click.Choice(['cluster', 'all_in_one']))
 def create(release, flavor, arch, name, target):
-    if name in ['all_in_one', 'cluster']:
-        raise click.ClickException("Can not name all_in_one or cluster.")
     vm = sqlite_ops.get_target_column(target=name, col_name='*')
     if vm:
         raise click.ClickException("The target name should be unique.")
@@ -109,59 +107,36 @@ def setup(release, target):
     if release.lower() not in constants.OE_OS_RELEASE[oe]:
         print("%s does not support openstack %s" % (oe, release))
         return
-    if target in ['all_in_one', 'cluster']:
-        inventory_file = os.path.join(ANSIBLE_INVENTORY_DIR, target+'.yaml')
-        playbook_entry = os.path.join(ANSIBLE_PLAYBOOK_DIR, 'entry.yaml')
-        cmd = ['ansible-playbook', '-i', inventory_file, playbook_entry]
-        subprocess.call(cmd)
-    else:
-        os.environ.setdefault('OpenStack_Release', release.lower())
-        os.environ.setdefault('keypair_dir', KEY_DIR)
-        _run_action(target, 'entry')
-        sql = 'UPDATE resource SET openstack_release=? WHERE name=?'
-        sqlite_ops.exe_sql(sql, (release.lower(), target))
+
+    os.environ.setdefault('OpenStack_Release', release.lower())
+    os.environ.setdefault('keypair_dir', KEY_DIR)
+    _run_action(target, 'entry')
+    sql = 'UPDATE resource SET openstack_release=? WHERE name=?'
+    sqlite_ops.exe_sql(sql, (release.lower(), target))
 
 
 @group.command(name='init',
                help='Initialize the base OpenStack resource for the Cluster')
 @click.argument('target')
 def init(target):
-    if target in ['all_in_one', 'cluster']:
-        inventory_file = os.path.join(ANSIBLE_INVENTORY_DIR, target+'.yaml')
-        playbook_entry = os.path.join(ANSIBLE_PLAYBOOK_DIR, 'init.yaml')
-        cmd = ['ansible-playbook', '-i', inventory_file, playbook_entry]
-        subprocess.call(cmd)
-    else:
-        _run_action(target, 'init')
+    _run_action(target, 'init')
 
 
 @group.command(name='test', help='Run tempest on the Cluster')
 @click.argument('target')
 def test(target):
-    if target in ['all_in_one', 'cluster']:
-        inventory_file = os.path.join(ANSIBLE_INVENTORY_DIR, target+'.yaml')
-        playbook_entry = os.path.join(ANSIBLE_PLAYBOOK_DIR, 'test.yaml')
-        cmd = ['ansible-playbook', '-i', inventory_file, playbook_entry]
-        subprocess.call(cmd)
-    else:
-        _run_action(target, 'test')
+    _run_action(target, 'test')
 
 
 @group.command(name='clean', help='Clean up the Cluster')
 @click.argument('target')
 def clean(target):
-    if target in ['all_in_one', 'cluster']:
-        inventory_file = os.path.join(ANSIBLE_INVENTORY_DIR, target+'.yaml')
-        playbook_entry = os.path.join(ANSIBLE_PLAYBOOK_DIR, 'cleanup.yaml')
-        cmd = ['ansible-playbook', '-i', inventory_file, playbook_entry]
-        subprocess.call(cmd)
-    else:
-        res = sqlite_ops.get_target_column(target, 'openstack_release')
-        os.environ.setdefault('OpenStack_Release', res[0][0])
-        _run_action(target, 'cleanup')
-        sql = 'UPDATE resource SET openstack_release=?'
-        sqlite_ops.exe_sql(sql, (None,))
-        os.environ.pop('OpenStack_Release')
+    res = sqlite_ops.get_target_column(target, 'openstack_release')
+    os.environ.setdefault('OpenStack_Release', res[0][0])
+    _run_action(target, 'cleanup')
+    sql = 'UPDATE resource SET openstack_release=?'
+    sqlite_ops.exe_sql(sql, (None,))
+    os.environ.pop('OpenStack_Release')
 
 
 @group.command(name='manage', help='Manage the target into oos control')
