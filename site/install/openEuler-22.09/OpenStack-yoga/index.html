@@ -539,7 +539,7 @@ server NTP_SERVER iburst</code></pre>
 <ol>
 <li>
 <p>安装软件包</p>
-<pre class="highlight"><code>dnf install mariadb mariadb-server python3-PyMySQL</code></pre>
+<pre class="highlight"><code>dnf install mysql-config mariadb mariadb-server python3-PyMySQL</code></pre>
 </li>
 <li>
 <p>新增配置文件<code>/etc/my.cnf.d/openstack.cnf</code>，内容如下</p>
@@ -558,6 +558,90 @@ character-set-server = utf8</code></pre>
 <li>
 <p>初始化数据库，根据提示进行即可</p>
 <pre class="highlight"><code>mysql_secure_installation</code></pre>
+<p>示例如下：</p>
+<pre class="highlight"><code class="language-shell">NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
+    SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
+
+In order to log into MariaDB to secure it, we'll need the current
+password for the root user. If you've just installed MariaDB, and
+haven't set the root password yet, you should just press enter here.
+
+Enter current password for root (enter for none): 
+
+#这里输入密码，由于我们是初始化DB，直接回车就行
+
+OK, successfully used password, moving on...
+
+Setting the root password or using the unix_socket ensures that nobody
+can log into the MariaDB root user without the proper authorisation.
+
+You already have your root account protected, so you can safely answer 'n'.
+
+# 这里根据提示输入N
+
+Switch to unix_socket authentication [Y/n] N
+
+Enabled successfully!
+Reloading privilege tables..
+... Success!
+
+
+You already have your root account protected, so you can safely answer 'n'.
+
+# 输入Y，修改密码
+
+Change the root password? [Y/n] Y
+
+New password: 
+Re-enter new password: 
+Password updated successfully!
+Reloading privilege tables..
+... Success!
+
+
+By default, a MariaDB installation has an anonymous user, allowing anyone
+to log into MariaDB without having to have a user account created for
+them.  This is intended only for testing, and to make the installation
+go a bit smoother.  You should remove them before moving into a
+production environment.
+
+# 输入Y，删除匿名用户
+
+Remove anonymous users? [Y/n] Y
+... Success!
+
+Normally, root should only be allowed to connect from 'localhost'.  This
+ensures that someone cannot guess at the root password from the network.
+
+# 输入Y，关闭root远程登录权限
+
+Disallow root login remotely? [Y/n] Y
+... Success!
+
+By default, MariaDB comes with a database named 'test' that anyone can
+access.  This is also intended only for testing, and should be removed
+before moving into a production environment.
+
+# 输入Y，删除test数据库
+
+Remove test database and access to it? [Y/n] Y
+- Dropping test database...
+... Success!
+- Removing privileges on test database...
+... Success!
+
+Reloading the privilege tables will ensure that all changes made so far
+will take effect immediately.
+
+# 输入Y，重载配置
+
+Reload privilege tables now? [Y/n] Y
+... Success!
+
+Cleaning up...
+
+All done!  If you've completed all of the above steps, your MariaDB
+installation should now be secure.</code></pre>
 </li>
 <li>
 <p>验证，根据第四步设置的密码，检查是否能登录mariadb</p>
@@ -640,14 +724,22 @@ keystone-manage credential_setup --keystone-user keystone --keystone-group keyst
 </li>
 <li>
 <p>配置Apache HTTP server</p>
-<pre class="highlight"><code class="language-shell">vim /etc/httpd/conf/httpd.conf
+</li>
+<li>
+<p>打开httpd.conf并配置</p>
+<pre class="highlight"><code class="language-shell">#需要修改的配置文件路径
+vim /etc/httpd/conf/httpd.conf
 
+#修改以下项，如果没有则新添加
 ServerName controller</code></pre>
+</li>
+<li>
+<p>创建软连接</p>
 <pre class="highlight"><code class="language-shell">ln -s /usr/share/keystone/wsgi-keystone.conf /etc/httpd/conf.d/</code></pre>
 <p><strong><em>解释</em></strong></p>
 <p>配置 <code>ServerName</code> 项引用控制节点</p>
 <p><strong><em>注意</em></strong>
-<strong>如果 <code>ServerName</code> 项不存在则需要创建</strong></p>
+ <strong>如果 <code>ServerName</code> 项不存在则需要创建</strong></p>
 </li>
 <li>
 <p>启动Apache HTTP服务</p>
@@ -736,15 +828,28 @@ MariaDB [(none)]&gt; exit</code></pre>
 </li>
 <li>
 <p>初始化 glance 资源对象</p>
-<pre class="highlight"><code class="language-shell">source ~/.admin-openrc
-
-#创建用户时，命令行会提示输入密码，请输入自定义的密码，下文涉及到`GLANCE_PASS`的地方替换成该密码即可。
-openstack user create --domain default --password-prompt glance
-
-openstack role add --project service --user glance admin
-openstack service create --name glance --description "OpenStack Image" image
-
-openstack endpoint create --region RegionOne image public http://controller:9292
+</li>
+<li>
+<p>导入环境变量</p>
+<pre class="highlight"><code class="language-shell">source ~/.admin-openrc</code></pre>
+</li>
+<li>
+<p>创建用户时，命令行会提示输入密码，请输入自定义的密码，下文涉及到<code>GLANCE_PASS</code>的地方替换成该密码即可。</p>
+<pre class="highlight"><code class="language-shell">openstack user create --domain default --password-prompt glance
+User Password:
+Repeat User Password:</code></pre>
+</li>
+<li>
+<p>添加glance用户到service project并指定admin角色：</p>
+<pre class="highlight"><code class="language-shell">openstack role add --project service --user glance admin</code></pre>
+</li>
+<li>
+<p>创建glance服务实体：</p>
+<pre class="highlight"><code class="language-shell">openstack service create --name glance --description "OpenStack Image" image</code></pre>
+</li>
+<li>
+<p>创建glance API服务：</p>
+<pre class="highlight"><code class="language-shell">openstack endpoint create --region RegionOne image public http://controller:9292
 openstack endpoint create --region RegionOne image internal http://controller:9292
 openstack endpoint create --region RegionOne image admin http://controller:9292</code></pre>
 </li>
