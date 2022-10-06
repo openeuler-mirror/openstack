@@ -604,11 +604,14 @@ Glance是OpenStack提供的镜像服务，负责虚拟机、裸机镜像的上�
 
 7. 验证
 
+    - 导入环境变量
+      ```shell
+      sorce ~/.admin-openrcu
+      ```
+
     - 下载镜像
 
         ```shell
-        source ~/.admin-openrc
-
         x86镜像下载：
         wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img
 
