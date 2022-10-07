@@ -1848,15 +1848,15 @@ wallaby:
   ironic-python-agent-builder: 2.8.0
   ironic-tempest-plugin: 2.2.0
   ironic-ui: 4.3.0
-  kayobe: 10.4.0
-  kayobe-config: 10.2.0
-  kayobe-config-dev: 10.3.0
+  kayobe: 10.5.0
+  kayobe-config: 10.5.0
+  kayobe-config-dev: 10.5.0
   keystone: 19.0.1
   keystone_tempest_plugin: 0.7.0
   keystoneauth1: 4.3.1
   keystonemiddleware: 9.2.0
-  kolla: 12.6.0
-  kolla-ansible: 12.7.0
+  kolla: 12.7.0
+  kolla-ansible: 12.8.0
   kuryr-kubernetes: 4.0.1
   kuryr-lib: 2.3.0
   kuryr-libnetwork: 7.0.0
@@ -2074,7 +2074,7 @@ xena:
   aodh: 13.0.0
   aodhclient: 2.3.1
   automaton: 2.4.0
-  barbican: 13.0.0
+  barbican: 13.0.1
   barbican_tempest_plugin: 1.5.0
   bifrost: 11.2.1
   blazar: 8.0.0
@@ -2119,15 +2119,15 @@ xena:
   ironic-python-agent-builder: 3.0.0
   ironic-tempest-plugin: 2.3.1
   ironic-ui: 5.0.0
-  kayobe: 11.3.0
-  kayobe-config: 11.1.0
+  kayobe: 11.4.0
+  kayobe-config: 11.4.0
   kayobe-config-dev: 11.2.0
   keystone: 20.0.0
   keystone_tempest_plugin: 0.8.0
   keystoneauth1: 4.4.0
   keystonemiddleware: 9.3.0
-  kolla: 13.5.0
-  kolla-ansible: 13.4.0
+  kolla: 13.6.0
+  kolla-ansible: 13.5.0
   kuryr-kubernetes: 5.0.0
   kuryr-lib: 2.4.0
   kuryr-libnetwork: 8.0.0
@@ -2325,14 +2325,14 @@ xena:
   zun-ui: 8.0.0
 yoga:
   adjutant-ui: 4.0.0
-  ansible-collection-kolla: 1.0.0
+  ansible-collection-kolla: 1.1.0
   ansible-role-atos-hsm: 3.0.0
   ansible-role-lunasa-hsm: 3.0.0
   ansible-role-thales-hsm: 3.0.0
   aodh: 14.0.0
   aodhclient: 2.4.1
   automaton: 2.5.0
-  barbican: 14.0.0
+  barbican: 14.0.1
   barbican_tempest_plugin: 1.6.0
   bifrost: 14.0.0
   blazar: 9.0.0
@@ -2377,15 +2377,15 @@ yoga:
   ironic-python-agent-builder: 4.0.1
   ironic-tempest-plugin: 2.4.0
   ironic-ui: 5.1.0
-  kayobe: 12.3.0
-  kayobe-config: 12.0.0
-  kayobe-config-dev: 12.2.0
+  kayobe: 12.4.0
+  kayobe-config: 12.4.0
+  kayobe-config-dev: 12.4.0
   keystone: 21.0.0
   keystone_tempest_plugin: 0.9.0
   keystoneauth1: 4.5.0
   keystonemiddleware: 9.4.0
-  kolla: 14.5.0
-  kolla-ansible: 14.4.0
+  kolla: 14.6.0
+  kolla-ansible: 14.5.0
   kuryr-kubernetes: 6.0.0
   kuryr-lib: 2.5.0
   kuryr-libnetwork: 9.0.0
@@ -2494,7 +2494,7 @@ yoga:
   puppet-qdr: 9.3.0
   puppet-rally: 8.3.0
   puppet-sahara: 20.3.0
-  puppet-swift: 20.3.0
+  puppet-swift: 20.4.0
   puppet-tacker: 20.3.0
   puppet-tempest: 20.3.0
   puppet-trove: 20.3.0
