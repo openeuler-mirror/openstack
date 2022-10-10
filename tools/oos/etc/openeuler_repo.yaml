@@ -24,6 +24,7 @@ openeuler:
   Java-Packages: sig-Java
   KPL-gmssl: sig-WayCa
   KPL-zlib: sig-WayCa
+  Kmesh: sig-high-performance-network
   KubeHawk: sig-CloudNative
   KubeHawkeyes: sig-CloudNative
   KubeOS: sig-CloudNative
@@ -198,7 +199,6 @@ openeuler:
   llvm-project: Compiler
   lxcfs-tools: iSulad
   marketing: Marketing
-  marvelldriver: sig-Compatibility-Infra
   mate-desktop: sig-mate-desktop
   memory-scan: Storage
   memwatch: dev-utils
@@ -274,6 +274,7 @@ openeuler:
   python-multi_key_dict: sig-python-modules
   qax-gm-certificates: sig-security-facility
   qemu: Virt
+  qla2xxx: sig-Compatibility-Infra
   radiaTest: sig-QA
   raspberrypi: sig-RaspberryPi
   raspberrypi-build: sig-RaspberryPi
@@ -327,7 +328,7 @@ openeuler:
   wayca-scheduler: sig-WayCa
   wayca-scheduler-bench: sig-WayCa
   website: Infrastructure
-  website-v2: Infrastructure
+  website-v2: sig-recycle
   wine-app: sig-compat-winapp
   wisdom-advisor: A-Tune
   wsl: sig-OS-Builder
@@ -372,6 +373,7 @@ src-openeuler:
   Imath: Runtime
   Judy: Base-service
   Keras: Private
+  Kmesh: sig-high-performance-network
   KubeOS: sig-CloudNative
   LZMA-SDK: Base-service
   LibRaw: Programming-language
@@ -3280,7 +3282,6 @@ src-openeuler:
   mariadb-connector-odbc: DB
   marisa: Others
   marked: sig-UKUI
-  marvelldriver: sig-Compatibility-Infra
   masscan: sig-epol
   mate-applets: sig-mate-desktop
   mate-backgrounds: sig-mate-desktop
@@ -7940,6 +7941,7 @@ src-openeuler:
   qgnomeplatform: GNOME
   qhull: Others
   qjson: sig-UKUI
+  qla2xxx: sig-Compatibility-Infra
   qpdf: Programming-language
   qperf: Application
   qpid-proton: Base-service
