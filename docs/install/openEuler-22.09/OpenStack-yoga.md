@@ -1751,7 +1751,7 @@ Horizon是OpenStack提供的前端页面，可以让用户通过网页鼠标的�
     ```
     OPENSTACK_HOST = "controller"
     ALLOWED_HOSTS = ['*', ]
-    OPENSTACK_KEYSTONE_URL = http://controller:5000\/v3
+    OPENSTACK_KEYSTONE_URL =  "http://controller:5000/v3"
     SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
     CACHES = {
     'default': {
