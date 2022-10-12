@@ -99,6 +99,7 @@ openeuler:
   dim_tools: sig-security-facility
   docs: doc
   docs-accompany-reading: sig-OpenDesign
+  donau-slurm-wrappers: sig-HPC
   dpdk: sig-high-performance-network
   dpu-core: sig-DPU
   dpu-utilities: sig-DPU
