@@ -1856,7 +1856,7 @@ openstack volume list</code></pre>
 <p>修改配置文件<code>/etc/openstack-dashboard/local_settings</code></p>
 <pre class="highlight"><code>OPENSTACK_HOST = "controller"
 ALLOWED_HOSTS = ['*', ]
-OPENSTACK_KEYSTONE_URL = http://controller:5000\/v3
+OPENSTACK_KEYSTONE_URL =  "http://controller:5000/v3"
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 CACHES = {
 'default': {
