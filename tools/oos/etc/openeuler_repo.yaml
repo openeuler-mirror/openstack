@@ -1893,6 +1893,7 @@ src-openeuler:
   hibernate4: sig-Java
   hicolor-icon-theme: Desktop
   highlight: oVirt
+  hikptool: sig-WayCa
   hiredis: Base-service
   hive: bigdata
   hivex: System-tool
