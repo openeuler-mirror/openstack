@@ -1867,9 +1867,9 @@ wallaby:
   manila: 12.1.2
   manila-tempest-plugin: 1.4.0
   manila-ui: 5.1.0
-  masakari: 11.0.1
+  masakari: 11.0.2
   masakari-dashboard: 4.0.1
-  masakari-monitors: 11.1.0
+  masakari-monitors: 11.1.1
   metalsmith: 1.4.4
   mistral: 12.0.0
   mistral-dashboard: 12.0.1
@@ -2036,7 +2036,7 @@ wallaby:
   solum: 10.0.0
   solum-dashboard: 6.0.0
   solum-tempest-plugin: 2.2.0
-  stevedore: 3.3.1
+  stevedore: 3.3.2
   storlets: 7.0.0
   sushy: 3.7.5
   sushy-cli: 0.4.0
@@ -2138,9 +2138,9 @@ xena:
   manila: 13.0.3
   manila-tempest-plugin: 1.6.0
   manila-ui: 6.0.0
-  masakari: 12.0.0
+  masakari: 12.0.1
   masakari-dashboard: 5.0.0
-  masakari-monitors: 12.0.0
+  masakari-monitors: 12.1.0
   metalsmith: 1.5.2
   mistral: 13.0.0
   mistral-dashboard: 13.0.0
@@ -2396,9 +2396,9 @@ yoga:
   manila: 14.0.0
   manila-tempest-plugin: 1.7.0
   manila-ui: 7.0.0
-  masakari: 13.0.0
+  masakari: 13.0.1
   masakari-dashboard: 6.0.0
-  masakari-monitors: 13.0.0
+  masakari-monitors: 13.1.0
   metalsmith: 1.6.2
   mistral: 14.0.0
   mistral-dashboard: 14.0.0
@@ -2555,7 +2555,7 @@ yoga:
   solum: 12.0.0
   solum-dashboard: 8.0.0
   solum-tempest-plugin: 2.4.0
-  stevedore: 3.5.0
+  stevedore: 3.5.1
   storlets: 9.0.0
   sushy: 4.1.2
   swift: 2.29.1
