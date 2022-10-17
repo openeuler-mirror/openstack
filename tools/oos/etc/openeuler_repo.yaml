@@ -201,6 +201,7 @@ openeuler:
   lxcfs-tools: iSulad
   marketing: Marketing
   mate-desktop: sig-mate-desktop
+  mcs: sig-embedded
   memory-scan: Storage
   memwatch: dev-utils
   micro-certification: sig-OSCourse
@@ -306,6 +307,7 @@ openeuler:
   summer2022: sig-OSCourse
   sw-committee: sig-sw-arch
   sync-bot: sig-EasyLife
+  syscare: sig-ops
   syscontainer-tools: iSulad
   sysmaster: dev-utils
   sysmonitor: sig-ops
