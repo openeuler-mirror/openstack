@@ -315,6 +315,7 @@ openeuler:
   talent-assessment: sig-OpenDesign
   tarsier: sig-high-performance-network
   technical-certification: sig-Compatibility-Infra
+  tee-gp-proxy: sig-confidential-computing
   test-tools: sig-QA
   tool-collections: Infrastructure
   tp-libvirt: sig-QA
@@ -1350,6 +1351,7 @@ src-openeuler:
   exempi: Base-service
   exfat-utils: Application
   exfatprogs: Application
+  exim: Application
   exiv2: Desktop
   exo: xfce
   expat: Base-service
@@ -8788,6 +8790,7 @@ src-openeuler:
   telepathy-filesystem: Desktop
   telepathy-glib: Desktop
   telepathy-logger: Desktop
+  teleport: Networking
   telnet: Networking
   template-glib: GNOME
   tengine: Application
