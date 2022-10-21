@@ -2036,7 +2036,7 @@ wallaby:
   solum: 10.0.0
   solum-dashboard: 6.0.0
   solum-tempest-plugin: 2.2.0
-  stevedore: 3.3.2
+  stevedore: 3.3.3
   storlets: 7.0.0
   sushy: 3.7.5
   sushy-cli: 0.4.0
@@ -2300,7 +2300,7 @@ xena:
   solum: 11.0.0
   solum-dashboard: 7.0.0
   solum-tempest-plugin: 2.3.0
-  stevedore: 3.4.1
+  stevedore: 3.4.2
   storlets: 8.0.0
   sushy: 3.12.2
   swift: 2.28.0
@@ -2555,7 +2555,7 @@ yoga:
   solum: 12.0.0
   solum-dashboard: 8.0.0
   solum-tempest-plugin: 2.4.0
-  stevedore: 3.5.1
+  stevedore: 3.5.2
   storlets: 9.0.0
   sushy: 4.1.2
   swift: 2.29.1
