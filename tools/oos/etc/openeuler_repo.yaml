@@ -2455,6 +2455,7 @@ src-openeuler:
   jzlib: Application
   k3s: sig-K8sDistro
   k3s-containerd: sig-K8sDistro
+  k3s-plugins: sig-K8sDistro
   k3s-selinux: sig-K8sDistro
   kabi-dw: Kernel
   kaccounts-integration: sig-KDE
