@@ -15,7 +15,8 @@ releases = [
     'victoria',
     'wallaby',
     'xena',
-    'yoga'
+    'yoga',
+    'zed'
 ]
 
 
