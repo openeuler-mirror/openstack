@@ -907,6 +907,7 @@ src-openeuler:
   ceph-ansible: sig-SDS
   ceph-csi: sig-SDS
   ceph-deploy: sig-SDS
+  ceph-iscsi: sig-SDS
   cereal: dev-utils
   ceres-solver: sig-epol
   certmonger: sig-security-facility
@@ -3466,6 +3467,7 @@ src-openeuler:
   mojarra: sig-Java
   mojo-parent: sig-Java
   mokutil: sig-security-facility
+  mold: sig-RISC-V
   mom: oVirt
   mongo-c-driver: Others
   mongo-java-driver: sig-Java
@@ -3996,6 +3998,7 @@ src-openeuler:
   numad: Computing
   numpy: Programming-language
   nv-codec-headers: Desktop
+  nvidia-gpu-kernel-modules: sig-Compatibility-Infra
   nvme-cli: System-tool
   nvme-snsd: Storage
   nvmetcli: System-tool
@@ -4045,6 +4048,7 @@ src-openeuler:
   ohc: sig-Java
   okhttp: ai
   okteta: sig-KDE
+  okular: sig-KDE
   oldstandard-sfd-fonts: Application
   ompi: ai
   onboard: Others
@@ -8783,6 +8787,7 @@ src-openeuler:
   tcl: Base-service
   tcllib: Base-service
   tclx: Base-service
+  tcmu-runner: Storage
   tcp_wrappers: Networking
   tcpdump: Networking
   tcsh: Base-service
