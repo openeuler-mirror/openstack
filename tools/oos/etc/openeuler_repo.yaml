@@ -218,6 +218,7 @@ openeuler:
   nodejsporter: dev-utils
   nvme-snsd: Storage
   nvwa: sig-ops
+  oe-performance: sig-Compatibility-Infra
   oec-application: sig-Compatibility-Infra
   oec-hardware: sig-Compatibility-Infra
   oecp: sig-Compatibility-Infra
