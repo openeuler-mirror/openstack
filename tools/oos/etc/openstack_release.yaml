@@ -1840,7 +1840,7 @@ wallaby:
   heat-tempest-plugin: 1.2.0
   heat-translator: 2.3.0
   horizon: 19.3.0
-  ironic: 17.0.4
+  ironic: 17.1.0
   ironic-inspector: 10.6.2
   ironic-lib: 4.6.4
   ironic-prometheus-exporter: 2.2.0
@@ -1995,7 +1995,7 @@ wallaby:
   python-glanceclient: 3.3.0
   python-heatclient: 2.3.1
   python-ironic-inspector-client: 4.5.0
-  python-ironicclient: 4.6.3
+  python-ironicclient: 4.6.4
   python-keystoneclient: 4.2.0
   python-magnumclient: 3.4.1
   python-manilaclient: 2.6.4
