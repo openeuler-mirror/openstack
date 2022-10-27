@@ -1844,7 +1844,7 @@ wallaby:
   ironic-inspector: 10.6.2
   ironic-lib: 4.6.4
   ironic-prometheus-exporter: 2.2.0
-  ironic-python-agent: 7.0.2
+  ironic-python-agent: 7.1.0
   ironic-python-agent-builder: 2.8.0
   ironic-tempest-plugin: 2.2.0
   ironic-ui: 4.3.0
