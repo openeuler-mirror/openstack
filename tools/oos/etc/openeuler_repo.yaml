@@ -3452,6 +3452,7 @@ src-openeuler:
   mobile-broadband-provider-info: Networking
   mocha: dev-utils
   mock: dev-utils
+  mock-core-configs: dev-utils
   mockito: Programming-language
   mod_auth_gssapi: System-tool
   mod_auth_openidc: sig-security-facility
