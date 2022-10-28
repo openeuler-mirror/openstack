@@ -32,6 +32,7 @@ openeuler:
   OSAPIChecker: sig-OSRefTools
   OSCompatibility: sig-OSRefTools
   OSPerformance: sig-OSRefTools
+  PRIP: Networking
   PilotGo: sig-ops
   PilotGo-plugins: sig-ops
   PilotGo-web: sig-ops
@@ -3052,6 +3053,7 @@ src-openeuler:
   libspatialaudio: sig-epol
   libspatialite: dev-utils
   libspectre: Programming-language
+  libspf2: Base-service
   libspiro: Others
   libsrtp: Programming-language
   libssh: Networking
@@ -4093,6 +4095,7 @@ src-openeuler:
   opencore-amr: Desktop
   opencryptoki: dev-utils
   opencv: ai
+  opendmarc: Base-service
   opengauss-dcf: DB
   opengauss-server: DB
   openhpi: System-tool
