@@ -2048,6 +2048,7 @@ src-openeuler:
   hwdata: Computing
   hwinfo: Computing
   hwloc: Application
+  hyfetch: dev-utils
   hyperscan: Desktop
   hyphen: Application
   hyphen-as: Application
