@@ -91,6 +91,7 @@ openeuler:
   container-test: sig-QA
   curl-rust: Networking
   custom_build_tool: Application
+  cve-ease: Infrastructure
   cve-manager: Infrastructure
   dcs: sig-power-efficient
   dde: sig-DDE
@@ -543,6 +544,7 @@ src-openeuler:
   abrt-java-connector: Application
   abrt-server-info-page: Application
   abseil-cpp: Base-service
+  accounts-qml-module: sig-KDE
   accountsservice: Desktop
   accumulo: bigdata
   acl: Base-service
@@ -1224,7 +1226,7 @@ src-openeuler:
   dogtail: Others
   dolphin: sig-KDE
   dom4j: sig-Java
-  doracms: sig-cms
+  doracms: sig-epol
   dos2unix: Base-service
   dosfstools: Storage
   dotconf: Programming-language
@@ -2478,6 +2480,7 @@ src-openeuler:
   kbd: Desktop
   kbox: sig-ops
   kbuild-standalone: Kernel
+  kcalc: sig-KDE
   kcron: sig-KDE
   kde-cli-tools: sig-KDE
   kde-connect: sig-KDE
@@ -6018,6 +6021,7 @@ src-openeuler:
   policycoreutils: sig-security-facility
   polkit: Base-service
   polkit-gnome: Base-service
+  polkit-kde: sig-KDE
   polkit-pkla-compat: Base-service
   polkit-qt-1: sig-UKUI
   poly2tri: Others
@@ -8549,6 +8553,7 @@ src-openeuler:
   scap-security-guide: sig-security-facility
   scap-workbench: sig-security-facility
   schroedinger: sig-epol
+  scim: sig-KDE
   scipy: Programming-language
   scl-utils: Application
   scotch: sig-epol
