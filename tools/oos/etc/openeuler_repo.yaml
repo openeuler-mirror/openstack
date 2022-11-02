@@ -343,7 +343,10 @@ openeuler:
   xenomai: sig-industrial-control
   xmlpull: sig-Java
   yocto-embedded-tools: sig-Yocto
+  yocto-meta-openembedded: sig-Yocto
   yocto-meta-openeuler: sig-Yocto
+  yocto-meta-qt5: sig-Yocto
+  yocto-meta-ros: sig-Yocto
   yocto-poky: sig-Yocto
   zephyr-cn: sig-Zephyr
 src-openeuler:
