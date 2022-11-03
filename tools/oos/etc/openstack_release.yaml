@@ -1896,8 +1896,8 @@ wallaby:
   networking-hyperv: 10.0.0
   networking-odl: 18.0.0
   networking-sfc: 12.0.0
-  neutron: 18.5.0
-  neutron-dynamic-routing: 18.1.0
+  neutron: 18.6.0
+  neutron-dynamic-routing: 18.1.1
   neutron-lib: 2.10.2
   neutron-tempest-plugin: 1.4.0
   neutron-vpnaas: 18.0.1
@@ -1935,8 +1935,8 @@ wallaby:
   oslo.versionedobjects: 2.4.1
   oslo.vmware: 3.8.2
   oswin-tempest-plugin: 1.2.0
-  ovn-octavia-provider: 1.0.1
-  ovsdbapp: 1.9.3
+  ovn-octavia-provider: 1.0.2
+  ovsdbapp: 1.9.4
   panko: 10.0.0
   pankoclient: 1.2.0
   patrole: 0.12.0
@@ -2003,7 +2003,7 @@ wallaby:
   python-mistralclient: 4.2.0
   python-monascaclient: 2.3.0
   python-muranoclient: 2.2.0
-  python-neutronclient: 7.3.0
+  python-neutronclient: 7.3.1
   python-novaclient: 17.4.1
   python-octaviaclient: 2.3.1
   python-openstackclient: 5.5.1
@@ -2770,7 +2770,7 @@ zed:
   python-ironicclient: 5.0.1
   python-keystoneclient: 5.0.1
   python-magnumclient: 4.0.0
-  python-manilaclient: 4.1.0
+  python-manilaclient: 4.1.1
   python-masakariclient: 8.0.0
   python-mistralclient: 4.5.0
   python-monascaclient: 2.6.0
