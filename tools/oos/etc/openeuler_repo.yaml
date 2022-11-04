@@ -141,6 +141,7 @@ openeuler:
   hpc: sig-HPC
   hpcrunner: sig-HPC
   hsak: Storage
+  hw-buaa-lab: sig-OSCourse
   iSulad: iSulad
   iSulad-img: iSulad
   imageTailor: sig-OS-Builder
