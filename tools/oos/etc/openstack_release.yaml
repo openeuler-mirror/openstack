@@ -1813,7 +1813,7 @@ wallaby:
   castellan: 3.7.2
   ceilometer: 16.0.1
   ceilometermiddleware: 2.2.0
-  cinder: 18.2.0
+  cinder: 18.2.1
   cinder-tempest-plugin: 1.4.0
   cinderlib: 4.0.0
   cliff: 3.7.0
@@ -1911,7 +1911,7 @@ wallaby:
   openstack-heat: 16.0.0
   openstack-placement: 5.0.1
   openstacksdk: 0.55.1
-  os-brick: 4.3.3
+  os-brick: 4.3.4
   os-ken: 1.4.1
   os-net-config: 14.2.0
   os-win: 5.4.0
