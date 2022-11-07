@@ -1832,14 +1832,14 @@ wallaby:
   freezer-dr: 10.0.0
   freezer-web-ui: 10.0.0
   freezer_tempest_plugin: 1.2.0
-  glance: 22.1.0
+  glance: 22.1.1
   glance-tempest-plugin: 0.1.0
   glance_store: 2.5.1
   heat-agents: 2.2.0
-  heat-dashboard: 5.0.0
+  heat-dashboard: 5.0.1
   heat-tempest-plugin: 1.2.0
   heat-translator: 2.3.0
-  horizon: 19.3.0
+  horizon: 19.4.0
   ironic: 17.1.0
   ironic-inspector: 10.6.2
   ironic-lib: 4.6.4
@@ -1902,20 +1902,20 @@ wallaby:
   neutron-tempest-plugin: 1.4.0
   neutron-vpnaas: 18.0.1
   neutron-vpnaas-dashboard: 4.0.0
-  nova: 23.2.1
+  nova: 23.2.2
   octavia: 8.0.1
   octavia-dashboard: 7.0.1
   octavia-lib: 2.3.1
   octavia-tempest-plugin: 1.7.0
   openstack-cyborg: 6.0.1
-  openstack-heat: 16.0.0
+  openstack-heat: 16.1.0
   openstack-placement: 5.0.1
   openstacksdk: 0.55.1
   os-brick: 4.3.4
   os-ken: 1.4.1
   os-net-config: 14.2.0
   os-win: 5.4.0
-  os_vif: 2.4.0
+  os_vif: 2.4.1
   osc-lib: 2.3.1
   osc-placement: 2.2.0
   oslo.cache: 2.7.1
@@ -2038,7 +2038,7 @@ wallaby:
   solum-tempest-plugin: 2.2.0
   stevedore: 3.3.3
   storlets: 7.0.0
-  sushy: 3.7.5
+  sushy: 3.7.6
   sushy-cli: 0.4.0
   swift: 2.27.0
   tacker: 5.0.0
