@@ -1942,44 +1942,44 @@ wallaby:
   patrole: 0.12.0
   puppet-aodh: 18.4.1
   puppet-barbican: 18.4.1
-  puppet-ceilometer: 18.4.1
-  puppet-cinder: 18.5.0
+  puppet-ceilometer: 18.4.2
+  puppet-cinder: 18.5.1
   puppet-cloudkitty: 7.4.0
-  puppet-designate: 18.5.0
+  puppet-designate: 18.6.0
   puppet-ec2api: 18.4.0
   puppet-freezer: 18.4.1
-  puppet-glance: 18.5.0
+  puppet-glance: 18.6.0
   puppet-glare: 7.4.0
-  puppet-gnocchi: 18.4.1
+  puppet-gnocchi: 18.4.2
   puppet-heat: 18.4.0
-  puppet-horizon: 18.5.0
-  puppet-ironic: 18.6.0
-  puppet-keystone: 18.5.0
+  puppet-horizon: 18.6.0
+  puppet-ironic: 18.7.0
+  puppet-keystone: 18.6.0
   puppet-magnum: 18.4.1
-  puppet-manila: 18.5.0
+  puppet-manila: 18.5.1
   puppet-mistral: 18.4.0
   puppet-monasca: 7.4.0
   puppet-murano: 18.4.0
-  puppet-neutron: 18.5.0
-  puppet-nova: 18.5.0
-  puppet-octavia: 18.4.1
+  puppet-neutron: 18.6.0
+  puppet-nova: 18.6.0
+  puppet-octavia: 18.5.0
   puppet-openstack_extras: 18.5.0
-  puppet-openstacklib: 18.5.0
-  puppet-oslo: 18.4.1
-  puppet-ovn: 18.5.0
+  puppet-openstacklib: 18.5.1
+  puppet-oslo: 18.5.0
+  puppet-ovn: 18.6.0
   puppet-panko: 18.4.0
-  puppet-placement: 5.4.1
+  puppet-placement: 5.4.2
   puppet-qdr: 7.4.0
   puppet-rally: 6.4.0
   puppet-sahara: 18.4.0
   puppet-senlin: 5.4.0
-  puppet-swift: 18.5.0
+  puppet-swift: 18.6.0
   puppet-tacker: 18.4.0
-  puppet-tempest: 18.5.0
+  puppet-tempest: 18.5.1
   puppet-tripleo: 14.2.2
   puppet-trove: 18.4.0
   puppet-vitrage: 8.4.0
-  puppet-vswitch: 14.4.1
+  puppet-vswitch: 14.4.2
   puppet-watcher: 18.4.0
   puppet-zaqar: 18.4.0
   python-adjutant: 2.0.0
@@ -2111,23 +2111,23 @@ xena:
   heat-tempest-plugin: 1.4.0
   heat-translator: 2.4.1
   horizon: 20.1.2
-  ironic: 18.2.1
-  ironic-inspector: 10.8.0
+  ironic: 18.2.2
+  ironic-inspector: 10.8.1
   ironic-lib: 5.0.1
   ironic-prometheus-exporter: 3.0.0
-  ironic-python-agent: 8.2.1
+  ironic-python-agent: 8.2.2
   ironic-python-agent-builder: 3.0.0
   ironic-tempest-plugin: 2.3.1
   ironic-ui: 5.0.0
-  kayobe: 11.4.0
+  kayobe: 11.5.0
   kayobe-config: 11.4.0
-  kayobe-config-dev: 11.2.0
+  kayobe-config-dev: 11.5.0
   keystone: 20.0.0
   keystone_tempest_plugin: 0.8.0
   keystoneauth1: 4.4.0
   keystonemiddleware: 9.3.0
-  kolla: 13.6.0
-  kolla-ansible: 13.5.0
+  kolla: 13.7.0
+  kolla-ansible: 13.6.0
   kuryr-kubernetes: 5.0.0
   kuryr-lib: 2.4.0
   kuryr-libnetwork: 8.0.0
@@ -2141,7 +2141,7 @@ xena:
   masakari: 12.0.2
   masakari-dashboard: 5.0.0
   masakari-monitors: 12.1.0
-  metalsmith: 1.5.2
+  metalsmith: 1.5.3
   mistral: 13.0.0
   mistral-dashboard: 13.0.0
   mistral-extra: 11.1.0
@@ -2302,7 +2302,7 @@ xena:
   solum-tempest-plugin: 2.3.0
   stevedore: 3.4.2
   storlets: 8.0.0
-  sushy: 3.12.2
+  sushy: 3.12.3
   swift: 2.28.0
   tacker: 6.0.0
   tacker-horizon: 4.0.0
@@ -2369,23 +2369,23 @@ yoga:
   heat-tempest-plugin: 1.5.0
   heat-translator: 2.5.0
   horizon: 22.1.0
-  ironic: 20.1.0
+  ironic: 20.1.1
   ironic-inspector: 10.11.0
   ironic-lib: 5.2.0
   ironic-prometheus-exporter: 3.1.0
-  ironic-python-agent: 8.5.0
+  ironic-python-agent: 8.5.1
   ironic-python-agent-builder: 4.0.1
   ironic-tempest-plugin: 2.4.0
   ironic-ui: 5.1.0
-  kayobe: 12.4.0
+  kayobe: 12.5.0
   kayobe-config: 12.4.0
   kayobe-config-dev: 12.4.0
   keystone: 21.0.0
   keystone_tempest_plugin: 0.9.0
   keystoneauth1: 4.5.0
   keystonemiddleware: 9.4.0
-  kolla: 14.6.0
-  kolla-ansible: 14.5.0
+  kolla: 14.7.0
+  kolla-ansible: 14.6.0
   kuryr-kubernetes: 6.0.0
   kuryr-lib: 2.5.0
   kuryr-libnetwork: 9.0.0
@@ -2399,7 +2399,7 @@ yoga:
   masakari: 13.0.2
   masakari-dashboard: 6.0.0
   masakari-monitors: 13.1.0
-  metalsmith: 1.6.2
+  metalsmith: 1.6.3
   mistral: 14.0.0
   mistral-dashboard: 14.0.0
   mistral-extra: 11.3.0
@@ -2557,7 +2557,7 @@ yoga:
   solum-tempest-plugin: 2.4.0
   stevedore: 3.5.2
   storlets: 9.0.0
-  sushy: 4.1.2
+  sushy: 4.1.3
   swift: 2.29.1
   tacker: 7.0.0
   tacker-horizon: 5.0.0
@@ -2642,7 +2642,7 @@ zed:
   magnum: 15.0.0
   magnum-ui: 11.0.0
   magnum_tempest_plugin: 1.7.0
-  manila: 15.0.0
+  manila: 15.1.0
   manila-tempest-plugin: 1.10.0
   manila-ui: 8.0.0
   masakari: 14.0.1
@@ -2812,7 +2812,7 @@ zed:
   solum-tempest-plugin: 2.5.0
   stevedore: 4.0.2
   storlets: 10.0.0
-  sushy: 4.3.0
+  sushy: 4.3.1
   swift: 2.30.0
   tacker: 8.0.0
   tacker-horizon: 6.0.0
