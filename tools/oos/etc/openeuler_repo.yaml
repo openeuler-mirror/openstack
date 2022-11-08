@@ -3430,6 +3430,7 @@ src-openeuler:
   metainf-services: sig-Java
   metis: Application
   metrics: sig-Java
+  mhvtl: dev-utils
   microcode_ctl: System-tool
   migration-assistant: sig-Migration
   mikmod: Application
@@ -4328,7 +4329,7 @@ src-openeuler:
   percona-toolkit: DB
   percona-xtrabackup: DB
   performance_test_fixture: sig-ROS
-  perftest: Application
+  perftest: sig-high-performance-network
   perl: Base-service
   perl-Acme-Damn: sig-perl-modules
   perl-Algorithm-Combinatorics: sig-perl-modules
@@ -8611,6 +8612,7 @@ src-openeuler:
   siege: sig-epol
   sigar: sig-Java
   signon: sig-KDE
+  signon-plugin-oauth2: sig-KDE
   signpost-core: sig-Java
   sil-abyssinica-fonts: System-tool
   sil-nuosu-fonts: Desktop
