@@ -281,6 +281,7 @@ openeuler:
   qax-gm-certificates: sig-security-facility
   qemu: Virt
   qla2xxx: sig-Compatibility-Infra
+  quick-issue: sig-OpenDesign
   radiaTest: sig-QA
   raspberrypi: sig-RaspberryPi
   raspberrypi-build: sig-RaspberryPi
@@ -1379,6 +1380,7 @@ src-openeuler:
   fail2ban: Networking
   fakechroot: System-tool
   fakeroot: Programming-language
+  fapolicyd: sig-security-facility
   farstream02: Others
   fastdb: DB
   fastdfs: Storage
