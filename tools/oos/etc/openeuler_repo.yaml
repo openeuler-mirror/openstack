@@ -6725,6 +6725,7 @@ src-openeuler:
   python-fuckit: sig-python-modules
   python-funcparserlib: sig-python-modules
   python-funcsigs: Programming-language
+  python-funcy: sig-python-modules
   python-furl: sig-python-modules
   python-furo: sig-openstack
   python-fusepy: sig-python-modules
@@ -7536,6 +7537,7 @@ src-openeuler:
   python-retryz: sig-python-modules
   python-rfc3339-validator: sig-python-modules
   python-rfc3986: sig-python-modules
+  python-rich: sig-python-modules
   python-ripozo: sig-python-modules
   python-rjsmin: sig-python-modules
   python-rmtest: sig-python-modules
