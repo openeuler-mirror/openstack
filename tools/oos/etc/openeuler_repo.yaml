@@ -9,6 +9,7 @@ openeuler:
   AppAPIChecker: sig-OSRefTools
   AvxToNeon: sig-AccLib
   BiSheng-Adoptium: Compiler
+  BiShengCLanguage: Compiler
   CPython: Compiler
   CreateImage: sig-Gatekeeper
   DyscheOS-kernel: sig-recycle
@@ -137,6 +138,7 @@ openeuler:
   ha-web: sig-Ha
   hands-on: sig-OSCourse
   hikptool: sig-WayCa
+  hmir: sig-ops
   hostha: sig-openstack
   hpc: sig-HPC
   hpcrunner: sig-HPC
@@ -1513,6 +1515,9 @@ src-openeuler:
   fxload: Storage
   g2clib: sig-recycle
   gajim: sig-mate-desktop
+  gala-anteater: sig-ops
+  gala-gopher: sig-ops
+  gala-spider: sig-ops
   galera: Others
   game-music-emu: dev-utils
   gamemode: Desktop
@@ -8125,6 +8130,7 @@ src-openeuler:
   rootsh: Others
   ros: sig-ROS
   ros1_bridge: sig-ROS
+  ros2_base: sig-ROS
   ros2_demos: sig-ROS
   ros2_example_interfaces: sig-ROS
   ros2_examples: sig-ROS
