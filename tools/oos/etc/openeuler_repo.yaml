@@ -2527,6 +2527,7 @@ src-openeuler:
   kf5-karchive: sig-KDE
   kf5-kauth: sig-KDE
   kf5-kbookmarks: sig-KDE
+  kf5-kcalendarcore: sig-KDE
   kf5-kcmutils: sig-KDE
   kf5-kcodecs: sig-KDE
   kf5-kcompletion: sig-KDE
@@ -2595,6 +2596,7 @@ src-openeuler:
   kf5-purpose: sig-KDE
   kf5-solid: sig-KDE
   kf5-sonnet: sig-KDE
+  kf5-syndication: sig-KDE
   kf5-syntax-highlighting: sig-KDE
   kf5-threadweaver: sig-KDE
   khelpcenter: sig-KDE
@@ -5975,6 +5977,8 @@ src-openeuler:
   plasma-discover: sig-KDE
   plasma-integration: sig-KDE
   plasma-mediacenter: sig-KDE
+  plasma-milou: sig-KDE
+  plasma-nm: sig-KDE
   plasma-oxygen: sig-KDE
   plasma-pa: sig-KDE
   plasma-pass: sig-KDE
@@ -8771,6 +8775,7 @@ src-openeuler:
   swtpm: sig-security-facility
   symlinks: Base-service
   sysbench: dev-utils
+  syscare: sig-ops
   sysconftool: sig-epol
   syscontainer-tools: iSulad
   sysdig: A-Tune
