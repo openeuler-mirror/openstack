@@ -1245,6 +1245,7 @@ ussuri:
   ironic-prometheus-exporter: 2.0.1
   ironic-python-agent: 6.1.3
   ironic-tempest-plugin: 2.0.0
+  ironic-tempest-plugin-ussuri: last
   ironic-ui: 4.0.1
   karbor: 1.5.0
   karbor-dashboard: 1.4.0
@@ -1551,6 +1552,7 @@ victoria:
   ironic-prometheus-exporter: 2.1.1
   ironic-python-agent: 6.4.4
   ironic-tempest-plugin: 2.1.0
+  ironic-tempest-plugin-victoria: last
   ironic-ui: 4.2.0
   karbor: 1.6.0
   karbor-dashboard: 1.5.1
