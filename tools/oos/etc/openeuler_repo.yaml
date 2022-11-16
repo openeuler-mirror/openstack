@@ -11,6 +11,7 @@ openeuler:
   BiSheng-Adoptium: Compiler
   BiShengCLanguage: Compiler
   CPython: Compiler
+  Cpds: sig-CloudNative
   CreateImage: sig-Gatekeeper
   DyscheOS-kernel: sig-recycle
   DyscheOS-meta: sig-recycle
@@ -90,6 +91,10 @@ openeuler:
   compliance: sig-compliance
   compliance-sbom: sig-compliance
   container-test: sig-QA
+  cpds-agent: sig-CloudNative
+  cpds-analyzer: sig-CloudNative
+  cpds-dashboard: sig-CloudNative
+  cpds-detector: sig-CloudNative
   curl-rust: Networking
   custom_build_tool: Application
   cve-ease: Infrastructure
@@ -2941,6 +2946,10 @@ src-openeuler:
   libksba: Base-service
   libkscreen-qt5: sig-UKUI
   libksysguard: sig-KDE
+  libkylin-chkname: sig-UKUI
+  libkysdk-applications: sig-UKUI
+  libkysdk-base: sig-UKUI
+  libkysdk-system: sig-UKUI
   libldac: GNOME
   libldb: Desktop
   libldm: Storage
@@ -3195,6 +3204,7 @@ src-openeuler:
   llvm: Compiler
   llvm-bolt: Compiler
   llvm-libunwind: Compiler
+  llvm-mlir: Compiler
   lm_sensors: Computing
   lmbench: dev-utils
   lmdb: Base-service
