@@ -556,6 +556,7 @@ src-openeuler:
   abrt-java-connector: Application
   abrt-server-info-page: Application
   abseil-cpp: Base-service
+  accel-config: sig-Intel-Arch
   accounts-qml-module: sig-KDE
   accountsservice: Desktop
   accumulo: bigdata
