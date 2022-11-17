@@ -1201,11 +1201,13 @@ ussuri:
   automaton: 2.0.1
   barbican: 10.1.0
   barbican_tempest_plugin: 1.0.0
+  barbican_tempest_plugin-ussuri: last
   bifrost: 8.1.2
   blazar: 5.0.1
   blazar-dashboard: 3.0.1
   blazar-nova: 2.0.0
   blazar_tempest_plugin: 0.4.0
+  blazar_tempest_plugin-ussuri: last
   castellan: 3.0.4
   ceilometer: 14.1.0
   ceilometermiddleware: 2.0.0
@@ -1216,21 +1218,25 @@ ussuri:
   cloudkitty: 12.1.1
   cloudkitty-dashboard: 10.0.0
   cloudkitty_tempest_plugin: 2.0.0
+  cloudkitty_tempest_plugin-ussuri: last
   compute-hyperv: 10.0.1
   congress-dashboard: 6.0.0
   congress-tempest-plugin: 1.0.0
   cyborg-tempest-plugin: 1.0.0
+  cyborg-tempest-plugin-ussuri: last
   debtcollector: 2.0.1
   designate: 10.0.2
   designate-dashboard: 10.0.0
   designate-tempest-plugin: 0.8.0
   ec2-api: 10.0.0
   ec2api-tempest-plugin: 1.0.0
+  ec2api-tempest-plugin-ussuri: last
   freezer: 8.0.0
   freezer-api: 8.0.0
   freezer-dr: 8.0.0
   freezer-web-ui: 8.0.0
   freezer_tempest_plugin: 1.0.0
+  freezer_tempest_plugin-ussuri: last
   futurist: 2.1.1
   glance: 20.2.0
   glance_store: 2.0.1
@@ -1263,9 +1269,11 @@ ussuri:
   kuryr-lib: 2.0.1
   kuryr-libnetwork: 5.0.1
   kuryr-tempest-plugin: 0.6.0
+  kuryr-tempest-plugin-ussuri: last
   magnum: 10.1.0
   magnum-ui: 6.0.1
   magnum_tempest_plugin: 1.0.0
+  magnum_tempest_plugin-ussuri: last
   manila: 10.2.0
   manila-tempest-plugin: 1.0.0
   manila-ui: 3.1.0
@@ -1286,6 +1294,7 @@ ussuri:
   monasca-persister: 2.0.1
   monasca-statsd: 2.0.0
   monasca-tempest-plugin: 2.0.0
+  monasca-tempest-plugin-ussuri: last
   monasca-ui: 2.0.2
   mox3: 1.0.0
   murano: 9.0.0
@@ -1353,6 +1362,7 @@ ussuri:
   oslotest: 4.2.0
   osprofiler: 3.1.0
   oswin-tempest-plugin: 1.0.0
+  oswin-tempest-plugin-ussuri: last
   ovn-octavia-provider: 0.1.3
   ovsdbapp: 1.2.3
   panko: 8.1.0
@@ -1475,6 +1485,7 @@ ussuri:
   tacker-horizon: 1.0.0
   taskflow: 4.1.0
   telemetry_tempest_plugin: 1.0.0
+  telemetry_tempest_plugin-ussuri: last
   tempest: 24.0.0
   tempest-horizon: 1.0.0
   tempest-ussuri: last
@@ -1494,13 +1505,17 @@ ussuri:
   vitrage: 7.1.0
   vitrage-dashboard: 3.1.0
   vitrage-tempest-plugin: 4.0.0
+  vitrage-tempest-plugin-ussuri: last
   watcher-dashboard: 3.0.1
   watcher-tempest-plugin: 2.0.0
+  watcher-tempest-plugin-ussuri: last
   zaqar: 10.0.0
   zaqar-ui: 8.0.0
   zaqar_tempest_plugin: 1.0.0
+  zaqar_tempest_plugin-ussuri: last
   zun: 5.0.1
   zun-tempest-plugin: 4.0.0
+  zun-tempest-plugin-ussuri: last
   zun-ui: 5.0.0
 victoria:
   adjutant-ui: 1.0.0
@@ -1510,11 +1525,13 @@ victoria:
   automaton: 2.2.0
   barbican: 11.0.0
   barbican_tempest_plugin: 1.1.0
+  barbican_tempest_plugin-victoria: last
   bifrost: 9.1.0
   blazar: 6.0.2
   blazar-dashboard: 4.0.0
   blazar-nova: 2.1.0
   blazar_tempest_plugin: 0.5.0
+  blazar_tempest_plugin-victoria: last
   castellan: 3.6.1
   ceilometer: 15.1.0
   ceilometermiddleware: 2.1.0
@@ -1525,19 +1542,23 @@ victoria:
   cloudkitty: 13.0.2
   cloudkitty-dashboard: 11.0.1
   cloudkitty_tempest_plugin: 2.1.0
+  cloudkitty_tempest_plugin-victoria: last
   compute-hyperv: 11.0.0
   cyborg-tempest-plugin: 1.1.0
+  cyborg-tempest-plugin-victoria: last
   debtcollector: 2.2.0
   designate: 11.0.2
   designate-dashboard: 11.0.0
   designate-tempest-plugin: 0.9.0
   ec2-api: 11.1.0
   ec2api-tempest-plugin: 1.1.0
+  ec2api-tempest-plugin-victoria: last
   freezer: 9.0.0
   freezer-api: 9.0.0
   freezer-dr: 9.0.0
   freezer-web-ui: 9.0.0
   freezer_tempest_plugin: 1.1.0
+  freezer_tempest_plugin-victoria: last
   futurist: 2.3.0
   glance: 21.1.0
   glance_store: 2.3.1
@@ -1569,9 +1590,11 @@ victoria:
   kuryr-lib: 2.1.1
   kuryr-libnetwork: 6.0.0
   kuryr-tempest-plugin: 0.7.0
+  kuryr-tempest-plugin-victoria: last
   magnum: 11.2.1
   magnum-ui: 7.0.1
   magnum_tempest_plugin: 1.1.0
+  magnum_tempest_plugin-victoria: last
   manila: 11.1.2
   manila-tempest-plugin: 1.2.0
   manila-ui: 4.1.0
@@ -1592,6 +1615,7 @@ victoria:
   monasca-persister: 3.0.0
   monasca-statsd: 2.1.0
   monasca-tempest-plugin: 2.1.0
+  monasca-tempest-plugin-victoria: last
   monasca-ui: 3.0.0
   murano: 10.0.0
   murano-agent: 6.0.1
@@ -1654,6 +1678,7 @@ victoria:
   oslotest: 4.4.1
   osprofiler: 3.4.0
   oswin-tempest-plugin: 1.1.0
+  oswin-tempest-plugin-victoria: last
   ovn-octavia-provider: 0.4.1
   ovsdbapp: 1.6.1
   panko: 9.0.0
@@ -1772,6 +1797,7 @@ victoria:
   tacker-horizon: 2.0.0
   taskflow: 4.5.0
   telemetry_tempest_plugin: 1.1.0
+  telemetry_tempest_plugin-victoria: last
   tempest: 25.0.1
   tempest-horizon: 1.1.0
   tempest-victoria: last
@@ -1789,13 +1815,17 @@ victoria:
   vitrage: 7.3.0
   vitrage-dashboard: 3.2.0
   vitrage-tempest-plugin: 5.1.0
+  vitrage-tempest-plugin-victoria: last
   watcher-dashboard: 4.0.1
   watcher-tempest-plugin: 2.1.0
+  watcher-tempest-plugin-victoria: last
   zaqar: 11.0.0
   zaqar-ui: 9.0.0
   zaqar_tempest_plugin: 1.1.0
+  zaqar_tempest_plugin-victoria: last
   zun: 6.0.0
   zun-tempest-plugin: 4.1.0
+  zun-tempest-plugin-victoria: last
   zun-ui: 6.0.0
 wallaby:
   adjutant-ui: 2.0.0
