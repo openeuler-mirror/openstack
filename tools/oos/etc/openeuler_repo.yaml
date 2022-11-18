@@ -1167,6 +1167,7 @@ src-openeuler:
   deepin-graphics-driver-manager: sig-DDE
   deepin-gtk-theme: sig-DDE
   deepin-icon-theme: sig-DDE
+  deepin-image-editor: sig-DDE
   deepin-image-viewer: sig-DDE
   deepin-kwin: sig-recycle
   deepin-log-viewer: sig-DDE
@@ -1504,6 +1505,7 @@ src-openeuler:
   frei0r-plugins: Base-service
   fribidi: Desktop
   fros: Desktop
+  frp: Networking
   fstrm: sig-epol
   fswatch: System-tool
   ftgl: bigdata
