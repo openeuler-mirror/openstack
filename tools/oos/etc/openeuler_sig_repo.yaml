@@ -57,6 +57,7 @@ src-openeuler:
   openstack-swift: sig-openstack
   openstack-tempest: sig-openstack
   openstack-trove: sig-openstack
+  ovn: sig-openstack
   python-3parclient: sig-openstack
   python-PyMI: sig-openstack
   python-URLObject: sig-openstack
@@ -202,6 +203,7 @@ src-openeuler:
   python-muranoclient: sig-openstack
   python-mypy-extensions: sig-openstack
   python-netmiko: sig-openstack
+  python-networking-ovn: sig-openstack
   python-neutron-lib: sig-openstack
   python-neutron-tempest-plugin: sig-openstack
   python-neutronclient: sig-openstack
