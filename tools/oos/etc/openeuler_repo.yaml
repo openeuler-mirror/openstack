@@ -4290,6 +4290,7 @@ src-openeuler:
   ovirt-setup-lib: oVirt
   ovirt-vmconsole: oVirt
   ovirt-web-ui: oVirt
+  ovn: sig-openstack
   oxygen-icon-theme: sig-KDE
   oxygen-sounds: sig-KDE
   p11-kit: Base-service
@@ -7106,6 +7107,7 @@ src-openeuler:
   python-netdata: sig-python-modules
   python-netifaces: A-Tune
   python-netmiko: sig-openstack
+  python-networking-ovn: sig-openstack
   python-networkx: A-Tune
   python-neutron-lib: sig-openstack
   python-neutron-tempest-plugin: sig-openstack
