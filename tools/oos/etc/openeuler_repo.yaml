@@ -366,6 +366,7 @@ src-openeuler:
   A-Tune-Collector: A-Tune
   A-Tune-UI: A-Tune
   BareBonesBrowserLaunch: sig-Java
+  Bear: Compiler
   CUnit: Base-service
   CharLS: Desktop
   ComputeLibrary: ai
@@ -1264,7 +1265,7 @@ src-openeuler:
   dtkwm: sig-DDE
   duktape: Base-service
   dumb-init: sig-CloudNative
-  dump: Application
+  dump: Storage
   dust: Application
   dvdplusrw-tools: Others
   dwarves: sig-high-performance-network
@@ -6723,6 +6724,7 @@ src-openeuler:
   python-flask-session: sig-python-modules
   python-flask-testing: sig-python-modules
   python-flask-whooshee: sig-python-modules
+  python-flatbuffers: A-Tune
   python-flatpak-module-tools: sig-python-modules
   python-flexmock: sig-python-modules
   python-flickrapi: sig-python-modules
@@ -8093,6 +8095,7 @@ src-openeuler:
   rdiff-backup: Application
   rdma-core: sig-high-performance-network
   re2: Others
+  re2-rust: Base-service
   re2c: sig-mate-desktop
   readline: Base-service
   realmd: Base-service
