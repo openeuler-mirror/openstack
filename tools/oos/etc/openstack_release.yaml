@@ -1302,6 +1302,7 @@ ussuri:
   murano-agent: 5.0.0
   murano-dashboard: 9.0.0
   murano-tempest-plugin: 2.0.0
+  murano-tempest-plugin-ussuri: last
   networking-bagpipe: 12.0.1
   networking-baremetal: 2.0.0
   networking-bgpvpn: 12.0.0
@@ -1479,6 +1480,7 @@ ussuri:
   solum: 8.0.0
   solum-dashboard: 4.0.0
   solum-tempest-plugin: 2.0.0
+  solum-tempest-plugin-ussuri: last
   stevedore: 1.32.0
   storlets: 5.0.0
   sushy: 3.2.3
@@ -1626,6 +1628,7 @@ victoria:
   murano-agent: 6.0.1
   murano-dashboard: 10.0.0
   murano-tempest-plugin: 2.1.0
+  murano-tempest-plugin-victoria: last
   networking-bagpipe: 13.0.0
   networking-baremetal: 3.0.0
   networking-bgpvpn: 13.0.0
@@ -1795,6 +1798,7 @@ victoria:
   solum: 9.0.0
   solum-dashboard: 5.0.0
   solum-tempest-plugin: 2.1.0
+  solum-tempest-plugin-victoria: last
   stevedore: 3.2.2
   storlets: 6.0.0
   sushy: 3.4.6
