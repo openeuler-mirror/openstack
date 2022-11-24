@@ -1256,6 +1256,7 @@ src-openeuler:
   dropwatch: Networking
   drpm: Base-service
   druid: bigdata
+  dsoftbus: sig-embedded
   dtc: Base-service
   dtkcore: sig-DDE
   dtkcore2: sig-DDE
@@ -8967,6 +8968,7 @@ src-openeuler:
   trilead-putty-extension: sig-Java
   trilead-ssh2: sig-Java
   trimmomatic: sig-bio
+  trinity: sig-QA
   trousers: Base-service
   tslib: sig-compat-winapp
   tss2: sig-security-facility
