@@ -233,6 +233,7 @@ openeuler:
   oec-hardware: sig-Compatibility-Infra
   oecp: sig-Compatibility-Infra
   oemaker: sig-OS-Builder
+  omnivirt: Infrastructure
   oncn-bwm: sig-high-performance-network
   open-source-summer: sig-OSCourse
   openEuler-Advisor: sig-EasyLife
@@ -279,6 +280,7 @@ openeuler:
   pkgporter: dev-utils
   pkgship: sig-EasyLife
   plymouth-theme-kiran: sig-KIRAN-DESKTOP
+  portal-mulit-cluster-script: sig-HPC
   powerapi: sig-power-efficient
   prefetch_tuning: A-Tune
   ptcr: sig-CloudNative
@@ -2780,6 +2782,7 @@ src-openeuler:
   libappindicator: Desktop
   libappstream-glib: Programming-language
   libarchive: Base-service
+  libarchive-rust: Base-service
   libart_lgpl: Desktop
   libass: Application
   libassuan: Networking
@@ -3165,6 +3168,7 @@ src-openeuler:
   libxkbfile: Desktop
   libxklavier: Desktop
   libxml2: Base-service
+  libxml2-rust: Base-service
   libxmlb: Others
   libxmlpp: sig-compat-winapp
   libxshmfence: Desktop
@@ -6323,7 +6327,7 @@ src-openeuler:
   python-asgiref: sig-python-modules
   python-asn1crypto: Base-service
   python-aspectlib: sig-python-modules
-  python-aspy: sig-python-modules
+  python-aspy: sig-recycle
   python-asteval: sig-python-modules
   python-astor: A-Tune
   python-astral: sig-python-modules
