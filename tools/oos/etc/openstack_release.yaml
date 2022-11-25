@@ -2346,7 +2346,7 @@ xena:
   solum-tempest-plugin: 2.3.0
   stevedore: 3.4.2
   storlets: 8.0.0
-  sushy: 3.12.4
+  sushy: 3.12.5
   swift: 2.28.0
   tacker: 6.0.0
   tacker-horizon: 4.0.0
@@ -2601,7 +2601,7 @@ yoga:
   solum-tempest-plugin: 2.4.0
   stevedore: 3.5.2
   storlets: 9.0.0
-  sushy: 4.1.4
+  sushy: 4.1.5
   swift: 2.29.1
   tacker: 7.0.0
   tacker-horizon: 5.0.0
@@ -2856,7 +2856,7 @@ zed:
   solum-tempest-plugin: 2.5.0
   stevedore: 4.0.2
   storlets: 10.0.0
-  sushy: 4.3.2
+  sushy: 4.3.3
   swift: 2.30.0
   tacker: 8.0.0
   tacker-horizon: 6.0.0
