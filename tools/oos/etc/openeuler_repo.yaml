@@ -358,6 +358,7 @@ openeuler:
   yocto-meta-openeuler: sig-Yocto
   yocto-meta-qt5: sig-Yocto
   yocto-meta-ros: sig-Yocto
+  yocto-meta-virtualization: sig-Yocto
   yocto-poky: sig-Yocto
   zephyr-cn: sig-Zephyr
 src-openeuler:
@@ -1510,6 +1511,7 @@ src-openeuler:
   fribidi: Desktop
   fros: Desktop
   frp: Networking
+  fstools: dev-utils
   fstrm: sig-epol
   fswatch: System-tool
   ftgl: bigdata
@@ -1625,6 +1627,7 @@ src-openeuler:
   gl_dependency: sig-ROS
   glade: Desktop
   glade3: sig-mate-desktop
+  glances: dev-utils
   glassfish-annotation-api: sig-Java
   glassfish-dtd-parser: dev-utils
   glassfish-ejb-api: Base-service
@@ -1665,6 +1668,7 @@ src-openeuler:
   gmime30: Base-service
   gmp: Computing
   gmt: Application
+  gn: Compiler
   gnocchi: sig-openstack
   gnome-abrt: Desktop
   gnome-autoar: GNOME
@@ -2527,6 +2531,10 @@ src-openeuler:
   keyrings-filesystem: Others
   keyutils: sig-security-facility
   kf5: sig-KDE
+  kf5-akonadi-contacts: sig-KDE
+  kf5-akonadi-mime: sig-KDE
+  kf5-akonadi-notes: sig-KDE
+  kf5-akonadi-search: sig-KDE
   kf5-akonadi-server: sig-KDE
   kf5-attica: sig-KDE
   kf5-baloo: sig-KDE
@@ -2566,8 +2574,10 @@ src-openeuler:
   kf5-khtml: sig-KDE
   kf5-ki18n: sig-KDE
   kf5-kiconthemes: sig-KDE
+  kf5-kidentitymanagement: sig-KDE
   kf5-kidletime: sig-KDE
   kf5-kimageformats: sig-KDE
+  kf5-kimap: sig-KDE
   kf5-kinit: sig-KDE
   kf5-kio: sig-KDE
   kf5-kirigami2: sig-KDE
@@ -2576,7 +2586,11 @@ src-openeuler:
   kf5-kjobwidgets: sig-KDE
   kf5-kjs: sig-KDE
   kf5-kjsembed: sig-KDE
+  kf5-kldap: sig-KDE
+  kf5-kmailtransport: sig-KDE
+  kf5-kmbox: sig-KDE
   kf5-kmediaplayer: sig-KDE
+  kf5-kmime: sig-KDE
   kf5-knewstuff: sig-KDE
   kf5-knotifications: sig-KDE
   kf5-knotifyconfig: sig-KDE
@@ -2584,12 +2598,14 @@ src-openeuler:
   kf5-kpackage: sig-KDE
   kf5-kparts: sig-KDE
   kf5-kpeople: sig-KDE
+  kf5-kpimtextedit: sig-KDE
   kf5-kplotting: sig-KDE
   kf5-kpty: sig-KDE
   kf5-kquickcharts: sig-KDE
   kf5-kross: sig-KDE
   kf5-krunner: sig-KDE
   kf5-kservice: sig-KDE
+  kf5-ksmtp: sig-KDE
   kf5-ktexteditor: sig-KDE
   kf5-ktextwidgets: sig-KDE
   kf5-kunitconversion: sig-KDE
@@ -2599,10 +2615,15 @@ src-openeuler:
   kf5-kwindowsystem: sig-KDE
   kf5-kxmlgui: sig-KDE
   kf5-kxmlrpcclient: sig-KDE
+  kf5-libgravatar: sig-KDE
   kf5-libkdepim: sig-KDE
+  kf5-libkleo: sig-KDE
   kf5-mailcommon: sig-KDE
+  kf5-mailimporter: sig-KDE
+  kf5-messagelib: sig-KDE
   kf5-modemmanager-qt: sig-KDE
   kf5-networkmanager-qt: sig-KDE
+  kf5-pimcommon: sig-KDE
   kf5-plasma: sig-KDE
   kf5-prison: sig-KDE
   kf5-purpose: sig-KDE
@@ -2947,6 +2968,7 @@ src-openeuler:
   libkcapi: Base-service
   libkeepalive: dev-utils
   libkefir: sig-recycle
+  libkgapi: sig-KDE
   libkkc: Application
   libkkc-data: Private
   libkml: sig-recycle
@@ -5967,6 +5989,7 @@ src-openeuler:
   phoenix: DB
   phonon: Others
   phonon-backend-gstreamer: Private
+  phonon-qt4: sig-KDE
   php: Base-service
   php-pear: sig-epol
   php-pecl-zip: sig-epol
@@ -8060,6 +8083,7 @@ src-openeuler:
   qt5dxcb-plugin: sig-DDE
   qt5integration: sig-DDE
   qtchooser: sig-UKUI
+  qtkeychain-qt5: sig-KDE
   qtwebkit: sig-recycle
   quartz: sig-Java
   quay: sig-K8sDistro
