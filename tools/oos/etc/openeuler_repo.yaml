@@ -6294,6 +6294,7 @@ src-openeuler:
   python-actdiag: sig-python-modules
   python-adb-shell: sig-python-modules
   python-adodbapi: sig-python-modules
+  python-adtk: sig-ops
   python-aenum: sig-python-modules
   python-aexpect: sig-python-modules
   python-agate: sig-python-modules
