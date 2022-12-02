@@ -3292,6 +3292,7 @@ src-openeuler:
   luksmeta: Storage
   lunar-date: sig-KIRAN-DESKTOP
   lustre: sig-SDS
+  lustre-e2fsprogs: sig-SDS
   lutok: Base-service
   lv2: sig-epol
   lvm2: Storage
