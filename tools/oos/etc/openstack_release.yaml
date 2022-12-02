@@ -2118,7 +2118,7 @@ xena:
   aodh: 13.0.0
   aodhclient: 2.3.1
   automaton: 2.4.0
-  barbican: 13.0.1
+  barbican: 13.0.2
   barbican_tempest_plugin: 1.5.0
   bifrost: 11.2.1
   blazar: 8.0.0
@@ -2376,7 +2376,7 @@ yoga:
   aodh: 14.0.0
   aodhclient: 2.4.1
   automaton: 2.5.0
-  barbican: 14.0.1
+  barbican: 14.0.2
   barbican_tempest_plugin: 1.6.0
   bifrost: 14.0.0
   blazar: 9.0.0
@@ -2631,7 +2631,7 @@ zed:
   aodh: 15.0.0
   aodhclient: 3.0.0
   automaton: 3.0.1
-  barbican: 15.0.0
+  barbican: 15.0.1
   barbican_tempest_plugin: 1.7.0
   bifrost: 15.0.0
   blazar: 10.0.0
