@@ -1213,6 +1213,7 @@ ussuri:
   ceilometermiddleware: 2.0.0
   cinder: 16.4.2
   cinder-tempest-plugin: 1.0.0
+  cinder-tempest-plugin-ussuri: last
   cinderlib: 2.1.0
   cliff: 3.1.0
   cloudkitty: 12.1.1
@@ -1543,6 +1544,7 @@ victoria:
   ceilometermiddleware: 2.1.0
   cinder: 17.4.0
   cinder-tempest-plugin: 1.2.0
+  cinder-tempest-plugin-victoria: last
   cinderlib: 3.1.0
   cliff: 3.4.0
   cloudkitty: 13.0.2
