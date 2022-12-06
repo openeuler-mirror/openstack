@@ -5,6 +5,7 @@ OE_OS_RELEASE = {
     '20.03-lts-sp2': ['rocky', 'queens'],
     '20.03-lts-sp3': ['rocky', 'queens', 'train'],
     '22.03-lts': ['train', 'wallaby'],
+    '22.03-lts-sp1': ['train', 'wallaby'],
     '22.09': ['yoga']
 }
 
