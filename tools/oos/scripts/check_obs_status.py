@@ -11,15 +11,10 @@ import xmltodict
 
 
 BRANCHS = [
-    'openEuler:20.03:LTS:SP3:oepkg:openstack:queens',
-    'openEuler:20.03:LTS:SP3:oepkg:openstack:rocky',
-    'openEuler:20.03:LTS:SP3:oepkg:openstack:common',
-    'openEuler:20.03:LTS:SP3:Epol',
     'openEuler:22.03:LTS:Next:Epol:Multi-Version:OpenStack:Train',
     'openEuler:22.03:LTS:Next:Epol:Multi-Version:OpenStack:Wallaby',
-    'openEuler:22.03:LTS:Epol:Multi-Version:OpenStack:Train',
-    'openEuler:22.03:LTS:Epol:Multi-Version:OpenStack:Wallaby',
-    'openEuler:Epol',
+    'openEuler:22.03:LTS:SP1:Epol:Multi-Version:OpenStack:Train',
+    'openEuler:22.03:LTS:SP1:Epol:Multi-Version:OpenStack:Wallaby',
 ]
 
 

@@ -1,3 +1,4 @@
+from pathlib import Path
 import subprocess
 import time
 
@@ -30,15 +31,23 @@ class Provider:
 
     def _setup_sshpass(self, ip, password=constants.OPENEULER_DEFAULT_PASSWORD):
         print("Preparing the mutual trust for ssh")
-        cmds = [f'ssh-keygen -f ~/.ssh/known_hosts -R "{ip}"',
-                f'ssh-keygen -R "{ip}"',
-                f'sshpass -p {password} ssh-copy-id -i "{KEY_DIR}/id_rsa.pub" -o StrictHostKeyChecking=no "{constants.OPENEULER_DEFAULT_USER}@{ip}"',
-                f"ssh -i {KEY_DIR}/id_rsa {constants.OPENEULER_DEFAULT_USER}@{ip} -- echo OK"
-               ]
+        clean_up_cmds = [
+            f'ssh-keygen -f ~/.ssh/known_hosts -R "{ip}"',
+            f'ssh-keygen -R "{ip}"',
+        ]
+        inject_cmds = [
+            f'sshpass -p {password} ssh-copy-id -i "{KEY_DIR}/id_rsa.pub" -o StrictHostKeyChecking=no "{constants.OPENEULER_DEFAULT_USER}@{ip}"',
+            f"ssh -i {KEY_DIR}/id_rsa {constants.OPENEULER_DEFAULT_USER}@{ip} -- echo OK"
+        ]
+        if not Path('~/.ssh/known_hosts').exists():
+            cmds = inject_cmds
+        else:
+            cmds = clean_up_cmds + inject_cmds
         for cmd in cmds:
             ret = subprocess.run(cmd, shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
             if ret.returncode != 0:
                 print("Failed to inject ssh key for the target, please do it by hand.")
+                print("Failed command: %s" % cmd)
                 return False
         print(f"You can now login the target with the key in {KEY_DIR}")
         return True
