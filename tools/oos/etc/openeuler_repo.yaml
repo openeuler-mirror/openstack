@@ -8084,6 +8084,7 @@ src-openeuler:
   qt5-ukui-platformtheme: sig-UKUI
   qt5dxcb-plugin: sig-DDE
   qt5integration: sig-DDE
+  qtav: sig-UKUI
   qtchooser: sig-UKUI
   qtkeychain-qt5: sig-KDE
   qtwebkit: sig-recycle
@@ -8790,6 +8791,7 @@ src-openeuler:
   stax-ex: dev-utils
   stax2-api: sig-Java
   staxmapper: sig-Java
+  stb: sig-UKUI
   std_msgs: sig-ROS
   stix-fonts: Desktop
   storm: bigdata
