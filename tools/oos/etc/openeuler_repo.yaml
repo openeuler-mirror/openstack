@@ -2418,6 +2418,7 @@ src-openeuler:
   jgroups: sig-Java
   jhighlight: sig-Java
   jibx: sig-Java
+  jieba: ai
   jimtcl: Programming-language
   jing-trang: sig-Java
   jitterentropy-library: Base-service
