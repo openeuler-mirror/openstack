@@ -167,6 +167,7 @@ openeuler:
   kbox: sig-ops
   kbuild-standalone: Kernel
   kernel: Kernel
+  kernel-cloudnative: Kernel
   kiran-authentication-service: sig-KIRAN-DESKTOP
   kiran-biometrics: sig-KIRAN-DESKTOP
   kiran-calculator: sig-KIRAN-DESKTOP
@@ -185,6 +186,7 @@ openeuler:
   kiran-screensaver: sig-KIRAN-DESKTOP
   kiran-session-guard: sig-KIRAN-DESKTOP
   kiran-session-manager: sig-KIRAN-DESKTOP
+  kiran-tests: sig-KIRAN-DESKTOP
   kiran-wallpapers: sig-KIRAN-DESKTOP
   kiran-widgets-qt5: sig-KIRAN-DESKTOP
   kml_adapter: sig-AccLib
@@ -561,6 +563,7 @@ src-openeuler:
   abrt-server-info-page: Application
   abseil-cpp: Base-service
   accel-config: sig-Intel-Arch
+  accerciser: sig-KIRAN-DESKTOP
   accounts-qml-module: sig-KDE
   accountsservice: Desktop
   accumulo: bigdata
@@ -2667,6 +2670,7 @@ src-openeuler:
   kiran-screensaver-dialog: sig-KIRAN-DESKTOP
   kiran-session-guard: sig-KIRAN-DESKTOP
   kiran-session-manager: sig-KIRAN-DESKTOP
+  kiran-tests: sig-KIRAN-DESKTOP
   kiran-themes: sig-KIRAN-DESKTOP
   kiran-wallpapers: sig-KIRAN-DESKTOP
   kiran-widgets-qt5: sig-KIRAN-DESKTOP
@@ -2749,6 +2753,7 @@ src-openeuler:
   ldapjdk: dev-utils
   ldaptive: sig-Java
   ldns: Networking
+  ldtp: sig-KIRAN-DESKTOP
   leatherman: Base-service
   ledmon: Application
   lensfun: dev-utils
