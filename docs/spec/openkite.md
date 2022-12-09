@@ -33,7 +33,7 @@
 | 帮助       |PushButton| pushButton_MainWindow_Help          | 调出帮助窗口    |
 | 工具       |PushButton| pushButton_MainWindow_Tool          | 调出工具窗口    |
 | 报错分析   |PushButton| pushButton_MainWindow_ErrorAnalysis | 调出报错分析窗口 |
-| 监控       |PushButton| pushButton_MainWindow_Monitor       | 调出报错分析窗口 |
+| 监控       |PushButton| pushButton_MainWindow_Monitor       | 调出监控窗口 |
 | 运维日志   |PushButton| pushButton_MainWindow_OperationLog  | 调出运维日志窗口 |
 
 ##### 3.1.1、菜单子类
