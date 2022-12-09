@@ -166,6 +166,7 @@ openeuler:
   kata_integration: sig-CloudNative
   kbox: sig-ops
   kbuild-standalone: Kernel
+  kconfigDetector: Kernel
   kernel: Kernel
   kernel-cloudnative: Kernel
   kiran-authentication-service: sig-KIRAN-DESKTOP
@@ -420,6 +421,7 @@ src-openeuler:
   PackageKit: Desktop
   PackageKit-Qt: Desktop
   Picard: sig-bio
+  PyDrive: sig-UKUI
   PyPAM: Others
   PyQt4: sig-python-modules
   PyYAML: sig-python-modules
@@ -1194,6 +1196,7 @@ src-openeuler:
   deepin-turbo: sig-DDE
   deepin-upgrade-tool: sig-DDE
   deepin-wallpapers: sig-DDE
+  deja-dup: sig-UKUI
   dejagnu: Programming-language
   dejavu-fonts: System-tool
   delta: bigdata
@@ -1273,6 +1276,7 @@ src-openeuler:
   duktape: Base-service
   dumb-init: sig-CloudNative
   dump: Storage
+  duplicity: sig-UKUI
   dust: Application
   dvdplusrw-tools: Others
   dwarves: sig-high-performance-network
@@ -2512,6 +2516,7 @@ src-openeuler:
   kbox: sig-ops
   kbuild-standalone: Kernel
   kcalc: sig-KDE
+  kconfigDetector: Kernel
   kcron: sig-KDE
   kde-cli-tools: sig-KDE
   kde-connect: sig-KDE
