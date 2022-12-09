@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>1、前序 - OpenStack SIG Doc</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "1\u3001\u524d\u5e8f";
+        var mkdocs_page_input_path = "spec/openkite.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> OpenStack SIG Doc
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="搜索文档" title="在此输入需要搜索的内容" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航栏">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">OpenStack SIG</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">贡献指导</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../contribute/rpm-packaging-reference/">RPM开发流程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">安装指导</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/devstack/">devstack</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-20.03-LTS-SP2/OpenStack-queens/">openEuler-20.03-LTS-SP2_Queens</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-20.03-LTS-SP2/OpenStack-rocky/">openEuler-20.03-LTS-SP2_Rocky</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-20.03-LTS-SP3/OpenStack-queens/">openEuler-20.03-LTS-SP3_Queens</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-20.03-LTS-SP3/OpenStack-rocky/">openEuler-20.03-LTS-SP3_Rocky</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-20.03-LTS-SP3/OpenStack-train/">openEuler-20.03-LTS-SP3_Train</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-21.09/OpenStack-wallaby/">openEuler-21.09_Wallaby</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-22.03-LTS/OpenStack-train/">openEuler-22.03-LTS_Train</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-22.03-LTS/OpenStack-wallaby/">openEuler-22.03-LTS_Wallaby</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-22.03-LTS-SP1/OpenStack-wallaby/">openEuler-22.03-LTS-SP1_Train</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-22.03-LTS-SP1/OpenStack-wallaby/">openEuler-22.03-LTS-SP1_Wallaby</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-22.09/OpenStack-yoga/">openEuler-22.09_Yoga</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">测试报告</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../test/openEuler-20.03-LTS-SP2/">openEuler-20.03-LTS-SP2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../test/openEuler-20.03-LTS-SP3/">openEuler-20.03-LTS-SP3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../test/openEuler-22.03-LTS/">openEuler-22.03-LTS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../test/openEuler-22.09/">openEuler-22.09</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">自研特性</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../priority_vm/">虚拟机高低优先级</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="移动导航栏">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">OpenStack SIG Doc</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="文档"></a> &raquo;</li>
+      <li>1、前序</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="1">1、前序<a class="headerlink" href="#1" title="Permanent link">&para;</a></h1>
+<h4 id="11">1.1、 软件许可协议<a class="headerlink" href="#11" title="Permanent link">&para;</a></h4>
+<h4 id="12">1.2、 软件用途<a class="headerlink" href="#12" title="Permanent link">&para;</a></h4>
+<h4 id="13">1.3、 开发人员名单<a class="headerlink" href="#13" title="Permanent link">&para;</a></h4>
+<h4 id="14">1.4、 生命开发周期<a class="headerlink" href="#14" title="Permanent link">&para;</a></h4>
+<h4 id="15">1.5、 功能开发顺序<a class="headerlink" href="#15" title="Permanent link">&para;</a></h4>
+<h1 id="2">2、开发规范约定<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
+<h4 id="21">2.1、 窗体控件命名规范<a class="headerlink" href="#21" title="Permanent link">&para;</a></h4>
+<ul>
+<li>控件原名称_窗体_控件名称组合体首字母大写</li>
+<li>示例：
+  <pre class="highlight"><code class="language-cpp">按钮原名称：pushButton 主窗体 菜单按钮 
+命名规范：pushButton_MainWindow_Menu
+
+按钮原名称：toolButton 主窗体 上传按钮
+命名规范：toolButton_MainWindow_UpLoad</code></pre></li>
+</ul>
+<h4 id="22">2.2、 后台功能实现命名规范<a class="headerlink" href="#22" title="Permanent link">&para;</a></h4>
+<ul>
+<li>变量、常量、函数、类、容器等</li>
+</ul>
+<h4 id="23">2.3、 软件包文件名命名规范<a class="headerlink" href="#23" title="Permanent link">&para;</a></h4>
+<h4 id="24">2.4、 文件命名规范<a class="headerlink" href="#24" title="Permanent link">&para;</a></h4>
+<h4 id="25">2.5、 标注<a class="headerlink" href="#25" title="Permanent link">&para;</a></h4>
+<ul>
+<li>删除、移动、改名、权限设置</li>
+</ul>
+<h1 id="3">3、窗口主体控件名称、尺寸、用途<a class="headerlink" href="#3" title="Permanent link">&para;</a></h1>
+<h3 id="31">3.1、菜单功能大类<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<ul>
+<li>PushButton控件用于菜单大类调用窗口</li>
+<li>控件尺寸：</li>
+<li>固定尺寸 80*25</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>控件中文名</th>
+<th>控件种类</th>
+<th>控件名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>菜单</td>
+<td>PushButton</td>
+<td>pushButton_MainWindow_Menu</td>
+<td>调出菜单窗口</td>
+</tr>
+<tr>
+<td>帮助</td>
+<td>PushButton</td>
+<td>pushButton_MainWindow_Help</td>
+<td>调出帮助窗口</td>
+</tr>
+<tr>
+<td>工具</td>
+<td>PushButton</td>
+<td>pushButton_MainWindow_Tool</td>
+<td>调出工具窗口</td>
+</tr>
+<tr>
+<td>报错分析</td>
+<td>PushButton</td>
+<td>pushButton_MainWindow_ErrorAnalysis</td>
+<td>调出报错分析窗口</td>
+</tr>
+<tr>
+<td>监控</td>
+<td>PushButton</td>
+<td>pushButton_MainWindow_Monitor</td>
+<td>调出报错分析窗口</td>
+</tr>
+<tr>
+<td>运维日志</td>
+<td>PushButton</td>
+<td>pushButton_MainWindow_OperationLog</td>
+<td>调出运维日志窗口</td>
+</tr>
+</tbody>
+</table>
+<h5 id="311">3.1.1、菜单子类<a class="headerlink" href="#311" title="Permanent link">&para;</a></h5>
+<ul>
+<li>设置</li>
+<li>软件主题</li>
+</ul>
+<h5 id="312">3.1.2、帮助类<a class="headerlink" href="#312" title="Permanent link">&para;</a></h5>
+<ul>
+<li>社区</li>
+<li>版本更新</li>
+<li>使用手册</li>
+</ul>
+<h5 id="313">3.1.3、工具类<a class="headerlink" href="#313" title="Permanent link">&para;</a></h5>
+<ul>
+<li>插件仓库</li>
+<li>img镜像工具</li>
+<li>MD5校验工具</li>
+<li>OpenStack模块功能测试</li>
+<li>压力测试</li>
+</ul>
+<h5 id="314">3.1.4、报错分析类<a class="headerlink" href="#314" title="Permanent link">&para;</a></h5>
+<ul>
+<li>系统报错（节点报错分析）</li>
+<li>OpenStack报错</li>
+<li>K8S报错</li>
+</ul>
+<h5 id="315">3.1.5、监控类<a class="headerlink" href="#315" title="Permanent link">&para;</a></h5>
+<ul>
+<li>OPS监控状态与性能使用分析</li>
+<li>K8S监控状态与性能使用分析</li>
+</ul>
+<h5 id="316">3.1.6、运维日志类<a class="headerlink" href="#316" title="Permanent link">&para;</a></h5>
+<ul>
+<li>查看历史运维日志</li>
+<li>日志导出</li>
+</ul>
+<h3 id="32">3.2、数据可视化类<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<h5 id="321">3.2.1、计算机硬件信息类<a class="headerlink" href="#321" title="Permanent link">&para;</a></h5>
+<ul>
+<li>ProgressBar控件显示计算机硬件性能占用比</li>
+<li>控件尺寸：</li>
+<li>最小尺寸 116*27 </li>
+<li>高度尺寸固定</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>控件中文名</th>
+<th>控件种类</th>
+<th>控件名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>本机CPU</td>
+<td>ProgressBar</td>
+<td>progressBar_MainWindow_LocalCPU</td>
+<td>显示本地CPU使用率</td>
+</tr>
+<tr>
+<td>目标CPU</td>
+<td>ProgressBar</td>
+<td>progressBar_MainWindow_TargetCPU</td>
+<td>显示目标CPU使用率</td>
+</tr>
+<tr>
+<td>本机RAM</td>
+<td>ProgressBar</td>
+<td>progressBar_MainWindow_LocalRAM</td>
+<td>显示本机RAM使用率</td>
+</tr>
+<tr>
+<td>目标RAM</td>
+<td>ProgressBar</td>
+<td>progressBar_MainWindow_TargetRAM</td>
+<td>显示目标RAM使用率</td>
+</tr>
+<tr>
+<td>本机网络</td>
+<td>ProgressBar</td>
+<td>progressBar_MainWindow_LocalNetwork</td>
+<td>显示本机网络带宽使用率</td>
+</tr>
+<tr>
+<td>目标网络</td>
+<td>ProgressBar</td>
+<td>progressBar_MainWindow_TargetNetwork</td>
+<td>显示目标网络带宽使用率</td>
+</tr>
+<tr>
+<td>本机磁盘</td>
+<td>ProgressBar</td>
+<td>progressBar_MainWindow_LocalDisk</td>
+<td>显示本机磁盘IO使用率</td>
+</tr>
+<tr>
+<td>目标磁盘</td>
+<td>ProgressBar</td>
+<td>progressBar_MainWindow_TargetDisk</td>
+<td>显示目标磁盘IO使用率</td>
+</tr>
+</tbody>
+</table>
+<h5 id="322">3.2.2、计算机软件信息类<a class="headerlink" href="#322" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Label控件显示系统IP与DNS</li>
+<li>控件尺寸：</li>
+<li>固定尺寸 110*27</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>控件中文名</th>
+<th>控件种类</th>
+<th>控件名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>本机IP</td>
+<td>Label</td>
+<td>label_MainWindow_LocalIP</td>
+<td>显示本机IP</td>
+</tr>
+<tr>
+<td>目标IP</td>
+<td>Label</td>
+<td>label_MainWindow_TargetIP</td>
+<td>显示目标IP</td>
+</tr>
+<tr>
+<td>本机DNS</td>
+<td>Label</td>
+<td>label_MainWindow_LocalNDS</td>
+<td>显示本机DNS</td>
+</tr>
+<tr>
+<td>目标DNS</td>
+<td>Label</td>
+<td>label_MainWindow_TargetNDS</td>
+<td>显示目标DNS</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>ListWidget控件显示系统必要信息项说明</li>
+<li>控件尺寸：</li>
+<li>固定尺寸 200*111</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>控件中文名</th>
+<th>控件种类</th>
+<th>控件名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统信息显示</td>
+<td>ListWidgets</td>
+<td>listWidget_MainWidow_SystemShow</td>
+<td>显示系统必要信息</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>系统必要信息显示所用变量的API接口</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>中文名</th>
+<th>变量类型</th>
+<th>变量名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>发行版</td>
+<td>QStringList</td>
+<td>systemNameShow</td>
+<td>linux发行版名称</td>
+</tr>
+<tr>
+<td>版本号</td>
+<td>QStringList</td>
+<td>systemVersion</td>
+<td>linux发行版版本号</td>
+</tr>
+<tr>
+<td>内核号</td>
+<td>QStringList</td>
+<td>systemKernel</td>
+<td>linux发行版内核版本</td>
+</tr>
+<tr>
+<td>管理权限</td>
+<td>QStringList</td>
+<td>systemAdminPower</td>
+<td>当前账号操作权限</td>
+</tr>
+<tr>
+<td>服务名称</td>
+<td>QStringList</td>
+<td>systemServiceName</td>
+<td>当前运维软件服务名称</td>
+</tr>
+<tr>
+<td>服务版本</td>
+<td>QStringList</td>
+<td>systemServicVersion</td>
+<td>当前运维软件版本</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Label与ProgressBar控件显示当前运行命令及进度</li>
+<li>控件尺寸：</li>
+<li>当前运行命令控件尺寸：<ul>
+<li>最小尺寸：500*31</li>
+<li>高度尺寸固定</li>
+</ul>
+</li>
+<li>当前命令进度控件尺寸：<ul>
+<li>最小尺寸：171*31</li>
+<li>高度尺寸固定</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>中文名</th>
+<th>控件种类</th>
+<th>控件名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>当前运行命令</td>
+<td>Label</td>
+<td>label_MainWindow_ShowCurrentCommand</td>
+<td>显示当前集群或节点正在运行的命令</td>
+</tr>
+<tr>
+<td>当前命令进度</td>
+<td>ProgressBar</td>
+<td>progressBar_MainWindow_ShowCommandProgress</td>
+<td>显示当前集群或节点正在运行的命令的进度</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33">3.3、添加集群类<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
+<h5 id="331">3.3.1、 集群添加类<a class="headerlink" href="#331" title="Permanent link">&para;</a></h5>
+<ul>
+<li>ToolButton控件添加集群节点信息</li>
+<li>控件尺寸：</li>
+<li>固定尺寸：300*31</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>中文名</th>
+<th>控件类型</th>
+<th>控件名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>添加集群/节点</td>
+<td>ToolButton</td>
+<td>toolButton_MainWindow_AddNode</td>
+<td>弹出窗口添加集群或节点</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>单节点添加</li>
+<li>批量节点添加</li>
+<li>集群添加</li>
+</ul>
+<h5 id="332">3.3.2、集群显示类<a class="headerlink" href="#332" title="Permanent link">&para;</a></h5>
+<ul>
+<li>TreeWidget控件显示集群信息</li>
+<li>控件尺寸：</li>
+<li>最小尺寸：200*438</li>
+<li>宽度尺寸固定</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>中文名</th>
+<th>控件类型</th>
+<th>控件名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>节点信息</td>
+<td>TreeWidget</td>
+<td>treeWidget_MainWindow_ShowNode</td>
+<td>用于显示集群与节点信息或点击信息后创建SSH远程窗口界面</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>集群名称</li>
+<li>节点名称</li>
+<li>节点IP地址</li>
+</ul>
+<h3 id="34">3.4、脚本与部署类<a class="headerlink" href="#34" title="Permanent link">&para;</a></h3>
+<ul>
+<li>TerrWidget控件弹窗</li>
+<li>控件尺寸：</li>
+<li>上传、脚本按钮固定尺寸：63*31</li>
+<li>部署按钮固定尺寸：65*31</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>中文名</th>
+<th>控件类型</th>
+<th>控件名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上传</td>
+<td>terrWidget</td>
+<td>toolButton_MainWindow_UpLoad</td>
+<td>弹出上传窗体:load.ui</td>
+</tr>
+<tr>
+<td>脚本</td>
+<td>terrWidget</td>
+<td>toolButton_MainWindow_Shell</td>
+<td>弹出脚本窗体:shell.ui</td>
+</tr>
+<tr>
+<td>部署</td>
+<td>terrWidget</td>
+<td>toolButton_MainWindow_Deploy</td>
+<td>弹出部署窗体:deploy.ui</td>
+</tr>
+</tbody>
+</table>
+<h5 id="341">3.4.1、上传与下载功能类<a class="headerlink" href="#341" title="Permanent link">&para;</a></h5>
+<ul>
+<li>脚本编译器</li>
+<li>yaml编译器</li>
+<li>脚本编译器</li>
+<li>加载本地策略</li>
+<li>加载集群配置策略</li>
+<li>加载节点配置策略</li>
+<li>上传文件到目标计算机</li>
+<li>单节点</li>
+<li>多节点</li>
+<li>下载文件到本地计算机</li>
+<li>单节点</li>
+<li>多节点</li>
+<li>目标计算机文件互传</li>
+<li>点对点互传</li>
+<li>点对多互传</li>
+</ul>
+<h5 id="342">3.4.2、脚本类<a class="headerlink" href="#342" title="Permanent link">&para;</a></h5>
+<ul>
+<li>编辑</li>
+<li>编辑子模块脚本</li>
+<li>编辑集群模块脚本</li>
+<li>查看</li>
+<li>查看子模块脚本</li>
+<li>查看集群模块脚本</li>
+<li>导出</li>
+<li>导出子模块脚本</li>
+<li>导出集群模块脚本</li>
+<li>导出所有脚本</li>
+</ul>
+<h5 id="343">3.4.3、部署类<a class="headerlink" href="#343" title="Permanent link">&para;</a></h5>
+<ul>
+<li>部署</li>
+<li>可批量选择节点部署不同功能脚本</li>
+<li>可集群部署不同节点不同功能脚本</li>
+<li>可单节点部署不同功能脚本</li>
+<li>终止</li>
+<li>可批量多节点、单节点、集群终止当前部署</li>
+</ul>
+<h3 id="35">3.5、功能插件类<a class="headerlink" href="#35" title="Permanent link">&para;</a></h3>
+<h5 id="351">3.5.1、基础运维类<a class="headerlink" href="#351" title="Permanent link">&para;</a></h5>
+<ul>
+<li>修改服务器计算机名</li>
+<li>修改服务器用户名</li>
+<li>修改服务器密码</li>
+<li>修改防火墙配置</li>
+<li>修改host</li>
+<li>修改DNS</li>
+<li>修改网关</li>
+<li>修改IP</li>
+<li>部署时间服务</li>
+<li>部署DNS服务</li>
+</ul>
+<h5 id="352">3.5.2、其他功能插件类<a class="headerlink" href="#352" title="Permanent link">&para;</a></h5>
+<ul>
+<li>OpenStack插件类</li>
+<li>K8S插件类</li>
+<li>Ceph插件类</li>
+</ul>
+<h3 id="36ssh">3.6、ssh远程显示类<a class="headerlink" href="#36ssh" title="Permanent link">&para;</a></h3>
+<ul>
+<li>可复制粘贴命令，中文显示综合端口</li>
+</ul>
+<h5 id="361ssh">3.6.1、集群SSH远程显示类<a class="headerlink" href="#361ssh" title="Permanent link">&para;</a></h5>
+<ul>
+<li>综合端口显示，点对多ssh远程</li>
+</ul>
+<h5 id="362ssh">3.6.2、单节点SSH远程显示类<a class="headerlink" href="#362ssh" title="Permanent link">&para;</a></h5>
+<ul>
+<li>点对点ssh远程</li>
+</ul>
+<h1 id="4api">4、窗口主体功能插件添加方式、规范、API与功能注释<a class="headerlink" href="#4api" title="Permanent link">&para;</a></h1>
+<h3 id="41">4.1、工具类<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<ul>
+<li>开发规范：</li>
+<li>API接口：</li>
+<li>功能注释：</li>
+<li>面板添加方式：</li>
+<li>后台功能模块添加方式：</li>
+<li>文件夹位置：</li>
+</ul>
+<h3 id="42">4.2、功能插件类<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
+<ul>
+<li>开发规范：</li>
+<li>API接口：</li>
+<li>功能注释：</li>
+<li>面板添加方式：</li>
+<li>后台功能模块添加方式：</li>
+<li>文件夹位置：</li>
+</ul>
+<h1 id="5api">5、后台API调用、规范与使用说明<a class="headerlink" href="#5api" title="Permanent link">&para;</a></h1>
+<h3 id="51">5.1、计算机硬件<a class="headerlink" href="#51" title="Permanent link">&para;</a></h3>
+<h5 id="511cpu">5.1.1、CPU<a class="headerlink" href="#511cpu" title="Permanent link">&para;</a></h5>
+<h5 id="512ram">5.1.2、RAM<a class="headerlink" href="#512ram" title="Permanent link">&para;</a></h5>
+<h3 id="52">5.2、计算机软件<a class="headerlink" href="#52" title="Permanent link">&para;</a></h3>
+<h5 id="521">5.2.1、本地软件包<a class="headerlink" href="#521" title="Permanent link">&para;</a></h5>
+<h5 id="522">5.2.2、源软件包<a class="headerlink" href="#522" title="Permanent link">&para;</a></h5>
+<h1 id="6">6、开发思路备注<a class="headerlink" href="#6" title="Permanent link">&para;</a></h1>
+<ul>
+<li>在各种操作前进行判断本地网络与目标网络是否连同</li>
+<li>在目标网络无法连通时提示：目标IP网络不通</li>
+<li>在集群节点都无法联通时，集群节点字体灰色</li>
+<li>在集群操作或多节点操作时提示无法连接的目标信息，并提示确实是否继续，如继续则屏蔽无法连接的节点去进行批量部署</li>
+<li>界面信息刷新频率</li>
+<li>软硬件信息刷新频率<ul>
+<li>cpu、内存等占比显示信息的刷新频率为0.5s</li>
+</ul>
+</li>
+<li>ssh界面刷屏频率为实时刷新</li>
+<li>集群显示信息为实时刷新</li>
+<li>系统必要信息显示区域为实时刷新</li>
+</ul>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  用<a href="https://www.mkdocs.org/">MkDocs</a>构建，使用<a href="https://readthedocs.org">Read the Docs</a>提供的<a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>。
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="版本">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
