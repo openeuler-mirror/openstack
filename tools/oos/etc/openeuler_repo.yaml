@@ -6,6 +6,7 @@ openeuler:
   A-Tune-Collector: A-Tune
   A-Tune-UI: A-Tune
   A-guard: sig-Gatekeeper
+  Agith: sig-ebpf
   AppAPIChecker: sig-OSRefTools
   AvxToNeon: sig-AccLib
   BiSheng-Adoptium: Compiler
@@ -1101,6 +1102,7 @@ src-openeuler:
   cups-pk-helper: Desktop
   curator: dev-utils
   curl: Networking
+  curl-rust: Networking
   curvesapi: dev-utils
   custodia: System-tool
   custom_build_tool: Application
