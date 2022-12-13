@@ -29,6 +29,9 @@ for release in releases:
     links = re.findall(r'https://.*\.tar\.gz', url_os_content)
     results = dict()
     for pkg_link in links:
+        if f"{release}-last" in pkg_link:
+            # tempest plugin version names like "stein-last" should be skipped.
+            continue
         # get name and package informations from link
         tmp = pkg_link.split("/")
         pkg_full_name = tmp[4]
