@@ -534,48 +534,40 @@ stein:
   automaton: 1.16.0
   barbican: 8.0.1
   barbican_tempest_plugin: 0.2.0
-  barbican_tempest_plugin-stein: last
   bifrost: 6.0.5
   blazar: 3.0.1
   blazar-dashboard: 1.3.1
   blazar-nova: 1.2.0
   blazar_tempest_plugin: 0.2.0
-  blazar_tempest_plugin-stein: last
   castellan: 1.2.3
   ceilometer: 12.1.1
   ceilometer-powervm: 8.0.0
   ceilometermiddleware: 1.4.0
   cinder: 14.3.1
-  cinder-tempest-plugin-stein: last
   cinder_tempest_plugin: 0.2.0
   cliff: 2.14.1
   cloudkitty: 9.0.1
   cloudkitty-dashboard: 8.1.0
   cloudkitty_tempest_plugin: 1.1.0
-  cloudkitty_tempest_plugin-stein: last
   congress-dashboard: 4.0.0
   congress-tempest-plugin: 0.2.0
   debtcollector: 1.21.0
   designate: 8.0.1
   designate-dashboard: 8.0.0
   designate-tempest-plugin: 0.6.0
-  designate-tempest-plugin-stein: last
   ec2-api: 8.0.0
   ec2api-tempest-plugin: 0.2.0
-  ec2api-tempest-plugin-stein: last
   freezer: 7.1.0
   freezer-api: 7.1.0
   freezer-dr: 7.1.0
   freezer-web-ui: 7.1.0
   freezer_tempest_plugin: 0.1.0
-  freezer_tempest_plugin-stein: last
   futurist: 1.8.1
   glance: 18.0.1
   glance_store: 0.28.1
   heat-agents: 1.8.0
   heat-dashboard: 1.5.1
   heat-tempest-plugin: 0.3.0
-  heat-tempest-plugin-stein: last
   heat-translator: 1.3.1
   horizon: 15.3.2
   ironic: 12.1.6
@@ -583,13 +575,11 @@ stein:
   ironic-lib: 2.16.4
   ironic-python-agent: 3.6.5
   ironic-tempest-plugin: 1.3.0
-  ironic-tempest-plugin-stein: last
   ironic-ui: 3.4.1
   karbor: 1.3.0
   karbor-dashboard: 1.2.1
   keystone: 15.0.1
   keystone_tempest_plugin: 0.2.0
-  keystone_tempest_plugin-stein: last
   keystoneauth1: 3.13.2
   keystonemiddleware: 6.0.1
   kolla: 8.0.5
@@ -598,14 +588,11 @@ stein:
   kuryr-lib: 0.9.0
   kuryr-libnetwork: 3.0.1
   kuryr-tempest-plugin: 0.4.1
-  kuryr-tempest-plugin-stein: last
   magnum: 8.2.1
   magnum-ui: 5.1.0
   magnum_tempest_plugin: 0.2.0
-  magnum_tempest_plugin-stein: last
   manila: 8.1.4
   manila-tempest-plugin: 0.3.0
-  manila-tempest-plugin-stein: last
   manila-ui: 2.18.1
   masakari: 7.1.0
   masakari-dashboard: 0.3.1
@@ -616,7 +603,6 @@ stein:
   mistral-extra: 8.1.0
   mistral-lib: 1.1.1
   mistral_tempest_tests: 0.2.0
-  mistral_tempest_tests-stein: last
   monasca-agent: 2.10.1
   monasca-api: 3.0.1
   monasca-common: 2.13.0
@@ -626,14 +612,12 @@ stein:
   monasca-persister: 1.14.0
   monasca-statsd: 1.11.0
   monasca-tempest-plugin: 1.0.0
-  monasca-tempest-plugin-stein: last
   monasca-ui: 1.15.1
   mox3: 0.27.0
   murano: 7.1.0
   murano-agent: 3.6.0
   murano-dashboard: 7.0.0
   murano-tempest-plugin: 1.0.0
-  murano-tempest-plugin-stein: last
   networking-bagpipe: 10.0.1
   networking-baremetal: 1.3.0
   networking-bgpvpn: 10.0.0
@@ -652,7 +636,6 @@ stein:
   neutron-lbaas-dashboard: 6.0.1
   neutron-lib: 1.25.1
   neutron-tempest-plugin: 0.3.0
-  neutron-tempest-plugin-stein: last
   neutron-vpnaas: 14.0.1
   neutron-vpnaas-dashboard: 1.5.2
   nova: 19.3.2
@@ -661,7 +644,6 @@ stein:
   octavia-dashboard: 3.1.0
   octavia-lib: 1.1.1
   octavia-tempest-plugin: 1.0.0
-  octavia-tempest-plugin-stein: last
   openstack-congress: 9.0.0
   openstack-cyborg: 2.0.0
   openstack-heat: 12.2.0
@@ -704,7 +686,6 @@ stein:
   oslotest: 3.7.2
   osprofiler: 2.6.1
   oswin-tempest-plugin: 0.2.0
-  oswin-tempest-plugin-stein: last
   ovsdbapp: 0.15.1
   panko: 6.0.0
   pankoclient: 0.6.0
@@ -806,18 +787,15 @@ stein:
   sahara-plugin-storm: 1.0.0
   sahara-plugin-vanilla: 1.0.0
   sahara-tests: 0.9.0
-  sahara-tests-stein: last
   searchlight: 6.0.0
   searchlight-ui: 6.0.0
   senlin: 7.0.0
   senlin-dashboard: 0.10.1
   senlin-tempest-plugin: 0.2.0
-  senlin-tempest-plugin-stein: last
   shade: 1.31.0
   solum: 6.0.1
   solum-dashboard: 2.6.0
   solum-tempest-plugin: 1.0.0
-  solum-tempest-plugin-stein: last
   stevedore: 1.30.1
   storlets: 3.0.0
   sushy: 1.8.2
@@ -826,10 +804,8 @@ stein:
   tacker-horizon: 0.14.1
   taskflow: 3.5.0
   telemetry_tempest_plugin: 0.3.0
-  telemetry_tempest_plugin-stein: last
   tempest: 20.0.0
   tempest-horizon: 0.1.0
-  tempest-stein: last
   tooz: 1.64.3
   tosca-parser: 1.4.0
   tricircle: 6.0.0
@@ -843,21 +819,16 @@ stein:
   trove: 11.0.0
   trove-dashboard: 12.0.0
   trove_tempest_plugin: 0.2.0
-  trove_tempest_plugin-stein: last
   vitrage: 4.3.2
   vitrage-dashboard: 1.9.1
   vitrage-tempest-plugin: 2.2.1
-  vitrage-tempest-plugin-stein: last
   watcher-dashboard: 1.12.0
   watcher-tempest-plugin: 1.1.0
-  watcher-tempest-plugin-stein: last
   zaqar: 8.0.1
   zaqar-ui: 6.0.0
   zaqar_tempest_plugin: 0.2.0
-  zaqar_tempest_plugin-stein: last
   zun: 3.0.1
   zun-tempest-plugin: 3.0.0
-  zun-tempest-plugin-stein: last
   zun-ui: 3.0.1
 train:
   aodh: 9.0.1
@@ -865,26 +836,22 @@ train:
   automaton: 1.17.0
   barbican: 9.0.1
   barbican_tempest_plugin: 0.3.0
-  barbican_tempest_plugin-train: last
   bifrost: 7.2.2
   blazar: 4.0.1
   blazar-dashboard: 2.0.1
   blazar-nova: 1.3.0
   blazar_tempest_plugin: 0.3.0
-  blazar_tempest_plugin-train: last
   castellan: 1.3.4
   ceilometer: 13.1.2
   ceilometer-powervm: 9.0.0
   ceilometermiddleware: 1.5.0
   cinder: 15.6.0
   cinder-tempest-plugin: 0.3.0
-  cinder-tempest-plugin-train: last
   cinderlib: 1.0.1
   cliff: 2.16.0
   cloudkitty: 11.1.0
   cloudkitty-dashboard: 9.0.0
   cloudkitty_tempest_plugin: 1.2.0
-  cloudkitty_tempest_plugin-train: last
   compute-hyperv: 9.0.1
   congress-dashboard: 5.0.0
   congress-tempest-plugin: 0.3.0
@@ -893,23 +860,19 @@ train:
   designate: 9.0.2
   designate-dashboard: 9.0.1
   designate-tempest-plugin: 0.7.0
-  designate-tempest-plugin-train: last
   ec2-api: 9.0.1
   ec2api-tempest-plugin: 0.3.0
-  ec2api-tempest-plugin-train: last
   freezer: 7.2.0
   freezer-api: 7.2.0
   freezer-dr: 7.2.0
   freezer-web-ui: 7.2.0
   freezer_tempest_plugin: 0.2.0
-  freezer_tempest_plugin-train: last
   futurist: 1.9.0
   glance: 19.0.4
   glance_store: 1.0.1
   heat-agents: 1.10.0
   heat-dashboard: 2.0.2
   heat-tempest-plugin: 0.4.0
-  heat-tempest-plugin-train: last
   heat-translator: 1.4.1
   horizon: 16.2.2
   ironic: 13.0.7
@@ -918,7 +881,6 @@ train:
   ironic-prometheus-exporter: 1.1.2
   ironic-python-agent: 5.0.4
   ironic-tempest-plugin: 1.5.1
-  ironic-tempest-plugin-train: last
   ironic-ui: 3.5.5
   karbor: 1.4.0
   karbor-dashboard: 1.3.0
@@ -927,7 +889,6 @@ train:
   kayobe-config-dev: 7.3.0
   keystone: 16.0.2
   keystone_tempest_plugin: 0.3.0
-  keystone_tempest_plugin-train: last
   keystoneauth1: 3.17.4
   keystonemiddleware: 7.0.1
   kolla: 9.4.0
@@ -937,14 +898,11 @@ train:
   kuryr-lib: 1.1.1
   kuryr-libnetwork: 4.0.2
   kuryr-tempest-plugin: 0.5.0
-  kuryr-tempest-plugin-train: last
   magnum: 9.4.1
   magnum-ui: 5.3.1
   magnum_tempest_plugin: 0.3.0
-  magnum_tempest_plugin-train: last
   manila: 9.1.5
   manila-tempest-plugin: 0.4.1
-  manila-tempest-plugin-train: last
   manila-ui: 2.19.2
   masakari: 8.1.2
   masakari-dashboard: 1.0.1
@@ -955,7 +913,6 @@ train:
   mistral-extra: 9.0.0
   mistral-lib: 1.2.1
   mistral_tempest_tests: 0.3.0
-  mistral_tempest_tests-train: last
   monasca-agent: 2.12.1
   monasca-api: 3.2.0
   monasca-common: 2.16.1
@@ -965,14 +922,12 @@ train:
   monasca-persister: 1.15.0
   monasca-statsd: 1.12.0
   monasca-tempest-plugin: 1.1.0
-  monasca-tempest-plugin-train: last
   monasca-ui: 1.17.2
   mox3: 0.28.0
   murano: 8.1.1
   murano-agent: 4.0.0
   murano-dashboard: 8.0.0
   murano-tempest-plugin: 1.1.0
-  murano-tempest-plugin-train: last
   networking-bagpipe: 11.0.2
   networking-baremetal: 1.4.0
   networking-bgpvpn: 11.0.1
@@ -989,7 +944,6 @@ train:
   neutron-fwaas-dashboard: 2.1.0
   neutron-lib: 1.29.2
   neutron-tempest-plugin: 0.6.0
-  neutron-tempest-plugin-train: last
   neutron-vpnaas: 15.0.0
   neutron-vpnaas-dashboard: 1.6.1
   nova: 20.6.1
@@ -998,7 +952,6 @@ train:
   octavia-dashboard: 4.0.2
   octavia-lib: 1.4.0
   octavia-tempest-plugin: 1.2.0
-  octavia-tempest-plugin-train: last
   openstack-congress: 10.0.0
   openstack-cyborg: 3.0.1
   openstack-heat: 13.1.0
@@ -1039,7 +992,6 @@ train:
   oslotest: 3.8.1
   osprofiler: 2.8.2
   oswin-tempest-plugin: 0.3.0
-  oswin-tempest-plugin-train: last
   ovsdbapp: 0.17.5
   panko: 7.1.0
   pankoclient: 0.7.0
@@ -1141,18 +1093,15 @@ train:
   sahara-plugin-storm: 2.0.0
   sahara-plugin-vanilla: 2.0.0
   sahara-tests: 0.9.1
-  sahara-tests-train: last
   searchlight: 7.0.0
   searchlight-ui: 7.0.0
   senlin: 8.0.1
   senlin-dashboard: 0.11.0
   senlin-tempest-plugin: 0.3.0
-  senlin-tempest-plugin-train: last
   shade: 1.32.0
   solum: 7.0.0
   solum-dashboard: 3.0.1
   solum-tempest-plugin: 1.1.0
-  solum-tempest-plugin-train: last
   stevedore: 1.31.0
   storlets: 4.0.0
   sushy: 2.0.5
@@ -1161,10 +1110,8 @@ train:
   tacker-horizon: 0.15.0
   taskflow: 3.7.1
   telemetry_tempest_plugin: 0.4.0
-  telemetry_tempest_plugin-train: last
   tempest: 22.1.0
   tempest-horizon: 0.2.0
-  tempest-train: last
   tooz: 1.66.3
   tosca-parser: 1.6.1
   tricircle: 7.0.0
@@ -1178,21 +1125,16 @@ train:
   trove: 12.1.0
   trove-dashboard: 13.0.0
   trove_tempest_plugin: 0.3.0
-  trove_tempest_plugin-train: last
   vitrage: 5.0.2
   vitrage-dashboard: 2.0.0
   vitrage-tempest-plugin: 3.0.0
-  vitrage-tempest-plugin-train: last
   watcher-dashboard: 2.0.0
   watcher-tempest-plugin: 1.2.0
-  watcher-tempest-plugin-train: last
   zaqar: 9.0.1
   zaqar-ui: 7.0.0
   zaqar_tempest_plugin: 0.3.0
-  zaqar_tempest_plugin-train: last
   zun: 4.0.2
   zun-tempest-plugin: 3.1.0
-  zun-tempest-plugin-train: last
   zun-ui: 4.0.1
 ussuri:
   adjutant-ui: 0.5.1
@@ -1201,43 +1143,36 @@ ussuri:
   automaton: 2.0.1
   barbican: 10.1.0
   barbican_tempest_plugin: 1.0.0
-  barbican_tempest_plugin-ussuri: last
   bifrost: 8.1.2
   blazar: 5.0.1
   blazar-dashboard: 3.0.1
   blazar-nova: 2.0.0
   blazar_tempest_plugin: 0.4.0
-  blazar_tempest_plugin-ussuri: last
   castellan: 3.0.4
   ceilometer: 14.1.0
   ceilometermiddleware: 2.0.0
   cinder: 16.4.2
   cinder-tempest-plugin: 1.0.0
-  cinder-tempest-plugin-ussuri: last
   cinderlib: 2.1.0
   cliff: 3.1.0
   cloudkitty: 12.1.1
   cloudkitty-dashboard: 10.0.0
   cloudkitty_tempest_plugin: 2.0.0
-  cloudkitty_tempest_plugin-ussuri: last
   compute-hyperv: 10.0.1
   congress-dashboard: 6.0.0
   congress-tempest-plugin: 1.0.0
   cyborg-tempest-plugin: 1.0.0
-  cyborg-tempest-plugin-ussuri: last
   debtcollector: 2.0.1
   designate: 10.0.2
   designate-dashboard: 10.0.0
   designate-tempest-plugin: 0.8.0
   ec2-api: 10.0.0
   ec2api-tempest-plugin: 1.0.0
-  ec2api-tempest-plugin-ussuri: last
   freezer: 8.0.0
   freezer-api: 8.0.0
   freezer-dr: 8.0.0
   freezer-web-ui: 8.0.0
   freezer_tempest_plugin: 1.0.0
-  freezer_tempest_plugin-ussuri: last
   futurist: 2.1.1
   glance: 20.2.0
   glance_store: 2.0.1
@@ -1252,7 +1187,6 @@ ussuri:
   ironic-prometheus-exporter: 2.0.1
   ironic-python-agent: 6.1.3
   ironic-tempest-plugin: 2.0.0
-  ironic-tempest-plugin-ussuri: last
   ironic-ui: 4.0.1
   karbor: 1.5.0
   karbor-dashboard: 1.4.0
@@ -1270,14 +1204,11 @@ ussuri:
   kuryr-lib: 2.0.1
   kuryr-libnetwork: 5.0.1
   kuryr-tempest-plugin: 0.6.0
-  kuryr-tempest-plugin-ussuri: last
   magnum: 10.1.0
   magnum-ui: 6.0.1
   magnum_tempest_plugin: 1.0.0
-  magnum_tempest_plugin-ussuri: last
   manila: 10.2.0
   manila-tempest-plugin: 1.0.0
-  manila-tempest-plugin-ussuri: last
   manila-ui: 3.1.0
   masakari: 9.1.3
   masakari-dashboard: 2.0.2
@@ -1296,14 +1227,12 @@ ussuri:
   monasca-persister: 2.0.1
   monasca-statsd: 2.0.0
   monasca-tempest-plugin: 2.0.0
-  monasca-tempest-plugin-ussuri: last
   monasca-ui: 2.0.2
   mox3: 1.0.0
   murano: 9.0.0
   murano-agent: 5.0.0
   murano-dashboard: 9.0.0
   murano-tempest-plugin: 2.0.0
-  murano-tempest-plugin-ussuri: last
   networking-bagpipe: 12.0.1
   networking-baremetal: 2.0.0
   networking-bgpvpn: 12.0.0
@@ -1318,7 +1247,6 @@ ussuri:
   neutron-fwaas-dashboard: 3.0.0
   neutron-lib: 2.3.0
   neutron-tempest-plugin: 1.1.0
-  neutron-tempest-plugin-ussuri: last
   neutron-vpnaas: 16.0.0
   neutron-vpnaas-dashboard: 2.0.0
   nova: 21.2.4
@@ -1326,7 +1254,6 @@ ussuri:
   octavia-dashboard: 5.0.2
   octavia-lib: 2.0.0
   octavia-tempest-plugin: 1.4.0
-  octavia-tempest-plugin-ussuri: last
   openstack-congress: 11.0.0
   openstack-cyborg: 4.0.1
   openstack-heat: 14.2.0
@@ -1367,7 +1294,6 @@ ussuri:
   oslotest: 4.2.0
   osprofiler: 3.1.0
   oswin-tempest-plugin: 1.0.0
-  oswin-tempest-plugin-ussuri: last
   ovn-octavia-provider: 0.1.3
   ovsdbapp: 1.2.3
   panko: 8.1.0
@@ -1472,7 +1398,6 @@ ussuri:
   sahara-plugin-storm: 3.0.0
   sahara-plugin-vanilla: 3.0.0
   sahara-tests: 0.10.0
-  sahara-tests-ussuri: last
   searchlight: 8.0.0
   searchlight-ui: 8.0.0
   senlin: 9.0.1
@@ -1482,7 +1407,6 @@ ussuri:
   solum: 8.0.0
   solum-dashboard: 4.0.0
   solum-tempest-plugin: 2.0.0
-  solum-tempest-plugin-ussuri: last
   stevedore: 1.32.0
   storlets: 5.0.0
   sushy: 3.2.3
@@ -1492,10 +1416,8 @@ ussuri:
   tacker-horizon: 1.0.0
   taskflow: 4.1.0
   telemetry_tempest_plugin: 1.0.0
-  telemetry_tempest_plugin-ussuri: last
   tempest: 24.0.0
   tempest-horizon: 1.0.0
-  tempest-ussuri: last
   tooz: 2.3.1
   tosca-parser: 2.0.0
   tricircle: 8.0.0
@@ -1509,21 +1431,16 @@ ussuri:
   trove: 13.0.1
   trove-dashboard: 14.1.0
   trove_tempest_plugin: 1.0.0
-  trove_tempest_plugin-ussuri: last
   vitrage: 7.1.0
   vitrage-dashboard: 3.1.0
   vitrage-tempest-plugin: 4.0.0
-  vitrage-tempest-plugin-ussuri: last
   watcher-dashboard: 3.0.1
   watcher-tempest-plugin: 2.0.0
-  watcher-tempest-plugin-ussuri: last
   zaqar: 10.0.0
   zaqar-ui: 8.0.0
   zaqar_tempest_plugin: 1.0.0
-  zaqar_tempest_plugin-ussuri: last
   zun: 5.0.1
   zun-tempest-plugin: 4.0.0
-  zun-tempest-plugin-ussuri: last
   zun-ui: 5.0.0
 victoria:
   adjutant-ui: 1.0.0
@@ -1533,41 +1450,34 @@ victoria:
   automaton: 2.2.0
   barbican: 11.0.0
   barbican_tempest_plugin: 1.1.0
-  barbican_tempest_plugin-victoria: last
   bifrost: 9.1.0
   blazar: 6.0.2
   blazar-dashboard: 4.0.0
   blazar-nova: 2.1.0
   blazar_tempest_plugin: 0.5.0
-  blazar_tempest_plugin-victoria: last
   castellan: 3.6.1
   ceilometer: 15.1.0
   ceilometermiddleware: 2.1.0
   cinder: 17.4.0
   cinder-tempest-plugin: 1.2.0
-  cinder-tempest-plugin-victoria: last
   cinderlib: 3.1.0
   cliff: 3.4.0
   cloudkitty: 13.0.2
   cloudkitty-dashboard: 11.0.1
   cloudkitty_tempest_plugin: 2.1.0
-  cloudkitty_tempest_plugin-victoria: last
   compute-hyperv: 11.0.0
   cyborg-tempest-plugin: 1.1.0
-  cyborg-tempest-plugin-victoria: last
   debtcollector: 2.2.0
   designate: 11.0.2
   designate-dashboard: 11.0.0
   designate-tempest-plugin: 0.9.0
   ec2-api: 11.1.0
   ec2api-tempest-plugin: 1.1.0
-  ec2api-tempest-plugin-victoria: last
   freezer: 9.0.0
   freezer-api: 9.0.0
   freezer-dr: 9.0.0
   freezer-web-ui: 9.0.0
   freezer_tempest_plugin: 1.1.0
-  freezer_tempest_plugin-victoria: last
   futurist: 2.3.0
   glance: 21.1.0
   glance_store: 2.3.1
@@ -1582,7 +1492,6 @@ victoria:
   ironic-prometheus-exporter: 2.1.1
   ironic-python-agent: 6.4.4
   ironic-tempest-plugin: 2.1.0
-  ironic-tempest-plugin-victoria: last
   ironic-ui: 4.2.0
   karbor: 1.6.0
   karbor-dashboard: 1.5.1
@@ -1599,14 +1508,11 @@ victoria:
   kuryr-lib: 2.1.1
   kuryr-libnetwork: 6.0.0
   kuryr-tempest-plugin: 0.7.0
-  kuryr-tempest-plugin-victoria: last
   magnum: 11.2.1
   magnum-ui: 7.0.1
   magnum_tempest_plugin: 1.1.0
-  magnum_tempest_plugin-victoria: last
   manila: 11.1.2
   manila-tempest-plugin: 1.2.0
-  manila-tempest-plugin-victoria: last
   manila-ui: 4.1.0
   masakari: 10.0.3
   masakari-dashboard: 3.0.1
@@ -1625,13 +1531,11 @@ victoria:
   monasca-persister: 3.0.0
   monasca-statsd: 2.1.0
   monasca-tempest-plugin: 2.1.0
-  monasca-tempest-plugin-victoria: last
   monasca-ui: 3.0.0
   murano: 10.0.0
   murano-agent: 6.0.1
   murano-dashboard: 10.0.0
   murano-tempest-plugin: 2.1.0
-  murano-tempest-plugin-victoria: last
   networking-bagpipe: 13.0.0
   networking-baremetal: 3.0.0
   networking-bgpvpn: 13.0.0
@@ -1644,7 +1548,6 @@ victoria:
   neutron-dynamic-routing: 17.0.0
   neutron-lib: 2.6.2
   neutron-tempest-plugin: 1.2.0
-  neutron-tempest-plugin-victoria: last
   neutron-vpnaas: 17.0.0
   neutron-vpnaas-dashboard: 3.0.0
   nova: 22.4.0
@@ -1652,7 +1555,6 @@ victoria:
   octavia-dashboard: 6.0.1
   octavia-lib: 2.2.0
   octavia-tempest-plugin: 1.5.0
-  octavia-tempest-plugin-victoria: last
   openstack-cyborg: 5.0.1
   openstack-heat: 15.1.0
   openstack-placement: 4.0.0
@@ -1691,7 +1593,6 @@ victoria:
   oslotest: 4.4.1
   osprofiler: 3.4.0
   oswin-tempest-plugin: 1.1.0
-  oswin-tempest-plugin-victoria: last
   ovn-octavia-provider: 0.4.1
   ovsdbapp: 1.6.1
   panko: 9.0.0
@@ -1793,7 +1694,6 @@ victoria:
   sahara-plugin-storm: 4.0.0
   sahara-plugin-vanilla: 4.0.0
   sahara-tests: 0.11.0
-  sahara-tests-victoria: last
   searchlight: 9.0.0
   searchlight-ui: 9.0.0
   senlin: 10.0.0
@@ -1802,7 +1702,6 @@ victoria:
   solum: 9.0.0
   solum-dashboard: 5.0.0
   solum-tempest-plugin: 2.1.0
-  solum-tempest-plugin-victoria: last
   stevedore: 3.2.2
   storlets: 6.0.0
   sushy: 3.4.6
@@ -1812,10 +1711,8 @@ victoria:
   tacker-horizon: 2.0.0
   taskflow: 4.5.0
   telemetry_tempest_plugin: 1.1.0
-  telemetry_tempest_plugin-victoria: last
   tempest: 25.0.1
   tempest-horizon: 1.1.0
-  tempest-victoria: last
   tooz: 2.7.2
   tosca-parser: 2.1.1
   tripleo-common: 13.3.0
@@ -1827,21 +1724,16 @@ victoria:
   trove: 14.1.0
   trove-dashboard: 15.0.1
   trove_tempest_plugin: 1.1.0
-  trove_tempest_plugin-victoria: last
   vitrage: 7.3.0
   vitrage-dashboard: 3.2.0
   vitrage-tempest-plugin: 5.1.0
-  vitrage-tempest-plugin-victoria: last
   watcher-dashboard: 4.0.1
   watcher-tempest-plugin: 2.1.0
-  watcher-tempest-plugin-victoria: last
   zaqar: 11.0.0
   zaqar-ui: 9.0.0
   zaqar_tempest_plugin: 1.1.0
-  zaqar_tempest_plugin-victoria: last
   zun: 6.0.0
   zun-tempest-plugin: 4.1.0
-  zun-tempest-plugin-victoria: last
   zun-ui: 6.0.0
 wallaby:
   adjutant-ui: 2.0.0
@@ -2167,15 +2059,15 @@ xena:
   ironic-python-agent-builder: 3.0.0
   ironic-tempest-plugin: 2.3.1
   ironic-ui: 5.0.0
-  kayobe: 11.5.0
+  kayobe: 11.6.0
   kayobe-config: 11.4.0
   kayobe-config-dev: 11.5.0
   keystone: 20.0.0
   keystone_tempest_plugin: 0.8.0
   keystoneauth1: 4.4.0
   keystonemiddleware: 9.3.0
-  kolla: 13.7.0
-  kolla-ansible: 13.6.0
+  kolla: 13.8.0
+  kolla-ansible: 13.7.0
   kuryr-kubernetes: 5.0.0
   kuryr-lib: 2.4.0
   kuryr-libnetwork: 8.0.0
@@ -2186,7 +2078,7 @@ xena:
   manila: 13.0.4
   manila-tempest-plugin: 1.6.0
   manila-ui: 6.0.0
-  masakari: 12.0.2
+  masakari: 12.0.3
   masakari-dashboard: 5.0.0
   masakari-monitors: 12.1.0
   metalsmith: 1.5.3
@@ -2219,7 +2111,7 @@ xena:
   neutron-dynamic-routing: 19.1.0
   neutron-lib: 2.15.2
   neutron-tempest-plugin: 1.7.0
-  neutron-vpnaas: 19.0.0
+  neutron-vpnaas: 19.0.1
   neutron-vpnaas-dashboard: 5.0.0
   nova: 24.1.1
   octavia: 9.0.1
@@ -2373,7 +2265,7 @@ xena:
   zun-ui: 8.0.0
 yoga:
   adjutant-ui: 4.0.0
-  ansible-collection-kolla: 1.1.0
+  ansible-collection-kolla: 1.2.0
   ansible-role-atos-hsm: 3.0.0
   ansible-role-lunasa-hsm: 3.0.0
   ansible-role-thales-hsm: 3.0.0
@@ -2425,15 +2317,15 @@ yoga:
   ironic-python-agent-builder: 4.0.1
   ironic-tempest-plugin: 2.4.0
   ironic-ui: 5.1.0
-  kayobe: 12.5.0
+  kayobe: 12.6.0
   kayobe-config: 12.4.0
   kayobe-config-dev: 12.4.0
   keystone: 21.0.0
   keystone_tempest_plugin: 0.9.0
   keystoneauth1: 4.5.0
   keystonemiddleware: 9.4.0
-  kolla: 14.7.0
-  kolla-ansible: 14.6.0
+  kolla: 14.8.0
+  kolla-ansible: 14.7.0
   kuryr-kubernetes: 6.0.0
   kuryr-lib: 2.5.0
   kuryr-libnetwork: 9.0.0
@@ -2444,7 +2336,7 @@ yoga:
   manila: 14.0.1
   manila-tempest-plugin: 1.7.0
   manila-ui: 7.0.0
-  masakari: 13.0.2
+  masakari: 13.0.3
   masakari-dashboard: 6.0.0
   masakari-monitors: 13.1.0
   metalsmith: 1.6.3
@@ -2477,7 +2369,7 @@ yoga:
   neutron-dynamic-routing: 20.0.0
   neutron-lib: 2.20.0
   neutron-tempest-plugin: 1.9.0
-  neutron-vpnaas: 20.0.0
+  neutron-vpnaas: 20.0.1
   neutron-vpnaas-dashboard: 6.0.0
   nova: 25.0.1
   octavia: 10.0.0
@@ -2629,6 +2521,7 @@ yoga:
   zun-ui: 9.0.0
 zed:
   adjutant-ui: 5.0.0
+  ansible-collection-kolla: 2.0.0.0rc1
   ansible-role-atos-hsm: 4.0.0
   ansible-role-lunasa-hsm: 4.0.0
   ansible-role-thales-hsm: 4.0.0
@@ -2683,6 +2576,8 @@ zed:
   keystone_tempest_plugin: 0.10.0
   keystoneauth1: 5.0.0
   keystonemiddleware: 10.1.0
+  kolla: 15.0.0.0rc1
+  kolla-ansible: 15.0.0.0rc1
   kuryr-kubernetes: 7.0.0
   kuryr-lib: 2.6.0
   kuryr-libnetwork: 10.0.0
@@ -2693,7 +2588,7 @@ zed:
   manila: 15.1.0
   manila-tempest-plugin: 1.10.0
   manila-ui: 8.0.0
-  masakari: 14.0.1
+  masakari: 14.0.2
   masakari-dashboard: 7.0.0
   masakari-monitors: 14.0.0
   metalsmith: 1.8.0
@@ -2866,7 +2761,7 @@ zed:
   tacker-horizon: 6.0.0
   tap-as-a-service: 10.0.0
   telemetry_tempest_plugin: 1.7.0
-  tempest: 32.0.0
+  tempest: 33.0.0
   tosca-parser: 2.6.0
   trove: 18.0.0
   trove-dashboard: 19.0.0
