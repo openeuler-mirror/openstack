@@ -18,8 +18,10 @@ BRANCHS = [
 ]
 
 
-OBS_PACKAGE_BUILD_RESULT_URL = 'https://build.openeuler.org/build/%(branch)s/_result'
-OBS_PROJECT_URL = 'https://build.openeuler.org/package/show/%(branch)s/%(project)s'
+OBS_PACKAGE_BUILD_RESULT_URL = 'https://build.openeuler.openatom.cn/build/%(branch)s/_result'
+OBS_PROJECT_URL = 'https://build.openeuler.openatom.cn/show/%(branch)s/%(project)s'
+OBS_PACKAGE_URL = 'https://build.openeuler.openatom.cn/source/%(branch)s/'
+
 PROJECT_MARKDOWN_FORMAT = '[%(project)s](%(url)s)'
 GITEE_ISSUE_LIST_URL = 'https://gitee.com/api/v5/repos/openeuler/openstack/issues?state=open&labels=kind/obs-failed&sort=created&direction=desc&page=1&per_page=20'
 GITEE_ISSUE_CREATE_URL = 'https://gitee.com/api/v5/repos/openeuler/issues'
@@ -174,6 +176,54 @@ def format_content_for_html(input_dict):
         output_body += 'All package build success.'
 
     return output_attach, output_body
+
+
+def check_missing_project(version):
+    """列出SP1中缺失的next项目"""
+    diff = []
+    next_projects_res = []
+    sp1_projects_res = []
+    next_projects = 'openEuler:22.03:LTS:Next:Epol:Multi-Version:OpenStack:%s' % version
+    sp1_projects = 'openEuler:22.03:LTS:SP1:Epol:Multi-Version:OpenStack:%s' % version
+    branch_session = requests.session()
+    branch_session.auth = (OBS_USER_NAME, OBS_USER_PASSWORD)
+
+    res = branch_session.get(OBS_PACKAGE_URL % {'branch': next_projects})
+    next_projects_dict = xmltodict.parse(res.content.decode())['directory']['entry']
+    for next_project in next_projects_dict:
+        next_projects_res.append(next_project['@name'])
+    res = branch_session.get(OBS_PACKAGE_URL % {'branch': sp1_projects})
+    sp1_projects_dict = xmltodict.parse(res.content.decode())['directory']['entry']
+    for sp1_project in sp1_projects_dict:
+        sp1_projects_res.append(sp1_project['@name'])
+
+    # same as set
+    # for next_project in next_projects_res:
+    #     if next_project not in sp1_projects_res:
+    #         diff.append(next_project)
+    # return diff
+
+    return set(next_projects_res) - set(sp1_projects_res)
+
+
+def check_missing_branch(version):
+    """列出缺少SP1分支、但已有Next分支的项目"""
+    next_projects_res = []
+    result = []
+    next_projects = 'openEuler:22.03:LTS:Next:Epol:Multi-Version:OpenStack:%s' % version
+    gitee_branch = 'Multi-Version_OpenStack-%s_openEuler-22.03-LTS-SP1' % version
+    branch_session = requests.session()
+    branch_session.auth = (OBS_USER_NAME, OBS_USER_PASSWORD)    
+    res = branch_session.get(OBS_PACKAGE_URL % {'branch': next_projects})
+    next_projects_dict = xmltodict.parse(res.content.decode())['directory']['entry']
+    for next_project in next_projects_dict:
+        next_projects_res.append(next_project['@name'])
+    for project in next_projects_res:
+        print("checking %s" % project)
+        response = requests.get('https://gitee.com/api/v5/repos/src-openeuler/%s/branches/%s?access_token=%s' % (project, gitee_branch, GITEE_ACCESS_TOKEN))
+        if response.status_code == 404:
+            result.append(project)
+    return result
 
 
 def main():
