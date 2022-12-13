@@ -213,6 +213,7 @@ openeuler:
   linux-operation: sig-OSCourse
   llvm-project: Compiler
   lxcfs-tools: iSulad
+  lzu-icc-nsg: sig-OSCourse
   marketing: Marketing
   mate-desktop: sig-mate-desktop
   mcs: sig-embedded
@@ -1375,6 +1376,7 @@ src-openeuler:
   ethercat-igh: sig-industrial-control
   ethtool: Networking
   etmem: Storage
+  eunomia-bpf: sig-ebpf
   evince: GNOME
   evo-inflector: sig-Java
   evolution-data-server: Desktop
