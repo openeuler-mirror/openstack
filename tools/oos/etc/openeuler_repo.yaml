@@ -170,6 +170,7 @@ openeuler:
   kconfigDetector: Kernel
   kernel: Kernel
   kernel-cloudnative: Kernel
+  kernel-docs: Kernel
   kiran-authentication-service: sig-KIRAN-DESKTOP
   kiran-biometrics: sig-KIRAN-DESKTOP
   kiran-calculator: sig-KIRAN-DESKTOP
