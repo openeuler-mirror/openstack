@@ -51,6 +51,7 @@ openeuler:
   X-diagnosis: sig-ops
   aarch32-rootfs-builder: sig-Yocto
   abichecker: dev-utils
+  ai-tools: ai
   allwinner-kernel: sig-RaspberryPi
   anbox: sig-recycle
   aops-apollo: sig-ops
@@ -3055,6 +3056,7 @@ src-openeuler:
   libnotify: Desktop
   libnsl2: Base-service
   libntlm: Application
+  libnvme: System-tool
   liboauth: Base-service
   libofa: sig-recycle
   libogg: Computing
