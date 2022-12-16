@@ -2521,7 +2521,7 @@ yoga:
   zun-ui: 9.0.0
 zed:
   adjutant-ui: 5.0.0
-  ansible-collection-kolla: 2.0.0.0rc1
+  ansible-collection-kolla: 2.0.0
   ansible-role-atos-hsm: 4.0.0
   ansible-role-lunasa-hsm: 4.0.0
   ansible-role-thales-hsm: 4.0.0
@@ -2576,8 +2576,8 @@ zed:
   keystone_tempest_plugin: 0.10.0
   keystoneauth1: 5.0.0
   keystonemiddleware: 10.1.0
-  kolla: 15.0.0.0rc1
-  kolla-ansible: 15.0.0.0rc1
+  kolla: 15.0.0
+  kolla-ansible: 15.0.0
   kuryr-kubernetes: 7.0.0
   kuryr-lib: 2.6.0
   kuryr-libnetwork: 10.0.0
