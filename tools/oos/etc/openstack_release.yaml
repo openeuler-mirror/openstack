@@ -2540,6 +2540,7 @@ zed:
   ceilometermiddleware: 3.0.0
   cinder: 21.0.0
   cinder-tempest-plugin: 1.7.2
+  cinderlib: 5.0.0
   cliff: 4.0.0
   cloudkitty: 17.0.0
   cloudkitty-dashboard: 15.0.0
@@ -2572,6 +2573,9 @@ zed:
   ironic-python-agent-builder: 5.0.0
   ironic-tempest-plugin: 2.5.0
   ironic-ui: 6.0.0
+  kayobe: 13.0.0.0rc1
+  kayobe-config: 13.0.0.0rc1
+  kayobe-config-dev: 13.0.0.0rc1
   keystone: 22.0.0
   keystone_tempest_plugin: 0.10.0
   keystoneauth1: 5.0.0
