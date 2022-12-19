@@ -7473,6 +7473,7 @@ src-openeuler:
   python-pyrtlsdr: sig-python-modules
   python-pysaml2: sig-python-modules
   python-pysb: sig-python-modules
+  python-pyscard: sig-python-modules
   python-pysendfile: sig-python-modules
   python-pyserial: sig-python-modules
   python-pyshark: sig-python-modules
