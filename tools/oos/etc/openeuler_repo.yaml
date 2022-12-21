@@ -27,7 +27,7 @@ openeuler:
   Java-Packages: sig-Java
   KPL-gmssl: sig-WayCa
   KPL-zlib: sig-WayCa
-  Kmesh: sig-high-performance-network
+  Kmesh: sig-ebpf
   KubeHawk: sig-CloudNative
   KubeHawkeyes: sig-CloudNative
   KubeOS: sig-CloudNative
@@ -128,7 +128,7 @@ openeuler:
   extfuse: Storage
   gala-anteater: sig-ops
   gala-docs: sig-ops
-  gala-gopher: sig-ops
+  gala-gopher: sig-ebpf
   gala-ragdoll: sig-ops
   gala-spider: sig-ops
   gazelle: sig-high-performance-network
@@ -403,7 +403,7 @@ src-openeuler:
   Imath: Runtime
   Judy: Base-service
   Keras: Private
-  Kmesh: sig-high-performance-network
+  Kmesh: sig-ebpf
   KubeOS: sig-CloudNative
   LZMA-SDK: Base-service
   LibRaw: Programming-language
@@ -812,7 +812,7 @@ src-openeuler:
   bazel: ai
   bc: Base-service
   bcache-tools: Storage
-  bcc: dev-utils
+  bcc: sig-ebpf
   bcel: dev-utils
   bcftools: sig-bio
   bcm283x-firmware: Private
@@ -856,7 +856,7 @@ src-openeuler:
   bouncycastle: dev-utils
   bowtie2: sig-bio
   box86: sig-compat-winapp
-  bpftrace: dev-utils
+  bpftrace: sig-ebpf
   bpg-fonts: Desktop
   bpytop: System-tool
   brasero: Application
@@ -982,6 +982,7 @@ src-openeuler:
   clamav: Others
   clamav-unofficial-sigs: Private
   clang: Compiler
+  clang-15: Compiler
   class_loader: sig-ROS
   classloader-leak-test-framework: sig-Java
   classmate: sig-Java
@@ -1543,7 +1544,7 @@ src-openeuler:
   g2clib: sig-recycle
   gajim: sig-mate-desktop
   gala-anteater: sig-ops
-  gala-gopher: sig-ops
+  gala-gopher: sig-ebpf
   gala-spider: sig-ops
   galera: Others
   game-music-emu: dev-utils
@@ -1768,7 +1769,7 @@ src-openeuler:
   go-srpm-macros: sig-K8sDistro
   goaccess: Application
   gobject-introspection: Base-service
-  goebpf: sig-high-performance-network
+  goebpf: sig-ebpf
   golang: sig-golang
   golang-github-coreos-go-iptables: sig-recycle
   golang-github-cpuguy83-go-md2man: sig-recycle
@@ -2833,7 +2834,7 @@ src-openeuler:
   libbonobo: Desktop
   libbonoboui: Desktop
   libboundscheck: Base-service
-  libbpf: sig-high-performance-network
+  libbpf: sig-ebpf
   libbs2b: Application
   libbsd: Base-service
   libburn: Others
@@ -3248,9 +3249,12 @@ src-openeuler:
   lklug-fonts: System-tool
   lksctp-tools: Application
   llama: bigdata
+  lld: Compiler
+  lld-15: Compiler
   lldb: dev-utils
   lldpad: Networking
   llvm: Compiler
+  llvm-15: Compiler
   llvm-bolt: Compiler
   llvm-libunwind: Compiler
   llvm-mlir: Compiler
@@ -3530,6 +3534,7 @@ src-openeuler:
   mlpack: ai
   mm-common: GNOME
   mobile-broadband-provider-info: Networking
+  moby: sig-CloudNative
   mocha: dev-utils
   mock: dev-utils
   mock-core-configs: dev-utils
@@ -8094,7 +8099,7 @@ src-openeuler:
   qt5-qtvirtualkeyboard: Programming-language
   qt5-qtwayland: Programming-language
   qt5-qtwebchannel: Programming-language
-  qt5-qtwebengine: Others
+  qt5-qtwebengine: sig-UKUI
   qt5-qtwebkit: Others
   qt5-qtwebsockets: Programming-language
   qt5-qtwebview: Programming-language
@@ -9269,7 +9274,7 @@ src-openeuler:
   xdg-user-dirs-gtk: Desktop
   xdg-utils: Desktop
   xdp-cpumap-tc: Networking
-  xdp-tools: sig-high-performance-network
+  xdp-tools: sig-ebpf
   xenomai: sig-industrial-control
   xerces-c: Application
   xerces-j2: Base-service
@@ -9434,6 +9439,7 @@ src-openeuler:
   zeppelin: bigdata
   zerofree: Others
   zeromq: dev-utils
+  zfs: sig-SDS
   zimg: Desktop
   zinc: sig-Java
   zincati: sig-CloudNative
