@@ -64,7 +64,7 @@ openeuler:
   astream: Kernel
   async-libfuse: iSulad
   attest-tools: sig-security-facility
-  authz: iSulad
+  authz: sig-recycle
   auto_py2to3: dev-utils
   avocado-vt: sig-QA
   beijing_est_institute_2021: sig-recycle
@@ -152,7 +152,7 @@ openeuler:
   hsak: Storage
   hw-buaa-lab: sig-OSCourse
   iSulad: iSulad
-  iSulad-img: iSulad
+  iSulad-img: sig-recycle
   imageTailor: sig-OS-Builder
   infrastructure: Infrastructure
   install-scripts: sig-OS-Builder
@@ -160,7 +160,7 @@ openeuler:
   intel-kernel: sig-Intel-Arch
   intel-qemu: sig-Intel-Arch
   isula-build: iSulad
-  isula-transform: iSulad
+  isula-transform: sig-recycle
   itrustee_client: sig-confidential-computing
   itrustee_sdk: sig-confidential-computing
   itrustee_tzdriver: sig-confidential-computing
@@ -419,6 +419,7 @@ src-openeuler:
   NutShell-systemd: sig-RISC-V
   ORBit2: Desktop
   OpenAMP: sig-embedded
+  OpenCSD: dev-utils
   OpenEXR: Runtime
   OpenIPMI: Networking
   PEGTL: dev-utils
@@ -760,7 +761,7 @@ src-openeuler:
   auter: Application
   authd: Base-service
   authselect: Base-service
-  authz: iSulad
+  authz: sig-recycle
   auto: dev-utils
   autoconf: Base-service
   autoconf-archive: Programming-language
@@ -2141,7 +2142,7 @@ src-openeuler:
   i3: Desktop
   i40e: Networking
   iSulad: iSulad
-  iSulad-img: sig-CloudNative
+  iSulad-img: sig-recycle
   iavf: Networking
   ibis: bigdata
   ibus: Desktop
@@ -2241,7 +2242,7 @@ src-openeuler:
   isorelax: Base-service
   istack-commons: Base-service
   isula-build: iSulad
-  isula-transform: iSulad
+  isula-transform: sig-recycle
   itext: sig-Java
   itrustee_sdk: sig-confidential-computing
   itstool: Programming-language
@@ -2513,7 +2514,7 @@ src-openeuler:
   kafka: bigdata
   kafka-python: sig-openstack
   kata-containers: sig-CloudNative
-  kata-micro-kernel: sig-CloudNative
+  kata-micro-kernel: sig-recycle
   kata_integration: sig-CloudNative
   kate: sig-KDE
   katello: sig-ops
