@@ -401,6 +401,7 @@ src-openeuler:
   HikariCP: sig-Java
   ImageMagick: Others
   Imath: Runtime
+  Jailhouse: sig-industrial-control
   Judy: Base-service
   Keras: Private
   Kmesh: sig-ebpf
@@ -557,6 +558,7 @@ src-openeuler:
   WasmEngine: sig-CloudNative
   X-diagnosis: sig-ops
   Xaw3d: Desktop
+  Xenomai4: sig-industrial-control
   XmlSchema: Application
   a52dec: sig-epol
   aalib: Others
