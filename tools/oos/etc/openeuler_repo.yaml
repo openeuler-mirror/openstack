@@ -208,6 +208,7 @@ openeuler:
   libarchive-rust: Base-service
   libboundscheck: Base-service
   libcareplus: Virt
+  libgdbm-rust: Base-service
   libkae: sig-AccLib
   libvirt: Virt
   libwd: sig-AccLib
@@ -6195,6 +6196,7 @@ src-openeuler:
   pyparsing: Base-service
   pyparted: Base-service
   pyporter: dev-utils
+  pyproject-rpm-macros: sig-python-modules
   pyserial: Base-service
   pytest: Programming-language
   python-3parclient: sig-openstack
