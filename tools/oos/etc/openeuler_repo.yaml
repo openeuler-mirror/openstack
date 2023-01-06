@@ -6338,6 +6338,7 @@ src-openeuler:
   python-aiomysql: sig-python-modules
   python-aioodbc: sig-python-modules
   python-aiorpcX: sig-python-modules
+  python-aiosignal: sig-python-modules
   python-aiosmtpd: sig-python-modules
   python-aiosnmp: sig-python-modules
   python-aiostream: sig-python-modules
@@ -6803,6 +6804,7 @@ src-openeuler:
   python-freezegun: Programming-language
   python-friendlyloris: sig-python-modules
   python-frozendict: sig-python-modules
+  python-frozenlist: sig-python-modules
   python-fsmonitor: sig-python-modules
   python-fsspec: sig-python-modules
   python-fuckit: sig-python-modules
