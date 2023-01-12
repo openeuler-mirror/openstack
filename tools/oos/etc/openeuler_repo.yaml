@@ -9280,6 +9280,7 @@ src-openeuler:
   xdg-user-dirs: Desktop
   xdg-user-dirs-gtk: Desktop
   xdg-utils: Desktop
+  xdotool: sig-cinnamon
   xdp-cpumap-tc: Networking
   xdp-tools: sig-ebpf
   xenomai: sig-industrial-control
