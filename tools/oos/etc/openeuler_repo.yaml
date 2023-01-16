@@ -1045,6 +1045,7 @@ src-openeuler:
   common_tutorials: sig-ROS
   compat-libgfortran: Private
   compat-lua: sig-epol
+  compat-openssl11: sig-security-facility
   compface: Application
   compiler-rt: Compiler
   compress-lzf: Application
