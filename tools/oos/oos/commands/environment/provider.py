@@ -20,7 +20,8 @@ class Provider:
     def __init__(self):
         pass
 
-    def _has_sshpass(self):
+    @staticmethod
+    def has_sshpass():
         find_sshpass = subprocess.getoutput("which sshpass")
         has_sshpass = find_sshpass and find_sshpass.find("no sshpass") == -1
         if not has_sshpass:
@@ -28,18 +29,19 @@ class Provider:
                 "key-pair to the target VMs. Please do the sync step by hand.")
         return has_sshpass
 
-
-    def _setup_sshpass(self, ip, password=constants.OPENEULER_DEFAULT_PASSWORD):
+    @staticmethod
+    def setup_sshpass(ip, password=constants.OPENEULER_DEFAULT_PASSWORD):
         print("Preparing the mutual trust for ssh")
+        known_hosts_file_path = Path.home()/'.ssh/known_hosts'
         clean_up_cmds = [
-            f'ssh-keygen -f ~/.ssh/known_hosts -R "{ip}"',
+            f'ssh-keygen -f {known_hosts_file_path} -R "{ip}"',
             f'ssh-keygen -R "{ip}"',
         ]
         inject_cmds = [
-            f'sshpass -p {password} ssh-copy-id -i "{KEY_DIR}/id_rsa.pub" -o StrictHostKeyChecking=no "{constants.OPENEULER_DEFAULT_USER}@{ip}"',
+            f'sshpass -p "{password}" ssh-copy-id -i "{KEY_DIR}/id_rsa.pub" -o StrictHostKeyChecking=no "{constants.OPENEULER_DEFAULT_USER}@{ip}"',
             f"ssh -i {KEY_DIR}/id_rsa {constants.OPENEULER_DEFAULT_USER}@{ip} -- echo OK"
         ]
-        if not Path('~/.ssh/known_hosts').exists():
+        if not Path(known_hosts_file_path).exists():
             cmds = inject_cmds
         else:
             cmds = clean_up_cmds + inject_cmds
@@ -267,8 +269,8 @@ class HuaweiCloudProvider(Provider):
                     break
                 time.sleep(5)
             key_inject_OK = False
-            if self._has_sshpass():
-                if self._setup_sshpass(ip):
+            if self.has_sshpass():
+                if self.setup_sshpass(ip):
                     key_inject_OK = True
             result.append((server_id, ip, created, key_inject_OK))
             print("Success created the target VM\n")
@@ -302,10 +304,10 @@ class ManagedProvider(Provider):
         self.password = password
 
     def manage(self):
-        if self._has_sshpass():
+        if self.has_sshpass():
             # TODO: 以key方式登录target并注入oos秘钥
             if self.password:
-                self._setup_sshpass(self.ip, self.password)
+                self.setup_sshpass(self.ip, self.password)
             else:
                 print("Warning: -p/--password is not provided. Unable to sync "
                 "key-pair to the target Machines. Please do the sync step by hand.")
