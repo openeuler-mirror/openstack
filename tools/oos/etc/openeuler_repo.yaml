@@ -3118,6 +3118,7 @@ src-openeuler:
   libsemanage: sig-security-facility
   libsepol: sig-security-facility
   libserf: Networking
+  libserverframe: Storage
   libsexy: Desktop
   libshout: Runtime
   libsigcpp20: Others
