@@ -166,3 +166,11 @@ def manage(name, ip, release, password):
     except:
         raise
     print(table)
+
+@group.command(name='inject', help='Inject the ssh key to the target')
+@click.argument('name')
+def inject(name):
+    server_info = sqlite_ops.get_target_column(name, 'ip')
+    if provider.Provider.has_sshpass():
+        for server_ip in server_info:
+            provider.Provider.setup_sshpass(server_ip[0])
