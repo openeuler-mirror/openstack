@@ -11,6 +11,9 @@ openeuler:
   AvxToNeon: sig-AccLib
   BiSheng-Adoptium: Compiler
   BiShengCLanguage: Compiler
+  CPM4OSSP-PROXY: sig-ops
+  CPM4OSSP-SERVER: sig-ops
+  CPM4OSSP-UI: sig-ops
   CPython: Compiler
   Cpds: sig-CloudNative
   CreateImage: sig-Gatekeeper
@@ -412,9 +415,15 @@ src-openeuler:
   Lmod: Application
   ModemManager: Networking
   NetworkManager: Networking
+  NetworkManager-fortisslvpn: Networking
+  NetworkManager-iodine: Networking
   NetworkManager-l2tp: Networking
   NetworkManager-libreswan: System-tool
+  NetworkManager-openconnect: Networking
+  NetworkManager-openvpn: Networking
   NetworkManager-pptp: System-tool
+  NetworkManager-ssh: Networking
+  NetworkManager-vpnc: Networking
   NutShell-Kernel: sig-RISC-V
   NutShell-riscv-glibc: sig-RISC-V
   NutShell-riscv-pk: sig-RISC-V
@@ -1125,6 +1134,7 @@ src-openeuler:
   cyrus-sasl: Base-service
   czmq: dev-utils
   d-feet: Desktop
+  d-spy: GNOME
   daala: sig-epol
   dain-snappy: sig-Java
   daos: sig-SDS
@@ -1325,6 +1335,7 @@ src-openeuler:
   ed25519-java: sig-Java
   edac-utils: sig-recycle
   edgex-go: sig-Edge
+  editorconfig: GNOME
   edk2: Virt
   efi-rpm-macros: sig-OS-Builder
   efibootmgr: sig-OS-Builder
@@ -2861,6 +2872,7 @@ src-openeuler:
   libchamplain: GNOME
   libchewing: sig-KDE
   libclc: Base-service
+  libcloudproviders: GNOME
   libcomps: Base-service
   libconfig: Base-service
   libconfuse: Base-service
@@ -2936,6 +2948,7 @@ src-openeuler:
   libgit2-glib: Base-service
   libglade2: Desktop
   libglademm24: xfce
+  libglib-testing: GNOME
   libglvnd: Desktop
   libgnome: GNOME
   libgnome-keyring: Programming-language
@@ -3075,6 +3088,7 @@ src-openeuler:
   libopenraw: Others
   libosinfo: Base-service
   libotf: System-tool
+  libpanel: GNOME
   libpaper: Base-service
   libpcap: Networking
   libpciaccess: Storage
@@ -3122,6 +3136,7 @@ src-openeuler:
   libserverframe: Storage
   libsexy: Desktop
   libshout: Runtime
+  libshumate: GNOME
   libsigcpp20: Others
   libsigsegv: Base-service
   libslirp: sig-CloudNative
@@ -3367,6 +3382,7 @@ src-openeuler:
   makeself: oVirt
   malaga: Private
   malaga-suomi-voikko: Private
+  malcontent: GNOME
   maliit-framework: sig-KDE
   maliit-keyboard: sig-KDE
   mallard-rng: Programming-language
