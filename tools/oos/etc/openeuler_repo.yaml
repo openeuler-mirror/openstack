@@ -2741,6 +2741,7 @@ src-openeuler:
   kylin-usb-creator: sig-UKUI
   kylin-user-guide: sig-UKUI
   kylin-video: sig-UKUI
+  kylin-weather: sig-UKUI
   kyotocabinet: Others
   kyua: Base-service
   labltk: Programming-language
@@ -8342,6 +8343,7 @@ src-openeuler:
   rubygem-backports: sig-ruby
   rubygem-bacon: sig-ruby
   rubygem-bcrypt: sig-ruby
+  rubygem-benchmark-ips: sig-ruby
   rubygem-bindex: sig-ruby
   rubygem-bootsnap: sig-ruby
   rubygem-bootstrap-sass: sig-ops
@@ -8367,7 +8369,9 @@ src-openeuler:
   rubygem-creole: sig-ruby
   rubygem-cucumber: sig-ruby
   rubygem-cucumber-core: sig-ruby
+  rubygem-cucumber-create-meta: sig-ruby
   rubygem-cucumber-expressions: sig-ruby
+  rubygem-cucumber-messages: sig-ruby
   rubygem-cucumber-tag_expressions: sig-ruby
   rubygem-cucumber-wire: sig-ruby
   rubygem-curb: sig-ruby
@@ -8384,7 +8388,7 @@ src-openeuler:
   rubygem-ejs: sig-ruby
   rubygem-elasticsearch-ruby: sig-ops
   rubygem-erubi: sig-ruby
-  rubygem-erubis: sig-ruby
+  rubygem-erubis: sig-recycle
   rubygem-ethon: sig-ruby
   rubygem-eventmachine: sig-ruby
   rubygem-excon: sig-ruby
@@ -8428,12 +8432,14 @@ src-openeuler:
   rubygem-hashie: sig-ruby
   rubygem-highline: sig-ruby
   rubygem-hiredis: sig-Ha
+  rubygem-hoe: sig-ruby
   rubygem-hpricot: sig-recycle
   rubygem-http-cookie: sig-ruby
   rubygem-http_parser: sig-ruby
   rubygem-httpclient: sig-ruby
   rubygem-i18n: sig-ruby
   rubygem-idn: sig-ruby
+  rubygem-importmap-rails: sig-ruby
   rubygem-introspection: sig-ruby
   rubygem-jbuilder: sig-ruby
   rubygem-jquery-rails: sig-ruby
@@ -8582,6 +8588,7 @@ src-openeuler:
   rubygem-sshkey: sig-ruby
   rubygem-statsd-instrument: sig-ruby
   rubygem-strptime: sig-ruby
+  rubygem-sys-uname: sig-ruby
   rubygem-temple: sig-ruby
   rubygem-test-unit-rr: sig-Ha
   rubygem-test_declarative: sig-ruby
