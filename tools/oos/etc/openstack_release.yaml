@@ -2024,7 +2024,7 @@ xena:
   castellan: 3.9.1
   ceilometer: 17.0.2
   ceilometermiddleware: 2.3.0
-  cinder: 19.1.1
+  cinder: 19.2.0
   cinder-tempest-plugin: 1.5.0
   cinderlib: 4.1.0
   cliff: 3.9.0
@@ -2113,8 +2113,8 @@ xena:
   neutron-tempest-plugin: 1.7.0
   neutron-vpnaas: 19.0.1
   neutron-vpnaas-dashboard: 5.0.0
-  nova: 24.1.1
-  octavia: 9.0.1
+  nova: 24.2.0
+  octavia: 9.1.0
   octavia-dashboard: 8.0.1
   octavia-lib: 2.4.1
   octavia-tempest-plugin: 1.8.1
@@ -2187,7 +2187,7 @@ xena:
   puppet-vswitch: 15.4.0
   puppet-watcher: 19.4.0
   puppet-zaqar: 19.4.0
-  python-adjutant: 3.0.0
+  python-adjutant: 3.0.1
   python-adjutantclient: 0.9.0
   python-barbicanclient: 5.2.0
   python-blazarclient: 3.3.2
@@ -2282,7 +2282,7 @@ yoga:
   castellan: 3.10.2
   ceilometer: 18.0.0
   ceilometermiddleware: 2.4.1
-  cinder: 20.0.1
+  cinder: 20.1.0
   cinder-tempest-plugin: 1.6.0
   cinderlib: 4.2.0
   cliff: 3.10.1
@@ -2371,7 +2371,7 @@ yoga:
   neutron-tempest-plugin: 1.9.0
   neutron-vpnaas: 20.0.1
   neutron-vpnaas-dashboard: 6.0.0
-  nova: 25.0.1
+  nova: 25.1.0
   octavia: 10.0.0
   octavia-dashboard: 9.0.0
   octavia-lib: 2.5.0
@@ -2538,7 +2538,7 @@ zed:
   castellan: 4.0.0
   ceilometer: 19.0.0
   ceilometermiddleware: 3.0.0
-  cinder: 21.0.0
+  cinder: 21.1.0
   cinder-tempest-plugin: 1.7.2
   cinderlib: 5.0.0
   cliff: 4.0.0
@@ -2629,7 +2629,7 @@ zed:
   neutron-tempest-plugin: 2.0.0
   neutron-vpnaas: 21.0.0
   neutron-vpnaas-dashboard: 7.0.0
-  nova: 26.0.0
+  nova: 26.1.0
   octavia: 11.0.0
   octavia-dashboard: 10.0.0
   octavia-lib: 3.1.0
