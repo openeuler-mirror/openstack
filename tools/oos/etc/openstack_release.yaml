@@ -2211,7 +2211,7 @@ xena:
   python-neutronclient: 7.6.0
   python-novaclient: 17.6.0
   python-octaviaclient: 2.4.0
-  python-openstackclient: 5.6.1
+  python-openstackclient: 5.6.2
   python-saharaclient: 3.4.0
   python-senlinclient: 2.3.0
   python-solumclient: 3.4.0
