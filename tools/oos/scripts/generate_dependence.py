@@ -17,8 +17,10 @@ UPPER = dict()
 _SEARVICE = [
     # service
     "aodh",
+    "barbican",
     "ceilometer",
     "cinder",
+    "designate",
     "openstack-cyborg",
     "glance",
     "openstack-heat",
@@ -30,6 +32,7 @@ _SEARVICE = [
     "neutron",
     "nova",
     "panko",
+    "octavia",
     "openstack-placement",
     "swift",
     "trove",
@@ -38,7 +41,14 @@ _SEARVICE = [
     "osc-placement",
     "python-cyborgclient",
     # ui
+    "designate-dashboard",
+    "heat-dashboard",
     "ironic-ui",
+    "magnum-ui",
+    "mistral-dashboard",
+    "octavia-dashboard",
+    "sahara-dashboard",
+    "vitrage-dashboard",
     "trove-dashboard",
     # test
     "tempest",
@@ -48,18 +58,22 @@ _SEARVICE = [
     "neutron-tempest-plugin",
     "trove-tempest-plugin",
     # library
+    "cinderlib",
     "ironic-inspector",
     "ironic-prometheus-exporter",
     "ironic-python-agent",
     "networking-baremetal",
+    "networking-sfc",
     "networking-generic-switch",
+    "neutron-vpnaas",
+    "ovn-octavia-provider",
 ]
 SUPPORT_RELEASE = {
     "queens": {
-        "base_service": _SEARVICE + ['barbican'], 
+        "base_service": _SEARVICE,
     },
     "rocky": {
-        "base_service": _SEARVICE + ['barbican'], 
+        "base_service": _SEARVICE,
     },
     "train": {
         "base_service": _SEARVICE, 
