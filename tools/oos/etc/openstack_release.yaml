@@ -2243,7 +2243,7 @@ xena:
   stevedore: 3.4.2
   storlets: 8.0.0
   sushy: 3.12.6
-  swift: 2.28.0
+  swift: 2.28.1
   tacker: 6.0.0
   tacker-horizon: 4.0.0
   telemetry_tempest_plugin: 1.5.0
