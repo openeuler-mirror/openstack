@@ -2778,6 +2778,7 @@ src-openeuler:
   layer-shell-qt: sig-KDE
   lcdf-typetools: Application
   lcms2: Desktop
+  lcov: Base-service
   lcr: iSulad
   ldapjdk: dev-utils
   ldaptive: sig-Java
