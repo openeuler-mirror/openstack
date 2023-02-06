@@ -61,6 +61,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     gpgcheck=1
     gpgkey=http://repo.openeuler.org/openEuler-22.03-LTS/OS/$basearch/RPM-GPG-KEY-openEuler
     EOF
+    ```
 
 2. 修改主机名以及映射
 
