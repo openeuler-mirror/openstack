@@ -2107,7 +2107,7 @@ xena:
   networking-hyperv: 11.0.0
   networking-odl: 19.0.0
   networking-sfc: 13.0.0
-  neutron: 19.4.0
+  neutron: 19.5.0
   neutron-dynamic-routing: 19.1.1
   neutron-lib: 2.15.3
   neutron-tempest-plugin: 1.7.0
