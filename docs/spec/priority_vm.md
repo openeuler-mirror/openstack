@@ -97,14 +97,14 @@ POST v2/servers (v2.1默认版本)
     计算公式：
 
     ```
-    (全局超分比 * compute所有核心数 - dedicated核心数) = 极端超分比 * shared核心数
+    (用户期望的全局超分比 * compute所有核心数 - dedicated核心数) = 极端超分比 * shared核心数
     ```
 
-    还是以上述compute节点为例，compute所有核心数为14，假设管理员选择的全局超分比为2，极端超分比为8，则：
+    还是以上述compute节点为例，compute所有核心数为14，假设极端超分比为8，则：
 
     ```
     (2 * 14 - dedicated核心数) = 8 * shared核心数
-    计算可得，当dedicated核心数为12时，shared核心数为2。当dedicated核心数为4时，shared核心数为3。
+    计算可得，当dedicated核心数为12时，shared核心数为2时，用户期望的全局超分比为2。当dedicated核心数为4时，shared核心数为10时，用户期望的全局超分比为6。
     ```
 
 
