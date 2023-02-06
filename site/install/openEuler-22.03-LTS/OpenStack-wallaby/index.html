@@ -241,15 +241,15 @@
 yum install openstack-release-wallaby
 yum clean all &amp;&amp; yum makecache</code></pre>
 <p><strong>注意</strong>：如果你的环境的YUM源没有启用EPOL，需要同时配置EPOL</p>
-<p>```shell
-vi /etc/yum.repos.d/openEuler.repo</p>
-<p>[EPOL]
+<pre class="highlight"><code class="language-shell">vi /etc/yum.repos.d/openEuler.repo
+
+[EPOL]
 name=EPOL
 baseurl=http://repo.openeuler.org/openEuler-22.03-LTS/EPOL/main/$basearch/
 enabled=1
 gpgcheck=1
 gpgkey=http://repo.openeuler.org/openEuler-22.03-LTS/OS/$basearch/RPM-GPG-KEY-openEuler
-EOF</p>
+EOF</code></pre>
 </li>
 <li>
 <p>修改主机名以及映射</p>
