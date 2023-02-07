@@ -2306,18 +2306,158 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
 
 8. deploy ramdisk镜像下载或制作
 
-    部署一个裸机节点总共需要两组镜像：deploy images和user images。Deploy images上运行有ironic-python-agent(IPA)服务，Ironic通过它进行裸机节点的控制和部署。deploy imags 用于准备物理机环境，user images 则被安装裸机节点上，供用户最终使用。
+    部署一个裸机节点总共需要两组镜像：deploy ramdisk images和user images。Deploy ramdisk images上运行有ironic-python-agent(IPA)服务，Ironic通过它进行裸机节点的环境准备。User images是最终被安装裸机节点上，供用户使用的镜像。
 
-    ramdisk镜像支持通过ironic-python-agent服务或disk-image-builder工具制作，也可以使用社区最新的ironic-python-agent-builder。用户也可以自行选择其他工具制作。
-    若使用原生工具，则需要安装对应的软件包。
-
-    ```shell
-    dnf install openstack-ironic-python-agent
-    或者
-    dnf install diskimage-builder
-    ```
+    ramdisk镜像支持通过ironic-python-agent-builder或disk-image-builder工具制作。用户也可以自行选择其他工具制作。若使用原生工具，则需要安装对应的软件包。
 
     具体的使用方法可以参考[官方文档](https://docs.openstack.org/ironic/yoga/install/deploy-ramdisk.html)，同时官方也有提供制作好的deploy镜像，可尝试下载。
+
+    下文介绍通过ironic-python-agent-builder构建ironic使用的deploy镜像的完整过程。
+
+    - 安装 ironic-python-agent-builder
+
+        ```shell
+        dnf install python3-ironic-python-agent-builder python3-ironic-python-agent-builder-doc
+
+        或
+        pip3 install ironic-python-agent-builder
+        dnf install qemu-img git
+        ```
+
+        注：22.09系统中，使用dnf安装时，需要同时按照主包和doc包。doc包内打包的`/usr/share`目录中文件为运行所需，后续系统版本将合并文件到python3-ironic-python-agent-builder包中。
+
+    - 制作镜像
+
+        基本用法：
+
+        ```shell
+        usage: ironic-python-agent-builder [-h] [-r RELEASE] [-o OUTPUT] [-e ELEMENT] [-b BRANCH]
+                                   [-v] [--lzma] [--extra-args EXTRA_ARGS]
+                                   [--elements-path ELEMENTS_PATH]
+                                   distribution
+
+        positional arguments:
+          distribution          Distribution to use
+
+        options:
+          -h, --help            show this help message and exit
+          -r RELEASE, --release RELEASE
+                                Distribution release to use
+          -o OUTPUT, --output OUTPUT
+                                Output base file name
+          -e ELEMENT, --element ELEMENT
+                                Additional DIB element to use
+          -b BRANCH, --branch BRANCH
+                                If set, override the branch that is used for         ironic-python-agent
+                                and requirements
+          -v, --verbose         Enable verbose logging in diskimage-builder
+          --lzma                Use lzma compression for smaller images
+          --extra-args EXTRA_ARGS
+                                Extra arguments to pass to diskimage-builder
+          --elements-path ELEMENTS_PATH
+                                Path(s) to custom DIB elements separated by a colon
+        ```
+
+        操作实例：
+
+        ```shell
+        # -o选项指定生成的镜像名
+        # ubuntu指定生成ubuntu系统的镜像
+        ironic-python-agent-builder -o my-ubuntu-ipa ubuntu
+        ```
+
+        可通过设置`ARCH`环境变量（默认为amd64）指定所构建镜像的架构。如果是`arm`架构，需要添加：
+
+        ```shell
+        export ARCH=aarch64
+        ```
+
+    - 允许ssh登陆
+
+        初始化环境变量,设置用户名、密码，启用`sodo`权限；并添加`-e`选项使用相应的DIB元素。制作镜像操作如下：
+
+        ```shell
+        export DIB_DEV_USER_USERNAME=ipa \
+        export DIB_DEV_USER_PWDLESS_SUDO=yes \
+        export DIB_DEV_USER_PASSWORD='123'
+        ironic-python-agent-builder -o my-ssh-ubuntu-ipa -e selinux-permissive -e devuser ubuntu
+        ```
+
+    - 指定代码仓库
+
+        初始化对应的环境变量，然后制作镜像：
+
+        ```shell
+        # 直接从gerrit上clone代码
+        DIB_REPOLOCATION_ironic_python_agent=https://review.opendev.org/openstack/ironic-python-agent
+        DIB_REPOREF_ironic_python_agent=stable/yoga
+
+        # 指定本地仓库及分支
+        DIB_REPOLOCATION_ironic_python_agent=/home/user/path/to/repo
+        DIB_REPOREF_ironic_python_agent=my-test-branch
+
+        ironic-python-agent-builder ubuntu
+        ```
+
+        参考：[source-repositories](https://docs.openstack.org/diskimage-builder/latest/elements/source-repositories/README.html)。
+
+9. 注意
+
+    原生的openstack里的pxe配置文件的模版不支持arm64架构，需要自己对原生openstack代码进行修改：
+    在W版中，社区的ironic仍然不支持arm64位的uefi pxe启动，表现为生成的grub.cfg文件(一般位于/tftpboot/下)格式不对而导致pxe启动失败。
+
+    生成的错误配置文件：
+
+    ![ironic-err](../../img/install/ironic-err.png)
+
+    如上图所示，arm架构里寻找vmlinux和ramdisk镜像的命令分别是linux和initrd，上图所示的标红命令是x86架构下的uefi pxe启动。
+
+    需要用户对生成grub.cfg的代码逻辑自行修改。
+
+    ironic向ipa发送查询命令执行状态请求的tls报错：
+
+    当前版本的ipa和ironic默认都会开启tls认证的方式向对方发送请求，跟据官网的说明进行关闭即可。
+
+    - 修改ironic配置文件(/etc/ironic/ironic.conf)下面的配置中添加ipa-insecure=1：
+
+        ```ini
+        [agent]
+        verify_ca = False
+        [pxe]
+        pxe_append_params = nofb nomodeset vga=normal coreos.autologin ipa-insecure=1
+        ```
+
+    - ramdisk镜像中添加ipa配置文件/etc/ironic_python_agent/ironic_python_agent.conf并配置tls的配置如下：
+
+        /etc/ironic_python_agent/ironic_python_agent.conf (需要提前创建/etc/    ironic_python_agent目录）
+
+        ```ini
+        [DEFAULT]
+        enable_auto_tls = False
+        ```
+
+        设置权限：
+
+        ```shell
+        chown -R ipa.ipa /etc/ironic_python_agent/
+        ```
+
+    - ramdisk镜像中修改ipa服务的服务启动文件，添加配置文件选项
+
+        编辑/usr/lib/systemd/system/ironic-python-agent.service文件
+
+        ```ini
+        [Unit]
+        Description=Ironic Python Agent
+        After=network-online.target
+        [Service]
+        ExecStartPre=/sbin/modprobe vfat
+        ExecStart=/usr/local/bin/ironic-python-agent --config-file /etc/    ironic_python_agent/ironic_python_agent.conf
+        Restart=always
+        RestartSec=30s
+        [Install]
+        WantedBy=multi-user.target
+        ```
 
 #### Trove
 
