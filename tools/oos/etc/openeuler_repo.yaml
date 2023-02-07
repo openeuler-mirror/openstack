@@ -3594,6 +3594,7 @@ src-openeuler:
   mousepad: xfce
   mousetweaks: Application
   mozilla-filesystem: Desktop
+  mozjs102: GNOME
   mozjs52: sig-recycle
   mozjs60: sig-recycle
   mozjs68: sig-recycle
@@ -9088,6 +9089,7 @@ src-openeuler:
   uget: sig-desktop-apps
   uglify-js: sig-nodejs
   uglify-js1: sig-nodejs
+  uhttpmock: GNOME
   uid_wrapper: Application
   uima-addons: sig-Java
   uima-parent-pom: sig-Java
