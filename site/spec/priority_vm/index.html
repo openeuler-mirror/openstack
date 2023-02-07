@@ -95,9 +95,9 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#_3">总体架构</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_4">优先级配置</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">资源模型</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#api">优先级API</a>
+    <li class="toctree-l3"><a class="reference internal" href="#api">API</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#scheduler">Scheduler</a>
     </li>
@@ -152,7 +152,7 @@
 <p>在OpenStack Nova中引入虚拟机高低优先级技术，可以一定程度上满足虚拟机的混合部署要求。本文档主要针对OpenStack Nova虚拟机创建功能，介绍虚拟机高低优先级调度的设计与实现。</p>
 <h2 id="_2">实现方案<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>在Nova的虚拟机创建、迁移流程中引入高低优先级概念，虚拟机对象新增高低优先级属性。高优先级虚拟机在调度的过程中，会尽可能的调度到资源充足的节点，这样的节点需要至少满足内存不超卖、高优先级虚拟机所用CPU不超卖的要求。</p>
-<p>本特性的实现基于即将发布的OpenStack Yoga版本，承载于openEuler 22.09创新版本中。</p>
+<p>本特性的实现基于OpenStack Yoga版本，承载于openEuler 22.09创新版本中。同时引入openEuler 22.03 LTS SP1的Train版本。</p>
 <h3 id="_3">总体架构<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>用户创建flavor或创建虚机时，可指定其优先级属性。但优先级属性不影响Nova现有的资源模型及节点调度策略，即Nova仍按正常流程选取计算节点及创建虚机。</p>
 <p>虚机高低优先级特性主要影响虚机创建后单机层面的资源调度分配策略。高优先级虚机和低优先级虚机发生资源竞争时，资源优先分配给前者，严格保障其QoS。</p>
@@ -160,7 +160,7 @@
 1. VM对象和flavor新增高低优先级属性配置。同时结合业务场景，约束高优先级属性只能设置给绑核类型虚机，低优先级属性只能设置给非绑核类虚机。
 2. 对于具有优先级属性的虚机，需修改libvirt XML配置，让单机上的QoS管理组件（名为Skylark）感知，从而自动进行资源分配和QoS管理。
 3. 低优先级虚机的绑核范围有改变，以充分利用高优先级虚机空闲的资源。</p>
-<h3 id="_4">优先级配置<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h3 id="_4">资源模型<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
 <p>VM对象新增可选属性<code>priority</code>，<code>priority</code>可被设置成<code>high</code>或<code>low</code>，分别表示高低优先级。</p>
@@ -176,7 +176,7 @@
 <li>VM对象的优先级配置和flavor的优先级配置都为可选，都不配置时代表是普通VM，都配置时以VM对象的优先级属性为准。</li>
 </ol>
 <p>普通VM可与具有优先级属性的VM共存，因为优先级属性不影响Nova现有的资源模型及节点调度策略。当普通VM与高优先级VM发生资源竞争时，Skylark组件不会干预。当普通VM与低优先级VM发生资源竞争时，Skylark组件会优先保障普通VM的资源分配。</p>
-<h3 id="api">优先级API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
+<h3 id="api">API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
 <p>创建虚拟机API中可选参数<code>os:scheduler_hints.priority</code>可被设置成<code>high</code>或<code>low</code>，用于设置VM对象的优先级。</p>
 <pre class="highlight"><code>POST v2/servers (v2.1默认版本)
 {
@@ -197,7 +197,7 @@
 <h4 id="xml">虚拟机xml<a class="headerlink" href="#xml" title="Permanent link">&para;</a></h4>
 <p>高低优先级机器创建按照priority标志，对虚拟机进行标识。</p>
 <ul>
-<li>Libirt XML中新增属性<code>&lt;resource&gt;</code>片段，包括 <code>/high_prio_machine</code>、<code>/low_prio_machine</code>两种值，分别表示高低优先级虚拟机。该片段本身没有任何效率，只是为<code>Skylark</code> QoS服务指明VM的高低优先级属性。</li>
+<li>Libirt XML中新增属性<code>&lt;resource&gt;</code>片段，包括 <code>/high_prio_machine</code>、<code>/low_prio_machine</code>两种值，分别表示高低优先级虚拟机。该片段本身在Nova中没有任何作用，只是为<code>Skylark</code>QoS服务指明VM的高低优先级属性。</li>
 </ul>
 <h3 id="_7">举例<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>假设一个compute节点拥有14个core，设置cpu_dedicated_set=0-11，一共12个核，cpu_shared_set=12-13，一共2个核心，cpu_allocation_ratio=8 则：</p>
@@ -208,23 +208,24 @@
 </ol>
 <h3 id="_8">参数配置建议<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <p>先确定全局超分比和极端超分比。</p>
-<pre class="highlight"><code>全局超分比的定义：所有可分配vCPU数量（高和低总和）与所有可用物理core数量的比值，比如上述举例中，全局超分比为 (12 + 16) / 14 = 2。
-全局超分比的意义：在高低优先级场景下，全局超分比主要影响低优先级虚机一般条件下（高优先级虚机vCPU没有同时冲高）的QoS。
+<pre class="highlight"><code>全局超分比的定义：所有可分配vCPU数量（高和低总和）与所有可用物理core数量的比值，这是一个计算出来的理论值，比如上述举例中，全局超分比为 (12 + 2 \* 8) / 14 = 2。
+全局超分比的意义：在高低优先级场景下，全局超分比主要影响低优先级虚机一般条件下（高优先级虚机vCPU没有同时冲高）的QoS。设置合理的全局超分比可以减少底层资源充足但调度失败的情况出现。
 
-极端超分比的定义：即cpu_allocation_ratio。
+极端超分比的定义：即cpu_allocation_ratio。只影响share核心的超分能力。
 极端超分比的意义：在高低优先级场景下，极端超分比主要影响低优先级虚机极端条件下（所有高优先级虚机vCPU同时冲高）的QoS。
 </code></pre>
 <p>用户结合业务特征及QoS目标，选择合适的全局超分比和极端超分比后，然后按照下面的计算公式，配置合理的cpu_dedicated_set及cpu_shared_set。
     计算公式：</p>
 <pre class="highlight"><code>```
-(用户期望的全局超分比 * compute所有核心数 - dedicated核心数) = 极端超分比 * shared核心数
+用户期望的全局超分比 = (极端超分比 * shared核心数 + dedicated核心数) / compute所有核心数
 ```
 
-还是以上述compute节点为例，compute所有核心数为14，假设极端超分比为8，则：
+还是以上述compute节点为例，compute所有核心数为14，假设极端超分比为8，则计算可得：
 
 ```
-(2 * 14 - dedicated核心数) = 8 * shared核心数
-计算可得，当dedicated核心数为12时，shared核心数为2时，用户期望的全局超分比为2。当dedicated核心数为4时，shared核心数为10时，用户期望的全局超分比为6。
+当dedicated核心数为12时，shared核心数为2时，用户期望的全局超分 = (8*2+12)/14 = 2
+
+当dedicated核心数为4时，shared核心数为10时，用户期望的全局超分 = (8*10+4)/14 = 6
 ```
 
 </code></pre>
@@ -243,7 +244,8 @@
 <li>2022-04-01到2022-05-30 完成开发</li>
 <li>2022-06-01到2022-07-30 测试、联调、刷新代码</li>
 <li>2022-08-01到2022-08-30 完成RPM包构建</li>
-<li>2022-09-30正式发布</li>
+<li>2022-09-30引入openEuler 22.09 Yoga版本</li>
+<li>2022-12-30引入openEuler 22.03 LTS SP1 Train版本</li>
 </ul>
               
             </div>
