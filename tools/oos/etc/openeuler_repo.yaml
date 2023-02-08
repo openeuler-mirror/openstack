@@ -15,6 +15,7 @@ openeuler:
   CPM4OSSP-SERVER: sig-ops
   CPM4OSSP-UI: sig-ops
   CPython: Compiler
+  CTinspector: sig-ebpf
   Cpds: sig-CloudNative
   CreateImage: sig-Gatekeeper
   DyscheOS-kernel: sig-recycle
@@ -8681,7 +8682,7 @@ src-openeuler:
   scap-workbench: sig-security-facility
   schroedinger: sig-epol
   scim: sig-KDE
-  scipy: Programming-language
+  scipy: Computing
   scl-utils: Application
   scotch: sig-epol
   screen: Base-service
