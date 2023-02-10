@@ -1058,6 +1058,7 @@ src-openeuler:
   compat-openssl11: sig-security-facility
   compface: Application
   compiler-rt: Compiler
+  compiler-rt-15: Compiler
   compress-lzf: Application
   comps-extras: Desktop
   concurrent-trees: dev-utils
@@ -2883,7 +2884,9 @@ src-openeuler:
   libcue: Desktop
   libcutl: sig-KIRAN-DESKTOP
   libcxx: Compiler
+  libcxx-15: Compiler
   libcxxabi: Compiler
+  libcxxabi-15: Compiler
   libcyaml: Base-service
   libdaemon: Base-service
   libdap: sig-recycle
@@ -3280,7 +3283,9 @@ src-openeuler:
   llvm: Compiler
   llvm-15: Compiler
   llvm-bolt: Compiler
+  llvm-bolt-15: Compiler
   llvm-libunwind: Compiler
+  llvm-libunwind-15: Compiler
   llvm-mlir: Compiler
   lm_sensors: Computing
   lmbench: dev-utils
@@ -3555,6 +3560,7 @@ src-openeuler:
   mintlocale: sig-cinnamon
   mkeuleros: Private
   mksh: System-tool
+  mlir-15: Compiler
   mlocate: Base-service
   mlpack: ai
   mm-common: GNOME
@@ -4189,6 +4195,7 @@ src-openeuler:
   openEuler-repos: Base-service
   openEuler-rpm-config: Base-service
   openEuler_chroot: sig-Gatekeeper
+  openGemini: DB
   openRSO: Kernel
   openal-soft: Application
   openapi-schema-validator: sig-python-modules
