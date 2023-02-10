@@ -22,7 +22,7 @@ BuildRequires:  {{ br }}
 {% endfor %}
 {% endif %}
 {% if dev_requires %}
-# General requires
+# General build requires
 {% for dr in dev_requires %}
 {% if dr not in base_build_requires %}
 BuildRequires:  {{ dr }}
@@ -62,18 +62,10 @@ Provides:       {{ pkg_name }}-doc
 %autosetup -n {{ source_file_dir }}
 
 %build
-{% if python2 %}
-%py2_build
-{% else %}
 %py3_build
-{% endif %}
 
 %install
-{% if python2 %}
-%py2_install
-{% else %}
 %py3_install
-{% endif %}
 
 install -d -m755 %{buildroot}/%{_pkgdocdir}
 if [ -d doc ]; then cp -arf doc %{buildroot}/%{_pkgdocdir}; fi
@@ -103,26 +95,14 @@ mv %{buildroot}/doclist.lst .
 
 {% if add_check %}
 %check
-{% if python2 %}
-%{__python2} setup.py test
-{% else %}
 %{__python3} setup.py test
-{% endif %}
 {% endif %}
 
 %files -n {{ pkg_name }} -f filelist.lst
 {% if not build_arch %}
-{% if python2 %}
-%dir %{python2_sitelib}/*
-{% else %}
 %dir %{python3_sitelib}/*
-{% endif %}
-{% else %}
-{% if python2 %}
-%dir %{python2_sitearch}/*
 {% else %}
 %dir %{python3_sitearch}/*
-{% endif %}
 {% endif %}
 
 %files help -f doclist.lst
@@ -130,15 +110,12 @@ mv %{buildroot}/doclist.lst .
 
 %changelog
 * {{ today }} OpenStack_SIG <openstack@openeuler.org> - {{ version }}-1
-{% if change_log %}
-- {{ change_log }}
-{% else %}
 {% if old_changelog %}
 - {{ up_down_grade }} package {{ pkg_name }} to version {{ version }}
 {% else %}
 - Init package {{ pkg_name }} of version {{ version }}
 {% endif %}
-{% endif %}
+
 
 {% if old_changelog %}
 {% for cl in old_changelog %}

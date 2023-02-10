@@ -2,7 +2,7 @@
 
 oos(openEuler OpenStack SIG)是OpenStack SIG提供的命令行工具。该工具为OpenStack SIG开发提供了若干功能。包括
 
-1. 自动生成RPM Spec
+1. 自动生成、更新RPM Spec
 2. 自动分析OpenStack软件包依赖
 3. 自动提交Spec PR到openEuler社区
 4. 获取OpenStack SIG CI失败的PR列表
@@ -14,96 +14,24 @@ oos在不断开发中，用户可以使用pypi上已发布的稳定版
 pip install openstack-sig-tool
 ```
 
-## 自动生成 RPM Spec, 可选是否提交 PR 到 openEuler 社区
+## 自动生成、更新、构建 RPM Spec
 
 分别支持单个生成 RPM Spec 和批量生成 RPM Spec，可选是否 push 并提交 pr 到 OpenEuler 社区。
 
-- 生成单个软件包的RPM Spec
+- 生成软件包的RPM Spec
 ```shell script
-oos spec build --build-rpm --name stevedore --version 1.28.0
-# or: oos spec build -b -n stevedore -v 1.28.0
+oos spec create --name stevedore --version 1.28.0
 ```
 
-- 批量化生成RPM Spec
-
-批量化生RPM Spec 需要预先准备一个`.csv`文件存放要生成RPM Spec的软件包列表，`.csv`文件中需要
-包含`pypi_name`和`version`两列。
-```shell script
-oos spec build --projects-data projects.csv
-# or: oos spec build -p projects.csv
+- 更新软件包的RPM Spec
+```
+oos spec update --name stevedore --version 2.0.0
 ```
 
-- 生成单个软件包的 RPM Spec，基于上游生成 spec（继承上游 changlog），并自动提交 pr 到社区。
-
-base 除了 `upstream`，还可以指定为 `local`。如果为 `local`，则表示本地构建新的 spec。base 如果不指定，没有
-`--push` 参数时默认为 `local`,有 `--push` 参数时默认为 `upstream`。
-```shell script
-export GITEE_PAT=<your gitee pat>
-oos spec build --build-rpm --name stevedore --version 1.28.0 --base upstream --push
-# or: oos spec build -b -n stevedore -v 1.28.0 --base upstream --push
+- 构建RPM软件包
 ```
-
-- 批量化生成RPM Spec，本地构建新的 spec，并自动提交 pr 到社区。
-```shell script
-export GITEE_PAT=<your gitee pat>
-oos spec build --projects-data projects.csv --base local --push
-# or: oos spec build -p projects.csv --base local --push
+oos spec build stevedore
 ```
-
-除了上述基本用法，`oos spec build`命令支持的参数如下：
-```
---build-root
-    指定build spec的根目录，默认为用户目（通常为root）录的rpmbuild/目录，建议使用默认
--n, --name
-    生成单个软件包的RPM Spec的时候指定软件包pypi上的名称
--v, --version
-    生成单个软件包的RPM Spec的时候指定软件包版本号
--p, --projects-data
-    批量生成软件包RPM Spec的时候指定projects列表的csv文件，必须包含`pypi_name`和`version`两列
--q, --query
-    过滤器，模糊匹配projects-data中的软件包名称，通常用于重新生成软件包列表中的某一个，如‘-q cinderclient’
--cl, --change_log
-    自定义Spec的changlog。如不指定，则使用默认模板生成；如果指定，并且同时使用`--push`参数，则commit
-    message和PR title同样使用指定内容。
---base
-    可选值为“local”或“upstream”，如果值为“local”，本地构建新的spec；如果值为“upstream”，在上游
-    spec基础上构建新的spec，继承上游spec的changelog
--t，--gitee-pat
-    个人Gitee账户personal access token，使用`--push`参数或`--base`参数值为“local”时，此参
-    数为必选参数，可以使用GITEE_PAT环境变量指定
--e，--gitee-email
-    个人Gitee账户email地址，可使用GITEE_EMAIL指定, 若在Gitee账户公开，可通过Token自动获取
--o --gitee-org
-    gitee组织的名称，默认为src-openeuler，可以使用GITEE_ORG环境变量指定
--p, --projects-data
-    软件包列表的.csv文件，必须包含`pypi_name`和`version`两列, 和“--version、--name”参数二选一
--d, --dest-branch
-    指定push spec到openEuler仓库的目标分支名，默认为master
--r, --repos-dir
-    指定存放openEuler仓库的本地目录，默认为build root目录下面的src-repos目录
--a, --arch
-    指定生成Spec文件的arch，默认为'noarch'
--py2, --python2
-    指定生成python2的软件包的Spec
--sd, --short-description
-    指定在生成spec的时候是否对description做截短处理，默认为True
--nc, --no-check
-    指定在生成的Spec文件中不添加check步骤
--b, --build-rpm
-    指定是否在生成Spec的时候打rpm包，若不指定，只生成Spec，不打RPM包
--o, --output
-    指定输出spec文件的位置，不指定的话默认生成在rpmbuild/SPECS/目录下面
--rs, --reuse-spec
-    复用已存在的spec文件，不再重新生成。
---push
-    指定是否push到gitee仓库上并提交PR
-
-注意：必选参数为--projects-data，或者--name和--version，若同时指定这3个参数，则自动忽略
---projects-data参数。
-```
-
-**注意：** 当 `oos spec build` 命令带有 `--push` 参数或 `--base` 参数值为 “local” 时，
-`--gitee-pat` 为必选参数。它是 Gitee 账号的 token 。
 
 ## 自动分析OpenStack软件包依赖
 
@@ -280,7 +208,7 @@ oos repo branch-delete --repos-file repos.csv -b openEuler-21.09 -b openEuler-22
 ```
 
 ## 环境和依赖
-上述`oos spec build`和`oos spec push`命令需要依赖于`rpmbuild`工具，因此需要安装以下相关软件包：
+上述`oos spec build`命令需要依赖于`rpmbuild`工具，因此需要安装以下相关软件包：
 ```shell script
 yum install rpm-build rpmdevtools
 ```
@@ -288,7 +216,6 @@ yum install rpm-build rpmdevtools
 ```shell script
 rpmdev-setuptree
 ```
-在执行`oos spec build`和`oos spec push`命令时需指定`--build-root`参数为`rpmbuild`工作目录
-的根目录，默认为当前用户目录下`rpmbuild/`目录。
+在执行`oos spec build`命令时可以指定`--build-root`参数为`rpmbuild`工作目录的根目录，默认为当前用户目录下`rpmbuild/`目录。
 
 另外，为了便于使用该工具，可以使用`Docker`快速构建一个打包环境，具体详见`docker/`目录下的[README](https://gitee.com/openeuler/openstack/blob/master/tools/docker/README.md).
