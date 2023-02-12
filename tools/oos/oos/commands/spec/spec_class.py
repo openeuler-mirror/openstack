@@ -5,6 +5,7 @@ import datetime
 import json
 import os
 import re
+import shutil
 import subprocess
 import textwrap
 
@@ -19,23 +20,16 @@ from oos.common import pypi
 
 
 class RPMSpec(object):
-    def __init__(self, pypi_name, version='latest', arch=None,
-                 python2=False, short_description=True, add_check=True,
-                 old_changelog=None, old_version=None, change_log=None):
+    def __init__(self, pypi_name, version='latest', arch=None, add_check=True,
+                 old_changelog=None, old_version=None):
         self.pypi_name = pypi_name
         # use 'latest' as version if version is NaN
         self.version = 'latest' if version != version else version
-        self.shorten_description = short_description
         self.arch = arch
-        self.python2 = python2
         self.old_changelog = old_changelog
         self.old_version = old_version
-        self.change_log = change_log
         self.spec_path = ''
         self.source_path = ''
-        self.deps_missed = set()
-        self.build_failed = False
-        self.check_stage_failed = False
         self.add_check = add_check
 
         self._pypi_json = None
@@ -43,18 +37,17 @@ class RPMSpec(object):
         self._pkg_name = ""
         self._pkg_summary = ""
         self._pkg_home = ""
-        self._pkg_license = ""
         self._source_url = ""
         self._source_file = ""
         self._source_file_dir = ""
         self._base_build_requires = []
         self._dev_requires = []
         self._test_requires = []
-        self._check_supported = True
 
     @property
     def pypi_json(self):
         if not self._pypi_json:
+            click.echo("Fetching package info from pypi")
             url_template = 'https://pypi.org/pypi/{name}/{version}/json'
             url_template_latest = 'https://pypi.org/pypi/{name}/json'
             if self.version == 'latest':
@@ -75,7 +68,7 @@ class RPMSpec(object):
         return self._spec_name
 
     def _pypi2pkg_name(self, pypi_name):
-        prefix = 'python2-' if self.python2 else 'python3-'
+        prefix = 'python3-'
         if pypi_name in CONSTANTS['pypi2pkgname']:
             pkg_name = CONSTANTS['pypi2pkgname'][pypi_name]
         else:
@@ -119,8 +112,7 @@ class RPMSpec(object):
         return new_version > old_version
 
     def _get_provide_name(self):
-        return self.pkg_name if self.python2 else self.pkg_name.replace(
-            'python3-', 'python-')
+        return self.pkg_name.replace('python3-', 'python-')
 
     def _get_license(self):
         if CONSTANTS['pypi_license'].get(self.module_name):
@@ -192,20 +184,11 @@ class RPMSpec(object):
         self._base_build_requires = []
         self._dev_requires = []
         self._test_requires = []
-
-        if self.python2:
-            self._base_build_requires = ['python2-devel', 'python2-setuptools',
-                                         'python2-pbr', 'python2-pip',
-                                         'python2-wheel']
-        else:
-            self._base_build_requires = ['python3-devel', 'python3-setuptools',
-                                         'python3-pbr', 'python3-pip',
-                                         'python3-wheel']
+        self._base_build_requires = ['python3-devel', 'python3-setuptools',
+                                        'python3-pbr', 'python3-pip',
+                                        'python3-wheel']
         if self.arch:
-            if self.python2:
-                self._base_build_requires.append('python2-cffi')
-            else:
-                self._base_build_requires.append('python3-cffi')
+            self._base_build_requires.append('python3-cffi')
             self._base_build_requires.extend(['gcc', 'gdb'])
 
         pypi_requires = self.pypi_json["info"]["requires_dist"]
@@ -240,20 +223,10 @@ class RPMSpec(object):
             else:
                 self._dev_requires.append(r_pkg)
 
-    def generate_spec(self, build_root, output_file=None, reuse_spec=False):
+    def generate_spec(self, output_file):
         self._init_source_info()
         self._parse_requires()
-        if output_file:
-            self.spec_path = output_file
-        else:
-            self.spec_path = os.path.join(
-                build_root, "SPECS/", self.spec_name) + '.spec'
-        if reuse_spec:
-            if not os.path.exists(self.spec_path):
-                click.secho("Spec file no existed with reuse spec parameter "
-                            "specified" % self.pypi_name, fg='red')
-                self.build_failed = True
-            return
+        spec_path = output_file if output_file else os.path.join(self.spec_name) + '.spec'
         env = jinja2.Environment(trim_blocks=True, lstrip_blocks=True,
                                  loader=jinja2.FileSystemLoader(
                                      SPEC_TEMPLATE_DIR))
@@ -273,107 +246,68 @@ class RPMSpec(object):
                          'base_build_requires': self._base_build_requires,
                          'dev_requires': self._dev_requires,
                          'test_requires': test_requires,
-                         'description':
-                             self._get_description(self.shorten_description),
+                         'description': self._get_description(),
                          'today': datetime.date.today().strftime("%a %b %d %Y"),
                          'add_check': self.add_check,
-                         'python2': self.python2,
                          "source_file_dir": self._source_file_dir,
                          "old_changelog": self.old_changelog,
                          "up_down_grade": up_down_grade,
-                         "change_log": self.change_log,
                          }
         output = template.render(template_vars)
-        with open(self.spec_path, 'w') as f:
+        with open(spec_path, 'w') as f:
             f.write(output)
 
-    def _verify_check_stage(self, build_root):
-        # Verify the %check stage of spec file
-        if not self.add_check:
-            return
-        pkg_src_dir = os.path.join(build_root, 'BUILD', self._source_file_dir)
-        if self.python2:
-            cmd = "cd %s; python2 setup.py test" % pkg_src_dir
+
+class RPMSpecBuild(object):
+    def __init__(self, spec):
+        self.spec = spec
+        self._spec_file_ensure()
+        self._rpmbuild_env_ensure()
+        self._init_build_root()
+
+    def _spec_file_ensure(self):
+        if not os.path.exists(self.spec):
+            raise click.ClickException(f'Spec file doesn\'t existed in present folder')
+
+    def _rpmbuild_env_ensure(self):
+        status = subprocess.call(["yum", "install", "-y", "rpmdevtools", "dnf-plugins-core"])
+        if status !=0:
+            raise click.ClickException("Fail to install rpm tools, You must install them by hand first")
+
+    def _init_build_root(self):
+        try:
+            for subdir in ["BUILD", "BUILDROOT", "RPMS", "SOURCES", "SPECS", "SRPMS"]:
+                os.makedirs(f"rpmbuild/{subdir}", exist_ok=True)
+            shutil.copyfile(self.spec, f"rpmbuild/SPECS/{self.spec}")
+        except Exception as e:
+            raise click.ClickException(f"Fail to init the rpm build root folder, reason:{e}")
+
+    def _get_local_source(self):
+        source_file = None
+        with open(self.spec) as f_spec:
+            lines = f_spec.readlines()
+            for l_num, line in enumerate(lines):
+                if 'Source0:' in line:
+                    source_file = line.split('/')[-1].strip('\n')
+                    break
+        if source_file and os.path.exists(source_file):
+            shutil.copyfile(source_file, f"rpmbuild/SOURCES/{source_file}")
+            return True
         else:
-            cmd = "cd %s; python3 setup.py test" % pkg_src_dir
-        status = subprocess.call(cmd, shell=True)
+            return False
+
+    def build_package(self):
+        status = subprocess.call(["dnf", "builddep", '-y', self.spec])
         if status != 0:
-            click.secho("Run check stage failed: %s" % self.pypi_name, fg='red')
-            output = subprocess.run(cmd, shell=True, stderr=subprocess.STDOUT,
-                                    stdout=subprocess.PIPE)
-            if "invalid command 'test'" in str(output.stdout):
-                click.secho("Does not support setup.py test command of %s, "
-                            "skip check stage." % self.pypi_name, fg='yellow')
-                self._check_supported = False
-            self.check_stage_failed = True
-            return
-
-    def build_package(self, build_root, output_file=None, reuse_spec=False):
-        self.generate_spec(build_root, output_file, reuse_spec)
-        if not self.spec_path:
-            return
-        status = subprocess.call(["dnf", "builddep", '-y', self.spec_path])
+            raise click.ClickException("install build dependencies failed.")
+        pwd = os.getcwd()
+        has_source = self._get_local_source()
+        if has_source:
+            status = subprocess.call(["rpmbuild", "--define", f"_topdir {pwd}/rpmbuild",
+                                      "-ba", f"rpmbuild/SPECS/{self.spec}"])
+        else:
+            status = subprocess.call(["rpmbuild", "--define", f"_topdir {pwd}/rpmbuild",
+                                      "--undefine=_disable_source_fetch", "-ba",
+                                      f"rpmbuild/SPECS/{self.spec}"])
         if status != 0:
-            click.secho("Project: %s built failed, install dependencies failed."
-                        % self.pypi_name, fg='red')
-            self.build_failed = True
-            return
-        status = subprocess.call(["rpmbuild",
-                                  "--undefine=_disable_source_fetch", "-ba",
-                                  self.spec_path])
-        if status != 0:
-            self.build_failed = True
-            if self._check_supported and self.add_check:
-                self._verify_check_stage(build_root)
-                if not self._check_supported:
-                    click.secho("Project: %s does not support check stage, "
-                                "re-generate " "spec." % self.pypi_name,
-                                fg='yellow')
-                    self.add_check = False
-                    self.build_failed = False
-                    self.build_package(build_root, output_file)
-            if self.build_failed:
-                click.secho("Project: %s built failed, need to manually fix." %
-                            self.pypi_name, fg='red')
-                return
-
-        self.source_path = os.path.join(build_root, "SOURCES/",
-                                        self._source_file)
-        if not os.path.isfile(self.source_path):
-            click.secho("Project: %s built failed, source file not found." %
-                        self.pypi_name, fg='red')
-            self.build_failed = True
-            return
-
-    def check_deps(self, all_repo_names=None):
-        self._parse_requires()
-        for r in self._dev_requires + self._test_requires:
-            in_list = True
-            if (all_repo_names and r.replace("python2", "python").lower()
-                    not in all_repo_names or []):
-                in_list = False
-            status, _ = subprocess.getstatusoutput("yum info %s" % r)
-            if status != 0 and not in_list:
-                self.deps_missed.add(r)
-
-    def download_source_by_spec(self, build_root):
-        if not os.path.exists(self.spec_path):
-            self.build_failed = True
-            click.secho(f'Spec file of {self.pypi_name} project no existed',
-                        fg='red')
-            return
-
-        status = subprocess.call(['rpmbuild',
-                                  '--undefine=_disable_source_fetch',
-                                  '-D',
-                                  f'_topdir {build_root}',
-                                  self.spec_path])
-        if status != 0:
-            self.build_failed = True
-            click.secho(f'Project: {self.pypi_name} build failed because'
-                        f' download source package failed.', fg='red')
-            return
-
-        self.source_path = os.path.join(build_root, 'SOURCES',
-                                        self._source_file)
-
+            raise click.ClickException("RPM built failed, need to manually fix.")
