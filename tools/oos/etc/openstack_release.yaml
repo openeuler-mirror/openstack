@@ -2125,7 +2125,7 @@ xena:
   os-brick: 5.0.3
   os-ken: 2.1.1
   os-win: 5.5.0
-  os_vif: 2.6.0
+  os_vif: 2.6.1
   osc-lib: 2.4.2
   osc-placement: 3.1.1
   oslo.cache: 2.8.2
