@@ -4306,6 +4306,7 @@ src-openeuler:
   orocos_kdl: sig-ROS
   orocos_kinematics_dynamics: sig-ROS
   os-maven-plugin: sig-Java
+  os-net-config: sig-openstack
   os-prober: Base-service
   osc: Others
   oscap-anaconda-addon: sig-security-facility
@@ -4662,6 +4663,7 @@ src-openeuler:
   perl-Crypt-URandom: sig-perl-modules
   perl-Crypt-UnixCrypt_XS: sig-perl-modules
   perl-Crypt-X509: sig-perl-modules
+  perl-Curses: sig-perl-modules
   perl-Cwd-Guard: sig-perl-modules
   perl-Cwd-utf8: sig-perl-modules
   perl-DBD-CSV: sig-RISC-V

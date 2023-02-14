@@ -57,6 +57,7 @@ src-openeuler:
   openstack-swift: sig-openstack
   openstack-tempest: sig-openstack
   openstack-trove: sig-openstack
+  os-net-config: sig-openstack
   ovn: sig-openstack
   python-3parclient: sig-openstack
   python-PyMI: sig-openstack
