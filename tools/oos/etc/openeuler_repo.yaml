@@ -425,10 +425,10 @@ src-openeuler:
   NetworkManager-pptp: System-tool
   NetworkManager-ssh: Networking
   NetworkManager-vpnc: Networking
-  NutShell-Kernel: sig-RISC-V
-  NutShell-riscv-glibc: sig-RISC-V
-  NutShell-riscv-pk: sig-RISC-V
-  NutShell-systemd: sig-RISC-V
+  NutShell-Kernel: sig-recycle
+  NutShell-riscv-glibc: sig-recycle
+  NutShell-riscv-pk: sig-recycle
+  NutShell-systemd: sig-recycle
   ORBit2: Desktop
   OpenAMP: sig-embedded
   OpenCSD: dev-utils
