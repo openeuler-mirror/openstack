@@ -241,6 +241,7 @@ openeuler:
   nvme-snsd: Storage
   nvwa: sig-ops
   oe-performance: sig-Compatibility-Infra
+  oebuild: sig-Yocto
   oec-application: sig-Compatibility-Infra
   oec-hardware: sig-Compatibility-Infra
   oecp: sig-Compatibility-Infra
@@ -2157,6 +2158,7 @@ src-openeuler:
   hyphen-uk: Application
   i2c-tools: Computing
   i3: Desktop
+  i3status: Desktop
   i40e: Networking
   iSulad: iSulad
   iSulad-img: sig-recycle
@@ -9296,6 +9298,8 @@ src-openeuler:
   web-assets: Application
   webbench: dev-utils
   webkit2gtk3: Desktop
+  webkit2gtk4: Desktop
+  webkit2gtk5: Desktop
   webkit_dependency: sig-ROS
   webrtc-audio-processing: Desktop
   weechat: Application
