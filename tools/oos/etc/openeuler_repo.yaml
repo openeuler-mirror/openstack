@@ -712,6 +712,7 @@ src-openeuler:
   apparmor: sig-security-facility
   appstream: dev-utils
   appstream-data: sig-recycle
+  apptainer: sig-HPC
   appweb: Networking
   apr: Base-service
   apr-util: Base-service
