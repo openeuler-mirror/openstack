@@ -55,8 +55,11 @@ class RPMSpec(object):
             else:
                 url = url_template.format(name=self.pypi_name,
                                           version=self.version)
-            with urllib.request.urlopen(url) as u:
-                self._pypi_json = json.loads(u.read().decode('utf-8'))
+            try:
+                with urllib.request.urlopen(url) as u:
+                    self._pypi_json = json.loads(u.read().decode('utf-8'))
+            except Exception:
+                raise click.ClickException(f"Fail to fetch info from pypi, package: {self.pypi_name}, version: {self.version}")
         return self._pypi_json
 
     @property
@@ -185,8 +188,8 @@ class RPMSpec(object):
         self._dev_requires = []
         self._test_requires = []
         self._base_build_requires = ['python3-devel', 'python3-setuptools',
-                                        'python3-pbr', 'python3-pip',
-                                        'python3-wheel']
+                                     'python3-pbr', 'python3-pip',
+                                     'python3-wheel']
         if self.arch:
             self._base_build_requires.append('python3-cffi')
             self._base_build_requires.extend(['gcc', 'gdb'])
@@ -270,8 +273,9 @@ class RPMSpecBuild(object):
             raise click.ClickException(f'Spec file doesn\'t existed in present folder')
 
     def _rpmbuild_env_ensure(self):
-        status = subprocess.call(["yum", "install", "-y", "rpmdevtools", "dnf-plugins-core"])
-        if status !=0:
+        try:
+            subprocess.call(["dnf", "install", "-y", "rpmdevtools", "dnf-plugins-core"])
+        except Exception:
             raise click.ClickException("Fail to install rpm tools, You must install them by hand first")
 
     def _init_build_root(self):
@@ -297,17 +301,20 @@ class RPMSpecBuild(object):
             return False
 
     def build_package(self):
-        status = subprocess.call(["dnf", "builddep", '-y', self.spec])
-        if status != 0:
-            raise click.ClickException("install build dependencies failed.")
-        pwd = os.getcwd()
-        has_source = self._get_local_source()
-        if has_source:
-            status = subprocess.call(["rpmbuild", "--define", f"_topdir {pwd}/rpmbuild",
-                                      "-ba", f"rpmbuild/SPECS/{self.spec}"])
-        else:
-            status = subprocess.call(["rpmbuild", "--define", f"_topdir {pwd}/rpmbuild",
-                                      "--undefine=_disable_source_fetch", "-ba",
-                                      f"rpmbuild/SPECS/{self.spec}"])
-        if status != 0:
+        try:
+            subprocess.call(["dnf", "builddep", '-y', self.spec])
+        except Exception:
+            raise click.ClickException("Fail to install build dependencies.")
+
+        try:
+            pwd = os.getcwd()
+            has_source = self._get_local_source()
+            if has_source:
+                subprocess.call(["rpmbuild", "--define", f"_topdir {pwd}/rpmbuild",
+                                 "-ba", f"rpmbuild/SPECS/{self.spec}"])
+            else:
+                subprocess.call(["rpmbuild", "--define", f"_topdir {pwd}/rpmbuild",
+                                 "--undefine=_disable_source_fetch", "-ba",
+                                 f"rpmbuild/SPECS/{self.spec}"])
+        except Exception:
             raise click.ClickException("RPM built failed, need to manually fix.")

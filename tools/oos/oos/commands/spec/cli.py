@@ -53,6 +53,8 @@ def create(name, version, arch, no_check, output):
 @click.option("-o", "--output", help="Specify output file of generated Spec")
 def update(name, version, output):
     old_changelog, old_version, arch, check = _get_old_spec_info(name)
+    if version == old_version:
+        raise click.ClickException(f"The version {version} can't be the same with origin one.")
     spec = RPMSpec(name, version, arch, check, old_changelog, old_version)
     spec.generate_spec(output)
 
