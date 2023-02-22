@@ -1432,7 +1432,9 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     OPENSTACK_KEYSTONE_URL = "http://%s:5000/v3" % OPENSTACK_HOST
     OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT = True
     OPENSTACK_KEYSTONE_DEFAULT_DOMAIN = "Default"
-    OPENSTACK_KEYSTONE_DEFAULT_ROLE = "user"
+    OPENSTACK_KEYSTONE_DEFAULT_ROLE = "member"
+    WEBROOT = '/dashboard'
+    POLICY_FILES_PATH = "/etc/openstack-dashboard"
 
     OPENSTACK_API_VERSIONS = {
         "identity": 3,
