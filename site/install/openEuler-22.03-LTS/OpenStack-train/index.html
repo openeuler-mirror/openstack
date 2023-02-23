@@ -127,7 +127,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../OpenStack-wallaby/">openEuler-22.03-LTS_Wallaby</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS-SP1/OpenStack-wallaby/">openEuler-22.03-LTS-SP1_Train</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS-SP1/OpenStack-train/">openEuler-22.03-LTS-SP1_Train</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS-SP1/OpenStack-wallaby/">openEuler-22.03-LTS-SP1_Wallaby</a>
                   </li>
@@ -1179,7 +1179,9 @@ CACHES = {
 OPENSTACK_KEYSTONE_URL = "http://%s:5000/v3" % OPENSTACK_HOST
 OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT = True
 OPENSTACK_KEYSTONE_DEFAULT_DOMAIN = "Default"
-OPENSTACK_KEYSTONE_DEFAULT_ROLE = "user"
+OPENSTACK_KEYSTONE_DEFAULT_ROLE = "member"
+WEBROOT = '/dashboard'
+POLICY_FILES_PATH = "/etc/openstack-dashboard"
 
 OPENSTACK_API_VERSIONS = {
     "identity": 3,
