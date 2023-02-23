@@ -69,7 +69,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS/OpenStack-wallaby/">openEuler-22.03-LTS_Wallaby</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="./">openEuler-22.03-LTS-SP1_Train</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../OpenStack-train/">openEuler-22.03-LTS-SP1_Train</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">openEuler-22.03-LTS-SP1_Wallaby</a>
     <ul class="current">
@@ -1205,7 +1205,9 @@ CACHES = {
 OPENSTACK_KEYSTONE_URL = "http://%s:5000/v3" % OPENSTACK_HOST
 OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT = True
 OPENSTACK_KEYSTONE_DEFAULT_DOMAIN = "Default"
-OPENSTACK_KEYSTONE_DEFAULT_ROLE = "user"
+OPENSTACK_KEYSTONE_DEFAULT_ROLE = "member"
+WEBROOT = '/dashboard'
+POLICY_FILES_PATH = "/etc/openstack-dashboard"
 
 OPENSTACK_API_VERSIONS = {
     "identity": 3,
@@ -2573,7 +2575,7 @@ oos env manage -r 22.03-lts -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n tes
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="页脚导航">
-        <a href="./" class="btn btn-neutral float-left" title="openEuler-22.03-LTS-SP1_Train"><span class="icon icon-circle-arrow-left"></span> 上一张</a>
+        <a href="../OpenStack-train/" class="btn btn-neutral float-left" title="openEuler-22.03-LTS-SP1_Train"><span class="icon icon-circle-arrow-left"></span> 上一张</a>
         <a href="../../openEuler-22.09/OpenStack-yoga/" class="btn btn-neutral float-right" title="openEuler-22.09_Yoga">下一张 <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -2597,7 +2599,7 @@ oos env manage -r 22.03-lts -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n tes
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="./" style="color: #fcfcfc">&laquo; 上一张</a></span>
+      <span><a href="../OpenStack-train/" style="color: #fcfcfc">&laquo; 上一张</a></span>
     
     
       <span><a href="../../openEuler-22.09/OpenStack-yoga/" style="color: #fcfcfc">下一张 &raquo;</a></span>
