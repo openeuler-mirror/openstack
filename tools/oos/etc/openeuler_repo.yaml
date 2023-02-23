@@ -3680,7 +3680,7 @@ src-openeuler:
   ncompress: Base-service
   ncurses: Base-service
   ndctl: Storage
-  ndisc6: Programming-language
+  ndisc6: Networking
   neXtaw: dev-utils
   neethi: Networking
   nekohtml: Application
