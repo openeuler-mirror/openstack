@@ -317,6 +317,7 @@ openeuler:
   ros: sig-ROS
   rubik: sig-CloudNative
   rubyporter: dev-utils
+  rust_shyper: Virt
   secGear: sig-confidential-computing
   secpaver: sig-security-facility
   security-committee: security-committee
