@@ -6456,7 +6456,7 @@ src-openeuler:
   python-backcall: sig-python-modules
   python-backlash: sig-python-modules
   python-backoff: sig-python-modules
-  python-backports: Base-service
+  python-backports: sig-recycle
   python-backports-functools_lru_cache: Private
   python-backports-shutil_get_terminal_size: Private
   python-backports-ssl_match_hostname: Networking
@@ -6743,6 +6743,7 @@ src-openeuler:
   python-dpkt: sig-python-modules
   python-dracclient: sig-openstack
   python-drat: sig-python-modules
+  python-drgn: sig-python-modules
   python-duecredit: sig-python-modules
   python-dulwich: sig-python-modules
   python-easy-server: sig-openstack
