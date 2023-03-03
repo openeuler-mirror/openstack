@@ -1590,6 +1590,7 @@ src-openeuler:
   gcc_secure: Others
   gcolor2: sig-mate-desktop
   gcr: Desktop
+  gcr4: GNOME
   gd: Desktop
   gdal: Application
   gdb: Computing
