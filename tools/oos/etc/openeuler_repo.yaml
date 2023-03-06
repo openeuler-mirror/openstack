@@ -39,6 +39,7 @@ openeuler:
   OSAPIChecker: sig-OSRefTools
   OSCompatibility: sig-OSRefTools
   OSPerformance: sig-OSRefTools
+  OSPerformanceTools: sig-OSRefTools
   PRIP: Networking
   PilotGo: sig-ops
   PilotGo-plugins: sig-ops
