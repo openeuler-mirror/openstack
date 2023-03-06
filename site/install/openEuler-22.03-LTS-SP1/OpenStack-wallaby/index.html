@@ -1656,8 +1656,7 @@ yum install diskimage-builder</code></pre>
     文件名    ：/usr/sbin/semanage
     # 安装
     [root@localhost ~]# yum install policycoreutils-python
-    ```
-</code></pre>
+    ```</code></pre>
 </li>
 <li>
 <p>制作镜像</p>
@@ -1696,8 +1695,7 @@ optional arguments:
 
 ```shell
 ironic-python-agent-builder centos -o /mnt/ironic-agent-ssh -b origin/stable/rocky
-```
-</code></pre>
+```</code></pre>
 </li>
 <li>
 <p>允许ssh登陆</p>
@@ -1708,8 +1706,7 @@ export DIB_DEV_USER_USERNAME=ipa \
 export DIB_DEV_USER_PWDLESS_SUDO=yes \
 export DIB_DEV_USER_PASSWORD='123'
 ironic-python-agent-builder centos -o /mnt/ironic-agent-ssh -b origin/stable/rocky -e selinux-permissive -e devuser
-```
-</code></pre>
+```</code></pre>
 </li>
 <li>
 <p>指定代码仓库</p>
@@ -1727,8 +1724,7 @@ DIB_REPOREF_ironic_python_agent=refs/changes/43/701043/1
 
 参考：[source-repositories](https://docs.openstack.org/diskimage-builder/latest/elements/source-repositories/README.html)。
 
-指定仓库地址及版本验证成功。
-</code></pre>
+指定仓库地址及版本验证成功。</code></pre>
 </li>
 <li>
 <p>注意</p>
@@ -1790,8 +1786,7 @@ RestartSec=30s
 
 [Install]
 WantedBy=multi-user.target
-```
-</code></pre>
+```</code></pre>
 </li>
 </ol>
 <h3 id="kolla">Kolla 安装<a class="headerlink" href="#kolla" title="Permanent link">&para;</a></h3>
@@ -1970,8 +1965,7 @@ openstack endpoint create --region RegionOne object-store admin http://controlle
 <p>Swift RPM包里已经包含了一个基本可用的proxy-server.conf，只需要手动修改其中的ip和swift password即可。</p>
 <pre class="highlight"><code>***注意***
 
-**注意替换password为您在身份服务中为swift用户选择的密码**
-</code></pre>
+**注意替换password为您在身份服务中为swift用户选择的密码**</code></pre>
 <ol>
 <li>
 <p>安装和配置存储节点 （STG）</p>

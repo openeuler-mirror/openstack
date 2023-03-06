@@ -1373,8 +1373,7 @@ yum install diskimage-builder</code></pre>
     文件名    ：/usr/sbin/semanage
     # 安装
     [root@localhost ~]# yum install policycoreutils-python
-    ```
-</code></pre>
+    ```</code></pre>
 </li>
 <li>
 <p>制作镜像</p>
@@ -1413,8 +1412,7 @@ optional arguments:
 
 ```shell
 ironic-python-agent-builder centos -o /mnt/ironic-agent-ssh -b origin/stable/rocky
-```
-</code></pre>
+```</code></pre>
 </li>
 <li>
 <p>允许ssh登陆</p>
@@ -1425,8 +1423,7 @@ export DIB_DEV_USER_USERNAME=ipa \
 export DIB_DEV_USER_PWDLESS_SUDO=yes \
 export DIB_DEV_USER_PASSWORD='123'
 ironic-python-agent-builder centos -o /mnt/ironic-agent-ssh -b origin/stable/rocky -e selinux-permissive -e devuser
-```
-</code></pre>
+```</code></pre>
 </li>
 <li>
 <p>指定代码仓库</p>
@@ -1444,8 +1441,7 @@ DIB_REPOREF_ironic_python_agent=refs/changes/43/701043/1
 
 参考：[source-repositories](https://docs.openstack.org/diskimage-builder/latest/elements/source-repositories/README.html)。
 
-指定仓库地址及版本验证成功。
-</code></pre>
+指定仓库地址及版本验证成功。</code></pre>
 </li>
 </ol>
 <p>在Queens中，我们还提供了ironic-inspector等服务，用户可根据自身需求安装。</p>
