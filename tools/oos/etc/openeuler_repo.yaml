@@ -83,6 +83,7 @@ openeuler:
   bishengjdk-riscv: Compiler
   blesschess: sig-minzuchess
   blog: sig-recycle
+  c2rust: dev-utils
   capsule: Virt
   ceph_dev: sig-SDS
   certificate-center: sig-OpenDesign
@@ -911,6 +912,7 @@ src-openeuler:
   c-STAR: sig-bio
   c-ares: Networking
   c-blosc: dev-utils
+  c2rust: dev-utils
   c3p0: sig-Java
   ca-certificates: Base-service
   cachefilesd: Storage
@@ -9083,6 +9085,7 @@ src-openeuler:
   tint2: sig-cinnamon
   tinycdb: Runtime
   tinyproxy: Networking
+  tinytoml: Compiler
   tinyxml: sig-compat-winapp
   tinyxml2: Programming-language
   tinyxml2_vendor: sig-ROS
@@ -9310,6 +9313,7 @@ src-openeuler:
   webkit2gtk4: Desktop
   webkit2gtk5: Desktop
   webkit_dependency: sig-ROS
+  webp-pixbuf-loader: GNOME
   webrtc-audio-processing: Desktop
   weechat: Application
   weld-api: sig-Java
