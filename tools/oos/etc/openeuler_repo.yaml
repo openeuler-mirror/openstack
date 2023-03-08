@@ -331,6 +331,7 @@ openeuler:
   sig-Edge: sig-Edge
   sig-OSCourse: sig-OSCourse
   sig-OpenBoard: sig-OpenBoard
+  signatrust: Infrastructure
   skylark: Virt
   sonic-linux-kernel: sig-ONL
   stortrace: Storage
