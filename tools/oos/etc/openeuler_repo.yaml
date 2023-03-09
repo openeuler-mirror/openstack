@@ -1260,6 +1260,7 @@ src-openeuler:
   dleyna-server: Application
   dlib: ai
   dlm: Application
+  dmenu: Desktop
   dmidecode: Computing
   dmraid: Storage
   dnf: sig-OS-Builder
