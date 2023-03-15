@@ -221,6 +221,7 @@ openeuler:
   libwd: sig-AccLib
   libxml2-rust: Base-service
   linux-operation: sig-OSCourse
+  lldpd: Networking
   llvm-project: Compiler
   lxcfs-tools: iSulad
   lzu-icc-nsg: sig-OSCourse
@@ -321,6 +322,7 @@ openeuler:
   rubik: sig-CloudNative
   rubyporter: dev-utils
   rust_shyper: Virt
+  sds_doc: sig-SDS
   secGear: sig-confidential-computing
   secpaver: sig-security-facility
   security-committee: security-committee
@@ -6621,7 +6623,7 @@ src-openeuler:
   python-crayons: sig-python-modules
   python-crcelk: sig-python-modules
   python-croniter: sig-python-modules
-  python-crypto: Base-service
+  python-crypto: sig-recycle
   python-cryptography: Base-service
   python-cryptography-vectors: Programming-language
   python-cson: sig-python-modules
@@ -7055,7 +7057,7 @@ src-openeuler:
   python-kdcproxy: sig-python-modules
   python-keras-rl2: A-Tune
   python-kerberos: sig-python-modules
-  python-keyczar: sig-python-modules
+  python-keyczar: sig-recycle
   python-keyring: Programming-language
   python-keystone-tempest-plugin: sig-openstack
   python-keystoneauth1: sig-openstack
