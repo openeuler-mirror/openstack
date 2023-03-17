@@ -307,6 +307,7 @@ openeuler:
   qax-gm-certificates: sig-security-facility
   qemu: Virt
   qla2xxx: sig-Compatibility-Infra
+  qt6: sig-QT
   quick-issue: sig-OpenDesign
   radiaTest: sig-QA
   raspberrypi: sig-RaspberryPi
@@ -8162,6 +8163,43 @@ src-openeuler:
   qt5-ukui-platformtheme: sig-UKUI
   qt5dxcb-plugin: sig-DDE
   qt5integration: sig-DDE
+  qt6: sig-QT
+  qt6-qt3d: sig-QT
+  qt6-qt5compat: sig-QT
+  qt6-qtbase: sig-QT
+  qt6-qtcharts: sig-QT
+  qt6-qtconnectivity: sig-QT
+  qt6-qtdatavis3d: sig-QT
+  qt6-qtdeclarative: sig-QT
+  qt6-qtdoc: sig-QT
+  qt6-qthttpserver: sig-QT
+  qt6-qtimageformats: sig-QT
+  qt6-qtlanguageserver: sig-QT
+  qt6-qtlocation: sig-QT
+  qt6-qtlottie: sig-QT
+  qt6-qtmultimedia: sig-QT
+  qt6-qtnetworkauth: sig-QT
+  qt6-qtpositioning: sig-QT
+  qt6-qtquick3d: sig-QT
+  qt6-qtquick3dphysics: sig-QT
+  qt6-qtquickcontrols2: sig-QT
+  qt6-qtquicktimeline: sig-QT
+  qt6-qtremoteobjects: sig-QT
+  qt6-qtscxml: sig-QT
+  qt6-qtsensors: sig-QT
+  qt6-qtserialbus: sig-QT
+  qt6-qtserialport: sig-QT
+  qt6-qtshadertools: sig-QT
+  qt6-qtspeech: sig-QT
+  qt6-qtsvg: sig-QT
+  qt6-qttools: sig-QT
+  qt6-qttranslations: sig-QT
+  qt6-qtvirtualkeyboard: sig-QT
+  qt6-qtwayland: sig-QT
+  qt6-qtwebchannel: sig-QT
+  qt6-qtwebengine: sig-QT
+  qt6-qtwebsockets: sig-QT
+  qt6-qtwebview: sig-QT
   qtav: sig-UKUI
   qtchooser: sig-UKUI
   qtkeychain-qt5: sig-KDE
