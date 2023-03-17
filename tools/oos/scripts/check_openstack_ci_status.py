@@ -7,6 +7,7 @@ import requests
 
 jobs = [
     'kolla-ansible-openeuler-source',
+    'kolla-ansible-openeuler',
     'devstack-platform-openEuler-22.03-ovn-source',
     'devstack-platform-openEuler-22.03-ovs',
 ]
