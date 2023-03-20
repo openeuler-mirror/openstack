@@ -28,6 +28,7 @@ openeuler:
   Intel-Arch-doc: sig-Intel-Arch
   Intel-gcc: sig-Intel-Arch
   Intel-glibc: sig-Intel-Arch
+  Jailhouse-gui: sig-industrial-control
   Java-Packages: sig-Java
   KPL-gmssl: sig-WayCa
   KPL-zlib: sig-WayCa
@@ -154,11 +155,13 @@ openeuler:
   hmir: sig-ops
   hostha: sig-openstack
   hpc: sig-HPC
+  hpcpilot: sig-HPC
   hpcrunner: sig-HPC
   hsak: Storage
   hw-buaa-lab: sig-OSCourse
   iSulad: iSulad
   iSulad-img: sig-recycle
+  ifm_nettle: sig-AccLib
   imageTailor: sig-OS-Builder
   infrastructure: Infrastructure
   install-scripts: sig-OS-Builder
