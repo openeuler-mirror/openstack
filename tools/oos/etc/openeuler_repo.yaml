@@ -224,7 +224,6 @@ openeuler:
   libwd: sig-AccLib
   libxml2-rust: Base-service
   linux-operation: sig-OSCourse
-  lldpd: Networking
   llvm-project: Compiler
   lxcfs-tools: iSulad
   lzu-icc-nsg: sig-OSCourse
@@ -3298,6 +3297,7 @@ src-openeuler:
   lld-15: Compiler
   lldb: dev-utils
   lldpad: Networking
+  lldpd: Networking
   llvm: Compiler
   llvm-15: Compiler
   llvm-bolt: Compiler
