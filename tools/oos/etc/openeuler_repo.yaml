@@ -116,6 +116,7 @@ openeuler:
   dim_tools: sig-security-facility
   docs: doc
   docs-accompany-reading: sig-OpenDesign
+  donau-pam-adopt: sig-HPC
   donau-slurm-wrappers: sig-HPC
   dpdk: sig-high-performance-network
   dpu-core: sig-DPU
@@ -182,6 +183,7 @@ openeuler:
   kernel-ascend: Kernel
   kernel-cloudnative: Kernel
   kernel-docs: Kernel
+  kiran-authentication-devices: sig-KIRAN-DESKTOP
   kiran-authentication-service: sig-KIRAN-DESKTOP
   kiran-biometrics: sig-KIRAN-DESKTOP
   kiran-calculator: sig-KIRAN-DESKTOP
@@ -200,6 +202,7 @@ openeuler:
   kiran-screensaver: sig-KIRAN-DESKTOP
   kiran-session-guard: sig-KIRAN-DESKTOP
   kiran-session-manager: sig-KIRAN-DESKTOP
+  kiran-shell: sig-KIRAN-DESKTOP
   kiran-tests: sig-KIRAN-DESKTOP
   kiran-wallpapers: sig-KIRAN-DESKTOP
   kiran-widgets-qt5: sig-KIRAN-DESKTOP
@@ -835,6 +838,7 @@ src-openeuler:
   bash: Base-service
   bash-argsparse: dev-utils
   bash-completion: Base-service
+  bat: dev-utils
   batik: sig-Java
   bazel: ai
   bc: Base-service
@@ -2688,6 +2692,7 @@ src-openeuler:
   khotkeys: sig-KDE
   kim-api: Application
   kio-extras: sig-KDE
+  kiran-authentication-devices: sig-KIRAN-DESKTOP
   kiran-authentication-service: sig-KIRAN-DESKTOP
   kiran-avatar-editor: sig-KIRAN-DESKTOP
   kiran-biometrics: sig-KIRAN-DESKTOP
@@ -2717,6 +2722,7 @@ src-openeuler:
   kiran-screensaver-dialog: sig-KIRAN-DESKTOP
   kiran-session-guard: sig-KIRAN-DESKTOP
   kiran-session-manager: sig-KIRAN-DESKTOP
+  kiran-shell: sig-KIRAN-DESKTOP
   kiran-tests: sig-KIRAN-DESKTOP
   kiran-themes: sig-KIRAN-DESKTOP
   kiran-wallpapers: sig-KIRAN-DESKTOP
