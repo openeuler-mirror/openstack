@@ -8309,21 +8309,26 @@ src-openeuler:
   rootsh: Others
   ros: sig-ROS
   ros1_bridge: sig-ROS
+  ros2_angles: sig-ROS
   ros2_base: sig-ROS
   ros2_cartographer: sig-ROS
   ros2_cartographer_ros: sig-ROS
   ros2_class_loader: sig-ROS
   ros2_control: sig-ROS
   ros2_control_msgs: sig-ROS
+  ros2_control_toolbox: sig-ROS
   ros2_controllers: sig-ROS
   ros2_demos: sig-ROS
   ros2_depthimage_to_laserscan: sig-ROS
+  ros2_diagnosticsn: sig-ROS
+  ros2_dynamixel_sdk: sig-ROS
   ros2_eigen_stl_containers: sig-ROS
   ros2_example_interfaces: sig-ROS
   ros2_examples: sig-ROS
   ros2_geometric_shapes: sig-ROS
   ros2_geometry2: sig-ROS
   ros2_graph_msgs: sig-ROS
+  ros2_hls_lfcd_lds_driver: sig-ROS
   ros2_image_common: sig-ROS
   ros2_image_pipeline: sig-ROS
   ros2_image_transport_plugins: sig-ROS
@@ -8331,14 +8336,25 @@ src-openeuler:
   ros2_interactive_markers: sig-ROS
   ros2_kdl_parser: sig-ROS
   ros2_laser_geometry: sig-ROS
+  ros2_laser_proc: sig-ROS
+  ros2_moveit2: sig-ROS
+  ros2_moveit2_tutorials: sig-ROS
   ros2_moveit_msgs: sig-ROS
+  ros2_moveit_resources: sig-ROS
+  ros2_moveit_visual_tools: sig-ROS
   ros2_navigation2: sig-ROS
   ros2_navigation_msgs: sig-ROS
+  ros2_object_recognition_msgs: sig-ROS
+  ros2_octomap: sig-ROS
+  ros2_octomap_msgs: sig-ROS
   ros2_orocos_kinematics_dynamics: sig-ROS
+  ros2_pcl_msgs: sig-ROS
+  ros2_perception_pcl: sig-ROS
   ros2_pluginlib: sig-ROS
   ros2_python_qt_binding: sig-ROS
   ros2_qt_gui_core: sig-ROS
   ros2_random_numbers: sig-ROS
+  ros2_realtime_tools: sig-ROS
   ros2_resource_retriever: sig-ROS
   ros2_robot_state_publisher: sig-ROS
   ros2_ros_environment: sig-ROS
@@ -8358,12 +8374,25 @@ src-openeuler:
   ros2_rqt_top: sig-ROS
   ros2_rqt_topic: sig-ROS
   ros2_rviz: sig-ROS
+  ros2_rviz_visual_tools: sig-ROS
   ros2_srdfdom: sig-ROS
+  ros2_system_modes: sig-ROS
   ros2_system_tests: sig-ROS
   ros2_tracing: sig-ROS
+  ros2_transport_drivers: sig-ROS
+  ros2_turtlebot3: sig-ROS
+  ros2_turtlebot3_msgs: sig-ROS
+  ros2_udp_msgs: sig-ROS
   ros2_urdf: sig-ROS
+  ros2_urg_c: sig-ROS
+  ros2_urg_node: sig-ROS
+  ros2_urg_node_msgs: sig-ROS
+  ros2_use_cam: sig-ROS
   ros2_vision_opencv: sig-ROS
   ros2_warehouse_ros: sig-ROS
+  ros2_warehouse_ros_sqlite: sig-ROS
+  ros2_wireless: sig-ROS
+  ros2_xacro: sig-ROS
   ros2cli: sig-ROS
   ros2cli_common_extensions: sig-ROS
   ros_comm: sig-ROS
