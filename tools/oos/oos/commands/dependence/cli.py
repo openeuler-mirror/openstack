@@ -82,9 +82,7 @@ class CountDependence(object):
                 "Requires", "Depth"])
             for file_name in file_list:
                 with open(self.location + '/' + file_name, 'r', encoding='utf8') as fp:
-                    if file_name == 'unknown':
-                        project_list = [{'name': project} for project in fp.read().splitlines()]
-                    else:
+                    if file_name != 'unknown':
                         project_list = [json.load(fp)]
                 for project_dict in project_list:
                     project_name = project_dict['name']

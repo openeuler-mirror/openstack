@@ -20,6 +20,7 @@ _SEARVICE = [
     "barbican",
     "ceilometer",
     "cinder",
+    "cloudkitty",
     "designate",
     "openstack-cyborg",
     "glance",
@@ -29,17 +30,24 @@ _SEARVICE = [
     "keystone",
     "kolla",
     "kolla-ansible",
+    "manila",
+    "masakari",
+    "mistral",
     "neutron",
     "nova",
     "panko",
     "octavia",
     "openstack-placement",
+    "senlin",
     "swift",
     "trove",
+    "zaqar",
     # client
     "python-openstackclient",
     "osc-placement",
+    "python-cloudkittyclient",
     "python-cyborgclient",
+    "python-masakariclient",
     # ui
     "designate-dashboard",
     "heat-dashboard",
@@ -63,9 +71,13 @@ _SEARVICE = [
     "ironic-prometheus-exporter",
     "ironic-python-agent",
     "networking-baremetal",
+    "networking-generic-switch",
+    "networking-mlnx",
     "networking-sfc",
     "networking-generic-switch",
+    "neutron-dynamic-routing",
     "neutron-vpnaas",
+    "os-net-config",
     "ovn-octavia-provider",
 ]
 SUPPORT_RELEASE = {
@@ -84,7 +96,8 @@ SUPPORT_RELEASE = {
     "wallaby": {
         "base_service": _SEARVICE,
         "extra_service": {
-            "gnocchi": "4.3.5"
+            "gnocchi": "4.3.5",
+            "novajoin": "1.3.0",
         }
     },
     "yoga": {
