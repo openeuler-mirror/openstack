@@ -1,5 +1,6 @@
 import json
 
+from packaging import version as p_version
 import requests
 
 
@@ -34,6 +35,10 @@ def get_gitee_project_version(owner, project, branch, access_token=None):
                 version = sub_str.rsplit('_', 1)[1].strip('v')
             else:
                 version = sub_str.strip('v')
+            try:
+                p_version.parse(version)
+            except p_version.InvalidVersion:
+                continue
             break
 
     return version
