@@ -1074,6 +1074,7 @@ src-openeuler:
   compat-libgfortran: Private
   compat-lua: sig-epol
   compat-openssl11: sig-security-facility
+  compat-rest: Desktop
   compface: Application
   compiler-rt: Compiler
   compiler-rt-15: Compiler
@@ -2576,6 +2577,7 @@ src-openeuler:
   kdnssd: sig-KDE
   kdsoap: sig-KDE
   kdump-anaconda-addon: Base-service
+  kea: Networking
   keditbookmarks: sig-KDE
   keepalived: Networking
   kernel: Kernel
@@ -3006,6 +3008,7 @@ src-openeuler:
   libhbalinux: Others
   libhdfs: bigdata
   libhugetlbfs: Computing
+  libhv: Base-service
   libibmad: sig-recycle
   libical: Base-service
   libid3tag: Others
