@@ -49,17 +49,17 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     yum clean all && yum makecache
     ```
 
-    **注意**：如果你的环境的YUM源没有启用EPOL，需要同时配置EPOL
+    **注意**：如果你的环境的YUM源没有启用EPOL，需要同时配置EPOL，确保EPOL已配置，如下所示
 
     ```shell
     vi /etc/yum.repos.d/openEuler.repo
 
     [EPOL]
     name=EPOL
-    baseurl=http://repo.openeuler.org/openEuler-22.03-LTS/EPOL/main/$basearch/
+    baseurl=http://repo.openeuler.org/openEuler-22.03-LTS-SP1/EPOL/main/$basearch/
     enabled=1
     gpgcheck=1
-    gpgkey=http://repo.openeuler.org/openEuler-22.03-LTS/OS/$basearch/RPM-GPG-KEY-openEuler
+    gpgkey=http://repo.openeuler.org/openEuler-22.03-LTS-SP1/OS/$basearch/RPM-GPG-KEY-openEuler
     EOF
     ```
 
@@ -2879,12 +2879,12 @@ systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openst
     | swift_storage_devices  | swift使用的卷设备名 |
     | kolla_openeuler_plugin | 是否启用kolla plugin。设置为True，kolla将支持部署openEuler容器 |
 
-4. 华为云上面创建一台openEuler 22.03-LTS的x86_64虚拟机，用于部署`all in one` 的 OpenStack
+4. 华为云上面创建一台openEuler 22.03-LTS-SP1的x86_64虚拟机，用于部署`all in one` 的 OpenStack
 
     ```shell
     # sshpass在`oos env create`过程中被使用，用于配置对目标虚拟机的免密访问
     dnf install sshpass
-    oos env create -r 22.03-lts -f small -a x86 -n test-oos all_in_one
+    oos env create -r 22.03-lts-sp1 -f small -a x86 -n test-oos all_in_one
     ```
 
     具体的参数可以使用`oos env create --help`命令查看
@@ -2912,7 +2912,7 @@ systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openst
 ```shell
 # sshpass在`oos env create`过程中被使用，用于配置对目标主机的免密访问
 dnf install sshpass
-oos env manage -r 22.03-lts -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n test-oos
+oos env manage -r 22.03-lts-sp1 -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n test-oos
 ```
 
 替换`TARGET_MACHINE_IP`为目标机ip、`TARGET_MACHINE_PASSWD`为目标机密码。具体的参数可以使用`oos env manage --help`命令查看。
