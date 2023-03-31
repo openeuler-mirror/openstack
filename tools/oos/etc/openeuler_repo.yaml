@@ -129,6 +129,7 @@ openeuler:
   elfin-parser: sig-HPC
   embedded: sig-embedded
   embedded-ipc: sig-embedded
+  env_check: sig-Compatibility-Infra
   etmem: Storage
   eulerfs: Kernel
   eulerfs-test: Kernel
@@ -230,6 +231,7 @@ openeuler:
   llvm-project: Compiler
   lxcfs-tools: iSulad
   lzu-icc-nsg: sig-OSCourse
+  m1600-driver: sig-Compatibility-Infra
   marketing: Marketing
   mate-desktop: sig-mate-desktop
   mcs: sig-embedded
@@ -3400,6 +3402,7 @@ src-openeuler:
   lzma-java: sig-Java
   lzo: Base-service
   lzop: Base-service
+  m1600-driver: sig-Compatibility-Infra
   m17n-db: System-tool
   m17n-lib: System-tool
   m2crypto: Runtime
@@ -8524,6 +8527,7 @@ src-openeuler:
   rubygem-bundler: sig-ruby
   rubygem-bundler_ext: sig-ops
   rubygem-byebug: sig-ruby
+  rubygem-capng_c: sig-ruby
   rubygem-capybara: sig-ruby
   rubygem-childprocess: sig-ruby
   rubygem-chronic: sig-ruby
