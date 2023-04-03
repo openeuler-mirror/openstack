@@ -1,5 +1,6 @@
 ---
 # <pypi name> : <openEuelr package name(without python prefix)>
+# This mapping is used for spec generation.
 pypi2pkgname:
   Babel: babel
   Django: Django
@@ -46,6 +47,8 @@ pypi2pkgname:
   smmap2: smmap
   systemd-python: systemd
 
+# <pypi name> : <openEuelr git repo name(without python prefix)>
+# This mapping is used for dependence generation.
 pypi2reponame:
   Babel: babel
   Django: django
@@ -104,6 +107,7 @@ pypi2reponame:
   zope.component: zope-component
   zope.interface: zope-interface
   flask-cors: Flask-Cors
+  psycopg2-binary: psycopg2
 
 # Some projects' name in pypi json file doesn't correct, this mapping fix it.
 # Wrong name : Right name(pypi name)
@@ -205,6 +209,7 @@ black_list:
   - backports.unittest-mock
   - jaraco.classes
   - librabbitmq
+  - elasticsearch
 
 # <pypi name> : <license>
 pypi_license:

@@ -35,7 +35,7 @@ _SEARVICE = [
     "mistral",
     "neutron",
     "nova",
-    "panko",
+    "panko", # W版之后已废弃
     "octavia",
     "openstack-placement",
     "senlin",
@@ -97,7 +97,6 @@ SUPPORT_RELEASE = {
         "base_service": _SEARVICE,
         "extra_service": {
             "gnocchi": "4.3.5",
-            "novajoin": "1.3.0",
         }
     },
     "yoga": {
