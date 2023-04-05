@@ -128,6 +128,7 @@ openeuler:
   eggo: sig-CloudNative
   elfin-parser: sig-HPC
   embedded: sig-embedded
+  embedded-ci: sig-Yocto
   embedded-ipc: sig-embedded
   env_check: sig-Compatibility-Infra
   etmem: Storage
@@ -254,6 +255,7 @@ openeuler:
   oe-performance: sig-Compatibility-Infra
   oebuild: sig-Yocto
   oec-application: sig-Compatibility-Infra
+  oec-cloud: sig-Compatibility-Infra
   oec-hardware: sig-Compatibility-Infra
   oecp: sig-Compatibility-Infra
   oemaker: sig-OS-Builder
@@ -1312,6 +1314,7 @@ src-openeuler:
   druid: bigdata
   dsoftbus: sig-embedded
   dtc: Base-service
+  dtkcommon: sig-DDE
   dtkcore: sig-DDE
   dtkcore2: sig-DDE
   dtkgui: sig-DDE
@@ -4190,6 +4193,7 @@ src-openeuler:
   octave: ai
   oddjob: Base-service
   oec-application: sig-Compatibility-Infra
+  oec-cloud: sig-Compatibility-Infra
   oec-hardware: sig-Compatibility-Infra
   oemaker: sig-OS-Builder
   ogdi: dev-utils
