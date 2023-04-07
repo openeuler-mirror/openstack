@@ -342,7 +342,7 @@ openeuler:
   service_trainning: sig-Talent-and-Service
   sig-Edge: sig-Edge
   sig-OSCourse: sig-OSCourse
-  sig-OpenBoard: sig-OpenBoard
+  sig-OpenBoard: sig-recycle
   signatrust: Infrastructure
   skylark: Virt
   sonic-linux-kernel: sig-ONL
