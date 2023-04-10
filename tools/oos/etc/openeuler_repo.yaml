@@ -4289,12 +4289,17 @@ src-openeuler:
   openssl-pkcs11: sig-security-facility
   openssl_tpm2_engine: sig-security-facility
   openstack-aodh: sig-openstack
+  openstack-barbican: sig-openstack
   openstack-ceilometer: sig-openstack
   openstack-cinder: sig-openstack
+  openstack-cloudkitty: sig-openstack
   openstack-cyborg: sig-openstack
+  openstack-designate: sig-openstack
+  openstack-designate-ui: sig-openstack
   openstack-glance: sig-openstack
   openstack-heat: sig-openstack
   openstack-heat-agents: sig-openstack
+  openstack-heat-ui: sig-openstack
   openstack-helm: sig-openstack
   openstack-helm-images: sig-openstack
   openstack-helm-infra: sig-openstack
@@ -4311,17 +4316,30 @@ src-openeuler:
   openstack-kolla-ansible-plugin: sig-openstack
   openstack-kolla-plugin: sig-openstack
   openstack-macros: sig-openstack
+  openstack-magnum-ui: sig-openstack
+  openstack-manila: sig-openstack
+  openstack-masakari: sig-openstack
+  openstack-mistral: sig-openstack
+  openstack-mistral-ui: sig-openstack
   openstack-neutron: sig-openstack
+  openstack-neutron-dynamic-routing: sig-openstack
+  openstack-neutron-vpnaas: sig-openstack
   openstack-nova: sig-openstack
+  openstack-octavia: sig-openstack
+  openstack-octavia-ui: sig-openstack
   openstack-panko: sig-openstack
   openstack-placement: sig-openstack
   openstack-plugin: sig-openstack
   openstack-rally: sig-openstack
   openstack-rally-plugins: sig-openstack
   openstack-releases: sig-openstack
+  openstack-sahara-ui: sig-openstack
+  openstack-senlin: sig-openstack
   openstack-swift: sig-openstack
   openstack-tempest: sig-openstack
   openstack-trove: sig-openstack
+  openstack-vitrage-ui: sig-openstack
+  openstack-zaqar: sig-openstack
   opentest4j: Application
   openvpn: Application
   openvswitch: Networking
@@ -6360,20 +6378,26 @@ src-openeuler:
   python-XStatic-Bootstrap-Datepicker: sig-openstack
   python-XStatic-Bootstrap-SCSS: sig-openstack
   python-XStatic-D3: sig-openstack
+  python-XStatic-Dagre: sig-openstack
+  python-XStatic-Dagre-D3: sig-openstack
   python-XStatic-Font-Awesome: sig-openstack
+  python-XStatic-Graphlib: sig-openstack
   python-XStatic-Hogan: sig-openstack
   python-XStatic-JQuery-Migrate: sig-openstack
   python-XStatic-JQuery.TableSorter: sig-openstack
   python-XStatic-JQuery.quicksearch: sig-openstack
   python-XStatic-JSEncrypt: sig-openstack
   python-XStatic-Jasmine: sig-openstack
+  python-XStatic-Moment-Timezone: sig-openstack
   python-XStatic-Patternfly-Bootstrap-Treeview: sig-python-modules
   python-XStatic-Rickshaw: sig-openstack
   python-XStatic-Spin: sig-openstack
   python-XStatic-bootswatch: sig-openstack
   python-XStatic-jQuery: sig-openstack
   python-XStatic-jquery-ui: sig-openstack
+  python-XStatic-lodash: sig-openstack
   python-XStatic-mdi: sig-openstack
+  python-XStatic-moment: sig-openstack
   python-XStatic-objectpath: sig-openstack
   python-XStatic-roboto-fontface: sig-openstack
   python-XStatic-smart-table: sig-openstack
@@ -6473,6 +6497,7 @@ src-openeuler:
   python-auth.credential: sig-python-modules
   python-authheaders: sig-python-modules
   python-authres: sig-python-modules
+  python-autobahn: sig-openstack
   python-automaton: sig-openstack
   python-autopage: sig-openstack
   python-autopep8: sig-python-modules
@@ -6558,6 +6583,7 @@ src-openeuler:
   python-cccolutils: sig-python-modules
   python-ccdproc: sig-python-modules
   python-cchardet: sig-python-modules
+  python-ceilometerclient: sig-openstack
   python-ceilometermiddleware: sig-openstack
   python-celery: sig-python-modules
   python-certbot: sig-python-modules
@@ -6573,6 +6599,7 @@ src-openeuler:
   python-cherrypy: sig-python-modules
   python-cinder-tempest-plugin: sig-openstack
   python-cinderclient: sig-openstack
+  python-cinderlib: sig-openstack
   python-citeproc-py: sig-python-modules
   python-cjdns: sig-python-modules
   python-click: Programming-language
@@ -6590,6 +6617,7 @@ src-openeuler:
   python-cligj: sig-python-modules
   python-clint: sig-python-modules
   python-cloud_sptheme: sig-python-modules
+  python-cloudkittyclient: sig-openstack
   python-cloudpickle: sig-python-modules
   python-cltk: sig-python-modules
   python-clufter: sig-python-modules
@@ -6779,6 +6807,7 @@ src-openeuler:
   python-easyargs: sig-python-modules
   python-easygui: sig-python-modules
   python-ecdsa: sig-python-modules
+  python-edgegrid: sig-openstack
   python-editdistance: sig-python-modules
   python-editor: sig-python-modules
   python-elasticsearch2: sig-openstack
@@ -7001,6 +7030,7 @@ src-openeuler:
   python-infi.dtypes.wwn: sig-openstack
   python-infinisdk: sig-openstack
   python-inflection: sig-python-modules
+  python-influxdb: sig-openstack
   python-iniconfig: sig-python-modules
   python-iniparse: Base-service
   python-injector: sig-python-modules
@@ -7164,6 +7194,7 @@ src-openeuler:
   python-markdown2: sig-python-modules
   python-markupsafe: Base-service
   python-marshmallow: sig-python-modules
+  python-masakariclient: sig-openstack
   python-matplotlib: sig-python-modules
   python-mccabe: sig-python-modules
   python-mdx_gh_links: sig-python-modules
@@ -7182,6 +7213,7 @@ src-openeuler:
   python-minibelt: sig-python-modules
   python-minidb: sig-python-modules
   python-minidump: sig-python-modules
+  python-mistral-lib: sig-openstack
   python-mistralclient: sig-openstack
   python-mistune: sig-python-modules
   python-mitba: sig-openstack
@@ -7193,6 +7225,7 @@ src-openeuler:
   python-mode: Programming-language
   python-modernize: sig-python-modules
   python-moksha.common: sig-python-modules
+  python-monasca-statsd: sig-openstack
   python-monascaclient: sig-openstack
   python-mongoengine: sig-python-modules
   python-monotonic: sig-python-modules
@@ -7222,6 +7255,7 @@ src-openeuler:
   python-mypy-extensions: sig-openstack
   python-mysqlclient: sig-python-modules
   python-myst-parser: bigdata
+  python-natsort: sig-openstack
   python-nb2plots: sig-python-modules
   python-nbconvert: bigdata
   python-nbformat: bigdata
@@ -7237,6 +7271,7 @@ src-openeuler:
   python-netifaces: A-Tune
   python-netmiko: sig-openstack
   python-networking-ovn: sig-openstack
+  python-networking-sfc: sig-openstack
   python-networkx: A-Tune
   python-neutron-lib: sig-openstack
   python-neutron-tempest-plugin: sig-openstack
@@ -7276,6 +7311,7 @@ src-openeuler:
   python-numpoly: sig-python-modules
   python-oauth2client: sig-python-modules
   python-oauthlib: Base-service
+  python-octavia-lib: sig-openstack
   python-octaviaclient: sig-openstack
   python-odML: sig-python-modules
   python-odfpy: sig-python-modules
@@ -7344,6 +7380,7 @@ src-openeuler:
   python-outcome: sig-python-modules
   python-outdated: sig-python-modules
   python-ovirt-engine-sdk4: oVirt
+  python-ovn-octavia-provider: sig-openstack
   python-ovsdbapp: sig-openstack
   python-packaging: Programming-language
   python-packit: sig-python-modules
@@ -7948,6 +7985,7 @@ src-openeuler:
   python-twisted: sig-python-modules
   python-txWS: sig-python-modules
   python-txZMQ: sig-python-modules
+  python-txaio: sig-openstack
   python-typed-ast: sig-openstack
   python-types-cryptography: sig-openstack
   python-types-enum34: sig-openstack
@@ -8056,6 +8094,11 @@ src-openeuler:
   python-xmltodict: sig-python-modules
   python-xmod: sig-python-modules
   python-xpath-expressions: sig-python-modules
+  python-xstatic-angular-uuid: sig-openstack
+  python-xstatic-angular-vis: sig-openstack
+  python-xstatic-filesaver: sig-openstack
+  python-xstatic-js-yaml: sig-openstack
+  python-xstatic-json2yaml: sig-openstack
   python-xtermcolor: sig-python-modules
   python-xunitparser: sig-python-modules
   python-xvfbwrapper: sig-python-modules
