@@ -2879,6 +2879,7 @@ src-openeuler:
   libatasmart: Desktop
   libatomic_ops: Computing
   libavc1394: Runtime
+  libb2: sig-UKUI
   libblockdev: Storage
   libbluray: Desktop
   libbonobo: Desktop
