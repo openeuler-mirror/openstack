@@ -2458,7 +2458,7 @@ yoga:
   python-ironicclient: 4.11.0
   python-keystoneclient: 4.4.0
   python-magnumclient: 3.6.0
-  python-manilaclient: 3.3.1
+  python-manilaclient: 3.3.2
   python-masakariclient: 7.2.0
   python-mistralclient: 4.4.0
   python-monascaclient: 2.5.0
