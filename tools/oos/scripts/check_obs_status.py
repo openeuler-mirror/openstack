@@ -180,7 +180,6 @@ def format_content_for_html(input_dict):
 
 def check_missing_project(version):
     """列出SP1中缺失的next项目"""
-    diff = []
     next_projects_res = []
     sp1_projects_res = []
     next_projects = 'openEuler:22.03:LTS:Next:Epol:Multi-Version:OpenStack:%s' % version
@@ -198,6 +197,7 @@ def check_missing_project(version):
         sp1_projects_res.append(sp1_project['@name'])
 
     # same as set
+    # diff = []
     # for next_project in next_projects_res:
     #     if next_project not in sp1_projects_res:
     #         diff.append(next_project)

@@ -1,5 +1,3 @@
-import os
-
 from oos.common import CONSTANTS
 from oos.common import OPENEULER_REPO
 
