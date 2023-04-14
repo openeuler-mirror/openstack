@@ -240,6 +240,7 @@ openeuler:
   memwatch: dev-utils
   micro-certification: sig-OSCourse
   migration-assistant: sig-Migration
+  migration-tools: sig-Migration
   mugen: sig-QA
   n5p-core: sig-n5p
   nankai_university_2021: sig-recycle
