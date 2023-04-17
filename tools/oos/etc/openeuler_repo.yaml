@@ -6485,6 +6485,7 @@ src-openeuler:
   python-astropy-healpix: sig-python-modules
   python-astropy-helpers: sig-python-modules
   python-astroquery: sig-python-modules
+  python-asttokens: ai
   python-astunparse: sig-python-modules
   python-async-generator: sig-openstack
   python-async-timeout: sig-python-modules
