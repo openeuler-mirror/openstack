@@ -220,7 +220,7 @@ def check_missing_branch(version):
         next_projects_res.append(next_project['@name'])
     for project in next_projects_res:
         print("checking %s" % project)
-        response = requests.get('https://gitee.com/api/v5/repos/src-openeuler/%s/branches/%s?access_token=%s' % (project, gitee_branch, GITEE_ACCESS_TOKEN))
+        response = requests.get('https://gitee.com/api/v5/repos/src-openeuler/%s/branches/%s?access_token=%s' % (project, gitee_branch, GITEE_USER_TOKEN), timeout=5)
         if response.status_code == 404:
             result.append(project)
     return result
