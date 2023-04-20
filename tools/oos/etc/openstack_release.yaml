@@ -2059,15 +2059,15 @@ xena:
   ironic-python-agent-builder: 3.0.0
   ironic-tempest-plugin: 2.3.1
   ironic-ui: 5.0.0
-  kayobe: 11.7.0
+  kayobe: 11.8.0
   kayobe-config: 11.7.0
   kayobe-config-dev: 11.5.0
   keystone: 20.0.1
   keystone_tempest_plugin: 0.8.0
   keystoneauth1: 4.4.0
   keystonemiddleware: 9.3.0
-  kolla: 13.9.0
-  kolla-ansible: 13.8.0
+  kolla: 13.10.0
+  kolla-ansible: 13.9.0
   kuryr-kubernetes: 5.0.0
   kuryr-lib: 2.4.0
   kuryr-libnetwork: 8.0.0
