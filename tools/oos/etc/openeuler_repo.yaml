@@ -6812,6 +6812,7 @@ src-openeuler:
   python-easygui: sig-python-modules
   python-ecdsa: sig-python-modules
   python-edgegrid: sig-openstack
+  python-editables: sig-python-modules
   python-editdistance: sig-python-modules
   python-editor: sig-python-modules
   python-elasticsearch2: sig-openstack
@@ -6975,6 +6976,8 @@ src-openeuler:
   python-h5py: A-Tune
   python-hacking: sig-openstack
   python-hamcrest: sig-python-modules
+  python-hatch-vcs: sig-python-modules
+  python-hatchling: sig-python-modules
   python-hdfs: sig-python-modules
   python-heat-cfntools: sig-openstack
   python-heatclient: sig-openstack
@@ -7803,6 +7806,7 @@ src-openeuler:
   python-shodan: sig-python-modules
   python-shortuuid: sig-python-modules
   python-should_dsl: sig-python-modules
+  python-shtab: sig-python-modules
   python-sieve: sig-python-modules
   python-simplebayes: sig-python-modules
   python-simpleeval: sig-python-modules
