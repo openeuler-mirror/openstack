@@ -114,6 +114,7 @@ openeuler:
   deepin-upgrade-tool: sig-DDE
   digest-list-tools: sig-security-facility
   dim_tools: sig-security-facility
+  distributed-codelabs: sig-distributed-middleware
   docs: doc
   docs-accompany-reading: sig-OpenDesign
   donau-pam-adopt: sig-HPC
@@ -134,6 +135,7 @@ openeuler:
   etmem: Storage
   eulerfs: Kernel
   eulerfs-test: Kernel
+  eulerlauncher: Infrastructure
   evs: sig-high-performance-network
   extfuse: Storage
   gala-anteater: sig-ops
@@ -260,7 +262,6 @@ openeuler:
   oec-hardware: sig-Compatibility-Infra
   oecp: sig-Compatibility-Infra
   oemaker: sig-OS-Builder
-  omnivirt: Infrastructure
   oncn-bwm: sig-high-performance-network
   open-source-summer: sig-OSCourse
   openEuler-Advisor: sig-EasyLife
