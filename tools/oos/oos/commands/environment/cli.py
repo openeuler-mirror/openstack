@@ -107,9 +107,12 @@ def setup(release, target):
     if release.lower() not in constants.OE_OS_RELEASE[oe]:
         print("%s does not support openstack %s" % (oe, release))
         return
+    provider_name = sqlite_ops.get_target_column(target, 'provider')[0][0]
 
     os.environ.setdefault('OpenStack_Release', release.lower())
     os.environ.setdefault('keypair_dir', KEY_DIR)
+    os.environ.setdefault('provider', provider_name)
+
     _run_action(target, 'entry')
     sql = 'UPDATE resource SET openstack_release=? WHERE name=?'
     sqlite_ops.exe_sql(sql, (release.lower(), target))
