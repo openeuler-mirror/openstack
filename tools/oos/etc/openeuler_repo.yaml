@@ -3314,7 +3314,6 @@ src-openeuler:
   lld-15: Compiler
   lldb: dev-utils
   lldpad: Networking
-  lldpd: Networking
   llvm: Compiler
   llvm-15: Compiler
   llvm-bolt: Compiler
@@ -7427,6 +7426,7 @@ src-openeuler:
   python-pdfminer: sig-python-modules
   python-pdfrw: sig-python-modules
   python-pdir2: sig-python-modules
+  python-pdm-pep517: sig-python-modules
   python-pecan: sig-python-modules
   python-peewee: sig-python-modules
   python-pendulum: sig-python-modules
