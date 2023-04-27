@@ -49,6 +49,7 @@ openeuler:
   QA: sig-QA
   QARobot: sig-QA
   RISC-V: sig-RISC-V
+  Replay-N: sig-high-performance-network
   TC: TC
   TCP_option_address: Kernel
   UniProton: sig-embedded
@@ -331,6 +332,7 @@ openeuler:
   rockchip: sig-RaspberryPi
   rockchip-kernel: sig-RaspberryPi
   ros: sig-ROS
+  ros-porting-tools: sig-ROS
   rubik: sig-CloudNative
   rubyporter: dev-utils
   rust_shyper: Virt
@@ -1993,6 +1995,7 @@ src-openeuler:
   hiredis: Base-service
   hive: bigdata
   hivex: System-tool
+  hmdfs: sig-distributed-middleware
   hostname: Networking
   hping: dev-utils
   hplip: System-tool
@@ -7672,6 +7675,7 @@ src-openeuler:
   python-pytoml: Programming-language
   python-pytools: sig-python-modules
   python-pytrailer: sig-python-modules
+  python-pytz-deprecation-shim: sig-python-modules
   python-pytzdata: sig-python-modules
   python-pyu2f: sig-openstack
   python-pyudev: Base-service
