@@ -960,6 +960,7 @@ src-openeuler:
   cassandra-java-driver: sig-Java
   castor: Base-service
   castor-maven-plugin: sig-Java
+  castxml: Desktop
   catatonit: sig-CloudNative
   catch1: dev-utils
   catdoc: sig-KDE
@@ -6505,6 +6506,7 @@ src-openeuler:
   python-authheaders: sig-python-modules
   python-authres: sig-python-modules
   python-autobahn: sig-openstack
+  python-autocommand: sig-python-modules
   python-automaton: sig-openstack
   python-autopage: sig-openstack
   python-autopep8: sig-python-modules
@@ -6661,6 +6663,7 @@ src-openeuler:
   python-consul: sig-openstack
   python-contextlib2: sig-python-modules
   python-contextvars: sig-python-modules
+  python-contourpy: sig-python-modules
   python-convertdate: sig-python-modules
   python-copr: sig-python-modules
   python-copr-common: sig-python-modules
@@ -6852,7 +6855,7 @@ src-openeuler:
   python-fastecdsa: sig-python-modules
   python-fasteners: sig-python-modules
   python-fastimport: sig-python-modules
-  python-fastjsonschema: bigdata
+  python-fastjsonschema: sig-python-modules
   python-fastnumbers: sig-python-modules
   python-fastpurge: sig-python-modules
   python-faust: Programming-language
@@ -7039,6 +7042,7 @@ src-openeuler:
   python-infi.dtypes.iqn: sig-openstack
   python-infi.dtypes.wwn: sig-openstack
   python-infinisdk: sig-openstack
+  python-inflect: sig-python-modules
   python-inflection: sig-python-modules
   python-influxdb: sig-openstack
   python-iniconfig: sig-python-modules
@@ -7071,6 +7075,7 @@ src-openeuler:
   python-jaeger-client: sig-openstack
   python-jaraco-classes: sig-python-modules
   python-jaraco-collections: sig-python-modules
+  python-jaraco-context: sig-python-modules
   python-jaraco-functools: sig-python-modules
   python-jaraco-text: sig-python-modules
   python-jaraco.envs: sig-openstack
@@ -7228,6 +7233,7 @@ src-openeuler:
   python-mistune: sig-python-modules
   python-mitba: sig-openstack
   python-mitmproxy: sig-python-modules
+  python-mitmproxy-wireguard: sig-python-modules
   python-mne: sig-python-modules
   python-mne-bids: sig-python-modules
   python-mnemonic: sig-python-modules
@@ -7264,13 +7270,13 @@ src-openeuler:
   python-mypy: sig-python-modules
   python-mypy-extensions: sig-openstack
   python-mysqlclient: sig-python-modules
-  python-myst-parser: bigdata
+  python-myst-parser: sig-python-modules
   python-natsort: sig-openstack
   python-nb2plots: sig-python-modules
-  python-nbconvert: bigdata
-  python-nbformat: bigdata
-  python-nbsphinx: bigdata
-  python-nbval: bigdata
+  python-nbconvert: sig-python-modules
+  python-nbformat: sig-python-modules
+  python-nbsphinx: sig-python-modules
+  python-nbval: sig-python-modules
   python-nbxmpp: sig-mate-desktop
   python-ndjson-testrunner: sig-python-modules
   python-neomodel: sig-python-modules
@@ -7728,7 +7734,7 @@ src-openeuler:
   python-requests-ntlm: sig-python-modules
   python-requests-oauthlib: sig-python-modules
   python-requests-toolbelt: sig-python-modules
-  python-requests-unixsocket: bigdata
+  python-requests-unixsocket: sig-python-modules
   python-requestsexceptions: sig-openstack
   python-requirementslib: sig-openstack
   python-responses: sig-openstack
@@ -7869,7 +7875,7 @@ src-openeuler:
   python-sphinxcontrib-blockdiag: sig-python-modules
   python-sphinxcontrib-devhelp: sig-python-modules
   python-sphinxcontrib-fulltoc: sig-python-modules
-  python-sphinxcontrib-github-alt: bigdata
+  python-sphinxcontrib-github-alt: sig-python-modules
   python-sphinxcontrib-htmlhelp: sig-python-modules
   python-sphinxcontrib-httpdomain: sig-python-modules
   python-sphinxcontrib-issuetracker: sig-python-modules
@@ -7945,7 +7951,7 @@ src-openeuler:
   python-tensorboard: A-Tune
   python-tensorboard-plugin-wit: A-Tune
   python-termcolor: sig-python-modules
-  python-terminado: bigdata
+  python-terminado: sig-python-modules
   python-terminaltables: sig-python-modules
   python-test-server: sig-python-modules
   python-testfixtures: sig-openstack
