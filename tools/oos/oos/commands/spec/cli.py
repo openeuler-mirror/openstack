@@ -7,12 +7,16 @@ from oos.commands.spec.spec_class import RPMSpecBuild
 
 
 def _get_old_spec_info(name):
-    spec_f = os.path.join(f'python-{name}.spec')
-    try:
-        with open(spec_f) as f_spec:
-            lines = f_spec.readlines()
-    except FileNotFoundError:
-        raise click.ClickException(f"Can not find the spec file {spec_f}")
+    names = [os.path.join(f'{name}.spec'), os.path.join(f'python-{name}.spec')]
+    for spec_name in names:
+        try:
+            with open(spec_name) as f_spec:
+                lines = f_spec.readlines()
+                break
+        except FileNotFoundError:
+            continue
+    else:
+        raise click.ClickException(f"Can not find the spec file.")
 
     noarch = False
     check = False
