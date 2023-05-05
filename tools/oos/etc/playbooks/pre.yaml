@@ -2,6 +2,11 @@
   hosts: all
   become: true
   tasks:
+    - name: Update yum mirror - huaweicloud
+      shell: |
+        sed -i "s/repo.openeuler.org/repo.huaweicloud.com\/openeuler/g" /etc/yum.repos.d/openEuler.repo
+      when: "'{{ provider }}' == 'huaweicloud'"
+
     - name: Install openstack-releases package
       yum:
         name:
@@ -10,10 +15,9 @@
 
     - name: Update yum mirror - huaweicloud
       shell: |
-        sed -i "s/repo.openeuler.org/repo.huaweicloud.com\/openeuler/g" /etc/yum.repos.d/openEuler.repo
         sed -i "s/repo.openeuler.org/repo.huaweicloud.com\/openeuler/g" /etc/yum.repos.d/openstack-{{ openstack_release }}.repo
       ignore_errors: yes
-      when: "{{ provider }} == huaweicloud"
+      when: "'{{ provider }}' == 'huaweicloud'"
 
 - name: Config mutual trust for root
   hosts: all
