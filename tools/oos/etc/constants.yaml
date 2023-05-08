@@ -46,8 +46,9 @@ pypi2pkgname:
   semantic-version: semantic_version
   smmap2: smmap
   systemd-python: systemd
+  edgegrid-python: edgegrid
 
-# <pypi name> : <openEuelr git repo name(without python prefix)>
+# <pypi name> : <openEuelr git repo name(without python and openstack prefix)>
 # This mapping is used for dependence generation.
 pypi2reponame:
   Babel: babel
@@ -108,6 +109,13 @@ pypi2reponame:
   zope.interface: zope-interface
   flask-cors: Flask-Cors
   psycopg2-binary: psycopg2
+  edgegrid-python: edgegrid
+  designate-dashboard: designate-ui
+  heat-dashboard: heat-ui
+  mistral-dashboard: mistral-ui
+  octavia-dashboard: octavia-ui
+  sahara-dashboard: sahara-ui
+  vitrage-dashboard: vitrage-ui
 
 # Some projects' name in pypi json file doesn't correct, this mapping fix it.
 # Wrong name : Right name(pypi name)
