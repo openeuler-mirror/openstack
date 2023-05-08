@@ -154,6 +154,7 @@ openeuler:
   gitbook-theme-hugo: Infrastructure
   globalization: G11N
   go-gitee: Infrastructure
+  gostone: sig-openstack
   ha-api: sig-Ha
   ha-web: sig-Ha
   hands-on: sig-OSCourse
