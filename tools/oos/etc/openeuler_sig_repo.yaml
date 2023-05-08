@@ -1,4 +1,5 @@
 openeuler:
+  gostone: sig-openstack
   hostha: sig-openstack
   opensd: sig-openstack
   openstack: sig-openstack
