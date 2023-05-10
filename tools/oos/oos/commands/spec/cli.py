@@ -45,9 +45,10 @@ def group():
 @click.option("-v", "--version", default='latest', help="Package version, deault is the newest version")
 @click.option("-a", "--arch", is_flag=True, help="Build module with arch, noarch by default.")
 @click.option("-nc", "--no-check", is_flag=True, help="Do not add %check step in spec")
+@click.option("-pp", "--pyproject", is_flag=True, help="Generate the spec for pyproject project")
 @click.option("-o", "--output", help="Specify output file of generated Spec")
-def create(name, version, arch, no_check, output):
-    spec = RPMSpec(name, version, arch, not no_check)
+def create(name, version, arch, no_check, pyproject, output):
+    spec = RPMSpec(name, version, arch, not no_check, pyproject=pyproject)
     spec.generate_spec(output)
 
 

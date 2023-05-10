@@ -21,7 +21,7 @@ from oos.common import pypi
 
 class RPMSpec(object):
     def __init__(self, pypi_name, version='latest', arch=None, add_check=True,
-                 old_changelog=None, old_version=None):
+                 old_changelog=None, old_version=None, pyproject=None):
         self.pypi_name = pypi_name
         # use 'latest' as version if version is NaN
         self.version = 'latest' if version != version else version
@@ -31,6 +31,7 @@ class RPMSpec(object):
         self.spec_path = ''
         self.source_path = ''
         self.add_check = add_check
+        self.is_pyproject = pyproject
 
         self._pypi_json = None
         self._spec_name = ""
@@ -154,12 +155,10 @@ class RPMSpec(object):
             self._source_file_dir = self._source_file.partition(
                 '-' + self.version_num)[0] + '-%{version}'
 
-    def _get_description(self, shorten=True):
-        if self.pypi_name in CONSTANTS['pkg_description']:
-            return CONSTANTS['pkg_description'][self.pypi_name]
+    def _get_description(self):
+        # if self.pypi_name in CONSTANTS['pkg_description']:
+        #     return CONSTANTS['pkg_description'][self.pypi_name]
         org_description = self.pypi_json["info"]["description"]
-        if not shorten:
-            return org_description
         cut_dot = org_description.find('.', 80 * 8)
         cut_br = org_description.find('\n', 80 * 8)
         if cut_dot > -1:
@@ -181,7 +180,7 @@ class RPMSpec(object):
                                      '((\r*.. image::|:target:) https?|'
                                      '(:align:|:alt:))[^\n]*\n', '',
                                      shorted)))))
-        return '\n'.join(textwrap.wrap(spec_description, 80))
+        return ' \\\n'.join(textwrap.wrap(spec_description, 80))
 
     def _parse_requires(self):
         self._base_build_requires = []
@@ -252,6 +251,7 @@ class RPMSpec(object):
                          'description': self._get_description(),
                          'today': datetime.date.today().strftime("%a %b %d %Y"),
                          'add_check': self.add_check,
+                         'is_pyproject': self.is_pyproject,
                          "source_file_dir": self._source_file_dir,
                          "old_changelog": self.old_changelog,
                          "up_down_grade": up_down_grade,

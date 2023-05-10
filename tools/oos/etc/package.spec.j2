@@ -1,4 +1,7 @@
 %global _empty_manifest_terminate_build 0
+%global common_description \
+{{ description }}
+
 Name:           {{ spec_name }}
 Version:        {{ version }}
 Release:        1
@@ -10,7 +13,7 @@ Source0:        {{ source_url }}
 BuildArch:      noarch
 {% endif %}
 %description
-{{ description }}
+%{common_description}
 
 %package -n {{ pkg_name }}
 Summary:        {{ pkg_summary }}
@@ -50,22 +53,30 @@ Requires:       {{ tr }}
 {% endfor %}
 {% endif %}
 %description -n {{ pkg_name }}
-{{ description }}
+%{common_description}
 
 %package help
 Summary:        {{ pkg_summary }}
 Provides:       {{ pkg_name }}-doc
 %description help
-{{ description }}
+%{common_description}
 
 %prep
 %autosetup -n {{ source_file_dir }}
 
 %build
+{% if is_pyproject %}
+%pyproject_build
+{% else %}
 %py3_build
+{% endif %}
 
 %install
+{% if is_pyproject %}
+%pyproject_install
+{% else %}
 %py3_install
+{% endif %}
 
 install -d -m755 %{buildroot}/%{_pkgdocdir}
 if [ -d doc ]; then cp -arf doc %{buildroot}/%{_pkgdocdir}; fi
@@ -95,7 +106,11 @@ mv %{buildroot}/doclist.lst .
 
 {% if add_check %}
 %check
+{% if is_pyproject %}
+pytest
+{% else %}
 %{__python3} setup.py test
+{% endif %}
 {% endif %}
 
 %files -n {{ pkg_name }} -f filelist.lst
@@ -115,7 +130,6 @@ mv %{buildroot}/doclist.lst .
 {% else %}
 - Init package {{ pkg_name }} of version {{ version }}
 {% endif %}
-
 
 {% if old_changelog %}
 {% for cl in old_changelog %}
