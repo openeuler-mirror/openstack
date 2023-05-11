@@ -643,6 +643,7 @@ src-openeuler:
   aha: Application
   aide: Base-service
   airline: Base-service
+  aisleriot: sig-desktop-apps
   alertmanager: sig-CloudNative
   allegro: Private
   alluxio: bigdata
@@ -1027,6 +1028,7 @@ src-openeuler:
   checkstyle: Application
   cheese: Desktop
   chkconfig: Base-service
+  chmlib: sig-desktop-apps
   chromaprint: dev-utils
   chromium: Application
   chrony: Networking
@@ -1216,6 +1218,7 @@ src-openeuler:
   datanucleus-maven-parent: sig-Java
   datanucleus-rdbms: sig-Java
   dataspeed_can: sig-ROS
+  datovka: sig-desktop-apps
   dav1d: Desktop
   dblatex: Application
   dbus: Base-service
@@ -1532,6 +1535,8 @@ src-openeuler:
   fcitx-sunpinyin: Desktop
   fcoe-utils: System-tool
   fdupes: Application
+  feathernotes: sig-desktop-apps
+  featherpad: sig-desktop-apps
   feedbackd: GNOME
   felix-bundlerepository: sig-Java
   felix-framework: sig-Java
@@ -1615,6 +1620,7 @@ src-openeuler:
   foreman-proxy: sig-ops
   foreman-selinux: sig-ops
   forge-parent: Application
+  formiko: sig-desktop-apps
   foros: sig-ROS
   four_wheel_steering_msgs: sig-ROS
   fpaste: Base-service
@@ -1660,6 +1666,7 @@ src-openeuler:
   game-music-emu: dev-utils
   gamemode: Desktop
   gamin: sig-recycle
+  gammaray: sig-desktop-apps
   ganglia: Base-service
   garcon: xfce
   gavl: Others
@@ -1700,6 +1707,7 @@ src-openeuler:
   gemini-blueprint: Base-service
   gencpp: sig-ROS
   genders: Application
+  gendesk: sig-desktop-apps
   generate_parameter_library: sig-ROS
   geneus: sig-ROS
   genlisp: sig-ROS
@@ -1745,6 +1753,7 @@ src-openeuler:
   gimp: Others
   gio-qt: Desktop
   giraph: bigdata
+  girara: sig-desktop-apps
   git: Base-service
   git-cola: dev-utils
   git-lfs: dev-utils
@@ -1872,6 +1881,7 @@ src-openeuler:
   gnu-free-fonts: Desktop
   gnu-getopt: sig-Java
   gnulib: Base-service
+  gnumeric: sig-desktop-apps
   gnupg: Application
   gnupg2: sig-security-facility
   gnuplot: Application
@@ -1886,6 +1896,7 @@ src-openeuler:
   goaccess: Application
   gobject-introspection: Base-service
   goebpf: sig-ebpf
+  goffice: sig-desktop-apps
   golang: sig-golang
   golang-github-coreos-go-iptables: sig-recycle
   golang-github-cpuguy83-go-md2man: sig-recycle
@@ -1937,6 +1948,7 @@ src-openeuler:
   gpsd: sig-KDE
   gradle: sig-Java
   grafana: Application
+  granite: sig-desktop-apps
   grantlee: sig-UKUI
   grantlee-qt5: sig-UKUI
   graph_msgs: sig-ROS
@@ -1994,6 +2006,7 @@ src-openeuler:
   gtk4: Others
   gtkmm24: dev-utils
   gtkmm30: Others
+  gtksourceview2: sig-desktop-apps
   gtksourceview3: Others
   gtksourceview4: sig-mate-desktop
   gtksourceview5: GNOME
@@ -2008,6 +2021,7 @@ src-openeuler:
   gucharmap: sig-mate-desktop
   guile: Desktop
   gumbo-parser: sig-UKUI
+  gummi: sig-desktop-apps
   gupnp: Programming-language
   gupnp-av: Base-service
   gupnp-dlna: GNOME
@@ -2332,6 +2346,7 @@ src-openeuler:
   initial-setup: System-tool
   initscripts: Networking
   inotify-tools: Application
+  input-pad: sig-desktop-apps
   inst-source-utils: sig-perl-modules
   install-scripts: sig-OS-Builder
   intel-cmt-cat: Programming-language
@@ -2342,6 +2357,7 @@ src-openeuler:
   intltool: Programming-language
   invokebinder: sig-Java
   inxi: sig-cinnamon
+  iodine: Networking
   ioping: Application
   ioprocess: oVirt
   iotop: Storage
@@ -2892,6 +2908,7 @@ src-openeuler:
   langtable: Base-service
   language-detector: sig-Java
   lapack: Programming-language
+  lasem: sig-desktop-apps
   laser_assembler: sig-ROS
   laser_filters: sig-ROS
   laser_geometry: sig-ROS
@@ -3024,6 +3041,7 @@ src-openeuler:
   libcyaml: Base-service
   libdaemon: Base-service
   libdap: sig-recycle
+  libdatovka: sig-desktop-apps
   libdatrie: Base-service
   libdazzle: Desktop
   libdb: Base-service
@@ -3099,6 +3117,7 @@ src-openeuler:
   libgovirt: Others
   libgpg-error: Base-service
   libgphoto2: System-tool
+  libgringotts: sig-desktop-apps
   libgsasl: Application
   libgsf: Base-service
   libgssglue: dev-utils
@@ -3508,6 +3527,7 @@ src-openeuler:
   lxtask: xfce
   lxterminal: xfce
   lynx: Application
+  lyx: sig-desktop-apps
   lz4: Base-service
   lz4-java: sig-Java
   lzip: bigdata
@@ -3683,6 +3703,7 @@ src-openeuler:
   metainf-services: sig-Java
   metis: Application
   metrics: sig-Java
+  mhash: sig-desktop-apps
   mhvtl: dev-utils
   micro_ros_diagnostics: sig-ROS
   micro_ros_msgs: sig-ROS
@@ -3694,6 +3715,7 @@ src-openeuler:
   mimetic: Desktop
   mimick_vendor: sig-ROS
   mina-ftpserver: Application
+  minder: sig-desktop-apps
   mindspore: ai
   mingw-binutils: sig-compat-winapp
   mingw-crt: sig-compat-winapp
@@ -4397,6 +4419,7 @@ src-openeuler:
   opencryptoki: dev-utils
   opencv: ai
   opendmarc: Base-service
+  openfortivpn: Networking
   opengauss-dcf: DB
   opengauss-server: DB
   openhpi: System-tool
@@ -4492,6 +4515,7 @@ src-openeuler:
   openstack-vitrage-ui: sig-openstack
   openstack-zaqar: sig-openstack
   opentest4j: Application
+  openttd: sig-desktop-apps
   openvpn: Application
   openvswitch: Networking
   openvswitch-kmod: sig-recycle
@@ -4519,6 +4543,7 @@ src-openeuler:
   osgi-core: sig-Java
   osinfo-db: Base-service
   osinfo-db-tools: Base-service
+  osmo: sig-desktop-apps
   osqp_vendor: sig-ROS
   osrf_pycommon: sig-ROS
   osrf_testing_tools_cpp: sig-ROS
@@ -4638,6 +4663,7 @@ src-openeuler:
   pdf-renderer: sig-Java
   pdfbox: sig-Java
   pdfpc: Application
+  pdfsam: sig-desktop-apps
   pdoc: sig-python-modules
   pdsh: Application
   pegdown: sig-Java
@@ -6415,6 +6441,7 @@ src-openeuler:
   prrte: ai
   ps_mem: Computing
   psacct: Application
+  psiconv: sig-desktop-apps
   psm: dev-utils
   psmisc: Computing
   pstoedit: Application
@@ -6454,6 +6481,7 @@ src-openeuler:
   pykickstart: Base-service
   pyliblzma: Base-service
   pylint: Application
+  pympress: sig-desktop-apps
   pyorbit: sig-recycle
   pyparsing: Base-service
   pyparted: Base-service
@@ -9199,6 +9227,7 @@ src-openeuler:
   sick_safetyscanners_base: sig-ROS
   siege: sig-epol
   sigar: sig-Java
+  sigil: sig-desktop-apps
   signon: sig-KDE
   signon-plugin-oauth2: sig-KDE
   signpost-core: sig-Java
@@ -9468,6 +9497,7 @@ src-openeuler:
   texlive-split-x: Application
   texlive-split-y: Application
   texlive-split-z: Application
+  texworks: sig-desktop-apps
   tez: DB
   tf_transformations: sig-ROS
   tftp: Networking
@@ -9744,6 +9774,7 @@ src-openeuler:
   vorbis-java: sig-Java
   vorbis-tools: Application
   voroplusplus: Application
+  vpnc: Networking
   vpnc-script: Application
   vrpn: sig-ROS
   vsftpd: Networking
@@ -9830,6 +9861,7 @@ src-openeuler:
   xcb-util-renderutil: Programming-language
   xcb-util-wm: Programming-language
   xcb-util-xrm: Desktop
+  xchm: sig-desktop-apps
   xclip: Application
   xdelta: Programming-language
   xdg-dbus-proxy: Application
@@ -9990,6 +10022,7 @@ src-openeuler:
   yocto-opkg-utils: sig-Yocto
   yocto-poky: sig-Yocto
   yocto-pseudo: sig-Yocto
+  yokadi: sig-desktop-apps
   yolov5: sig-ROS
   you-get: Application
   youker-assistant: sig-UKUI
@@ -9998,10 +10031,12 @@ src-openeuler:
   ypserv: Desktop
   yum-metadata-parser: sig-recycle
   zabbix: Base-service
+  zathura: sig-desktop-apps
   zbar: Application
   zbar_ros: sig-ROS
   zchunk: sig-CloudNative
   zd1211-firmware: Networking
+  zegrapher: sig-desktop-apps
   zenity: Desktop
   zenoh-plugin-dds: sig-ROS
   zephyr: sig-Zephyr
