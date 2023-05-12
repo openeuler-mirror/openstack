@@ -2380,7 +2380,7 @@ yoga:
   openstack-heat: 18.0.1
   openstack-placement: 7.0.0
   openstacksdk: 0.62.0
-  os-brick: 5.2.2
+  os-brick: 5.2.3
   os-ken: 2.3.1
   os-win: 5.6.0
   os_vif: 2.7.1
@@ -2639,7 +2639,7 @@ zed:
   openstack-placement: 8.0.0
   openstack-venus: 1.0.0
   openstacksdk: 0.101.0
-  os-brick: 6.1.0
+  os-brick: 6.1.1
   os-ken: 2.5.0
   os-win: 5.7.1
   os_vif: 3.0.0
