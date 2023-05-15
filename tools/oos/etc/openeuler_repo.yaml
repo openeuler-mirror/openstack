@@ -2683,6 +2683,7 @@ src-openeuler:
   kde-filesystem: System-tool
   kde-settings: Desktop
   kdecoration: sig-KDE
+  kdegraphics-mobipocket: sig-KDE
   kdevelop: sig-KDE
   kdevelop-pg-qt: sig-KDE
   kdevelopkdevelop-pg-qt: sig-KDE
@@ -2788,6 +2789,7 @@ src-openeuler:
   kf5-kxmlrpcclient: sig-KDE
   kf5-libgravatar: sig-KDE
   kf5-libkdepim: sig-KDE
+  kf5-libkexiv2: sig-KDE
   kf5-libkleo: sig-KDE
   kf5-mailcommon: sig-KDE
   kf5-mailimporter: sig-KDE
@@ -7410,6 +7412,7 @@ src-openeuler:
   python-marshmallow: sig-python-modules
   python-masakariclient: sig-openstack
   python-matplotlib: sig-python-modules
+  python-maturin: sig-python-modules
   python-mccabe: sig-python-modules
   python-mdx_gh_links: sig-python-modules
   python-meh: Base-service
@@ -7770,6 +7773,7 @@ src-openeuler:
   python-pyhcl: sig-python-modules
   python-pyi2cflash: sig-python-modules
   python-pyinstaller: sig-python-modules
+  python-pyinstaller-hooks-contrib: sig-python-modules
   python-pykalman: sig-python-modules
   python-pykeepass: sig-python-modules
   python-pylama: sig-openstack
@@ -9566,6 +9570,7 @@ src-openeuler:
   tpm2-abrmd-selinux: sig-recycle
   tpm2-tools: sig-security-facility
   tpm2-tss: sig-security-facility
+  tpm2-tss-engine: sig-security-facility
   trace-cmd: Programming-language
   traceroute: Networking
   tracetools_acceleration: sig-ROS
