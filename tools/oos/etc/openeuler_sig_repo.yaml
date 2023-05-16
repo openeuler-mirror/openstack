@@ -16,6 +16,7 @@ src-openeuler:
   diskimage-builder: sig-openstack
   gnocchi: sig-openstack
   google-api-core: sig-openstack
+  google-api-python-client: sig-openstack
   google-auth-httplib2: sig-openstack
   googleapis-common-protos: sig-openstack
   kafka-python: sig-openstack
@@ -114,6 +115,7 @@ src-openeuler:
   python-XStatic-smart-table: sig-openstack
   python-XStatic-term.js: sig-openstack
   python-XStatic-tv4: sig-openstack
+  python-amqp: sig-openstack
   python-aodhclient: sig-openstack
   python-api-object-schema: sig-openstack
   python-argparse: sig-openstack
@@ -138,6 +140,7 @@ src-openeuler:
   python-castellan: sig-openstack
   python-ceilometerclient: sig-openstack
   python-ceilometermiddleware: sig-openstack
+  python-certifi: sig-openstack
   python-cfn-lint: sig-openstack
   python-cinder-tempest-plugin: sig-openstack
   python-cinderclient: sig-openstack
@@ -152,6 +155,7 @@ src-openeuler:
   python-cotyledon: sig-openstack
   python-covdefaults: sig-openstack
   python-coverage-enable-subprocess: sig-openstack
+  python-croniter: sig-openstack
   python-cursive: sig-openstack
   python-cyborgclient: sig-openstack
   python-debtcollector: sig-openstack
@@ -161,6 +165,7 @@ src-openeuler:
   python-discover: sig-openstack
   python-django-configurations: sig-openstack
   python-doc8: sig-openstack
+  python-dogpile.cache: sig-openstack
   python-dracclient: sig-openstack
   python-easy-server: sig-openstack
   python-easy-vault: sig-openstack
@@ -169,6 +174,7 @@ src-openeuler:
   python-elementpath: sig-openstack
   python-etcd3: sig-openstack
   python-etcd3gw: sig-openstack
+  python-falcon: sig-openstack
   python-flake8-docstrings: sig-openstack
   python-flake8-logging-format: sig-openstack
   python-flux: sig-openstack
@@ -184,10 +190,12 @@ src-openeuler:
   python-gremlinpython: sig-openstack
   python-grpcio-gcp: sig-openstack
   python-grpcio-status: sig-openstack
+  python-gunicorn: sig-openstack
   python-hacking: sig-openstack
   python-heat-cfntools: sig-openstack
   python-heatclient: sig-openstack
   python-hidapi: sig-openstack
+  python-hyperlink: sig-openstack
   python-ibm-db-sa: sig-openstack
   python-ibmcclient: sig-openstack
   python-infi.dtypes.iqn: sig-openstack
@@ -217,6 +225,7 @@ src-openeuler:
   python-keystoneclient: sig-openstack
   python-keystonemiddleware: sig-openstack
   python-krest: sig-openstack
+  python-ldap3: sig-openstack
   python-ldappool: sig-openstack
   python-lefthandclient: sig-openstack
   python-lz4: sig-openstack
@@ -318,6 +327,7 @@ src-openeuler:
   python-psycopg2cffi: sig-openstack
   python-purestorage: sig-openstack
   python-pycadf: sig-openstack
+  python-pycodestyle: sig-openstack
   python-pycountry: sig-openstack
   python-pydata-sphinx-theme: sig-openstack
   python-pydotplus: sig-openstack
@@ -328,6 +338,8 @@ src-openeuler:
   python-pymongocrypt: sig-openstack
   python-pyodbc: sig-openstack
   python-pypowervm: sig-openstack
+  python-pyroute2: sig-openstack
+  python-pyrsistent: sig-openstack
   python-pyspnego: sig-openstack
   python-pytest-black: sig-openstack
   python-pytest-checkdocs: sig-openstack
@@ -354,6 +366,7 @@ src-openeuler:
   python-rsd-lib: sig-openstack
   python-rsdclient: sig-openstack
   python-rst.linker: sig-openstack
+  python-rtslib: sig-openstack
   python-rtslib-fb: sig-openstack
   python-ryu: sig-openstack
   python-saharaclient: sig-openstack
@@ -366,6 +379,7 @@ src-openeuler:
   python-setuptools-rust: sig-openstack
   python-soupsieve: sig-openstack
   python-sphinx-autodoc-typehints: sig-openstack
+  python-sphinx-feature-classification: sig-openstack
   python-sphinx-testing: sig-openstack
   python-sphinxcontrib-autoprogram: sig-openstack
   python-sphinxcontrib-programoutput: sig-openstack
