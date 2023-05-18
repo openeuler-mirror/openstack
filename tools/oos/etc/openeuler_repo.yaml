@@ -139,6 +139,7 @@ openeuler:
   eulerlauncher: Infrastructure
   evs: sig-high-performance-network
   extfuse: Storage
+  ft_engine: sig-FangTian
   gala-anteater: sig-ops
   gala-docs: sig-ops
   gala-gopher: sig-ebpf
@@ -1457,6 +1458,7 @@ src-openeuler:
   environment-modules: Base-service
   eog: GNOME
   eom: sig-mate-desktop
+  ephemeral-port-reserve: sig-python-modules
   epiphany: Desktop
   epstool: bigdata
   epydoc: Base-service
@@ -6222,6 +6224,7 @@ src-openeuler:
   perl-XML-Writer: sig-perl-modules
   perl-XML-XPath: Programming-language
   perl-XML-XPathEngine: sig-perl-modules
+  perl-XS-Parse-Keyword: sig-perl-modules
   perl-XString: sig-RISC-V
   perl-XXX: sig-perl-modules
   perl-YAML: Programming-language
@@ -7681,6 +7684,7 @@ src-openeuler:
   python-ply: Base-service
   python-pocketlint: Base-service
   python-podcastparser: sig-python-modules
+  python-poetry-core: sig-python-modules
   python-polib: Base-service
   python-portalocker: sig-python-modules
   python-portend: sig-python-modules
