@@ -2047,7 +2047,7 @@ xena:
   glance-tempest-plugin: 0.2.0
   glance_store: 2.7.1
   heat-agents: 3.0.0
-  heat-dashboard: 6.0.0
+  heat-dashboard: 6.0.1
   heat-tempest-plugin: 1.4.0
   heat-translator: 2.4.1
   horizon: 20.1.4
@@ -2149,42 +2149,42 @@ xena:
   ovsdbapp: 1.12.3
   patrole: 0.13.0
   puppet-aodh: 19.4.0
-  puppet-barbican: 19.4.0
-  puppet-ceilometer: 19.4.0
-  puppet-cinder: 19.4.0
+  puppet-barbican: 19.4.1
+  puppet-ceilometer: 19.5.0
+  puppet-cinder: 19.5.0
   puppet-cloudkitty: 8.4.0
-  puppet-designate: 19.4.0
+  puppet-designate: 19.5.0
   puppet-ec2api: 19.4.0
   puppet-freezer: 19.1.0
-  puppet-glance: 19.4.0
-  puppet-gnocchi: 19.4.0
-  puppet-heat: 19.4.0
-  puppet-horizon: 19.4.0
-  puppet-ironic: 19.4.0
-  puppet-keystone: 19.4.0
+  puppet-glance: 19.5.0
+  puppet-gnocchi: 19.5.0
+  puppet-heat: 19.5.0
+  puppet-horizon: 19.5.0
+  puppet-ironic: 19.5.0
+  puppet-keystone: 19.5.0
   puppet-magnum: 19.4.0
-  puppet-manila: 19.4.0
-  puppet-mistral: 19.4.0
+  puppet-manila: 19.5.0
+  puppet-mistral: 19.4.1
   puppet-monasca: 8.1.0
   puppet-murano: 19.4.0
-  puppet-neutron: 19.4.0
-  puppet-nova: 19.4.0
-  puppet-octavia: 19.4.0
-  puppet-openstack_extras: 19.4.0
-  puppet-openstacklib: 19.4.0
-  puppet-oslo: 19.4.0
-  puppet-ovn: 19.4.0
-  puppet-placement: 6.4.0
+  puppet-neutron: 19.5.0
+  puppet-nova: 19.5.0
+  puppet-octavia: 19.5.0
+  puppet-openstack_extras: 19.4.1
+  puppet-openstacklib: 19.5.0
+  puppet-oslo: 19.5.0
+  puppet-ovn: 19.5.0
+  puppet-placement: 6.4.1
   puppet-qdr: 8.4.0
   puppet-rally: 7.4.0
   puppet-sahara: 19.4.0
   puppet-senlin: 6.4.0
-  puppet-swift: 19.4.0
+  puppet-swift: 19.5.0
   puppet-tacker: 19.4.0
-  puppet-tempest: 19.5.0
+  puppet-tempest: 19.5.1
   puppet-trove: 19.4.0
-  puppet-vitrage: 9.4.0
-  puppet-vswitch: 15.4.0
+  puppet-vitrage: 9.4.1
+  puppet-vswitch: 15.4.1
   puppet-watcher: 19.4.0
   puppet-zaqar: 19.4.0
   python-adjutant: 3.0.1
@@ -2282,7 +2282,7 @@ yoga:
   castellan: 3.10.2
   ceilometer: 18.0.0
   ceilometermiddleware: 2.4.1
-  cinder: 20.2.0
+  cinder: 20.3.0
   cinder-tempest-plugin: 1.6.0
   cinderlib: 4.2.0
   cliff: 3.10.1
@@ -2303,7 +2303,7 @@ yoga:
   freezer_tempest_plugin: 1.4.0
   glance: 24.2.0
   glance-tempest-plugin: 0.3.0
-  glance_store: 3.0.0
+  glance_store: 3.0.1
   heat-agents: 4.0.0
   heat-dashboard: 7.0.0
   heat-tempest-plugin: 1.5.0
@@ -2371,7 +2371,7 @@ yoga:
   neutron-tempest-plugin: 1.9.0
   neutron-vpnaas: 20.0.1
   neutron-vpnaas-dashboard: 6.0.0
-  nova: 25.1.1
+  nova: 25.2.0
   octavia: 10.0.0
   octavia-dashboard: 9.0.0
   octavia-lib: 2.5.0
@@ -2538,7 +2538,7 @@ zed:
   castellan: 4.0.0
   ceilometer: 19.0.0
   ceilometermiddleware: 3.0.0
-  cinder: 21.2.0
+  cinder: 21.3.0
   cinder-tempest-plugin: 1.7.2
   cinderlib: 5.0.0
   cliff: 4.0.0
@@ -2559,7 +2559,7 @@ zed:
   freezer_tempest_plugin: 2.0.0
   glance: 25.1.0
   glance-tempest-plugin: 0.5.0
-  glance_store: 4.1.0
+  glance_store: 4.1.1
   heat-agents: 5.0.0
   heat-dashboard: 8.0.0
   heat-tempest-plugin: 1.6.0
@@ -2629,7 +2629,7 @@ zed:
   neutron-tempest-plugin: 2.0.0
   neutron-vpnaas: 21.0.0
   neutron-vpnaas-dashboard: 7.0.0
-  nova: 26.1.1
+  nova: 26.2.0
   octavia: 11.0.0
   octavia-dashboard: 10.0.0
   octavia-lib: 3.1.0
