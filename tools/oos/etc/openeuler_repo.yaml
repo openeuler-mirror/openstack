@@ -1585,6 +1585,7 @@ src-openeuler:
   firesim: sig-RISC-V
   firewalld: Networking
   fish: Desktop
+  fisher: ecopkg
   flac: Computing
   flamegraph: sig-ops
   flang: Compiler
