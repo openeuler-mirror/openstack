@@ -21,6 +21,7 @@ openeuler:
   DyscheOS-kernel: sig-recycle
   DyscheOS-meta: sig-recycle
   DyscheOS-utils: sig-recycle
+  EulerMonitor: sig-ops
   EulerRobot: sig-QA
   G11N: G11N
   GNFC: sig-high-performance-network
@@ -417,6 +418,7 @@ src-openeuler:
   DevIL: Application
   Done: Private
   DynamixelSDK: sig-ROS
+  EulerMonitor: sig-ops
   FAudio: sig-compat-winapp
   Fast-CDR: sig-ROS
   Fast-DDS: sig-ROS
