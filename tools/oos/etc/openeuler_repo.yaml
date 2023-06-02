@@ -9,6 +9,7 @@ openeuler:
   Agith: sig-ebpf
   AppAPIChecker: sig-OSRefTools
   AvxToNeon: sig-AccLib
+  BIDK: sig-HPC
   BiSheng-Adoptium: Compiler
   BiShengCLanguage: Compiler
   CPM4OSSP-PROXY: sig-ops
@@ -409,6 +410,7 @@ src-openeuler:
   Bear: Compiler
   BehaviorTree.CPP: sig-ROS
   CUnit: Base-service
+  Catch2: sig-ROS
   CharLS: Desktop
   ComputeLibrary: ai
   Control-FREEC: sig-bio
@@ -1121,6 +1123,8 @@ src-openeuler:
   common_interfaces: sig-ROS
   common_msgs: sig-ROS
   common_tutorials: sig-ROS
+  commonlibrary_c_utils: sig-distributed-middleware
+  communication_ipc: sig-distributed-middleware
   compat-libgfortran: Private
   compat-lua: sig-epol
   compat-openssl11: sig-security-facility
@@ -1163,6 +1167,7 @@ src-openeuler:
   cppcheck: Programming-language
   cpptasks: sig-Java
   cppunit: Programming-language
+  cppzmq: sig-ROS
   cpuid: dev-utils
   cracklib: sig-security-facility
   crash: Base-service
@@ -1199,6 +1204,7 @@ src-openeuler:
   curvesapi: dev-utils
   custodia: System-tool
   custom_build_tool: Application
+  customization_config_policy: sig-distributed-middleware
   cvs: Programming-language
   cvsps: Private
   cxf: Base-service
@@ -1323,6 +1329,13 @@ src-openeuler:
   diskimage-builder: sig-openstack
   disomaster: Desktop
   disruptor: Base-service
+  distributed-build: sig-distributed-middleware
+  distributed-build_lite: sig-distributed-middleware
+  distributeddatamgr_data_object: sig-distributed-middleware
+  distributeddatamgr_datamgr_service: sig-distributed-middleware
+  distributeddatamgr_kv_store: sig-distributed-middleware
+  distributeddatamgr_relational_store: sig-distributed-middleware
+  distributedhardware_device_manager: sig-distributed-middleware
   djvulibre: Others
   dkms: Others
   dleyna-connector-dbus: dev-utils
@@ -1536,6 +1549,7 @@ src-openeuler:
   fcitx-libpinyin: Desktop
   fcitx-qt5: Desktop
   fcitx-sunpinyin: Desktop
+  fcl: sig-ROS
   fcoe-utils: System-tool
   fdupes: Application
   feathernotes: sig-desktop-apps
@@ -1573,6 +1587,7 @@ src-openeuler:
   file: Storage
   file-roller: GNOME
   filebench: Storage
+  filemanagement_dfs_service: sig-distributed-middleware
   filesystem: Storage
   filter: sig-ROS
   filters: sig-ROS
@@ -1591,6 +1606,7 @@ src-openeuler:
   flac: Computing
   flamegraph: sig-ops
   flang: Compiler
+  flann: sig-ROS
   flatbuffers: dev-utils
   flatpak: Programming-language
   flatpak-builder: GNOME
@@ -1685,6 +1701,7 @@ src-openeuler:
   gcab: GNOME
   gcc: Compiler
   gcc-12: Compiler
+  gcc-7: Compiler
   gcc-cross: Compiler
   gcc-for-openEuler: Compiler
   gcc_secure: Others
@@ -1935,6 +1952,7 @@ src-openeuler:
   google-noto-fonts: Desktop
   google-oauth-java-client: sig-Java
   google-roboto-slab-fonts: Application
+  google_benchmark: sig-ROS
   google_benchmark_vendor: sig-ROS
   googleapis-common-protos: sig-openstack
   googletest: sig-ROS
@@ -2091,6 +2109,8 @@ src-openeuler:
   hiredis: Base-service
   hive: bigdata
   hivex: System-tool
+  hiviewdfx_hilog: sig-distributed-middleware
+  hiviewdfx_hisysevent: sig-distributed-middleware
   hls_lfcd_lds_driver: sig-ROS
   hmdfs: sig-distributed-middleware
   hostname: Networking
@@ -2666,6 +2686,7 @@ src-openeuler:
   kaccounts-integration: sig-KDE
   kacst-fonts: Desktop
   kactivitymanagerd: sig-KDE
+  kaddressbook: sig-KDE
   kae_driver: sig-AccLib
   kafka: bigdata
   kafka-python: sig-openstack
@@ -2707,6 +2728,7 @@ src-openeuler:
   keyrings-filesystem: Others
   keyutils: sig-security-facility
   kf5: sig-KDE
+  kf5-akonadi-calendar: sig-KDE
   kf5-akonadi-contacts: sig-KDE
   kf5-akonadi-mime: sig-KDE
   kf5-akonadi-notes: sig-KDE
@@ -2715,8 +2737,11 @@ src-openeuler:
   kf5-attica: sig-KDE
   kf5-baloo: sig-KDE
   kf5-bluez-qt: sig-KDE
+  kf5-calendarsupport: sig-KDE
+  kf5-eventviews: sig-KDE
   kf5-frameworkintegration: sig-KDE
   kf5-grantleetheme: sig-KDE
+  kf5-incidenceeditor: sig-KDE
   kf5-kactivities: sig-KDE
   kf5-kactivities-stats: sig-KDE
   kf5-kapidox: sig-KDE
@@ -2724,6 +2749,7 @@ src-openeuler:
   kf5-kauth: sig-KDE
   kf5-kbookmarks: sig-KDE
   kf5-kcalendarcore: sig-KDE
+  kf5-kcalendarutils: sig-KDE
   kf5-kcmutils: sig-KDE
   kf5-kcodecs: sig-KDE
   kf5-kcompletion: sig-KDE
@@ -2854,6 +2880,7 @@ src-openeuler:
   kiwi: Base-service
   kiwi-dlimage: Private
   kiwi-template-openEuler: Private
+  kmail: sig-KDE
   kmenuedit: sig-KDE
   kmod: Computing
   kmod-drbd90: sig-Ha
@@ -2865,6 +2892,7 @@ src-openeuler:
   kohsuke-pom: Application
   konsole5: sig-KDE
   kontact: sig-KDE
+  korganizer: sig-KDE
   kpatch: Base-service
   krb5: Base-service
   kronosnet: Networking
@@ -3024,6 +3052,7 @@ src-openeuler:
   libcap-ng: Base-service
   libcareplus: Virt
   libcbor: Base-service
+  libccd: sig-ROS
   libcddb: sig-epol
   libcdio: Desktop
   libcdio-paranoia: Desktop
@@ -3033,6 +3062,7 @@ src-openeuler:
   libchewing: sig-KDE
   libclc: Base-service
   libcloudproviders: GNOME
+  libcoap: sig-distributed-middleware
   libcomps: Base-service
   libconfig: Base-service
   libconfuse: Base-service
@@ -3365,6 +3395,7 @@ src-openeuler:
   libuser: Base-service
   libutempter: Base-service
   libuv: Programming-language
+  libuvc: sig-ROS
   libva: Runtime
   libvarlink: sig-CloudNative
   libvdpau: Runtime
@@ -3416,6 +3447,7 @@ src-openeuler:
   libzapojit: Others
   libzen: Desktop
   libzip: Programming-language
+  libzmq: sig-ROS
   lightcouch: sig-Java
   lightdm: Desktop
   lightdm-gtk: Desktop
@@ -3510,7 +3542,6 @@ src-openeuler:
   lunar-date: sig-KIRAN-DESKTOP
   lusb: sig-ROS
   lustre: sig-SDS
-  lustre-e2fsprogs: sig-SDS
   lutok: Base-service
   lv2: sig-epol
   lvm2: Storage
@@ -3709,6 +3740,7 @@ src-openeuler:
   metainf-services: sig-Java
   metis: Application
   metrics: sig-Java
+  metslib: sig-ROS
   mhash: sig-desktop-apps
   mhvtl: dev-utils
   micro_ros_diagnostics: sig-ROS
@@ -3919,6 +3951,7 @@ src-openeuler:
   ninja-build: Programming-language
   nispor: oVirt
   nload: dev-utils
+  nlohmann_json: sig-ROS
   nlohmann_json_schema_validator_vendor: sig-ROS
   nmap: Networking
   nmea_hardware_interface: sig-ROS
@@ -4298,6 +4331,8 @@ src-openeuler:
   notebook: bigdata
   notepadqq: Desktop
   notification-daemon: Networking
+  notification_common_event_service: sig-distributed-middleware
+  notification_eventhandler: sig-distributed-middleware
   nototools: Programming-language
   novatel_gps_driver: sig-ROS
   novnc: sig-openstack
@@ -4658,6 +4693,7 @@ src-openeuler:
   pbzip2: Application
   pcaudiolib: Others
   pciutils: Storage
+  pcl: sig-ROS
   pcl_conversion: sig-ROS
   pcl_msgs: sig-ROS
   pcmanfm: xfce
@@ -6480,6 +6516,7 @@ src-openeuler:
   pybind11_vendor: sig-ROS
   pycairo: Desktop
   pycharm-community: sig-UKUI
+  pycollada: sig-ROS
   pyelftools: Programming-language
   pyflakes: Programming-language
   pygobject2: sig-recycle
@@ -6493,6 +6530,7 @@ src-openeuler:
   pyparsing: Base-service
   pyparted: Base-service
   pyporter: dev-utils
+  pyproject-hooks: sig-python-modules
   pyproject-rpm-macros: sig-python-modules
   pyserial: Base-service
   pytest: Programming-language
@@ -6752,6 +6790,7 @@ src-openeuler:
   python-bitcoinlib: sig-python-modules
   python-bitmath: sig-python-modules
   python-bitstring: sig-python-modules
+  python-black: sig-python-modules
   python-blazarclient: sig-openstack
   python-blaze: sig-python-modules
   python-bleach: sig-python-modules
@@ -6778,6 +6817,7 @@ src-openeuler:
   python-btrfs: sig-python-modules
   python-bucky: sig-python-modules
   python-bugzilla: sig-python-modules
+  python-build: sig-python-modules
   python-bunch: sig-openstack
   python-bytesize: sig-python-modules
   python-bz2file: sig-python-modules
@@ -6795,6 +6835,8 @@ src-openeuler:
   python-cassandra-driver: sig-openstack
   python-castellan: sig-openstack
   python-catkin-sphinx: sig-python-modules
+  python-catkin_pkg: sig-ROS
+  python-catkin_sphinx: sig-ROS
   python-cccolutils: sig-python-modules
   python-ccdproc: sig-python-modules
   python-cchardet: sig-python-modules
@@ -6843,6 +6885,7 @@ src-openeuler:
   python-cocotb: sig-python-modules
   python-codecov: sig-python-modules
   python-colcon-bazel: sig-python-modules
+  python-colcon_core: sig-ROS
   python-colorama: sig-python-modules
   python-colorclass: sig-python-modules
   python-coloredlogs: sig-python-modules
@@ -7034,6 +7077,7 @@ src-openeuler:
   python-email_reply_parser: sig-python-modules
   python-emcee: sig-python-modules
   python-emoji: sig-python-modules
+  python-empy: sig-ROS
   python-enchant: Programming-language
   python-enmerkar: sig-python-modules
   python-entrypoints: Programming-language
@@ -7227,6 +7271,7 @@ src-openeuler:
   python-hyperopt: A-Tune
   python-hypothesis: Programming-language
   python-hypothesis-fspaths: sig-python-modules
+  python-hypothesmith: sig-python-modules
   python-ibm-db-sa: sig-openstack
   python-ibmcclient: sig-openstack
   python-icalendar: sig-python-modules
@@ -7368,6 +7413,7 @@ src-openeuler:
   python-libarchive-c: sig-python-modules
   python-libcloud: sig-python-modules
   python-libconf: sig-ops
+  python-libcst: sig-python-modules
   python-libevdev: sig-python-modules
   python-liblinear: sig-python-modules
   python-libmount: sig-python-modules
@@ -7669,6 +7715,7 @@ src-openeuler:
   python-pip: Base-service
   python-pip-api: sig-openstack
   python-pip-run: sig-openstack
+  python-pip-shims: sig-python-modules
   python-pipdeptree: sig-python-modules
   python-pipreqs: sig-openstack
   python-pkgconfig: A-Tune
@@ -7677,6 +7724,7 @@ src-openeuler:
   python-plaintable: sig-python-modules
   python-platformdirs: Application
   python-player: sig-python-modules
+  python-plette: sig-python-modules
   python-plink: sig-python-modules
   python-pluggy: Programming-language
   python-pluginbase: sig-python-modules
@@ -7691,6 +7739,7 @@ src-openeuler:
   python-polib: Base-service
   python-portalocker: sig-python-modules
   python-portend: sig-python-modules
+  python-portray: sig-python-modules
   python-posix_ipc: sig-python-modules
   python-power: sig-python-modules
   python-poyo: sig-python-modules
@@ -7835,6 +7884,7 @@ src-openeuler:
   python-pytest-arraydiff: sig-python-modules
   python-pytest-asyncio: sig-python-modules
   python-pytest-beakerlib: sig-python-modules
+  python-pytest-benchmark: sig-python-modules
   python-pytest-black: sig-openstack
   python-pytest-cache: sig-python-modules
   python-pytest-catchlog: sig-python-modules
@@ -7964,7 +8014,9 @@ src-openeuler:
   python-rocket: sig-python-modules
   python-roman: sig-python-modules
   python-rope: sig-python-modules
+  python-rosdistro: sig-ROS
   python-rosinstall: sig-python-modules
+  python-rospkg: sig-ROS
   python-routes: sig-python-modules
   python-rpdb: sig-python-modules
   python-rpkg: sig-python-modules
@@ -8192,6 +8244,7 @@ src-openeuler:
   python-tornado: Programming-language
   python-towncrier: sig-openstack
   python-tox: sig-python-modules
+  python-tox-current-env: sig-python-modules
   python-tqdm: sig-python-modules
   python-traceback2: Programming-language
   python-traitlets: sig-python-modules
@@ -8216,6 +8269,7 @@ src-openeuler:
   python-txZMQ: sig-python-modules
   python-txaio: sig-openstack
   python-typed-ast: sig-openstack
+  python-typeguard: sig-ROS
   python-types-cryptography: sig-openstack
   python-types-enum34: sig-openstack
   python-types-ipaddress: sig-openstack
@@ -8259,6 +8313,7 @@ src-openeuler:
   python-virtualenvwrapper: sig-python-modules
   python-visidata: sig-python-modules
   python-visitor: sig-python-modules
+  python-vistir: sig-python-modules
   python-visvis: sig-python-modules
   python-vitrageclient: sig-openstack
   python-vobject: sig-python-modules
@@ -8460,6 +8515,7 @@ src-openeuler:
   qt6-qt5compat: sig-QT
   qt6-qtbase: sig-QT
   qt6-qtcharts: sig-QT
+  qt6-qtcoap: sig-QT
   qt6-qtconnectivity: sig-QT
   qt6-qtdatavis3d: sig-QT
   qt6-qtdeclarative: sig-QT
@@ -8469,8 +8525,10 @@ src-openeuler:
   qt6-qtlanguageserver: sig-QT
   qt6-qtlocation: sig-QT
   qt6-qtlottie: sig-QT
+  qt6-qtmqtt: sig-QT
   qt6-qtmultimedia: sig-QT
   qt6-qtnetworkauth: sig-QT
+  qt6-qtopcua: sig-QT
   qt6-qtpositioning: sig-QT
   qt6-qtquick3d: sig-QT
   qt6-qtquick3dphysics: sig-QT
@@ -8516,6 +8574,7 @@ src-openeuler:
   rain: bigdata
   random_numbers: sig-ROS
   randomizedtesting: Base-service
+  range-v3: sig-ROS
   ranger: dev-utils
   rapidjson: Base-service
   raptor2: Others
@@ -8629,6 +8688,7 @@ src-openeuler:
   rootsh: Others
   ros: sig-ROS
   ros-foxglove-bridge: sig-ROS
+  ros-octomap: sig-ROS
   ros1_bridge: sig-ROS
   ros2_angles: sig-ROS
   ros2_base: sig-ROS
@@ -9138,6 +9198,7 @@ src-openeuler:
   ruckig: sig-ROS
   runc: sig-CloudNative
   rust: sig-Rust
+  rust-bindgen: sig-Rust
   rust-cbindgen: sig-Rust
   rust-packaging: sig-Rust
   rust-srpm-macros: sig-epol
@@ -9198,6 +9259,10 @@ src-openeuler:
   secGear: sig-confidential-computing
   secpaver: sig-security-facility
   security-tool: sig-security-facility
+  security_dataclassification: sig-distributed-middleware
+  security_device_auth: sig-distributed-middleware
+  security_device_security_level: sig-distributed-middleware
+  security_huks: sig-distributed-middleware
   sed: Base-service
   selinux-policy: sig-security-facility
   sendmail: Desktop
@@ -9313,6 +9378,7 @@ src-openeuler:
   spatial4j: sig-Java
   spawn-fcgi: Networking
   spdk: Storage
+  spdlog: sig-ROS
   spdlog_vendor: sig-ROS
   spec-version-maven-plugin: Application
   speech-dispatcher: System-tool
@@ -9425,6 +9491,7 @@ src-openeuler:
   system-config-users-docs: sig-mate-desktop
   system-storage-manager: Storage
   system_modes: sig-ROS
+  systemabilitymgr_safwk: sig-distributed-middleware
   systemd: Base-service
   systemd-bootchart: dev-utils
   systemtap: Computing
@@ -9439,6 +9506,7 @@ src-openeuler:
   takari-plugin-testing: sig-Java
   takari-pom: sig-Java
   tang: System-tool
+  tango_icon_theme: sig-ROS
   tango_icons_vendor: sig-ROS
   tar: Base-service
   targetcli: Application
@@ -9575,6 +9643,7 @@ src-openeuler:
   tpm-tools: Application
   tpm2-abrmd: sig-security-facility
   tpm2-abrmd-selinux: sig-recycle
+  tpm2-openssl: sig-security-facility
   tpm2-tools: sig-security-facility
   tpm2-tss: sig-security-facility
   tpm2-tss-engine: sig-security-facility
@@ -10026,6 +10095,7 @@ src-openeuler:
   yapet: System-tool
   yasm: Base-service
   ycsb: bigdata
+  ydlidar: sig-ROS
   yecht: sig-Java
   yelp: Desktop
   yelp-tools: GNOME
