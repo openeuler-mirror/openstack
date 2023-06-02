@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>openEuler OpenStack开发平台需求说明书 - OpenStack SIG Doc</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "openEuler OpenStack\u5f00\u53d1\u5e73\u53f0\u9700\u6c42\u8bf4\u660e\u4e66";
+        var mkdocs_page_input_path = "spec/openstack-sig-tool-requirement.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> OpenStack SIG Doc
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" title="在此输入需要搜索的内容" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航栏">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">OpenStack SIG</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">贡献指导</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../contribute/rpm-packaging-reference/">RPM开发流程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">安装指导</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/devstack/">devstack</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-20.03-LTS-SP2/OpenStack-queens/">openEuler-20.03-LTS-SP2_Queens</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-20.03-LTS-SP2/OpenStack-rocky/">openEuler-20.03-LTS-SP2_Rocky</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-20.03-LTS-SP3/OpenStack-queens/">openEuler-20.03-LTS-SP3_Queens</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-20.03-LTS-SP3/OpenStack-rocky/">openEuler-20.03-LTS-SP3_Rocky</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-20.03-LTS-SP3/OpenStack-train/">openEuler-20.03-LTS-SP3_Train</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-21.09/OpenStack-wallaby/">openEuler-21.09_Wallaby</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-22.03-LTS/OpenStack-train/">openEuler-22.03-LTS_Train</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-22.03-LTS/OpenStack-wallaby/">openEuler-22.03-LTS_Wallaby</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-22.03-LTS-SP1/OpenStack-train/">openEuler-22.03-LTS-SP1_Train</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-22.03-LTS-SP1/OpenStack-wallaby/">openEuler-22.03-LTS-SP1_Wallaby</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-22.09/OpenStack-yoga/">openEuler-22.09_Yoga</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">测试报告</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../test/openEuler-20.03-LTS-SP2/">openEuler-20.03-LTS-SP2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../test/openEuler-20.03-LTS-SP3/">openEuler-20.03-LTS-SP3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../test/openEuler-22.03-LTS/">openEuler-22.03-LTS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../test/openEuler-22.09/">openEuler-22.09</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">自研特性</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../priority_vm/">虚拟机高低优先级</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="移动导航栏">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">OpenStack SIG Doc</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="文档"></a> &raquo;</li>
+      <li>openEuler OpenStack开发平台需求说明书</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="openeuler-openstack">openEuler OpenStack开发平台需求说明书<a class="headerlink" href="#openeuler-openstack" title="Permanent link">&para;</a></h1>
+<h2 id="_1">背景<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>目前，随着SIG的不断发展，我们明显的遇到了以下几类问题：
+1. OpenStack技术复杂，涉及云IAAS层的计算、网络、存储、镜像、鉴权等方方面面的技术，开发者很难全知全会，提交的<strong>代码逻辑、质量堪忧</strong>。
+2. OpenStack是由python编写的，python软件的依赖问题难以处理，以OpenStack Wallaby版本为例，涉及核心python软件包400+， 每个软件的依赖层级、依赖版本<strong>错综复杂，选型困难</strong>，难以形成闭环。
+3. OpenStack软件包众多，RPM Spec编写开发量巨大，并且随着openEuler、OpenStack本身版本的不断演进，N:N的适配关系会导致<strong>工作量成倍增长，人力成本越来越大</strong>。
+4. OpenStack测试门槛过高，不仅需要开发人员熟悉OpenStack，还要对虚拟化、虚拟网桥、块存储等Linux底层技术有一定了解与掌握，部署一套OpenStack环境耗时过长，功能测试难度巨大。并且测试场景多，比如X86、ARM64架构测试，裸机、虚机种类测试，OVS、OVN网桥测试，LVM、Ceph存储测试等等，更加加重了<strong>人力成本以及技术门槛</strong>。</p>
+<p>针对以上问题需要在openEuler OpenStack提供一个开发平台，解决开发过程遇到的以上痛点问题。</p>
+<h2 id="_2">目标<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>设计并开发一个OpenStack强相关的openEuler开源开发平台，通过规范化、工具化、自动化的方式，满足SIG开发者的日常开发需求，降低开发成本，减少人力投入成本，降低开发门槛，从而提高开发效率、提高SIG软件质量、发展SIG生态、吸引更多开发者加入SIG。</p>
+<h2 id="_3">范围<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p><strong>用户范围</strong>：openEuler OpenStack SIG开发者</p>
+<p><strong>业务范围</strong>：openEuler OpenStack SIG日常开发活动</p>
+<p><strong>编程语言</strong>：Python、Ansible、Jinja、JavaScript</p>
+<p><strong>IT技术</strong>：Web服务、RestFul规范、CLI规范、前端GUI、数据库使用</p>
+<h2 id="_4">功能<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>OpenSteack开发平台整体采用C/S架构，以SIG对外提供平台能力，client端面向指定用户白名单开放。</p>
+<p>为方便白名单以外用户使用，本平台还提供CLI模式，在此模式下不需要额外服务端通信，在本地即可开箱即用。</p>
+<ol>
+<li>输出OpenStack服务类软件、依赖库软件的RPM SPEC开发规范，开发者及Reviewer需要严格遵守规范进行开发实施。</li>
+<li>提供OpenStack python软件依赖分析功能，一键生成依赖拓扑与结果，保证依赖闭环，避免软件依赖风险。</li>
+<li>提供OpenStack RPM spec生成功能，针对通用性软件，提供一键生成 RPM spec的功能，缩短开发时间，降低投入成本。</li>
+<li>提供自动化部署、测试平台功能，实现一键在任何openEuler版本上部署指定OpenStack版本的能力，快速测试、快速迭代。</li>
+<li>提供openEuler Gitee仓库自动化处理能力，满足批量修改软件的需求，比如创建代码分支、创建仓库、提交Pull Request等功能。</li>
+</ol>
+<h3 id="spec">SPEC开发规范制定<a class="headerlink" href="#spec" title="Permanent link">&para;</a></h3>
+<p>【功能点】</p>
+<pre class="highlight"><code>1. 约束OpenStack服务级项目SPEC格式与内容规范
+2. 规定OpenStack依赖库级别项目SPEC的框架。</code></pre>
+<p>【先决条件】：OpenStack SIG全体Maintainer达成一致，参与厂商没有分歧。</p>
+<p>【参与方】：中国电信、中国联通、统信软件</p>
+<p>【输入】：RPM SPEC编写标准</p>
+<p>【输出】：服务级、依赖库级SPEC模板；软件分层规范。</p>
+<p>【对其他功能的影响】：本功能是以下软件功能的前提，下述如<code>SPEC自动生成功能</code>需安装本规范执行。</p>
+<h3 id="_5">依赖分析需求<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>【功能点】</p>
+<pre class="highlight"><code>1. 自动生成基于指定openEuler版本的OpenStack依赖表。
+2. 能处理依赖成环、版本缺省、名称不一致等依赖常见问题。</code></pre>
+<p>【先决条件】：N/A</p>
+<p>【参与方】：OpenStack SIG核心开发者</p>
+<p>【输入】：openEuler版本号、OpenStack版本号、目标依赖范围（核心/测试/文档）</p>
+<p>【输出】：指定OpenStack版本的全量依赖库信息，包括最小/最大依赖版本、所属openEuler SIG、RPM包名、依赖层级、子依赖树等内容，可以以Excel表格的方式输出。</p>
+<p>【对其他功能的影响】：N/A</p>
+<h3 id="spec_1">Spec自动生成需求<a class="headerlink" href="#spec_1" title="Permanent link">&para;</a></h3>
+<p>【功能点】</p>
+<pre class="highlight"><code>1. 一键生成OpenStack依赖库类软件的RPM SPEC
+2. 支持各种Python软件构建系统，比如setuptools、pyproject等。</code></pre>
+<p>【先决条件】：需遵守<code>SPEC开发规范</code></p>
+<p>【参与方】：OpenStack SIG核心开发者</p>
+<p>【输入】：指定软件名及目标版本</p>
+<p>【输出】：对应软件的RPM SPEC文件</p>
+<p>【对其他功能的影响】：生成的SPEC可以通过下述<code>代码提交功能</code>一键push到openEuler社区。</p>
+<h3 id="_6">自动化部署、测试需求<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>【功能点】</p>
+<pre class="highlight"><code>1. 一键快速部署指定OpenStack版本、拓扑、功能的OpenStack单/多节点环境
+2. 一键基于已部署OpenStack环境进行资源预配置与功能测试。
+3. 支持多云、主机纳管功能，支持插件自定义功能。</code></pre>
+<p>【先决条件】：N/A</p>
+<p>【参与方】：OpenStack SIG核心开发者、各个云平台相关开发者</p>
+<p>【输入】：目标OpenStack版本、计算/网络/存储的driver场景</p>
+<p>【输出】：一个可以一键执行OpenStack Tempest测试的OpenStack环境；Tempest测试报告。</p>
+<p>【对其他功能的影响】： N/A</p>
+<h3 id="_7">一键代码处理需求<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>【功能点】</p>
+<pre class="highlight"><code>1. 一键针对openEuler OpenStack所属项目的Repo、Branch、PR执行各种操作。
+2. 操作包括：建立/删除源码仓;建立/删除openEuler分支；提交软件Update PR；在PR中添加评审意见。</code></pre>
+<p>【先决条件】：提交PR功能依赖上述<code>SPEC生成</code>功能</p>
+<p>【参与方】：OpenStack SIG核心开发者</p>
+<p>【输入】：指定软件名、openEuler release名、目标Spec文件、评审意见内容。</p>
+<p>【输出】：软件建仓PR；软件创建分支PR；软件升级PR；PR新增评审意见。</p>
+<p>【对其他功能的影响】：N/A</p>
+<h2 id="_8">非功能需求<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h3 id="_9">测试需求<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<ol>
+<li>对应软件代码需包含单元测试，覆盖率不低于80%。</li>
+<li>需提供端到端功能测试，覆盖上述所有接口，以及核心的场景测试。</li>
+<li>基于openEuler社区CI，构建CI/CD流程，所有Pull Request要有CI保证代码质量，定期发布release版本，软件发布间隔不大于3个月。</li>
+</ol>
+<h3 id="_10">安全<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<ol>
+<li>数据安全：软件全程不联网，持久存储中不包含用户敏感信息。</li>
+<li>网络安全：OOS在REST架构下使用http协议通信，但软件设计目标实在内网环境中使用，不建议暴露在公网IP中，如必须如此，建议增加访问IP白名单限制。</li>
+<li>系统安全：基于openEuler安全机制，定期发布CVE修复或安全补丁。</li>
+<li>应用层安全：不涉及，不提供应用级安全服务，例如密码策略、访问控制等。</li>
+<li>管理安全：软件提供日志生成和周期性备份机制，方便用户定期审计。</li>
+</ol>
+<h3 id="_11">可靠性<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>本软件面向openEuler社区OpenStack开发行为，不涉及服务上线或者商业生产落地，所有代码公开透明，不涉及私有功能及代码。因此不提供例如节点冗余、容灾备份能功能。</p>
+<h3 id="_12">开源合规<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>本平台采用Apache2.0 License，不限制下游fork软件的闭源与商业行为，但下游软件需标注代码来源以及保留原有License。</p>
+<h2 id="_13">实施计划<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th align="center">时间</th>
+<th align="center">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">2021.06</td>
+<td align="center">完成软件整体框架编写，实现CLI Built-in机制，至少一个API可用</td>
+</tr>
+<tr>
+<td align="center">2021.12</td>
+<td align="center">完成CLI Built-in机制的全量功能可用</td>
+</tr>
+<tr>
+<td align="center">2022.06</td>
+<td align="center">完成质量加固，保证功能，在openEuler OpenStack社区开发流程中正式引入OOS</td>
+</tr>
+<tr>
+<td align="center">2022.12</td>
+<td align="center">不断完成OOS，保证易用性、健壮性，自动化覆盖度超过80%，降低开发人力投入</td>
+</tr>
+<tr>
+<td align="center">2023.06</td>
+<td align="center">补齐REST框架、CI/CD流程，丰富Plugin机制，引入更多backend支持</td>
+</tr>
+<tr>
+<td align="center">2023.12</td>
+<td align="center">完成前端GUI功能</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  用<a href="https://www.mkdocs.org/">MkDocs</a>构建，使用<a href="https://readthedocs.org">Read the Docs</a>提供的<a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>。
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="版本">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
