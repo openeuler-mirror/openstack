@@ -2280,7 +2280,7 @@ yoga:
   blazar-nova: 2.5.0
   blazar_tempest_plugin: 0.8.0
   castellan: 3.10.2
-  ceilometer: 18.0.0
+  ceilometer: 18.1.0
   ceilometermiddleware: 2.4.1
   cinder: 20.3.0
   cinder-tempest-plugin: 1.6.0
@@ -2536,7 +2536,7 @@ zed:
   blazar-nova: 2.6.1
   blazar_tempest_plugin: 0.9.0
   castellan: 4.0.0
-  ceilometer: 19.0.0
+  ceilometer: 19.1.0
   ceilometermiddleware: 3.0.0
   cinder: 21.3.0
   cinder-tempest-plugin: 1.7.2
@@ -2648,17 +2648,17 @@ zed:
   oslo.cache: 3.2.0
   oslo.config: 9.0.0
   oslo.context: 5.0.0
-  oslo.db: 12.1.0
+  oslo.db: 12.1.1
   oslo.limit: 2.0.1
   oslo.messaging: 14.0.0
-  oslo.metrics: 0.5.0
+  oslo.metrics: 0.5.1
   oslo.middleware: 5.0.0
   oslo.policy: 4.0.0
   oslo.privsep: 3.0.1
   oslo.serialization: 5.0.0
   oslo.service: 3.0.0
   oslo.upgradecheck: 2.0.0
-  oslo.utils: 6.0.1
+  oslo.utils: 6.0.2
   oslo.versionedobjects: 3.0.1
   oslo.vmware: 4.0.1
   oswin-tempest-plugin: 2.0.0
