@@ -304,7 +304,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 10. 依次创建domain, projects, users, roles，需要先安装好python3-openstackclient：
 
     ```shell
-    yum install python3-openstackclient
+    yum install python3-openstackclient==4.0.2
     ```
 
     导入环境变量
