@@ -10,11 +10,13 @@ from oos.commands.spec import cli as spec_cli
 def run():
     pass
 
-
-def main():
+def _add_subcommand():
     # Add more command group if needed.
     run.add_command(spec_cli.group)
     run.add_command(dep_cli.group)
     run.add_command(environment_cli.group)
     run.add_command(repo_cli.group)
+
+def main():
+    _add_subcommand()
     run()
