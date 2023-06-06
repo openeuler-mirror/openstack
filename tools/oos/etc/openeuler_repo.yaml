@@ -378,6 +378,8 @@ openeuler:
   ukui: sig-UKUI
   umdk: sig-high-performance-network
   user-committee: user-committee
+  utshell: sig-memsafety
+  utsudo: sig-memsafety
   vectorBlas: bigdata
   vmtop: Virt
   wayca-scheduler: sig-WayCa
