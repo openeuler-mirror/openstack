@@ -19,7 +19,7 @@ def _mocked_requests_get(url):
     return MockResponse(url)
 
 
-class TestGiteeAction(unittest.TestCase):
+class TestPypiAction(unittest.TestCase):
 
     @mock.patch('requests.get', side_effect=_mocked_requests_get)
     def test_get_json_from_pypi(self, mock_get):
