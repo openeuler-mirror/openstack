@@ -10,11 +10,18 @@ def _mocked_requests_get(url, headers=None):
         def __init__(self, url, headers):
             self.url = url
             self.headers = headers
+            self.status_code = 200
 
         @property
         def content(self):
             content = '{"url": "%s", "headers": "%s"}' % (self.url, self.headers)
             return content.encode()
+
+        def json(self):
+            return {
+                "login": "test_name",
+                "email": "test_email@123.com",
+            }
 
     return MockResponse(url, headers)
 
@@ -40,3 +47,13 @@ class TestGiteeAction(unittest.TestCase):
     def test_get_gitee_project_version(self, mock_get_gitee_project_tree):
         result = gitee.get_gitee_project_version('test_owner', 'test_project', 'test_branch')
         self.assertEqual(result, '123')
+
+    @mock.patch('requests.get', side_effect=_mocked_requests_get)
+    def test_has_branch(self, mock_get):
+        result = gitee.has_branch('test_owner', 'test_project', 'test_branch')
+        self.assertTrue(result)
+
+    @mock.patch('requests.get', side_effect=_mocked_requests_get)
+    def test_get_user_info(self, mock_get):
+        result = gitee.get_user_info('test_token')
+        self.assertEqual(result, ('test_name', 'test_email@123.com'))
