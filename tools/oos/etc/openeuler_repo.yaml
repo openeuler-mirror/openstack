@@ -88,6 +88,7 @@ openeuler:
   blesschess: sig-minzuchess
   blog: sig-recycle
   c2rust: dev-utils
+  cache-proxy: Infrastructure
   capsule: Virt
   ceph_dev: sig-SDS
   certificate-center: sig-OpenDesign
