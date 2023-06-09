@@ -2621,11 +2621,11 @@ zed:
   networking-hyperv: 13.0.0
   networking-odl: 21.0.0
   networking-sfc: 15.0.0
-  neutron: 21.1.0
-  neutron-dynamic-routing: 21.0.0
+  neutron: 21.1.1
+  neutron-dynamic-routing: 21.0.1
   neutron-fwaas: 17.0.0
   neutron-fwaas-dashboard: 4.0.0
-  neutron-lib: 3.1.1
+  neutron-lib: 3.1.2
   neutron-tempest-plugin: 2.0.0
   neutron-vpnaas: 21.0.0
   neutron-vpnaas-dashboard: 7.0.0
@@ -2662,7 +2662,7 @@ zed:
   oslo.versionedobjects: 3.0.1
   oslo.vmware: 4.0.1
   oswin-tempest-plugin: 2.0.0
-  ovn-octavia-provider: 3.1.0
+  ovn-octavia-provider: 3.1.1
   ovsdbapp: 2.1.1
   patrole: 0.15.0
   puppet-aodh: 21.0.0
