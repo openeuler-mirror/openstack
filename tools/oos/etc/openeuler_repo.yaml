@@ -359,6 +359,7 @@ openeuler:
   summer2022: sig-OSCourse
   sw-committee: sig-sw-arch
   sync-bot: sig-EasyLife
+  sysboost: A-Tune
   syscare: sig-ops
   syscontainer-tools: iSulad
   sysmaster: dev-utils
@@ -432,7 +433,6 @@ src-openeuler:
   FogROS2: sig-ROS
   GAPP: dev-utils
   GATK: sig-bio
-  GATK3: sig-bio
   GConf2: Desktop
   GeoIP: Networking
   GeoIP-GeoLite-data: Networking
@@ -511,7 +511,6 @@ src-openeuler:
   R-cli: sig-RISC-V
   R-coda: sig-RISC-V
   R-commonmark: sig-RISC-V
-  R-core: sig-bio
   R-cpp11: sig-RISC-V
   R-crayon: sig-RISC-V
   R-curl: sig-RISC-V
@@ -898,7 +897,7 @@ src-openeuler:
   bcm283x-firmware: Private
   bcrypt: dev-utils
   bea-stax: dev-utils
-  beakerlib: Others
+  beakerlib: Base-service
   bean-validation-api: sig-Java
   beanstalkd: Computing
   bedops: sig-bio
@@ -2406,6 +2405,7 @@ src-openeuler:
   ipwatchd: dev-utils
   ipxe: sig-OS-Builder
   ipython: Private
+  iqtree: sig-bio
   irclib: sig-Java
   ironjacamar: sig-Java
   irqbalance: Computing
@@ -2712,9 +2712,11 @@ src-openeuler:
   kde-settings: Desktop
   kdecoration: sig-KDE
   kdegraphics-mobipocket: sig-KDE
+  kdepim-runtime: sig-KDE
   kdevelop: sig-KDE
   kdevelop-pg-qt: sig-KDE
   kdevelopkdevelop-pg-qt: sig-KDE
+  kdiagram: sig-KDE
   kdl_parser: sig-ROS
   kdnssd: sig-KDE
   kdsoap: sig-KDE
@@ -2813,6 +2815,7 @@ src-openeuler:
   kf5-ksmtp: sig-KDE
   kf5-ktexteditor: sig-KDE
   kf5-ktextwidgets: sig-KDE
+  kf5-ktnef: sig-KDE
   kf5-kunitconversion: sig-KDE
   kf5-kwallet: sig-KDE
   kf5-kwayland: sig-KDE
@@ -2824,6 +2827,7 @@ src-openeuler:
   kf5-libkdepim: sig-KDE
   kf5-libkexiv2: sig-KDE
   kf5-libkleo: sig-KDE
+  kf5-libksieve: sig-KDE
   kf5-mailcommon: sig-KDE
   kf5-mailimporter: sig-KDE
   kf5-messagelib: sig-KDE
@@ -2904,6 +2908,7 @@ src-openeuler:
   kscreenlocker: sig-KDE
   ksh: Base-service
   ksystemstats: sig-KDE
+  kuasar: sig-CloudNative
   kubeedge: sig-Edge
   kubekey: sig-K8sDistro
   kubernetes: sig-CloudNative
@@ -3208,6 +3213,7 @@ src-openeuler:
   libkkc: Application
   libkkc-data: Private
   libkml: sig-recycle
+  libkolabxml: sig-KDE
   libkomparediff2: sig-KDE
   libksba: Base-service
   libkscreen-qt5: sig-UKUI
@@ -3282,7 +3288,7 @@ src-openeuler:
   libogg: Computing
   liboggz: sig-recycle
   liboil: sig-recycle
-  libomp: Private
+  libomp: sig-ROS
   libomxil-bellagio: Base-service
   libopenmpt: sig-epol
   libopenraw: Others
@@ -3525,6 +3531,7 @@ src-openeuler:
   lsscsi: Storage
   lsyncd: Application
   ltrace: Programming-language
+  lttng-tools: sig-ROS
   lttng-ust: Computing
   lua: Base-service
   lua-expat: Base-service
@@ -3582,6 +3589,7 @@ src-openeuler:
   m4: Base-service
   mac-robber: Others
   madan-fonts: Desktop
+  mafft: sig-bio
   magic_enum: sig-ROS
   mahout: bigdata
   mailcap: Base-service
@@ -3799,6 +3807,7 @@ src-openeuler:
   mod_security_crs: Base-service
   mod_wsgi: Application
   modello: Base-service
+  modeltest-ng: sig-bio
   mojarra: sig-Java
   mojo-parent: sig-Java
   mokutil: sig-security-facility
@@ -3833,6 +3842,7 @@ src-openeuler:
   mpi4py: sig-epol
   mpich: Programming-language
   mpv: Desktop
+  mrbayes: sig-bio
   mrpt: sig-ROS
   mrpt_msgs: sig-ROS
   mrt_cmake_modules: sig-ROS
@@ -4480,6 +4490,7 @@ src-openeuler:
   openldap: Networking
   openmotif: Private
   openmpi: Application
+  openni: sig-ROS
   opennlp: Application
   opennn: ai
   openoffice-lv: Application
@@ -6519,7 +6530,6 @@ src-openeuler:
   pybind11_vendor: sig-ROS
   pycairo: Desktop
   pycharm-community: sig-UKUI
-  pycollada: sig-ROS
   pyelftools: Programming-language
   pyflakes: Programming-language
   pygobject2: sig-recycle
@@ -6716,6 +6726,7 @@ src-openeuler:
   python-argcomplete: sig-python-modules
   python-argh: sig-python-modules
   python-argon2-cffi: sig-python-modules
+  python-argon2-cffi-bindings: sig-python-modules
   python-argparse: sig-openstack
   python-argparse-manpage: sig-python-modules
   python-args: sig-python-modules
@@ -8489,6 +8500,7 @@ src-openeuler:
   qt5-qtimageformats: Programming-language
   qt5-qtlocation: Programming-language
   qt5-qtmultimedia: Programming-language
+  qt5-qtnetworkauth: sig-QT
   qt5-qtquickcontrols: Programming-language
   qt5-qtquickcontrols2: Programming-language
   qt5-qtremoteobjects: Programming-language
@@ -8593,6 +8605,7 @@ src-openeuler:
   raspimouse2: sig-ROS
   raspimouse_description: sig-ROS
   rasqal: Application
+  raxml-ng: sig-bio
   rc_common_msgs_ros2: sig-ROS
   rc_dynamics_api: sig-ROS
   rc_genicam_api: sig-ROS
@@ -9474,6 +9487,7 @@ src-openeuler:
   swtpm: sig-security-facility
   symlinks: Base-service
   sysbench: dev-utils
+  sysboost: A-Tune
   syscare: sig-ops
   sysconftool: sig-epol
   syscontainer-tools: iSulad
@@ -9667,6 +9681,7 @@ src-openeuler:
   treelayout: sig-Java
   trilead-putty-extension: sig-Java
   trilead-ssh2: sig-Java
+  trimal: sig-bio
   trimmomatic: sig-bio
   trinity: sig-QA
   trousers: Base-service
@@ -10098,7 +10113,7 @@ src-openeuler:
   yapet: System-tool
   yasm: Base-service
   ycsb: bigdata
-  ydlidar: sig-ROS
+  ydlidar-sdk: sig-ROS
   yecht: sig-Java
   yelp: Desktop
   yelp-tools: GNOME
