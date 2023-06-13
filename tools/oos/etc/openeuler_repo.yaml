@@ -313,6 +313,7 @@ openeuler:
   pkgporter: dev-utils
   pkgship: sig-EasyLife
   plymouth-theme-kiran: sig-KIRAN-DESKTOP
+  portal-application-license-monitor: sig-HPC
   portal-mulit-cluster-script: sig-HPC
   powerapi: sig-power-efficient
   prefetch_tuning: A-Tune
@@ -4473,6 +4474,7 @@ src-openeuler:
   opencryptoki: dev-utils
   opencv: ai
   opendmarc: Base-service
+  openeuler-ros: sig-ROS
   openfortivpn: Networking
   opengauss-dcf: DB
   opengauss-server: DB
