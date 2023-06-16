@@ -2424,7 +2424,7 @@ yoga:
   puppet-mistral: 20.3.0
   puppet-murano: 20.3.0
   puppet-neutron: 20.3.0
-  puppet-nova: 20.3.0
+  puppet-nova: 20.4.0
   puppet-octavia: 20.3.0
   puppet-openstack_extras: 20.3.0
   puppet-openstacklib: 20.3.0
@@ -2683,7 +2683,7 @@ zed:
   puppet-mistral: 21.0.0
   puppet-murano: 21.0.0
   puppet-neutron: 21.0.0
-  puppet-nova: 21.0.0
+  puppet-nova: 21.1.0
   puppet-octavia: 21.0.0
   puppet-openstack_extras: 21.0.0
   puppet-openstacklib: 21.0.0
