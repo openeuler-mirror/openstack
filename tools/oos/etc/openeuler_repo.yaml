@@ -3390,7 +3390,9 @@ src-openeuler:
   libtool: Base-service
   libtorrent: sig-epol
   libtpms: sig-security-facility
+  libtracecmd: Programming-language
   libtraceevent: Programming-language
+  libtracefs: Programming-language
   libucil: sig-epol
   libudfread: xfce
   libumem: Computing
