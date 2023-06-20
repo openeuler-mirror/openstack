@@ -247,6 +247,7 @@ src-openeuler:
   python-muranoclient: sig-openstack
   python-mypy-extensions: sig-openstack
   python-natsort: sig-openstack
+  python-ndg-httpsclient: sig-openstack
   python-netmiko: sig-openstack
   python-networking-ovn: sig-openstack
   python-networking-sfc: sig-openstack

@@ -70,6 +70,7 @@ openeuler:
   aops-vulcanus: sig-ops
   aops-zeus: sig-ops
   api-guarder: sig-EasyLife
+  arkui-linux: sig-FangTian
   astream: Kernel
   async-libfuse: iSulad
   attest-tools: sig-security-facility
@@ -143,6 +144,10 @@ openeuler:
   evs: sig-high-performance-network
   extfuse: Storage
   ft_engine: sig-FangTian
+  ft_flutter: sig-FangTian
+  ft_mmi: sig-FangTian
+  ft_multimedia: sig-FangTian
+  ft_utils: sig-FangTian
   gala-anteater: sig-ops
   gala-docs: sig-ops
   gala-gopher: sig-ebpf
@@ -223,6 +228,7 @@ openeuler:
   kylin-installer: sig-UKUI
   kylin-user-guide: sig-UKUI
   lanzhou_university_2021: sig-recycle
+  lboot: sig-OS-Builder
   lcr: iSulad
   lep: sig-embedded
   lfs-course: sig-OSCourse
@@ -7557,6 +7563,7 @@ src-openeuler:
   python-nbsphinx: sig-python-modules
   python-nbval: sig-python-modules
   python-nbxmpp: sig-mate-desktop
+  python-ndg-httpsclient: sig-openstack
   python-ndjson-testrunner: sig-python-modules
   python-neomodel: sig-python-modules
   python-neotime: sig-python-modules
