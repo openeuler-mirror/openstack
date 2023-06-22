@@ -2387,7 +2387,7 @@ yoga:
   osc-lib: 2.5.0
   osc-placement: 3.2.0
   oslo.cache: 2.10.1
-  oslo.config: 8.8.0
+  oslo.config: 8.8.1
   oslo.context: 4.1.0
   oslo.db: 11.2.0
   oslo.limit: 1.5.1
@@ -2399,7 +2399,7 @@ yoga:
   oslo.serialization: 4.3.0
   oslo.service: 2.8.0
   oslo.upgradecheck: 1.5.0
-  oslo.utils: 4.12.3
+  oslo.utils: 4.12.4
   oslo.versionedobjects: 2.6.0
   oslo.vmware: 3.10.0
   oswin-tempest-plugin: 1.4.0
