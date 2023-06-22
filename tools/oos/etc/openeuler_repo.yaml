@@ -119,6 +119,7 @@ openeuler:
   deepin-upgrade-tool: sig-DDE
   digest-list-tools: sig-security-facility
   dim_tools: sig-security-facility
+  distributed-beget: sig-distributed-middleware
   distributed-codelabs: sig-distributed-middleware
   docs: doc
   docs-accompany-reading: sig-OpenDesign
@@ -1340,6 +1341,7 @@ src-openeuler:
   diskimage-builder: sig-openstack
   disomaster: Desktop
   disruptor: Base-service
+  distributed-beget: sig-distributed-middleware
   distributed-build: sig-distributed-middleware
   distributed-build_lite: sig-distributed-middleware
   distributeddatamgr_data_object: sig-distributed-middleware
@@ -9562,6 +9564,7 @@ src-openeuler:
   system-storage-manager: Storage
   system_modes: sig-ROS
   systemabilitymgr_safwk: sig-distributed-middleware
+  systemabilitymgr_samgr: sig-distributed-middleware
   systemd: Base-service
   systemd-bootchart: dev-utils
   systemtap: Computing
