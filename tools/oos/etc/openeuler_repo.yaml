@@ -132,6 +132,7 @@ openeuler:
   duoyibu-ai: sig-minzuchess
   eagle: sig-power-efficient
   easy-checker: sig-EasyLife
+  easybox: sig-memsafety
   eggo: sig-CloudNative
   elfin-parser: sig-HPC
   embedded: sig-embedded
@@ -184,6 +185,7 @@ openeuler:
   install-scripts: sig-OS-Builder
   integration-test: sig-QA
   intel-kernel: sig-Intel-Arch
+  intel-lkvs: sig-Intel-Arch
   intel-qemu: sig-Intel-Arch
   isula-build: iSulad
   isula-transform: sig-recycle
@@ -1167,6 +1169,7 @@ src-openeuler:
   copy-jdk-configs: Packaging
   coredns: sig-CloudNative
   coreutils: Base-service
+  coreutils-rs: sig-memsafety
   coro-mock: dev-utils
   corosync: sig-Ha
   corosync-qdevice: sig-Ha
@@ -1341,6 +1344,7 @@ src-openeuler:
   diskimage-builder: sig-openstack
   disomaster: Desktop
   disruptor: Base-service
+  dist-git: ecopkg
   distributed-beget: sig-distributed-middleware
   distributed-build: sig-distributed-middleware
   distributed-build_lite: sig-distributed-middleware
@@ -1349,6 +1353,7 @@ src-openeuler:
   distributeddatamgr_kv_store: sig-distributed-middleware
   distributeddatamgr_relational_store: sig-distributed-middleware
   distributedhardware_device_manager: sig-distributed-middleware
+  distribution-gpg-keys: ecopkg
   djvulibre: Others
   dkms: Others
   dleyna-connector-dbus: dev-utils
@@ -1546,6 +1551,7 @@ src-openeuler:
   fakeroot: Programming-language
   fapolicyd: sig-security-facility
   farstream02: Others
+  fast_rsync: sig-memsafety
   fastdb: DB
   fastdfs: Storage
   fasterxml-oss-parent: sig-Java
@@ -2653,6 +2659,7 @@ src-openeuler:
   jruby: sig-ruby
   js-excanvas: dev-utils
   js-jquery: sig-nodejs
+  js-jquery-ui: ecopkg
   js-jquery1: sig-recycle
   js-jquery2: sig-recycle
   js-sizzle: sig-nodejs
@@ -3976,6 +3983,7 @@ src-openeuler:
   nim: Programming-language
   ninja-build: Programming-language
   nispor: oVirt
+  nix: sig-memsafety
   nload: dev-utils
   nlohmann_json: sig-ROS
   nlohmann_json_schema_validator_vendor: sig-ROS
@@ -4354,6 +4362,7 @@ src-openeuler:
   nodl: sig-ROS
   nodl_to_policy: sig-ROS
   noggit: sig-Java
+  nosync: ecopkg
   notebook: bigdata
   notepadqq: Desktop
   notification-daemon: Networking
@@ -4977,12 +4986,12 @@ src-openeuler:
   perl-Cwd-utf8: sig-perl-modules
   perl-DBD-CSV: sig-RISC-V
   perl-DBD-MariaDB: DB
-  perl-DBD-Mock: sig-perl-modules
+  perl-DBD-Mock: DB
   perl-DBD-MySQL: DB
-  perl-DBD-Pg: sig-perl-modules
+  perl-DBD-Pg: DB
   perl-DBD-SQLite: DB
-  perl-DBD-SQLite2: sig-perl-modules
-  perl-DBD-XBase: sig-perl-modules
+  perl-DBD-SQLite2: DB
+  perl-DBD-XBase: DB
   perl-DBI: sig-perl-modules
   perl-DBICx-AutoDoc: sig-perl-modules
   perl-DBIx-Class: sig-perl-modules
@@ -6489,6 +6498,7 @@ src-openeuler:
   predixy: Application
   prefetch_tuning: A-Tune
   prelink: Application
+  preproc: ecopkg
   presto: bigdata
   procenv: dev-utils
   procinfo: Others
@@ -6567,6 +6577,7 @@ src-openeuler:
   python-ATpy: sig-python-modules
   python-AWSIoTPythonSDK: sig-python-modules
   python-Arpeggio: sig-python-modules
+  python-Authlib: ecopkg
   python-Automat: sig-python-modules
   python-Bottleneck: Private
   python-Brotli: sig-python-modules
@@ -6586,6 +6597,7 @@ src-openeuler:
   python-Flask-AutoIndex: sig-python-modules
   python-Flask-Bootstrap: sig-python-modules
   python-Flask-Cache: sig-python-modules
+  python-Flask-Caching: ecopkg
   python-Flask-Classy: sig-python-modules
   python-Flask-Cors: sig-python-modules
   python-Flask-HTTPAuth: sig-python-modules
@@ -7644,6 +7656,7 @@ src-openeuler:
   python-olefile: sig-python-modules
   python-oletools: sig-python-modules
   python-openbox: A-Tune
+  python-openid-teams: ecopkg
   python-openidc-client: sig-python-modules
   python-openpyxl: sig-python-modules
   python-opensensemap-api: sig-python-modules
@@ -8271,6 +8284,7 @@ src-openeuler:
   python-tempdir: sig-python-modules
   python-tempest-lib: sig-openstack
   python-tempita: Base-service
+  python-templated-dictionary: ecopkg
   python-tempora: sig-python-modules
   python-tenacity: sig-python-modules
   python-tensorboard: A-Tune
@@ -8707,6 +8721,7 @@ src-openeuler:
   remotetea: sig-Java
   replacer: Base-service
   repo: Private
+  resalloc: ecopkg
   resource-agents: Others
   resource_retriever: sig-ROS
   rest: Desktop
@@ -8890,6 +8905,7 @@ src-openeuler:
   rpg_svo: sig-ROS
   rplidar_ros: sig-ROS
   rpm: Base-service
+  rpm-git-tag-sort: ecopkg
   rpm-mpi-hooks: Private
   rpm-ostree: sig-K8sDistro
   rpm-ostree-toolbox: sig-Ostree-Assembly
@@ -9683,6 +9699,7 @@ src-openeuler:
   time-api: sig-Java
   time-shutdown: sig-UKUI
   timedatex: Base-service
+  tini: ecopkg
   tint2: sig-cinnamon
   tinycdb: Runtime
   tinyproxy: Networking
@@ -9963,6 +9980,7 @@ src-openeuler:
   weston: Application
   wget: Networking
   which: Base-service
+  which-rs: sig-memsafety
   whois: sig-epol
   wildfly-build-tools: sig-Java
   wildfly-common: sig-Java
