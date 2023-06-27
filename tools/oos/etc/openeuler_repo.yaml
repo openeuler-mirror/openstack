@@ -45,6 +45,13 @@ openeuler:
   OSPerformanceTools: sig-OSRefTools
   PRIP: Networking
   PilotGo: sig-ops
+  PilotGo-plugin-container: sig-ops
+  PilotGo-plugin-gala-ops: sig-ops
+  PilotGo-plugin-grafana: sig-ops
+  PilotGo-plugin-mysql: sig-ops
+  PilotGo-plugin-observation: sig-ops
+  PilotGo-plugin-prometheus: sig-ops
+  PilotGo-plugin-redis: sig-ops
   PilotGo-plugins: sig-ops
   PilotGo-web: sig-ops
   Preempt_RT: sig-industrial-control
@@ -201,6 +208,7 @@ openeuler:
   kernel-ascend: Kernel
   kernel-cloudnative: Kernel
   kernel-docs: Kernel
+  ketones: sig-ebpf
   kiran-authentication-devices: sig-KIRAN-DESKTOP
   kiran-authentication-service: sig-KIRAN-DESKTOP
   kiran-biometrics: sig-KIRAN-DESKTOP
