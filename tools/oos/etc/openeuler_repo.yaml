@@ -147,7 +147,7 @@ openeuler:
   embedded-ipc: sig-embedded
   env_check: sig-Compatibility-Infra
   etmem: Storage
-  eulerfs: Kernel
+  eulerfs: sig-recycle
   eulerfs-test: Kernel
   eulerlauncher: Infrastructure
   evs: sig-high-performance-network
@@ -1313,7 +1313,7 @@ src-openeuler:
   deepin-movie: sig-DDE
   deepin-music: sig-DDE
   deepin-pw-check: sig-DDE
-  deepin-qml-widgets: sig-DDE
+  deepin-qml-widgets: sig-recycle
   deepin-reader: sig-DDE
   deepin-rpm-installer: sig-DDE
   deepin-screen-recorder: sig-DDE
@@ -3263,6 +3263,7 @@ src-openeuler:
   libmaus2: sig-bio
   libmaxminddb: Base-service
   libmbim: Networking
+  libmcrypt: sig-desktop-apps
   libmediaart: Desktop
   libmediainfo: Desktop
   libmemcached: Programming-language
@@ -7779,7 +7780,7 @@ src-openeuler:
   python-pgpdump: sig-python-modules
   python-phonenumbers: sig-python-modules
   python-phpserialize: sig-python-modules
-  python-pickleshare: Private
+  python-pickleshare: ecopkg
   python-pid: Base-service
   python-piexif: sig-python-modules
   python-pifpaf: sig-openstack
@@ -8718,6 +8719,7 @@ src-openeuler:
   redis-protocol: Application
   redis5: bigdata
   redis6: bigdata
+  redis_exporter: sig-CloudNative
   redland: Runtime
   redshift: sig-UKUI
   reflectasm: dev-utils
@@ -10214,6 +10216,10 @@ src-openeuler:
   yum-metadata-parser: sig-recycle
   zabbix: Base-service
   zathura: sig-desktop-apps
+  zathura-cb: sig-desktop-apps
+  zathura-djvu: sig-desktop-apps
+  zathura-pdf-poppler: sig-desktop-apps
+  zathura-ps: sig-desktop-apps
   zbar: Application
   zbar_ros: sig-ROS
   zchunk: sig-CloudNative
