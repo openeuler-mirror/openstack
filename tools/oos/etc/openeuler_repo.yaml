@@ -19,6 +19,7 @@ openeuler:
   CTinspector: sig-ebpf
   Cpds: sig-CloudNative
   CreateImage: sig-Gatekeeper
+  CuckooSQL: bigdata
   DyscheOS-kernel: sig-recycle
   DyscheOS-meta: sig-recycle
   DyscheOS-utils: sig-recycle
@@ -1370,7 +1371,7 @@ src-openeuler:
   dleyna-server: Application
   dlib: ai
   dlm: Application
-  dmenu: Desktop
+  dmenu: sig-epol
   dmidecode: Computing
   dmraid: Storage
   dnf: sig-OS-Builder
@@ -2332,8 +2333,8 @@ src-openeuler:
   hyphen-tk: Application
   hyphen-uk: Application
   i2c-tools: Computing
-  i3: Desktop
-  i3status: Desktop
+  i3: sig-epol
+  i3status: sig-epol
   i40e: Networking
   iSulad: iSulad
   iSulad-img: sig-recycle
