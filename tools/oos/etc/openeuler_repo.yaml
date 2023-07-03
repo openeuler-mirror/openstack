@@ -2924,6 +2924,7 @@ src-openeuler:
   kobuki_ros_interfaces: sig-ROS
   kobuki_velocity_smoother: sig-ROS
   kohsuke-pom: Application
+  koji: ecopkg
   konsole5: sig-KDE
   kontact: sig-KDE
   korganizer: sig-KDE
@@ -7134,6 +7135,7 @@ src-openeuler:
   python-elasticsearch7: sig-EasyLife
   python-elementpath: sig-openstack
   python-eli5: sig-python-modules
+  python-email-validator: ecopkg
   python-email_reply_parser: sig-python-modules
   python-emcee: sig-python-modules
   python-emoji: sig-python-modules
@@ -7856,6 +7858,7 @@ src-openeuler:
   python-py-cpuinfo: sig-python-modules
   python-py-make: sig-python-modules
   python-py2pack: sig-python-modules
+  python-py3dns: ecopkg
   python-pyLibravatar: sig-python-modules
   python-pyModbusTCP: sig-python-modules
   python-pyPEG2: sig-python-modules
@@ -7902,6 +7905,7 @@ src-openeuler:
   python-pygatt: sig-python-modules
   python-pygeoip: sig-python-modules
   python-pyghmi: sig-openstack
+  python-pygit2: ecopkg
   python-pyglet: Private
   python-pygments: Programming-language
   python-pygments-style-solarized: sig-python-modules
@@ -8529,6 +8533,7 @@ src-openeuler:
   python3: Base-service
   python3-docs: sig-python-modules
   python3-mallard-ducktype: Base-service
+  python3-openid: ecopkg
   python_cmake_module: sig-ROS
   python_qt_binding: sig-ROS
   pytorch: ai
@@ -8779,6 +8784,7 @@ src-openeuler:
   robot_upstart: sig-ROS
   robotraconteur: sig-ROS
   robust-http-client: sig-Java
+  rocketmq: sig-message-middleware
   rocksdb: System-tool
   rome: sig-Java
   rootfiles: Base-service
@@ -8914,6 +8920,7 @@ src-openeuler:
   rpcbind: Networking
   rpcsvc-proto: Application
   rpg_svo: sig-ROS
+  rpkg-macros: ecopkg
   rplidar_ros: sig-ROS
   rpm: Base-service
   rpm-git-tag-sort: ecopkg
