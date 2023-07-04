@@ -8111,6 +8111,7 @@ src-openeuler:
   python-rpkg: sig-python-modules
   python-rply: sig-python-modules
   python-rpm-generators: Base-service
+  python-rpmautospec: ecopkg
   python-rpmfluff: Private
   python-rsa: sig-python-modules
   python-rsd-lib: sig-openstack
