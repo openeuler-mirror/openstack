@@ -151,6 +151,7 @@ openeuler:
   eulerfs: sig-recycle
   eulerfs-test: Kernel
   eulerlauncher: Infrastructure
+  eulerpublisher: Infrastructure
   evs: sig-high-performance-network
   extfuse: Storage
   ft_engine: sig-FangTian
@@ -695,6 +696,7 @@ src-openeuler:
   ament_package: sig-ROS
   ament_vitis: sig-ROS
   amtk: Application
+  amtterm: sig-Ha
   anaconda: sig-OS-Builder
   anaconda-user-help: sig-OS-Builder
   android-json-org-java: sig-Java
@@ -909,6 +911,7 @@ src-openeuler:
   bash-completion: Base-service
   bat: dev-utils
   batik: sig-Java
+  bats: sig-CloudNative
   bazel: ai
   bc: Base-service
   bcache-tools: Storage
@@ -1634,6 +1637,7 @@ src-openeuler:
   flac: Computing
   flamegraph: sig-ops
   flang: Compiler
+  flang-15: Compiler
   flann: sig-ROS
   flatbuffers: dev-utils
   flatpak: Programming-language
@@ -4523,6 +4527,8 @@ src-openeuler:
   openjpeg2: Desktop
   openldap: Networking
   openmotif: Private
+  openmp: Compiler
+  openmp-15: Compiler
   openmpi: Application
   openni: sig-ROS
   opennlp: Application
@@ -4720,6 +4726,7 @@ src-openeuler:
   papi: Programming-language
   papirus-icon-theme: Others
   paps: Application
+  parallel: sig-CloudNative
   paranamer: Base-service
   paratype-pt-sans-fonts: Desktop
   parboiled: sig-Java
@@ -6482,6 +6489,7 @@ src-openeuler:
   polkit-kde: sig-KDE
   polkit-pkla-compat: Base-service
   polkit-qt-1: sig-UKUI
+  polly-15: Compiler
   poly2tri: Others
   polycube: sig-high-performance-network
   polyglot: sig-Java
