@@ -5326,6 +5326,7 @@ src-openeuler:
   perl-HTTP-Body: sig-perl-modules
   perl-HTTP-BrowserDetect: sig-perl-modules
   perl-HTTP-Cache-Transparent: sig-perl-modules
+  perl-HTTP-CookieJar: Programming-language
   perl-HTTP-CookieMonster: sig-perl-modules
   perl-HTTP-Cookies: Programming-language
   perl-HTTP-Daemon: sig-perl-modules
