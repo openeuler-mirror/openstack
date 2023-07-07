@@ -2391,7 +2391,7 @@ yoga:
   oslo.context: 4.1.0
   oslo.db: 11.2.0
   oslo.limit: 1.5.1
-  oslo.messaging: 12.13.0
+  oslo.messaging: 12.13.1
   oslo.metrics: 0.4.0
   oslo.middleware: 4.5.1
   oslo.policy: 3.11.0
@@ -2621,7 +2621,7 @@ zed:
   networking-hyperv: 13.0.0
   networking-odl: 21.0.0
   networking-sfc: 15.0.0
-  neutron: 21.1.1
+  neutron: 21.1.2
   neutron-dynamic-routing: 21.0.1
   neutron-fwaas: 17.0.0
   neutron-fwaas-dashboard: 4.0.0
@@ -2650,7 +2650,7 @@ zed:
   oslo.context: 5.0.0
   oslo.db: 12.1.1
   oslo.limit: 2.0.1
-  oslo.messaging: 14.0.0
+  oslo.messaging: 14.0.1
   oslo.metrics: 0.5.1
   oslo.middleware: 5.0.0
   oslo.policy: 4.0.0
