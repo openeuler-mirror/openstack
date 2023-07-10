@@ -406,6 +406,7 @@ openeuler:
   utsudo: sig-memsafety
   vectorBlas: bigdata
   vmtop: Virt
+  vtopia-agent: sig-security-facility
   wayca-scheduler: sig-WayCa
   wayca-scheduler-bench: sig-WayCa
   website: Infrastructure
