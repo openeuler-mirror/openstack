@@ -96,6 +96,8 @@ openeuler:
   bishengjdk-riscv: Compiler
   blesschess: sig-minzuchess
   blog: sig-recycle
+  btfhub: sig-ebpf
+  btfhub-archive: sig-ebpf
   c2rust: dev-utils
   cache-proxy: Infrastructure
   capsule: Virt
@@ -376,6 +378,7 @@ openeuler:
   signatrust: Infrastructure
   skylark: Virt
   sonic-linux-kernel: sig-ONL
+  sssnic-driver: sig-Compatibility-Infra
   stortrace: Storage
   stratovirt: Virt
   summer2022: sig-OSCourse
@@ -9538,6 +9541,7 @@ src-openeuler:
   sshpass: Application
   sslext: sig-Java
   sssd: Base-service
+  sssnic-driver: sig-Compatibility-Infra
   stage: sig-ROS
   stage_ros: sig-ROS
   stalld: sig-CloudNative
