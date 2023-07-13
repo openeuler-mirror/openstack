@@ -3847,6 +3847,7 @@ src-openeuler:
   mod_wsgi: Application
   modello: Base-service
   modeltest-ng: sig-bio
+  modulemd-tools: ecopkg
   mojarra: sig-Java
   mojo-parent: sig-Java
   mokutil: sig-security-facility
@@ -7171,6 +7172,7 @@ src-openeuler:
   python-eventlet: sig-python-modules
   python-exceptiongroup: sig-python-modules
   python-execnet: sig-python-modules
+  python-executing: ecopkg
   python-exif: sig-python-modules
   python-extras: Programming-language
   python-ez_setup: sig-python-modules
@@ -7395,6 +7397,7 @@ src-openeuler:
   python-ipgetter2: sig-python-modules
   python-iptools: sig-python-modules
   python-ipykernel: bigdata
+  python-ipython: ecopkg
   python-ipython_genutils: sig-python-modules
   python-ironic-inspector-client: sig-openstack
   python-ironic-lib: sig-openstack
@@ -7780,6 +7783,7 @@ src-openeuler:
   python-pdfminer: sig-python-modules
   python-pdfrw: sig-python-modules
   python-pdir2: sig-python-modules
+  python-pdm-backend: sig-python-modules
   python-pdm-pep517: sig-python-modules
   python-pdocs: sig-python-modules
   python-pecan: sig-python-modules
@@ -7864,6 +7868,7 @@ src-openeuler:
   python-pudb: sig-python-modules
   python-pulsectl: sig-python-modules
   python-pungi: sig-python-modules
+  python-pure-eval: ecopkg
   python-pure-sasl: sig-python-modules
   python-purestorage: sig-openstack
   python-pvc: sig-python-modules
@@ -8265,6 +8270,7 @@ src-openeuler:
   python-sqlparse: sig-python-modules
   python-sseclient: sig-python-modules
   python-sshpubkeys: sig-openstack
+  python-stack-data: ecopkg
   python-statistics: sig-python-modules
   python-statsd: sig-python-modules
   python-statsmodels: sig-python-modules
@@ -8934,7 +8940,9 @@ src-openeuler:
   rpcbind: Networking
   rpcsvc-proto: Application
   rpg_svo: sig-ROS
+  rpkg: ecopkg
   rpkg-macros: ecopkg
+  rpkg-util: ecopkg
   rplidar_ros: sig-ROS
   rpm: Base-service
   rpm-git-tag-sort: ecopkg
