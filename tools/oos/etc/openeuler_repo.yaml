@@ -10262,6 +10262,7 @@ src-openeuler:
   zeppelin: bigdata
   zerofree: Others
   zeromq: dev-utils
+  zettastor-dbs: sig-SDS
   zfs: sig-SDS
   zimg: Desktop
   zinc: sig-Java
