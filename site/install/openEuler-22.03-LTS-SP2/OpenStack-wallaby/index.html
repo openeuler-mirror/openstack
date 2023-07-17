@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../../img/favicon.ico" />
-    <title>openEuler-22.03-LTS-SP1_Wallaby - OpenStack SIG Doc</title>
+    <title>openEuler-22.03-LTS-SP2_Wallaby - OpenStack SIG Doc</title>
     <link rel="stylesheet" href="../../../css/theme.css" />
     <link rel="stylesheet" href="../../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "openEuler-22.03-LTS-SP1_Wallaby";
-        var mkdocs_page_input_path = "install/openEuler-22.03-LTS-SP1/OpenStack-wallaby.md";
+        var mkdocs_page_name = "openEuler-22.03-LTS-SP2_Wallaby";
+        var mkdocs_page_input_path = "install/openEuler-22.03-LTS-SP2/OpenStack-wallaby.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -69,9 +69,13 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS/OpenStack-wallaby/">openEuler-22.03-LTS_Wallaby</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../OpenStack-train/">openEuler-22.03-LTS-SP1_Train</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS-SP1/OpenStack-train/">openEuler-22.03-LTS-SP1_Train</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">openEuler-22.03-LTS-SP1_Wallaby</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS-SP1/OpenStack-wallaby/">openEuler-22.03-LTS-SP1_Wallaby</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../OpenStack-train/">openEuler-22.03-LTS-SP2_Train</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">openEuler-22.03-LTS-SP2_Wallaby</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#openstack">OpenStack 简介</a>
     </li>
@@ -131,10 +135,6 @@
     </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS-SP2/OpenStack-train/">openEuler-22.03-LTS-SP2_Train</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS-SP2/OpenStack-wallaby/">openEuler-22.03-LTS-SP2_Wallaby</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.09/OpenStack-yoga/">openEuler-22.09_Yoga</a>
                   </li>
               </ul>
@@ -169,7 +169,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="文档"></a> &raquo;</li>
           <li>安装指导 &raquo;</li>
-      <li>openEuler-22.03-LTS-SP1_Wallaby</li>
+      <li>openEuler-22.03-LTS-SP2_Wallaby</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -219,7 +219,7 @@
 <h2 id="openstack">OpenStack 简介<a class="headerlink" href="#openstack" title="Permanent link">&para;</a></h2>
 <p>OpenStack 是一个社区，也是一个项目。它提供了一个部署云的操作平台或工具集，为组织提供可扩展的、灵活的云计算。</p>
 <p>作为一个开源的云计算管理平台，OpenStack 由nova、cinder、neutron、glance、keystone、horizon等几个主要的组件组合起来完成具体工作。OpenStack 支持几乎所有类型的云环境，项目目标是提供实施简单、可大规模扩展、丰富、标准统一的云计算管理平台。OpenStack 通过各种互补的服务提供了基础设施即服务（IaaS）的解决方案，每个服务提供 API 进行集成。</p>
-<p>openEuler 22.03-LTS-SP1版本官方源已经支持 OpenStack-Wallaby 版本，用户可以配置好 yum 源后根据此文档进行 OpenStack 部署。</p>
+<p>openEuler 22.03-LTS-SP2版本官方源已经支持 OpenStack-Wallaby 版本，用户可以配置好 yum 源后根据此文档进行 OpenStack 部署。</p>
 <h2 id="_1">约定<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>OpenStack 支持多种形态部署，此文档支持<code>ALL in One</code>以及<code>Distributed</code>两种部署方式，按照如下方式约定：</p>
 <p><code>ALL in One</code>模式:</p>
@@ -232,7 +232,7 @@
 <p><strong><em>注意</em></strong></p>
 <p>涉及到以上约定的服务如下：</p>
 <ul>
-<li>Cinder</li>
+<li>CinderSP1</li>
 <li>Nova</li>
 <li>Neutron</li>
 </ul>
@@ -249,10 +249,10 @@ yum clean all &amp;&amp; yum makecache</code></pre>
 
 [EPOL]
 name=EPOL
-baseurl=http://repo.openeuler.org/openEuler-22.03-LTS-SP1/EPOL/main/$basearch/
+baseurl=http://repo.openeuler.org/openEuler-22.03-LTS-SP2/EPOL/main/$basearch/
 enabled=1
 gpgcheck=1
-gpgkey=http://repo.openeuler.org/openEuler-22.03-LTS-SP1/OS/$basearch/RPM-GPG-KEY-openEuler
+gpgkey=http://repo.openeuler.org/openEuler-22.03-LTS-SP2/OS/$basearch/RPM-GPG-KEY-openEuler
 EOF</code></pre>
 </li>
 <li>
@@ -2546,10 +2546,10 @@ kolla_openeuler_plugin = false</code></pre>
 </table>
 </li>
 <li>
-<p>华为云上面创建一台openEuler 22.03-LTS-SP1的x86_64虚拟机，用于部署<code>all in one</code> 的 OpenStack</p>
+<p>华为云上面创建一台openEuler 22.03-LTS-SP2的x86_64虚拟机，用于部署<code>all in one</code> 的 OpenStack</p>
 <pre class="highlight"><code class="language-shell"># sshpass在`oos env create`过程中被使用，用于配置对目标虚拟机的免密访问
 dnf install sshpass
-oos env create -r 22.03-lts-sp1 -f small -a x86 -n test-oos all_in_one</code></pre>
+oos env create -r 22.03-lts-sp2 -f small -a x86 -n test-oos all_in_one</code></pre>
 <p>具体的参数可以使用<code>oos env create --help</code>命令查看</p>
 </li>
 <li>
@@ -2567,14 +2567,14 @@ oos env create -r 22.03-lts-sp1 -f small -a x86 -n test-oos all_in_one</code></p
 <p>如果是以主机纳管的方式部署 OpenStack 环境，总体逻辑与上文对接华为云时一致，1、3、5、6步操作不变，去除第2步对华为云provider信息的配置，第4步由在华为云上创建虚拟机改为纳管主机操作。</p>
 <pre class="highlight"><code class="language-shell"># sshpass在`oos env create`过程中被使用，用于配置对目标主机的免密访问
 dnf install sshpass
-oos env manage -r 22.03-lts-sp1 -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n test-oos</code></pre>
+oos env manage -r 22.03-lts-sp2 -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n test-oos</code></pre>
 <p>替换<code>TARGET_MACHINE_IP</code>为目标机ip、<code>TARGET_MACHINE_PASSWD</code>为目标机密码。具体的参数可以使用<code>oos env manage --help</code>命令查看。</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="页脚导航">
-        <a href="../OpenStack-train/" class="btn btn-neutral float-left" title="openEuler-22.03-LTS-SP1_Train"><span class="icon icon-circle-arrow-left"></span> 上一章</a>
-        <a href="../../openEuler-22.03-LTS-SP2/OpenStack-train/" class="btn btn-neutral float-right" title="openEuler-22.03-LTS-SP2_Train">下一章 <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../OpenStack-train/" class="btn btn-neutral float-left" title="openEuler-22.03-LTS-SP2_Train"><span class="icon icon-circle-arrow-left"></span> 上一章</a>
+        <a href="../../openEuler-22.09/OpenStack-yoga/" class="btn btn-neutral float-right" title="openEuler-22.09_Yoga">下一章 <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -2600,7 +2600,7 @@ oos env manage -r 22.03-lts-sp1 -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n
       <span><a href="../OpenStack-train/" style="color: #fcfcfc">&laquo; 上一章</a></span>
     
     
-      <span><a href="../../openEuler-22.03-LTS-SP2/OpenStack-train/" style="color: #fcfcfc">下一章 &raquo;</a></span>
+      <span><a href="../../openEuler-22.09/OpenStack-yoga/" style="color: #fcfcfc">下一章 &raquo;</a></span>
     
   </span>
 </div>
