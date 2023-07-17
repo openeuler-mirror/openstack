@@ -1355,7 +1355,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     **替换`CINDER_PASS`为 cinder 用户的密码；**
 
-    **替换`HOST:PATH`为 NFS的HOSTIP和共享路径 用户的密码；**
+    **替换`HOST:PATH`为 NFS的HOSTIP和共享路径；**
 
 6. 同步数据库：
 
