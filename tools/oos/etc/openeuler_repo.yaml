@@ -149,6 +149,7 @@ openeuler:
   embedded-ci: sig-Yocto
   embedded-ipc: sig-embedded
   env_check: sig-Compatibility-Infra
+  etipc: sig-embedded
   etmem: Storage
   eulerfs: sig-recycle
   eulerfs-test: Kernel
@@ -8684,8 +8685,8 @@ src-openeuler:
   qwt: sig-ROS
   qwt_dependency: sig-ROS
   r2r_spl: sig-ROS
-  rabbitmq-java-client: sig-Java
-  rabbitmq-server: Application
+  rabbitmq-java-client: sig-message-middleware
+  rabbitmq-server: sig-message-middleware
   racon: sig-bio
   radar_msgs-release: sig-ROS
   radvd: Networking
