@@ -30,6 +30,7 @@ OpenStack SIG通过用户反馈等方式收集OpenStack版本需求，经过SIG�
 | openEuler 21.09         |        |       |       |        |          |    ●    |      |      |
 | openEuler 22.03 LTS     |        |       |   ●   |        |          |    ●    |      |      |
 | openEuler 22.03 LTS SP1 |        |       |   ●   |        |          |    ●    |      |      |
+| openEuler 22.03 LTS SP2 |        |       |   ●   |        |          |    ●    |      |      |
 | openEuler 22.09         |        |       |       |        |          |         |      |   ●  |
 
 |            | Queens | Rocky | Train | Victoria | Wallaby | Yoga |
@@ -53,11 +54,20 @@ OpenStack SIG通过用户反馈等方式收集OpenStack版本需求，经过SIG�
 |   Cyborg   |        |       |   ●   |          |    ▲    |   ●  |
 |   Gnocchi  |        |       |   ●   |          |    ●    |   ●  |
 | OpenStack-helm |    |       |       |          |         |   ●  |
+|  Barbican  |        |       |       |          |    ▲    |      |
+|  Octavia   |        |       |       |          |    ▲    |      |
+|  Designate |        |       |       |          |    ▲    |      |
+|  Manila    |        |       |       |          |    ▲    |      |
+|  Masakari  |        |       |       |          |    ▲    |      |
+|  Mistral   |        |       |       |          |    ▲    |      |
+|  Senlin    |        |       |       |          |    ▲    |      |
+|  Zaqar     |        |       |       |          |    ▲    |      |
 
 Note:
 
 1. openEuler 20.03 LTS SP2不支持Rally
-2. openEuler 21.09 不支持Heat、Ceilometer、Swift、Aodh和Cyborg
+2. Heat、Ceilometer、Swift、Aodh和Cyborg只在22.03 LTS以上版本支持
+3. Barbican、Octavia、Designate、Manila、Masakari、Mistral、Senlin和Zaqar只在22.03 LTS SP2以上版本支持
 
 ## oepkg软件仓地址列表
 
