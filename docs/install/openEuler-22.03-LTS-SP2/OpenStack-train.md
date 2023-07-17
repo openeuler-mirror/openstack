@@ -1,4 +1,4 @@
-# OpenStack-Wallaby 部署指南
+# OpenStack-Train 部署指南
 
 [TOC]
 
@@ -8,7 +8,7 @@ OpenStack 是一个社区，也是一个项目。它提供了一个部署云的�
 
 作为一个开源的云计算管理平台，OpenStack 由nova、cinder、neutron、glance、keystone、horizon等几个主要的组件组合起来完成具体工作。OpenStack 支持几乎所有类型的云环境，项目目标是提供实施简单、可大规模扩展、丰富、标准统一的云计算管理平台。OpenStack 通过各种互补的服务提供了基础设施即服务（IaaS）的解决方案，每个服务提供 API 进行集成。
 
-openEuler 22.03-LTS-SP1版本官方源已经支持 OpenStack-Wallaby 版本，用户可以配置好 yum 源后根据此文档进行 OpenStack 部署。
+openEuler 22.03-LTS-SP2版本官方源已经支持 OpenStack-Train 版本，用户可以配置好 yum 源后根据此文档进行 OpenStack 部署。
 
 ## 约定
 
@@ -41,25 +41,25 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
 ### 环境配置
 
-1. 配置 22.03 LTS 官方yum源，需要启用EPOL软件仓以支持OpenStack
+1. 启动OpenStack Train yum源
 
     ```shell
     yum update
-    yum install openstack-release-wallaby
+    yum install openstack-release-train
     yum clean all && yum makecache
     ```
 
-    **注意**：如果你的环境的YUM源没有启用EPOL，需要同时配置EPOL，确保EPOL已配置，如下所示。
+    **注意**：如果你的环境的YUM源没有启用EPOL，需要同时配置EPOL，确保EPOL已配置，如下所示
 
     ```shell
     vi /etc/yum.repos.d/openEuler.repo
 
     [EPOL]
     name=EPOL
-    baseurl=http://repo.openeuler.org/openEuler-22.03-LTS-SP1/EPOL/main/$basearch/
+    baseurl=http://repo.openeuler.org/openEuler-22.03-LTS-SP2/EPOL/main/$basearch/
     enabled=1
     gpgcheck=1
-    gpgkey=http://repo.openeuler.org/openEuler-22.03-LTS-SP1/OS/$basearch/RPM-GPG-KEY-openEuler
+    gpgkey=http://repo.openeuler.org/openEuler-22.03-LTS-SP2/OS/$basearch/RPM-GPG-KEY-openEuler
     EOF
     ```
 
@@ -304,7 +304,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 10. 依次创建domain, projects, users, roles，需要先安装好python3-openstackclient：
 
     ```shell
-    yum install python3-openstackclient
+    yum install python3-openstackclient==4.0.2
     ```
 
     导入环境变量
@@ -704,11 +704,6 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     server_proxyclient_address = $my_ip
     novncproxy_base_url = http://controller:6080/vnc_auto.html                                     (CPT)
 
-    [libvirt]
-    virt_type = qemu                                                                               (CPT)
-    cpu_mode = custom                                                                              (CPT)
-    cpu_model = cortex-a72                                                                         (CPT)
-
     [glance]
     api_servers = http://controller:9292
 
@@ -787,55 +782,37 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     virt_type = qemu
     ```
 
-    如果返回值为1或更大的值，则支持硬件加速，不需要进行额外的配置
+    如果返回值为1或更大的值，则支持硬件加速，则`virt_type`可以配置为`kvm`
 
     ***注意***
 
-    **如果为arm64结构，还需要执行以下命令**
+    **如果为arm64结构，还需要在计算节点执行以下命令**
 
     ```shell
+    
+    mkdir -p /usr/share/AAVMF
+    chown nova:nova /usr/share/AAVMF
+
+    ln -s /usr/share/edk2/aarch64/QEMU_EFI-pflash.raw \
+          /usr/share/AAVMF/AAVMF_CODE.fd
+    ln -s /usr/share/edk2/aarch64/vars-template-pflash.raw \
+          /usr/share/AAVMF/AAVMF_VARS.fd
+
     vim /etc/libvirt/qemu.conf
 
     nvram = ["/usr/share/AAVMF/AAVMF_CODE.fd: \
              /usr/share/AAVMF/AAVMF_VARS.fd", \
              "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw: \
              /usr/share/edk2/aarch64/vars-template-pflash.raw"]
+    ```
 
-    vim /etc/qemu/firmware/edk2-aarch64.json
+    并且当ARM架构下的部署环境为嵌套虚拟化时，`libvirt`配置如下：
 
-    {
-        "description": "UEFI firmware for ARM64 virtual machines",
-        "interface-types": [
-            "uefi"
-        ],
-        "mapping": {
-            "device": "flash",
-            "executable": {
-                "filename": "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw",
-                "format": "raw"
-            },
-            "nvram-template": {
-                "filename": "/usr/share/edk2/aarch64/vars-template-pflash.raw",
-                "format": "raw"
-            }
-        },
-        "targets": [
-            {
-                "architecture": "aarch64",
-                "machines": [
-                    "virt-*"
-                ]
-            }
-        ],
-        "features": [
-
-        ],
-        "tags": [
-
-        ]
-    }
-
-    (CPT)
+    ```shell
+    [libvirt]
+    virt_type = qemu
+    cpu_mode = custom
+    cpu_model = cortex-a72
     ```
 
 4. 同步数据库
@@ -873,7 +850,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     添加计算节点到openstack集群
 
     ```shell
-    su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova                           (CPT)
+    su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova                           (CTL)
     ```
 
 5. 启动服务
@@ -1211,10 +1188,11 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     ```shell
     systemctl enable neutron-server.service neutron-linuxbridge-agent.service \                    (CTL)
     neutron-dhcp-agent.service neutron-metadata-agent.service \
-    systemctl enable neutron-l3-agent.service
-    systemctl restart openstack-nova-api.service neutron-server.service                            (CTL)
-    neutron-linuxbridge-agent.service neutron-dhcp-agent.service \
-    neutron-metadata-agent.service neutron-l3-agent.service
+    neutron-l3-agent.service
+
+    systemctl restart neutron-server.service neutron-linuxbridge-agent.service \                   (CTL)
+    neutron-dhcp-agent.service neutron-metadata-agent.service \
+    neutron-l3-agent.service
 
     systemctl enable neutron-linuxbridge-agent.service                                             (CPT)
     systemctl restart neutron-linuxbridge-agent.service openstack-nova-compute.service             (CPT)
@@ -1510,7 +1488,7 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
     ```
 
 5. 安装tempest扩展（可选）
-   OpenStack各个服务本身也提供了一些tempest测试包，用户可以安装这些包来丰富tempest的测试内容。在Wallaby中，我们提供了Cinder、Glance、Keystone、Ironic、Trove的扩展测试，用户可以执行如下命令进行安装使用：
+   OpenStack各个服务本身也提供了一些tempest测试包，用户可以安装这些包来丰富tempest的测试内容。在Train中，我们提供了Cinder、Glance、Keystone、Ironic、Trove的扩展测试，用户可以执行如下命令进行安装使用：
    ```
    yum install python3-cinder-tempest-plugin python3-glance-tempest-plugin python3-ironic-tempest-plugin python3-keystone-tempest-plugin python3-trove-tempest-plugin
    ```
@@ -1532,8 +1510,20 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic.* TO 'ironic'@'%' \
    IDENTIFIED BY 'IRONIC_DBPASSWORD';
    ```
+2. 安装软件包
 
-2. 创建服务用户认证
+   ```shell
+   yum install openstack-ironic-api openstack-ironic-conductor python3-ironicclient
+   ```
+
+   启动服务
+
+   ```shell
+   systemctl enable openstack-ironic-api openstack-ironic-conductor
+   systemctl start openstack-ironic-api openstack-ironic-conductor
+   ```
+
+3. 创建服务用户认证
 
    1、创建Bare Metal服务用户
 
@@ -1541,12 +1531,8 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    openstack user create --password IRONIC_PASSWORD \
                          --email ironic@example.com ironic
    openstack role add --project service --user ironic admin
-   openstack service create --name ironic
+   openstack service create --name ironic \
                             --description "Ironic baremetal provisioning service" baremetal
-
-   openstack service create --name ironic-inspector --description     "Ironic inspector baremetal provisioning service" baremetal-introspection
-   openstack user create --password IRONIC_INSPECTOR_PASSWORD --email ironic_inspector@example.com ironic_inspector
-   openstack role add --project service --user ironic-inspector admin
    ```
 
    2、创建Bare Metal服务访问入口
@@ -1555,12 +1541,9 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    openstack endpoint create --region RegionOne baremetal admin http://$IRONIC_NODE:6385
    openstack endpoint create --region RegionOne baremetal public http://$IRONIC_NODE:6385
    openstack endpoint create --region RegionOne baremetal internal http://$IRONIC_NODE:6385
-   openstack endpoint create --region RegionOne baremetal-introspection internal http://172.20.19.13:5050/v1
-   openstack endpoint create --region RegionOne baremetal-introspection public http://172.20.19.13:5050/v1
-   openstack endpoint create --region RegionOne baremetal-introspection admin http://172.20.19.13:5050/v1
    ```
 
-3. 配置ironic-api服务
+4. 配置ironic-api服务
 
    配置文件路径/etc/ironic/ironic.conf
 
@@ -1599,21 +1582,6 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    # disabled. (string value)
    
    auth_strategy=keystone
-   host = controller
-   memcache_servers = controller:11211
-   enabled_network_interfaces = flat,noop,neutron
-   default_network_interface = noop
-   transport_url = rabbit://openstack:RABBITPASSWD@controller:5672/
-   enabled_hardware_types = ipmi
-   enabled_boot_interfaces = pxe
-   enabled_deploy_interfaces = direct
-   default_deploy_interface = direct
-   enabled_inspect_interfaces = inspector
-   enabled_management_interfaces = ipmitool
-   enabled_power_interfaces = ipmitool
-   enabled_rescue_interfaces = no-rescue,agent
-   isolinux_bin = /usr/share/syslinux/isolinux.bin
-   logging_context_format_string = %(asctime)s.%(msecs)03d %(process)d %(levelname)s %(name)s [%(global_request_id)s %(request_id)s %(user_identity)s] %(instance)s%(message)s
    
    [keystone_authtoken]
    # Authentication type to load (string value)
@@ -1633,35 +1601,6 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    # User's domain name (string value)
    user_domain_name=Default
    
-   [agent]
-   deploy_logs_collect = always
-   deploy_logs_local_path = /var/log/ironic/deploy
-   deploy_logs_storage_backend = local
-   image_download_source = http
-   stream_raw_images = false
-   force_raw_images = false
-   verify_ca = False
-   
-   [oslo_concurrency]
-   
-   [oslo_messaging_notifications]
-   transport_url = rabbit://openstack:123456@172.20.19.25:5672/
-   topics = notifications
-   driver = messagingv2
-   
-   [oslo_messaging_rabbit]
-   amqp_durable_queues = True
-   rabbit_ha_queues = True
-   
-   [pxe]
-   ipxe_enabled = false
-   pxe_append_params = nofb nomodeset vga=normal coreos.autologin ipa-insecure=1
-   image_cache_size = 204800
-   tftp_root=/var/lib/tftpboot/cephfs/
-   tftp_master_path=/var/lib/tftpboot/cephfs/master_images
-   
-   [dhcp]
-   dhcp_provider = none
    ```
 
    4、创建裸金属服务数据库表
@@ -1676,7 +1615,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    sudo systemctl restart openstack-ironic-api
    ```
 
-4. 配置ironic-conductor服务
+5. 配置ironic-conductor服务
 
    1、替换**HOST_IP**为conductor host的IP
 
@@ -1803,143 +1742,6 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    sudo systemctl restart openstack-ironic-conductor
    ```
 
-5. 配置ironic-inspector服务
-
-   配置文件路径/etc/ironic-inspector/inspector.conf
-
-   1、创建数据库
-
-   ```shell
-   # mysql -u root -p
-   
-   MariaDB [(none)]> CREATE DATABASE ironic_inspector CHARACTER SET utf8;
-   
-   MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic_inspector.* TO 'ironic_inspector'@'localhost' \     IDENTIFIED BY 'IRONIC_INSPECTOR_DBPASSWORD';
-   MariaDB [(none)]> GRANT ALL PRIVILEGES ON ironic_inspector.* TO 'ironic_inspector'@'%' \
-   IDENTIFIED BY 'IRONIC_INSPECTOR_DBPASSWORD';
-   ```
-
-   2、通过**connection**选项配置数据库的位置，如下所示，替换**IRONIC_INSPECTOR_DBPASSWORD**为**ironic_inspector**用户的密码，替换**DB_IP**为DB服务器所在的IP地址：
-
-   ```shell
-   [database]
-   backend = sqlalchemy
-   connection = mysql+pymysql://ironic_inspector:IRONIC_INSPECTOR_DBPASSWORD@DB_IP/ironic_inspector
-   min_pool_size = 100
-   max_pool_size = 500
-   pool_timeout = 30
-   max_retries = 5
-   max_overflow = 200
-   db_retry_interval = 2
-   db_inc_retry_interval = True
-   db_max_retry_interval = 2
-   db_max_retries = 5
-   ```
-
-   3、配置消息度列通信地址
-
-   ```shell
-   [DEFAULT] 
-   transport_url = rabbit://RPC_USER:RPC_PASSWORD@RPC_HOST:RPC_PORT/
-   
-   ```
-
-   4、设置keystone认证
-
-   ```shell
-   [DEFAULT]
-   
-   auth_strategy = keystone
-   timeout = 900
-   rootwrap_config = /etc/ironic-inspector/rootwrap.conf
-   logging_context_format_string = %(asctime)s.%(msecs)03d %(process)d %(levelname)s %(name)s [%(global_request_id)s %(request_id)s %(user_identity)s] %(instance)s%(message)s
-   log_dir = /var/log/ironic-inspector
-   state_path = /var/lib/ironic-inspector
-   use_stderr = False
-   
-   [ironic]
-   api_endpoint = http://IRONIC_API_HOST_ADDRRESS:6385
-   auth_type = password
-   auth_url = http://PUBLIC_IDENTITY_IP:5000
-   auth_strategy = keystone
-   ironic_url = http://IRONIC_API_HOST_ADDRRESS:6385
-   os_region = RegionOne
-   project_name = service
-   project_domain_name = Default
-   user_domain_name = Default
-   username = IRONIC_SERVICE_USER_NAME
-   password = IRONIC_SERVICE_USER_PASSWORD
-   
-   [keystone_authtoken]
-   auth_type = password
-   auth_url = http://control:5000
-   www_authenticate_uri = http://control:5000
-   project_domain_name = default
-   user_domain_name = default
-   project_name = service
-   username = ironic_inspector
-   password = IRONICPASSWD
-   region_name = RegionOne
-   memcache_servers = control:11211
-   token_cache_time = 300
-   
-   [processing]
-   add_ports = active
-   processing_hooks = $default_processing_hooks,local_link_connection,lldp_basic
-   ramdisk_logs_dir = /var/log/ironic-inspector/ramdisk
-   always_store_ramdisk_logs = true
-   store_data =none
-   power_off = false
-   
-   [pxe_filter]
-   driver = iptables
-   
-   [capabilities]
-   boot_mode=True
-   ```
-
-   5、配置ironic inspector dnsmasq服务
-
-   ```shell
-   # 配置文件地址：/etc/ironic-inspector/dnsmasq.conf
-   port=0
-   interface=enp3s0                         #替换为实际监听网络接口
-   dhcp-range=172.20.19.100,172.20.19.110   #替换为实际dhcp地址范围
-   bind-interfaces
-   enable-tftp
-   
-   dhcp-match=set:efi,option:client-arch,7
-   dhcp-match=set:efi,option:client-arch,9
-   dhcp-match=aarch64, option:client-arch,11
-   dhcp-boot=tag:aarch64,grubaa64.efi
-   dhcp-boot=tag:!aarch64,tag:efi,grubx64.efi
-   dhcp-boot=tag:!aarch64,tag:!efi,pxelinux.0
-   
-   tftp-root=/tftpboot                       #替换为实际tftpboot目录
-   log-facility=/var/log/dnsmasq.log
-   ```
-
-   6、关闭ironic provision网络子网的dhcp
-
-   ```
-   openstack subnet set --no-dhcp 72426e89-f552-4dc4-9ac7-c4e131ce7f3c
-   ```
-
-   7、初始化ironic-inspector服务的数据库
-
-   在控制节点执行：
-
-   ```
-   ironic-inspector-dbsync --config-file /etc/ironic-inspector/inspector.conf upgrade
-   ```
-
-   8、启动服务
-
-   ```shell
-   systemctl enable --now openstack-ironic-inspector.service
-   systemctl enable --now openstack-ironic-inspector-dnsmasq.service
-   ```
-
 6. 配置httpd服务
 
    1. 创建ironic要使用的httpd的root目录并设置属主属组，目录路径要和/etc/ironic/ironic.conf中[deploy]组中http_root 配置项指定的路径要一致。
@@ -1948,20 +1750,13 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
       mkdir -p /var/lib/ironic/httproot ``chown ironic.ironic /var/lib/ironic/httproot
       ```
    
-      
-   
    2. 安装和配置httpd服务
-   
-      
    
       1. 安装httpd服务，已有请忽略
    
          ```
          yum install httpd -y
          ```
-   
-         
-   
       2. 创建/etc/httpd/conf.d/openstack-ironic-httpd.conf文件，内容如下：
    
          ```
@@ -1992,13 +1787,10 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
          ```
          systemctl restart httpd
          ```
-   
-         
-   
 7. deploy ramdisk镜像制作
-
-   W版的ramdisk镜像支持通过ironic-python-agent服务或disk-image-builder工具制作，也可以使用社区最新的ironic-python-agent-builder。用户也可以自行选择其他工具制作。
-   若使用W版原生工具，则需要安装对应的软件包。
+   
+   T版的ramdisk镜像支持通过ironic-python-agent服务或disk-image-builder工具制作，也可以使用社区最新的ironic-python-agent-builder。用户也可以自行选择其他工具制作。
+   若使用T版原生工具，则需要安装对应的软件包。
 
    ```shell
    yum install openstack-ironic-python-agent
@@ -2011,7 +1803,6 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    这里介绍下使用ironic-python-agent-builder构建ironic使用的deploy镜像的完整过程。
 
    1. 安装 ironic-python-agent-builder
-
 
         1. 安装工具：
     
@@ -2116,72 +1907,68 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
         参考：[source-repositories](https://docs.openstack.org/diskimage-builder/latest/elements/source-repositories/README.html)。
 
         指定仓库地址及版本验证成功。
-        
-   5. 注意
    
-        原生的openstack里的pxe配置文件的模版不支持arm64架构，需要自己对原生openstack代码进行修改：
+   5. 注意
+	原生的openstack里的pxe配置文件的模版不支持arm64架构，需要自己对原生openstack代码进行修改：
 
-        在W版中，社区的ironic仍然不支持arm64位的uefi pxe启动，表现为生成的grub.cfg文件(一般位于/tftpboot/下)格式不对而导致pxe启动失败，如下：
+	在T版中，社区的ironic仍然不支持arm64位的uefi pxe启动，表现为生成的grub.cfg文件(一般位于/tftpboot/下)格式不对而导致pxe启动失败
 
-        生成的错误配置文件：
+	需要用户对生成grub.cfg的代码逻辑自行修改。
 
-        ![ironic-err](../../img/install/ironic-err.png)
+	ironic向ipa发送查询命令执行状态请求的tls报错：
 
-        如上图所示，arm架构里寻找vmlinux和ramdisk镜像的命令分别是linux和initrd，上图所示的标红命令是x86架构下的uefi pxe启动。
+	T版的ipa和ironic默认都会开启tls认证的方式向对方发送请求，跟据官网的说明进行关闭即可。
 
-        需要用户对生成grub.cfg的代码逻辑自行修改。
+	1. 修改ironic配置文件(/etc/ironic/ironic.conf)下面的配置中添加ipa-insecure=1：
 
-        ironic向ipa发送查询命令执行状态请求的tls报错：
+	```
+	[agent]
+	verify_ca = False
+ 
+	[pxe]
+	pxe_append_params = nofb nomodeset vga=normal coreos.autologin ipa-insecure=1
+	```
 
-        w版的ipa和ironic默认都会开启tls认证的方式向对方发送请求，跟据官网的说明进行关闭即可。
+	2. ramdisk镜像中添加ipa配置文件/etc/ironic_python_agent/ironic_python_agent.conf并配置tls的配置如下：
 
-        1. 修改ironic配置文件(/etc/ironic/ironic.conf)下面的配置中添加ipa-insecure=1：
+	/etc/ironic_python_agent/ironic_python_agent.conf (需要提前创建/etc/ironic_python_agent目录）
 
-        ```
-        [agent]
-        verify_ca = False
+	```
+	[DEFAULT]
+	enable_auto_tls = False
+	```
 
-        [pxe]
-        pxe_append_params = nofb nomodeset vga=normal coreos.autologin ipa-insecure=1
-        ```
+	设置权限：
 
-        2) ramdisk镜像中添加ipa配置文件/etc/ironic_python_agent/ironic_python_agent.conf并配置tls的配置如下：
+	```
+	chown -R ipa.ipa /etc/ironic_python_agent/
+	```
 
-        /etc/ironic_python_agent/ironic_python_agent.conf (需要提前创建/etc/ironic_python_agent目录）
+	3. 修改ipa服务的服务启动文件，添加配置文件选项
 
-        ```
-        [DEFAULT]
-        enable_auto_tls = False
-        ```
+   	vim usr/lib/systemd/system/ironic-python-agent.service
 
-        设置权限：
+	   ```
+	   [Unit]
+	   Description=Ironic Python Agent
+	   After=network-online.target
+    
+	   [Service]
+	   ExecStartPre=/sbin/modprobe vfat
+	   ExecStart=/usr/local/bin/ironic-python-agent --config-file /etc/ironic_python_agent/ironic_python_agent.conf
+	   Restart=always
+	   RestartSec=30s
+    
+	   [Install]
+	   WantedBy=multi-user.target
+	   ```
 
-        ```
-        chown -R ipa.ipa /etc/ironic_python_agent/
-        ```
-
-        3. 修改ipa服务的服务启动文件，添加配置文件选项
-
-        vim usr/lib/systemd/system/ironic-python-agent.service
-
-        ```
-        [Unit]
-        Description=Ironic Python Agent
-        After=network-online.target
-
-        [Service]
-        ExecStartPre=/sbin/modprobe vfat
-        ExecStart=/usr/local/bin/ironic-python-agent --config-file /etc/ironic_python_agent/ironic_python_agent.conf
-        Restart=always
-        RestartSec=30s
-
-        [Install]
-        WantedBy=multi-user.target
-        ```
+   
+在Train中，我们还提供了ironic-inspector等服务，用户可根据自身需求安装。
 
 ### Kolla 安装
 
-Kolla为OpenStack服务提供生产环境可用的容器化部署的功能。openEuler 22.03 LTS中引入了Kolla和Kolla-ansible服务。
+Kolla为OpenStack服务提供生产环境可用的容器化部署的功能。
 
 Kolla的安装十分简单，只需要安装对应的RPM包即可
 
@@ -2189,7 +1976,7 @@ Kolla的安装十分简单，只需要安装对应的RPM包即可
 yum install openstack-kolla openstack-kolla-ansible
 ```
 
-安装完后，就可以使用`kolla-ansible`, `kolla-build`, `kolla-genpwd`, `kolla-mergepwd`等命令了。
+安装完后，就可以使用`kolla-ansible`, `kolla-build`, `kolla-genpwd`, `kolla-mergepwd`等命令进行相关的镜像制作和容器环境部署了。
 
 ### Trove 安装
 Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据库服务则推荐使用该组件。否则，可以不用安装。
@@ -2213,11 +2000,9 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
    1、创建**Trove**服务用户
 
    ```shell
-   openstack user create --password TROVE_PASSWORD \
-                         --email trove@example.com trove
+   openstack user create --domain default --password-prompt trove
    openstack role add --project service --user trove admin
-   openstack service create --name trove
-                            --description "Database service" database
+   openstack service create --name trove --description "Database" database
    ```
    **解释：** `TROVE_PASSWORD` 替换为`trove`用户的密码
 
@@ -2233,112 +2018,72 @@ Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据
 
    1、安装**Trove**包
    ```shell script
-   yum install openstack-trove python-troveclient
+   yum install openstack-trove python3-troveclient
    ```
+
    2. 配置`trove.conf`
    ```shell script
    vim /etc/trove/trove.conf
    
-   [DEFAULT]
-   bind_host=TROVE_NODE_IP
-   log_dir = /var/log/trove
-   network_driver = trove.network.neutron.NeutronDriver
-   management_security_groups = <manage security group>
-   nova_keypair = trove-mgmt
-   default_datastore = mysql
-   taskmanager_manager = trove.taskmanager.manager.Manager
-   trove_api_workers = 5
-   transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
-   reboot_time_out = 300
-   usage_timeout = 900
-   agent_call_high_timeout = 1200
-   use_syslog = False
-   debug = True
-   
-   # Set these if using Neutron Networking
-   network_driver=trove.network.neutron.NeutronDriver
-   network_label_regex=.*
-   
-   
-   transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
-   
-   [database]
-   connection = mysql+pymysql://trove:TROVE_DBPASS@controller/trove
-   
-   [keystone_authtoken]
-   project_domain_name = Default
-   project_name = service
-   user_domain_name = Default
-   password = trove
-   username = trove
-   auth_url = http://controller:5000/v3/
-   auth_type = password
-   
-   [service_credentials]
-   auth_url = http://controller:5000/v3/
-   region_name = RegionOne
-   project_name = service
-   password = trove
-   project_domain_name = Default
-   user_domain_name = Default
-   username = trove
-   
-   [mariadb]
-   tcp_ports = 3306,4444,4567,4568
-   
-   [mysql]
-   tcp_ports = 3306
-   
-   [postgresql]
-   tcp_ports = 5432
+    [DEFAULT]
+    log_dir = /var/log/trove
+    trove_auth_url = http://controller:5000/
+    nova_compute_url = http://controller:8774/v2
+    cinder_url = http://controller:8776/v1
+    swift_url = http://controller:8080/v1/AUTH_
+    rpc_backend = rabbit
+    transport_url = rabbit://openstack:RABBIT_PASS@controller:5672
+    auth_strategy = keystone
+    add_addresses = True
+    api_paste_config = /etc/trove/api-paste.ini
+    nova_proxy_admin_user = admin
+    nova_proxy_admin_pass = ADMIN_PASSWORD
+    nova_proxy_admin_tenant_name = service
+    taskmanager_manager = trove.taskmanager.manager.Manager
+    use_nova_server_config_drive = True
+    # Set these if using Neutron Networking
+    network_driver = trove.network.neutron.NeutronDriver
+    network_label_regex = .*
+    
+    [database]
+    connection = mysql+pymysql://trove:TROVE_DBPASSWORD@controller/trove
+    
+    [keystone_authtoken]
+    www_authenticate_uri = http://controller:5000/
+    auth_url = http://controller:5000/
+    auth_type = password
+    project_domain_name = default
+    user_domain_name = default
+    project_name = service
+    username = trove
+    password = TROVE_PASSWORD
    ```
    **解释：**
-   - `[Default]`分组中`bind_host`配置为Trove部署节点的IP
-   - `nova_compute_url` 和 `cinder_url` 为Nova和Cinder在Keystone中创建的endpoint
+   - `[Default]`分组中`nova_compute_url` 和 `cinder_url` 为Nova和Cinder在Keystone中创建的endpoint
    - `nova_proxy_XXX` 为一个能访问Nova服务的用户信息，上例中使用`admin`用户为例
    - `transport_url` 为`RabbitMQ`连接信息，`RABBIT_PASS`替换为RabbitMQ的密码
    - `[database]`分组中的`connection` 为前面在mysql中为Trove创建的数据库信息
-   - Trove的用户信息中`TROVE_PASS`替换为实际trove用户的密码  
+   - Trove的用户信息中`TROVE_PASSWORD`替换为实际trove用户的密码  
 
-   5. 配置`trove-guestagent.conf`
+   3. 配置`trove-guestagent.conf`
    ```shell script
    vim /etc/trove/trove-guestagent.conf
    
-   [DEFAULT]
-   log_file = trove-guestagent.log
-   log_dir = /var/log/trove/
-   ignore_users = os_admin
-   control_exchange = trove
-   transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
-   rpc_backend = rabbit
-   command_process_timeout = 60
-   use_syslog = False
-   debug = True
-   
-   [service_credentials]
-   auth_url = http://controller:5000/v3/
-   region_name = RegionOne
-   project_name = service
-   password = TROVE_PASS
-   project_domain_name = Default
-   user_domain_name = Default
-   username = trove
-   
-   [mysql]
-   docker_image = your-registry/your-repo/mysql
-   backup_docker_image = your-registry/your-repo/db-backup-mysql:1.1.0
+   rabbit_host = controller
+   rabbit_password = RABBIT_PASS
+   trove_auth_url = http://controller:5000/
    ```
    **解释：** `guestagent`是trove中一个独立组件，需要预先内置到Trove通过Nova创建的虚拟
    机镜像中，在创建好数据库实例后，会起guestagent进程，负责通过消息队列（RabbitMQ）向Trove上
    报心跳，因此需要配置RabbitMQ的用户和密码信息。
    **从Victoria版开始，Trove使用一个统一的镜像来跑不同类型的数据库，数据库服务运行在Guest虚拟机的Docker容器中。**
-   - `transport_url` 为`RabbitMQ`连接信息，`RABBIT_PASS`替换为RabbitMQ的密码
-   - Trove的用户信息中`TROVE_PASS`替换为实际trove用户的密码  
+   - `RABBIT_PASS`替换为RabbitMQ的密码  
 
-   6. 生成数据`Trove`数据库表
+   4. 生成数据`Trove`数据库表
    ```shell script
    su -s /bin/sh -c "trove-manage db_sync" trove
    ```
+
 4. 完成安装配置
    1. 配置**Trove**服务自启动
    ```shell script
@@ -2657,6 +2402,7 @@ Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适�
     
     systemctl start openstack-swift-object.service openstack-swift-object-auditor.service openstack-swift-object-replicator.service openstack-swift-object-updater.service
     ```
+
 ### Cyborg 安装
 
 Cyborg为OpenStack提供加速器设备的支持，包括 GPU, FPGA, ASIC, NP, SoCs, NVMe/NOF SSDs, ODP, DPDK/SPDK等等。
@@ -2781,12 +2527,6 @@ openstack endpoint create --region RegionOne alarming admin http://controller:80
 ```
 yum install openstack-aodh-api openstack-aodh-evaluator openstack-aodh-notifier openstack-aodh-listener openstack-aodh-expirer python3-aodhclient
 ```
-
-***注意***
-
-aodh依赖的软件包pytho3-pyparsing在openEuler的OS仓不适配，需要覆盖安装OpenStack对应版本，可以使用`yum list |grep pyparsing |grep OpenStack | awk '{print $2}'`获取对应的版本
-
-VERSION,然后再`yum install -y python3-pyparsing-VERSION`覆盖安装适配的pyparsing
 
 4. 修改配置文件
 
@@ -3081,7 +2821,7 @@ systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openst
 2. 配置对接华为云provider的信息
 
     打开`/usr/local/etc/oos/oos.conf`文件，修改配置为您拥有的华为云资源信息：
-
+    
     ```
     [huaweicloud]
     ak = 
@@ -3139,12 +2879,12 @@ systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openst
     | swift_storage_devices  | swift使用的卷设备名 |
     | kolla_openeuler_plugin | 是否启用kolla plugin。设置为True，kolla将支持部署openEuler容器 |
 
-4. 华为云上面创建一台openEuler 22.03-LTS-SP1的x86_64虚拟机，用于部署`all in one` 的 OpenStack
+4. 华为云上面创建一台openEuler 22.03-LTS-SP2的x86_64虚拟机，用于部署`all in one` 的 OpenStack
 
     ```shell
     # sshpass在`oos env create`过程中被使用，用于配置对目标虚拟机的免密访问
     dnf install sshpass
-    oos env create -r 22.03-lts-sp1 -f small -a x86 -n test-oos all_in_one
+    oos env create -r 22.03-lts-sp2 -f small -a x86 -n test-oos all_in_one
     ```
 
     具体的参数可以使用`oos env create --help`命令查看
@@ -3152,8 +2892,9 @@ systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openst
 5. 部署OpenStack `all in one` 环境
 
     ```shell
-    oos env setup test-oos -r wallaby
+    oos env setup test-oos -r train
     ```
+
     具体的参数可以使用`oos env setup --help`命令查看
 
 6. 初始化tempest环境
@@ -3171,7 +2912,493 @@ systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openst
 ```shell
 # sshpass在`oos env create`过程中被使用，用于配置对目标主机的免密访问
 dnf install sshpass
-oos env manage -r 22.03-lts-sp1 -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n test-oos
+oos env manage -r 22.03-lts-sp2 -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n test-oos
 ```
 
 替换`TARGET_MACHINE_IP`为目标机ip、`TARGET_MACHINE_PASSWD`为目标机密码。具体的参数可以使用`oos env manage --help`命令查看。
+
+## 基于OpenStack SIG部署工具opensd部署
+
+opensd用于批量地脚本化部署openstack各组件服务。
+
+### 部署步骤
+
+### 1. 部署前需要确认的信息
+
+  - 装操作系统时，需将selinux设置为disable
+  - 装操作系统时，将/etc/ssh/sshd_config配置文件内的UseDNS设置为no
+  - 操作系统语言必须设置为英文
+  - 部署之前请确保所有计算节点/etc/hosts文件内没有对计算主机的解析
+
+### 2. ceph pool与认证创建（可选）
+
+不使用ceph或已有ceph集群可忽略此步骤
+
+**在任意一台ceph monitor节点执行:**
+#### 2.1 创建pool:
+
+```shell
+ceph osd pool create volumes 2048
+ceph osd pool create images 2048
+```
+
+#### 2.2 初始化pool
+
+```shell
+rbd pool init volumes
+rbd pool init images
+```
+
+#### 2.3 创建用户认证
+
+```shell
+ceph auth get-or-create client.glance mon 'profile rbd' osd 'profile rbd pool=images' mgr 'profile rbd pool=images'
+ceph auth get-or-create client.cinder mon 'profile rbd' osd 'profile rbd pool=volumes, profile rbd pool=images' mgr 'profile rbd pool=volumes'
+```
+
+### 3. 配置lvm（可选）
+
+**根据物理机磁盘配置与闲置情况，为mysql数据目录挂载额外的磁盘空间。示例如下（根据实际情况做配置）：**
+
+```
+fdisk -l
+Disk /dev/sdd: 479.6 GB, 479559942144 bytes, 936640512 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disk label type: dos
+Disk identifier: 0x000ed242
+创建分区
+parted /dev/sdd
+mkparted 0 -1
+创建pv
+partprobe /dev/sdd1
+pvcreate /dev/sdd1
+创建、激活vg
+vgcreate vg_mariadb /dev/sdd1
+vgchange -ay vg_mariadb
+查看vg容量
+vgdisplay
+--- Volume group ---
+VG Name vg_mariadb
+System ID
+Format lvm2
+Metadata Areas 1
+Metadata Sequence No 2
+VG Access read/write
+VG Status resizable
+MAX LV 0
+Cur LV 1
+Open LV 1
+Max PV 0
+Cur PV 1
+Act PV 1
+VG Size 446.62 GiB
+PE Size 4.00 MiB
+Total PE 114335
+Alloc PE / Size 114176 / 446.00 GiB
+Free PE / Size 159 / 636.00 MiB
+VG UUID bVUmDc-VkMu-Vi43-mg27-TEkG-oQfK-TvqdEc
+创建lv
+lvcreate -L 446G -n lv_mariadb vg_mariadb
+格式化磁盘并获取卷的UUID
+mkfs.ext4 /dev/mapper/vg_mariadb-lv_mariadb
+blkid /dev/mapper/vg_mariadb-lv_mariadb
+/dev/mapper/vg_mariadb-lv_mariadb: UUID="98d513eb-5f64-4aa5-810e-dc7143884fa2" TYPE="ext4"
+注：98d513eb-5f64-4aa5-810e-dc7143884fa2为卷的UUID
+挂载磁盘
+mount /dev/mapper/vg_mariadb-lv_mariadb /var/lib/mysql
+rm -rf  /var/lib/mysql/*
+```
+
+### 4. 配置yum repo
+
+**在部署节点执行：**
+
+#### 4.1 备份yum源
+
+```shell
+mkdir /etc/yum.repos.d/bak/
+mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/bak/
+```
+
+#### 4.2 配置yum repo
+
+```shell
+cat > /etc/yum.repos.d/opensd.repo << EOF
+[train]
+name=train
+baseurl=http://119.3.219.20:82/openEuler:/22.03:/LTS:/SP2:/Epol:/Multi-Version:/OpenStack:/Train/standard_$basearch/
+enabled=1
+gpgcheck=0
+
+[epol]
+name=epol
+baseurl=http://119.3.219.20:82/openEuler:/22.03:/LTS:/SP2:/Epol/standard_$basearch/
+enabled=1
+gpgcheck=0
+
+[everything]
+name=everything
+baseurl=http://119.3.219.20:82/openEuler:/22.03:/LTS:/SP2/standard_$basearch/
+enabled=1
+gpgcheck=0
+
+EOF
+```
+
+#### 4.3 更新yum缓存
+
+```shell
+yum clean all
+yum makecache
+```
+
+### 5. 安装opensd
+
+**在部署节点执行：**
+
+#### 5.1 克隆opensd源码并安装
+
+```shell
+git clone https://gitee.com/openeuler/opensd
+cd opensd
+python3 setup.py install
+```
+
+### 6. 做ssh互信
+
+**在部署节点执行：**
+
+#### 6.1 生成密钥对
+
+执行如下命令并一路回车
+
+```shell
+ssh-keygen
+```
+
+#### 6.2 生成主机IP地址文件
+在auto_ssh_host_ip中配置所有用到的主机ip, 示例：
+
+```shell
+cd /usr/local/share/opensd/tools/
+vim auto_ssh_host_ip
+
+10.0.0.1
+10.0.0.2
+...
+10.0.0.10
+```
+
+#### 6.3 更改密码并执行脚本
+*将免密脚本`/usr/local/bin/opensd-auto-ssh`内123123替换为主机真实密码*
+
+```shell
+# 替换脚本内123123字符串
+vim /usr/local/bin/opensd-auto-ssh
+```
+
+```shell
+## 安装expect后执行脚本
+dnf install expect -y
+opensd-auto-ssh
+```
+
+#### 6.4 部署节点与ceph monitor做互信（可选）
+
+```shell
+ssh-copy-id root@x.x.x.x
+```
+
+### 7. 配置opensd
+
+**在部署节点执行：**
+
+#### 7.1 生成随机密码
+安装 python3-pbr, python3-utils, python3-pyyaml, python3-oslo-utils并随机生成密码
+```shell
+dnf install python3-pbr python3-utils python3-pyyaml python3-oslo-utils -y
+# 执行命令生成密码
+opensd-genpwd
+# 检查密码是否生成
+cat /usr/local/share/opensd/etc_examples/opensd/passwords.yml
+```
+
+#### 7.2 配置inventory文件
+主机信息包含：主机名、ansible_host IP、availability_zone，三者均需配置缺一不可，示例：
+
+```shell
+vim /usr/local/share/opensd/ansible/inventory/multinode
+# 三台控制节点主机信息
+[control]
+controller1 ansible_host=10.0.0.35 availability_zone=az01.cell01.cn-yogadev-1
+controller2 ansible_host=10.0.0.36 availability_zone=az01.cell01.cn-yogadev-1
+controller3 ansible_host=10.0.0.37 availability_zone=az01.cell01.cn-yogadev-1
+
+# 网络节点信息，与控制节点保持一致
+[network]
+controller1 ansible_host=10.0.0.35 availability_zone=az01.cell01.cn-yogadev-1
+controller2 ansible_host=10.0.0.36 availability_zone=az01.cell01.cn-yogadev-1
+controller3 ansible_host=10.0.0.37 availability_zone=az01.cell01.cn-yogadev-1
+
+# cinder-volume服务节点信息
+[storage]
+storage1 ansible_host=10.0.0.61 availability_zone=az01.cell01.cn-yogadev-1
+storage2 ansible_host=10.0.0.78 availability_zone=az01.cell01.cn-yogadev-1
+storage3 ansible_host=10.0.0.82 availability_zone=az01.cell01.cn-yogadev-1
+
+# Cell1 集群信息
+[cell-control-cell1]
+cell1 ansible_host=10.0.0.24 availability_zone=az01.cell01.cn-yogadev-1
+cell2 ansible_host=10.0.0.25 availability_zone=az01.cell01.cn-yogadev-1
+cell3 ansible_host=10.0.0.26 availability_zone=az01.cell01.cn-yogadev-1
+
+[compute-cell1]
+compute1 ansible_host=10.0.0.27 availability_zone=az01.cell01.cn-yogadev-1
+compute2 ansible_host=10.0.0.28 availability_zone=az01.cell01.cn-yogadev-1
+compute3 ansible_host=10.0.0.29 availability_zone=az01.cell01.cn-yogadev-1
+
+[cell1:children]
+cell-control-cell1
+compute-cell1
+
+# Cell2集群信息
+[cell-control-cell2]
+cell4 ansible_host=10.0.0.36 availability_zone=az03.cell02.cn-yogadev-1
+cell5 ansible_host=10.0.0.37 availability_zone=az03.cell02.cn-yogadev-1
+cell6 ansible_host=10.0.0.38 availability_zone=az03.cell02.cn-yogadev-1
+
+[compute-cell2]
+compute4 ansible_host=10.0.0.39 availability_zone=az03.cell02.cn-yogadev-1
+compute5 ansible_host=10.0.0.40 availability_zone=az03.cell02.cn-yogadev-1
+compute6 ansible_host=10.0.0.41 availability_zone=az03.cell02.cn-yogadev-1
+
+[cell2:children]
+cell-control-cell2
+compute-cell2
+
+[baremetal]
+
+[compute-cell1-ironic]
+
+
+# 填写所有cell集群的control主机组
+[nova-conductor:children]
+cell-control-cell1
+cell-control-cell2
+
+# 填写所有cell集群的compute主机组
+[nova-compute:children]
+compute-added
+compute-cell1
+compute-cell2
+
+# 下面的主机组信息不需变动，保留即可
+[compute-added]
+
+[chrony-server:children]
+control
+
+[pacemaker:children]
+control
+......
+......
+```
+
+#### 7.3 配置全局变量
+
+**注: 文档中提到的有注释配置项需要更改，其他参数不需要更改，若无相关配置则为空**
+
+```shell
+vim /usr/local/share/opensd/etc_examples/opensd/globals.yml
+########################
+# Network & Base options
+########################
+network_interface: "eth0" #管理网络的网卡名称
+neutron_external_interface: "eth1" #业务网络的网卡名称
+cidr_netmask: 24 #管理网的掩码
+opensd_vip_address: 10.0.0.33  #控制节点虚拟IP地址
+cell1_vip_address: 10.0.0.34 #cell1集群的虚拟IP地址
+cell2_vip_address: 10.0.0.35 #cell2集群的虚拟IP地址
+external_fqdn: "" #用于vnc访问虚拟机的外网域名地址
+external_ntp_servers: [] #外部ntp服务器地址
+yumrepo_host:  #yum源的IP地址
+yumrepo_port:  #yum源端口号
+enviroment:   #yum源的类型
+upgrade_all_packages: "yes" #是否升级所有安装版的版本(执行yum upgrade)，初始部署资源请设置为"yes"
+enable_miner: "no" #是否开启部署miner服务
+
+enable_chrony: "no" #是否开启部署chrony服务
+enable_pri_mariadb: "no" #是否为私有云部署mariadb
+enable_hosts_file_modify: "no" # 扩容计算节点和部署ironic服务的时候，是否将节点信息添加到`/etc/hosts`
+
+########################
+# Available zone options
+########################
+az_cephmon_compose:
+  - availability_zone:  #availability zone的名称，该名称必须与multinode主机文件内的az01的"availability_zone"值保持一致
+    ceph_mon_host:      #az01对应的一台ceph monitor主机地址，部署节点需要与该主机做ssh互信
+    reserve_vcpu_based_on_numa:  
+  - availability_zone:  #availability zone的名称，该名称必须与multinode主机文件内的az02的"availability_zone"值保持一致
+    ceph_mon_host:      #az02对应的一台ceph monitor主机地址，部署节点需要与该主机做ssh互信
+    reserve_vcpu_based_on_numa:  
+  - availability_zone:  #availability zone的名称，该名称必须与multinode主机文件内的az03的"availability_zone"值保持一致
+    ceph_mon_host:      #az03对应的一台ceph monitor主机地址，部署节点需要与该主机做ssh互信
+    reserve_vcpu_based_on_numa:
+
+# `reserve_vcpu_based_on_numa`配置为`yes` or `no`,举例说明：
+NUMA node0 CPU(s): 0-15,32-47
+NUMA node1 CPU(s): 16-31,48-63
+当reserve_vcpu_based_on_numa: "yes", 根据numa node, 平均每个node预留vcpu:
+vcpu_pin_set = 2-15,34-47,18-31,50-63
+当reserve_vcpu_based_on_numa: "no", 从第一个vcpu开始，顺序预留vcpu:
+vcpu_pin_set = 8-64
+
+#######################
+# Nova options
+#######################
+nova_reserved_host_memory_mb: 2048 #计算节点给计算服务预留的内存大小
+enable_cells: "yes" #cell节点是否单独节点部署
+support_gpu: "False" #cell节点是否有GPU服务器，如果有则为True，否则为False
+
+#######################
+# Neutron options
+#######################
+monitor_ip:
+    - 10.0.0.9   #配置监控节点
+    - 10.0.0.10
+enable_meter_full_eip: True   #配置是否允许EIP全量监控，默认为True
+enable_meter_port_forwarding: True   #配置是否允许port forwarding监控，默认为True
+enable_meter_ecs_ipv6: True   #配置是否允许ecs_ipv6监控，默认为True
+enable_meter: True    #配置是否开启监控，默认为True
+is_sdn_arch: False    #配置是否是sdn架构，默认为False
+
+# 默认使能的网络类型是vlan,vlan和vxlan两种类型只能二选一.
+enable_vxlan_network_type: False  # 默认使能的网络类型是vlan,如果使用vxlan网络，配置为True, 如果使用vlan网络，配置为False.
+enable_neutron_fwaas: False       # 环境有使用防火墙, 设置为True, 使能防护墙功能.
+# Neutron provider
+neutron_provider_networks:
+  network_types: "{{ 'vxlan' if enable_vxlan_network_type else 'vlan' }}"
+  network_vlan_ranges: "default:xxx:xxx" #部署之前规划的业务网络vlan范围
+  network_mappings: "default:br-provider"
+  network_interface: "{{ neutron_external_interface }}"
+  network_vxlan_ranges: "" #部署之前规划的业务网络vxlan范围
+
+# 如下这些配置是SND控制器的配置参数, `enable_sdn_controller`设置为True, 使能SND控制器功能.
+# 其他参数请根据部署之前的规划和SDN部署信息确定.
+enable_sdn_controller: False
+sdn_controller_ip_address:  # SDN控制器ip地址
+sdn_controller_username:    # SDN控制器的用户名
+sdn_controller_password:    # SDN控制器的用户密码
+
+#######################
+# Dimsagent options
+#######################
+enable_dimsagent: "no" # 安装镜像服务agent, 需要改为yes
+# Address and domain name for s2
+s3_address_domain_pair:
+  - host_ip:           
+    host_name:         
+
+#######################
+# Trove options
+#######################
+enable_trove: "no" #安装trove 需要改为yes
+#default network
+trove_default_neutron_networks:  #trove 的管理网络id `openstack network list|grep -w trove-mgmt|awk '{print$2}'`
+#s3 setup(如果没有s3,以下值填null)
+s3_endpoint_host_ip:   #s3的ip
+s3_endpoint_host_name: #s3的域名
+s3_endpoint_url:       #s3的url ·一般为http：//s3域名
+s3_access_key:         #s3的ak 
+s3_secret_key:         #s3的sk
+
+#######################
+# Ironic options
+#######################
+enable_ironic: "no" #是否开机裸金属部署，默认不开启
+ironic_neutron_provisioning_network_uuid:
+ironic_neutron_cleaning_network_uuid: "{{ ironic_neutron_provisioning_network_uuid }}"
+ironic_dnsmasq_interface:
+ironic_dnsmasq_dhcp_range:
+ironic_tftp_server_address: "{{ hostvars[inventory_hostname]['ansible_' + ironic_dnsmasq_interface]['ipv4']['address'] }}"
+# 交换机设备相关信息
+neutron_ml2_conf_genericswitch:
+  genericswitch:xxxxxxx:
+    device_type:
+    ngs_mac_address:
+    ip:
+    username:
+    password:
+    ngs_port_default_vlan:
+
+# Package state setting
+haproxy_package_state: "present"
+mariadb_package_state: "present"
+rabbitmq_package_state: "present"
+memcached_package_state: "present"
+ceph_client_package_state: "present"
+keystone_package_state: "present"
+glance_package_state: "present"
+cinder_package_state: "present"
+nova_package_state: "present"
+neutron_package_state: "present"
+miner_package_state: "present"
+```
+
+#### 7.4 检查所有节点ssh连接状态
+
+```shell
+dnf install ansible -y
+ansible all -i /usr/local/share/opensd/ansible/inventory/multinode -m ping
+
+# 执行结果显示每台主机都是"SUCCESS"即说明连接状态没问题,示例：
+compute1 | SUCCESS => {
+  "ansible_facts": {
+      "discovered_interpreter_python": "/usr/bin/python"
+  },
+  "changed": false,
+  "ping": "pong"
+}
+```
+
+### 8. 执行部署
+
+**在部署节点执行：**
+
+#### 8.1 执行bootstrap
+
+```shell
+# 执行部署
+opensd -i /usr/local/share/opensd/ansible/inventory/multinode bootstrap --forks 50
+```
+
+#### 8.2 重启服务器
+
+**注：执行重启的原因是:bootstrap可能会升内核,更改selinux配置或者有GPU服务器,如果装机过程已经是新版内核,selinux disable或者没有GPU服务器,则不需要执行该步骤**
+```shell
+# 手动重启对应节点,执行命令
+init6
+# 重启完成后，再次检查连通性
+ansible all -i /usr/local/share/opensd/ansible/inventory/multinode -m ping
+# 重启完后操作系统后，再次启动yum源
+```
+
+#### 8.3 执行部署前检查
+
+```shell
+opensd -i /usr/local/share/opensd/ansible/inventory/multinode prechecks --forks 50
+```
+
+#### 8.4 执行部署
+
+```shell
+ln -s /usr/bin/python3 /usr/bin/python
+
+全量部署：
+opensd -i /usr/local/share/opensd/ansible/inventory/multinode deploy --forks 50
+
+单服务部署：
+opensd -i /usr/local/share/opensd/ansible/inventory/multinode deploy --forks 50 -t service_name
+```
