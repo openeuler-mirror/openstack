@@ -157,6 +157,7 @@ openeuler:
   eulerpublisher: Infrastructure
   evs: sig-high-performance-network
   extfuse: Storage
+  extuner: sig-ops
   ft_engine: sig-FangTian
   ft_flutter: sig-FangTian
   ft_mmi: sig-FangTian
@@ -3523,7 +3524,7 @@ src-openeuler:
   llama: bigdata
   lld: Compiler
   lld-15: Compiler
-  lldb: dev-utils
+  lldb: Compiler
   lldpad: Networking
   llvm: Compiler
   llvm-15: Compiler
@@ -7660,6 +7661,7 @@ src-openeuler:
   python-nosehtmloutput: sig-openstack
   python-nosexcover: sig-openstack
   python-notario: sig-python-modules
+  python-notebook: ai
   python-notify2: sig-python-modules
   python-notmuch: sig-python-modules
   python-novaclient: sig-openstack
