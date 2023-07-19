@@ -403,6 +403,8 @@ openeuler:
   trucker: dev-utils
   uadk: sig-AccLib
   uadk_engine: sig-AccLib
+  ub-dhcp: Networking
+  ub-lldpd: Networking
   ubackup: sig-Migration
   ukui: sig-UKUI
   umdk: sig-high-performance-network
@@ -669,7 +671,7 @@ src-openeuler:
   adobe-mappings-cmap: Desktop
   adobe-mappings-pdf: Desktop
   adwaita-icon-theme: Desktop
-  adwaita-qt: Desktop
+  adwaita-qt: sig-QT
   aesh: sig-Java
   aespipe: sig-security-facility
   afflib: Others
@@ -3128,7 +3130,7 @@ src-openeuler:
   libdazzle: Desktop
   libdb: Base-service
   libdbi: Base-service
-  libdbusextended-qt5: Desktop
+  libdbusextended-qt5: sig-QT
   libdbusmenu: Programming-language
   libdc1394: sig-epol
   libdca: sig-epol
@@ -3296,7 +3298,7 @@ src-openeuler:
   libmpcdec: Runtime
   libmpd: xfce
   libmpeg2: Application
-  libmpris-qt5: Desktop
+  libmpris-qt5: sig-QT
   libmspack: Base-service
   libmtp: Application
   libmusicbrainz5: Application
@@ -3929,6 +3931,7 @@ src-openeuler:
   mysql-connector-java: dev-utils
   mysql-selinux: sig-security-facility
   mysql5: DB
+  mysqld_exporter: sig-CloudNative
   mysqltuner: DB
   mythes: Application
   nafees-web-naskh-fonts: Desktop
@@ -8585,13 +8588,13 @@ src-openeuler:
   qscintilla: bigdata
   qstardict: sig-desktop-apps
   qt: Runtime
-  qt-assistant-adp: Others
-  qt-at-spi: Desktop
+  qt-assistant-adp: sig-QT
+  qt-at-spi: sig-QT
   qt-gui: sig-ROS
-  qt-mobility: Others
-  qt-settings: Desktop
-  qt5: Desktop
-  qt5-doc: Others
+  qt-mobility: sig-QT
+  qt-settings: sig-QT
+  qt5: sig-QT
+  qt5-doc: sig-QT
   qt5-qt3d: Programming-language
   qt5-qtbase: Programming-language
   qt5-qtcanvas3d: Programming-language
@@ -8600,7 +8603,7 @@ src-openeuler:
   qt5-qtdatavis3d: Programming-language
   qt5-qtdeclarative: Programming-language
   qt5-qtdoc: Programming-language
-  qt5-qtenginio: Others
+  qt5-qtenginio: sig-QT
   qt5-qtfeedback: sig-KDE
   qt5-qtgamepad: Programming-language
   qt5-qtgraphicaleffects: Programming-language
@@ -8624,7 +8627,7 @@ src-openeuler:
   qt5-qtwayland: Programming-language
   qt5-qtwebchannel: Programming-language
   qt5-qtwebengine: sig-UKUI
-  qt5-qtwebkit: Others
+  qt5-qtwebkit: sig-QT
   qt5-qtwebsockets: Programming-language
   qt5-qtwebview: Programming-language
   qt5-qtx11extras: Programming-language
@@ -9830,6 +9833,8 @@ src-openeuler:
   tzdata: Computing
   u2f-hidraw-policy: Others
   uadk_engine: sig-AccLib
+  ub-dhcp: Networking
+  ub-lldpd: Networking
   ubackup: sig-Migration
   ublox: sig-ROS
   ublox_dgnss: sig-ROS
