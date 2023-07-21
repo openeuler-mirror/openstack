@@ -183,6 +183,7 @@ openeuler:
   ha-web: sig-Ha
   hands-on: sig-OSCourse
   hikptool: sig-WayCa
+  hinic3: sig-Compatibility-Infra
   hmir: sig-ops
   hostha: sig-openstack
   hpc: sig-HPC
@@ -508,6 +509,7 @@ src-openeuler:
   PyPAM: Others
   PyQt4: sig-python-modules
   PyYAML: sig-python-modules
+  QingShuang: dev-utils
   R-AUC: sig-RISC-V
   R-AsioHeaders: sig-RISC-V
   R-BH-devel: sig-RISC-V
@@ -2146,6 +2148,7 @@ src-openeuler:
   hicolor-icon-theme: Desktop
   highlight: oVirt
   hikptool: sig-WayCa
+  hinic3: sig-Compatibility-Infra
   hiredis: Base-service
   hive: bigdata
   hivex: System-tool
