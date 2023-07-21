@@ -611,11 +611,12 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     my_ip = 10.0.0.1
     use_neutron = true
     firewall_driver = nova.virt.firewall.NoopFirewallDriver
-    compute_driver = libvirt.LibvirtDriver                                                           (CPT)
+    compute_driver = libvirt.LibvirtDriver                                                         (CPT)
     instances_path = /var/lib/nova/instances/                                                      (CPT)
     lock_path = /var/lib/nova/tmp                                                                  (CPT)
     logdir = /var/log/nova/
     
+
     [api_database]
     connection = mysql+pymysql://nova:NOVA_DBPASS@controller/nova_api                              (CTL)
     
