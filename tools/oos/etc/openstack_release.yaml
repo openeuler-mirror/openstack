@@ -2630,7 +2630,7 @@ zed:
   neutron-vpnaas: 21.0.0
   neutron-vpnaas-dashboard: 7.0.0
   nova: 26.2.0
-  octavia: 11.0.0
+  octavia: 11.0.1
   octavia-dashboard: 10.0.0
   octavia-lib: 3.1.0
   octavia-tempest-plugin: 2.0.0
