@@ -684,6 +684,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     compute_driver=libvirt.LibvirtDriver                                                           (CPT)
     instances_path = /var/lib/nova/instances/                                                      (CPT)
     lock_path = /var/lib/nova/tmp                                                                  (CPT)
+    logdir = /var/log/nova/
 
     [api_database]
     connection = mysql+pymysql://nova:NOVA_DBPASS@controller/nova_api                              (CTL)
