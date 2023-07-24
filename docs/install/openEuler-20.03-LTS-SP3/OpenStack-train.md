@@ -1180,7 +1180,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 5. 同步数据库：
 
     ```shell
-    su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
+    su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \                 (CTL)
     --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
     ```
 
