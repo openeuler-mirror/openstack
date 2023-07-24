@@ -256,6 +256,7 @@ openeuler:
   libboundscheck: Base-service
   libcareplus: Virt
   libgdbm-rust: Base-service
+  libgmem: Computing
   libkae: sig-AccLib
   libvirt: Virt
   libwd: sig-AccLib
@@ -627,6 +628,7 @@ src-openeuler:
   SDL_sound: dev-utils
   SMACC2: sig-ROS
   ShellCheck: sig-CloudNative
+  SmartHBA-2100-8i-driver: sig-Compatibility-Infra
   SuperLU: dev-utils
   SuperLUMT: ai
   TCP_option_address: Kernel
@@ -3195,6 +3197,7 @@ src-openeuler:
   libglademm24: xfce
   libglib-testing: GNOME
   libglvnd: Desktop
+  libgmem: Computing
   libgnome: GNOME
   libgnome-keyring: Programming-language
   libgnomecanvas: GNOME
@@ -6565,6 +6568,7 @@ src-openeuler:
   publicsuffix-list: Base-service
   pugixml: sig-epol
   pulp: sig-K8sDistro
+  pulsar: sig-message-middleware
   pulseaudio: Computing
   pulseaudio-qt: sig-KDE
   puppet-agent-puppet-strings: sig-ops
