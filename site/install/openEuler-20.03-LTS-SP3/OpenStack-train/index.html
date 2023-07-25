@@ -674,6 +674,7 @@ firewall_driver = nova.virt.firewall.NoopFirewallDriver
 compute_driver=libvirt.LibvirtDriver                                                           (CPT)
 instances_path = /var/lib/nova/instances/                                                      (CPT)
 lock_path = /var/lib/nova/tmp                                                                  (CPT)
+logdir = /var/log/nova/
 
 [api_database]
 connection = mysql+pymysql://nova:NOVA_DBPASS@controller/nova_api                              (CTL)
@@ -904,7 +905,7 @@ lock_path = /var/lib/neutron/tmp</code></pre>
 <p><strong>替换<code>NEUTRON_PASS</code>为 neutron 用户的密码；</strong></p>
 <p><strong>替换<code>NOVA_PASS</code>为 nova 用户的密码。</strong></p>
 <p>配置ML2插件：</p>
-<pre class="highlight"><code class="language-shell">vim /etc/neutron/plugins/ml2/ml2_conf.ini
+<pre class="highlight"><code class="language-shell">vim /etc/neutron/plugins/ml2/ml2_conf.ini                                                      (CTL)
 
 [ml2]
 type_drivers = flat,vlan,vxlan
@@ -1000,7 +1001,7 @@ metadata_proxy_shared_secret = METADATA_SECRET                                  
 </li>
 <li>
 <p>同步数据库：</p>
-<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
+<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \                  (CTL)
 --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron</code></pre>
 </li>
 <li>
