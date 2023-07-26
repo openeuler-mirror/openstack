@@ -29,13 +29,16 @@ openEuler OpenStack SIG致力于结合多样性算力为openstack社区贡献更
 
 #### 现任
 
-- 陈硕[@joec88](https://gitee.com/joec88) joseph.chn1988@gmail.com
-- 李昆山[@liksh](https://gitee.com/liksh) li_kunshan@163.com
-- 黄填华[@huangtianhua](https://gitee.com/huangtianhua) huangtianhua223@gmail.com
-- 王玺源[@xiyuanwang](https://gitee.com/xiyuanwang) wangxiyuan1007@gmail.com
-- 张帆[@zh-f](https://gitee.com/zh-f) zh.f@outlook.com
-- 张迎[@zhangy1317](https://gitee.com/zhangy1317) zhangy1317@foxmail.com
-- 韩光宇[@han-guangyu](https://gitee.com/han-guangyu) hanguangyu@uniontech.com
+|姓名|Gitee ID|邮箱|公司|
+|---|---|---|---|
+|陈硕|[joec88](https://gitee.com/joec88)|joseph.chn1988@gmail.com|中国联通|
+|李昆山|[liksh](https://gitee.com/liksh)|li_kunshan@163.com|中国联通|
+|黄填华|[huangtianhua](https://gitee.com/huangtianhua)|huangtianhua223@gmail.com|华为|
+|王玺源|[xiyuanwang](https://gitee.com/xiyuanwang)|wangxiyuan1007@gmail.com|华为|
+|张帆|[zh-f](https://gitee.com/zh-f)|zh.f@outlook.com|中国电信|
+|张迎|[zhangy1317](https://gitee.com/zhangy1317)|zhangy1317@foxmail.com|中国联通|
+|韩光宇|[han-guangyu](https://gitee.com/han-guangyu)|hanguangyu@uniontech.com|统信软件|
+|王东兴|[desert-sailor](https://gitee.com/desert-sailor)|dxwangk@isoftstone.com|软通动力|
 
 #### 已退休
 
