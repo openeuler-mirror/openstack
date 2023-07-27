@@ -8,7 +8,7 @@
     <title>openEuler-22.09 - OpenStack SIG Doc</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
@@ -17,12 +17,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -143,7 +142,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="文档"></a> &raquo;</li>
           <li>测试报告 &raquo;</li>
-      <li>openEuler-22.09</li>
+      <li class="breadcrumb-item active">openEuler-22.09</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -160,24 +159,24 @@
 <table>
 <thead>
 <tr>
-<th align="left">日期</th>
-<th align="left">修订版本</th>
-<th align="left">修改描述</th>
-<th align="left">作者</th>
+<th style="text-align: left;">日期</th>
+<th style="text-align: left;">修订版本</th>
+<th style="text-align: left;">修改描述</th>
+<th style="text-align: left;">作者</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">2022-09-15</td>
-<td align="left">1</td>
-<td align="left">初稿</td>
-<td align="left">韩光宇</td>
+<td style="text-align: left;">2022-09-15</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">初稿</td>
+<td style="text-align: left;">韩光宇</td>
 </tr>
 <tr>
-<td align="left">2022-09-16</td>
-<td align="left">2</td>
-<td align="left">格式整改，新增opensd测试报告,新增虚拟机高低优先级特性测试报告</td>
-<td align="left">王玺源</td>
+<td style="text-align: left;">2022-09-16</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">格式整改，新增opensd测试报告,新增虚拟机高低优先级特性测试报告</td>
+<td style="text-align: left;">王玺源</td>
 </tr>
 </tbody>
 </table>
@@ -191,21 +190,21 @@
 <table>
 <thead>
 <tr>
-<th align="left">缩略语</th>
-<th align="left">英文全名</th>
-<th align="left">中文解释</th>
+<th style="text-align: left;">缩略语</th>
+<th style="text-align: left;">英文全名</th>
+<th style="text-align: left;">中文解释</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">CLI</td>
-<td align="left">Command Line Interface</td>
-<td align="left">命令行工具</td>
+<td style="text-align: left;">CLI</td>
+<td style="text-align: left;">Command Line Interface</td>
+<td style="text-align: left;">命令行工具</td>
 </tr>
 <tr>
-<td align="left">ECS</td>
-<td align="left">Elastic Cloud Server</td>
-<td align="left">弹性云服务器</td>
+<td style="text-align: left;">ECS</td>
+<td style="text-align: left;">Elastic Cloud Server</td>
+<td style="text-align: left;">弹性云服务器</td>
 </tr>
 </tbody>
 </table>
@@ -247,36 +246,36 @@
 <table>
 <thead>
 <tr>
-<th align="left">版本名称</th>
-<th align="left">测试起始时间</th>
-<th align="left">测试结束时间</th>
+<th style="text-align: left;">版本名称</th>
+<th style="text-align: left;">测试起始时间</th>
+<th style="text-align: left;">测试结束时间</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">openEuler 22.09 RC1<br>(OpenStack Yoga版本各组件的安装部署测试；opensd安装能力测试；虚拟机高低优先级特性安装测试)</td>
-<td align="left">2022.08.10</td>
-<td align="left">2022.08.17</td>
+<td style="text-align: left;">openEuler 22.09 RC1<br>(OpenStack Yoga版本各组件的安装部署测试；opensd安装能力测试；虚拟机高低优先级特性安装测试)</td>
+<td style="text-align: left;">2022.08.10</td>
+<td style="text-align: left;">2022.08.17</td>
 </tr>
 <tr>
-<td align="left">openEuler 22.09 RC2<br>(OpenStack Yoga版本基本功能测试，包括虚拟机、卷</td>
-<td align="left"></td>
-<td align="left"></td>
+<td style="text-align: left;">openEuler 22.09 RC2<br>(OpenStack Yoga版本基本功能测试，包括虚拟机、卷</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr>
-<td align="left">网络相关资源的增删改查；opensd支持openEuler的能力测试；虚拟机高低优先级特性功能测试)</td>
-<td align="left">2022.08.18</td>
-<td align="left">2022.08.23</td>
+<td style="text-align: left;">网络相关资源的增删改查；opensd支持openEuler的能力测试；虚拟机高低优先级特性功能测试)</td>
+<td style="text-align: left;">2022.08.18</td>
+<td style="text-align: left;">2022.08.23</td>
 </tr>
 <tr>
-<td align="left">openEuler 22.09 RC3<br>(OpenStack Yoga版本tempest集成测试；opensd支持OpenStack Yoga的能力测试；虚拟机高低优先级特性问题回归测试)</td>
-<td align="left">2022.08.24</td>
-<td align="left">2022.09.07</td>
+<td style="text-align: left;">openEuler 22.09 RC3<br>(OpenStack Yoga版本tempest集成测试；opensd支持OpenStack Yoga的能力测试；虚拟机高低优先级特性问题回归测试)</td>
+<td style="text-align: left;">2022.08.24</td>
+<td style="text-align: left;">2022.09.07</td>
 </tr>
 <tr>
-<td align="left">openEuler 22.09 RC4<br>(OpenStack Yoga版本问题回归测试；opensd问题回归测试)</td>
-<td align="left">2022.09.08</td>
-<td align="left">2022.09.15</td>
+<td style="text-align: left;">openEuler 22.09 RC4<br>(OpenStack Yoga版本问题回归测试；opensd问题回归测试)</td>
+<td style="text-align: left;">2022.09.08</td>
+<td style="text-align: left;">2022.09.15</td>
 </tr>
 </tbody>
 </table>
@@ -284,41 +283,41 @@
 <table>
 <thead>
 <tr>
-<th align="left">硬件型号</th>
-<th align="left">硬件配置信息</th>
-<th align="left">备注</th>
+<th style="text-align: left;">硬件型号</th>
+<th style="text-align: left;">硬件配置信息</th>
+<th style="text-align: left;">备注</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">华为云ECS</td>
-<td align="left">Intel Cascade Lake 3.0GHz 8U16G</td>
-<td align="left">x86虚拟机</td>
+<td style="text-align: left;">华为云ECS</td>
+<td style="text-align: left;">Intel Cascade Lake 3.0GHz 8U16G</td>
+<td style="text-align: left;">x86虚拟机</td>
 </tr>
 <tr>
-<td align="left">联通云ECS</td>
-<td align="left">Intel(R) Xeon(R) Silver 4114 2.20GHz 8U16G</td>
-<td align="left">X86虚拟机</td>
+<td style="text-align: left;">联通云ECS</td>
+<td style="text-align: left;">Intel(R) Xeon(R) Silver 4114 2.20GHz 8U16G</td>
+<td style="text-align: left;">X86虚拟机</td>
 </tr>
 <tr>
-<td align="left">华为 2288H V5</td>
-<td align="left">Intel Xeon Gold 6146 3.20GHz 48U192G</td>
-<td align="left">X86物理机</td>
+<td style="text-align: left;">华为 2288H V5</td>
+<td style="text-align: left;">Intel Xeon Gold 6146 3.20GHz 48U192G</td>
+<td style="text-align: left;">X86物理机</td>
 </tr>
 <tr>
-<td align="left">联通云ECS</td>
-<td align="left">Huawei Kunpeng 920 2.6GHz 4U8G</td>
-<td align="left">arm64虚拟机</td>
+<td style="text-align: left;">联通云ECS</td>
+<td style="text-align: left;">Huawei Kunpeng 920 2.6GHz 4U8G</td>
+<td style="text-align: left;">arm64虚拟机</td>
 </tr>
 <tr>
-<td align="left">飞腾S2500</td>
-<td align="left">FT-S2500 2.1GHz 8U16G</td>
-<td align="left">arm64虚拟机</td>
+<td style="text-align: left;">飞腾S2500</td>
+<td style="text-align: left;">FT-S2500 2.1GHz 8U16G</td>
+<td style="text-align: left;">arm64虚拟机</td>
 </tr>
 <tr>
-<td align="left">飞腾S2500</td>
-<td align="left">FT-S2500,64 Core@2.1GHz*2; 512GB DDR4 RAM</td>
-<td align="left">arm64物理机</td>
+<td style="text-align: left;">飞腾S2500</td>
+<td style="text-align: left;">FT-S2500,64 Core@2.1GHz*2; 512GB DDR4 RAM</td>
+<td style="text-align: left;">arm64物理机</td>
 </tr>
 </tbody>
 </table>
@@ -330,32 +329,32 @@
 <table>
 <thead>
 <tr>
-<th align="left">测试活动</th>
-<th align="left">tempest集成测试</th>
+<th style="text-align: left;">测试活动</th>
+<th style="text-align: left;">tempest集成测试</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">接口测试</td>
-<td align="left">API全覆盖</td>
+<td style="text-align: left;">接口测试</td>
+<td style="text-align: left;">API全覆盖</td>
 </tr>
 <tr>
-<td align="left">功能测试</td>
-<td align="left">Yoga版本覆盖Tempest所有相关测试用例1452个，其中Skip 95个，Fail 0个, 其他全通过。</td>
+<td style="text-align: left;">功能测试</td>
+<td style="text-align: left;">Yoga版本覆盖Tempest所有相关测试用例1452个，其中Skip 95个，Fail 0个, 其他全通过。</td>
 </tr>
 </tbody>
 </table>
 <table>
 <thead>
 <tr>
-<th align="left">测试活动</th>
-<th align="left">功能测试</th>
+<th style="text-align: left;">测试活动</th>
+<th style="text-align: left;">功能测试</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">功能测试</td>
-<td align="left">虚拟机（KVM、Qemu)、存储（lvm、NFS、Ceph后端）、网络资源（linuxbridge、openvswitch）管理操作正常</td>
+<td style="text-align: left;">功能测试</td>
+<td style="text-align: left;">虚拟机（KVM、Qemu)、存储（lvm、NFS、Ceph后端）、网络资源（linuxbridge、openvswitch）管理操作正常</td>
 </tr>
 </tbody>
 </table>
@@ -368,20 +367,20 @@
 <table>
 <thead>
 <tr>
-<th align="left">问题单号</th>
-<th align="left">问题描述</th>
-<th align="left">问题级别</th>
-<th align="left">问题影响和规避措施</th>
-<th align="left">当前状态</th>
+<th style="text-align: left;">问题单号</th>
+<th style="text-align: left;">问题描述</th>
+<th style="text-align: left;">问题级别</th>
+<th style="text-align: left;">问题影响和规避措施</th>
+<th style="text-align: left;">当前状态</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">N/A</td>
-<td align="left">N/A</td>
-<td align="left">N/A</td>
-<td align="left">N/A</td>
-<td align="left">N/A</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">N/A</td>
 </tr>
 </tbody>
 </table>
@@ -389,30 +388,30 @@
 <table>
 <thead>
 <tr>
-<th align="left"></th>
-<th align="left">问题总数</th>
-<th align="left">严重</th>
-<th align="left">主要</th>
-<th align="left">次要</th>
-<th align="left">不重要</th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">问题总数</th>
+<th style="text-align: left;">严重</th>
+<th style="text-align: left;">主要</th>
+<th style="text-align: left;">次要</th>
+<th style="text-align: left;">不重要</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">数目</td>
-<td align="left">4</td>
-<td align="left">1</td>
-<td align="left">2</td>
-<td align="left">1</td>
-<td align="left">0</td>
+<td style="text-align: left;">数目</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
 </tr>
 <tr>
-<td align="left">百分比</td>
-<td align="left">100</td>
-<td align="left">25</td>
-<td align="left">59</td>
-<td align="left">25</td>
-<td align="left">0</td>
+<td style="text-align: left;">百分比</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">25</td>
+<td style="text-align: left;">59</td>
+<td style="text-align: left;">25</td>
+<td style="text-align: left;">0</td>
 </tr>
 </tbody>
 </table>
@@ -422,18 +421,18 @@
 <table>
 <thead>
 <tr>
-<th align="left">版本名称</th>
-<th align="left">测试用例数</th>
-<th align="left">用例执行结果</th>
-<th align="left">发现问题单数</th>
+<th style="text-align: left;">版本名称</th>
+<th style="text-align: left;">测试用例数</th>
+<th style="text-align: left;">用例执行结果</th>
+<th style="text-align: left;">发现问题单数</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">openEuler 22.09 OpenStack Yoga</td>
-<td align="left">1452</td>
-<td align="left">通过1357个，skip 95个，Fail 0个</td>
-<td align="left">3</td>
+<td style="text-align: left;">openEuler 22.09 OpenStack Yoga</td>
+<td style="text-align: left;">1452</td>
+<td style="text-align: left;">通过1357个，skip 95个，Fail 0个</td>
+<td style="text-align: left;">3</td>
 </tr>
 </tbody>
 </table>
@@ -480,14 +479,15 @@
     
   </span>
 </div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme_extra.js" defer></script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>
