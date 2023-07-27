@@ -294,6 +294,7 @@ openeuler:
   oec-hardware: sig-Compatibility-Infra
   oecp: sig-Compatibility-Infra
   oemaker: sig-OS-Builder
+  omnidata-hive-connector: bigdata
   oncn-bwm: sig-high-performance-network
   open-source-summer: sig-OSCourse
   openEuler-Advisor: sig-EasyLife
@@ -1543,6 +1544,7 @@ src-openeuler:
   ethtool: Networking
   etmem: Storage
   eunomia-bpf: sig-ebpf
+  eventmesh: sig-message-middleware
   evince: GNOME
   evo-inflector: sig-Java
   evolution-data-server: Desktop
