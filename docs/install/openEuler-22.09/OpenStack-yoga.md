@@ -3707,13 +3707,13 @@ mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/bak/
 cat > /etc/yum.repos.d/opensd.repo << EOF
 [epol]
 name=epol
-baseurl=http://119.3.219.20:82/openEuler:/22.09:/Epol/standard_$basearch/
+baseurl=http://repo.openeuler.org/openEuler-22.09/EPOL/main/$basearch/
 enabled=1
 gpgcheck=0
 
 [everything]
 name=everything
-baseurl=http://119.3.219.20:82/openEuler:/22.09/standard_$basearch/
+baseurl=http://repo.openeuler.org/openEuler-22.09/$basearch/
 enabled=1
 gpgcheck=0
 
