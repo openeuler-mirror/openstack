@@ -101,6 +101,7 @@ openeuler:
   c2rust: dev-utils
   cache-proxy: Infrastructure
   capsule: Virt
+  ccps: sig-K8sDistro
   ceph_dev: sig-SDS
   certificate-center: sig-OpenDesign
   ci-bot: sig-Gatekeeper
@@ -241,6 +242,10 @@ openeuler:
   kiran-widgets-qt5: sig-KIRAN-DESKTOP
   kml_adapter: sig-AccLib
   ksc-defender: sig-security-facility
+  kspack-c: Computing
+  kspack-go: Computing
+  kspack-java: Computing
+  kspack-rust: Computing
   kunpeng-competition: sig-OSCourse
   kunpengsecl: sig-security-facility
   kylin-installer: sig-UKUI
@@ -666,6 +671,7 @@ src-openeuler:
   ackermann_msgs: sig-ROS
   acl: Base-service
   acme-tiny: Application
+  acpi: sig-epol
   acpica-tools: Base-service
   acpid: Computing
   actionlib: sig-ROS
@@ -1600,6 +1606,7 @@ src-openeuler:
   feathernotes: sig-desktop-apps
   featherpad: sig-desktop-apps
   feedbackd: GNOME
+  feh: sig-epol
   felix-bundlerepository: sig-Java
   felix-framework: sig-Java
   felix-gogo-command: sig-Java
@@ -2353,6 +2360,9 @@ src-openeuler:
   hyphen-uk: Application
   i2c-tools: Computing
   i3: sig-epol
+  i3blocks: sig-epol
+  i3blocks-contrib: sig-epol
+  i3lock: sig-epol
   i3status: sig-epol
   i40e: Networking
   iSulad: iSulad
@@ -10153,6 +10163,7 @@ src-openeuler:
   xcb-util-xrm: Desktop
   xchm: sig-desktop-apps
   xclip: Application
+  xcompmgr: sig-epol
   xdelta: Programming-language
   xdg-dbus-proxy: Application
   xdg-desktop-portal: Desktop
