@@ -2291,10 +2291,10 @@ yoga:
   cloudkitty_tempest_plugin: 2.5.0
   compute-hyperv: 14.0.0
   cyborg-tempest-plugin: 1.4.0
-  designate: 14.0.2
-  designate-dashboard: 14.0.0
+  designate: 14.0.3
+  designate-dashboard: 14.0.1
   designate-tempest-plugin: 0.13.0
-  ec2-api: 14.0.1
+  ec2-api: 14.0.2
   ec2api-tempest-plugin: 1.4.0
   freezer: 12.0.0
   freezer-api: 12.0.0
@@ -2304,8 +2304,8 @@ yoga:
   glance: 24.2.0
   glance-tempest-plugin: 0.3.0
   glance_store: 3.0.1
-  heat-agents: 4.0.0
-  heat-dashboard: 7.0.0
+  heat-agents: 4.0.1
+  heat-dashboard: 7.0.1
   heat-tempest-plugin: 1.5.0
   heat-translator: 2.5.0
   horizon: 22.1.0
@@ -2326,16 +2326,16 @@ yoga:
   keystonemiddleware: 9.4.0
   kolla: 14.10.0
   kolla-ansible: 14.9.0
-  kuryr-kubernetes: 6.0.0
+  kuryr-kubernetes: 6.0.1
   kuryr-lib: 2.5.0
   kuryr-libnetwork: 9.0.0
   kuryr-tempest-plugin: 0.12.0
   magnum: 14.1.0
   magnum-ui: 10.0.0
   magnum_tempest_plugin: 1.6.0
-  manila: 14.1.0
+  manila: 14.1.1
   manila-tempest-plugin: 1.7.0
-  manila-ui: 7.0.0
+  manila-ui: 7.0.1
   masakari: 13.0.3
   masakari-dashboard: 6.0.0
   masakari-monitors: 13.1.0
@@ -2365,7 +2365,7 @@ yoga:
   networking-hyperv: 12.0.0
   networking-odl: 20.0.0
   networking-sfc: 14.0.0
-  neutron: 20.3.1
+  neutron: 20.4.0
   neutron-dynamic-routing: 20.0.1
   neutron-lib: 2.20.2
   neutron-tempest-plugin: 1.9.0
@@ -2403,7 +2403,7 @@ yoga:
   oslo.versionedobjects: 2.6.0
   oslo.vmware: 3.10.0
   oswin-tempest-plugin: 1.4.0
-  ovn-octavia-provider: 2.1.1
+  ovn-octavia-provider: 2.2.0
   ovsdbapp: 1.15.3
   patrole: 0.14.0
   puppet-aodh: 20.3.0
@@ -2499,14 +2499,14 @@ yoga:
   storlets: 9.0.0
   sushy: 4.1.5
   swift: 2.29.2
-  tacker: 7.0.0
+  tacker: 7.1.0
   tacker-horizon: 5.0.0
   tap-as-a-service: 9.0.0
   telemetry_tempest_plugin: 1.6.0
   tempest: 30.1.0
   tosca-parser: 2.5.1
-  trove: 17.0.0
-  trove-dashboard: 18.0.0
+  trove: 17.0.1
+  trove-dashboard: 18.0.1
   trove_tempest_plugin: 1.4.0
   vitrage: 8.0.1
   vitrage-dashboard: 3.5.0
@@ -2516,7 +2516,7 @@ yoga:
   zaqar: 14.0.0
   zaqar-ui: 12.0.0
   zaqar_tempest_plugin: 1.4.0
-  zun: 9.0.0
+  zun: 9.1.0
   zun-tempest-plugin: 4.5.0
   zun-ui: 9.0.0
 zed:
