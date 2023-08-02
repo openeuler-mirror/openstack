@@ -2308,7 +2308,7 @@ yoga:
   heat-dashboard: 7.0.1
   heat-tempest-plugin: 1.5.0
   heat-translator: 2.5.0
-  horizon: 22.1.0
+  horizon: 22.1.1
   ironic: 20.1.1
   ironic-inspector: 10.11.0
   ironic-lib: 5.2.0
@@ -2409,37 +2409,37 @@ yoga:
   puppet-aodh: 20.3.0
   puppet-barbican: 20.3.0
   puppet-ceilometer: 20.3.0
-  puppet-cinder: 20.3.0
+  puppet-cinder: 20.4.0
   puppet-cloudkitty: 9.3.0
-  puppet-designate: 20.3.0
+  puppet-designate: 20.3.1
   puppet-ec2api: 20.3.0
   puppet-glance: 20.3.0
   puppet-gnocchi: 20.3.0
   puppet-heat: 20.3.0
-  puppet-horizon: 20.3.0
+  puppet-horizon: 20.4.0
   puppet-ironic: 20.3.0
-  puppet-keystone: 20.3.0
+  puppet-keystone: 20.4.0
   puppet-magnum: 20.3.0
-  puppet-manila: 20.3.0
+  puppet-manila: 20.3.1
   puppet-mistral: 20.3.0
   puppet-murano: 20.3.0
   puppet-neutron: 20.3.0
   puppet-nova: 20.4.0
-  puppet-octavia: 20.3.0
-  puppet-openstack_extras: 20.3.0
-  puppet-openstacklib: 20.3.0
+  puppet-octavia: 20.4.0
+  puppet-openstack_extras: 20.3.1
+  puppet-openstacklib: 20.3.1
   puppet-oslo: 20.3.0
-  puppet-ovn: 20.3.0
+  puppet-ovn: 20.4.0
   puppet-placement: 7.3.0
   puppet-qdr: 9.3.0
   puppet-rally: 8.3.0
   puppet-sahara: 20.3.0
   puppet-swift: 20.4.0
   puppet-tacker: 20.3.0
-  puppet-tempest: 20.3.0
-  puppet-trove: 20.3.0
-  puppet-vitrage: 10.3.0
-  puppet-vswitch: 16.3.0
+  puppet-tempest: 20.4.0
+  puppet-trove: 20.4.0
+  puppet-vitrage: 10.3.1
+  puppet-vswitch: 16.3.1
   puppet-watcher: 20.3.1
   puppet-zaqar: 20.3.1
   python-adjutant: 4.0.0
@@ -2471,7 +2471,7 @@ yoga:
   python-senlinclient: 2.4.0
   python-solumclient: 3.5.0
   python-swiftclient: 3.13.1
-  python-tackerclient: 1.10.0
+  python-tackerclient: 1.10.1
   python-troveclient: 7.2.0
   python-vitrageclient: 4.5.0
   python-watcher: 8.0.0
