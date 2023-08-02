@@ -421,6 +421,7 @@ openeuler:
   utsudo: sig-memsafety
   vectorBlas: bigdata
   vmtop: Virt
+  vs2qt: sig-porting-platform-winapp
   vtopia-agent: sig-security-facility
   wayca-scheduler: sig-WayCa
   wayca-scheduler-bench: sig-WayCa
@@ -3881,7 +3882,7 @@ src-openeuler:
   mongo-java-driver2: Base-service
   mongo-tools: DB
   mongodb: sig-recycle
-  mono: Base-service
+  mono: sig-porting-platform-winapp
   moosefs: sig-K8sDistro
   morfologik-stemming: Base-service
   morphia: dev-utils
