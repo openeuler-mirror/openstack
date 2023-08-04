@@ -42,7 +42,7 @@ OpenStack SIG提供了多种基于openEuler部署OpenStack的方法，以满足�
 
 本文档基于OpenStack经典的三节点环境进行部署，三个节点分别是控制节点(Controller)、计算节点(Compute)、存储节点(Storage)，其中存储节点一般只部署存储服务，在资源有限的情况下，可以不单独部署该节点，把存储节点上的服务部署到计算节点即可。
 
-首先准备三个openEuler 22.09环境，根据您的环境，下载对应的镜像并安装即可：[ISO镜像](https://repo.openeuler.org/openEuler-21.09/ISO/)、[qcow2镜像](https://repo.openeuler.org/openEuler-21.09/virtual_machine_img/)。
+首先准备三个openEuler 22.09环境，根据您的环境，下载对应的镜像并安装即可：[ISO镜像](https://repo.openeuler.org/openEuler-22.09/ISO/)、[qcow2镜像](https://repo.openeuler.org/openEuler-22.09/virtual_machine_img/)。
 
 下面的安装按照如下拓扑进行：
 ```
