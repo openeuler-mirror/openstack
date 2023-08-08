@@ -2413,7 +2413,7 @@ yoga:
   puppet-cloudkitty: 9.3.0
   puppet-designate: 20.3.1
   puppet-ec2api: 20.3.0
-  puppet-glance: 20.3.0
+  puppet-glance: 20.4.0
   puppet-gnocchi: 20.3.1
   puppet-heat: 20.4.0
   puppet-horizon: 20.4.0
