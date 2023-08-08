@@ -7370,6 +7370,7 @@ src-openeuler:
   python-hpack: sig-python-modules
   python-hstspreload: sig-python-modules
   python-html2text: sig-python-modules
+  python-html5-parser: ecopkg
   python-html5lib: Networking
   python-htmlmin: sig-python-modules
   python-httmock: sig-python-modules
