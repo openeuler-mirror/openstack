@@ -286,6 +286,7 @@ openeuler:
   nestos-assembler: sig-CloudNative
   nestos-config: sig-CloudNative
   nestos-installer: sig-CloudNative
+  nestos-kernel: sig-CloudNative
   nestos-kubernetes-deployer: sig-K8sDistro
   nestos-website: sig-CloudNative
   nodejsporter: dev-utils
@@ -449,6 +450,8 @@ src-openeuler:
   A-Tune-BPF-Collection: A-Tune
   A-Tune-Collector: A-Tune
   A-Tune-UI: A-Tune
+  BSC-extrae: sig-HPC
+  BSC-wxparaver: sig-HPC
   BareBonesBrowserLaunch: sig-Java
   Bear: Compiler
   BehaviorTree.CPP: sig-ROS
@@ -1266,6 +1269,7 @@ src-openeuler:
   daala: sig-epol
   dain-snappy: sig-Java
   daos: sig-SDS
+  darshan: sig-HPC
   dash: Application
   datafu: bigdata
   datanucleus-api-jdo: sig-Java
@@ -1575,6 +1579,7 @@ src-openeuler:
   extra166y: sig-Java
   ezmorph: dev-utils
   f29-backgrounds: Private
+  f2c: sig-HPC
   f2fs-tools: dev-utils
   faad2: sig-epol
   fabtests: Others
@@ -2169,6 +2174,7 @@ src-openeuler:
   hls_lfcd_lds_driver: sig-ROS
   hmdfs: sig-distributed-middleware
   hostname: Networking
+  hpctoolkit: sig-HPC
   hping: dev-utils
   hplip: System-tool
   hpp-fcl: sig-ROS
@@ -3126,7 +3132,7 @@ src-openeuler:
   libcgroup: sig-CloudNative
   libchamplain: GNOME
   libchewing: sig-KDE
-  libclc: Base-service
+  libclc: Compiler
   libcloudproviders: GNOME
   libcoap: sig-distributed-middleware
   libcomps: Base-service
@@ -3791,6 +3797,7 @@ src-openeuler:
   media-player-info: Application
   media_export: sig-ROS
   meld: sig-desktop-apps
+  memP: sig-HPC
   memcached: Application
   memcached_exporter: sig-CloudNative
   memkind: Computing
@@ -3904,6 +3911,7 @@ src-openeuler:
   mpfr: Computing
   mpg123: sig-UKUI
   mpi4py: sig-epol
+  mpiP: sig-HPC
   mpich: Programming-language
   mpv: Desktop
   mrbayes: sig-bio
@@ -3993,6 +4001,7 @@ src-openeuler:
   neon: Programming-language
   nerian_stereo_ros2: sig-ROS
   nestos-installer: sig-CloudNative
+  nestos-kernel: sig-CloudNative
   net-snmp: Networking
   net-tools: Networking
   netavark: sig-CloudNative
@@ -4759,6 +4768,7 @@ src-openeuler:
   parallel: sig-CloudNative
   paranamer: Base-service
   paratype-pt-sans-fonts: Desktop
+  paraver-kernel: sig-HPC
   parboiled: sig-Java
   parfait: dev-utils
   parole: xfce
@@ -9457,6 +9467,7 @@ src-openeuler:
   scim: sig-KDE
   scipy: Computing
   scl-utils: Application
+  scorep: sig-HPC
   scotch: sig-epol
   screen: Base-service
   scrub: Application
@@ -9729,6 +9740,7 @@ src-openeuler:
   tarsier: sig-high-performance-network
   tascalate-asmx: sig-Java
   tascalate-javaflow: sig-Java
+  tau: sig-HPC
   tbb: Programming-language
   tboot: Application
   tcl: Base-service
