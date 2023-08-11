@@ -2269,7 +2269,7 @@ yoga:
   ansible-role-atos-hsm: 3.0.0
   ansible-role-lunasa-hsm: 3.0.0
   ansible-role-thales-hsm: 3.0.0
-  aodh: 14.0.0
+  aodh: 14.1.0
   aodhclient: 2.4.1
   automaton: 2.5.0
   barbican: 14.0.2
@@ -2376,7 +2376,7 @@ yoga:
   octavia-dashboard: 9.0.0
   octavia-lib: 2.5.0
   octavia-tempest-plugin: 1.9.0
-  openstack-cyborg: 8.0.0
+  openstack-cyborg: 8.0.1
   openstack-heat: 18.0.1
   openstack-placement: 7.0.0
   openstacksdk: 0.62.0
@@ -2423,12 +2423,12 @@ yoga:
   puppet-manila: 20.3.1
   puppet-mistral: 20.3.0
   puppet-murano: 20.3.0
-  puppet-neutron: 20.3.0
-  puppet-nova: 20.4.1
+  puppet-neutron: 20.4.0
+  puppet-nova: 20.4.2
   puppet-octavia: 20.4.0
   puppet-openstack_extras: 20.3.1
   puppet-openstacklib: 20.3.1
-  puppet-oslo: 20.3.0
+  puppet-oslo: 20.4.0
   puppet-ovn: 20.4.0
   puppet-placement: 7.3.0
   puppet-qdr: 9.3.0
