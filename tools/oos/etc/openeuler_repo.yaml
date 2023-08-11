@@ -229,6 +229,7 @@ openeuler:
   kiran-gtk-theme: sig-KIRAN-DESKTOP
   kiran-icon-theme: sig-KIRAN-DESKTOP
   kiran-log: sig-KIRAN-DESKTOP
+  kiran-manual: sig-KIRAN-DESKTOP
   kiran-menu: sig-KIRAN-DESKTOP
   kiran-panel: sig-KIRAN-DESKTOP
   kiran-qdbusxml2cpp: sig-KIRAN-DESKTOP
@@ -241,6 +242,10 @@ openeuler:
   kiran-wallpapers: sig-KIRAN-DESKTOP
   kiran-widgets-qt5: sig-KIRAN-DESKTOP
   kml_adapter: sig-AccLib
+  ks-scmc: sig-KIRAN-DESKTOP
+  ks-scmc-gui: sig-KIRAN-DESKTOP
+  ks-ssr: sig-KIRAN-DESKTOP
+  ks-vaudit: sig-KIRAN-DESKTOP
   ksc-defender: sig-security-facility
   kspack-c: Computing
   kspack-go: Computing
@@ -378,6 +383,7 @@ openeuler:
   sds_doc: sig-SDS
   secGear: sig-confidential-computing
   secpaver: sig-security-facility
+  secscanner: sig-security-facility
   security-committee: security-committee
   security-facility: sig-security-facility
   security-tool: sig-security-facility
@@ -1269,6 +1275,7 @@ src-openeuler:
   daala: sig-epol
   dain-snappy: sig-Java
   daos: sig-SDS
+  dareader: sig-DDE
   darshan: sig-HPC
   dash: Application
   datafu: bigdata
@@ -1297,6 +1304,7 @@ src-openeuler:
   dde: sig-DDE
   dde-account-faces: sig-DDE
   dde-api: sig-DDE
+  dde-app-services: sig-DDE
   dde-calendar: sig-DDE
   dde-clipboard: sig-DDE
   dde-control-center: sig-DDE
@@ -1307,6 +1315,8 @@ src-openeuler:
   dde-introduction: sig-DDE
   dde-kwin: sig-DDE
   dde-launcher: sig-DDE
+  dde-manual-content: sig-DDE
+  dde-network-core: sig-DDE
   dde-network-utils: sig-DDE
   dde-polkit-agent: sig-DDE
   dde-qt-dbus-factory: sig-DDE
@@ -1340,11 +1350,13 @@ src-openeuler:
   deepin-menu: sig-DDE
   deepin-movie: sig-DDE
   deepin-music: sig-DDE
+  deepin-proxy: sig-DDE
   deepin-pw-check: sig-DDE
   deepin-qml-widgets: sig-recycle
   deepin-reader: sig-DDE
   deepin-rpm-installer: sig-DDE
   deepin-screen-recorder: sig-DDE
+  deepin-screensaver: sig-DDE
   deepin-shortcut-viewer: sig-DDE
   deepin-sound-theme: sig-DDE
   deepin-system-monitor: sig-DDE
@@ -1418,6 +1430,7 @@ src-openeuler:
   docker-anaconda-addon: sig-recycle
   docker-client-java: sig-CloudNative
   docker-compose: sig-CloudNative
+  docparser: sig-DDE
   dogtail: Others
   dolly: sig-ROS
   dolphin: sig-KDE
@@ -2933,6 +2946,7 @@ src-openeuler:
   kiran-gtk-theme: sig-KIRAN-DESKTOP
   kiran-icon-theme: sig-KIRAN-DESKTOP
   kiran-log: sig-KIRAN-DESKTOP
+  kiran-manual: sig-KIRAN-DESKTOP
   kiran-menu: sig-KIRAN-DESKTOP
   kiran-panel: sig-KIRAN-DESKTOP
   kiran-qdbusxml2cpp: sig-KIRAN-DESKTOP
@@ -2968,6 +2982,10 @@ src-openeuler:
   krb5: Base-service
   kronosnet: Networking
   kryo: sig-Java
+  ks-scmc: sig-KIRAN-DESKTOP
+  ks-scmc-gui: sig-KIRAN-DESKTOP
+  ks-ssr: sig-KIRAN-DESKTOP
+  ks-vaudit: sig-KIRAN-DESKTOP
   ksc-defender: sig-security-facility
   kscreenlocker: sig-KDE
   ksh: Base-service
@@ -3131,6 +3149,7 @@ src-openeuler:
   libcec: sig-epol
   libcgroup: sig-CloudNative
   libchamplain: GNOME
+  libchardet: sig-DDE
   libchewing: sig-KDE
   libclc: Compiler
   libcloudproviders: GNOME
@@ -9482,6 +9501,7 @@ src-openeuler:
   seastar: sig-high-performance-network
   secGear: sig-confidential-computing
   secpaver: sig-security-facility
+  secscanner: sig-security-facility
   security-tool: sig-security-facility
   security_dataclassification: sig-distributed-middleware
   security_device_auth: sig-distributed-middleware
