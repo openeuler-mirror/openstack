@@ -187,6 +187,7 @@ openeuler:
   hinic3: sig-Compatibility-Infra
   hmir: sig-ops
   hostha: sig-openstack
+  hotpatch_meta: sig-ops
   hpc: sig-HPC
   hpcpilot: sig-HPC
   hpcrunner: sig-HPC
@@ -1834,6 +1835,7 @@ src-openeuler:
   geronimo-saaj: sig-Java
   geronimo-validation: sig-Java
   gettext: Base-service
+  gf-complete: sig-SDS
   gfbgraph: GNOME
   gffcompare: sig-bio
   gffread: sig-bio
