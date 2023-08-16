@@ -19,7 +19,7 @@ BRANCHS = [
 
 
 OBS_PACKAGE_BUILD_RESULT_URL = 'https://build.openeuler.openatom.cn/build/%(branch)s/_result'
-OBS_PROJECT_URL = 'https://build.openeuler.openatom.cn/show/%(branch)s/%(project)s'
+OBS_PROJECT_URL = 'https://build.openeuler.openatom.cn/package/show/%(branch)s/%(project)s'
 OBS_PACKAGE_URL = 'https://build.openeuler.openatom.cn/source/%(branch)s/'
 
 PROJECT_MARKDOWN_FORMAT = '[%(project)s](%(url)s)'
