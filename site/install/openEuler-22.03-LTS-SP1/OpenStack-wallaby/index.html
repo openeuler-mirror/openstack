@@ -1735,11 +1735,9 @@ DIB_REPOREF_ironic_python_agent=refs/changes/43/701043/1
 
 在W版中，社区的ironic仍然不支持arm64位的uefi pxe启动，表现为生成的grub.cfg文件(一般位于/tftpboot/下)格式不对而导致pxe启动失败，如下：
 
-生成的错误配置文件：
-
-![ironic-err](../../img/install/ironic-err.png)
-
-如上图所示，arm架构里寻找vmlinux和ramdisk镜像的命令分别是linux和initrd，上图所示的标红命令是x86架构下的uefi pxe启动。
+生成的错误配置文件：</code></pre>
+<p><img alt="ironic-err" src="../../../img/install/ironic-err.png" /></p>
+<pre class="highlight"><code>如上图所示，arm架构里寻找vmlinux和ramdisk镜像的命令分别是linux和initrd，上图所示的标红命令是x86架构下的uefi pxe启动。
 
 需要用户对生成grub.cfg的代码逻辑自行修改。
 
@@ -1799,9 +1797,7 @@ WantedBy=multi-user.target
 <p>安装完后，就可以使用<code>kolla-ansible</code>, <code>kolla-build</code>, <code>kolla-genpwd</code>, <code>kolla-mergepwd</code>等命令了。</p>
 <h3 id="trove">Trove 安装<a class="headerlink" href="#trove" title="Permanent link">&para;</a></h3>
 <p>Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据库服务则推荐使用该组件。否则，可以不用安装。</p>
-<ol>
-<li>设置数据库</li>
-</ol>
+<p>1.设置数据库</p>
 <p>数据库服务在数据库中存储信息，创建一个<strong>trove</strong>用户可以访问的<strong>trove</strong>数据库，替换<strong>TROVE_DBPASSWORD</strong>为合适的密码</p>
 <pre class="highlight"><code class="language-sql">mysql -u root -p
 
@@ -1810,9 +1806,7 @@ MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON trove.* TO 'trove'@'localhost' \
 IDENTIFIED BY 'TROVE_DBPASSWORD';
 MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON trove.* TO 'trove'@'%' \
 IDENTIFIED BY 'TROVE_DBPASSWORD';</code></pre>
-<ol>
-<li>创建服务用户认证</li>
-</ol>
+<p>2.创建服务用户认证</p>
 <p>1、创建<strong>Trove</strong>服务用户</p>
 <p><pre class="highlight"><code class="language-shell">openstack user create --password TROVE_PASSWORD \
                       --email trove@example.com trove
@@ -1824,15 +1818,11 @@ openstack service create --name trove
 <pre class="highlight"><code class="language-shell">openstack endpoint create --region RegionOne database public http://controller:8779/v1.0/%\(tenant_id\)s
 openstack endpoint create --region RegionOne database internal http://controller:8779/v1.0/%\(tenant_id\)s
 openstack endpoint create --region RegionOne database admin http://controller:8779/v1.0/%\(tenant_id\)s</code></pre>
-<ol>
-<li>安装和配置<strong>Trove</strong>各组件</li>
-</ol>
-<p>1、安装<strong>Trove</strong>包
-   <code>``shell script
-   yum install openstack-trove python-troveclient
-   <pre class="highlight"><code>2. 配置`trove.conf`
-```shell script
-vim /etc/trove/trove.conf
+<p>3.安装和配置<strong>Trove</strong>各组件</p>
+<p>1、安装<strong>Trove</strong>包</p>
+<p><pre class="highlight"><code class="language-shell">yum install openstack-trove python-troveclient</code></pre>
+   2、配置<code>trove.conf</code></p>
+<pre class="highlight"><code class="language-shell">vim /etc/trove/trove.conf
 
 [DEFAULT]
 bind_host=TROVE_NODE_IP
@@ -1886,60 +1876,58 @@ tcp_ports = 3306
 
 [postgresql]
 tcp_ports = 5432</code></pre>
-   **解释：**
-   -</code>[Default]<code>分组中</code>bind_host<code>配置为Trove部署节点的IP
-   -</code>nova_compute_url<code>和</code>cinder_url<code>为Nova和Cinder在Keystone中创建的endpoint
-   -</code>nova_proxy_XXX<code>为一个能访问Nova服务的用户信息，上例中使用</code>admin<code>用户为例
-   -</code>transport_url<code>为</code>RabbitMQ<code>连接信息，</code>RABBIT_PASS<code>替换为RabbitMQ的密码
-   -</code>[database]<code>分组中的</code>connection<code>为前面在mysql中为Trove创建的数据库信息
-   - Trove的用户信息中</code>TROVE_PASS`替换为实际trove用户的密码  </p>
-<ol>
-<li>配置<code>trove-guestagent.conf</code>
-   ```shell script
-   vim /etc/trove/trove-guestagent.conf</li>
-</ol>
-<p>[DEFAULT]
-   log_file = trove-guestagent.log
-   log_dir = /var/log/trove/
-   ignore_users = os_admin
-   control_exchange = trove
-   transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
-   rpc_backend = rabbit
-   command_process_timeout = 60
-   use_syslog = False
-   debug = True</p>
-<p>[service_credentials]
-   auth_url = http://controller:5000/v3/
-   region_name = RegionOne
-   project_name = service
-   password = TROVE_PASS
-   project_domain_name = Default
-   user_domain_name = Default
-   username = trove</p>
-<p>[mysql]
-   docker_image = your-registry/your-repo/mysql
-   backup_docker_image = your-registry/your-repo/db-backup-mysql:1.1.0
-   <pre class="highlight"><code>**解释：** `guestagent`是trove中一个独立组件，需要预先内置到Trove通过Nova创建的虚拟
-机镜像中，在创建好数据库实例后，会起guestagent进程，负责通过消息队列（RabbitMQ）向Trove上
-报心跳，因此需要配置RabbitMQ的用户和密码信息。
-**从Victoria版开始，Trove使用一个统一的镜像来跑不同类型的数据库，数据库服务运行在Guest虚拟机的Docker容器中。**
+<p><strong>解释：</strong></p>
+<pre class="highlight"><code>- `[Default]`分组中`bind_host`配置为Trove部署节点的IP
+- `nova_compute_url` 和 `cinder_url` 为Nova和Cinder在Keystone中创建的endpoint
+- `nova_proxy_XXX` 为一个能访问Nova服务的用户信息，上例中使用`admin`用户为例
 - `transport_url` 为`RabbitMQ`连接信息，`RABBIT_PASS`替换为RabbitMQ的密码
-- Trove的用户信息中`TROVE_PASS`替换为实际trove用户的密码  
+- `[database]`分组中的`connection` 为前面在mysql中为Trove创建的数据库信息
+- Trove的用户信息中`TROVE_PASS`替换为实际trove用户的密码</code></pre>
+<p>3、配置<code>trove-guestagent.conf</code>
+   <pre class="highlight"><code class="language-shell">vim /etc/trove/trove-guestagent.conf
 
-6. 生成数据`Trove`数据库表
-```shell script
-su -s /bin/sh -c "trove-manage db_sync" trove</code></pre>
-4. 完成安装配置
-   1. 配置<strong>Trove</strong>服务自启动
-   ```shell script
-   systemctl enable openstack-trove-api.service \
-   openstack-trove-taskmanager.service \
-   openstack-trove-conductor.service 
-   <pre class="highlight"><code>2. 启动服务
-```shell script
-systemctl start openstack-trove-api.service \
+[DEFAULT]
+log_file = trove-guestagent.log
+log_dir = /var/log/trove/
+ignore_users = os_admin
+control_exchange = trove
+transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
+rpc_backend = rabbit
+command_process_timeout = 60
+use_syslog = False
+debug = True
+
+[service_credentials]
+auth_url = http://controller:5000/v3/
+region_name = RegionOne
+project_name = service
+password = TROVE_PASS
+project_domain_name = Default
+user_domain_name = Default
+username = trove
+
+[mysql]
+docker_image = your-registry/your-repo/mysql
+backup_docker_image = your-registry/your-repo/db-backup-mysql:1.1.0</code></pre>
+   <strong>解释：</strong> <code>guestagent</code>是trove中一个独立组件，需要预先内置到Trove通过Nova创建的虚拟
+   机镜像中，在创建好数据库实例后，会起guestagent进程，负责通过消息队列（RabbitMQ）向Trove上
+   报心跳，因此需要配置RabbitMQ的用户和密码信息。
+   <strong>从Victoria版开始，Trove使用一个统一的镜像来跑不同类型的数据库，数据库服务运行在Guest虚拟机的Docker容器中。</strong>
+   - <code>transport_url</code> 为<code>RabbitMQ</code>连接信息，<code>RABBIT_PASS</code>替换为RabbitMQ的密码
+   - Trove的用户信息中<code>TROVE_PASS</code>替换为实际trove用户的密码  </p>
+<p>4、生成数据<code>Trove</code>数据库表
+   <pre class="highlight"><code class="language-shell">su -s /bin/sh -c "trove-manage db_sync" trove</code></pre></p>
+<p>4.完成安装配置</p>
+<ol>
+<li>配置<strong>Trove</strong>服务自启动
+   <pre class="highlight"><code class="language-shell">systemctl enable openstack-trove-api.service \
 openstack-trove-taskmanager.service \
-openstack-trove-conductor.service</code></pre></p>
+openstack-trove-conductor.service </code></pre></li>
+<li>启动服务
+   <pre class="highlight"><code class="language-shell">systemctl start openstack-trove-api.service \
+openstack-trove-taskmanager.service \
+openstack-trove-conductor.service</code></pre></li>
+</ol>
 <h3 id="swift">Swift 安装<a class="headerlink" href="#swift" title="Permanent link">&para;</a></h3>
 <p>Swift 提供了弹性可伸缩、高可用的分布式对象存储服务，适合存储大规模非结构化数据。</p>
 <ol>
@@ -1963,13 +1951,10 @@ openstack endpoint create --region RegionOne object-store admin http://controlle
 </li>
 <li>
 <p>配置proxy-server相关配置</p>
-</li>
-</ol>
 <p>Swift RPM包里已经包含了一个基本可用的proxy-server.conf，只需要手动修改其中的ip和swift password即可。</p>
-<pre class="highlight"><code>***注意***
-
-**注意替换password为您在身份服务中为swift用户选择的密码**</code></pre>
-<ol>
+<p><strong><em>注意</em></strong></p>
+<p><strong>注意替换password为您在身份服务中为swift用户选择的密码</strong></p>
+</li>
 <li>
 <p>安装和配置存储节点 （STG）</p>
 <p>安装支持的程序包:
