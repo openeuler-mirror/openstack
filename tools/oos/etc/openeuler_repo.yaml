@@ -814,6 +814,7 @@ src-openeuler:
   apisix-deps: sig-OpenResty
   apiviz: dev-utils
   apparmor: sig-security-facility
+  appres: Desktop
   appstream: dev-utils
   appstream-data: sig-recycle
   apptainer: sig-HPC
@@ -1753,6 +1754,7 @@ src-openeuler:
   gajim: sig-mate-desktop
   gala-anteater: sig-ops
   gala-gopher: sig-ebpf
+  gala-ragdoll: sig-ops
   gala-spider: sig-ops
   galera: Others
   game-music-emu: dev-utils
@@ -4592,6 +4594,7 @@ src-openeuler:
   openmp-15: Compiler
   openmpi: Application
   openni: sig-ROS
+  opennjet: sig-epol
   opennlp: Application
   opennn: ai
   openoffice-lv: Application
