@@ -1083,6 +1083,7 @@ src-openeuler:
   cgdcbxd: System-tool
   cgit: sig-epol
   cglib: dev-utils
+  chatglm.cpp: A-Tune
   check: Programming-language
   checkpolicy: sig-security-facility
   checkstyle: Application
@@ -2770,7 +2771,7 @@ src-openeuler:
   kactivitymanagerd: sig-KDE
   kaddressbook: sig-KDE
   kae_driver: sig-AccLib
-  kafka: bigdata
+  kafka: sig-message-middleware
   kafka-python: sig-openstack
   kata-containers: sig-CloudNative
   kata-micro-kernel: sig-recycle
@@ -3573,6 +3574,7 @@ src-openeuler:
   lklug-fonts: System-tool
   lksctp-tools: Application
   llama: bigdata
+  llama.cpp: A-Tune
   lld: Compiler
   lld-15: Compiler
   lldb: Compiler
