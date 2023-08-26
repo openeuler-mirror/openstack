@@ -507,7 +507,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     **替换 `PLACEMENT_DBPASS` 为 placement 数据库设置密码**
 
     ```shell
-    source admin-openrc
+    source ~/.admin-openrc
     ```
 
     执行如下命令，创建 placement 服务凭证、创建 placement 用户以及添加‘admin’角色到用户‘placement’。
@@ -583,7 +583,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     执行如下命令，执行状态检查：
 
     ```shell
-    . admin-openrc
+    source ~/.admin-openrc
     placement-status upgrade check
     ```
 
@@ -1210,7 +1210,7 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     ```shell
     systemctl enable neutron-server.service neutron-linuxbridge-agent.service \                    (CTL)
-    neutron-dhcp-agent.service neutron-metadata-agent.service \
+    neutron-dhcp-agent.service neutron-metadata-agent.service 
     systemctl enable neutron-l3-agent.service
     systemctl restart openstack-nova-api.service neutron-server.service                            (CTL)
     neutron-linuxbridge-agent.service neutron-dhcp-agent.service \
