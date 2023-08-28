@@ -554,7 +554,7 @@ IDENTIFIED BY 'PLACEMENT_DBPASS';
 MariaDB [(none)]&gt; exit</code></pre>
 <p><strong><em>注意</em></strong></p>
 <p><strong>替换 <code>PLACEMENT_DBPASS</code> 为 placement 数据库设置密码</strong></p>
-<pre class="highlight"><code class="language-shell">source admin-openrc</code></pre>
+<pre class="highlight"><code class="language-shell">source ~/.admin-openrc</code></pre>
 <p>执行如下命令，创建 placement 服务凭证、创建 placement 用户以及添加‘admin’角色到用户‘placement’。</p>
 <p>创建Placement API服务</p>
 <pre class="highlight"><code class="language-shell">openstack user create --domain default --password-prompt placement
@@ -599,7 +599,7 @@ password = PLACEMENT_PASS</code></pre>
 <li>
 <p>验证</p>
 <p>执行如下命令，执行状态检查：</p>
-<pre class="highlight"><code class="language-shell">. admin-openrc
+<pre class="highlight"><code class="language-shell">source ~/.admin-openrc
 placement-status upgrade check</code></pre>
 <p>安装osc-placement，列出可用的资源类别及特性：</p>
 <pre class="highlight"><code class="language-shell">yum install python3-osc-placement
@@ -1028,7 +1028,7 @@ metadata_proxy_shared_secret = METADATA_SECRET                                  
 <li>
 <p>启动网络服务</p>
 <pre class="highlight"><code class="language-shell">systemctl enable neutron-server.service neutron-linuxbridge-agent.service \                    (CTL)
-neutron-dhcp-agent.service neutron-metadata-agent.service \
+neutron-dhcp-agent.service neutron-metadata-agent.service 
 systemctl enable neutron-l3-agent.service
 systemctl restart openstack-nova-api.service neutron-server.service                            (CTL)
 neutron-linuxbridge-agent.service neutron-dhcp-agent.service \
