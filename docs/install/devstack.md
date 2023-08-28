@@ -69,7 +69,7 @@
     yum update
     yum install git
     cd /opt/
-    git clone https://opendev.org/openstack/devstack
+    git clone https://opendev.org/openstack/devstack.git
     ```
 
 4. 初始化devstack环境配置
