@@ -129,6 +129,7 @@ openeuler:
   deepin-rpm-installer: sig-DDE
   deepin-upgrade-tool: sig-DDE
   digest-list-tools: sig-security-facility
+  dim_kernel: sig-security-facility
   dim_tools: sig-security-facility
   distributed-beget: sig-distributed-middleware
   distributed-codelabs: sig-distributed-middleware
@@ -139,7 +140,7 @@ openeuler:
   dpdk: sig-high-performance-network
   dpu-core: sig-DPU
   dpu-utilities: sig-DPU
-  dsoftbus_standard: sig-embedded
+  dsoftbus_standard: sig-distributed-middleware
   duoyibu-ai: sig-minzuchess
   eagle: sig-power-efficient
   easy-checker: sig-EasyLife
@@ -346,6 +347,7 @@ openeuler:
   package-reinforce-test: sig-QA
   passwd_group_generator: sig-security-facility
   patch-tracking: sig-EasyLife
+  paws: sig-CloudNative
   peking_university_2021: sig-recycle
   perlporter: dev-utils
   pin-gcc-client: Compiler
@@ -445,6 +447,7 @@ openeuler:
   yocto-meta-openembedded: sig-Yocto
   yocto-meta-openeuler: sig-Yocto
   yocto-meta-qt5: sig-Yocto
+  yocto-meta-rockchip: sig-Yocto
   yocto-meta-ros: sig-Yocto
   yocto-meta-virtualization: sig-Yocto
   yocto-poky: sig-Yocto
@@ -462,11 +465,13 @@ src-openeuler:
   BareBonesBrowserLaunch: sig-Java
   Bear: Compiler
   BehaviorTree.CPP: sig-ROS
+  CTinspector: sig-ebpf
   CUnit: Base-service
   Catch2: sig-ROS
   CharLS: Desktop
   ComputeLibrary: ai
   Control-FREEC: sig-bio
+  Cpds: sig-CloudNative
   CreateImage: sig-Gatekeeper
   Cython: Programming-language
   DCache: Storage
@@ -522,6 +527,9 @@ src-openeuler:
   PackageKit: Desktop
   PackageKit-Qt: Desktop
   Picard: sig-bio
+  PilotGo: sig-ops
+  PilotGo-plugin-grafana: sig-ops
+  PilotGo-plugin-prometheus: sig-ops
   PlotJuggler: sig-ROS
   PyDrive: sig-UKUI
   PyPAM: Others
@@ -702,6 +710,7 @@ src-openeuler:
   aide: Base-service
   airline: Base-service
   aisleriot: sig-desktop-apps
+  akonadi-import-wizard: sig-KDE
   alertmanager: sig-CloudNative
   allegro: Private
   alluxio: bigdata
@@ -1218,6 +1227,10 @@ src-openeuler:
   corosync-qdevice: sig-Ha
   courier-unicode: dev-utils
   cowsay: sig-recycle
+  cpds-agent: sig-CloudNative
+  cpds-analyzer: sig-CloudNative
+  cpds-dashboard: sig-CloudNative
+  cpds-detector: sig-CloudNative
   cpio: Base-service
   cpp-hocon: Base-service
   cpp-httplib: dev-utils
@@ -1263,6 +1276,7 @@ src-openeuler:
   custodia: System-tool
   custom_build_tool: Application
   customization_config_policy: sig-distributed-middleware
+  cve-ease: Infrastructure
   cvs: Programming-language
   cvsps: Private
   cxf: Base-service
@@ -1388,6 +1402,7 @@ src-openeuler:
   diffstat: Base-service
   diffutils: Base-service
   digest-list-tools: sig-security-facility
+  dim_kernel: sig-security-facility
   dim_tools: sig-security-facility
   ding-libs: Base-service
   discount: Application
@@ -1453,7 +1468,7 @@ src-openeuler:
   dropwatch: Networking
   drpm: Base-service
   druid: bigdata
-  dsoftbus: sig-embedded
+  dsoftbus: sig-distributed-middleware
   dtc: Base-service
   dtkcommon: sig-DDE
   dtkcore: sig-DDE
@@ -2048,6 +2063,7 @@ src-openeuler:
   grafana: Application
   granite: sig-desktop-apps
   grantlee: sig-UKUI
+  grantlee-editor: sig-KDE
   grantlee-qt5: sig-UKUI
   graph_msgs: sig-ROS
   graphene: GNOME
@@ -2504,6 +2520,7 @@ src-openeuler:
   itstool: Programming-language
   ivtv-firmware: Base-service
   iw: Networking
+  ixgbevf: sig-Compatibility-Infra
   jBCrypt: dev-utils
   jFormatString: sig-Java
   jack-audio-connection-kit: sig-compat-winapp
@@ -2969,6 +2986,7 @@ src-openeuler:
   kiwi-dlimage: Private
   kiwi-template-openEuler: Private
   kmail: sig-KDE
+  kmail-account-wizard: sig-KDE
   kmenuedit: sig-KDE
   kmod: Computing
   kmod-drbd90: sig-Ha
@@ -6467,6 +6485,8 @@ src-openeuler:
   pig: DB
   pigpio: sig-RaspberryPi
   pigz: Base-service
+  pim-data-exporter: sig-KDE
+  pim-sieve-editor: sig-KDE
   pin-gcc-client: Compiler
   pin-server: Compiler
   pinentry: Desktop
@@ -7320,7 +7340,6 @@ src-openeuler:
   python-flask-session: sig-python-modules
   python-flask-testing: sig-python-modules
   python-flask-whooshee: sig-python-modules
-  python-flatbuffers: A-Tune
   python-flatpak-module-tools: sig-python-modules
   python-flexmock: sig-python-modules
   python-flickrapi: sig-python-modules
@@ -8247,7 +8266,7 @@ src-openeuler:
   python-pyxs: sig-python-modules
   python-pyyaml-env-tag: sig-python-modules
   python-pyzabbix: sig-python-modules
-  python-pyzmq: sig-python-modules
+  python-pyzmq: sig-recycle
   python-pyzolib: sig-python-modules
   python-qcelemental: sig-python-modules
   python-qrcode: Base-service
