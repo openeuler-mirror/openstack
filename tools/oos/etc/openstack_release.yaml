@@ -2274,7 +2274,7 @@ yoga:
   automaton: 2.5.0
   barbican: 14.0.2
   barbican_tempest_plugin: 1.6.0
-  bifrost: 14.0.0
+  bifrost: 14.1.0
   blazar: 9.0.0
   blazar-dashboard: 7.0.0
   blazar-nova: 2.5.0
@@ -2313,8 +2313,8 @@ yoga:
   ironic-inspector: 10.11.0
   ironic-lib: 5.2.0
   ironic-prometheus-exporter: 3.1.0
-  ironic-python-agent: 8.5.1
-  ironic-python-agent-builder: 4.0.1
+  ironic-python-agent: 8.5.2
+  ironic-python-agent-builder: 4.1.0
   ironic-tempest-plugin: 2.4.0
   ironic-ui: 5.1.0
   kayobe: 12.8.0
@@ -2339,7 +2339,7 @@ yoga:
   masakari: 13.0.3
   masakari-dashboard: 6.0.0
   masakari-monitors: 13.1.0
-  metalsmith: 1.6.3
+  metalsmith: 1.6.4
   mistral: 14.0.0
   mistral-dashboard: 14.0.0
   mistral-extra: 11.3.0
@@ -2391,7 +2391,7 @@ yoga:
   oslo.context: 4.1.0
   oslo.db: 11.2.0
   oslo.limit: 1.5.1
-  oslo.messaging: 12.13.1
+  oslo.messaging: 12.13.2
   oslo.metrics: 0.4.0
   oslo.middleware: 4.5.1
   oslo.policy: 3.11.0
@@ -2497,7 +2497,7 @@ yoga:
   solum-tempest-plugin: 2.4.0
   stevedore: 3.5.2
   storlets: 9.0.0
-  sushy: 4.1.5
+  sushy: 4.1.6
   swift: 2.29.2
   tacker: 7.1.0
   tacker-horizon: 5.0.0
@@ -2650,7 +2650,7 @@ zed:
   oslo.context: 5.0.0
   oslo.db: 12.1.1
   oslo.limit: 2.0.1
-  oslo.messaging: 14.0.1
+  oslo.messaging: 14.0.2
   oslo.metrics: 0.5.1
   oslo.middleware: 5.0.0
   oslo.policy: 4.0.0
