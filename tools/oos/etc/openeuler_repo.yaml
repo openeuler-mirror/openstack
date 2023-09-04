@@ -337,6 +337,7 @@ openeuler:
   openjfx8: Compiler
   opensd: sig-openstack
   opensource-intern: sig-OSCourse
+  openssl: sig-security-facility
   openstack: sig-openstack
   openstack-kolla-ansible-plugin: sig-openstack
   openstack-kolla-plugin: sig-openstack
@@ -350,6 +351,7 @@ openeuler:
   paws: sig-CloudNative
   peking_university_2021: sig-recycle
   perlporter: dev-utils
+  pin-for-openEuler: Compiler
   pin-gcc-client: Compiler
   pin-server: Compiler
   pkgporter: dev-utils
@@ -1426,7 +1428,7 @@ src-openeuler:
   dleyna-renderer: GNOME
   dleyna-server: Application
   dlib: ai
-  dlm: Application
+  dlm: sig-Ha
   dmenu: sig-epol
   dmidecode: Computing
   dmraid: Storage
@@ -6487,6 +6489,7 @@ src-openeuler:
   pigz: Base-service
   pim-data-exporter: sig-KDE
   pim-sieve-editor: sig-KDE
+  pin-for-openEuler: Compiler
   pin-gcc-client: Compiler
   pin-server: Compiler
   pinentry: Desktop
@@ -9736,7 +9739,7 @@ src-openeuler:
   slf4j-jboss-logmanager: sig-Java
   slider_publisher: sig-ROS
   slirp4netns: sig-CloudNative
-  slurm: dev-utils
+  slurm: sig-HPC
   smartdenovo: sig-bio
   smartmontools: Storage
   smc-fonts: System-tool
