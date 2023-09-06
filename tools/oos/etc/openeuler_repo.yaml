@@ -9683,6 +9683,7 @@ src-openeuler:
   setserial: Desktop
   setup: Base-service
   setuptool: Private
+  setxkbmap: ecopkg
   sezpoz: sig-Java
   sg3_utils: Storage
   sgabios: Base-service
@@ -9872,6 +9873,7 @@ src-openeuler:
   swagger-ui-bundle: sig-python-modules
   swig: Programming-language
   switcheroo-control: Desktop
+  swoole: ecopkg
   swri_console: sig-ROS
   swt-chart: sig-Java
   swtpm: sig-security-facility
@@ -10022,6 +10024,7 @@ src-openeuler:
   tini: ecopkg
   tint2: sig-cinnamon
   tinycdb: Runtime
+  tinypinyin: Others
   tinyproxy: Networking
   tinytoml: Compiler
   tinyxml: sig-compat-winapp
