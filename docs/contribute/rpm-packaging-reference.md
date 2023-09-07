@@ -49,9 +49,9 @@ rpmdev-setuptree
 pip install openstack-sig-tool
 ```
 
-### 生成个人 Gitee 账户的 pat(personal access token)
+### 生成个人 Gitee 帐户的 pat(personal access token)
 
-首先进入 Gitee 账户的“设置”界面。
+首先进入 Gitee 帐户的“设置”界面。
 
 ![设置](../img/contribute/rpm-packaging-reference/setting.png)
 
@@ -73,7 +73,7 @@ oos spec push --name python-pyrsistent --version 0.18.1 -dp
 
 `oos spec push` 命令会自动进行如下流程：
 
-1. fork `--name` 对应仓库到 pat 对应的 gitee 账户。
+1. fork `--name` 对应仓库到 pat 对应的 gitee 帐户。
 2. 将仓库 clone 到本地，默认路径为 `~/rpmbuild/src-repos`。
 3. 根据 `--name` 和 `--version` 下载源码包，并生成 spec 文件(读取仓库中原有 changelog)。此阶段默认路径为 `~/rpmbuild`。
 4. 本地运行 rpm 包构建。本地运行通过后，会自动将 spec 文件及源码包更新到 git 仓库。如果有 `-dp` 参数则自动进行 push 及创建 pr 操作。如果本地构建时失败，则停止流程。
@@ -99,7 +99,7 @@ oos spec push --name python-pyrsistent --version 0.18.1 -dp -rs
 
 ### PR 门禁检查
 
-此时在自己的 gitee 账户中可以看到 fork 过来的仓库。进入自己账号中的仓库，可通过点击如下框起位置，可进入原仓库。
+此时在自己的 gitee 帐户中可以看到 fork 过来的仓库。进入自己帐号中的仓库，可通过点击如下框起位置，可进入原仓库。
 
 ![访问原仓库](../img/contribute/rpm-packaging-reference/redirect_git_repo.png)
  
