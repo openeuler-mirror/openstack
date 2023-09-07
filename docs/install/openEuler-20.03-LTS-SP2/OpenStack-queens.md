@@ -675,7 +675,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     ***注意***
 
-    **替换 `RABBIT_PASS` 为 RabbitMQ 中 openstack 账户的密码；**
+    **替换 `RABBIT_PASS` 为 RabbitMQ 中 openstack 帐户的密码；**
 
     **配置 `my_ip` 为控制节点的管理IP地址；**
 
@@ -956,7 +956,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     **替换`NEUTRON_DBPASS`为 neutron 数据库的密码；**
 
-    **替换`RABBIT_PASS`为 RabbitMQ中openstack 账户的密码；**
+    **替换`RABBIT_PASS`为 RabbitMQ中openstack 帐户的密码；**
 
     **替换`NEUTRON_PASS`为 neutron 用户的密码；**
 
@@ -1280,7 +1280,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
     **替换`CINDER_DBPASS`为 cinder 数据库的密码；**
 
-    **替换`RABBIT_PASS`为 RabbitMQ 中 openstack 账户的密码；**
+    **替换`RABBIT_PASS`为 RabbitMQ 中 openstack 帐户的密码；**
 
     **配置`my_ip`为控制节点的管理 IP 地址；**
 
@@ -1633,7 +1633,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
    enabled_boot_interfaces = pxe enabled_deploy_interfaces = direct,iscsi enabled_inspect_interfaces = inspector enabled_management_interfaces = ipmitool enabled_power_interfaces = ipmitool
    ```
 
-   配置接口默认值：
+   配置接口缺省值：
 
    ```shell
    [DEFAULT] default_deploy_interface = direct default_network_interface = neutron
@@ -1819,7 +1819,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
         ironic-python-agent-builder centos -o /mnt/ironic-agent-ssh -b origin/stable/rocky
         ```
 
-   3. 允许ssh登陆
+   3. 允许ssh登录
 
         初始化环境变量，然后制作镜像：
 
