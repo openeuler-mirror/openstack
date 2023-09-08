@@ -44,6 +44,7 @@ openeuler:
   OSCompatibility: sig-OSRefTools
   OSPerformance: sig-OSRefTools
   OSPerformanceTools: sig-OSRefTools
+  OpenArkCompiler: Compiler
   PRIP: Networking
   PilotGo: sig-ops
   PilotGo-plugin-container: sig-ops
@@ -129,7 +130,7 @@ openeuler:
   deepin-rpm-installer: sig-DDE
   deepin-upgrade-tool: sig-DDE
   digest-list-tools: sig-security-facility
-  dim_kernel: sig-security-facility
+  dim: sig-security-facility
   dim_tools: sig-security-facility
   distributed-beget: sig-distributed-middleware
   distributed-codelabs: sig-distributed-middleware
@@ -1404,7 +1405,7 @@ src-openeuler:
   diffstat: Base-service
   diffutils: Base-service
   digest-list-tools: sig-security-facility
-  dim_kernel: sig-security-facility
+  dim: sig-security-facility
   dim_tools: sig-security-facility
   ding-libs: Base-service
   discount: Application
