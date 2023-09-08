@@ -2286,7 +2286,7 @@ yoga:
   cinder-tempest-plugin: 1.6.0
   cinderlib: 4.2.0
   cliff: 3.10.1
-  cloudkitty: 16.0.0
+  cloudkitty: 16.0.1
   cloudkitty-dashboard: 14.0.1
   cloudkitty_tempest_plugin: 2.5.0
   compute-hyperv: 14.0.0
@@ -2371,7 +2371,7 @@ yoga:
   neutron-tempest-plugin: 1.9.0
   neutron-vpnaas: 20.0.1
   neutron-vpnaas-dashboard: 6.0.0
-  nova: 25.2.0
+  nova: 25.2.1
   octavia: 10.1.0
   octavia-dashboard: 9.0.0
   octavia-lib: 2.5.0
@@ -2383,7 +2383,7 @@ yoga:
   os-brick: 5.2.3
   os-ken: 2.3.1
   os-win: 5.6.0
-  os_vif: 2.7.1
+  os_vif: 2.7.2
   osc-lib: 2.5.0
   osc-placement: 3.2.0
   oslo.cache: 2.10.1
@@ -2466,7 +2466,7 @@ yoga:
   python-neutronclient: 7.8.0
   python-novaclient: 17.7.0
   python-octaviaclient: 2.5.0
-  python-openstackclient: 5.8.0
+  python-openstackclient: 5.8.1
   python-saharaclient: 3.5.0
   python-senlinclient: 2.4.0
   python-solumclient: 3.5.1
@@ -2683,7 +2683,7 @@ zed:
   puppet-mistral: 21.0.0
   puppet-murano: 21.0.0
   puppet-neutron: 21.0.0
-  puppet-nova: 21.1.0
+  puppet-nova: 21.2.0
   puppet-octavia: 21.0.0
   puppet-openstack_extras: 21.0.0
   puppet-openstacklib: 21.0.0
