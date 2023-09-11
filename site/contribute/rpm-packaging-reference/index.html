@@ -55,7 +55,7 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#_1">环境准备</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#gitee-patpersonal-access-token">生成个人 Gitee 账户的 pat(personal access token)</a>
+    <li class="toctree-l3"><a class="reference internal" href="#gitee-patpersonal-access-token">生成个人 Gitee 帐户的 pat(personal access token)</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#python-pyrsistent-spec">生成 python-pyrsistent 包的 spec 并提交</a>
     </li>
@@ -230,8 +230,8 @@
 rpmdev-setuptree
 
 pip install openstack-sig-tool</code></pre>
-<h3 id="gitee-patpersonal-access-token">生成个人 Gitee 账户的 pat(personal access token)<a class="headerlink" href="#gitee-patpersonal-access-token" title="Permanent link">&para;</a></h3>
-<p>首先进入 Gitee 账户的“设置”界面。</p>
+<h3 id="gitee-patpersonal-access-token">生成个人 Gitee 帐户的 pat(personal access token)<a class="headerlink" href="#gitee-patpersonal-access-token" title="Permanent link">&para;</a></h3>
+<p>首先进入 Gitee 帐户的“设置”界面。</p>
 <p><img alt="设置" src="../../img/contribute/rpm-packaging-reference/setting.png" /></p>
 <p>选择“私人令牌”，然后点击“生成新令牌”。生成后单独保存好自己的私人令牌（pat），Gitee 上无法再次查看，如果丢失只能重新生成。</p>
 <p><img alt="私人令牌" src="../../img/contribute/rpm-packaging-reference/pat.png" /></p>
@@ -244,7 +244,7 @@ oos spec push --name python-pyrsistent --version 0.18.1 -dp
 <p>注意此处 <code>--name</code> 参数为表格中的“Project Name”列。</p>
 <p><code>oos spec push</code> 命令会自动进行如下流程：</p>
 <ol>
-<li>fork <code>--name</code> 对应仓库到 pat 对应的 gitee 账户。</li>
+<li>fork <code>--name</code> 对应仓库到 pat 对应的 gitee 帐户。</li>
 <li>将仓库 clone 到本地，默认路径为 <code>~/rpmbuild/src-repos</code>。</li>
 <li>根据 <code>--name</code> 和 <code>--version</code> 下载源码包，并生成 spec 文件(读取仓库中原有 changelog)。此阶段默认路径为 <code>~/rpmbuild</code>。</li>
 <li>本地运行 rpm 包构建。本地运行通过后，会自动将 spec 文件及源码包更新到 git 仓库。如果有 <code>-dp</code> 参数则自动进行 push 及创建 pr 操作。如果本地构建时失败，则停止流程。</li>
@@ -259,7 +259,7 @@ oos spec push --name python-pyrsistent --version 0.18.1 -dp
 <p>注2：处理错误时，可以参考仓库中现有的 spec 文件；当前 spec 除了 changlog 部分，其余为 oos 工具重新生成，前人遇到的错误，此处仍可能遇到，可参考前人操作结果问题。</p>
 <p>注3：oos 命令还支持批量处理，可以参考 oos 的 <a href="https://gitee.com/openeuler/openstack/blob/master/tools/oos/README.md">README</a> 自行尝试。</p>
 <h3 id="pr">PR 门禁检查<a class="headerlink" href="#pr" title="Permanent link">&para;</a></h3>
-<p>此时在自己的 gitee 账户中可以看到 fork 过来的仓库。进入自己账号中的仓库，可通过点击如下框起位置，可进入原仓库。</p>
+<p>此时在自己的 gitee 帐户中可以看到 fork 过来的仓库。进入自己帐号中的仓库，可通过点击如下框起位置，可进入原仓库。</p>
 <p><img alt="访问原仓库" src="../../img/contribute/rpm-packaging-reference/redirect_git_repo.png" /></p>
 <p>原仓库中可以看到自动提交的 pr。Pr 中可以看到 openeuler-ci-bot 的评论：</p>
 <p><img alt="门禁结果" src="../../img/contribute/rpm-packaging-reference/gateway.png" /></p>
