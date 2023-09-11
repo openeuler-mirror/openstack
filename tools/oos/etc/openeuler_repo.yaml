@@ -101,6 +101,7 @@ openeuler:
   btfhub-archive: sig-ebpf
   c2rust: dev-utils
   cache-proxy: Infrastructure
+  cantian: DB
   capsule: Virt
   ccps: sig-K8sDistro
   ceph_dev: sig-SDS
@@ -280,6 +281,7 @@ openeuler:
   lzu-icc-nsg: sig-OSCourse
   m1600-driver: sig-Compatibility-Infra
   marketing: Marketing
+  masstree: DB
   mate-desktop: sig-mate-desktop
   mcs: sig-embedded
   memory-scan: Storage
@@ -3004,6 +3006,7 @@ src-openeuler:
   kontact: sig-KDE
   korganizer: sig-KDE
   kpatch: Base-service
+  kpeoplevcard: sig-KDE
   krb5: Base-service
   kronosnet: Networking
   kryo: sig-Java
@@ -3735,6 +3738,7 @@ src-openeuler:
   marti_common: sig-ROS
   marti_messages: sig-ROS
   masscan: sig-epol
+  masstree: DB
   mate-applets: sig-mate-desktop
   mate-backgrounds: sig-mate-desktop
   mate-calc: sig-mate-desktop
