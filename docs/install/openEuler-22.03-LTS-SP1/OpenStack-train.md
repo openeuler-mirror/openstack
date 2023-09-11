@@ -1879,7 +1879,7 @@ Ironic是OpenStack的裸金属服务，如果用户需要进行裸机部署则�
         ironic-python-agent-builder centos -o /mnt/ironic-agent-ssh -b origin/stable/rocky
         ```
 
-   3. 允许ssh登陆
+   3. 允许ssh登录
 
         初始化环境变量，然后制作镜像：
 
