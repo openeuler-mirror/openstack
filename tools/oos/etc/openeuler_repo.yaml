@@ -446,6 +446,7 @@ openeuler:
   wisdom-advisor: A-Tune
   wsl: sig-OS-Builder
   wuhan_uni_tech_2021: sig-recycle
+  x2nestos: sig-K8sDistro
   xenomai: sig-industrial-control
   xmlpull: sig-Java
   yocto-embedded-tools: sig-Yocto
@@ -2421,6 +2422,7 @@ src-openeuler:
   ibus-libzhuyin: Desktop
   ibus-m17n: Desktop
   ibus-sayura: Desktop
+  ibus-sunpinyin: Desktop
   ibus-table: Desktop
   ibus-table-array30: Desktop
   ibus-table-chinese: Desktop
@@ -10349,6 +10351,7 @@ src-openeuler:
   wxPython: sig-python-modules
   x264: Desktop
   x265: Desktop
+  x2nestos: sig-K8sDistro
   x3270: Desktop
   xacro: sig-ROS
   xalan-j2: Base-service
