@@ -391,7 +391,7 @@ Keystone是OpenStack提供的鉴权服务，是整个OpenStack的入口，提供
      ServerName controller
      ```
 
-   - 创建软连接
+   - 创建软链接
 
      ```shell
      ln -s /usr/share/keystone/wsgi-keystone.conf /etc/httpd/conf.d/
