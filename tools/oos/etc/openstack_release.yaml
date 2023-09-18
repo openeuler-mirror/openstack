@@ -2282,7 +2282,7 @@ yoga:
   castellan: 3.10.2
   ceilometer: 18.1.0
   ceilometermiddleware: 2.4.1
-  cinder: 20.3.0
+  cinder: 20.3.1
   cinder-tempest-plugin: 1.6.0
   cinderlib: 4.2.0
   cliff: 3.10.1
@@ -2330,7 +2330,7 @@ yoga:
   kuryr-lib: 2.5.0
   kuryr-libnetwork: 9.0.0
   kuryr-tempest-plugin: 0.12.0
-  magnum: 14.1.0
+  magnum: 14.1.1
   magnum-ui: 10.0.0
   magnum_tempest_plugin: 1.6.0
   manila: 14.1.1
@@ -2341,7 +2341,7 @@ yoga:
   masakari-monitors: 13.1.0
   metalsmith: 1.6.4
   mistral: 14.0.0
-  mistral-dashboard: 14.0.0
+  mistral-dashboard: 14.0.1
   mistral-extra: 11.3.0
   mistral-lib: 2.6.0
   mistral_tempest_tests: 1.4.0
@@ -2380,7 +2380,7 @@ yoga:
   openstack-heat: 18.0.1
   openstack-placement: 7.0.0
   openstacksdk: 0.62.0
-  os-brick: 5.2.3
+  os-brick: 5.2.4
   os-ken: 2.3.1
   os-win: 5.6.0
   os_vif: 2.7.2
@@ -2538,7 +2538,7 @@ zed:
   castellan: 4.0.0
   ceilometer: 19.1.0
   ceilometermiddleware: 3.0.0
-  cinder: 21.3.0
+  cinder: 21.3.1
   cinder-tempest-plugin: 1.7.2
   cinderlib: 5.0.0
   cliff: 4.0.0
@@ -2639,7 +2639,7 @@ zed:
   openstack-placement: 8.0.0
   openstack-venus: 1.0.0
   openstacksdk: 0.101.0
-  os-brick: 6.1.1
+  os-brick: 6.1.2
   os-ken: 2.5.0
   os-win: 5.7.1
   os_vif: 3.0.0
