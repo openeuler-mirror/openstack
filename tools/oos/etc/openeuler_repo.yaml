@@ -64,6 +64,7 @@ openeuler:
   TC: TC
   TCP_option_address: Kernel
   UniProton: sig-embedded
+  VMAnalyzer: sig-ops
   WasmEngine: sig-CloudNative
   WayCa: sig-WayCa
   X-diagnosis: sig-ops
@@ -389,6 +390,7 @@ openeuler:
   rubyporter: dev-utils
   rust_shyper: Virt
   sds_doc: sig-SDS
+  secDetector: sig-security-facility
   secGear: sig-confidential-computing
   secpaver: sig-security-facility
   secscanner: sig-security-facility
@@ -669,6 +671,7 @@ src-openeuler:
   Universal_Robots_Client_Library: sig-ROS
   Universal_Robots_ROS2_Description: sig-ROS
   Universal_Robots_ROS2_Driver: sig-ROS
+  VMAnalyzer: sig-ops
   WALinuxAgent: sig-CloudNative
   WLLVM: Compiler
   WasmEngine: sig-CloudNative
@@ -2519,6 +2522,7 @@ src-openeuler:
   iso-codes: Base-service
   isomd5sum: Base-service
   isorelax: Base-service
+  isosm3sum: Base-service
   istack-commons: Base-service
   isula-build: iSulad
   isula-transform: sig-recycle
@@ -9667,6 +9671,7 @@ src-openeuler:
   seabios: Others
   seahorse: Desktop
   seastar: sig-high-performance-network
+  secDetector: sig-security-facility
   secGear: sig-confidential-computing
   secpaver: sig-security-facility
   secscanner: sig-security-facility
