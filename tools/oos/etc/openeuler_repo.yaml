@@ -167,7 +167,9 @@ openeuler:
   ft_flutter: sig-FangTian
   ft_mmi: sig-FangTian
   ft_multimedia: sig-FangTian
+  ft_surface: sig-FangTian
   ft_utils: sig-FangTian
+  ft_wl_fwk: sig-FangTian
   gala-anteater: sig-ops
   gala-docs: sig-ops
   gala-gopher: sig-ebpf
@@ -389,6 +391,8 @@ openeuler:
   rubik: sig-CloudNative
   rubyporter: dev-utils
   rust_shyper: Virt
+  safeguard: sig-ebpf
+  safeguard-web: sig-ebpf
   sds_doc: sig-SDS
   secDetector: sig-security-facility
   secGear: sig-confidential-computing
@@ -473,6 +477,7 @@ src-openeuler:
   BareBonesBrowserLaunch: sig-Java
   Bear: Compiler
   BehaviorTree.CPP: sig-ROS
+  Box2D: ecopkg
   CTinspector: sig-ebpf
   CUnit: Base-service
   Catch2: sig-ROS
@@ -859,6 +864,7 @@ src-openeuler:
   aries-quiesce-api: dev-utils
   aries-util: dev-utils
   ark: sig-KDE
+  arkui-linux: sig-FangTian
   arm-ml-examples: ai
   arm-trusted-firmware: Base-service
   armadillo: dev-utils
@@ -1762,6 +1768,12 @@ src-openeuler:
   fstools: dev-utils
   fstrm: sig-epol
   fswatch: System-tool
+  ft_engine: sig-FangTian
+  ft_flutter: sig-FangTian
+  ft_mmi: sig-FangTian
+  ft_multimedia: sig-FangTian
+  ft_surface: sig-FangTian
+  ft_wl_fwk: sig-FangTian
   ftgl: bigdata
   ftp: Networking
   fuse: Storage
@@ -2041,6 +2053,7 @@ src-openeuler:
   google-api-core: sig-openstack
   google-api-python-client: sig-openstack
   google-auth-httplib2: sig-openstack
+  google-benchmark: ecopkg
   google-croscore-fonts: Desktop
   google-crosextra-carlito-fonts: Application
   google-droid-fonts: Desktop
@@ -3140,6 +3153,7 @@ src-openeuler:
   libXxf86misc: sig-recycle
   libXxf86vm: Desktop
   libabigail: Application
+  libabw: ecopkg
   libaccounts-glib: sig-KDE
   libaccounts-qt: sig-KDE
   libadwaita: GNOME
@@ -3181,6 +3195,7 @@ src-openeuler:
   libcddb: sig-epol
   libcdio: Desktop
   libcdio-paranoia: Desktop
+  libcdr: ecopkg
   libcec: sig-epol
   libcgroup: sig-CloudNative
   libchamplain: GNOME
@@ -3230,7 +3245,9 @@ src-openeuler:
   libecb: dev-utils
   libedit: Base-service
   libell: Programming-language
+  libeot: ecopkg
   libepoxy: Desktop
+  libepubgen: ecopkg
   liberasurecode: sig-openstack
   liberation-fonts: System-tool
   liberation-sans-fonts: sig-recycle
@@ -3243,6 +3260,7 @@ src-openeuler:
   libevhtp: sig-CloudNative
   libewf: Others
   libexif: Desktop
+  libexttextcat: ecopkg
   libfabric: Programming-language
   libfakekey: sig-KDE
   libfastcommon: Storage
@@ -3252,6 +3270,7 @@ src-openeuler:
   libfm: xfce
   libfontenc: Desktop
   libfprint: sig-UKUI
+  libfreehand: ecopkg
   libfreenect: sig-epol
   libftdi: sig-embedded
   libg2o-release: sig-ROS
@@ -3321,6 +3340,7 @@ src-openeuler:
   libisoburn: Base-service
   libisofs: Others
   libisofs1: Private
+  libixion: ecopkg
   libjcat: GNOME
   libjpeg-turbo: Desktop
   libkae: sig-AccLib
@@ -3341,6 +3361,7 @@ src-openeuler:
   libkysdk-applications: sig-UKUI
   libkysdk-base: sig-UKUI
   libkysdk-system: sig-UKUI
+  liblangtag: ecopkg
   libldac: GNOME
   libldb: Desktop
   libldm: Storage
@@ -3379,8 +3400,10 @@ src-openeuler:
   libmpeg2: Application
   libmpris-qt5: sig-QT
   libmspack: Base-service
+  libmspub: ecopkg
   libmtp: Application
   libmusicbrainz5: Application
+  libmwaw: ecopkg
   libmypaint: Others
   libmysofa: sig-epol
   libnabo: sig-ROS
@@ -3402,8 +3425,10 @@ src-openeuler:
   libnotify: Desktop
   libnsl2: Base-service
   libntlm: Application
+  libnumbertext: ecopkg
   libnvme: System-tool
   liboauth: Base-service
+  libodfgen: ecopkg
   libofa: sig-recycle
   libogg: Computing
   liboggz: sig-recycle
@@ -3414,6 +3439,7 @@ src-openeuler:
   libopenraw: Others
   libosinfo: Base-service
   libotf: System-tool
+  libpagemaker: ecopkg
   libpanel: GNOME
   libpaper: Base-service
   libpcap: Networking
@@ -3437,6 +3463,7 @@ src-openeuler:
   libqtxdg: sig-UKUI
   libquvi: Base-service
   libquvi-scripts: Base-service
+  libqxp: ecopkg
   librabbitmq: Runtime
   libraqm: Desktop
   libraw1394: System-tool
@@ -3483,6 +3510,7 @@ src-openeuler:
   libsrtp: Programming-language
   libssh: Networking
   libssh2: Networking
+  libstaroffice: ecopkg
   libstatgrab: sig-UKUI
   libstatistics_collector: sig-ROS
   libstemmer: Programming-language
@@ -3552,6 +3580,7 @@ src-openeuler:
   libwpd: dev-utils
   libwpe: dev-utils
   libwpg: dev-utils
+  libwps: ecopkg
   libx86emu: Desktop
   libxcb: Desktop
   libxcrypt: Base-service
@@ -3578,6 +3607,7 @@ src-openeuler:
   libzapojit: Others
   libzen: Desktop
   libzip: Programming-language
+  libzmf: ecopkg
   libzmq: sig-ROS
   lightcouch: sig-Java
   lightdm: Desktop
@@ -3590,6 +3620,7 @@ src-openeuler:
   lilypond: sig-desktop-apps
   linkchecker: Application
   linux-firmware: Computing
+  linux-libertine-fonts: ecopkg
   linux-sgx: sig-confidential-computing
   linux-sgx-driver: sig-confidential-computing
   linux-system-roles: oVirt
@@ -3647,6 +3678,7 @@ src-openeuler:
   lorax: sig-OS-Builder
   low-memory-monitor: Desktop
   lpg: Application
+  lpsolve: ecopkg
   lrzsz: Application
   lsc_ros2_driver: sig-ROS
   lshw: Base-service
@@ -3844,6 +3876,7 @@ src-openeuler:
   mcstrans: sig-security-facility
   mdadm: Storage
   mdb: dev-utils
+  mdds: ecopkg
   mdm: sig-cinnamon
   mdm-themes: sig-cinnamon
   meanwhile: Programming-language
@@ -10582,4 +10615,5 @@ src-openeuler:
   zstd: Base-service
   zvbi: Desktop
   zxing: sig-Java
+  zxing-cpp: ecopkg
   zziplib: Base-service
