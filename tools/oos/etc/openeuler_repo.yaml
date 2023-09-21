@@ -3253,6 +3253,7 @@ src-openeuler:
   liberation-sans-fonts: sig-recycle
   libesmtp: Networking
   libestr: Base-service
+  libetonyek: ecopkg
   libetpan: sig-UKUI
   libev: Base-service
   libevdev: Computing
@@ -3437,6 +3438,7 @@ src-openeuler:
   libomxil-bellagio: Base-service
   libopenmpt: sig-epol
   libopenraw: Others
+  liborcus: ecopkg
   libosinfo: Base-service
   libotf: System-tool
   libpagemaker: ecopkg
@@ -3563,6 +3565,7 @@ src-openeuler:
   libvirt-dbus: Virt
   libvirt-glib: Virt
   libvirt-python: Virt
+  libvisio: ecopkg
   libvisual: Computing
   libvma: sig-high-performance-network
   libvncserver: GNOME
@@ -4052,6 +4055,7 @@ src-openeuler:
   mysqld_exporter: sig-CloudNative
   mysqltuner: DB
   mythes: Application
+  mythes-en: ecopkg
   nafees-web-naskh-fonts: Desktop
   nagios: System-tool
   nagios-plugins: Networking
@@ -10370,6 +10374,7 @@ src-openeuler:
   wmctrl: Application
   woff2: Desktop
   woodstox-core: dev-utils
+  wordnet: ecopkg
   wordpress: sig-epol
   words: Base-service
   wpa_supplicant: Base-service
