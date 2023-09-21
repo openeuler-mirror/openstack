@@ -2465,7 +2465,7 @@ yoga:
   python-muranoclient: 2.4.1
   python-neutronclient: 7.8.0
   python-novaclient: 17.7.0
-  python-octaviaclient: 2.5.0
+  python-octaviaclient: 2.6.0
   python-openstackclient: 5.8.1
   python-saharaclient: 3.5.0
   python-senlinclient: 2.4.0
