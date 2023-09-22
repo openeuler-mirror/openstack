@@ -2309,7 +2309,7 @@ yoga:
   heat-tempest-plugin: 1.5.0
   heat-translator: 2.5.0
   horizon: 22.1.1
-  ironic: 20.1.1
+  ironic: 20.1.2
   ironic-inspector: 10.11.0
   ironic-lib: 5.2.0
   ironic-prometheus-exporter: 3.1.0
@@ -2547,7 +2547,7 @@ zed:
   cloudkitty_tempest_plugin: 2.6.0
   compute-hyperv: 15.0.0
   cyborg-tempest-plugin: 2.0.0
-  designate: 15.0.0
+  designate: 15.0.1
   designate-dashboard: 15.0.0
   designate-tempest-plugin: 0.14.0
   ec2-api: 15.0.0
