@@ -63,6 +63,7 @@ openeuler:
   Replay-N: sig-high-performance-network
   TC: TC
   TCP_option_address: Kernel
+  TSSE-driver: sig-Compatibility-Infra
   UniProton: sig-embedded
   VMAnalyzer: sig-ops
   WasmEngine: sig-CloudNative
@@ -2909,6 +2910,7 @@ src-openeuler:
   kf5-kinit: sig-KDE
   kf5-kio: sig-KDE
   kf5-kirigami2: sig-KDE
+  kf5-kirigami2-addons: sig-KDE
   kf5-kitemmodels: sig-KDE
   kf5-kitemviews: sig-KDE
   kf5-kjobwidgets: sig-KDE
@@ -8456,6 +8458,7 @@ src-openeuler:
   python-setuptools_scm: Programming-language
   python-sh: sig-python-modules
   python-shamir-mnemonic: sig-python-modules
+  python-shap: A-Tune
   python-shapely: sig-python-modules
   python-shodan: sig-python-modules
   python-shortuuid: sig-python-modules
@@ -8513,6 +8516,7 @@ src-openeuler:
   python-sphinx-favicon: sig-python-modules
   python-sphinx-feature-classification: sig-openstack
   python-sphinx-gallery: sig-python-modules
+  python-sphinx-hoverxref: A-Tune
   python-sphinx-inline-tabs: sig-python-modules
   python-sphinx-intl: sig-python-modules
   python-sphinx-issues: sig-python-modules
