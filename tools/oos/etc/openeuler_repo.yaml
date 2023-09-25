@@ -372,6 +372,7 @@ openeuler:
   pyisula: sig-openstack
   pyporter: dev-utils
   python-multi_key_dict: sig-python-modules
+  pyuadk: sig-AccLib
   qax-gm-certificates: sig-security-facility
   qemu: Virt
   qla2xxx: sig-Compatibility-Infra
