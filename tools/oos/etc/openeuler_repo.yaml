@@ -3242,6 +3242,7 @@ src-openeuler:
   libdvdnav: Application
   libdvdread: Application
   libdwarf: Programming-language
+  libe-book: ecopkg
   libeasyfc: Application
   libebml: sig-epol
   libecap: Base-service
@@ -3475,6 +3476,7 @@ src-openeuler:
   librdkafka: Programming-language
   librealsense: sig-ROS
   librelp: Programming-language
+  libreoffice-share-linker: ecopkg
   librepo: Base-service
   libreport: Base-service
   libreswan: System-tool
