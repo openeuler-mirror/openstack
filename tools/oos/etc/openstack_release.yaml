@@ -2373,7 +2373,7 @@ yoga:
   neutron-vpnaas-dashboard: 6.0.0
   nova: 25.2.1
   octavia: 10.1.0
-  octavia-dashboard: 9.0.0
+  octavia-dashboard: 9.0.1
   octavia-lib: 2.5.0
   octavia-tempest-plugin: 1.9.0
   openstack-cyborg: 8.0.1
