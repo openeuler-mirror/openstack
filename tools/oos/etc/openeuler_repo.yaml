@@ -73,6 +73,7 @@ openeuler:
   abichecker: dev-utils
   ai-tools: ai
   allwinner-kernel: sig-RaspberryPi
+  amqp-proxy: sig-message-middleware
   anbox: sig-recycle
   aops-apollo: sig-ops
   aops-ceres: sig-ops
@@ -293,6 +294,8 @@ openeuler:
   micro-certification: sig-OSCourse
   migration-assistant: sig-Migration
   migration-tools: sig-Migration
+  mqtt-operator: sig-message-middleware
+  mqtt-proxy: sig-message-middleware
   mugen: sig-QA
   nankai_university_2021: sig-recycle
   native-turbo: A-Tune
@@ -388,6 +391,7 @@ openeuler:
   reproducible-builds: sig-reproducible-builds
   rockchip: sig-RaspberryPi
   rockchip-kernel: sig-RaspberryPi
+  rocketmq-operator: sig-message-middleware
   ros: sig-ROS
   ros-porting-tools: sig-ROS
   rubik: sig-CloudNative
@@ -2804,6 +2808,7 @@ src-openeuler:
   jxrlib: Desktop
   jython: sig-Java
   jzlib: Application
+  k3b: sig-KDE
   k3s: sig-K8sDistro
   k3s-containerd: sig-K8sDistro
   k3s-plugins: sig-K8sDistro
@@ -8374,6 +8379,7 @@ src-openeuler:
   python-restsh: sig-python-modules
   python-restview: sig-python-modules
   python-retask: sig-python-modules
+  python-retry2: dev-utils
   python-retrying: sig-python-modules
   python-retryz: sig-python-modules
   python-rfc3339-validator: sig-python-modules
@@ -10217,6 +10223,7 @@ src-openeuler:
   ukui-window-switch: sig-UKUI
   ukwm: sig-UKUI
   ukylin-feedback-client: sig-UKUI
+  umdk: sig-high-performance-network
   umoci: sig-CloudNative
   umockdev: Base-service
   uname-build-checks: Base-service
