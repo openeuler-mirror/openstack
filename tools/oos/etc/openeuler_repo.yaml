@@ -54,6 +54,7 @@ openeuler:
   PilotGo-plugin-observation: sig-ops
   PilotGo-plugin-prometheus: sig-ops
   PilotGo-plugin-redis: sig-ops
+  PilotGo-plugin-topology: sig-ops
   PilotGo-plugins: sig-ops
   PilotGo-web: sig-ops
   Preempt_RT: sig-industrial-control
@@ -117,6 +118,7 @@ openeuler:
   compass-ci: sig-CICD
   compass-ci-web: sig-CICD
   compat-winapp: sig-compat-winapp
+  compiler-docs: Compiler
   compiler-test: sig-QA
   compliance: sig-compliance
   compliance-sbom: sig-compliance
@@ -549,6 +551,7 @@ src-openeuler:
   PilotGo: sig-ops
   PilotGo-plugin-grafana: sig-ops
   PilotGo-plugin-prometheus: sig-ops
+  PilotGo-plugin-topology: sig-ops
   PlotJuggler: sig-ROS
   PyDrive: sig-UKUI
   PyPAM: Others
@@ -4106,6 +4109,7 @@ src-openeuler:
   nerian_stereo_ros2: sig-ROS
   nestos-installer: sig-CloudNative
   nestos-kernel: sig-CloudNative
+  nestos-kubernetes-deployer: sig-K8sDistro
   net-snmp: Networking
   net-tools: Networking
   netavark: sig-CloudNative
