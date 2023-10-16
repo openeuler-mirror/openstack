@@ -416,7 +416,6 @@ openeuler:
   sig-OpenBoard: sig-recycle
   signatrust: Infrastructure
   skylark: Virt
-  sonic-linux-kernel: sig-ONL
   sssnic-driver: sig-Compatibility-Infra
   stortrace: Storage
   stratovirt: Virt
@@ -9833,8 +9832,6 @@ src-openeuler:
   sombok: Base-service
   sonatype-oss-parent: sig-Java
   sonatype-plugins-parent: sig-Java
-  sonic-buildimage: sig-ONL
-  sonic-linux-kernel: sig-ONL
   sophus: sig-ROS
   sord: sig-epol
   sos: Base-service
