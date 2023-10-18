@@ -1781,6 +1781,7 @@ src-openeuler:
   ft_mmi: sig-FangTian
   ft_multimedia: sig-FangTian
   ft_surface: sig-FangTian
+  ft_utils: sig-FangTian
   ft_wl_fwk: sig-FangTian
   ftgl: bigdata
   ftp: Networking
@@ -9098,7 +9099,7 @@ src-openeuler:
   replacer: Base-service
   repo: Private
   resalloc: ecopkg
-  resource-agents: Others
+  resource-agents: sig-Ha
   resource_retriever: sig-ROS
   rest: Desktop
   resteasy: sig-Java
@@ -9827,6 +9828,7 @@ src-openeuler:
   soes: sig-industrial-control
   sofia-sip: GNOME
   softhsm: sig-security-facility
+  software-package-server: Infrastructure
   sol_vendor: sig-ROS
   solr: Application
   sombok: Base-service
