@@ -78,6 +78,7 @@ openeuler:
   anbox: sig-recycle
   aops-apollo: sig-ops
   aops-ceres: sig-ops
+  aops-cobbler: sig-ops
   aops-diana: sig-ops
   aops-hermes: sig-ops
   aops-vulcanus: sig-ops
@@ -167,6 +168,7 @@ openeuler:
   evs: sig-high-performance-network
   extfuse: Storage
   extuner: sig-ops
+  fastblock: sig-SDS
   ft_engine: sig-FangTian
   ft_flutter: sig-FangTian
   ft_mmi: sig-FangTian
@@ -782,6 +784,7 @@ src-openeuler:
   aopalliance: sig-Java
   aops-apollo: sig-ops
   aops-ceres: sig-ops
+  aops-cobbler: sig-ops
   aops-diana: sig-ops
   aops-hermes: sig-ops
   aops-vulcanus: sig-ops
@@ -3724,6 +3727,7 @@ src-openeuler:
   lunar-date: sig-KIRAN-DESKTOP
   lusb: sig-ROS
   lustre: sig-SDS
+  lustre-release: sig-SDS
   lutok: Base-service
   lv2: sig-epol
   lvm2: Storage
@@ -4637,6 +4641,8 @@ src-openeuler:
   openEuler-menus: sig-KDE
   openEuler-pkginfo: dev-utils
   openEuler-release: Base-service
+  openEuler-release-nestos-for-container: sig-K8sDistro
+  openEuler-release-nestos-for-virt: sig-K8sDistro
   openEuler-repos: Base-service
   openEuler-rpm-config: Base-service
   openEuler_chroot: sig-Gatekeeper
