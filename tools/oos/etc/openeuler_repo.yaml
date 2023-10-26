@@ -284,6 +284,7 @@ openeuler:
   libvirt: Virt
   libwd: sig-AccLib
   libxml2-rust: Base-service
+  libyang: sig-ops
   linux-operation: sig-OSCourse
   llvm-project: Compiler
   lxcfs-tools: iSulad
@@ -446,6 +447,7 @@ openeuler:
   ubackup: sig-Migration
   ukui: sig-UKUI
   umdk: sig-high-performance-network
+  unizip: Base-service
   user-committee: user-committee
   utshell: sig-memsafety
   utsudo: sig-memsafety
@@ -1823,6 +1825,7 @@ src-openeuler:
   gc_spl: sig-ROS
   gcab: GNOME
   gcc: Compiler
+  gcc-10: Compiler
   gcc-12: Compiler
   gcc-7: Compiler
   gcc-cross: Compiler
@@ -3619,7 +3622,6 @@ src-openeuler:
   libyami: Application
   libyaml: Base-service
   libyaml_vendor: sig-ROS
-  libyang: sig-high-performance-network
   libyang1: sig-industrial-control
   libytnef: sig-UKUI
   libyubikey: dev-utils
@@ -6916,10 +6918,12 @@ src-openeuler:
   python-aiozeroconf: sig-python-modules
   python-airspeed: sig-python-modules
   python-alembic: sig-python-modules
+  python-allure: sig-python-modules
   python-alsa: sig-python-modules
   python-altair: sig-python-modules
   python-altgraph: sig-python-modules
   python-amqp: sig-openstack
+  python-androguard: sig-python-modules
   python-animatplot: sig-python-modules
   python-aniso8601: sig-python-modules
   python-ansi2html: sig-python-modules
@@ -6979,6 +6983,7 @@ src-openeuler:
   python-atpublic: sig-python-modules
   python-attrs: Programming-language
   python-audioread: sig-python-modules
+  python-auditwheel: sig-python-modules
   python-augeas: Programming-language
   python-auth.credential: sig-python-modules
   python-authheaders: sig-python-modules
@@ -7023,6 +7028,7 @@ src-openeuler:
   python-binaryornot: sig-python-modules
   python-binstruct: sig-python-modules
   python-bintrees: sig-python-modules
+  python-binwalk: sig-python-modules
   python-bitcoinlib: sig-python-modules
   python-bitmath: sig-python-modules
   python-bitstring: sig-python-modules
@@ -7050,6 +7056,7 @@ src-openeuler:
   python-bracex: sig-python-modules
   python-branca: sig-python-modules
   python-breathe: sig-python-modules
+  python-brotlicffi: sig-python-modules
   python-brotlipy: sig-openstack
   python-bson: sig-python-modules
   python-btrfs: sig-python-modules
@@ -7057,6 +7064,7 @@ src-openeuler:
   python-bugzilla: sig-python-modules
   python-build: sig-python-modules
   python-bump2version: sig-python-modules
+  python-bumpversion: sig-python-modules
   python-bunch: sig-openstack
   python-bytesize: sig-python-modules
   python-bz2file: sig-python-modules
@@ -7196,6 +7204,7 @@ src-openeuler:
   python-cxxfilt: sig-python-modules
   python-cyborgclient: sig-openstack
   python-cycler: sig-python-modules
+  python-cyclic: sig-python-modules
   python-cypy: sig-python-modules
   python-d2to1: sig-python-modules
   python-daemon: oVirt
@@ -7215,6 +7224,7 @@ src-openeuler:
   python-dbusmock: GNOME
   python-ddt: sig-python-modules
   python-deap: sig-python-modules
+  python-debian: sig-python-modules
   python-debrepo: sig-python-modules
   python-debtcollector: sig-openstack
   python-debugpy: sig-python-modules
@@ -7234,6 +7244,7 @@ src-openeuler:
   python-dictdumper: sig-python-modules
   python-diff-cover: sig-python-modules
   python-diff-match-patch: sig-python-modules
+  python-diffoscope: sig-python-modules
   python-dill: sig-python-modules
   python-dingz: sig-python-modules
   python-dirq: sig-python-modules
@@ -7336,6 +7347,7 @@ src-openeuler:
   python-email_reply_parser: sig-python-modules
   python-emcee: sig-python-modules
   python-emoji: sig-python-modules
+  python-empack: sig-python-modules
   python-empy: sig-ROS
   python-enchant: Programming-language
   python-enmerkar: sig-python-modules
@@ -7402,6 +7414,7 @@ src-openeuler:
   python-flake8-rst-docstrings: sig-python-modules
   python-flaky: sig-python-modules
   python-flann: sig-python-modules
+  python-flasgger: sig-python-modules
   python-flask: Programming-language
   python-flask-multistatic: sig-python-modules
   python-flask-oidc: sig-python-modules
@@ -7508,6 +7521,7 @@ src-openeuler:
   python-h5py: A-Tune
   python-hacking: sig-openstack
   python-hamcrest: sig-python-modules
+  python-hatch: sig-python-modules
   python-hatch-fancy-pypi-readme: sig-python-modules
   python-hatch-jupyter-builder: sig-python-modules
   python-hatch-nodejs-version: sig-python-modules
@@ -7546,6 +7560,7 @@ src-openeuler:
   python-humanfriendly: sig-python-modules
   python-humanize: sig-python-modules
   python-humblewx: sig-python-modules
+  python-hunter: sig-python-modules
   python-hupper: sig-python-modules
   python-husl: sig-python-modules
   python-hvac: sig-python-modules
@@ -7570,6 +7585,7 @@ src-openeuler:
   python-imagesize: Programming-language
   python-img2pdf: sig-python-modules
   python-immutables: sig-python-modules
+  python-importlab: sig-python-modules
   python-importlib-metadata: sig-python-modules
   python-importlib-resources: sig-python-modules
   python-importmagic: sig-python-modules
@@ -7639,6 +7655,7 @@ src-openeuler:
   python-josepy: sig-python-modules
   python-journal-brief: sig-python-modules
   python-jsmin: sig-python-modules
+  python-json-logger: sig-python-modules
   python-json-tricks: A-Tune
   python-json2table: sig-python-modules
   python-json5: sig-python-modules
@@ -7657,14 +7674,19 @@ src-openeuler:
   python-jupyter-client: bigdata
   python-jupyter-console: sig-python-modules
   python-jupyter-core: bigdata
+  python-jupyter-events: sig-python-modules
   python-jupyter-lsp: sig-python-modules
   python-jupyter-packaging: sig-python-modules
   python-jupyter-server: sig-python-modules
   python-jupyter-server-mathjax: sig-python-modules
+  python-jupyter-server-terminals: sig-python-modules
   python-jupyter-sphinx: sig-python-modules
   python-jupyterlab: sig-python-modules
   python-jupyterlab-pygments: sig-python-modules
   python-jupyterlab-server: sig-python-modules
+  python-jupyterlite: sig-python-modules
+  python-jupyterlite-sphinx: sig-python-modules
+  python-jupyterlite-xeus: sig-python-modules
   python-jupytext: sig-python-modules
   python-justbytes: sig-python-modules
   python-jwcrypto: sig-python-modules
@@ -7775,9 +7797,13 @@ src-openeuler:
   python-maturin: sig-python-modules
   python-mccabe: sig-python-modules
   python-mdformat: sig-python-modules
+  python-mdformat-gfm: sig-python-modules
+  python-mdformat-tables: sig-python-modules
   python-mdit-py-plugins: sig-python-modules
   python-mdurl: sig-python-modules
+  python-mdx-include: sig-python-modules
   python-mdx_gh_links: sig-python-modules
+  python-mechanicalsoup: sig-python-modules
   python-meh: Base-service
   python-memcached: sig-python-modules
   python-memory-profiler: sig-openstack
@@ -7803,15 +7829,20 @@ src-openeuler:
   python-mitmproxy-wireguard: sig-python-modules
   python-mkdocs: sig-python-modules
   python-mkdocs-autorefs: sig-python-modules
+  python-mkdocs-bootswatch: sig-python-modules
   python-mkdocs-coverage: sig-python-modules
   python-mkdocs-gen-files: sig-python-modules
   python-mkdocs-git-committers-plugin-2: sig-python-modules
+  python-mkdocs-git-revision-date-localized-plugin: sig-python-modules
   python-mkdocs-include-markdown-plugin: sig-python-modules
   python-mkdocs-literate-nav: sig-python-modules
   python-mkdocs-material: sig-python-modules
   python-mkdocs-material-extensions: sig-python-modules
   python-mkdocs-minify-plugin: sig-python-modules
+  python-mkdocs-nature: sig-python-modules
   python-mkdocs-redirects: sig-python-modules
+  python-mkdocs-rss-plugin: sig-python-modules
+  python-mkdocs-section-index: sig-python-modules
   python-mkdocstrings: sig-python-modules
   python-mkdocstrings-crystal: sig-python-modules
   python-mkdocstrings-python: sig-python-modules
@@ -7881,6 +7912,7 @@ src-openeuler:
   python-neutronclient: sig-openstack
   python-ngram: sig-python-modules
   python-nine: sig-python-modules
+  python-ninja: sig-python-modules
   python-nltk: sig-python-modules
   python-nmap: sig-python-modules
   python-nmrglue: sig-python-modules
@@ -7990,6 +8022,7 @@ src-openeuler:
   python-osprofiler: sig-openstack
   python-outcome: sig-python-modules
   python-outdated: sig-python-modules
+  python-overrides: sig-python-modules
   python-ovirt-engine-sdk4: oVirt
   python-ovn-octavia-provider: sig-openstack
   python-ovsdbapp: sig-openstack
@@ -8008,6 +8041,7 @@ src-openeuler:
   python-parameterized: sig-python-modules
   python-paramiko: Programming-language
   python-parse: sig-python-modules
+  python-parse-type: sig-python-modules
   python-parse_type: sig-python-modules
   python-parsedatetime: sig-python-modules
   python-parso: sig-python-modules
@@ -8027,9 +8061,11 @@ src-openeuler:
   python-patsy: sig-python-modules
   python-pbkdf2: sig-python-modules
   python-pbr: Programming-language
+  python-pdbp: sig-python-modules
   python-pdc-client: sig-python-modules
   python-pdfkit: sig-python-modules
   python-pdfminer: sig-python-modules
+  python-pdfminer.six: sig-python-modules
   python-pdfrw: sig-python-modules
   python-pdir2: sig-python-modules
   python-pdm-backend: sig-python-modules
@@ -8050,6 +8086,7 @@ src-openeuler:
   python-phonenumbers: sig-python-modules
   python-phpserialize: sig-python-modules
   python-pickleshare: ecopkg
+  python-picobox: sig-python-modules
   python-pid: Base-service
   python-piexif: sig-python-modules
   python-pifpaf: sig-openstack
@@ -8071,6 +8108,7 @@ src-openeuler:
   python-plaintable: sig-python-modules
   python-platformdirs: Application
   python-player: sig-python-modules
+  python-playwright: sig-python-modules
   python-plette: sig-python-modules
   python-plink: sig-python-modules
   python-plotly: sig-python-modules
@@ -8148,6 +8186,7 @@ src-openeuler:
   python-pycares: sig-python-modules
   python-pycdlib: sig-OS-Builder
   python-pyclipper: sig-python-modules
+  python-pycnite: sig-python-modules
   python-pycodestyle: sig-openstack
   python-pycollada: sig-python-modules
   python-pycountry: sig-openstack
@@ -8204,6 +8243,7 @@ src-openeuler:
   python-pynacl: sig-python-modules
   python-pynetdicom: sig-python-modules
   python-pyngus: sig-python-modules
+  python-pynose: sig-python-modules
   python-pynvml: sig-python-modules
   python-pyocr: sig-python-modules
   python-pyodbc: sig-openstack
@@ -8352,6 +8392,7 @@ src-openeuler:
   python-ratelimitingfilter: sig-python-modules
   python-rawkit: sig-python-modules
   python-rbd-iscsi-client: sig-openstack
+  python-rcslice: sig-python-modules
   python-rcssmin: sig-python-modules
   python-rdflib: sig-python-modules
   python-re-assert: sig-python-modules
@@ -8359,6 +8400,7 @@ src-openeuler:
   python-rebulk: sig-python-modules
   python-recommonmark: Base-service
   python-redis: Base-service
+  python-referencing: sig-python-modules
   python-regex: sig-python-modules
   python-remoto: sig-python-modules
   python-renderspec: sig-python-modules
@@ -8394,6 +8436,7 @@ src-openeuler:
   python-retryz: sig-python-modules
   python-rfc3339-validator: sig-python-modules
   python-rfc3986: sig-python-modules
+  python-rfc3986-validator: sig-python-modules
   python-rich: sig-python-modules
   python-rinoh-typeface-dejavuserif: sig-python-modules
   python-rinoh-typeface-texgyrecursor: sig-python-modules
@@ -8413,6 +8456,7 @@ src-openeuler:
   python-rospkg: sig-ROS
   python-routes: sig-python-modules
   python-rpdb: sig-python-modules
+  python-rpds-py: sig-python-modules
   python-rpkg: sig-python-modules
   python-rply: sig-python-modules
   python-rpm-generators: Base-service
@@ -8440,6 +8484,7 @@ src-openeuler:
   python-safety: sig-python-modules
   python-saharaclient: sig-openstack
   python-sanction: sig-python-modules
+  python-sbvirtualdisplay: sig-python-modules
   python-scales: sig-python-modules
   python-scandir: sig-python-modules
   python-scapy: sig-python-modules
@@ -8460,6 +8505,8 @@ src-openeuler:
   python-searchlightclient: sig-openstack
   python-selectors2: sig-python-modules
   python-selenium: sig-openstack
+  python-selenium-wire: sig-python-modules
+  python-seleniumbase: sig-python-modules
   python-semantic_version: sig-python-modules
   python-semver: sig-python-modules
   python-senlinclient: sig-openstack
@@ -8479,6 +8526,7 @@ src-openeuler:
   python-shamir-mnemonic: sig-python-modules
   python-shap: A-Tune
   python-shapely: sig-python-modules
+  python-shellingham: sig-python-modules
   python-shodan: sig-python-modules
   python-shortuuid: sig-python-modules
   python-should_dsl: sig-python-modules
@@ -8493,6 +8541,7 @@ src-openeuler:
   python-simplevisor: sig-python-modules
   python-simpy: sig-python-modules
   python-singledispatch: Programming-language
+  python-sip: sig-python-modules
   python-siphash: sig-python-modules
   python-six: Base-service
   python-slack-cleaner: sig-python-modules
@@ -8540,6 +8589,7 @@ src-openeuler:
   python-sphinx-intl: sig-python-modules
   python-sphinx-issues: sig-python-modules
   python-sphinx-lint: sig-python-modules
+  python-sphinx-mdinclude: sig-python-modules
   python-sphinx-notfound-page: sig-python-modules
   python-sphinx-remove-toctrees: sig-python-modules
   python-sphinx-reredirects: sig-python-modules
@@ -8572,6 +8622,7 @@ src-openeuler:
   python-sphinxcontrib-log-cabinet: Programming-language
   python-sphinxcontrib-moderncmakedomain: sig-python-modules
   python-sphinxcontrib-napoleon: sig-python-modules
+  python-sphinxcontrib-openapi: sig-python-modules
   python-sphinxcontrib-pecanwsme: sig-python-modules
   python-sphinxcontrib-programoutput: sig-openstack
   python-sphinxcontrib-qthelp: sig-python-modules
@@ -8581,6 +8632,7 @@ src-openeuler:
   python-sphinxcontrib-svg2pdfconverter: sig-python-modules
   python-sphinxcontrib-websupport: Programming-language
   python-sphinxcontrib-youtube: sig-python-modules
+  python-sphinxemoji: sig-python-modules
   python-sphinxext-altair: sig-python-modules
   python-sphinxext-opengraph: sig-python-modules
   python-sphinxext-rediraffe: sig-python-modules
@@ -8631,6 +8683,7 @@ src-openeuler:
   python-syncer: sig-python-modules
   python-systemd: Base-service
   python-sysv-ipc: sig-openstack
+  python-tabcompleter: sig-python-modules
   python-tables: Private
   python-tablib: sig-openstack
   python-tabulate: sig-python-modules
@@ -8673,6 +8726,7 @@ src-openeuler:
   python-tinycss2: sig-cinnamon
   python-tinydb: sig-python-modules
   python-tinyrpc: sig-python-modules
+  python-tlsh: sig-python-modules
   python-tokenize-rt: sig-python-modules
   python-toml: sig-python-modules
   python-tomli: sig-python-modules
@@ -8685,6 +8739,7 @@ src-openeuler:
   python-tox: sig-python-modules
   python-tox-current-env: sig-python-modules
   python-tox-pdm: sig-python-modules
+  python-tox-travis: sig-python-modules
   python-tqdm: sig-python-modules
   python-traceback2: Programming-language
   python-traitlets: sig-python-modules
@@ -8695,6 +8750,7 @@ src-openeuler:
   python-treelib: sig-ops
   python-trio: sig-openstack
   python-trio-typing: sig-python-modules
+  python-trio-websocket: sig-python-modules
   python-trove-dashboard: sig-openstack
   python-trove-tempest-plugin: sig-openstack
   python-troveclient: sig-openstack
@@ -8712,6 +8768,7 @@ src-openeuler:
   python-txaio: sig-openstack
   python-typed-ast: sig-openstack
   python-typeguard: sig-ROS
+  python-typer: sig-python-modules
   python-types-cryptography: sig-openstack
   python-types-enum34: sig-openstack
   python-types-ipaddress: sig-openstack
@@ -8741,6 +8798,7 @@ src-openeuler:
   python-urllib_gssapi: sig-python-modules
   python-urwid: Programming-language
   python-urwidtrees: sig-python-modules
+  python-userpath: sig-python-modules
   python-utils: sig-python-modules
   python-utmp: sig-python-modules
   python-uvicorn: sig-python-modules
@@ -8748,6 +8806,7 @@ src-openeuler:
   python-uwsgidecorators: sig-recycle
   python-vagrantpy: sig-python-modules
   python-validate-pyproject: sig-python-modules
+  python-validator-collection: sig-python-modules
   python-validators: sig-python-modules
   python-varlink: sig-python-modules
   python-vatnumber: sig-python-modules
@@ -10251,6 +10310,7 @@ src-openeuler:
   univocity-parsers: Base-service
   unixODBC: DB
   unixbench: dev-utils
+  unizip: Base-service
   unrtf: Application
   unzip: Base-service
   uom-lib: Base-service
