@@ -284,7 +284,6 @@ openeuler:
   libvirt: Virt
   libwd: sig-AccLib
   libxml2-rust: Base-service
-  libyang: sig-ops
   linux-operation: sig-OSCourse
   llvm-project: Compiler
   lxcfs-tools: iSulad
@@ -293,6 +292,9 @@ openeuler:
   marketing: Marketing
   masstree: DB
   mate-desktop: sig-mate-desktop
+  mcp: sig-CloudNative
+  mcp-self-service-vue: sig-CloudNative
+  mcp-vue: sig-CloudNative
   mcs: sig-embedded
   memory-scan: Storage
   memwatch: dev-utils
@@ -3622,6 +3624,7 @@ src-openeuler:
   libyami: Application
   libyaml: Base-service
   libyaml_vendor: sig-ROS
+  libyang: sig-ops
   libyang1: sig-industrial-control
   libytnef: sig-UKUI
   libyubikey: dev-utils
@@ -3894,6 +3897,9 @@ src-openeuler:
   mc: Application
   mcelog: Base-service
   mchange-commons: sig-Java
+  mcp: sig-CloudNative
+  mcp-self-service-vue: sig-CloudNative
+  mcp-vue: sig-CloudNative
   mcpp: Base-service
   mcstrans: sig-security-facility
   mdadm: Storage
@@ -7548,7 +7554,7 @@ src-openeuler:
   python-htmlmin2: sig-python-modules
   python-httmock: sig-python-modules
   python-http_client: sig-python-modules
-  python-httpbin: Private
+  python-httpbin: sig-python-modules
   python-httpcore: sig-python-modules
   python-httpie: sig-python-modules
   python-httplib2: Runtime
@@ -7946,6 +7952,7 @@ src-openeuler:
   python-ntplib: Desktop
   python-nudatus: sig-python-modules
   python-num2words: sig-python-modules
+  python-numba: A-Tune
   python-numexpr: Private
   python-numpoly: sig-python-modules
   python-numpydoc: sig-python-modules
@@ -8316,7 +8323,7 @@ src-openeuler:
   python-pytest-golden: sig-python-modules
   python-pytest-helpers-namespace: sig-python-modules
   python-pytest-html: sig-openstack
-  python-pytest-httpbin: Private
+  python-pytest-httpbin: sig-python-modules
   python-pytest-isort: sig-python-modules
   python-pytest-jupyter: sig-python-modules
   python-pytest-lazy-fixture: sig-python-modules
@@ -8546,6 +8553,7 @@ src-openeuler:
   python-six: Base-service
   python-slack-cleaner: sig-python-modules
   python-slacker: sig-python-modules
+  python-slicer: A-Tune
   python-slip: Base-service
   python-slixmpp: sig-python-modules
   python-slugify: sig-python-modules
