@@ -378,6 +378,7 @@ openeuler:
   portal-mulit-cluster-script: sig-HPC
   powerapi: sig-power-efficient
   prefetch_tuning: A-Tune
+  presentations: Marketing
   ptcr: sig-CloudNative
   pyisula: sig-openstack
   pyporter: dev-utils
@@ -401,6 +402,7 @@ openeuler:
   rocketmq-operator: sig-message-middleware
   ros: sig-ROS
   ros-porting-tools: sig-ROS
+  rpmdepsearch: sig-DDE
   rubik: sig-CloudNative
   rubyporter: dev-utils
   rust_shyper: Virt
