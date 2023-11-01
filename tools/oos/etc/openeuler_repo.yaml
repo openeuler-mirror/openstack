@@ -193,6 +193,7 @@ openeuler:
   go-gitee: Infrastructure
   gostone: sig-openstack
   ha-api: sig-Ha
+  ha-monitor: sig-Ha
   ha-web: sig-Ha
   hands-on: sig-OSCourse
   hikptool: sig-WayCa
