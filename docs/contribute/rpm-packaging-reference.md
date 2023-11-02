@@ -36,7 +36,9 @@ SIG 编包时，会以共享表格的形式，将需要处理的软件包整理�
 
 ### 签署 CLA
 
-在openEuler社区提交贡献需要签署 [CLA](https://clasign.osinfra.cn/sign/Z2l0ZWUlMkZvcGVuZXVsZXI=)。
+在 openEuler 社区提交贡献需要签署 [CLA](https://clasign.osinfra.cn/sign/Z2l0ZWUlMkZvcGVuZXVsZXI=)。
+
+对于初次参与 openEuler 社区的开发者，可首先查看[ openEuler 贡献攻略](https://www.openeuler.org/zh/community/contribution/)，概览整体贡献情况。
 
 ### 环境准备
 
@@ -46,8 +48,10 @@ dnf install rpm-build rpmdevtools git
 # 生成~/rpmbuild目录，oos默认工作路径也为此
 rpmdev-setuptree
 
-pip install openstack-sig-tool
+pip install openstack-sig-tool==1.0.6
 ```
+
+说明：openstack-sig-tool 在 1.1.0 版本对 `oos spec` 命令进行了[重构](https://gitee.com/openeuler/openstack/commit/9083ba741acdea4d986cb2a58069156693832d09)。如下流程涉及 `oos spec` 命令的操作对应 1.0.6 版本。建议安装新版 [oos](https://gitee.com/openeuler/openstack/tree/master/tools/oos), 并参考对应 [README](https://gitee.com/openeuler/openstack/blob/master/tools/oos/README.md) 使用。
 
 ### 生成个人 Gitee 帐户的 pat(personal access token)
 
