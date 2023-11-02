@@ -318,3 +318,75 @@ class RPMSpecBuild(object):
                                  f"rpmbuild/SPECS/{self.spec}"])
         except Exception:
             raise click.ClickException("RPM built failed, need to manually fix.")
+
+
+class RPMCopy():
+    def __init__(self, dir_path: str, clear: bool, build: bool):
+        if dir_path.endswith('/'):
+            dir_path = dir_path[:-1]
+        if dir_path.count('/') == 1:  # simple fool-proof
+            raise click.ClickException(f"wrong dir like '/root', '/urs', etc")
+        
+        if os.path.isfile(dir_path):  # fool-proof, use dirname
+            prompt = 'use dir of "' + dir_path + '" '
+            dir_path = os.path.dirname(dir_path)
+            click.echo(prompt)
+
+        self.dir_path = dir_path
+        self.clear = clear
+        self.build = build
+        self.spec_file = ''
+
+    def _rpmbuild_env_ensure(self):
+        try:
+            subprocess.call(["dnf", "install", "-y", "rpmdevtools"])
+
+        except Exception:
+            raise click.ClickException("Fail to install rpm tools, You must install them by hand first")
+
+    def _rpmbuild_dir_check(self):
+        '''if rpmdev-setuptree is installed, run it'''
+        if 0 != os.system('rpmdev-setuptree --help >/dev/null 2>&1'):
+            self._rpmbuild_env_ensure()
+        try:
+            if self.clear:
+                os.system('rpmdev-wipetree')
+
+            os.system('rpmdev-setuptree')
+        except Exception:
+            raise click.ClickException("rpm tools error, You must install them by hand first")
+
+    def _rpmbuild_with_spec(self):
+        '''run cmd "rpmbuild -ba /root/rpmbuild/SPECS/pkg.spec"
+        '''
+        if '' == self.spec_file or not os.path.exists(
+                                        os.path.expanduser(self.spec_file)):
+            click.echo('Error: no SPEC file: ' + self.spec_file)
+            return 
+
+        click.echo('\nExec: rpmbuild -ba ' + self.spec_file + '\n')
+        # no check exception, just run command
+        os.system('rpmbuild -ba ' + self.spec_file)
+
+    def copy_file_for_rpm(self):
+        self._rpmbuild_dir_check()
+        try:
+            self.spec_file = ''
+            for file in os.listdir(self.dir_path):
+                # use absfilepath
+                org_file = os.path.join(self.dir_path, file)
+
+                if os.path.isdir(org_file):
+                    continue
+                
+                if org_file.endswith('.spec'):
+                    self.spec_file = '~/rpmbuild/SPECS/' + file
+                    os.system('cp -f ' + org_file + ' ~/rpmbuild/SPECS')
+                else:
+                    os.system('cp -f ' + org_file + ' ~/rpmbuild/SOURCES')
+
+        except Exception as e:
+            print('copy failed: ', e)
+
+        if self.build:
+            self._rpmbuild_with_spec()
