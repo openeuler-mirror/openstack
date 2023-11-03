@@ -107,6 +107,7 @@ openeuler:
   c2rust: dev-utils
   cache-proxy: Infrastructure
   cantian: DB
+  cantian-connector-mysql: DB
   capsule: Virt
   ccps: sig-K8sDistro
   ceph_dev: sig-SDS
@@ -324,6 +325,7 @@ openeuler:
   oec-cloud: sig-Compatibility-Infra
   oec-hardware: sig-Compatibility-Infra
   oecp: sig-Compatibility-Infra
+  oee_archive: sig-Yocto
   oemaker: sig-OS-Builder
   omnidata-hive-connector: bigdata
   oncn-bwm: sig-high-performance-network
@@ -7084,6 +7086,7 @@ src-openeuler:
   python-cachez: sig-python-modules
   python-cairocffi: sig-python-modules
   python-cairosvg: sig-openstack
+  python-calver: sig-python-modules
   python-canonicaljson: sig-python-modules
   python-capacity: sig-openstack
   python-capturer: sig-python-modules
@@ -7138,6 +7141,7 @@ src-openeuler:
   python-cloudpickle: sig-python-modules
   python-cltk: sig-python-modules
   python-clufter: sig-python-modules
+  python-cma: A-Tune
   python-cmarkgfm: sig-python-modules
   python-cmd2: sig-python-modules
   python-cmdln: sig-python-modules
@@ -7543,6 +7547,7 @@ src-openeuler:
   python-heketi: sig-python-modules
   python-hgapi: sig-python-modules
   python-hidapi: sig-openstack
+  python-hiplot: A-Tune
   python-hkdf: sig-python-modules
   python-hl7: sig-python-modules
   python-hole: sig-python-modules
@@ -8762,6 +8767,7 @@ src-openeuler:
   python-trio: sig-openstack
   python-trio-typing: sig-python-modules
   python-trio-websocket: sig-python-modules
+  python-trove-classifiers: sig-python-modules
   python-trove-dashboard: sig-openstack
   python-trove-tempest-plugin: sig-openstack
   python-troveclient: sig-openstack
