@@ -222,14 +222,16 @@
 <p>目前 SIG 处理编包问题主要使用 SIG 自己编写的 oos 工具。oos 工具细节参考 <a href="https://gitee.com/openeuler/openstack/blob/master/tools/oos/README.md">oos README</a>。不同“Status”处理时涉及的“升级”、“初始化分支”、“软件包放入 OBS 工程”等操作，oos 工具有对应实现。</p>
 <p>以 Yoga 版本升级 python-pyrsistent 软件包为例，演示编包流程，帮助开发者熟悉 OpenStack SIG 基于 oos 工具的打包相关流程。在了解基础流程后，开发者可通过<a href="https://gitee.com/openeuler/openstack/blob/master/tools/oos/README.md">oos README</a>了解其余操作。python-pyrsistent 软件包信息参见上文表格。该软件包需要从0.18.0版本升级到0.18.1版本。Yoga 版本是在22.09版本开发规划中，当前为22年5月，直接提交到master分支即可。</p>
 <h3 id="cla">签署 CLA<a class="headerlink" href="#cla" title="Permanent link">&para;</a></h3>
-<p>在openEuler社区提交贡献需要签署 <a href="https://clasign.osinfra.cn/sign/Z2l0ZWUlMkZvcGVuZXVsZXI=">CLA</a>。</p>
+<p>在 openEuler 社区提交贡献需要签署 <a href="https://clasign.osinfra.cn/sign/Z2l0ZWUlMkZvcGVuZXVsZXI=">CLA</a>。</p>
+<p>对于初次参与 openEuler 社区的开发者，可首先查看<a href="https://www.openeuler.org/zh/community/contribution/"> openEuler 贡献攻略</a>，概览整体贡献情况。</p>
 <h3 id="_1">环境准备<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <pre class="highlight"><code class="language-shell">dnf install rpm-build rpmdevtools git
 
 # 生成~/rpmbuild目录，oos默认工作路径也为此
 rpmdev-setuptree
 
-pip install openstack-sig-tool</code></pre>
+pip install openstack-sig-tool==1.0.6</code></pre>
+<p>说明：openstack-sig-tool 在 1.1.0 版本对 <code>oos spec</code> 命令进行了<a href="https://gitee.com/openeuler/openstack/commit/9083ba741acdea4d986cb2a58069156693832d09">重构</a>。如下流程涉及 <code>oos spec</code> 命令的操作对应 1.0.6 版本。建议安装新版 <a href="https://gitee.com/openeuler/openstack/tree/master/tools/oos">oos</a>, 并参考对应 <a href="https://gitee.com/openeuler/openstack/blob/master/tools/oos/README.md">README</a> 使用。</p>
 <h3 id="gitee-patpersonal-access-token">生成个人 Gitee 帐户的 pat(personal access token)<a class="headerlink" href="#gitee-patpersonal-access-token" title="Permanent link">&para;</a></h3>
 <p>首先进入 Gitee 帐户的“设置”界面。</p>
 <p><img alt="设置" src="../../img/contribute/rpm-packaging-reference/setting.png" /></p>
