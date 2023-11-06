@@ -1,5 +1,5 @@
 import json
-
+import re
 from packaging import version as p_version
 import requests
 
@@ -21,26 +21,14 @@ def get_gitee_project_version(owner, project, branch, access_token=None):
     version = ''
     file_tree = get_gitee_project_tree(owner, project, branch, access_token)
     for file in file_tree['tree']:
-        if file['path'].endswith('tar.gz') or \
-                file['path'].endswith('tar.bz2') or \
-                file['path'].endswith('.zip') or \
-                file['path'].endswith('.tgz'):
-            if file['path'].endswith('tar.gz') or file['path'].endswith('tar.bz2'):
-                sub_str = file['path'].rsplit('.', 2)[0]
-            else:
-                sub_str = file['path'].rsplit('.', 1)[0]
-            if '-' in sub_str:
-                version = sub_str.rsplit('-', 1)[1].strip('v')
-            elif '_' in sub_str:
-                version = sub_str.rsplit('_', 1)[1].strip('v')
-            else:
-                version = sub_str.strip('v')
+        if re.search(r'\.(tar\.gz|tar\.bz2|zip|tgz)$', file['path']):
+            sub_str = re.split(r'\.(tar\.gz|tar\.bz2|zip|tgz)$', file['path'])[0]
+            version = re.split(r'[-_]', sub_str)[-1].strip('v')
             try:
                 p_version.parse(version)
+                break
             except p_version.InvalidVersion:
                 continue
-            break
-
     return version
 
 
