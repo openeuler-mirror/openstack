@@ -35,6 +35,7 @@ def _mocked_get_gitee_project_tree(owner, project, branch, access_token):
 
 
 class TestGiteeAction(unittest.TestCase):
+    """TODO: update get_gitee_project_version UT"""
 
     @mock.patch('requests.get', side_effect=_mocked_requests_get)
     def test_get_gitee_project_tree(self, mock_get):
