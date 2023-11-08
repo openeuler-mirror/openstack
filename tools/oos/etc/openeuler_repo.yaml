@@ -85,6 +85,7 @@ openeuler:
   aops-zeus: sig-ops
   api-guarder: sig-EasyLife
   arkui-linux: sig-FangTian
+  arm: sig-Arm
   astream: Kernel
   async-libfuse: iSulad
   attest-tools: sig-security-facility
