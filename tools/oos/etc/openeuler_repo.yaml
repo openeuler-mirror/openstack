@@ -4661,6 +4661,7 @@ src-openeuler:
   openEuler-rpm-config: Base-service
   openEuler_chroot: sig-Gatekeeper
   openGemini: DB
+  openInula: dev-utils
   openRSO: Kernel
   openal-soft: Application
   openapi-schema-validator: sig-python-modules
@@ -7457,6 +7458,7 @@ src-openeuler:
   python-fontname: sig-python-modules
   python-fonttools: Programming-language
   python-formats: sig-python-modules
+  python-fqdn: sig-python-modules
   python-freezegun: Programming-language
   python-friendlyloris: sig-python-modules
   python-frozendict: sig-python-modules
@@ -7639,6 +7641,7 @@ src-openeuler:
   python-ironicclient: sig-openstack
   python-iso8601: Programming-language
   python-isodate: sig-python-modules
+  python-isoduration: sig-python-modules
   python-isort: sig-python-modules
   python-isula: sig-openstack
   python-itsdangerous: Programming-language
@@ -7683,6 +7686,7 @@ src-openeuler:
   python-jsonpickle: sig-openstack
   python-jsonpointer: Base-service
   python-jsonschema: Base-service
+  python-jsonschema-specifications: sig-python-modules
   python-jsx-lexer: sig-python-modules
   python-junitxml: sig-python-modules
   python-jupyter-cache: sig-python-modules
@@ -8453,6 +8457,7 @@ src-openeuler:
   python-rfc3339-validator: sig-python-modules
   python-rfc3986: sig-python-modules
   python-rfc3986-validator: sig-python-modules
+  python-rfc3987: sig-python-modules
   python-rich: sig-python-modules
   python-rinoh-typeface-dejavuserif: sig-python-modules
   python-rinoh-typeface-texgyrecursor: sig-python-modules
@@ -8809,6 +8814,7 @@ src-openeuler:
   python-unittest2: Programming-language
   python-untokenize: sig-python-modules
   python-upoints: sig-python-modules
+  python-uri-template: sig-python-modules
   python-uritemplate: sig-python-modules
   python-url-normalize: sig-python-modules
   python-urlgrabber: Programming-language
