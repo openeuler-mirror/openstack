@@ -746,6 +746,7 @@ src-openeuler:
   aisleriot: sig-desktop-apps
   akonadi-import-wizard: sig-KDE
   alertmanager: sig-CloudNative
+  alex: sig-haskell
   allegro: Private
   alluxio: bigdata
   alpine: Application
@@ -1438,6 +1439,7 @@ src-openeuler:
   diffstat: Base-service
   diffutils: Base-service
   digest-list-tools: sig-security-facility
+  digikam: sig-KDE
   dim: sig-security-facility
   dim_tools: sig-security-facility
   ding-libs: Base-service
@@ -2970,6 +2972,7 @@ src-openeuler:
   kf5-kxmlgui: sig-KDE
   kf5-kxmlrpcclient: sig-KDE
   kf5-libgravatar: sig-KDE
+  kf5-libkcddb: sig-KDE
   kf5-libkdepim: sig-KDE
   kf5-libkexiv2: sig-KDE
   kf5-libkleo: sig-KDE
