@@ -22,20 +22,23 @@ def get_ci_result(job):
 
 if __name__ == '__main__':
     today = datetime.datetime.now()
-    output_body = '# check date: %s-%s-%s\n\n' % (today.year, today.month, today.day)
+    output_body = f'# Check Date: {today:%Y-%m-%d}\n\n'
+    
     for job in jobs:
-        output_body += '## %s\n\n' % job
-        output_body += 'Recent five job results: \n\n'
+        output_body += f'## {job}\n\n'
+        output_body += 'Recent five job results:\n\n'
         res = get_ci_result(job)
-        output_body += '| Number| Result | Time | LOG |\n'
-        output_body += '|-|-|-|-|\n'
+        output_body += '| Number | Result | Time | Log |\n'
+        output_body += '| ------ | ------ | ---- | --- |\n'
+        
         for i in range(5):
             try:
-                output_body += '| %s| **%s** | %s | %s |\n' % (i, res[i]['result'], res[i]['start_time'], res[i]['log_url'])
+                output_body += f'| {i} | **{res[i]["result"]}** | {res[i]["start_time"]} | [Log]({res[i]["log_url"]}) |\n'
             except IndexError:
                 break
+        
         output_body += '\n'
-
+    
     with open('result_body.html', 'w') as f:
         html = markdown.markdown(output_body, extensions=['pymdownx.extra', 'pymdownx.magiclink'])
         f.write(html)
