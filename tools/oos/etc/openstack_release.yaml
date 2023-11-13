@@ -2589,7 +2589,7 @@ zed:
   magnum: 15.0.1
   magnum-ui: 11.0.0
   magnum_tempest_plugin: 1.7.0
-  manila: 15.2.0
+  manila: 15.3.0
   manila-tempest-plugin: 1.10.0
   manila-ui: 8.0.0
   masakari: 14.0.2
