@@ -4,6 +4,7 @@ import click
 
 from oos.commands.spec.spec_class import RPMSpec
 from oos.commands.spec.spec_class import RPMSpecBuild
+from oos.commands.spec.spec_class import RPMCopy
 
 
 def _get_old_spec_info(name):
@@ -74,3 +75,12 @@ def build(package_or_spec_name):
     spec = package_or_spec_name
     spec_build = RPMSpecBuild(spec)
     spec_build.build_package()
+
+
+@group.command(name='cp', help='copy file to rpmbuild dir')
+@click.argument('path', type=str, default=os.getcwd())
+@click.option('--clear', '-c', is_flag=True, default=False, help='remove and make new dirs of rpmbuild')
+@click.option('--build', '-b', is_flag=True, default=False, help='build after copy')
+def cp(path, clear, build):
+    spec_copy = RPMCopy(path, clear, build)
+    spec_copy.copy_file_for_rpm()
