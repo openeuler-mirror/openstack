@@ -4626,7 +4626,7 @@ src-openeuler:
   oec-cloud: sig-Compatibility-Infra
   oec-hardware: sig-Compatibility-Infra
   oemaker: sig-OS-Builder
-  oepkgs-release: sig-Compatibility-Infra
+  oepkgs-repos: sig-Compatibility-Infra
   ogdi: dev-utils
   ogre: sig-ROS
   ohc: sig-Java
