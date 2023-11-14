@@ -15,6 +15,9 @@ BRANCHS = [
     'openEuler:22.03:LTS:Next:Epol:Multi-Version:OpenStack:Wallaby',
     'openEuler:22.03:LTS:SP1:Epol:Multi-Version:OpenStack:Train',
     'openEuler:22.03:LTS:SP1:Epol:Multi-Version:OpenStack:Wallaby',
+    'openEuler:22.03:LTS:SP2:Epol:Multi-Version:OpenStack:Train',
+    'openEuler:22.03:LTS:SP2:Epol:Multi-Version:OpenStack:Wallaby',
+    'openEuler:20.03:LTS:SP4:Epol',
 ]
 
 
@@ -155,14 +158,25 @@ def format_content_for_html(input_dict):
     output_attach = ""
     output_body = ""
     today = datetime.datetime.now()
-    output_body += '# check date: %s-%s-%s\n\n' % (today.year, today.month, today.day)
-    output_body += 'See the attached file for the failed branch\n\n'
+    # 直接用html语法 表格好看点 源文件格式vscode复制粘贴可纠正
+    output_body += '<h1>check date: %s-%s-%s</h1>\n' % (today.year, today.month, today.day)
+    output_body += '<p>See the attached file for the failed branch</p>\n'
+    output_body += '<html>\n<table style="width: 80%;border: 1px solid #ddd;">\n<tr>\n'
+    output_body += '<th style="background-color: #f2f2f2;text-align: left;">branch</th>\n'
+    output_body += '<th style="background-color: #f2f2f2;text-align: left;">result</th>\n<tr>\n'
+
+    td_style = '<td style="border: 1px solid #ddd;padding: 3px;">'
     if input_dict:
         for branch, project_info in input_dict.items():
             if isinstance(project_info, str):
-                output_body += '## %s\n\n' % branch
-                output_body += '%s\n' % project_info
+                output_body += '<tr>\n' + td_style + branch + '</td>\n'
+                output_body += td_style + project_info + '</td>\n</tr>\n'
                 continue
+
+            # 失败的也放到body里呈现出来
+            output_body += '<tr>\n' + td_style + branch + '</td>\n'
+            output_body += td_style + 'fail</td>\n</tr>\n'
+
             output_attach += '## %s\n\n' % branch
             output_attach += '??? note "Detail"\n'
             for project_name, status in project_info.items():
@@ -173,7 +187,10 @@ def format_content_for_html(input_dict):
                     output_attach += '        aarch64: %s\n' % status['aarch64']
             output_attach += '\n'
     else:
-        output_body += 'All package build success.'
+        output_body += '<tr>\n' + td_style + 'all_branch</td>\n'
+        output_body += td_style + 'success</td>\n</tr>\n'
+    
+    output_body += '</table>\n</html>\n'
 
     return output_attach, output_body
 
@@ -243,8 +260,7 @@ def main():
             html = markdown.markdown(result_str_attach, extensions=['pymdownx.details'])
             f.write(html)
         with open('result_body.html', 'w') as f:
-            html = markdown.markdown(result_str_body, extensions=['pymdownx.details'])
-            f.write(html)
+            f.write(result_str_body)
     elif output_type == 'gitee':
         create_or_update_issue(result)
 
