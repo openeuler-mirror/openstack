@@ -20,6 +20,7 @@ openeuler:
   Cpds: sig-CloudNative
   CreateImage: sig-Gatekeeper
   CuckooSQL: bigdata
+  DDE-GoCode: sig-DDE
   DyscheOS-kernel: sig-recycle
   DyscheOS-meta: sig-recycle
   DyscheOS-utils: sig-recycle
@@ -507,6 +508,10 @@ src-openeuler:
   CreateImage: sig-Gatekeeper
   Cython: Programming-language
   DCache: Storage
+  DDE-GoCode: sig-DDE
+  DDE-go-dbus-factory: sig-DDE
+  DDE-go-gir: sig-DDE
+  DDE-go-x11-client: sig-DDE
   DevIL: Application
   Done: Private
   DynamixelSDK: sig-ROS
@@ -2056,6 +2061,7 @@ src-openeuler:
   goebpf: sig-ebpf
   goffice: sig-desktop-apps
   golang: sig-golang
+  golang-deepin-go-lib: sig-DDE
   golang-github-coreos-go-iptables: sig-recycle
   golang-github-cpuguy83-go-md2man: sig-recycle
   golang-github-d2g-dhcp4: sig-recycle
