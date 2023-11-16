@@ -99,6 +99,8 @@ class HuaweiCloudProvider(Provider):
         self.ims_client = self._init_ims_client()
 
     def _init_ecs_client(self):
+        '''管理弹性云服务器ECS的客户端 包括创建 删除 启动等操作
+        '''
         ecs_client = EcsClient.new_builder() \
             .with_credentials(self.credentials) \
             .with_region(EcsRegion.value_of(self.region)) \
@@ -106,6 +108,8 @@ class HuaweiCloudProvider(Provider):
         return ecs_client
 
     def _init_vpc_client(self):
+        '''管理虚拟私有云VPC的客户端 包括创建 删除 查询VPC 子网 安全组等操作
+        '''
         vpc_client = VpcClient.new_builder() \
             .with_credentials(self.credentials) \
             .with_region(VpcRegion.value_of(self.region)) \
@@ -113,6 +117,8 @@ class HuaweiCloudProvider(Provider):
         return vpc_client
 
     def _init_ims_client(self):
+        '''管理镜像服务器IMS的客户端 包括创建 删除 查询 制作 导入等操作
+        '''
         ims_client = ImsClient.new_builder() \
             .with_credentials(self.credentials) \
             .with_region(ImsRegion.value_of(self.region)) \
@@ -295,6 +301,226 @@ class HuaweiCloudProvider(Provider):
             except exceptions.ClientRequestException as ex:
                 if ex.status_code == 404:
                     continue
+
+
+    def _print_table(self, data):
+        '''print all server in data
+        :param data: server info
+        :type ip: list(list)
+        '''
+        if not data:
+            return
+
+        widths = [max(map(len, col)) for col in zip(*data)]
+        output = '+' + '+'.join('-' * (w + 2) for w in widths) + '+\n'
+        for row in data:
+            content = ' | '.join('{:<{}}'.format(d, w) for d, w in zip(row, widths))
+            output += '| ' + content + ' |\n'
+            output += '+' + '+'.join('-' * (w + 2) for w in widths) + '+\n'
+
+        print(output)
+
+    def list_servers(self, ip, is_print=False):
+        '''list target/all server
+        :param ip: server ip
+        :type ip: str
+        :param is_print: print table or not
+        :type is_print: bool
+        :return: other info of target ip
+        :rtype: list(list)
+        '''
+        request = ListServersDetailsRequest()
+
+        servers_table = [['FloatingAddr', 'ServerId', 'Name', 'Status']]
+        aim_server = ['NoTargetIP', 'NA', 'NA', 'NA']
+        float_ip = '1.1.1.1'
+        check_info = []
+        try:
+            reponse = self.ecs_client.list_servers_details(request)
+            # print(len(reponse.servers))
+            for server in reponse.servers:
+                tmp_info = []
+                for ele in list(server.addresses.values())[0]:
+                    if 'floating' == ele.os_ext_ip_stype:
+                        float_ip = ele.addr
+                        aim_server = [
+                            float_ip,
+                            server.id,
+                            server.name,
+                            server.status,
+                        ]
+                        tmp_info = [
+                            float_ip,
+                            server.id,
+                            server.name,
+                            server.metadata['image_name'],
+                            server.status,
+                        ]
+                        break
+
+                if 'all' != ip:
+                    if float_ip == ip:
+                        servers_table.append(aim_server)
+                        check_info = tmp_info
+                        break
+                    continue
+
+                servers_table.append(
+                    [
+                        float_ip,
+                        server.id,
+                        server.name,
+                        server.status,
+                    ]
+                )
+
+            if 1 == len(servers_table):
+                servers_table.append(['NoAimIP', 'NA', 'NA', 'NA'])
+                
+            if is_print:
+                self._print_table(servers_table)
+            return check_info
+
+        except exceptions.ClientRequestException as e:
+            print(e.status_code)
+            print(e.request_id)
+            print(e.error_code)
+            print(e.error_msg)
+
+    def stop_server(self, ip):
+        '''shutoff the server
+        :param ip: server ip
+        :type ip: str
+        '''
+
+        check_info = self.list_servers(ip)
+        if not check_info:
+            print('No Target IP: ' + ip)
+            return
+
+        try:
+            request = BatchStopServersRequest()
+            os_stop = [
+                ServerId(
+                    id=check_info[1]
+                )
+            ]
+            os_stop_body = BatchStopServersOption(
+                servers=os_stop
+            )
+            request.body = BatchStopServersRequestBody(
+                os_stop=os_stop_body
+            )
+            
+            response = self.ecs_client.batch_stop_servers(request)
+            print(response)
+        except exceptions.ClientRequestException as e:
+            print(e.status_code)
+            print(e.request_id)
+            print(e.error_code)
+            print(e.error_msg)
+
+    def start_server(self, ip):
+        '''start the server
+        :param ip: server ip
+        :type ip: str
+        '''
+        check_info = self.list_servers(ip)
+        if not check_info:
+            print('No Target IP: ' + ip)
+            return
+        
+        try:
+            request = BatchStartServersRequest()
+            os_start = [
+                ServerId(
+                    id=check_info[1]
+                )
+            ]
+            os_start_body = BatchStartServersOption(
+                servers=os_start
+            )
+            request.body = BatchStartServersRequestBody(
+                os_start=os_start_body
+            )
+            response = self.ecs_client.batch_start_servers(request)
+            print(response)
+        except exceptions.ClientRequestException as e:
+            print(e.status_code)
+            print(e.request_id)
+            print(e.error_code)
+            print(e.error_msg)
+
+    def reinstall(self, ip, pwd):
+        '''reninstall the server
+        :param ip: server ip
+        :type ip: str
+        :param pwd: password of the server
+        :type pwd: str
+        '''
+        print('you will reinstall the server as follow: ')
+        check_info = self.list_servers(ip, True)
+        if not check_info:
+            print('No Target IP: ' + ip)
+            return
+        
+        if 'SHUTOFF' != check_info[-1]:  # ACTIVE态下无法成功reinstall
+            prompt = 'Befor reinstall, the server must be SHUTOFF, '
+            prompt += 'please run "oos cloud stop" first.'
+            print(prompt)
+            return
+
+        answer = input('!!!Caution!!! Do you want to contine?(y/n)')
+        if 'y' == answer or 'yes' == answer:
+            print('reinstalling')
+        else:
+            print('Invalid input, please try again')
+            return
+
+        try:
+            request = ReinstallServerWithCloudInitRequest()
+            request.server_id = check_info[1]
+            body = ReinstallServerWithCloudInitOption(
+                adminpass=pwd,
+            )
+            request.body = ReinstallServerWithCloudInitRequestBody(os_reinstall=body)
+
+            response = self.ecs_client.reinstall_server_with_cloud_init(request)
+            
+            print(response)
+
+        except exceptions.ClientRequestException as e:
+            print(e.status_code)
+            print(e.request_id)
+            print(e.error_code)
+            print(e.error_msg)
+
+    def _get_all_images(self):
+        '''ListImagesRequest
+        :return: all images
+        :rtype: list
+        '''
+        try:
+            request = ListImagesRequest()
+            response = self.ims_client.list_images(request)
+            return response.images
+
+        except exceptions.ClientRequestException as e:
+            print(e.status_code)
+            print(e.request_id)
+            print(e.error_code)
+            print(e.error_msg)
+
+    def list_images(self):
+        '''list all images
+        '''
+        images_table = [['ImageId', 'Name', 'Status']]
+        all_images = self._get_all_images()
+        print('total num: ' + str(len(all_images)))
+        for image in all_images:
+            images_table.append([image.id, image.name, image.status])
+
+        self._print_table(images_table)
 
 
 class ManagedProvider(Provider):
