@@ -2391,7 +2391,7 @@ yoga:
   oslo.context: 4.1.0
   oslo.db: 11.2.0
   oslo.limit: 1.5.1
-  oslo.messaging: 12.13.2
+  oslo.messaging: 12.13.3
   oslo.metrics: 0.4.0
   oslo.middleware: 4.5.1
   oslo.policy: 3.11.0
