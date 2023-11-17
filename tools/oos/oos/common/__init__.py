@@ -1,5 +1,6 @@
 import configparser
 import os
+import sys
 from pathlib import Path
 import sqlite3
 
@@ -25,9 +26,11 @@ search_paths = ['/etc/oos/',
                 os.path.join(os.path.dirname(oos.__path__[0]), 'etc'),
                 os.environ.get("OOS_CONF_DIR", ""), '/usr/local/etc/oos',
                 '/usr/etc/oos',
+                os.path.join(sys.exec_prefix, 'etc/oos'),
                 ]
 conf_paths = ['/etc/oos/', '/usr/local/etc/oos/',
-              os.path.join(os.path.dirname(oos.__path__[0]), 'etc')
+              os.path.join(os.path.dirname(oos.__path__[0]), 'etc'),
+              os.path.join(sys.exec_prefix, 'etc/oos'),
               ]
 
 
