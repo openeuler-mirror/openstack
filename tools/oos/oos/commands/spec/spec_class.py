@@ -287,18 +287,15 @@ class RPMSpecBuild(object):
             raise click.ClickException(f"Fail to init the rpm build root folder, reason:{e}")
 
     def _get_local_source(self):
-        source_file = None
         with open(self.spec) as f_spec:
-            lines = f_spec.readlines()
-            for l_num, line in enumerate(lines):
+            for line in f_spec:
                 if 'Source0:' in line:
                     source_file = line.split('/')[-1].strip('\n')
+                    if os.path.exists(source_file):
+                        shutil.copyfile(source_file, f"rpmbuild/SOURCES/{source_file}")
+                        return True
                     break
-        if source_file and os.path.exists(source_file):
-            shutil.copyfile(source_file, f"rpmbuild/SOURCES/{source_file}")
-            return True
-        else:
-            return False
+        return False
 
     def build_package(self):
         try:
