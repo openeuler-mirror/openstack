@@ -1911,6 +1911,233 @@ src-openeuler:
   gffread: sig-bio
   gflags: Programming-language
   gfs2-utils: System-tool
+  ghc: sig-haskell
+  ghc-Diff: sig-haskell
+  ghc-Glob: sig-haskell
+  ghc-HUnit: sig-haskell
+  ghc-JuicyPixels: sig-haskell
+  ghc-OneTuple: sig-haskell
+  ghc-Only: sig-haskell
+  ghc-QuickCheck: sig-haskell
+  ghc-SHA: sig-haskell
+  ghc-StateVar: sig-haskell
+  ghc-aeson: sig-haskell
+  ghc-aeson-pretty: sig-haskell
+  ghc-ansi-terminal: sig-haskell
+  ghc-ansi-terminal-types: sig-haskell
+  ghc-appar: sig-haskell
+  ghc-asn1-encoding: sig-haskell
+  ghc-asn1-parse: sig-haskell
+  ghc-asn1-types: sig-haskell
+  ghc-assoc: sig-haskell
+  ghc-async: sig-haskell
+  ghc-attoparsec: sig-haskell
+  ghc-attoparsec-iso8601: sig-haskell
+  ghc-auto-update: sig-haskell
+  ghc-base-compat: sig-haskell
+  ghc-base-compat-batteries: sig-haskell
+  ghc-base-orphans: sig-haskell
+  ghc-base-unicode-symbols: sig-haskell
+  ghc-base16-bytestring: sig-haskell
+  ghc-base64: sig-haskell
+  ghc-base64-bytestring: sig-haskell
+  ghc-basement: sig-haskell
+  ghc-bifunctors: sig-haskell
+  ghc-bitvec: sig-haskell
+  ghc-blaze-builder: sig-haskell
+  ghc-blaze-html: sig-haskell
+  ghc-blaze-markup: sig-haskell
+  ghc-bootstrap: sig-haskell
+  ghc-bootstrap-tools: sig-haskell
+  ghc-boring: sig-haskell
+  ghc-bsb-http-chunked: sig-haskell
+  ghc-byteorder: sig-haskell
+  ghc-cabal-doctest: sig-haskell
+  ghc-call-stack: sig-haskell
+  ghc-case-insensitive: sig-haskell
+  ghc-cassava: sig-haskell
+  ghc-cereal: sig-haskell
+  ghc-citeproc: sig-haskell
+  ghc-colour: sig-haskell
+  ghc-commonmark: sig-haskell
+  ghc-commonmark-extensions: sig-haskell
+  ghc-commonmark-pandoc: sig-haskell
+  ghc-comonad: sig-haskell
+  ghc-conduit: sig-haskell
+  ghc-conduit-extra: sig-haskell
+  ghc-connection: sig-haskell
+  ghc-constraints: sig-haskell
+  ghc-contravariant: sig-haskell
+  ghc-cookie: sig-haskell
+  ghc-cryptohash-md5: sig-haskell
+  ghc-cryptonite: sig-haskell
+  ghc-data-default: sig-haskell
+  ghc-data-default-class: sig-haskell
+  ghc-data-default-instances-containers: sig-haskell
+  ghc-data-default-instances-dlist: sig-haskell
+  ghc-data-default-instances-old-locale: sig-haskell
+  ghc-data-fix: sig-haskell
+  ghc-dec: sig-haskell
+  ghc-digest: sig-haskell
+  ghc-distributive: sig-haskell
+  ghc-dlist: sig-haskell
+  ghc-doclayout: sig-haskell
+  ghc-doctemplates: sig-haskell
+  ghc-easy-file: sig-haskell
+  ghc-emojis: sig-haskell
+  ghc-fast-logger: sig-haskell
+  ghc-file-embed: sig-haskell
+  ghc-foldable1-classes-compat: sig-haskell
+  ghc-generically: sig-haskell
+  ghc-gridtables: sig-haskell
+  ghc-haddock-library: sig-haskell
+  ghc-hashable: sig-haskell
+  ghc-haskell-lexer: sig-haskell
+  ghc-hourglass: sig-haskell
+  ghc-hslua: sig-haskell
+  ghc-hslua-aeson: sig-haskell
+  ghc-hslua-classes: sig-haskell
+  ghc-hslua-cli: sig-haskell
+  ghc-hslua-core: sig-haskell
+  ghc-hslua-list: sig-haskell
+  ghc-hslua-marshalling: sig-haskell
+  ghc-hslua-module-doclayout: sig-haskell
+  ghc-hslua-module-path: sig-haskell
+  ghc-hslua-module-system: sig-haskell
+  ghc-hslua-module-text: sig-haskell
+  ghc-hslua-module-version: sig-haskell
+  ghc-hslua-module-zip: sig-haskell
+  ghc-hslua-objectorientation: sig-haskell
+  ghc-hslua-packaging: sig-haskell
+  ghc-hslua-repl: sig-haskell
+  ghc-hslua-typing: sig-haskell
+  ghc-http-api-data: sig-haskell
+  ghc-http-client: sig-haskell
+  ghc-http-client-tls: sig-haskell
+  ghc-http-date: sig-haskell
+  ghc-http-media: sig-haskell
+  ghc-http-types: sig-haskell
+  ghc-http2: sig-haskell
+  ghc-indexed-traversable: sig-haskell
+  ghc-indexed-traversable-instances: sig-haskell
+  ghc-integer-logarithms: sig-haskell
+  ghc-iproute: sig-haskell
+  ghc-ipynb: sig-haskell
+  ghc-isocline: sig-haskell
+  ghc-jira-wiki-markup: sig-haskell
+  ghc-libyaml: sig-haskell
+  ghc-lpeg: sig-haskell
+  ghc-lua: sig-haskell
+  ghc-memory: sig-haskell
+  ghc-mime-types: sig-haskell
+  ghc-mmorph: sig-haskell
+  ghc-monad-control: sig-haskell
+  ghc-mono-traversable: sig-haskell
+  ghc-network: sig-haskell
+  ghc-network-byte-order: sig-haskell
+  ghc-network-uri: sig-haskell
+  ghc-old-locale: sig-haskell
+  ghc-old-time: sig-haskell
+  ghc-optparse-applicative: sig-haskell
+  ghc-ordered-containers: sig-haskell
+  ghc-pandoc: sig-haskell
+  ghc-pandoc-lua-engine: sig-haskell
+  ghc-pandoc-lua-marshal: sig-haskell
+  ghc-pandoc-server: sig-haskell
+  ghc-pandoc-types: sig-haskell
+  ghc-pem: sig-haskell
+  ghc-pretty-show: sig-haskell
+  ghc-prettyprinter: sig-haskell
+  ghc-prettyprinter-ansi-terminal: sig-haskell
+  ghc-primitive: sig-haskell
+  ghc-psqueues: sig-haskell
+  ghc-random: sig-haskell
+  ghc-recv: sig-haskell
+  ghc-regex-base: sig-haskell
+  ghc-regex-compat: sig-haskell
+  ghc-regex-posix: sig-haskell
+  ghc-regex-tdfa: sig-haskell
+  ghc-resourcet: sig-haskell
+  ghc-rpm-macros: sig-haskell
+  ghc-safe: sig-haskell
+  ghc-safe-exceptions: sig-haskell
+  ghc-scientific: sig-haskell
+  ghc-semialign: sig-haskell
+  ghc-semigroupoids: sig-haskell
+  ghc-servant: sig-haskell
+  ghc-servant-server: sig-haskell
+  ghc-simple-sendfile: sig-haskell
+  ghc-singleton-bool: sig-haskell
+  ghc-skylighting: sig-haskell
+  ghc-skylighting-core: sig-haskell
+  ghc-skylighting-format-ansi: sig-haskell
+  ghc-skylighting-format-blaze-html: sig-haskell
+  ghc-skylighting-format-context: sig-haskell
+  ghc-skylighting-format-latex: sig-haskell
+  ghc-socks: sig-haskell
+  ghc-some: sig-haskell
+  ghc-sop-core: sig-haskell
+  ghc-split: sig-haskell
+  ghc-splitmix: sig-haskell
+  ghc-streaming-commons: sig-haskell
+  ghc-strict: sig-haskell
+  ghc-string-conversions: sig-haskell
+  ghc-syb: sig-haskell
+  ghc-tagged: sig-haskell
+  ghc-tagsoup: sig-haskell
+  ghc-tasty: sig-haskell
+  ghc-tasty-hunit: sig-haskell
+  ghc-tasty-quickcheck: sig-haskell
+  ghc-temporary: sig-haskell
+  ghc-text-conversions: sig-haskell
+  ghc-text-short: sig-haskell
+  ghc-th-abstraction: sig-haskell
+  ghc-th-compat: sig-haskell
+  ghc-th-lift: sig-haskell
+  ghc-th-lift-instances: sig-haskell
+  ghc-these: sig-haskell
+  ghc-time-compat: sig-haskell
+  ghc-time-manager: sig-haskell
+  ghc-tls: sig-haskell
+  ghc-transformers-base: sig-haskell
+  ghc-transformers-compat: sig-haskell
+  ghc-type-equality: sig-haskell
+  ghc-typed-process: sig-haskell
+  ghc-typst: sig-haskell
+  ghc-typst-symbols: sig-haskell
+  ghc-unicode-collation: sig-haskell
+  ghc-unicode-data: sig-haskell
+  ghc-unicode-transforms: sig-haskell
+  ghc-uniplate: sig-haskell
+  ghc-unix-compat: sig-haskell
+  ghc-unix-time: sig-haskell
+  ghc-unliftio: sig-haskell
+  ghc-unliftio-core: sig-haskell
+  ghc-unordered-containers: sig-haskell
+  ghc-utf8-string: sig-haskell
+  ghc-uuid-types: sig-haskell
+  ghc-vault: sig-haskell
+  ghc-vector: sig-haskell
+  ghc-vector-algorithms: sig-haskell
+  ghc-vector-stream: sig-haskell
+  ghc-wai: sig-haskell
+  ghc-wai-app-static: sig-haskell
+  ghc-wai-cors: sig-haskell
+  ghc-wai-extra: sig-haskell
+  ghc-wai-logger: sig-haskell
+  ghc-warp: sig-haskell
+  ghc-witherable: sig-haskell
+  ghc-word8: sig-haskell
+  ghc-x509: sig-haskell
+  ghc-x509-store: sig-haskell
+  ghc-x509-system: sig-haskell
+  ghc-x509-validation: sig-haskell
+  ghc-xml: sig-haskell
+  ghc-xml-conduit: sig-haskell
+  ghc-xml-types: sig-haskell
+  ghc-yaml: sig-haskell
+  ghc-zip-archive: sig-haskell
+  ghc-zlib: sig-haskell
   ghostscript: Base-service
   gi-docgen: GNOME
   giflib: Desktop
@@ -2216,6 +2443,7 @@ src-openeuler:
   hadoop: bigdata
   hadoop-3.1: bigdata
   hamcrest: dev-utils
+  happy: sig-haskell
   haproxy: System-tool
   haproxy_exporter: sig-CloudNative
   harbor: sig-CloudNative
@@ -4900,6 +5128,7 @@ src-openeuler:
   pam: sig-security-facility
   pam_krb5: Application
   pam_wrapper: sig-security-facility
+  pandoc-cli: sig-haskell
   pango: Desktop
   pangomm: Programming-language
   pangox-compat: sig-mate-desktop
@@ -10152,6 +10381,7 @@ src-openeuler:
   texlive-split-x: Application
   texlive-split-y: Application
   texlive-split-z: Application
+  texmath: sig-haskell
   texworks: sig-desktop-apps
   tez: DB
   tf_transformations: sig-ROS
