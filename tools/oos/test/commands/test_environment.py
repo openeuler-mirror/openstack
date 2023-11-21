@@ -13,6 +13,8 @@ def test_environment_cli():
     assert 'list' in result.output
     assert 'manage' in result.output
     assert 'setup' in result.output
+    assert 'start' in result.output
+    assert 'stop' in result.output
     assert 'test' in result.output
 
 def test_environment_cli_clean():
@@ -53,6 +55,8 @@ def test_environment_cli_list():
     result = runner.invoke(group, ['list', '--help'])
     assert result.exit_code == 0
     assert 'list' in result.output
+    assert '--remote' in result.output
+    assert '--image' in result.output
 
 def test_environment_cli_manage():
     runner = CliRunner()
@@ -73,3 +77,25 @@ def test_environment_cli_test():
     result = runner.invoke(group, ['test', '--help'])
     assert result.exit_code == 0
     assert 'test' in result.output
+
+
+def test_spec_cli_start():
+    runner = CliRunner()
+    result = runner.invoke(group, ['start', '--help'])
+    assert result.exit_code == 0
+    assert 'Start the server with target ip' in result.output
+
+
+def test_spec_cli_stop():
+    runner = CliRunner()
+    result = runner.invoke(group, ['stop', '--help'])
+    assert result.exit_code == 0
+    assert 'Stop the servers with target ip' in result.output
+
+
+def test_spec_cli_reinstall():
+    runner = CliRunner()
+    result = runner.invoke(group, ['reinstall', '--help'])
+    assert result.exit_code == 0
+    assert 'Reinstall the server with ip and pwd' in result.output
+

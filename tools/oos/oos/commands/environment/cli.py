@@ -16,7 +16,21 @@ def group():
 
 
 @group.command(name='list', help='List environment')
-def list():
+@click.option('-r', '--remote',
+              help='List remote all ECS servers or target ip')
+@click.option('-i', '--image',
+              help='List all images')
+def list(remote, image):
+    if remote:
+        cloud_action = provider.HuaweiCloudProvider()
+        cloud_action.list_servers(remote, True)
+        return
+
+    if image:
+        cloud_action = provider.HuaweiCloudProvider()
+        cloud_action.list_images()
+        return
+
     table = prettytable.PrettyTable(constants.TABLE_COLUMN)
     res = sqlite_ops.list_targets()
     for raw in res:
@@ -177,3 +191,28 @@ def inject(name):
     if provider.Provider.has_sshpass():
         for server_ip in server_info:
             provider.Provider.setup_sshpass(server_ip[0])
+
+
+
+@group.command(name='reinstall', help='Reinstall the server with ip and pwd')
+@click.argument('ip', type=str, required=True)
+@click.argument('pwd', type=str, required=True)
+def reinstall(ip, pwd):
+    cloud_action = provider.HuaweiCloudProvider()
+    cloud_action.reinstall(ip, pwd)
+
+
+@group.command(name='stop', help='Stop the servers with target ip')
+@click.argument('ip', type=str, required=True)
+def stop(ip):
+    cloud_action = provider.HuaweiCloudProvider()
+    cloud_action.stop_server(ip)
+
+
+@group.command(name='start', help='Start the server with target ip')
+@click.argument('ip', type=str, required=True)
+def start(ip):
+    cloud_action = provider.HuaweiCloudProvider()
+    cloud_action.start_server(ip)
+
+
