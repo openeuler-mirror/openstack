@@ -194,6 +194,7 @@ openeuler:
   git-basics: sig-OSCourse
   gitbook-theme-hugo: Infrastructure
   globalization: G11N
+  glusterfs-dashboard: sig-SDS
   go-gitee: Infrastructure
   gostone: sig-openstack
   ha-api: sig-Ha
@@ -273,6 +274,8 @@ openeuler:
   kunpengsecl: sig-security-facility
   kylin-installer: sig-UKUI
   kylin-user-guide: sig-UKUI
+  kytuning-client: sig-ops
+  kytuning-server: sig-ops
   lanzhou_university_2021: sig-recycle
   lboot: sig-OS-Builder
   lcr: iSulad
@@ -1044,6 +1047,7 @@ src-openeuler:
   bouncycastle: dev-utils
   bowtie2: sig-bio
   box86: sig-compat-winapp
+  bpftool: sig-ebpf
   bpftrace: sig-ebpf
   bpg-fonts: Desktop
   bpytop: System-tool
@@ -3334,6 +3338,8 @@ src-openeuler:
   kylin-video: sig-UKUI
   kylin-weather: sig-UKUI
   kyotocabinet: Others
+  kytuning-client: sig-ops
+  kytuning-server: sig-ops
   kyua: Base-service
   labltk: Programming-language
   ladspa: dev-utils
