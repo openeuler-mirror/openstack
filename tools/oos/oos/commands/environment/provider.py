@@ -320,15 +320,20 @@ class HuaweiCloudProvider(Provider):
 
         print(output)
 
-    def list_servers(self, ip, is_print=False):
+    def list_servers(self, ip, keyword, is_print=False):
         '''list target/all server
-        :param ip: server ip
+        :param ip: server ip or word 'all' to show all server
         :type ip: str
+        :param keyword: show that contain the keyword
+        :type keyword: str
         :param is_print: print table or not
         :type is_print: bool
         :return: other info of target ip
         :rtype: list(list)
         '''
+        if ip != 'all':
+            keyword = None
+
         request = ListServersDetailsRequest()
 
         servers_table = [['FloatingAddr', 'ServerId', 'Name', 'Status']]
@@ -365,6 +370,9 @@ class HuaweiCloudProvider(Provider):
                         break
                     continue
 
+                if keyword and server.name.find(keyword) == -1:
+                    continue
+
                 servers_table.append(
                     [
                         float_ip,
@@ -393,7 +401,7 @@ class HuaweiCloudProvider(Provider):
         :type ip: str
         '''
 
-        check_info = self.list_servers(ip)
+        check_info = self.list_servers(ip, None)
         if not check_info:
             print('No Target IP: ' + ip)
             return
@@ -425,7 +433,7 @@ class HuaweiCloudProvider(Provider):
         :param ip: server ip
         :type ip: str
         '''
-        check_info = self.list_servers(ip)
+        check_info = self.list_servers(ip, None)
         if not check_info:
             print('No Target IP: ' + ip)
             return
@@ -451,7 +459,7 @@ class HuaweiCloudProvider(Provider):
             print(e.error_code)
             print(e.error_msg)
 
-    def reinstall(self, ip, pwd):
+    def reinstall(self, ip, pwd, usr_data):
         '''reninstall the server
         :param ip: server ip
         :type ip: str
@@ -459,29 +467,34 @@ class HuaweiCloudProvider(Provider):
         :type pwd: str
         '''
         print('you will reinstall the server as follow: ')
-        check_info = self.list_servers(ip, True)
+        check_info = self.list_servers(ip, None, True)
         if not check_info:
             print('No Target IP: ' + ip)
             return
         
-        if 'SHUTOFF' != check_info[-1]:  # ACTIVE态下无法成功reinstall
-            prompt = 'Befor reinstall, the server must be SHUTOFF, '
-            prompt += 'please run "oos cloud stop" first.'
-            print(prompt)
-            return
+        # if 'SHUTOFF' != check_info[-1]:  # ACTIVE态下无法成功reinstall
+        #     prompt = 'Befor reinstall, the server must be SHUTOFF, '
+        #     prompt += 'please run "oos cloud stop" first.'
+        #     print(prompt)
+        #     return
 
         answer = input('!!!Caution!!! Do you want to contine?(y/n)')
         if 'y' == answer or 'yes' == answer:
             print('reinstalling')
         else:
-            print('Invalid input, please try again')
+            print('Cancel or Invalid input, please try again')
             return
 
         try:
             request = ReinstallServerWithCloudInitRequest()
+            meta_data = ReinstallSeverMetadata(
+                user_data=usr_data
+            )
             request.server_id = check_info[1]
             body = ReinstallServerWithCloudInitOption(
                 adminpass=pwd,
+                metadata=meta_data,
+                mode='withStopServer'
             )
             request.body = ReinstallServerWithCloudInitRequestBody(os_reinstall=body)
 
@@ -495,13 +508,14 @@ class HuaweiCloudProvider(Provider):
             print(e.error_code)
             print(e.error_msg)
 
-    def _get_all_images(self):
+    def _get_all_images(self, image_type):
         '''ListImagesRequest
         :return: all images
         :rtype: list
         '''
         try:
             request = ListImagesRequest()
+            request.imagetype = image_type
             response = self.ims_client.list_images(request)
             return response.images
 
@@ -511,16 +525,73 @@ class HuaweiCloudProvider(Provider):
             print(e.error_code)
             print(e.error_msg)
 
-    def list_images(self):
+    def list_all_images(self, keyword, image_type, is_print=False):
         '''list all images
         '''
         images_table = [['ImageId', 'Name', 'Status']]
-        all_images = self._get_all_images()
-        print('total num: ' + str(len(all_images)))
+        all_images = self._get_all_images(image_type)
         for image in all_images:
+            if keyword and image.name.find(keyword) == -1:
+                continue
+
             images_table.append([image.id, image.name, image.status])
 
-        self._print_table(images_table)
+        if is_print:
+            print('total num: ' + str(len(all_images)))
+            self._print_table(images_table)
+
+        return images_table
+
+    def change_os(self, ip, server_id, image_id, keyword, pwd, usr_data):
+        '''Reinstall the target server with target image
+        '''
+        if not server_id:
+            check_info = self.list_servers(ip, None)
+            if not check_info:
+                print('No Target IP: ' + ip)
+                return
+
+            server_id = check_info[1]
+        
+        if not image_id:
+            # key_image[0]是表头
+            key_image = self.list_all_images(keyword)
+            if 2 != len(key_image):
+                print('cannot find image id with the keyword')
+                self._print_table(key_image)
+                return
+
+            image_id = key_image[1][0]
+
+        answer = input('!!!Caution!!! Do you want to contine?(y/n)')
+        if 'y' == answer or 'yes' == answer:
+            print('reinstalling \nserverID: %s\nimageID: %s' % (server_id, image_id))
+        else:
+            print('Cancel or Invalid input, please try again')
+            return
+        
+        try:
+            request = ChangeServerOsWithCloudInitRequest()
+            request.server_id = server_id
+            meta_data = ChangeSeversOsMetadata(
+                user_data=usr_data
+            )
+            os_body = ChangeServerOsWithCloudInitOption(
+                adminpass=pwd,
+                imageid=image_id,
+                metadata=meta_data,
+                mode='withStopServer'
+            )
+            request.body = ChangeServerOsWithCloudInitRequestBody(
+                os_change=os_body
+            )
+            response = self.ecs_client.change_server_os_with_cloud_init(request)
+            print(response)
+        except exceptions.ClientRequestException as e:
+            print(e.status_code)
+            print(e.request_id)
+            print(e.error_code)
+            print(e.error_msg)
 
 
 class ManagedProvider(Provider):
