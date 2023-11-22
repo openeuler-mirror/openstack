@@ -20,6 +20,20 @@ BRANCHS = [
     'openEuler:20.03:LTS:SP4:Epol',
 ]
 
+# EBS和OBS个别分支名称差异不是:和_
+# EBS_BRANCHS = [br.replace(':', '_') for br in BRANCHS]
+EBS_BRANCHS = [
+    'openEuler_22.03_LTS_Next_Epol_Multi-Version_OpenStack_Train',
+    'openEuler_22.03_LTS_Next_Epol_Multi-Version_OpenStack_Wallaby',
+    'openEuler_22.03_LTS_SP1_Epol_Multi-Version_OpenStack_Train',
+    'openEuler_22.03_LTS_SP1_Epol_Multi-Version_OpenStack_Wallaby',
+    'openEuler_22.03_LTS_SP2_Epol_Multi-Version_OpenStack_Train',
+    'openEuler_22.03_LTS_SP2_Epol_Multi-Version_OpenStack_Wallaby',
+    'openEuler_22.03_LTS_SP3_Epol_Multi-Version_OpenStack_Wallaby',
+    'openEuler_22.03_LTS_SP3_Epol_Multi-Version_OpenStack_Train',
+    'openEuler-20.03-LTS-SP4-Epol',
+]
+
 
 OBS_PACKAGE_BUILD_RESULT_URL = 'https://build.openeuler.openatom.cn/build/%(branch)s/_result'
 OBS_PROJECT_URL = 'https://build.openeuler.openatom.cn/package/show/%(branch)s/%(project)s'
@@ -33,6 +47,112 @@ GITEE_ISSUE_UPDATE_URL = 'https://gitee.com/api/v5/repos/openeuler/issues/%s'
 OBS_USER_NAME = os.environ.get('OBS_USER_NAME')
 OBS_USER_PASSWORD = os.environ.get('OBS_USER_PASSWORD')
 GITEE_USER_TOKEN = os.environ.get('GITEE_USER_TOKEN')
+
+
+EBS_PACKAGE_BUILD_RESULT_URL = 'https://eulermaker.compass-ci.openeuler.openatom.cn/api/data-api/search'
+
+EBS_BUILD_URL = 'https://eulermaker.compass-ci.openeuler.openatom.cn/project/build?osProject=%(branch)s&buildId=%(buildid)s'
+
+EBS_PROJ_BUILD_SUC = 202
+EBS_PROJ_BUILDING = 200
+EBS_PKG_BUILD_SUC = 103
+
+EBS_JSON = {
+    'index': 'builds',
+    'query': {
+        'size': 2,  # 查询多少个 按照build_id查询 0是x86 1是arm
+        '_source': [  # 查询字段
+            'build_id',
+            'create_time',
+            'status',  # 状态
+            'build_type',
+            'build_target',
+            # 'published_status',
+            'build_packages',
+        ],
+        'query': {
+            'match': {
+                'os_project': 'openEuler-20.03-LTS-SP4:epol', # 工程
+            },
+        },
+        'sort':[
+            {
+                'create_time':{
+                    'order': 'desc'
+                }
+            }
+        ]
+    }
+}
+
+def pkgs_result_update(result_br, name, arch, details):
+    if not result_br.get(name):
+        result_br[name] = {}
+        result_br[name][arch] = details
+    else:
+        result_br[name][arch] = details
+
+
+def check_ebs_pkgs(pkg_results, branch, white_list, result, arch):
+    is_suc = True
+    for name, info in pkg_results.items():
+        if info['build']['status'] != EBS_PKG_BUILD_SUC and name in white_list:
+            is_suc = False
+            pkgs_result_update(result[branch], name, arch, info['build']['details'][0])
+
+    if is_suc:
+        result[branch] = 'Success'
+
+
+def check_ebs_status():
+    '''
+    EBS是按照buildID来查询的 每次build只构建一种架构
+    新的构建会继承上一次失败的包
+    检查下ebs_result[0/1] 不符合默认提示下
+    '''
+    white_list = list(OPENEULER_SIG_REPO['src-openeuler'].keys())
+    
+    result = {}
+    prompt = ''
+    for branch in EBS_BRANCHS:
+        EBS_JSON['query']['query']['match']['os_project'] = branch
+        res = requests.post(EBS_PACKAGE_BUILD_RESULT_URL, json=EBS_JSON, verify=False)
+        ebs_result = res.json()['hits']['hits']
+        if not ebs_result:
+            continue
+
+        # 默认ebs_result[0]是x86 ebs_result[1]是arm 这里check后异常提示下
+        if ebs_result[0]['_source']['build_target']['architecture'] != 'x86_64' \
+            or ebs_result[1]['_source']['build_target']['architecture'] != 'aarch64':
+
+            prompt = '默认架构异常 检查结果可能有误'
+
+        # 构建中提示下
+        if ebs_result[0]['_source']['status'] == EBS_PROJ_BUILDING \
+            or ebs_result[1]['_source']['status'] == EBS_PROJ_BUILDING:
+
+            prompt = 'ebs not finish, still building'
+
+        # 与obs差异 ebs所有构建失败只能去看同一个buildID 这里添加并保证链接在前面
+        result[branch] = {}
+        url = EBS_BUILD_URL % {'branch': branch, 'buildid': ebs_result[0]['_source']['build_id']}
+        fail_link = PROJECT_MARKDOWN_FORMAT % {'project': 'x86_64', 'url': url}
+        result[branch][fail_link] = {}  # 保持格式 value赋值为字典
+
+        url = EBS_BUILD_URL % {'branch': branch, 'buildid': ebs_result[1]['_source']['build_id']}
+        fail_link = PROJECT_MARKDOWN_FORMAT % {'project': 'aarch64', 'url': url}
+        result[branch][fail_link] = {}  # 保持格式 value赋值为字典
+
+        for i in range(2):
+            source = ebs_result[i]['_source']
+            check_ebs_pkgs(
+                source['build_packages'],
+                branch, white_list,
+                result,
+                source['build_target']['architecture']
+            )
+
+    return result, prompt
 
 
 # The result dict format will be like:
@@ -154,12 +274,14 @@ def format_content_for_markdown(input_dict):
     return output
 
 
-def format_content_for_html(input_dict):
-    output_attach = ""
-    output_body = ""
+def format_content_for_html(input_dict, is_ebs=False, prompt=''):
+    output_attach = ''
+    output_body = ''
     today = datetime.datetime.now()
     # 直接用html语法 表格好看点 源文件格式vscode复制粘贴可纠正
-    output_body += '<h1>check date: %s-%s-%s</h1>\n' % (today.year, today.month, today.day)
+    output_body += '<h1>EBS ' if is_ebs else '<h1>OBS '
+    output_body += 'check date: %s-%s-%s</h1>\n' % (today.year, today.month, today.day)
+    output_body += '<p>' + prompt + '</p>\n' if prompt != '' else ''
     output_body += '<p>See the attached file for the failed branch</p>\n'
     output_body += '<html>\n<table style="width: 80%;border: 1px solid #ddd;">\n<tr>\n'
     output_body += '<th style="background-color: #f2f2f2;text-align: left;">branch</th>\n'
@@ -250,16 +372,28 @@ def main():
         print("Please specify the output type: markdown, html or gitee")
         exit(1)
     result = check_status()
+    ebs_result, prompt = check_ebs_status()
     if output_type == 'markdown':
         output = format_content_for_markdown(result)
         with open('result.md', 'w') as f:
             f.write(markdown.markdown(output))
     elif output_type == 'html':
+        # 处理OBS结果
         result_str_attach, result_str_body= format_content_for_html(result)
         with open('result_attach.html', 'w') as f:
             html = markdown.markdown(result_str_attach, extensions=['pymdownx.details'])
             f.write(html)
         with open('result_body.html', 'w') as f:
+            f.write(result_str_body)
+
+        # 处理EBS结果
+        result_str_attach, result_str_body= format_content_for_html(ebs_result, True, prompt)
+        with open('result_attach.html', 'a') as f:
+            html = markdown.markdown(result_str_attach, 
+                                     extensions=['pymdownx.details'],
+                                     safe_mode=True)
+            f.write(html)
+        with open('result_body.html', 'a') as f:
             f.write(result_str_body)
     elif output_type == 'gitee':
         create_or_update_issue(result)
