@@ -456,6 +456,6 @@ if __name__ == '__main__':
             CONSTANTS = yaml.safe_load(open(cons, 'r', encoding='utf-8'))
             OPENSTACK_RELEASE_MAP = yaml.safe_load(open(openstack_release))
             break
-    else:
+    if OPENSTACK_RELEASE_MAP == None:
         raise Exception("The constants or openstack release file are not found!")
     run()
