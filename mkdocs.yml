@@ -21,6 +21,7 @@ nav:
   - openEuler-20.03-LTS-SP3_Queens: 'install/openEuler-20.03-LTS-SP3/OpenStack-queens.md'
   - openEuler-20.03-LTS-SP3_Rocky: 'install/openEuler-20.03-LTS-SP3/OpenStack-rocky.md'
   - openEuler-20.03-LTS-SP3_Train: 'install/openEuler-20.03-LTS-SP3/OpenStack-train.md'
+  - openEuler-20.03-LTS-SP4_Train: 'install/openEuler-20.03-LTS-SP4/OpenStack-train.md'
   - openEuler-21.09_Wallaby: 'install/openEuler-21.09/OpenStack-wallaby.md'
   - openEuler-22.03-LTS_Train: 'install/openEuler-22.03-LTS/OpenStack-train.md'
   - openEuler-22.03-LTS_Wallaby: 'install/openEuler-22.03-LTS/OpenStack-wallaby.md'
