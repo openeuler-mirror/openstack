@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-import click
+import click, base64
 import prettytable
 
 from oos.commands.environment import constants
@@ -18,17 +18,22 @@ def group():
 @group.command(name='list', help='List environment')
 @click.option('-r', '--remote',
               help='List remote all ECS servers or target ip')
-@click.option('-i', '--image',
+@click.option('-i', '--image', is_flag=True, default=False,
               help='List all images')
-def list(remote, image):
+@click.option('-k', '--keyword',
+              help='List keyword in server/image name')
+@click.option('-t', '--image-type',
+              type=click.Choice(['gold', 'private', 'shared', 'market']),
+              help='Choice the type of image to list')
+def list(remote, image, keyword, image_type):
     if remote:
         cloud_action = provider.HuaweiCloudProvider()
-        cloud_action.list_servers(remote, True)
+        cloud_action.list_servers(remote, keyword, True)
         return
 
     if image:
         cloud_action = provider.HuaweiCloudProvider()
-        cloud_action.list_images()
+        cloud_action.list_all_images(keyword, image_type, True)
         return
 
     table = prettytable.PrettyTable(constants.TABLE_COLUMN)
@@ -193,15 +198,6 @@ def inject(name):
             provider.Provider.setup_sshpass(server_ip[0])
 
 
-
-@group.command(name='reinstall', help='Reinstall the server with ip and pwd')
-@click.argument('ip', type=str, required=True)
-@click.argument('pwd', type=str, required=True)
-def reinstall(ip, pwd):
-    cloud_action = provider.HuaweiCloudProvider()
-    cloud_action.reinstall(ip, pwd)
-
-
 @group.command(name='stop', help='Stop the servers with target ip')
 @click.argument('ip', type=str, required=True)
 def stop(ip):
@@ -216,3 +212,48 @@ def start(ip):
     cloud_action.start_server(ip)
 
 
+@group.command(name='reinstall', help='Reinstall the server with ip and pwd')
+@click.argument('ip', type=str, required=True)
+@click.option('-p', '--pwd',
+              help='new password of the server after reinstall')
+@click.option('-f', '--file',
+              help='the data you want to inject from file')
+def reinstall(ip, pwd, file):
+    user_data = None  # 命令注入需要镜像支持cloud-init
+    if file:
+        try:
+            with open(file, 'r') as f:
+                user_data = base64.b64encode(f.read().encode('utf-8')).decode('utf-8')
+        except:
+            pass  # 异常继续
+
+    cloud_action = provider.HuaweiCloudProvider()
+    cloud_action.reinstall(ip, pwd, user_data)
+
+
+@group.command(name='changeos', help='Reinstall the target server with target image')
+@click.argument('ip', type=str, required=True)
+@click.option('-s', '--server-id',
+              help='target server id you want to reinstall, it will invalidate arg "ip"')
+@click.option('-i', '--image-id', 
+              help='target image id you want to use')
+@click.option('-k', '--keyword',
+              help='keyword in image name, make sure the image is only one')
+@click.option('-p', '--pwd',
+              help='new password of the server after changeos')
+@click.option('-f', '--file',
+              help='the data you want to inject from file')
+def changeos(ip, server_id, image_id, keyword, pwd, file):
+    if not image_id and not keyword:
+        print('please run with -i/--image-id')
+
+    user_data = None
+    if file:
+        try:
+            with open(file, 'r') as f:
+                user_data = base64.b64encode(f.read().encode('utf-8')).decode('utf-8')
+        except:
+            pass  # 异常继续
+
+    cloud_action = provider.HuaweiCloudProvider()
+    cloud_action.change_os(ip, server_id, image_id, keyword, pwd, user_data)
