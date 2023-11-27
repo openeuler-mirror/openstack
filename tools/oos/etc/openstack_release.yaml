@@ -2365,7 +2365,7 @@ yoga:
   networking-hyperv: 12.0.0
   networking-odl: 20.0.0
   networking-sfc: 14.0.0
-  neutron: 20.4.0
+  neutron: 20.5.0
   neutron-dynamic-routing: 20.0.1
   neutron-lib: 2.20.2
   neutron-tempest-plugin: 1.9.0
@@ -2621,7 +2621,7 @@ zed:
   networking-hyperv: 13.0.0
   networking-odl: 21.0.0
   networking-sfc: 15.0.0
-  neutron: 21.1.2
+  neutron: 21.2.0
   neutron-dynamic-routing: 21.0.1
   neutron-fwaas: 17.0.0
   neutron-fwaas-dashboard: 4.0.0
