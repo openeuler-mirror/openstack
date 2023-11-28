@@ -218,6 +218,8 @@ openeuler:
   infrastructure: Infrastructure
   install-scripts: sig-OS-Builder
   integration-test: sig-QA
+  intel-iavf: sig-Intel-Arch
+  intel-ice: sig-Intel-Arch
   intel-kernel: sig-Intel-Arch
   intel-lkvs: sig-Intel-Arch
   intel-qemu: sig-Intel-Arch
@@ -483,6 +485,7 @@ openeuler:
   yocto-meta-openembedded: sig-Yocto
   yocto-meta-openeuler: sig-Yocto
   yocto-meta-qt5: sig-Yocto
+  yocto-meta-raspberrypi: sig-Yocto
   yocto-meta-rockchip: sig-Yocto
   yocto-meta-ros: sig-Yocto
   yocto-meta-virtualization: sig-Yocto
@@ -1102,6 +1105,7 @@ src-openeuler:
   calico: sig-CloudNative
   callaudiod: GNOME
   calls: GNOME
+  can-utils: sig-embedded
   canal: DB
   canfestival: sig-industrial-control
   canfestival-xenomai: sig-industrial-control
@@ -1507,6 +1511,7 @@ src-openeuler:
   dos2unix: Base-service
   dosfstools: Storage
   dotconf: Programming-language
+  dotnet-6: sig-porting-platform-winapp
   double-conversion: Computing
   dovecot: Application
   doxygen: Application
@@ -1639,6 +1644,7 @@ src-openeuler:
   evince: GNOME
   evo-inflector: sig-Java
   evolution-data-server: Desktop
+  evtest: sig-embedded
   example_interfaces: sig-ROS
   examples: sig-ROS
   exec-maven-plugin: sig-Java
@@ -1970,12 +1976,16 @@ src-openeuler:
   ghc-comonad: sig-haskell
   ghc-conduit: sig-haskell
   ghc-conduit-extra: sig-haskell
-  ghc-connection: sig-haskell
   ghc-constraints: sig-haskell
   ghc-contravariant: sig-haskell
   ghc-cookie: sig-haskell
   ghc-cryptohash-md5: sig-haskell
-  ghc-cryptonite: sig-haskell
+  ghc-crypton: sig-haskell
+  ghc-crypton-connection: sig-haskell
+  ghc-crypton-x509: sig-haskell
+  ghc-crypton-x509-store: sig-haskell
+  ghc-crypton-x509-system: sig-haskell
+  ghc-crypton-x509-validation: sig-haskell
   ghc-data-default: sig-haskell
   ghc-data-default-class: sig-haskell
   ghc-data-default-instances-containers: sig-haskell
@@ -1984,6 +1994,7 @@ src-openeuler:
   ghc-data-fix: sig-haskell
   ghc-dec: sig-haskell
   ghc-digest: sig-haskell
+  ghc-digits: sig-haskell
   ghc-distributive: sig-haskell
   ghc-dlist: sig-haskell
   ghc-doclayout: sig-haskell
@@ -1992,7 +2003,6 @@ src-openeuler:
   ghc-emojis: sig-haskell
   ghc-fast-logger: sig-haskell
   ghc-file-embed: sig-haskell
-  ghc-foldable1-classes-compat: sig-haskell
   ghc-generically: sig-haskell
   ghc-gridtables: sig-haskell
   ghc-haddock-library: sig-haskell
@@ -2025,6 +2035,7 @@ src-openeuler:
   ghc-http2: sig-haskell
   ghc-indexed-traversable: sig-haskell
   ghc-indexed-traversable-instances: sig-haskell
+  ghc-integer-conversion: sig-haskell
   ghc-integer-logarithms: sig-haskell
   ghc-iproute: sig-haskell
   ghc-ipynb: sig-haskell
@@ -2095,6 +2106,7 @@ src-openeuler:
   ghc-tasty-quickcheck: sig-haskell
   ghc-temporary: sig-haskell
   ghc-text-conversions: sig-haskell
+  ghc-text-iso8601: sig-haskell
   ghc-text-short: sig-haskell
   ghc-th-abstraction: sig-haskell
   ghc-th-compat: sig-haskell
@@ -2104,6 +2116,7 @@ src-openeuler:
   ghc-time-compat: sig-haskell
   ghc-time-manager: sig-haskell
   ghc-tls: sig-haskell
+  ghc-toml-parser: sig-haskell
   ghc-transformers-base: sig-haskell
   ghc-transformers-compat: sig-haskell
   ghc-type-equality: sig-haskell
@@ -2133,10 +2146,6 @@ src-openeuler:
   ghc-warp: sig-haskell
   ghc-witherable: sig-haskell
   ghc-word8: sig-haskell
-  ghc-x509: sig-haskell
-  ghc-x509-store: sig-haskell
-  ghc-x509-system: sig-haskell
-  ghc-x509-validation: sig-haskell
   ghc-xml: sig-haskell
   ghc-xml-conduit: sig-haskell
   ghc-xml-types: sig-haskell
