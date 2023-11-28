@@ -2406,41 +2406,41 @@ yoga:
   ovn-octavia-provider: 2.2.0
   ovsdbapp: 1.15.3
   patrole: 0.14.0
-  puppet-aodh: 20.3.0
-  puppet-barbican: 20.3.0
-  puppet-ceilometer: 20.4.0
-  puppet-cinder: 20.4.0
-  puppet-cloudkitty: 9.3.0
-  puppet-designate: 20.3.1
+  puppet-aodh: 20.3.1
+  puppet-barbican: 20.3.1
+  puppet-ceilometer: 20.4.1
+  puppet-cinder: 20.4.1
+  puppet-cloudkitty: 9.3.1
+  puppet-designate: 20.3.2
   puppet-ec2api: 20.3.0
-  puppet-glance: 20.4.0
-  puppet-gnocchi: 20.3.1
-  puppet-heat: 20.4.0
+  puppet-glance: 20.4.1
+  puppet-gnocchi: 20.3.2
+  puppet-heat: 20.4.1
   puppet-horizon: 20.4.0
-  puppet-ironic: 20.4.0
-  puppet-keystone: 20.4.0
-  puppet-magnum: 20.3.0
-  puppet-manila: 20.3.1
-  puppet-mistral: 20.3.0
-  puppet-murano: 20.3.0
+  puppet-ironic: 20.4.1
+  puppet-keystone: 20.4.1
+  puppet-magnum: 20.3.1
+  puppet-manila: 20.3.2
+  puppet-mistral: 20.3.1
+  puppet-murano: 20.3.1
   puppet-neutron: 20.4.0
   puppet-nova: 20.4.2
-  puppet-octavia: 20.4.0
+  puppet-octavia: 20.4.1
   puppet-openstack_extras: 20.3.1
   puppet-openstacklib: 20.3.1
   puppet-oslo: 20.4.0
   puppet-ovn: 20.4.0
-  puppet-placement: 7.3.0
+  puppet-placement: 7.3.1
   puppet-qdr: 9.3.0
   puppet-rally: 8.3.0
-  puppet-sahara: 20.3.0
+  puppet-sahara: 20.3.1
   puppet-swift: 20.4.1
   puppet-tacker: 20.3.0
   puppet-tempest: 20.4.0
-  puppet-trove: 20.4.0
-  puppet-vitrage: 10.3.1
+  puppet-trove: 20.4.1
+  puppet-vitrage: 10.3.2
   puppet-vswitch: 16.3.1
-  puppet-watcher: 20.3.1
+  puppet-watcher: 20.3.2
   puppet-zaqar: 20.3.1
   python-adjutant: 4.0.0
   python-adjutantclient: 0.10.0
