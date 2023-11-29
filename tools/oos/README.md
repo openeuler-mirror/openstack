@@ -33,6 +33,11 @@ oos spec update --name stevedore --version 2.0.0
 oos spec build stevedore
 ```
 
+- 复制软件仓下文件到rpmbulid目录
+```
+oos spec cp
+```
+
 ## 自动分析OpenStack软件包依赖
 
 以OpenStack train为例，
@@ -206,6 +211,70 @@ oos repo branch-delete --repos-file repos.csv -b openEuler-21.09 -b openEuler-22
 -dp, --do-push
     [可选] 指定是否执行push到gitee仓库上并提交PR，如果不指定则只会提交到本地的仓库中
 ```
+
+## 华为弹性云服务器操作
+
+支持start、shutdown、reinstall、changeos操作
+
+- 查看环境信息命令
+```
+oos env list
+```
+该命令所支持参数如下：
+不带任何参数，查看使用oos工具部署OpenStack的环境信息  
+可参考[基于OpenStack SIG开发工具oos快速部署](https://openeuler.gitee.io/openstack/install/openEuler-22.03-LTS-SP2/OpenStack-wallaby/#openstack-sigoos)
+
+```
+-r, --remote
+    [可选] 查看所有弹性云服务器，显式服务器IP、ID、Name、Status
+-i, --image
+    [可选] 查看所有镜像，显式镜像ID、Name、Status
+-k, --keyword
+    [可选] 查看弹性云服务器或者镜像时，过滤Name中包含keyword关键字的条目
+-t, --image-type
+    [可选] 查看镜像时指定镜像类型，公共、私有、共享、市场
+```
+
+- 启动云服务器
+```
+oos env start <x.x.x.x>
+```
+
+- 关闭云服务器
+```
+oos env stop <x.x.x.x>
+```
+
+- 重装云服务器
+```
+oos env reinstall <x.x.x.x>
+```
+该命令所支持参数如下：
+```
+-p, --pwd
+    [可选] 指定云服务器重装后的登陆密码，不指定为原密码
+-f, --file
+    [可选] 支持以文件方式注入用户数据，需要镜像支持cloud-init，不支持不影响重装
+```
+
+- 切换弹性云服务器操作系统
+```
+oos env changeos
+```
+该命令所支持参数如下：
+```
+-s, --server-id
+    [可选] 指定弹性云服务器的ID，该参数会覆盖ip参数
+-i, --image-id
+    [可选] 指定镜像ID，生效时image-id参数无效
+-k, --keyword
+    [可选] 通过Name中关键字指定使用镜像，未指定image-id时生效，通过keyword找到多个关键字无效
+-p, --pwd
+    [可选] 指定云服务器切换系统后的登陆密码，不指定为原密码
+-f, --file
+    [可选] 支持以文件方式注入用户数据，需要镜像支持cloud-init，不支持不影响切换系统
+```
+
 
 ## 环境和依赖
 上述`oos spec build`命令需要依赖于`rpmbuild`工具，因此需要安装以下相关软件包：
