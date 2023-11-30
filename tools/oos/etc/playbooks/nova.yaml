@@ -82,7 +82,7 @@
             ]
         }
         EOF
-      when: ansible_architecture == "aarch64"
+      when: ansible_architecture == "aarch64" and "{{ openstack_release }}" != "train"
 
 - name: Config mutual trust for nova
   hosts: compute
