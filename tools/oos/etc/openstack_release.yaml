@@ -2685,7 +2685,7 @@ zed:
   puppet-neutron: 21.0.0
   puppet-nova: 21.2.0
   puppet-octavia: 21.0.0
-  puppet-openstack_extras: 21.0.0
+  puppet-openstack_extras: 21.0.1
   puppet-openstacklib: 21.0.0
   puppet-oslo: 21.0.0
   puppet-ovn: 21.0.0
