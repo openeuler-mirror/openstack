@@ -4228,6 +4228,7 @@ src-openeuler:
   miniasm: dev-utils
   minicom: System-tool
   minimap2: dev-utils
+  minizip-ng: Programming-language
   minlog: dev-utils
   mint-x-icons: sig-cinnamon
   mint-y-icons: sig-cinnamon
@@ -4903,6 +4904,7 @@ src-openeuler:
   open-isns: Storage
   open-sans-fonts: System-tool
   open-vm-tools: Virt
+  open62541: sig-embedded
   openEuler-Advisor: sig-EasyLife
   openEuler-indexhtml: Base-service
   openEuler-latest-release: Others
