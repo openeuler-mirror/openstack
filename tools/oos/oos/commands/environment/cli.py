@@ -246,6 +246,7 @@ def reinstall(ip, pwd, file):
 def changeos(ip, server_id, image_id, keyword, pwd, file):
     if not image_id and not keyword:
         print('please run with -i/--image-id')
+        return
 
     user_data = None
     if file:
