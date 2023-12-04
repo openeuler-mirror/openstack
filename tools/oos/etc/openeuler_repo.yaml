@@ -576,6 +576,7 @@ src-openeuler:
   PilotGo-plugin-grafana: sig-ops
   PilotGo-plugin-prometheus: sig-ops
   PilotGo-plugin-topology: sig-ops
+  PlasmaMycroftApplet: sig-KDE
   PlotJuggler: sig-ROS
   PyDrive: sig-UKUI
   PyPAM: Others
@@ -693,24 +694,29 @@ src-openeuler:
   R-xtable: sig-RISC-V
   R-yaml: sig-RISC-V
   R-zoo: sig-RISC-V
+  RSIBreak: sig-KDE
   RSL: sig-ROS
   SDL: Programming-language
   SDL2: Others
   SDL_sound: dev-utils
   SMACC2: sig-ROS
   ShellCheck: sig-CloudNative
+  Skanpage: sig-KDE
   SmartHBA-2100-8i-driver: sig-Compatibility-Infra
   SuperLU: dev-utils
   SuperLUMT: ai
+  Sweeper: sig-KDE
   TCP_option_address: Kernel
   TRF: sig-HPC
   TSSE-driver: sig-Compatibility-Infra
   TeXamator: Base-service
+  TellySkout: sig-KDE
   Thunar: xfce
   Universal_Robots_Client_Library: sig-ROS
   Universal_Robots_ROS2_Description: sig-ROS
   Universal_Robots_ROS2_Driver: sig-ROS
   VMAnalyzer: sig-ops
+  Vail: sig-KDE
   WALinuxAgent: sig-CloudNative
   WLLVM: Compiler
   WasmEngine: sig-CloudNative
@@ -3316,6 +3322,8 @@ src-openeuler:
   ksh: Base-service
   ksystemstats: sig-KDE
   ktextaddons: sig-KDE
+  ktimer: sig-KDE
+  ktrip: sig-KDE
   kuasar: sig-CloudNative
   kubeedge: sig-Edge
   kubekey: sig-K8sDistro
@@ -3327,6 +3335,7 @@ src-openeuler:
   kuserfeedback: sig-KDE
   kwayland-integration: sig-KDE
   kwayland-server: sig-KDE
+  kweather: sig-KDE
   kwin: sig-KDE
   kwrited: sig-KDE
   kxml: sig-Java
@@ -4052,6 +4061,7 @@ src-openeuler:
   man-pages: Base-service
   man2html: sig-epol
   mandoc: sig-epol
+  mangonel: sig-KDE
   mapserver: Application
   mapviz: sig-ROS
   marco: sig-mate-desktop
@@ -4059,6 +4069,7 @@ src-openeuler:
   mariadb-connector-c: Base-service
   mariadb-connector-odbc: DB
   marisa: Others
+  markdownpart: sig-KDE
   marked: sig-UKUI
   marti_common: sig-ROS
   marti_messages: sig-ROS
@@ -4800,6 +4811,7 @@ src-openeuler:
   nodl_to_policy: sig-ROS
   noggit: sig-Java
   nosync: ecopkg
+  notae: sig-KDE
   notebook: bigdata
   notepadqq: Desktop
   notification-daemon: Networking
@@ -6960,6 +6972,7 @@ src-openeuler:
   proguard: sig-Java
   proj: Others
   prometheus: sig-CloudNative
+  prometheus-ha_cluster_exporter: sig-Ha
   promu: sig-CloudNative
   properties-maven-plugin: sig-Java
   proselint: Application
