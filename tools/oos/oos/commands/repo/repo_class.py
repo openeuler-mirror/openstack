@@ -27,19 +27,19 @@ class PkgGitRepo(object):
         else:
             self.repo_name = repo_name
 
-    def fork_repo(self):
+    def fork_repo(self, repo_name):
         try:
             url = "https://gitee.com/api/v5/repos/%s/%s/forks" % (
-                self.gitee_org, self.repo_name)
+                self.gitee_org, repo_name)
             resp = requests.request("POST", url,
                                     data={"access_token": self.gitee_pat})
             if resp.status_code == 404:
                 click.echo("Repo not found for: %s/%s" % (self.gitee_org,
-                                                          self.repo_name),
+                                                          repo_name),
                            err=True)
                 self.not_found = True
             elif resp.status_code != 201:
-                click.echo("Fork repo failed, %s" % resp.text, err=True)
+                click.echo("Fork repo %s failed, %s" % (repo_name, resp.text), err=True)
         except requests.RequestException as e:
             click.echo("HTTP request to gitee failed: %s" % e, err=True)
 
