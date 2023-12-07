@@ -2813,3 +2813,66 @@ su -s /bin/sh -c "heat-manage db_sync" heat
 systemctl enable openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service
 systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service
 ```
+
+## 新特性的安装
+
+### Neutron流量分散特性
+
+流量分散特性是OpenStack SIG在openEuler 20.03中基于OpenStack 
+Train开发的Neutron新特性，该特性允许用户指定路由器所在的网络节点，同时还提供基于路由器外部网关的端口转发的功能。该特性支持Neutron的L3 HA和DVR，具体细节可以参考[特性文档](../../spec/distributed-traffic.md)。本文档主要描述安装步骤。
+
+1. 按照前面章节部署好一套OpenStack环境（非容器），然后先安装plugin。
+
+    ```bash
+    dnf install -y openstack-neutron-distributed-traffic python3-neutron-lib-distributed-traffic
+    ```
+
+2. 配置数据库
+
+    本特性对Neutron的数据表进行了扩充，因此需要同步数据库
+
+    ```bash
+    su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
+    --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron (CTL)
+    ```
+
+3. 编辑配置文件。
+
+   vim /etc/neutron/neutron.conf
+
+   ```ini
+   [DEFAULT]
+   enable_set_route_for_single_port = True
+   network_nodes = network-1,network-2,network-3
+   
+   [network-1]
+   compute_nodes = compute-1
+   [network-2]
+   compute_nodes = compute-2
+   [network-3]
+   compute_nodes = compute-3
+   ```
+
+   其中network-1、network-2和network-3是网络节点的hostname，compute-1、compute-2和compute-3是计算节点的hostname。按照上面设置用户在创建多个路由器连接到同一子网时，位于不同计算节点的虚拟机的流量就按照配置文件找到对应的网络节点的路由器。
+
+   打开基于路由器外部网关的端口转发（可选）。基于外部网关的端口转发与基于浮动IP的端口转发不能同时使用。
+   
+   vim /etc/neutron/neutron.conf
+
+   ```ini
+   [DEFAULT]
+   service_plugins = router,rg_port_forwarding
+   ```
+
+   vim /etc/neutron/l3_agent.ini
+
+   ```ini
+   [agent]
+   extensions = rg_port_forwarding
+   ```
+
+4. 重启相关服务。
+
+   ```bash
+   systemctl restart neutron-server.service neutron-dhcp-agent.service neutron-l3-agent.service  (CTL)
+   ```
