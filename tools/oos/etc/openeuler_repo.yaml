@@ -381,6 +381,7 @@ openeuler:
   perlporter: dev-utils
   pin-for-openEuler: Compiler
   pin-gcc-client: Compiler
+  pin-llvm-client: Compiler
   pin-server: Compiler
   pkgporter: dev-utils
   pkgship: sig-EasyLife
@@ -1740,6 +1741,7 @@ src-openeuler:
   filebench: Storage
   filemanagement_dfs_service: sig-distributed-middleware
   filesystem: Storage
+  filezilla: sig-desktop-apps
   filter: sig-ROS
   filters: sig-ROS
   find-object: sig-ROS
@@ -3560,6 +3562,7 @@ src-openeuler:
   libfastjson: Base-service
   libffado: sig-compat-winapp
   libffi: Base-service
+  libfilezilla: sig-desktop-apps
   libfm: xfce
   libfontenc: Desktop
   libfprint: sig-UKUI
@@ -3810,6 +3813,7 @@ src-openeuler:
   libstatistics_collector: sig-ROS
   libstemmer: Programming-language
   libstoragemgmt: Runtime
+  libstorj: sig-desktop-apps
   libsvm: ai
   libsysstat: sig-UKUI
   libtalloc: Storage
@@ -6846,6 +6850,7 @@ src-openeuler:
   pim-sieve-editor: sig-KDE
   pin-for-openEuler: Compiler
   pin-gcc-client: Compiler
+  pin-llvm-client: Compiler
   pin-server: Compiler
   pinentry: Desktop
   pinfo: System-tool
