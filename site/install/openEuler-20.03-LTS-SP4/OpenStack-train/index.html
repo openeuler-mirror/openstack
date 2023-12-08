@@ -118,6 +118,12 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">新特性的安装</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#neutron_1">Neutron流量分散特性</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../openEuler-21.09/OpenStack-wallaby/">openEuler-21.09_Wallaby</a>
@@ -208,6 +214,10 @@
 <li><a href="#gnocchi">Gnocchi 安装</a></li>
 <li><a href="#ceilometer">Ceilometer 安装</a></li>
 <li><a href="#heat">Heat 安装</a></li>
+</ul>
+</li>
+<li><a href="#_4">新特性的安装</a><ul>
+<li><a href="#neutron_1">Neutron流量分散特性</a></li>
 </ul>
 </li>
 </ul>
@@ -2218,6 +2228,48 @@ auth_uri = http://controller:5000</code></pre>
 </ol>
 <pre class="highlight"><code>systemctl enable openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service
 systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service</code></pre>
+<h2 id="_4">新特性的安装<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="neutron_1">Neutron流量分散特性<a class="headerlink" href="#neutron_1" title="Permanent link">&para;</a></h3>
+<p>流量分散特性是OpenStack SIG在openEuler 20.03中基于OpenStack 
+Train开发的Neutron新特性，该特性允许用户指定路由器所在的网络节点，同时还提供基于路由器外部网关的端口转发的功能。该特性支持Neutron的L3 HA和DVR，具体细节可以参考<a href="../../../spec/distributed-traffic/">特性文档</a>。本文档主要描述安装步骤。</p>
+<ol>
+<li>
+<p>按照前面章节部署好一套OpenStack环境（非容器），然后先安装plugin。</p>
+<pre class="highlight"><code class="language-bash">dnf install -y openstack-neutron-distributed-traffic python3-neutron-lib-distributed-traffic</code></pre>
+</li>
+<li>
+<p>配置数据库</p>
+<p>本特性对Neutron的数据表进行了扩充，因此需要同步数据库</p>
+<pre class="highlight"><code class="language-bash">su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
+--config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron (CTL)</code></pre>
+</li>
+<li>
+<p>编辑配置文件。</p>
+</li>
+</ol>
+<p>vim /etc/neutron/neutron.conf</p>
+<pre class="highlight"><code class="language-ini">[DEFAULT]
+enable_set_route_for_single_port = True
+network_nodes = network-1,network-2,network-3
+
+[network-1]
+compute_nodes = compute-1
+[network-2]
+compute_nodes = compute-2
+[network-3]
+compute_nodes = compute-3</code></pre>
+<p>其中network-1、network-2和network-3是网络节点的hostname，compute-1、compute-2和compute-3是计算节点的hostname。按照上面设置用户在创建多个路由器连接到同一子网时，位于不同计算节点的虚拟机的流量就按照配置文件找到对应的网络节点的路由器。</p>
+<p>打开基于路由器外部网关的端口转发（可选）。基于外部网关的端口转发与基于浮动IP的端口转发不能同时使用。</p>
+<p>vim /etc/neutron/neutron.conf</p>
+<pre class="highlight"><code class="language-ini">[DEFAULT]
+service_plugins = router,rg_port_forwarding</code></pre>
+<p>vim /etc/neutron/l3_agent.ini</p>
+<pre class="highlight"><code class="language-ini">[agent]
+extensions = rg_port_forwarding</code></pre>
+<ol>
+<li>重启相关服务。</li>
+</ol>
+<pre class="highlight"><code class="language-bash">systemctl restart neutron-server.service neutron-dhcp-agent.service neutron-l3-agent.service  (CTL)</code></pre>
               
             </div>
           </div><footer>
