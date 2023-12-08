@@ -2417,7 +2417,7 @@ yoga:
   puppet-gnocchi: 20.3.2
   puppet-heat: 20.4.1
   puppet-horizon: 20.4.0
-  puppet-ironic: 20.4.1
+  puppet-ironic: 20.4.2
   puppet-keystone: 20.4.1
   puppet-magnum: 20.3.1
   puppet-manila: 20.3.2
