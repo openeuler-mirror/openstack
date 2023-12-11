@@ -2291,7 +2291,7 @@ yoga:
   cloudkitty_tempest_plugin: 2.5.0
   compute-hyperv: 14.0.0
   cyborg-tempest-plugin: 1.4.0
-  designate: 14.0.3
+  designate: 14.0.4
   designate-dashboard: 14.0.1
   designate-tempest-plugin: 0.13.0
   ec2-api: 14.0.2
@@ -2547,7 +2547,7 @@ zed:
   cloudkitty_tempest_plugin: 2.6.0
   compute-hyperv: 15.0.0
   cyborg-tempest-plugin: 2.0.0
-  designate: 15.0.1
+  designate: 15.0.2
   designate-dashboard: 15.0.0
   designate-tempest-plugin: 0.14.0
   ec2-api: 15.0.0
