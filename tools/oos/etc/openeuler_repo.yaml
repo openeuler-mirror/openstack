@@ -103,6 +103,7 @@ openeuler:
   bishengjdk-8: Compiler
   bishengjdk-build: Compiler
   bishengjdk-riscv: Compiler
+  bishengjdk-test: Compiler
   blesschess: sig-minzuchess
   blog: sig-recycle
   btfhub: sig-ebpf
