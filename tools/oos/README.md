@@ -212,6 +212,23 @@ oos repo branch-delete --repos-file repos.csv -b openEuler-21.09 -b openEuler-22
     [可选] 指定是否执行push到gitee仓库上并提交PR，如果不指定则只会提交到本地的仓库中
 ```
 
+## 批量fork仓库
+
+可使用`oos repo fork`命令fork多个仓库
+```shell
+oos repo fork <token> <names>
+
+oos repo fork ****** 'python-repo1 repo2'
+```
+
+该命令所支持的参数如下：
+
+```
+-o, --gitee-org
+    [可选] repo所属的gitee组织名称，默认为src-openeuler
+```
+
+
 ## 华为弹性云服务器操作
 
 支持start、shutdown、reinstall、changeos操作

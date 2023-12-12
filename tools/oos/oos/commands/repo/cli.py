@@ -73,7 +73,7 @@ def __prepare_local_repo(gitee_pat, gitee_email, work_branch,
         if os.path.exists(repo_dir):
             local_repo.repo_dir = repo_dir
         else:
-            local_repo.fork_repo()
+            local_repo.fork_repo(repo_name)
             local_repo.clone_repo(str(Path.home()))
     local_repo.add_branch(work_branch, 'master', reuse_branch)
     return local_repo
@@ -350,3 +350,17 @@ def fetch_open_pr(gitee_pat, repos, output):
             results[repo].append(project_info)
     with open(output, 'w') as fp:
         yaml.dump(results, fp, default_flow_style=False, encoding='utf-8', allow_unicode=True)
+
+
+
+@group.command(name='fork', help='fork multi repos')
+@click.argument('token', type=str)
+@click.argument('names', type=str)
+@click.option("-o", "--gitee-org", envvar='GITEE_ORG', required=True,
+              default="src-openeuler", show_default=True,
+              help="Gitee organization name of repos")
+def fork_repos(token, names, gitee_org):
+
+    repo_obj = PkgGitRepo(gitee_pat=token, repo_name='nouse', gitee_org=gitee_org)
+    for name in names.split():
+        repo_obj.fork_repo(name)
