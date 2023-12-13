@@ -174,7 +174,10 @@ def check_status():
     for branch in BRANCHS:
         sub_res = {}
         res = branch_session.get(OBS_PACKAGE_BUILD_RESULT_URL % {'branch': branch}, verify=False)
-        obs_result = xmltodict.parse(res.content.decode())['resultlist']['result']
+        try:
+            obs_result = xmltodict.parse(res.content.decode())['resultlist']['result']
+        except (KeyError, xmltodict.expat.ExpatError):
+            result[branch] = 'Parsing Error'
         for each_arch in obs_result:
             if each_arch['@state'] == 'unknown':
                 result[branch] = 'Unknown'
