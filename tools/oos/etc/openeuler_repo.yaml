@@ -273,6 +273,7 @@ openeuler:
   kspack-go: Computing
   kspack-java: Computing
   kspack-rust: Computing
+  ktib: sig-CloudNative
   kunpeng-competition: sig-OSCourse
   kunpengsecl: sig-security-facility
   kylin-installer: sig-UKUI
@@ -458,6 +459,7 @@ openeuler:
   tp-qemu: sig-QA
   trucker: dev-utils
   uadk: sig-AccLib
+  uadk-bigdata: bigdata
   uadk_engine: sig-AccLib
   ub-dhcp: Networking
   ub-lldpd: Networking
@@ -1736,10 +1738,12 @@ src-openeuler:
   ffmpegthumbnailer: Desktop
   fftw: Runtime
   fftw2: Application
+  fielding: sig-KDE
   figlet: dev-utils
   file: Storage
   file-roller: GNOME
   filebench: Storage
+  filelight: sig-KDE
   filemanagement_dfs_service: sig-distributed-middleware
   filesystem: Storage
   filezilla: sig-desktop-apps
@@ -2474,6 +2478,7 @@ src-openeuler:
   hardinfo: dev-utils
   hardlink: sig-recycle
   harfbuzz: Desktop
+  hash-o-matic: sig-KDE
   hash_library_vendor: sig-ROS
   haveged: Base-service
   hawtbuf: sig-Java
@@ -2818,6 +2823,7 @@ src-openeuler:
   isa-l: dev-utils
   isl: sig-compat-winapp
   iso-codes: Base-service
+  isoimagewriter: sig-KDE
   isomd5sum: Base-service
   isorelax: Base-service
   isosm3sum: Base-service
@@ -3100,6 +3106,8 @@ src-openeuler:
   kae_driver: sig-AccLib
   kafka: sig-message-middleware
   kafka-python: sig-openstack
+  kairo: sig-KDE
+  kalk: sig-KDE
   kata-containers: sig-CloudNative
   kata-micro-kernel: sig-recycle
   kata_integration: sig-CloudNative
@@ -3111,12 +3119,15 @@ src-openeuler:
   kbox: sig-ops
   kbuild-standalone: Kernel
   kcalc: sig-KDE
+  kcharselect: sig-KDE
+  kclock: sig-KDE
   kconfigDetector: Kernel
   kcron: sig-KDE
   kde-cli-tools: sig-KDE
   kde-connect: sig-KDE
   kde-filesystem: System-tool
   kde-settings: Desktop
+  kdebugsettings: sig-KDE
   kdecoration: sig-KDE
   kdegraphics-mobipocket: sig-KDE
   kdepim-runtime: sig-KDE
@@ -3572,7 +3583,7 @@ src-openeuler:
   libftdi: sig-embedded
   libg2o-release: sig-ROS
   libgadu: Application
-  libgcrypt: Networking
+  libgcrypt: sig-security-facility
   libgdata: Desktop
   libgdiplus: Base-service
   libgdither: Others
@@ -3605,6 +3616,7 @@ src-openeuler:
   libgudev: Desktop
   libguess: Desktop
   libguestfs: System-tool
+  libguestfs-tools: System-tool
   libgusb: Desktop
   libgweather: Desktop
   libgxim: Desktop
