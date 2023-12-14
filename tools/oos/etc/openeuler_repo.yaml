@@ -100,6 +100,7 @@ openeuler:
   bioinformatics: sig-bio
   bishengjdk-11: Compiler
   bishengjdk-17: Compiler
+  bishengjdk-21: Compiler
   bishengjdk-8: Compiler
   bishengjdk-build: Compiler
   bishengjdk-riscv: Compiler
