@@ -7,14 +7,10 @@ import click
 
 def get_file_path(path, file_list):
     if path.endswith('community') or path.endswith('community/'):
-        path =  os.path.join(path, 'sig')
-    dir_or_files = os.listdir(path)
-    for dir_file in dir_or_files:
-        dir_file_path = os.path.join(path, dir_file)
-        if os.path.isdir(dir_file_path):
-            get_file_path(dir_file_path, file_list)
-        else:
-            file_list.append(dir_file_path)
+        path = os.path.join(path, 'sig')
+    for dirpath, dirnames, filenames in os.walk(path):
+        for filename in filenames:
+            file_list.append(os.path.join(dirpath, filename))
 
 
 def parser_local(path, target_sigs):
