@@ -3248,6 +3248,7 @@ src-openeuler:
   kf5-libkdepim: sig-KDE
   kf5-libkexiv2: sig-KDE
   kf5-libkleo: sig-KDE
+  kf5-libksane: sig-KDE
   kf5-libksieve: sig-KDE
   kf5-mailcommon: sig-KDE
   kf5-mailimporter: sig-KDE
@@ -3326,6 +3327,7 @@ src-openeuler:
   korganizer: sig-KDE
   kpatch: Base-service
   kpeoplevcard: sig-KDE
+  kpublictransport: sig-KDE
   krb5: Base-service
   kronosnet: Networking
   kryo: sig-Java
@@ -3333,6 +3335,7 @@ src-openeuler:
   ks-scmc-gui: sig-KIRAN-DESKTOP
   ks-ssr: sig-KIRAN-DESKTOP
   ks-vaudit: sig-KIRAN-DESKTOP
+  ksanecore: sig-KDE
   ksc-defender: sig-security-facility
   kscreenlocker: sig-KDE
   ksh: Base-service
@@ -3352,6 +3355,7 @@ src-openeuler:
   kwayland-integration: sig-KDE
   kwayland-server: sig-KDE
   kweather: sig-KDE
+  kweathercore: sig-KDE
   kwin: sig-KDE
   kwrited: sig-KDE
   kxml: sig-Java
@@ -3628,6 +3632,7 @@ src-openeuler:
   libhbaapi: Base-service
   libhbalinux: Others
   libhdfs: bigdata
+  libheif: sig-KDE
   libhugetlbfs: Computing
   libhv: Base-service
   libibmad: sig-recycle
@@ -3678,6 +3683,7 @@ src-openeuler:
   liblockfile: Application
   liblognorm: System-tool
   liblouis: Application
+  liblqr-1: sig-KDE
   libmad: Others
   libmatchbox: Desktop
   libmatekbd: sig-mate-desktop
@@ -3757,6 +3763,7 @@ src-openeuler:
   libpciaccess: Storage
   libpeas: GNOME
   libpfm: Programming-language
+  libpgf: sig-KDE
   libpinyin: Others
   libpipeline: Base-service
   libplist: Base-service
@@ -4083,6 +4090,7 @@ src-openeuler:
   mangonel: sig-KDE
   mapserver: Application
   mapviz: sig-ROS
+  marble: sig-KDE
   marco: sig-mate-desktop
   mariadb: DB
   mariadb-connector-c: Base-service
