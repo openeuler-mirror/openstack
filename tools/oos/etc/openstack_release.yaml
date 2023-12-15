@@ -2282,7 +2282,7 @@ yoga:
   castellan: 3.10.2
   ceilometer: 18.1.0
   ceilometermiddleware: 2.4.1
-  cinder: 20.3.1
+  cinder: 20.3.2
   cinder-tempest-plugin: 1.6.0
   cinderlib: 4.2.0
   cliff: 3.10.1
@@ -2371,7 +2371,7 @@ yoga:
   neutron-tempest-plugin: 1.9.0
   neutron-vpnaas: 20.0.1
   neutron-vpnaas-dashboard: 6.0.0
-  nova: 25.2.1
+  nova: 25.3.0
   octavia: 10.1.0
   octavia-dashboard: 9.0.1
   octavia-lib: 2.5.0
