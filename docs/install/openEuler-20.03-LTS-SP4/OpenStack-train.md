@@ -2844,6 +2844,7 @@ Train开发的Neutron新特性，该特性允许用户指定路由器所在的�
    [DEFAULT]
    enable_set_route_for_single_port = True
    network_nodes = network-1,network-2,network-3
+   router_scheduler_driver = neutron.scheduler.l3_agent_scheduler.PreferredL3AgentRoutersScheduler
    
    [network-1]
    compute_nodes = compute-1
