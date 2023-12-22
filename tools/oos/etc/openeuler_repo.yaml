@@ -230,6 +230,7 @@ openeuler:
   itrustee_client: sig-confidential-computing
   itrustee_sdk: sig-confidential-computing
   itrustee_tzdriver: sig-confidential-computing
+  k8s-install: sig-CloudNative
   kae_driver: sig-AccLib
   kata_integration: sig-CloudNative
   kbox: sig-ops
@@ -401,6 +402,7 @@ openeuler:
   pyuadk: sig-AccLib
   qax-gm-certificates: sig-security-facility
   qemu: Virt
+  qingzhou: dev-utils
   qla2xxx: sig-Compatibility-Infra
   qt6: sig-QT
   quick-issue: sig-OpenDesign
@@ -9296,6 +9298,7 @@ src-openeuler:
   qfs: bigdata
   qgnomeplatform: GNOME
   qhull: Others
+  qingzhou: dev-utils
   qjson: sig-UKUI
   qla2xxx: sig-Compatibility-Infra
   qpdf: Programming-language
