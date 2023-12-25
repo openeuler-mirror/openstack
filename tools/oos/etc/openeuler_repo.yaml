@@ -1123,6 +1123,7 @@ src-openeuler:
   canfestival: sig-industrial-control
   canfestival-xenomai: sig-industrial-control
   canopennode: sig-industrial-control
+  cantian: DB
   capstone: Base-service
   capsule: Virt
   caribou: sig-cinnamon
@@ -4986,6 +4987,7 @@ src-openeuler:
   openjdk-1.8.0: Compiler
   openjdk-11: Compiler
   openjdk-17: Compiler
+  openjdk-21: Compiler
   openjdk-latest: Compiler
   openjfx11: Compiler
   openjfx8: Compiler
@@ -10093,6 +10095,7 @@ src-openeuler:
   sblim-sfcCommon: Others
   sblim-sfcb: System-tool
   sblim-sfcc: System-tool
+  sbsigntools: sig-security-facility
   sbt: sig-Java
   scala: sig-Java
   scalapack: sig-epol
