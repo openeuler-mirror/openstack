@@ -37,3 +37,5 @@ nav:
   - openEuler-22.09: 'test/openEuler-22.09.md'
 - 自研特性:
   - 虚拟机高低优先级: 'spec/priority_vm.md'
+- 安全指南：
+  - security_guide: "security/security-guide.md"
