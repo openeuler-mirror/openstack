@@ -497,6 +497,7 @@ openeuler:
   yocto-meta-ros: sig-Yocto
   yocto-meta-virtualization: sig-Yocto
   yocto-poky: sig-Yocto
+  yunyi: sig-CloudNative
   zephyr-cn: sig-Zephyr
   zvm: sig-Zephyr
 src-openeuler:
@@ -10998,6 +10999,7 @@ src-openeuler:
   ypbind: Desktop
   ypserv: Desktop
   yum-metadata-parser: sig-recycle
+  yunyi: sig-CloudNative
   zabbix: Base-service
   zathura: sig-desktop-apps
   zathura-cb: sig-desktop-apps
