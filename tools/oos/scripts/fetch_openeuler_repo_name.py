@@ -18,9 +18,7 @@ def parser_local(path, target_sigs):
     file_list = []
     get_file_path(path, file_list)
     for file in file_list:
-        if not file.endswith('.yaml'):
-            continue
-        elif file.endswith('sig-info.yaml'):
+        if not file.endswith('.yaml') or file.endswith('sig-info.yaml'):
             continue
         info = file.split('/community/sig/')[1].split('/')
         sig_name, org = info[0], info[1]
