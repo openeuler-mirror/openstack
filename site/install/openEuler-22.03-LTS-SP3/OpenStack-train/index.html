@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../../img/favicon.ico" />
-    <title>openEuler-20.03-LTS-SP3_Train - OpenStack SIG Doc</title>
+    <title>openEuler-22.03-LTS-SP3_Train - OpenStack SIG Doc</title>
     <link rel="stylesheet" href="../../../css/theme.css" />
     <link rel="stylesheet" href="../../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "openEuler-20.03-LTS-SP3_Train";
-        var mkdocs_page_input_path = "install/openEuler-20.03-LTS-SP3/OpenStack-train.md";
+        var mkdocs_page_name = "openEuler-22.03-LTS-SP3_Train";
+        var mkdocs_page_input_path = "install/openEuler-22.03-LTS-SP3/OpenStack-train.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -56,11 +56,29 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../openEuler-20.03-LTS-SP2/OpenStack-rocky/">openEuler-20.03-LTS-SP2_Rocky</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../OpenStack-queens/">openEuler-20.03-LTS-SP3_Queens</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-20.03-LTS-SP3/OpenStack-queens/">openEuler-20.03-LTS-SP3_Queens</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../OpenStack-rocky/">openEuler-20.03-LTS-SP3_Rocky</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-20.03-LTS-SP3/OpenStack-rocky/">openEuler-20.03-LTS-SP3_Rocky</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">openEuler-20.03-LTS-SP3_Train</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-20.03-LTS-SP3/OpenStack-train/">openEuler-20.03-LTS-SP3_Train</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-20.03-LTS-SP4/OpenStack-train/">openEuler-20.03-LTS-SP4_Train</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-21.09/OpenStack-wallaby/">openEuler-21.09_Wallaby</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS/OpenStack-train/">openEuler-22.03-LTS_Train</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS/OpenStack-wallaby/">openEuler-22.03-LTS_Wallaby</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS-SP1/OpenStack-train/">openEuler-22.03-LTS-SP1_Train</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS-SP1/OpenStack-wallaby/">openEuler-22.03-LTS-SP1_Wallaby</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS-SP2/OpenStack-train/">openEuler-22.03-LTS-SP2_Train</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS-SP2/OpenStack-wallaby/">openEuler-22.03-LTS-SP2_Wallaby</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">openEuler-22.03-LTS-SP3_Train</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#openstack">OpenStack 简介</a>
     </li>
@@ -116,27 +134,83 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#openstack-sigoos">基于OpenStack SIG开发工具oos快速部署</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#openstack-sigopensd">基于OpenStack SIG部署工具opensd部署</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">部署步骤</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#1">1. 部署前需要确认的信息</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-ceph-pool">2. ceph pool与认证创建（可选）</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#21-pool">2.1 创建pool:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#22-pool">2.2 初始化pool</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#23">2.3 创建用户认证</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-lvm">3. 配置lvm（可选）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-yum-repo">4. 配置yum repo</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#41-yum">4.1 备份yum源</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#42-yum-repo">4.2 配置yum repo</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#43-yum">4.3 更新yum缓存</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-opensd">5. 安装opensd</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#51-opensd">5.1 克隆opensd源码并安装</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#6-ssh">6. 做ssh互信</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#61">6.1 生成密钥对</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#62-ip">6.2 生成主机IP地址文件</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#63">6.3 更改密码并执行脚本</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#64-ceph-monitor">6.4 部署节点与ceph monitor做互信（可选）</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#7-opensd">7. 配置opensd</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#71">7.1 生成随机密码</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#72-inventory">7.2 配置inventory文件</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#73">7.3 配置全局变量</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#74-ssh">7.4 检查所有节点ssh连接状态</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#8">8. 执行部署</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#81-bootstrap">8.1 执行bootstrap</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#82">8.2 重启服务器</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#83">8.3 执行部署前检查</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#84">8.4 执行部署</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-20.03-LTS-SP4/OpenStack-train/">openEuler-20.03-LTS-SP4_Train</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-21.09/OpenStack-wallaby/">openEuler-21.09_Wallaby</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS/OpenStack-train/">openEuler-22.03-LTS_Train</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS/OpenStack-wallaby/">openEuler-22.03-LTS_Wallaby</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS-SP1/OpenStack-train/">openEuler-22.03-LTS-SP1_Train</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS-SP1/OpenStack-wallaby/">openEuler-22.03-LTS-SP1_Wallaby</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS-SP2/OpenStack-train/">openEuler-22.03-LTS-SP2_Train</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS-SP2/OpenStack-wallaby/">openEuler-22.03-LTS-SP2_Wallaby</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS-SP3/OpenStack-train/">openEuler-22.03-LTS-SP3_Train</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS-SP3/OpenStack-wallaby/">openEuler-22.03-LTS-SP3_Wallaby</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../OpenStack-wallaby/">openEuler-22.03-LTS-SP3_Wallaby</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.09/OpenStack-yoga/">openEuler-22.09_Yoga</a>
                   </li>
@@ -172,7 +246,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="文档"></a></li>
           <li class="breadcrumb-item">安装指导</li>
-      <li class="breadcrumb-item active">openEuler-20.03-LTS-SP3_Train</li>
+      <li class="breadcrumb-item active">openEuler-22.03-LTS-SP3_Train</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -214,6 +288,50 @@
 <li><a href="#heat">Heat 安装</a></li>
 </ul>
 </li>
+<li><a href="#openstack-sigoos">基于OpenStack SIG开发工具oos快速部署</a></li>
+<li><a href="#openstack-sigopensd">基于OpenStack SIG部署工具opensd部署</a><ul>
+<li><a href="#_4">部署步骤</a></li>
+<li><a href="#1">1. 部署前需要确认的信息</a></li>
+<li><a href="#2-ceph-pool">2. ceph pool与认证创建（可选）</a><ul>
+<li><a href="#21-pool">2.1 创建pool:</a></li>
+<li><a href="#22-pool">2.2 初始化pool</a></li>
+<li><a href="#23">2.3 创建用户认证</a></li>
+</ul>
+</li>
+<li><a href="#3-lvm">3. 配置lvm（可选）</a></li>
+<li><a href="#4-yum-repo">4. 配置yum repo</a><ul>
+<li><a href="#41-yum">4.1 备份yum源</a></li>
+<li><a href="#42-yum-repo">4.2 配置yum repo</a></li>
+<li><a href="#43-yum">4.3 更新yum缓存</a></li>
+</ul>
+</li>
+<li><a href="#5-opensd">5. 安装opensd</a><ul>
+<li><a href="#51-opensd">5.1 克隆opensd源码并安装</a></li>
+</ul>
+</li>
+<li><a href="#6-ssh">6. 做ssh互信</a><ul>
+<li><a href="#61">6.1 生成密钥对</a></li>
+<li><a href="#62-ip">6.2 生成主机IP地址文件</a></li>
+<li><a href="#63">6.3 更改密码并执行脚本</a></li>
+<li><a href="#64-ceph-monitor">6.4 部署节点与ceph monitor做互信（可选）</a></li>
+</ul>
+</li>
+<li><a href="#7-opensd">7. 配置opensd</a><ul>
+<li><a href="#71">7.1 生成随机密码</a></li>
+<li><a href="#72-inventory">7.2 配置inventory文件</a></li>
+<li><a href="#73">7.3 配置全局变量</a></li>
+<li><a href="#74-ssh">7.4 检查所有节点ssh连接状态</a></li>
+</ul>
+</li>
+<li><a href="#8">8. 执行部署</a><ul>
+<li><a href="#81-bootstrap">8.1 执行bootstrap</a></li>
+<li><a href="#82">8.2 重启服务器</a></li>
+<li><a href="#83">8.3 执行部署前检查</a></li>
+<li><a href="#84">8.4 执行部署</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -221,7 +339,7 @@
 <h2 id="openstack">OpenStack 简介<a class="headerlink" href="#openstack" title="Permanent link">&para;</a></h2>
 <p>OpenStack 是一个社区，也是一个项目。它提供了一个部署云的操作平台或工具集，为组织提供可扩展的、灵活的云计算。</p>
 <p>作为一个开源的云计算管理平台，OpenStack 由nova、cinder、neutron、glance、keystone、horizon等几个主要的组件组合起来完成具体工作。OpenStack 支持几乎所有类型的云环境，项目目标是提供实施简单、可大规模扩展、丰富、标准统一的云计算管理平台。OpenStack 通过各种互补的服务提供了基础设施即服务（IaaS）的解决方案，每个服务提供 API 进行集成。</p>
-<p>openEuler 20.03-LTS-SP3 版本官方源已经支持 OpenStack-Train 版本，用户可以配置好 yum 源后根据此文档进行 OpenStack 部署。</p>
+<p>openEuler 22.03-LTS-SP3版本官方源已经支持 OpenStack-Train 版本，用户可以配置好 yum 源后根据此文档进行 OpenStack 部署。</p>
 <h2 id="_1">约定<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>OpenStack 支持多种形态部署，此文档支持<code>ALL in One</code>以及<code>Distributed</code>两种部署方式，按照如下方式约定：</p>
 <p><code>ALL in One</code>模式:</p>
@@ -242,31 +360,20 @@
 <h3 id="_3">环境配置<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
-<p>配置 20.03-LTS-SP3 官方yum源，需要启用EPOL软件仓以支持OpenStack</p>
-<pre class="highlight"><code class="language-shell">cat &lt;&lt; EOF &gt;&gt; /etc/yum.repos.d/20.03-LTS-SP3-OpenStack_Train.repo
-[OS]
-name=OS
-baseurl=http://repo.openeuler.org/openEuler-20.03-LTS-SP3/OS/$basearch/
-enabled=1
-gpgcheck=1
-gpgkey=http://repo.openeuler.org/openEuler-20.03-LTS-SP3/OS/$basearch/RPM-GPG-KEY-openEuler
-
-[everything]
-name=everything
-baseurl=http://repo.openeuler.org/openEuler-20.03-LTS-SP3/everything/$basearch/
-enabled=1
-gpgcheck=1
-gpgkey=http://repo.openeuler.org/openEuler-20.03-LTS-SP3/everything/$basearch/RPM-GPG-KEY-openEuler
+<p>启动OpenStack Train yum源</p>
+<pre class="highlight"><code class="language-shell">yum update
+yum install openstack-release-train
+yum clean all &amp;&amp; yum makecache</code></pre>
+<p><strong>注意</strong>：如果你的环境的YUM源没有启用EPOL，需要同时配置EPOL，确保EPOL已配置，如下所示</p>
+<pre class="highlight"><code class="language-shell">vi /etc/yum.repos.d/openEuler.repo
 
 [EPOL]
 name=EPOL
-baseurl=http://repo.openeuler.org/openEuler-20.03-LTS-SP3/EPOL/main/$basearch/
+baseurl=http://repo.openeuler.org/openEuler-22.03-LTS-SP3/EPOL/main/$basearch/
 enabled=1
 gpgcheck=1
-gpgkey=http://repo.openeuler.org/openEuler-20.03-LTS-SP3/OS/$basearch/RPM-GPG-KEY-openEuler
-EOF
-
-yum clean all &amp;&amp; yum makecache</code></pre>
+gpgkey=http://repo.openeuler.org/openEuler-22.03-LTS-SP3/OS/$basearch/RPM-GPG-KEY-openEuler
+EOF</code></pre>
 </li>
 <li>
 <p>修改主机名以及映射</p>
@@ -439,7 +546,7 @@ EOF</code></pre>
 </li>
 <li>
 <p>依次创建domain, projects, users, roles，需要先安装好python3-openstackclient：</p>
-<pre class="highlight"><code class="language-shell">yum install python3-openstackclient</code></pre>
+<pre class="highlight"><code class="language-shell">yum install python3-openstackclient==4.0.2</code></pre>
 <p>导入环境变量</p>
 <pre class="highlight"><code class="language-shell">source ~/.admin-openrc</code></pre>
 <p>创建project <code>service</code>，其中 domain <code>default</code> 在 keystone-manage bootstrap 时已创建</p>
@@ -679,7 +786,6 @@ firewall_driver = nova.virt.firewall.NoopFirewallDriver
 compute_driver=libvirt.LibvirtDriver                                                           (CPT)
 instances_path = /var/lib/nova/instances/                                                      (CPT)
 lock_path = /var/lib/nova/tmp                                                                  (CPT)
-logdir = /var/log/nova/
 
 [api_database]
 connection = mysql+pymysql://nova:NOVA_DBPASS@controller/nova_api                              (CTL)
@@ -910,7 +1016,7 @@ lock_path = /var/lib/neutron/tmp</code></pre>
 <p><strong>替换<code>NEUTRON_PASS</code>为 neutron 用户的密码；</strong></p>
 <p><strong>替换<code>NOVA_PASS</code>为 nova 用户的密码。</strong></p>
 <p>配置ML2插件：</p>
-<pre class="highlight"><code class="language-shell">vim /etc/neutron/plugins/ml2/ml2_conf.ini                                                      (CTL)
+<pre class="highlight"><code class="language-shell">vim /etc/neutron/plugins/ml2/ml2_conf.ini
 
 [ml2]
 type_drivers = flat,vlan,vxlan
@@ -1006,7 +1112,7 @@ metadata_proxy_shared_secret = METADATA_SECRET                                  
 </li>
 <li>
 <p>同步数据库：</p>
-<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \                  (CTL)
+<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
 --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron</code></pre>
 </li>
 <li>
@@ -1134,7 +1240,7 @@ iscsi_helper = tgtadm                                                           
 <p><strong>替换<code>RABBIT_PASS</code>为 RabbitMQ 中 openstack 账户的密码；</strong></p>
 <p><strong>配置<code>my_ip</code>为控制节点的管理 IP 地址；</strong></p>
 <p><strong>替换<code>CINDER_PASS</code>为 cinder 用户的密码；</strong></p>
-<p><strong>替换<code>HOST:PATH</code>为 NFS的HOSTIP和共享路径；</strong></p>
+<p><strong>替换<code>HOST:PATH</code>为 NFS 的HOSTIP和共享路径；</strong></p>
 </li>
 <li>
 <p>同步数据库：</p>
@@ -1197,7 +1303,9 @@ CACHES = {
 OPENSTACK_KEYSTONE_URL = "http://%s:5000/v3" % OPENSTACK_HOST
 OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT = True
 OPENSTACK_KEYSTONE_DEFAULT_DOMAIN = "Default"
-OPENSTACK_KEYSTONE_DEFAULT_ROLE = "user"
+OPENSTACK_KEYSTONE_DEFAULT_ROLE = "member"
+WEBROOT = '/dashboard'
+POLICY_FILES_PATH = "/etc/openstack-dashboard"
 
 OPENSTACK_API_VERSIONS = {
     "identity": 3,
@@ -1442,12 +1550,12 @@ valid_interfaces=public</code></pre>
 </li>
 <li>
 <p>重启httpd服务。</p>
-<p><pre class="highlight"><code>systemctl restart httpd</code></pre>
-7. deploy ramdisk镜像制作</p>
+<pre class="highlight"><code>systemctl restart httpd</code></pre>
 </li>
 </ol>
 </li>
 </ol>
+<p>7.deploy ramdisk镜像制作</p>
 <p>T版的ramdisk镜像支持通过ironic-python-agent服务或disk-image-builder工具制作，也可以使用社区最新的ironic-python-agent-builder。用户也可以自行选择其他工具制作。
    若使用T版原生工具，则需要安装对应的软件包。</p>
 <pre class="highlight"><code class="language-shell">yum install openstack-ironic-python-agent
@@ -1611,9 +1719,7 @@ WantedBy=multi-user.target</code></pre>
 <p>安装完后，就可以使用<code>kolla-ansible</code>, <code>kolla-build</code>, <code>kolla-genpwd</code>, <code>kolla-mergepwd</code>等命令进行相关的镜像制作和容器环境部署了。</p>
 <h3 id="trove">Trove 安装<a class="headerlink" href="#trove" title="Permanent link">&para;</a></h3>
 <p>Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据库服务则推荐使用该组件。否则，可以不用安装。</p>
-<ol>
-<li>设置数据库</li>
-</ol>
+<p>1.设置数据库</p>
 <p>数据库服务在数据库中存储信息，创建一个<strong>trove</strong>用户可以访问的<strong>trove</strong>数据库，替换<strong>TROVE_DBPASSWORD</strong>为合适的密码</p>
 <pre class="highlight"><code class="language-sql">mysql -u root -p
 
@@ -1622,9 +1728,7 @@ MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON trove.* TO 'trove'@'localhost' \
 IDENTIFIED BY 'TROVE_DBPASSWORD';
 MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON trove.* TO 'trove'@'%' \
 IDENTIFIED BY 'TROVE_DBPASSWORD';</code></pre>
-<ol>
-<li>创建服务用户认证</li>
-</ol>
+<p>2.创建服务用户认证</p>
 <p>1、创建<strong>Trove</strong>服务用户</p>
 <p><pre class="highlight"><code class="language-shell">openstack user create --domain default --password-prompt trove
 openstack role add --project service --user trove admin
@@ -1634,16 +1738,11 @@ openstack service create --name trove --description "Database" database</code></
 <pre class="highlight"><code class="language-shell">openstack endpoint create --region RegionOne database public http://controller:8779/v1.0/%\(tenant_id\)s
 openstack endpoint create --region RegionOne database internal http://controller:8779/v1.0/%\(tenant_id\)s
 openstack endpoint create --region RegionOne database admin http://controller:8779/v1.0/%\(tenant_id\)s</code></pre>
-<ol>
-<li>安装和配置<strong>Trove</strong>各组件</li>
-</ol>
-<p>1、安装<strong>Trove</strong>包
-   <code>``shell script
-   yum install openstack-trove python3-troveclient
-   <pre class="highlight"><code>
-2. 配置`trove.conf`
-```shell script
-vim /etc/trove/trove.conf
+<p>3.安装和配置<strong>Trove</strong>各组件</p>
+<p>1.安装<strong>Trove</strong>包</p>
+<pre class="highlight"><code class="language-shell">yum install openstack-trove python3-troveclient</code></pre>
+<p>2.配置<code>trove.conf</code>
+   <pre class="highlight"><code class="language-shell">vim /etc/trove/trove.conf
 
  [DEFAULT]
  log_dir = /var/log/trove
@@ -1676,40 +1775,39 @@ vim /etc/trove/trove.conf
  user_domain_name = default
  project_name = service
  username = trove
- password = TROVE_PASSWORD</code></pre>
-   **解释：**
-   -</code>[Default]<code>分组中</code>nova_compute_url<code>和</code>cinder_url<code>为Nova和Cinder在Keystone中创建的endpoint
-   -</code>nova_proxy_XXX<code>为一个能访问Nova服务的用户信息，上例中使用</code>admin<code>用户为例
-   -</code>transport_url<code>为</code>RabbitMQ<code>连接信息，</code>RABBIT_PASS<code>替换为RabbitMQ的密码
-   -</code>[database]<code>分组中的</code>connection<code>为前面在mysql中为Trove创建的数据库信息
-   - Trove的用户信息中</code>TROVE_PASSWORD`替换为实际trove用户的密码  </p>
-<ol>
-<li>配置<code>trove-guestagent.conf</code>
-   ```shell script
-   vim /etc/trove/trove-guestagent.conf</li>
-</ol>
-<p>rabbit_host = controller
-   rabbit_password = RABBIT_PASS
-   trove_auth_url = http://controller:5000/
-   <pre class="highlight"><code>**解释：** `guestagent`是trove中一个独立组件，需要预先内置到Trove通过Nova创建的虚拟
-机镜像中，在创建好数据库实例后，会起guestagent进程，负责通过消息队列（RabbitMQ）向Trove上
-报心跳，因此需要配置RabbitMQ的用户和密码信息。
-**从Victoria版开始，Trove使用一个统一的镜像来跑不同类型的数据库，数据库服务运行在Guest虚拟机的Docker容器中。**
-- `RABBIT_PASS`替换为RabbitMQ的密码  
+ password = TROVE_PASSWORD</code></pre></p>
+<p><strong>解释：</strong></p>
+<ul>
+<li><code>[Default]</code>分组中<code>nova_compute_url</code> 和 <code>cinder_url</code> 为Nova和Cinder在Keystone中创建的endpoint</li>
+<li><code>nova_proxy_XXX</code> 为一个能访问Nova服务的用户信息，上例中使用<code>admin</code>用户为例</li>
+<li><code>transport_url</code> 为<code>RabbitMQ</code>连接信息，<code>RABBIT_PASS</code>替换为RabbitMQ的密码</li>
+<li><code>[database]</code>分组中的<code>connection</code> 为前面在mysql中为Trove创建的数据库信息</li>
+<li>Trove的用户信息中<code>TROVE_PASSWORD</code>替换为实际trove用户的密码  </li>
+</ul>
+<p>3.配置<code>trove-guestagent.conf</code></p>
+<pre class="highlight"><code class="language-shell">vim /etc/trove/trove-guestagent.conf
 
-4. 生成数据`Trove`数据库表
-```shell script
-su -s /bin/sh -c "trove-manage db_sync" trove</code></pre></p>
+rabbit_host = controller
+rabbit_password = RABBIT_PASS
+trove_auth_url = http://controller:5000/</code></pre>
+<p><strong>解释：</strong> 
+   <code>guestagent</code>是trove中一个独立组件，需要预先内置到Trove通过Nova创建的虚拟
+   机镜像中，在创建好数据库实例后，会起guestagent进程，负责通过消息队列（RabbitMQ）向Trove上
+   报心跳，因此需要配置RabbitMQ的用户和密码信息。
+   <strong>从Victoria版开始，Trove使用一个统一的镜像来跑不同类型的数据库，数据库服务运行在Guest虚拟机的Docker容器中。</strong></p>
+<ul>
+<li><code>RABBIT_PASS</code>替换为RabbitMQ的密码</li>
+</ul>
+<p>4.生成数据<code>Trove</code>数据库表</p>
+<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "trove-manage db_sync" trove</code></pre>
+<p>4.完成安装配置</p>
 <ol>
-<li>完成安装配置</li>
 <li>配置<strong>Trove</strong>服务自启动
-   ```shell script
-   systemctl enable openstack-trove-api.service \
-   openstack-trove-taskmanager.service \
-   openstack-trove-conductor.service 
-   <pre class="highlight"><code>2. 启动服务
-```shell script
-systemctl start openstack-trove-api.service \
+   <pre class="highlight"><code class="language-shell">systemctl enable openstack-trove-api.service \
+openstack-trove-taskmanager.service \
+openstack-trove-conductor.service </code></pre></li>
+<li>启动服务
+   <pre class="highlight"><code class="language-shell">systemctl start openstack-trove-api.service \
 openstack-trove-taskmanager.service \
 openstack-trove-conductor.service</code></pre></li>
 </ol>
@@ -1721,7 +1819,7 @@ openstack-trove-conductor.service</code></pre></li>
 <p>创建服务凭证</p>
 <pre class="highlight"><code class="language-shell">#创建swift用户：
 openstack user create --domain default --password-prompt swift                 
-#admin为swift用户添加角色：
+#为swift用户添加admin角色：
 openstack role add --project service --user swift admin                        
 #创建swift服务实体：
 openstack service create --name swift --description "OpenStack Object Storage" object-store                                                                   </code></pre>
@@ -1741,7 +1839,7 @@ openstack endpoint create --region RegionOne object-store admin http://controlle
 <p>Swift RPM包里已经包含了一个基本可用的proxy-server.conf，只需要手动修改其中的ip和swift password即可。</p>
 <pre class="highlight"><code>***注意***
 
-**注意替换password为您swift在身份服务中为用户选择的密码**</code></pre>
+**注意替换password为您在身份服务中为swift用户选择的密码**</code></pre>
 <ol>
 <li>
 <p>安装和配置存储节点 （STG）</p>
@@ -1856,7 +1954,7 @@ chmod -R 775 /var/cache/swift</code></pre>
 <p>重新平衡戒指：</p>
 <pre class="highlight"><code class="language-shell">swift-ring-builder object.builder rebalance</code></pre>
 <p>分发环配置文件：</p>
-<p>将<code>account.ring.gz</code>，<code>container.ring.gz</code>以及 <code>object.ring.gz</code>文件复制到<code>/etc/swift</code>每个存储节点和运行代理服务的任何其他节点上目录。</p>
+<p>将<code>account.ring.gz</code>，<code>container.ring.gz</code>以及 <code>object.ring.gz</code>文件复制到每个存储节点和运行代理服务的任何其他节点上的<code>/etc/swift</code>目录。</p>
 </li>
 <li>
 <p>完成安装</p>
@@ -1891,15 +1989,11 @@ systemctl start openstack-swift-object.service openstack-swift-object-auditor.se
 </ol>
 <h3 id="cyborg">Cyborg 安装<a class="headerlink" href="#cyborg" title="Permanent link">&para;</a></h3>
 <p>Cyborg为OpenStack提供加速器设备的支持，包括 GPU, FPGA, ASIC, NP, SoCs, NVMe/NOF SSDs, ODP, DPDK/SPDK等等。</p>
-<ol>
-<li>初始化对应数据库</li>
-</ol>
+<p>1.初始化对应数据库</p>
 <pre class="highlight"><code>CREATE DATABASE cyborg;
 GRANT ALL PRIVILEGES ON cyborg.* TO 'cyborg'@'localhost' IDENTIFIED BY 'CYBORG_DBPASS';
 GRANT ALL PRIVILEGES ON cyborg.* TO 'cyborg'@'%' IDENTIFIED BY 'CYBORG_DBPASS';</code></pre>
-<ol>
-<li>创建对应Keystone资源对象</li>
-</ol>
+<p>2.创建对应Keystone资源对象</p>
 <pre class="highlight"><code>$ openstack user create --domain default --password-prompt cyborg
 $ openstack role add --project service --user cyborg admin
 $ openstack service create --name cyborg --description "Acceleration Service" accelerator
@@ -1910,13 +2004,9 @@ $ openstack endpoint create --region RegionOne \
   accelerator internal http://&lt;cyborg-ip&gt;:6666/v1
 $ openstack endpoint create --region RegionOne \
   accelerator admin http://&lt;cyborg-ip&gt;:6666/v1</code></pre>
-<ol>
-<li>安装Cyborg</li>
-</ol>
+<p>3.安装Cyborg</p>
 <pre class="highlight"><code>yum install openstack-cyborg</code></pre>
-<ol>
-<li>配置Cyborg</li>
-</ol>
+<p>4.配置Cyborg</p>
 <p>修改<code>/etc/cyborg/cyborg.conf</code></p>
 <pre class="highlight"><code>[DEFAULT]
 transport_url = rabbit://%RABBITMQ_USER%:%RABBITMQ_PASSWORD%@%OPENSTACK_HOST_IP%:5672/
@@ -1955,27 +2045,19 @@ username = cyborg
 auth_url = http://%OPENSTACK_HOST_IP%/identity
 auth_type = password</code></pre>
 <p>自行修改对应的用户名、密码、IP等信息</p>
-<ol>
-<li>同步数据库表格</li>
-</ol>
+<p>5.同步数据库表格</p>
 <pre class="highlight"><code>cyborg-dbsync --config-file /etc/cyborg/cyborg.conf upgrade</code></pre>
-<ol>
-<li>启动Cyborg服务</li>
-</ol>
+<p>6.启动Cyborg服务</p>
 <pre class="highlight"><code>systemctl enable openstack-cyborg-api openstack-cyborg-conductor openstack-cyborg-agent
 systemctl start openstack-cyborg-api openstack-cyborg-conductor openstack-cyborg-agent</code></pre>
 <h3 id="aodh">Aodh 安装<a class="headerlink" href="#aodh" title="Permanent link">&para;</a></h3>
-<ol>
-<li>创建数据库</li>
-</ol>
+<p>1.创建数据库</p>
 <pre class="highlight"><code>CREATE DATABASE aodh;
 
 GRANT ALL PRIVILEGES ON aodh.* TO 'aodh'@'localhost' IDENTIFIED BY 'AODH_DBPASS';
 
 GRANT ALL PRIVILEGES ON aodh.* TO 'aodh'@'%' IDENTIFIED BY 'AODH_DBPASS';</code></pre>
-<ol>
-<li>创建对应Keystone资源对象</li>
-</ol>
+<p>2.创建对应Keystone资源对象</p>
 <pre class="highlight"><code>openstack user create --domain default --password-prompt aodh
 
 openstack role add --project service --user aodh admin
@@ -1987,13 +2069,9 @@ openstack endpoint create --region RegionOne alarming public http://controller:8
 openstack endpoint create --region RegionOne alarming internal http://controller:8042
 
 openstack endpoint create --region RegionOne alarming admin http://controller:8042</code></pre>
-<ol>
-<li>安装Aodh</li>
-</ol>
+<p>3.安装Aodh</p>
 <pre class="highlight"><code>yum install openstack-aodh-api openstack-aodh-evaluator openstack-aodh-notifier openstack-aodh-listener openstack-aodh-expirer python3-aodhclient</code></pre>
-<ol>
-<li>修改配置文件</li>
-</ol>
+<p>4.修改配置文件</p>
 <pre class="highlight"><code>[database]
 connection = mysql+pymysql://aodh:AODH_DBPASS@controller/aodh
 
@@ -2022,28 +2100,20 @@ username = aodh
 password = AODH_PASS
 interface = internalURL
 region_name = RegionOne</code></pre>
-<ol>
-<li>初始化数据库</li>
-</ol>
+<p>5.初始化数据库</p>
 <pre class="highlight"><code>aodh-dbsync</code></pre>
-<ol>
-<li>启动Aodh服务</li>
-</ol>
+<p>6.启动Aodh服务</p>
 <pre class="highlight"><code>systemctl enable openstack-aodh-api.service openstack-aodh-evaluator.service openstack-aodh-notifier.service openstack-aodh-listener.service
 
 systemctl start openstack-aodh-api.service openstack-aodh-evaluator.service openstack-aodh-notifier.service openstack-aodh-listener.service</code></pre>
 <h3 id="gnocchi">Gnocchi 安装<a class="headerlink" href="#gnocchi" title="Permanent link">&para;</a></h3>
-<ol>
-<li>创建数据库</li>
-</ol>
+<p>1.创建数据库</p>
 <pre class="highlight"><code>CREATE DATABASE gnocchi;
 
 GRANT ALL PRIVILEGES ON gnocchi.* TO 'gnocchi'@'localhost' IDENTIFIED BY 'GNOCCHI_DBPASS';
 
 GRANT ALL PRIVILEGES ON gnocchi.* TO 'gnocchi'@'%' IDENTIFIED BY 'GNOCCHI_DBPASS';</code></pre>
-<ol>
-<li>创建对应Keystone资源对象</li>
-</ol>
+<p>2.创建对应Keystone资源对象</p>
 <pre class="highlight"><code>openstack user create --domain default --password-prompt gnocchi
 
 openstack role add --project service --user gnocchi admin
@@ -2055,13 +2125,9 @@ openstack endpoint create --region RegionOne metric public http://controller:804
 openstack endpoint create --region RegionOne metric internal http://controller:8041
 
 openstack endpoint create --region RegionOne metric admin http://controller:8041</code></pre>
-<ol>
-<li>安装Gnocchi</li>
-</ol>
+<p>3.安装Gnocchi</p>
 <pre class="highlight"><code>yum install openstack-gnocchi-api openstack-gnocchi-metricd python3-gnocchiclient</code></pre>
-<ol>
-<li>修改配置文件<code>/etc/gnocchi/gnocchi.conf</code></li>
-</ol>
+<p>4.修改配置文件<code>/etc/gnocchi/gnocchi.conf</code></p>
 <pre class="highlight"><code>[api]
 auth_mode = keystone
 port = 8041
@@ -2087,40 +2153,28 @@ url = mysql+pymysql://gnocchi:GNOCCHI_DBPASS@controller/gnocchi
 coordination_url = redis://controller:6379
 file_basepath = /var/lib/gnocchi
 driver = file</code></pre>
-<ol>
-<li>初始化数据库</li>
-</ol>
+<p>5.初始化数据库</p>
 <pre class="highlight"><code>gnocchi-upgrade</code></pre>
-<ol>
-<li>启动Gnocchi服务</li>
-</ol>
+<p>6.启动Gnocchi服务</p>
 <pre class="highlight"><code>systemctl enable openstack-gnocchi-api.service openstack-gnocchi-metricd.service
 
 systemctl start openstack-gnocchi-api.service openstack-gnocchi-metricd.service</code></pre>
 <h3 id="ceilometer">Ceilometer 安装<a class="headerlink" href="#ceilometer" title="Permanent link">&para;</a></h3>
-<ol>
-<li>创建对应Keystone资源对象</li>
-</ol>
+<p>1.创建对应Keystone资源对象</p>
 <pre class="highlight"><code>openstack user create --domain default --password-prompt ceilometer
 
 openstack role add --project service --user ceilometer admin
 
 openstack service create --name ceilometer --description "Telemetry" metering</code></pre>
-<ol>
-<li>安装Ceilometer</li>
-</ol>
+<p>2.安装Ceilometer</p>
 <pre class="highlight"><code>yum install openstack-ceilometer-notification openstack-ceilometer-central</code></pre>
-<ol>
-<li>修改配置文件<code>/etc/ceilometer/pipeline.yaml</code></li>
-</ol>
+<p>3.修改配置文件<code>/etc/ceilometer/pipeline.yaml</code></p>
 <pre class="highlight"><code>publishers:
     # set address of Gnocchi
     # + filter out Gnocchi-related activity meters (Swift driver)
     # + set default archive policy
     - gnocchi://?filter_project=service&amp;archive_policy=low</code></pre>
-<ol>
-<li>修改配置文件<code>/etc/ceilometer/ceilometer.conf</code></li>
-</ol>
+<p>4.修改配置文件<code>/etc/ceilometer/ceilometer.conf</code></p>
 <pre class="highlight"><code>[DEFAULT]
 transport_url = rabbit://openstack:RABBIT_PASS@controller
 
@@ -2134,31 +2188,21 @@ username = ceilometer
 password = CEILOMETER_PASS
 interface = internalURL
 region_name = RegionOne</code></pre>
-<ol>
-<li>初始化数据库</li>
-</ol>
+<p>5.初始化数据库</p>
 <pre class="highlight"><code>ceilometer-upgrade</code></pre>
-<ol>
-<li>启动Ceilometer服务</li>
-</ol>
+<p>6.启动Ceilometer服务</p>
 <pre class="highlight"><code>systemctl enable openstack-ceilometer-notification.service openstack-ceilometer-central.service
 
 systemctl start openstack-ceilometer-notification.service openstack-ceilometer-central.service</code></pre>
 <h3 id="heat">Heat 安装<a class="headerlink" href="#heat" title="Permanent link">&para;</a></h3>
-<ol>
-<li>创建<strong>heat</strong>数据库，并授予<strong>heat</strong>数据库正确的访问权限，替换<strong>HEAT_DBPASS</strong>为合适的密码</li>
-</ol>
+<p>1.创建<strong>heat</strong>数据库，并授予<strong>heat</strong>数据库正确的访问权限，替换<strong>HEAT_DBPASS</strong>为合适的密码</p>
 <pre class="highlight"><code>CREATE DATABASE heat;
 GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'localhost' IDENTIFIED BY 'HEAT_DBPASS';
 GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'%' IDENTIFIED BY 'HEAT_DBPASS';</code></pre>
-<ol>
-<li>创建服务凭证，创建<strong>heat</strong>用户，并为其增加<strong>admin</strong>角色</li>
-</ol>
+<p>2.创建服务凭证，创建<strong>heat</strong>用户，并为其增加<strong>admin</strong>角色</p>
 <pre class="highlight"><code>openstack user create --domain default --password-prompt heat
 openstack role add --project service --user heat admin</code></pre>
-<ol>
-<li>创建<strong>heat</strong>和<strong>heat-cfn</strong>服务及其对应的API端点</li>
-</ol>
+<p>3.创建<strong>heat</strong>和<strong>heat-cfn</strong>服务及其对应的API端点</p>
 <pre class="highlight"><code>openstack service create --name heat --description "Orchestration" orchestration
 openstack service create --name heat-cfn --description "Orchestration"  cloudformation
 openstack endpoint create --region RegionOne orchestration public http://controller:8004/v1/%\(tenant_id\)s
@@ -2167,21 +2211,15 @@ openstack endpoint create --region RegionOne orchestration admin http://controll
 openstack endpoint create --region RegionOne cloudformation public http://controller:8000/v1
 openstack endpoint create --region RegionOne cloudformation internal http://controller:8000/v1
 openstack endpoint create --region RegionOne cloudformation admin http://controller:8000/v1</code></pre>
-<ol>
-<li>创建stack管理的额外信息，包括<strong>heat</strong>domain及其对应domain的admin用户<strong>heat_domain_admin</strong>，
-<strong>heat_stack_owner</strong>角色，<strong>heat_stack_user</strong>角色</li>
-</ol>
+<p>4.创建stack管理的额外信息，包括<strong>heat</strong>domain及其对应domain的admin用户<strong>heat_domain_admin</strong>，
+<strong>heat_stack_owner</strong>角色，<strong>heat_stack_user</strong>角色</p>
 <pre class="highlight"><code>openstack user create --domain heat --password-prompt heat_domain_admin
 openstack role add --domain heat --user-domain heat --user heat_domain_admin admin
 openstack role create heat_stack_owner
 openstack role create heat_stack_user</code></pre>
-<ol>
-<li>安装软件包</li>
-</ol>
+<p>5.安装软件包</p>
 <pre class="highlight"><code>yum install openstack-heat-api openstack-heat-api-cfn openstack-heat-engine</code></pre>
-<ol>
-<li>修改配置文件<code>/etc/heat/heat.conf</code></li>
-</ol>
+<p>6.修改配置文件<code>/etc/heat/heat.conf</code></p>
 <pre class="highlight"><code>[DEFAULT]
 transport_url = rabbit://openstack:RABBIT_PASS@controller
 heat_metadata_server_url = http://controller:8000
@@ -2213,21 +2251,519 @@ user_domain_name = default
 
 [clients_keystone]
 auth_uri = http://controller:5000</code></pre>
-<ol>
-<li>初始化<strong>heat</strong>数据库表</li>
-</ol>
+<p>7.初始化<strong>heat</strong>数据库表</p>
 <pre class="highlight"><code>su -s /bin/sh -c "heat-manage db_sync" heat</code></pre>
-<ol>
-<li>启动服务</li>
-</ol>
+<p>8.启动服务</p>
 <pre class="highlight"><code>systemctl enable openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service
 systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service</code></pre>
+<h2 id="openstack-sigoos">基于OpenStack SIG开发工具oos快速部署<a class="headerlink" href="#openstack-sigoos" title="Permanent link">&para;</a></h2>
+<p><code>oos</code>(openEuler OpenStack SIG)是OpenStack SIG提供的命令行工具。其中<code>oos env</code>系列命令提供了一键部署OpenStack （<code>all in one</code>或三节点<code>cluster</code>）的ansible脚本，用户可以使用该脚本快速部署一套基于 openEuler RPM 的 OpenStack 环境。<code>oos</code>工具支持对接云provider（目前仅支持华为云provider）和主机纳管两种方式来部署 OpenStack 环境，下面以对接华为云部署一套<code>all in one</code>的OpenStack环境为例说明<code>oos</code>工具的使用方法。</p>
+<ol>
+<li>
+<p>安装<code>oos</code>工具</p>
+<pre class="highlight"><code class="language-shell">pip install openstack-sig-tool</code></pre>
+</li>
+<li>
+<p>配置对接华为云provider的信息</p>
+<p>打开<code>/usr/local/etc/oos/oos.conf</code>文件，修改配置为您拥有的华为云资源信息：</p>
+<pre class="highlight"><code>[huaweicloud]
+ak = 
+sk = 
+region = ap-southeast-3
+root_volume_size = 100
+data_volume_size = 100
+security_group_name = oos
+image_format = openEuler-%%(release)s-%%(arch)s
+vpc_name = oos_vpc
+subnet1_name = oos_subnet1
+subnet2_name = oos_subnet2</code></pre>
+</li>
+<li>
+<p>配置 OpenStack 环境信息</p>
+<p>打开<code>/usr/local/etc/oos/oos.conf</code>文件，根据当前机器环境和需求修改配置。内容如下：</p>
+<pre class="highlight"><code class="language-shell">[environment]
+mysql_root_password = root
+mysql_project_password = root
+rabbitmq_password = root
+project_identity_password = root
+enabled_service = keystone,neutron,cinder,placement,nova,glance,horizon,aodh,ceilometer,cyborg,gnocchi,kolla,heat,swift,trove,tempest
+neutron_provider_interface_name = br-ex
+default_ext_subnet_range = 10.100.100.0/24
+default_ext_subnet_gateway = 10.100.100.1
+neutron_dataplane_interface_name = eth1
+cinder_block_device = vdb
+swift_storage_devices = vdc
+swift_hash_path_suffix = ash
+swift_hash_path_prefix = has
+glance_api_workers = 2
+cinder_api_workers = 2
+nova_api_workers = 2
+nova_metadata_api_workers = 2
+nova_conductor_workers = 2
+nova_scheduler_workers = 2
+neutron_api_workers = 2
+horizon_allowed_host = *
+kolla_openeuler_plugin = false</code></pre>
+<p><strong>关键配置</strong></p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>enabled_service</td>
+<td>安装服务列表，根据用户需求自行删减</td>
+</tr>
+<tr>
+<td>neutron_provider_interface_name</td>
+<td>neutron L3网桥名称</td>
+</tr>
+<tr>
+<td>default_ext_subnet_range</td>
+<td>neutron私网IP段</td>
+</tr>
+<tr>
+<td>default_ext_subnet_gateway</td>
+<td>neutron私网gateway</td>
+</tr>
+<tr>
+<td>neutron_dataplane_interface_name</td>
+<td>neutron使用的网卡，推荐使用一张新的网卡，以免和现有网卡冲突，防止all in one主机断连的情况</td>
+</tr>
+<tr>
+<td>cinder_block_device</td>
+<td>cinder使用的卷设备名</td>
+</tr>
+<tr>
+<td>swift_storage_devices</td>
+<td>swift使用的卷设备名</td>
+</tr>
+<tr>
+<td>kolla_openeuler_plugin</td>
+<td>是否启用kolla plugin。设置为True，kolla将支持部署openEuler容器</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>华为云上面创建一台openEuler 22.03-LTS-SP3的x86_64虚拟机，用于部署<code>all in one</code> 的 OpenStack</p>
+<pre class="highlight"><code class="language-shell"># sshpass在`oos env create`过程中被使用，用于配置对目标虚拟机的免密访问
+dnf install sshpass
+oos env create -r 22.03-lts-SP3 -f small -a x86 -n test-oos all_in_one</code></pre>
+<p>具体的参数可以使用<code>oos env create --help</code>命令查看</p>
+</li>
+<li>
+<p>部署OpenStack <code>all in one</code> 环境</p>
+<pre class="highlight"><code class="language-shell">oos env setup test-oos -r train</code></pre>
+<p>具体的参数可以使用<code>oos env setup --help</code>命令查看</p>
+</li>
+<li>
+<p>初始化tempest环境</p>
+<p>如果用户想使用该环境运行tempest测试的话，可以执行命令<code>oos env init</code>，会自动把tempest需要的OpenStack资源自动创建好</p>
+<pre class="highlight"><code class="language-shell">oos env init test-oos</code></pre>
+<p>命令执行成功后，在用户的根目录下会生成mytest目录，进入其中就可以执行tempest run命令了。</p>
+</li>
+</ol>
+<p>如果是以主机纳管的方式部署 OpenStack 环境，总体逻辑与上文对接华为云时一致，1、3、5、6步操作不变，去除第2步对华为云provider信息的配置，第4步由在华为云上创建虚拟机改为纳管主机操作。</p>
+<pre class="highlight"><code class="language-shell"># sshpass在`oos env create`过程中被使用，用于配置对目标主机的免密访问
+dnf install sshpass
+oos env manage -r 22.03-lts-SP3 -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n test-oos</code></pre>
+<p>替换<code>TARGET_MACHINE_IP</code>为目标机ip、<code>TARGET_MACHINE_PASSWD</code>为目标机密码。具体的参数可以使用<code>oos env manage --help</code>命令查看。</p>
+<h2 id="openstack-sigopensd">基于OpenStack SIG部署工具opensd部署<a class="headerlink" href="#openstack-sigopensd" title="Permanent link">&para;</a></h2>
+<p>opensd用于批量地脚本化部署openstack各组件服务。</p>
+<h3 id="_4">部署步骤<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h3 id="1">1. 部署前需要确认的信息<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>装操作系统时，需将selinux设置为disable</li>
+<li>装操作系统时，将/etc/ssh/sshd_config配置文件内的UseDNS设置为no</li>
+<li>操作系统语言必须设置为英文</li>
+<li>部署之前请确保所有计算节点/etc/hosts文件内没有对计算主机的解析</li>
+</ul>
+<h3 id="2-ceph-pool">2. ceph pool与认证创建（可选）<a class="headerlink" href="#2-ceph-pool" title="Permanent link">&para;</a></h3>
+<p>不使用ceph或已有ceph集群可忽略此步骤</p>
+<p><strong>在任意一台ceph monitor节点执行:</strong></p>
+<h4 id="21-pool">2.1 创建pool:<a class="headerlink" href="#21-pool" title="Permanent link">&para;</a></h4>
+<pre class="highlight"><code class="language-shell">ceph osd pool create volumes 2048
+ceph osd pool create images 2048</code></pre>
+<h4 id="22-pool">2.2 初始化pool<a class="headerlink" href="#22-pool" title="Permanent link">&para;</a></h4>
+<pre class="highlight"><code class="language-shell">rbd pool init volumes
+rbd pool init images</code></pre>
+<h4 id="23">2.3 创建用户认证<a class="headerlink" href="#23" title="Permanent link">&para;</a></h4>
+<pre class="highlight"><code class="language-shell">ceph auth get-or-create client.glance mon 'profile rbd' osd 'profile rbd pool=images' mgr 'profile rbd pool=images'
+ceph auth get-or-create client.cinder mon 'profile rbd' osd 'profile rbd pool=volumes, profile rbd pool=images' mgr 'profile rbd pool=volumes'</code></pre>
+<h3 id="3-lvm">3. 配置lvm（可选）<a class="headerlink" href="#3-lvm" title="Permanent link">&para;</a></h3>
+<p><strong>根据物理机磁盘配置与闲置情况，为mysql数据目录挂载额外的磁盘空间。示例如下（根据实际情况做配置）：</strong></p>
+<pre class="highlight"><code>fdisk -l
+Disk /dev/sdd: 479.6 GB, 479559942144 bytes, 936640512 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disk label type: dos
+Disk identifier: 0x000ed242
+创建分区
+parted /dev/sdd
+mkparted 0 -1
+创建pv
+partprobe /dev/sdd1
+pvcreate /dev/sdd1
+创建、激活vg
+vgcreate vg_mariadb /dev/sdd1
+vgchange -ay vg_mariadb
+查看vg容量
+vgdisplay
+--- Volume group ---
+VG Name vg_mariadb
+System ID
+Format lvm2
+Metadata Areas 1
+Metadata Sequence No 2
+VG Access read/write
+VG Status resizable
+MAX LV 0
+Cur LV 1
+Open LV 1
+Max PV 0
+Cur PV 1
+Act PV 1
+VG Size 446.62 GiB
+PE Size 4.00 MiB
+Total PE 114335
+Alloc PE / Size 114176 / 446.00 GiB
+Free PE / Size 159 / 636.00 MiB
+VG UUID bVUmDc-VkMu-Vi43-mg27-TEkG-oQfK-TvqdEc
+创建lv
+lvcreate -L 446G -n lv_mariadb vg_mariadb
+格式化磁盘并获取卷的UUID
+mkfs.ext4 /dev/mapper/vg_mariadb-lv_mariadb
+blkid /dev/mapper/vg_mariadb-lv_mariadb
+/dev/mapper/vg_mariadb-lv_mariadb: UUID="98d513eb-5f64-4aa5-810e-dc7143884fa2" TYPE="ext4"
+注：98d513eb-5f64-4aa5-810e-dc7143884fa2为卷的UUID
+挂载磁盘
+mount /dev/mapper/vg_mariadb-lv_mariadb /var/lib/mysql
+rm -rf  /var/lib/mysql/*</code></pre>
+<h3 id="4-yum-repo">4. 配置yum repo<a class="headerlink" href="#4-yum-repo" title="Permanent link">&para;</a></h3>
+<p><strong>在部署节点执行：</strong></p>
+<h4 id="41-yum">4.1 备份yum源<a class="headerlink" href="#41-yum" title="Permanent link">&para;</a></h4>
+<pre class="highlight"><code class="language-shell">mkdir /etc/yum.repos.d/bak/
+mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/bak/</code></pre>
+<h4 id="42-yum-repo">4.2 配置yum repo<a class="headerlink" href="#42-yum-repo" title="Permanent link">&para;</a></h4>
+<pre class="highlight"><code class="language-shell">cat &gt; /etc/yum.repos.d/opensd.repo &lt;&lt; EOF
+[train]
+name=train
+baseurl=http://119.3.219.20:82/openEuler:/22.03:/LTS:/SP3:/Epol:/Multi-Version:/OpenStack:/Train/standard_$basearch/
+enabled=1
+gpgcheck=0
+
+[epol]
+name=epol
+baseurl=http://119.3.219.20:82/openEuler:/22.03:/LTS:/SP3:/Epol/standard_$basearch/
+enabled=1
+gpgcheck=0
+
+[everything]
+name=everything
+baseurl=http://119.3.219.20:82/openEuler:/22.03:/LTS:/SP3/standard_$basearch/
+enabled=1
+gpgcheck=0
+
+EOF</code></pre>
+<h4 id="43-yum">4.3 更新yum缓存<a class="headerlink" href="#43-yum" title="Permanent link">&para;</a></h4>
+<pre class="highlight"><code class="language-shell">yum clean all
+yum makecache</code></pre>
+<h3 id="5-opensd">5. 安装opensd<a class="headerlink" href="#5-opensd" title="Permanent link">&para;</a></h3>
+<p><strong>在部署节点执行：</strong></p>
+<h4 id="51-opensd">5.1 克隆opensd源码并安装<a class="headerlink" href="#51-opensd" title="Permanent link">&para;</a></h4>
+<pre class="highlight"><code class="language-shell">git clone https://gitee.com/openeuler/opensd
+cd opensd
+python3 setup.py install</code></pre>
+<h3 id="6-ssh">6. 做ssh互信<a class="headerlink" href="#6-ssh" title="Permanent link">&para;</a></h3>
+<p><strong>在部署节点执行：</strong></p>
+<h4 id="61">6.1 生成密钥对<a class="headerlink" href="#61" title="Permanent link">&para;</a></h4>
+<p>执行如下命令并一路回车</p>
+<pre class="highlight"><code class="language-shell">ssh-keygen</code></pre>
+<h4 id="62-ip">6.2 生成主机IP地址文件<a class="headerlink" href="#62-ip" title="Permanent link">&para;</a></h4>
+<p>在auto_ssh_host_ip中配置所有用到的主机ip, 示例：</p>
+<pre class="highlight"><code class="language-shell">cd /usr/local/share/opensd/tools/
+vim auto_ssh_host_ip
+
+10.0.0.1
+10.0.0.2
+...
+10.0.0.10</code></pre>
+<h4 id="63">6.3 更改密码并执行脚本<a class="headerlink" href="#63" title="Permanent link">&para;</a></h4>
+<p><em>将免密脚本<code>/usr/local/bin/opensd-auto-ssh</code>内123123替换为主机真实密码</em></p>
+<pre class="highlight"><code class="language-shell"># 替换脚本内123123字符串
+vim /usr/local/bin/opensd-auto-ssh</code></pre>
+<pre class="highlight"><code class="language-shell">## 安装expect后执行脚本
+dnf install expect -y
+opensd-auto-ssh</code></pre>
+<h4 id="64-ceph-monitor">6.4 部署节点与ceph monitor做互信（可选）<a class="headerlink" href="#64-ceph-monitor" title="Permanent link">&para;</a></h4>
+<pre class="highlight"><code class="language-shell">ssh-copy-id root@x.x.x.x</code></pre>
+<h3 id="7-opensd">7. 配置opensd<a class="headerlink" href="#7-opensd" title="Permanent link">&para;</a></h3>
+<p><strong>在部署节点执行：</strong></p>
+<h4 id="71">7.1 生成随机密码<a class="headerlink" href="#71" title="Permanent link">&para;</a></h4>
+<p>安装 python3-pbr, python3-utils, python3-pyyaml, python3-oslo-utils并随机生成密码
+<pre class="highlight"><code class="language-shell">dnf install python3-pbr python3-utils python3-pyyaml python3-oslo-utils -y
+# 执行命令生成密码
+opensd-genpwd
+# 检查密码是否生成
+cat /usr/local/share/opensd/etc_examples/opensd/passwords.yml</code></pre></p>
+<h4 id="72-inventory">7.2 配置inventory文件<a class="headerlink" href="#72-inventory" title="Permanent link">&para;</a></h4>
+<p>主机信息包含：主机名、ansible_host IP、availability_zone，三者均需配置缺一不可，示例：</p>
+<pre class="highlight"><code class="language-shell">vim /usr/local/share/opensd/ansible/inventory/multinode
+# 三台控制节点主机信息
+[control]
+controller1 ansible_host=10.0.0.35 availability_zone=az01.cell01.cn-yogadev-1
+controller2 ansible_host=10.0.0.36 availability_zone=az01.cell01.cn-yogadev-1
+controller3 ansible_host=10.0.0.37 availability_zone=az01.cell01.cn-yogadev-1
+
+# 网络节点信息，与控制节点保持一致
+[network]
+controller1 ansible_host=10.0.0.35 availability_zone=az01.cell01.cn-yogadev-1
+controller2 ansible_host=10.0.0.36 availability_zone=az01.cell01.cn-yogadev-1
+controller3 ansible_host=10.0.0.37 availability_zone=az01.cell01.cn-yogadev-1
+
+# cinder-volume服务节点信息
+[storage]
+storage1 ansible_host=10.0.0.61 availability_zone=az01.cell01.cn-yogadev-1
+storage2 ansible_host=10.0.0.78 availability_zone=az01.cell01.cn-yogadev-1
+storage3 ansible_host=10.0.0.82 availability_zone=az01.cell01.cn-yogadev-1
+
+# Cell1 集群信息
+[cell-control-cell1]
+cell1 ansible_host=10.0.0.24 availability_zone=az01.cell01.cn-yogadev-1
+cell2 ansible_host=10.0.0.25 availability_zone=az01.cell01.cn-yogadev-1
+cell3 ansible_host=10.0.0.26 availability_zone=az01.cell01.cn-yogadev-1
+
+[compute-cell1]
+compute1 ansible_host=10.0.0.27 availability_zone=az01.cell01.cn-yogadev-1
+compute2 ansible_host=10.0.0.28 availability_zone=az01.cell01.cn-yogadev-1
+compute3 ansible_host=10.0.0.29 availability_zone=az01.cell01.cn-yogadev-1
+
+[cell1:children]
+cell-control-cell1
+compute-cell1
+
+# Cell2集群信息
+[cell-control-cell2]
+cell4 ansible_host=10.0.0.36 availability_zone=az03.cell02.cn-yogadev-1
+cell5 ansible_host=10.0.0.37 availability_zone=az03.cell02.cn-yogadev-1
+cell6 ansible_host=10.0.0.38 availability_zone=az03.cell02.cn-yogadev-1
+
+[compute-cell2]
+compute4 ansible_host=10.0.0.39 availability_zone=az03.cell02.cn-yogadev-1
+compute5 ansible_host=10.0.0.40 availability_zone=az03.cell02.cn-yogadev-1
+compute6 ansible_host=10.0.0.41 availability_zone=az03.cell02.cn-yogadev-1
+
+[cell2:children]
+cell-control-cell2
+compute-cell2
+
+[baremetal]
+
+[compute-cell1-ironic]
+
+
+# 填写所有cell集群的control主机组
+[nova-conductor:children]
+cell-control-cell1
+cell-control-cell2
+
+# 填写所有cell集群的compute主机组
+[nova-compute:children]
+compute-added
+compute-cell1
+compute-cell2
+
+# 下面的主机组信息不需变动，保留即可
+[compute-added]
+
+[chrony-server:children]
+control
+
+[pacemaker:children]
+control
+......
+......</code></pre>
+<h4 id="73">7.3 配置全局变量<a class="headerlink" href="#73" title="Permanent link">&para;</a></h4>
+<p><strong>注: 文档中提到的有注释配置项需要更改，其他参数不需要更改，若无相关配置则为空</strong></p>
+<pre class="highlight"><code class="language-shell">vim /usr/local/share/opensd/etc_examples/opensd/globals.yml
+########################
+# Network &amp; Base options
+########################
+network_interface: "eth0" #管理网络的网卡名称
+neutron_external_interface: "eth1" #业务网络的网卡名称
+cidr_netmask: 24 #管理网的掩码
+opensd_vip_address: 10.0.0.33  #控制节点虚拟IP地址
+cell1_vip_address: 10.0.0.34 #cell1集群的虚拟IP地址
+cell2_vip_address: 10.0.0.35 #cell2集群的虚拟IP地址
+external_fqdn: "" #用于vnc访问虚拟机的外网域名地址
+external_ntp_servers: [] #外部ntp服务器地址
+yumrepo_host:  #yum源的IP地址
+yumrepo_port:  #yum源端口号
+enviroment:   #yum源的类型
+upgrade_all_packages: "yes" #是否升级所有安装版的版本(执行yum upgrade)，初始部署资源请设置为"yes"
+enable_miner: "no" #是否开启部署miner服务
+
+enable_chrony: "no" #是否开启部署chrony服务
+enable_pri_mariadb: "no" #是否为私有云部署mariadb
+enable_hosts_file_modify: "no" # 扩容计算节点和部署ironic服务的时候，是否将节点信息添加到`/etc/hosts`
+
+########################
+# Available zone options
+########################
+az_cephmon_compose:
+  - availability_zone:  #availability zone的名称，该名称必须与multinode主机文件内的az01的"availability_zone"值保持一致
+    ceph_mon_host:      #az01对应的一台ceph monitor主机地址，部署节点需要与该主机做ssh互信
+    reserve_vcpu_based_on_numa:  
+  - availability_zone:  #availability zone的名称，该名称必须与multinode主机文件内的az02的"availability_zone"值保持一致
+    ceph_mon_host:      #az02对应的一台ceph monitor主机地址，部署节点需要与该主机做ssh互信
+    reserve_vcpu_based_on_numa:  
+  - availability_zone:  #availability zone的名称，该名称必须与multinode主机文件内的az03的"availability_zone"值保持一致
+    ceph_mon_host:      #az03对应的一台ceph monitor主机地址，部署节点需要与该主机做ssh互信
+    reserve_vcpu_based_on_numa:
+
+# `reserve_vcpu_based_on_numa`配置为`yes` or `no`,举例说明：
+NUMA node0 CPU(s): 0-15,32-47
+NUMA node1 CPU(s): 16-31,48-63
+当reserve_vcpu_based_on_numa: "yes", 根据numa node, 平均每个node预留vcpu:
+vcpu_pin_set = 2-15,34-47,18-31,50-63
+当reserve_vcpu_based_on_numa: "no", 从第一个vcpu开始，顺序预留vcpu:
+vcpu_pin_set = 8-64
+
+#######################
+# Nova options
+#######################
+nova_reserved_host_memory_mb: 2048 #计算节点给计算服务预留的内存大小
+enable_cells: "yes" #cell节点是否单独节点部署
+support_gpu: "False" #cell节点是否有GPU服务器，如果有则为True，否则为False
+
+#######################
+# Neutron options
+#######################
+monitor_ip:
+    - 10.0.0.9   #配置监控节点
+    - 10.0.0.10
+enable_meter_full_eip: True   #配置是否允许EIP全量监控，默认为True
+enable_meter_port_forwarding: True   #配置是否允许port forwarding监控，默认为True
+enable_meter_ecs_ipv6: True   #配置是否允许ecs_ipv6监控，默认为True
+enable_meter: True    #配置是否开启监控，默认为True
+is_sdn_arch: False    #配置是否是sdn架构，默认为False
+
+# 默认使能的网络类型是vlan,vlan和vxlan两种类型只能二选一.
+enable_vxlan_network_type: False  # 默认使能的网络类型是vlan,如果使用vxlan网络，配置为True, 如果使用vlan网络，配置为False.
+enable_neutron_fwaas: False       # 环境有使用防火墙, 设置为True, 使能防护墙功能.
+# Neutron provider
+neutron_provider_networks:
+  network_types: "{{ 'vxlan' if enable_vxlan_network_type else 'vlan' }}"
+  network_vlan_ranges: "default:xxx:xxx" #部署之前规划的业务网络vlan范围
+  network_mappings: "default:br-provider"
+  network_interface: "{{ neutron_external_interface }}"
+  network_vxlan_ranges: "" #部署之前规划的业务网络vxlan范围
+
+# 如下这些配置是SND控制器的配置参数, `enable_sdn_controller`设置为True, 使能SND控制器功能.
+# 其他参数请根据部署之前的规划和SDN部署信息确定.
+enable_sdn_controller: False
+sdn_controller_ip_address:  # SDN控制器ip地址
+sdn_controller_username:    # SDN控制器的用户名
+sdn_controller_password:    # SDN控制器的用户密码
+
+#######################
+# Dimsagent options
+#######################
+enable_dimsagent: "no" # 安装镜像服务agent, 需要改为yes
+# Address and domain name for s2
+s3_address_domain_pair:
+  - host_ip:           
+    host_name:         
+
+#######################
+# Trove options
+#######################
+enable_trove: "no" #安装trove 需要改为yes
+#default network
+trove_default_neutron_networks:  #trove 的管理网络id `openstack network list|grep -w trove-mgmt|awk '{print$2}'`
+#s3 setup(如果没有s3,以下值填null)
+s3_endpoint_host_ip:   #s3的ip
+s3_endpoint_host_name: #s3的域名
+s3_endpoint_url:       #s3的url ·一般为http：//s3域名
+s3_access_key:         #s3的ak 
+s3_secret_key:         #s3的sk
+
+#######################
+# Ironic options
+#######################
+enable_ironic: "no" #是否开机裸金属部署，默认不开启
+ironic_neutron_provisioning_network_uuid:
+ironic_neutron_cleaning_network_uuid: "{{ ironic_neutron_provisioning_network_uuid }}"
+ironic_dnsmasq_interface:
+ironic_dnsmasq_dhcp_range:
+ironic_tftp_server_address: "{{ hostvars[inventory_hostname]['ansible_' + ironic_dnsmasq_interface]['ipv4']['address'] }}"
+# 交换机设备相关信息
+neutron_ml2_conf_genericswitch:
+  genericswitch:xxxxxxx:
+    device_type:
+    ngs_mac_address:
+    ip:
+    username:
+    password:
+    ngs_port_default_vlan:
+
+# Package state setting
+haproxy_package_state: "present"
+mariadb_package_state: "present"
+rabbitmq_package_state: "present"
+memcached_package_state: "present"
+ceph_client_package_state: "present"
+keystone_package_state: "present"
+glance_package_state: "present"
+cinder_package_state: "present"
+nova_package_state: "present"
+neutron_package_state: "present"
+miner_package_state: "present"</code></pre>
+<h4 id="74-ssh">7.4 检查所有节点ssh连接状态<a class="headerlink" href="#74-ssh" title="Permanent link">&para;</a></h4>
+<pre class="highlight"><code class="language-shell">dnf install ansible -y
+ansible all -i /usr/local/share/opensd/ansible/inventory/multinode -m ping
+
+# 执行结果显示每台主机都是"SUCCESS"即说明连接状态没问题,示例：
+compute1 | SUCCESS =&gt; {
+  "ansible_facts": {
+      "discovered_interpreter_python": "/usr/bin/python"
+  },
+  "changed": false,
+  "ping": "pong"
+}</code></pre>
+<h3 id="8">8. 执行部署<a class="headerlink" href="#8" title="Permanent link">&para;</a></h3>
+<p><strong>在部署节点执行：</strong></p>
+<h4 id="81-bootstrap">8.1 执行bootstrap<a class="headerlink" href="#81-bootstrap" title="Permanent link">&para;</a></h4>
+<pre class="highlight"><code class="language-shell"># 执行部署
+opensd -i /usr/local/share/opensd/ansible/inventory/multinode bootstrap --forks 50</code></pre>
+<h4 id="82">8.2 重启服务器<a class="headerlink" href="#82" title="Permanent link">&para;</a></h4>
+<p><strong>注：执行重启的原因是:bootstrap可能会升内核,更改selinux配置或者有GPU服务器,如果装机过程已经是新版内核,selinux disable或者没有GPU服务器,则不需要执行该步骤</strong>
+<pre class="highlight"><code class="language-shell"># 手动重启对应节点,执行命令
+init6
+# 重启完成后，再次检查连通性
+ansible all -i /usr/local/share/opensd/ansible/inventory/multinode -m ping
+# 重启完后操作系统后，再次启动yum源</code></pre></p>
+<h4 id="83">8.3 执行部署前检查<a class="headerlink" href="#83" title="Permanent link">&para;</a></h4>
+<pre class="highlight"><code class="language-shell">opensd -i /usr/local/share/opensd/ansible/inventory/multinode prechecks --forks 50</code></pre>
+<h4 id="84">8.4 执行部署<a class="headerlink" href="#84" title="Permanent link">&para;</a></h4>
+<pre class="highlight"><code class="language-shell">ln -s /usr/bin/python3 /usr/bin/python
+
+全量部署：
+opensd -i /usr/local/share/opensd/ansible/inventory/multinode deploy --forks 50
+
+单服务部署：
+opensd -i /usr/local/share/opensd/ansible/inventory/multinode deploy --forks 50 -t service_name</code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="页脚导航">
-        <a href="../OpenStack-rocky/" class="btn btn-neutral float-left" title="openEuler-20.03-LTS-SP3_Rocky"><span class="icon icon-circle-arrow-left"></span> 上一章</a>
-        <a href="../../openEuler-20.03-LTS-SP4/OpenStack-train/" class="btn btn-neutral float-right" title="openEuler-20.03-LTS-SP4_Train">下一章 <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../openEuler-22.03-LTS-SP2/OpenStack-wallaby/" class="btn btn-neutral float-left" title="openEuler-22.03-LTS-SP2_Wallaby"><span class="icon icon-circle-arrow-left"></span> 上一章</a>
+        <a href="../OpenStack-wallaby/" class="btn btn-neutral float-right" title="openEuler-22.03-LTS-SP3_Wallaby">下一章 <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -2250,10 +2786,10 @@ systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openst
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../OpenStack-rocky/" style="color: #fcfcfc">&laquo; 上一章</a></span>
+      <span><a href="../../openEuler-22.03-LTS-SP2/OpenStack-wallaby/" style="color: #fcfcfc">&laquo; 上一章</a></span>
     
     
-      <span><a href="../../openEuler-20.03-LTS-SP4/OpenStack-train/" style="color: #fcfcfc">下一章 &raquo;</a></span>
+      <span><a href="../OpenStack-wallaby/" style="color: #fcfcfc">下一章 &raquo;</a></span>
     
   </span>
 </div>
