@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>OpenStack安全指南 - OpenStack SIG Doc</title>
+    <title>security_guide - OpenStack SIG Doc</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "OpenStack\u5b89\u5168\u6307\u5357";
+        var mkdocs_page_name = "security_guide";
         var mkdocs_page_input_path = "security/security-guide.md";
         var mkdocs_page_url = null;
       </script>
@@ -101,6 +101,231 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../spec/priority_vm/">虚拟机高低优先级</a>
                   </li>
               </ul>
+              <p class="caption"><span class="caption-text">安全指南</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">security_guide</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">摘要</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">内容</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">约定</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">注意事项</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">命令提示符</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">介绍</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">致谢</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">我们为什么以及如何写这本书</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_9">目标</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_10">写作记录</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_11">如何为本书做贡献</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#openstack_1">OpenStack 简介</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_12">云类型</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_13">公有云</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_14">私有云</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_15">社区云</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_16">混合云</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#openstack_2">OpenStack 服务概述</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_17">计算</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_18">对象存储</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_19">块存储</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_20">共享文件系统</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_21">网络</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_22">仪表板</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_23">身份鉴别服务</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_24">镜像服务</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_25">数据处理服务</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_26">其他配套技术</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_27">安全边界和威胁</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_28">安全域</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_29">公共</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_30">访客</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_31">管理</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_32">数据</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_33">桥接安全域</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_34">威胁分类、参与者和攻击向量</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_35">威胁参与者</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_41">公有云和私有云注意事项</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_42">出站攻击和声誉风险</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_43">攻击类型</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_44">选择支持软件</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_45">团队专业知识</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_46">产品或项目成熟度</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_47">通用标准</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_48">硬件问题</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_49">系统文档</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_50">系统文档要求</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_51">系统角色和类型</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_54">系统清单</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_55">硬件清单</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_56">软件清单</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_57">网络拓扑</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_58">服务、协议和端口</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_59">管理</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_60">持续的系统管理</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_61">漏洞管理</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_65">配置管理</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_67">安全备份和恢复</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_68">安全审计工具</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_69">完整性生命周期</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_70">安全引导</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_77">运行时验证</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_79">服务器加固</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_80">管理界面</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_81">仪表板</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#openstack_3">OpenStack 接口</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#ssh">安全外壳 （SSH）</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_88">管理实用程序</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_91">带外管理接口</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_94">安全通信</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#tls-ssl">TLS 和 SSL 简介</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_95">证书颁发机构</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#tls">TLS 库</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_96">加密算法、密码模式和协议</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_97">总结</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tls-http">TLS 代理和 HTTP 服务</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_98">示例</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#http">HTTP 严格传输安全</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_99">完全前向保密</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_100">安全参考架构</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#ssltls">SSL/TLS 代理在前面</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#api-ssltls">与 API 端点位于同一物理主机上的 SSL/TLS</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#ssltls_1">SSL/TLS负载平衡器</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_101">外部和内部环境的加密分离</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#api">API 端点</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#api_1">API 端点配置建议</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#api_2">内部 API 通信</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_102">粘贴和中间件</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#api_3">API 端点进程隔离和策略</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#api_4">API 端点速率限制</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
       </div>
     </div>
     </nav>
@@ -115,7 +340,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="文档"></a></li>
-      <li class="breadcrumb-item active">OpenStack安全指南</li>
+          <li class="breadcrumb-item">安全指南</li>
+      <li class="breadcrumb-item active">security_guide</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -125,6 +351,8 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="openstack">OpenStack安全指南<a class="headerlink" href="#openstack" title="Permanent link">&para;</a></h1>
+<p>本文翻译自<a href="https://gitee.com/link?target=https%3A%2F%2Fdocs.openstack.org%2Fsecurity-guide%2F">上游安全指南</a></p>
+<p>[Toc]</p>
 <h2 id="_1">摘要<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>本书提供了有关保护OpenStack云的最佳实践和概念信息。</p>
 <p>本指南最后一次更新是在Train发布期间，记录了OpenStack Train、Stein和Rocky版本。它可能不适用于EOL版本（例如Newton）。我们建议您在计划为您的OpenStack云实施安全措施时，自行阅读本文。本指南仅供参考。OpenStack安全团队基于OpenStack社区的自愿贡献。您可以在OFTC IRC上的#OpenStack-Security频道中直接联系安全社区，或者通过向OpenStack-Discussion邮件列表发送主题标题中带有[Security]前缀的邮件来联系。</p>
@@ -148,9 +376,7 @@
 <li>我们为什么以及如何写这本书</li>
 <li>OpenStack简介</li>
 <li>安全边界和威胁</li>
-<li>
-<p>选择支持软件</p>
-</li>
+<li>选择支持软件</li>
 <li>
 <p>系统文档</p>
 </li>
@@ -164,9 +390,7 @@
 <p>持续的系统管理</p>
 </li>
 <li>完整性生命周期</li>
-<li>
-<p>管理界面</p>
-</li>
+<li>管理界面</li>
 <li>
 <p>安全通信</p>
 </li>
@@ -174,9 +398,7 @@
 <p>TLS和SSL简介</p>
 </li>
 <li>TLS代理和HTTP服务</li>
-<li>
-<p>安全参考架构</p>
-</li>
+<li>安全参考架构</li>
 <li>
 <p>端点</p>
 </li>
@@ -195,9 +417,7 @@
 <li>令牌</li>
 <li>域</li>
 <li>联合梯形失真</li>
-<li>
-<p>清单</p>
-</li>
+<li>清单</li>
 <li>
 <p>仪表板</p>
 </li>
@@ -212,9 +432,7 @@
 <li>网站数据</li>
 <li>跨域资源共享 （CORS）</li>
 <li>调试</li>
-<li>
-<p>检查表</p>
-</li>
+<li>检查表</li>
 <li>
 <p>计算</p>
 </li>
@@ -225,18 +443,14 @@
 <li>强化计算部署</li>
 <li>漏洞意识</li>
 <li>如何选择虚拟控制台</li>
-<li>
-<p>检查表</p>
-</li>
+<li>检查表</li>
 <li>
 <p>块存储</p>
 </li>
 <li>
 <p>音量擦除</p>
 </li>
-<li>
-<p>检查表</p>
-</li>
+<li>检查表</li>
 <li>
 <p>图像存储</p>
 </li>
@@ -254,9 +468,7 @@
 <li>共享访问控制</li>
 <li>共享类型访问控制</li>
 <li>政策</li>
-<li>
-<p>检查表</p>
-</li>
+<li>检查表</li>
 <li>
 <p>联网</p>
 </li>
@@ -266,9 +478,7 @@
 <li>网络服务</li>
 <li>网络服务安全最佳做法</li>
 <li>保护 OpenStack 网络服务</li>
-<li>
-<p>检查表</p>
-</li>
+<li>检查表</li>
 <li>
 <p>对象存储</p>
 </li>
@@ -279,9 +489,7 @@
 <li>保护存储服务</li>
 <li>保护代理服务</li>
 <li>对象存储身份验证</li>
-<li>
-<p>其他值得注意的项目</p>
-</li>
+<li>其他值得注意的项目</li>
 <li>
 <p>机密管理</p>
 </li>
@@ -293,9 +501,7 @@
 <li>密钥管理服务</li>
 <li>密钥管理接口</li>
 <li>常见问题解答</li>
-<li>
-<p>检查表</p>
-</li>
+<li>检查表</li>
 <li>
 <p>消息队列</p>
 </li>
@@ -309,9 +515,7 @@
 <p>数据处理简介</p>
 </li>
 <li>部署</li>
-<li>
-<p>配置和强化</p>
-</li>
+<li>配置和强化</li>
 <li>
 <p>数据库</p>
 </li>
@@ -319,9 +523,7 @@
 <p>数据库后端注意事项</p>
 </li>
 <li>数据库访问控制</li>
-<li>
-<p>数据库传输安全性</p>
-</li>
+<li>数据库传输安全性</li>
 <li>
 <p>租户数据隐私</p>
 </li>
@@ -329,9 +531,7 @@
 <p>数据隐私问题</p>
 </li>
 <li>数据加密</li>
-<li>
-<p>密钥管理</p>
-</li>
+<li>密钥管理</li>
 <li>
 <p>实例安全管理</p>
 </li>
@@ -353,18 +553,14 @@
 <li>了解审核流程</li>
 <li>合规活动</li>
 <li>认证和合规声明</li>
-<li>
-<p>隐私</p>
-</li>
+<li>隐私</li>
 <li>
 <p>安全审查</p>
 </li>
 <li>
 <p>体系结构页面指南</p>
 </li>
-<li>
-<p>安全检查表</p>
-</li>
+<li>安全检查表</li>
 <li>
 <p>附录</p>
 </li>
@@ -380,9 +576,9 @@
 <pre class="highlight"><code>带有附加信息的注释，用于解释文本的某一部分。</code></pre>
 <p><strong>重要</strong></p>
 <pre class="highlight"><code>在继续之前，您必须注意这一点。</code></pre>
-<p><strong>建议</strong></p>
+<p><strong>提示</strong></p>
 <pre class="highlight"><code>一个额外但有用的实用建议。</code></pre>
-<p><strong>谨慎</strong></p>
+<p><strong>警示</strong></p>
 <pre class="highlight"><code>防止用户犯错误的有用信息。</code></pre>
 <p><strong>警告</strong></p>
 <pre class="highlight"><code>有关数据丢失风险或安全问题的关键信息。</code></pre>
@@ -415,7 +611,7 @@
 <p>OpenStack 安全组要感谢以下组织的贡献，他们为本书的出版做出了贡献。这些组织是：</p>
 <p><img alt="../_images/book-sprint-all-logos.png" src="https://docs.openstack.org/security-guide/_images/book-sprint-all-logos.png" /></p>
 <h3 id="_8">我们为什么以及如何写这本书<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<p>随着OpenStack采用率的不断提高和产品的成熟，安全性已成为重中之重。OpenStack 安全组已经认识到需要一个全面而权威的安全指南。《OpenStack 安全指南》旨在概述提高 OpenStack  部署安全性的安全最佳实践、指南和建议。作者带来了他们在各种环境中部署和保护 OpenStack 的专业知识。</p>
+<p>随着 OpenStack 的普及和产品成熟，安全性已成为重中之重。OpenStack 安全组已经认识到需要一个全面而权威的安全指南。《OpenStack 安全指南》旨在概述提高 OpenStack  部署安全性的安全最佳实践、指南和建议。作者带来了他们在各种环境中部署和保护 OpenStack 的专业知识。</p>
 <p>本指南是对《OpenStack 操作指南》的补充，可用于强化现有的 OpenStack 部署或评估 OpenStack 云提供商的安全控制。</p>
 <h4 id="_9">目标<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
 <ul>
@@ -532,7 +728,7 @@
 <p>OpenStack Networking 允许云租户管理其访客网络配置。网络服务的安全问题包括网络流量隔离、可用性、完整性和机密性。</p>
 <h4 id="_22">仪表板<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h4>
 <p>OpenStack 仪表板 （horizon） 为云管理员和云租户提供了一个基于 Web 的界面。使用此界面，管理员和租户可以预配、管理和监视云资源。仪表板通常以面向公众的方式部署，具有公共 Web 门户的所有常见安全问题。</p>
-<h4 id="_23">身份服务<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h4>
+<h4 id="_23">身份鉴别服务<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h4>
 <p>OpenStack Identity 服务 （keystone） 是一项共享服务，可在整个云基础架构中提供身份验证和授权服务。Identity 服务具有对多种身份验证形式的可插入支持。</p>
 <p>Identity 服务的安全问题包括对身份验证的信任、授权令牌的管理以及安全通信。</p>
 <h4 id="_24">镜像服务<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h4>
@@ -551,10 +747,10 @@
 <p>安全域包括用户、应用程序、服务器或网络，它们在系统中具有共同的信任要求和期望。通常，它们具有相同的身份验证和授权 （AuthN/Z） 要求和用户。</p>
 <p>尽管您可能希望进一步细分这些域（我们稍后将讨论在哪些方面可能合适），但我们通常指的是四个不同的安全域，它们构成了安全部署任何 OpenStack 云所需的最低限度。这些安全域包括：</p>
 <ol>
-<li>公共</li>
-<li>访客</li>
-<li>管理</li>
-<li>数据</li>
+<li>公共域</li>
+<li>访客域</li>
+<li>管理域</li>
+<li>数据域</li>
 </ol>
 <p>我们之所以选择这些安全域，是因为它们可以独立映射，也可以组合起来，以表示给定 OpenStack  部署中大多数可能的信任区域。例如，某些部署拓扑可能由一个物理网络上的来宾域和数据域的组合组成，而其他拓扑则将这些域分开。在每种情况下，云操作员都应注意适当的安全问题。安全域应针对特定的 OpenStack 部署拓扑进行映射。域及其信任要求取决于云实例是公有云实例、私有云实例还是混合云实例。</p>
 <p><img alt="../_images/untrusted_trusted.png" src="https://docs.openstack.org/security-guide/_images/untrusted_trusted.png" /></p>
@@ -562,7 +758,7 @@
 <p>公共安全域是云基础架构中完全不受信任的区域。它可以指整个互联网，也可以简单地指您无权访问的网络。任何具有机密性或完整性要求传输此域的数据都应使用补偿控制进行保护。</p>
 <p>此域应始终被视为不受信任。</p>
 <h4 id="_30">访客<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h4>
-<p>客户机安全域通常用于计算实例到实例的流量，它处理由云上的实例生成的计算数据，但不处理支持云操作的服务，例如 API 调用。</p>
+<p>访客安全域通常用于计算实例到实例的流量，它处理由云上的实例生成的计算数据，但不处理支持云操作的服务，例如 API 调用。</p>
 <p>如果公有云和私有云提供商对实例使用没有严格控制，也不允许对虚拟机进行不受限制的 Internet 访问，则应将此域视为不受信任的域。私有云提供商可能希望将此网络视为内部网络，并且只有在实施适当的控制以断言实例和所有关联租户都是可信的时。</p>
 <h4 id="_31">管理<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h4>
 <p>管理安全域是服务交互的地方。有时称为“控制平面”，此域中的网络传输机密数据，例如配置参数、用户名和密码。命令和控制流量通常驻留在此域中，这需要强大的完整性要求。对此域的访问应受到高度限制和监视。同时，此域仍应采用本指南中描述的所有安全最佳做法。</p>
@@ -571,7 +767,7 @@
 <p>数据安全域主要关注与OpenStack中的存储服务有关的信息。通过该网络传输的大多数数据都需要高度的完整性和机密性。在某些情况下，根据部署类型，可能还会有很强的可用性要求。</p>
 <p>此网络的信任级别很大程度上取决于部署决策，因此我们不会为其分配任何默认的信任级别。</p>
 <h4 id="_33">桥接安全域<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h4>
-<p>网桥是存在于多个安全域中的组件。必须仔细配置桥接具有不同信任级别或身份验证要求的安全域的任何组件。这些网桥通常是网络架构中的薄弱环节。桥接应始终配置为满足它所桥接的任何域的最高信任级别的安全要求。在许多情况下，由于攻击的可能性，桥梁的安全控制应该是主要关注点。</p>
+<p>网桥是存在于多个安全域中的组件。必须仔细配置桥接具有不同信任级别或身份验证要求的安全域的任何组件。这些网桥通常是网络架构中的薄弱环节。桥接应始终配置为满足它所桥接的任何域的最高信任级别的安全要求。在许多情况下，由于攻击的可能性，桥接器的安全控制应该是主要关注点。</p>
 <p><img alt="../_images/bridging_security_domains_1.png" src="https://docs.openstack.org/security-guide/_images/bridging_security_domains_1.png" /></p>
 <p>上图显示了桥接数据和管理域的计算节点;因此，应将计算节点配置为满足管理域的安全要求。同样，此图中的 API 端点正在桥接不受信任的公共域和管理域，应将其配置为防止从公共域传播到管理域的攻击。</p>
 <p><img alt="../_images/bridging_domains_clouduser.png" src="https://docs.openstack.org/security-guide/_images/bridging_domains_clouduser.png" /></p>
@@ -581,15 +777,15 @@
 <p>大多数类型的云部署（公有云或私有云）都会受到某种形式的攻击。在本章中，我们将对攻击者进行分类，并总结每个安全域中的潜在攻击类型。</p>
 <h4 id="_35">威胁参与者<a class="headerlink" href="#_35" title="Permanent link">&para;</a></h4>
 <p>威胁参与者是一种抽象的方式，用于指代您可能尝试防御的一类对手。参与者的能力越强，成功缓解和预防攻击所需的安全控制就越昂贵。安全性是成本、可用性和防御之间的权衡。在某些情况下，不可能针对我们在此处描述的所有威胁参与者保护云部署。那些部署OpenStack云的人将不得不决定其部署/使用的平衡点在哪里。</p>
-<h5 id="_36">情报服务<a class="headerlink" href="#_36" title="Permanent link">&para;</a></h5>
+<h5 id="_36">情报机构<a class="headerlink" href="#_36" title="Permanent link">&para;</a></h5>
 <p>本指南认为是最有能力的对手。情报部门和其他国家行为者可以为目标带来巨大的资源。他们拥有超越任何其他参与者的能力。如果没有极其严格的控制措施，无论是人力还是技术，都很难防御这些行为者。</p>
 <h5 id="_37">严重有组织犯罪<a class="headerlink" href="#_37" title="Permanent link">&para;</a></h5>
 <p>能力强且受经济驱动的攻击者群体。能够资助内部漏洞开发和目标研究。近年来，俄罗斯商业网络（Russian Business Network）等组织的崛起，一个庞大的网络犯罪企业，已经证明了网络攻击如何成为一种商品。工业间谍活动属于严重的有组织犯罪集团。</p>
 <h5 id="_38">高能力的团队<a class="headerlink" href="#_38" title="Permanent link">&para;</a></h5>
 <p>这是指“黑客行动主义者”类型的组织，他们通常没有商业资助，但可能对服务提供商和云运营商构成严重威胁。</p>
-<h5 id="_39">积极进取的人<a class="headerlink" href="#_39" title="Permanent link">&para;</a></h5>
+<h5 id="_39">有动机的个人<a class="headerlink" href="#_39" title="Permanent link">&para;</a></h5>
 <p>这些攻击者单独行动，以多种形式出现，例如流氓或恶意员工、心怀不满的客户或小规模的工业间谍活动。</p>
-<h5 id="_40">剧本小子<a class="headerlink" href="#_40" title="Permanent link">&para;</a></h5>
+<h5 id="_40">脚本攻击者<a class="headerlink" href="#_40" title="Permanent link">&para;</a></h5>
 <p>自动漏洞扫描/利用。非针对性攻击。通常，只有这些行为者之一的滋扰、妥协才会对组织的声誉构成重大风险。</p>
 <p><img alt="../_images/threat_actors.png" src="https://docs.openstack.org/security-guide/_images/threat_actors.png" /></p>
 <h4 id="_41">公有云和私有云注意事项<a class="headerlink" href="#_41" title="Permanent link">&para;</a></h4>
@@ -599,7 +795,7 @@
 <h4 id="_42">出站攻击和声誉风险<a class="headerlink" href="#_42" title="Permanent link">&para;</a></h4>
 <p>应仔细考虑云部署中潜在的出站滥用。无论是公有云还是私有云，云往往都有大量可用资源。通过黑客攻击或授权访问在云中建立存在点的攻击者（例如流氓员工）可以使这些资源对整个互联网产生影响。具有计算服务的云是理想的 DDoS  和暴力引擎。对于公有云来说，这个问题更为紧迫，因为它们的用户在很大程度上是不负责任的，并且可以迅速启动大量一次性实例进行出站攻击。如果一家公司因托管恶意软件或对其他网络发起攻击而闻名，可能会对公司的声誉造成重大损害。预防方法包括出口安全组、出站流量检查、客户教育和意识，以及欺诈和滥用缓解策略。</p>
 <h4 id="_43">攻击类型<a class="headerlink" href="#_43" title="Permanent link">&para;</a></h4>
-<p>该图显示了上一节中描述的参与者可能预期的典型攻击类型。请注意，此图总会有例外。</p>
+<p>该图显示了上一节中描述的参与者可能预期的典型攻击类型。请注意，此图不排除有不可预期的攻击类型。</p>
 <p><img alt="../_images/high-capability.png" src="https://docs.openstack.org/security-guide/_images/high-capability.png" /></p>
 <p>攻击类型 </p>
 <p>每种攻击形式的规范性防御超出了本文档的范围。上图可以帮助您就应防范哪些类型的威胁和威胁参与者做出明智的决定。对于商业公有云部署，这可能包括预防严重犯罪。对于那些为政府使用部署私有云的人来说，应该建立更严格的保护机制，包括精心保护的设施和供应链。相比之下，那些建立基本开发或测试环境的人可能需要限制较少的控制（中间）。</p>
@@ -607,19 +803,21 @@
 <p>您选择的支持软件（如消息传递和负载平衡）可能会对云产生严重的安全影响。为组织做出正确的选择非常重要。本节提供了选择支持软件的一些一般准则。</p>
 <p>为了选择最佳支持软件，请考虑以下因素：</p>
 <ul>
-<li>团队专长</li>
+<li>团队专业知识</li>
 <li>产品或项目成熟度</li>
 <li>通用标准</li>
 <li>硬件问题</li>
 </ul>
-<h4 id="_45">团队专长<a class="headerlink" href="#_45" title="Permanent link">&para;</a></h4>
-<p>您的团队对给定产品、其配置及其怪癖越熟悉，出现的配置错误就越少。此外，将员工专业知识分散到整个组织中可以提高系统的可用性，允许职责分离，并在团队成员不可用时缓解问题。</p>
+<h4 id="_45">团队专业知识<a class="headerlink" href="#_45" title="Permanent link">&para;</a></h4>
+<p>团队越熟悉特定产品、其配置和特殊性，就越少会出现配置错误。此外，将员工的专业知识分散到整个组织中可以增加系统的可用性，允许分工，并在团队成员不可用时减轻问题。</p>
 <h4 id="_46">产品或项目成熟度<a class="headerlink" href="#_46" title="Permanent link">&para;</a></h4>
 <p>给定产品或项目的成熟度对您的安全状况至关重要。部署云后，产品成熟度会产生许多影响：</p>
-<h2 id="-">- 专业知识的可用性<a class="headerlink" href="#-" title="Permanent link">&para;</a></h2>
-<p>活跃的开发人员和用户社区
-- 更新的及时性和可用性
--  发病率响应</p>
+<ul>
+<li>专业知识的可用性</li>
+<li>活跃的开发人员和用户社区</li>
+<li>更新的及时性和可用性</li>
+<li>事件响应</li>
+</ul>
 <h4 id="_47">通用标准<a class="headerlink" href="#_47" title="Permanent link">&para;</a></h4>
 <p>通用标准是一个国际标准化的软件评估过程，政府和商业公司使用它来验证软件技术的性能是否如宣传的那样。</p>
 <h4 id="_48">硬件问题<a class="headerlink" href="#_48" title="Permanent link">&para;</a></h4>
@@ -636,7 +834,7 @@
 <h3 id="_50">系统文档要求<a class="headerlink" href="#_50" title="Permanent link">&para;</a></h3>
 <h4 id="_51">系统角色和类型<a class="headerlink" href="#_51" title="Permanent link">&para;</a></h4>
 <p>通常构成 OpenStack 安装的两种广义节点类型是：</p>
-<h5 id="_52">基础结构节点<a class="headerlink" href="#_52" title="Permanent link">&para;</a></h5>
+<h5 id="_52">基础设施节点<a class="headerlink" href="#_52" title="Permanent link">&para;</a></h5>
 <p>运行与云相关的服务，例如 OpenStack Identity 服务、消息队列服务、存储、网络以及支持云运行所需的其他服务。</p>
 <h5 id="_53">计算、存储或其他资源节点<a class="headerlink" href="#_53" title="Permanent link">&para;</a></h5>
 <p>为云提供存储容量或虚拟机。</p>
@@ -680,7 +878,7 @@
 <td>5672/tcp</td>
 <td>AMQP 消息服务</td>
 <td>RabbitMQ</td>
-<td>管理公司</td>
+<td>管理域</td>
 </tr>
 <tr>
 <td>tgtd</td>
@@ -688,7 +886,7 @@
 <td>3260/tcp</td>
 <td>iSCSI 发起程序服务</td>
 <td>iSCSI</td>
-<td>PRIVATE（数据网络）</td>
+<td>私有（数据网络）</td>
 </tr>
 <tr>
 <td>sshd</td>
@@ -696,7 +894,7 @@
 <td>22/tcp</td>
 <td>允许安全登录到节点和来宾虚拟机</td>
 <td>Various</td>
-<td>配置的 MGMT、GUEST 和 PUBLIC</td>
+<td>按需配置作用于管理域、公共域和访客域</td>
 </tr>
 <tr>
 <td>mysqld</td>
@@ -704,7 +902,7 @@
 <td>3306/tcp</td>
 <td>数据库服务</td>
 <td>Various</td>
-<td>管理公司</td>
+<td>管理域</td>
 </tr>
 <tr>
 <td>apache2</td>
@@ -712,7 +910,7 @@
 <td>443/tcp</td>
 <td>仪表板</td>
 <td>Tenants</td>
-<td>公共</td>
+<td>公共域</td>
 </tr>
 <tr>
 <td>dnsmasq</td>
@@ -720,13 +918,698 @@
 <td>53/tcp</td>
 <td>DNS 服务</td>
 <td>Guest VMs</td>
-<td>访客</td>
+<td>访客域</td>
 </tr>
 </tbody>
 </table>
+<h2 id="_59">管理<a class="headerlink" href="#_59" title="Permanent link">&para;</a></h2>
+<p>云部署是一个不断变化的系统。机器老化和故障，软件过时，漏洞被发现。当配置中出现错误或遗漏时，或者必须应用软件修复时，必须以安全但方便的方式进行这些更改。这些更改通常通过配置管理来解决。</p>
+<p>保护云部署不被恶意实体配置或操纵非常重要。由于云中的许多系统都采用计算和网络虚拟化，因此 OpenStack 面临着明显的挑战，必须通过完整性生命周期管理来解决这些挑战。</p>
+<p>管理员必须对云执行命令和控制，以实现各种操作功能。理解和保护这些指挥和控制设施非常重要。</p>
+<ul>
+<li>持续的系统管理</li>
+<li>漏洞管理</li>
+<li>配置管理</li>
+<li>安全备份和恢复</li>
+<li>安全审计工具</li>
+<li>完整性生命周期</li>
+<li>安全引导</li>
+<li>运行时验证</li>
+<li>服务器加固</li>
+<li>管理界面</li>
+<li>仪表板</li>
+<li>OpenStack 接口</li>
+<li>安全外壳 （SSH）</li>
+<li>管理实用程序</li>
+<li>带外管理接口</li>
+</ul>
+<h3 id="_60">持续的系统管理<a class="headerlink" href="#_60" title="Permanent link">&para;</a></h3>
+<p>云系统总会存在漏洞，其中一些可能是安全问题。因此，准备好应用安全更新和常规软件更新至关重要。这涉及到配置管理工具的智能使用，下面将对此进行讨论。这还涉及了解何时需要升级。</p>
+<h4 id="_61">漏洞管理<a class="headerlink" href="#_61" title="Permanent link">&para;</a></h4>
+<p>有关安全相关更改的公告，请订阅 OpenStack Announce 邮件列表。安全通知还会通过下游软件包发布，例如，通过您可能作为软件包更新的一部分订阅的 Linux 发行版。</p>
+<p>OpenStack组件只是云中软件的一小部分。与所有这些其他组件保持同步也很重要。虽然某些数据源是特定于部署的，但云管理员必须订阅必要的邮件列表，以便接收适用于组织环境的任何安全更新的通知。通常，这就像跟踪上游 Linux 发行版一样简单。</p>
+<p><strong>注意</strong></p>
+<pre class="highlight"><code>OpenStack 通过两个渠道发布安全信息。
+
+- OpenStack 安全公告 （OSSA） 由 OpenStack 漏洞管理团队 （VMT） 创建。它们与核心OpenStack服务中的安全漏洞有关。有关 VMT 的更多信息，请参阅漏洞管理流程。
+- OpenStack 安全说明 （OSSN） 由 OpenStack 安全组 （OSSG） 创建，以支持 VMT 的工作。OSSN解决了支持软件和常见部署配置中的问题。本指南中引用了它们。安全说明存档在OSSN上。</code></pre>
+<h5 id="_62">分类<a class="headerlink" href="#_62" title="Permanent link">&para;</a></h5>
+<p>收到安全更新通知后，下一步是确定此更新对给定云部署的重要性。在这种情况下，拥有预定义的策略很有用。现有的漏洞评级系统（如通用漏洞评分系统 （CVSS））无法正确考虑云部署。</p>
+<p>在此示例中，我们引入了一个评分矩阵，该矩阵将漏洞分为三类：权限提升、拒绝服务和信息泄露。了解漏洞的类型及其在基础架构中发生的位置将使您能够做出合理的响应决策。</p>
+<p>权限提升描述了用户使用系统中其他用户的权限进行操作的能力，绕过适当的授权检查。来宾用户执行的操作允许他们以管理员权限执行未经授权的操作，这是此类漏洞的一个示例。</p>
+<p>拒绝服务是指被利用的漏洞，可能导致服务或系统中断。这既包括使网络资源不堪重负的分布式攻击，也包括通常由资源分配错误或输入引起的系统故障缺陷引起的单用户攻击。</p>
+<p>信息泄露漏洞会泄露有关您的系统或操作的信息。这些漏洞的范围从调试信息泄露到关键安全数据（如身份验证凭据和密码）的暴露。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>攻击者位置/权限级别</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>外部</td>
+<td>云用户</td>
+<td>云管理员</td>
+<td>控制平面</td>
+</tr>
+<tr>
+<td>权限提升（3 级）</td>
+<td>紧急</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>权限提升（2 个级别）</td>
+<td>紧急</td>
+<td>紧急</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>特权提升（1 级）</td>
+<td>紧急</td>
+<td>紧急</td>
+<td>紧急</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>拒绝服务</td>
+<td>高</td>
+<td>中</td>
+<td>低</td>
+<td>低</td>
+</tr>
+<tr>
+<td>信息披露</td>
+<td>紧急/高</td>
+<td>紧急/高</td>
+<td>中/低</td>
+<td>低</td>
+</tr>
+</tbody>
+</table>
+<p>该表说明了一种通用方法，该方法根据漏洞在部署中发生的位置和影响来衡量漏洞的影响。例如，计算 API 节点上的单级权限提升可能允许 API 的标准用户升级为具有与节点上的 root 用户相同的权限。</p>
+<p>我们建议云管理员使用此表作为模型，以帮助定义要针对各种安全级别执行的操作。例如，关键级别的安全更新可能需要快速升级云，而低级别的更新可能需要更长的时间才能完成。</p>
+<h5 id="_63">测试更新<a class="headerlink" href="#_63" title="Permanent link">&para;</a></h5>
+<p>在生产环境中部署任何更新之前，应对其进行测试。通常，这需要有一个单独的测试云设置，该设置首先接收更新。在软件和硬件方面，此云应尽可能接近生产云。应在性能影响、稳定性、应用程序影响等方面对更新进行全面测试。特别重要的是验证更新理论上解决的问题（例如特定漏洞）是否已实际修复。</p>
+<h5 id="_64">部署更新<a class="headerlink" href="#_64" title="Permanent link">&para;</a></h5>
+<p>完全测试更新后，可以将其部署到生产环境。应使用下面所述的配置管理工具完全自动化此部署。</p>
+<h4 id="_65">配置管理<a class="headerlink" href="#_65" title="Permanent link">&para;</a></h4>
+<p>生产质量的云应始终使用工具来自动执行配置和部署。这消除了人为错误，并允许云更快地扩展。自动化还有助于持续集成和测试。</p>
+<p>在构建 OpenStack 云时，强烈建议在设计和实现时考虑配置管理工具或框架。通过配置管理，您可以避免在构建、管理和维护像 OpenStack  这样复杂的基础架构时固有的许多陷阱。通过生成配置管理实用程序所需的清单、说明书或模板，您可以满足许多文档和法规报告要求。此外，配置管理还可以作为业务连续性计划 （BCP） 和数据恢复 （DR） 计划的一部分，您可以在其中将节点或服务重建回 DR 事件中的已知状态或给定的妥协状态。</p>
+<p>此外，当与 Git 或 SVN 等版本控制系统结合使用时，您可以跟踪环境随时间推移而发生的更改，并重新调解可能发生的未经授权的更改。例如，文件 <code>nova.conf</code> 或其他配置文件不符合您的标准，您的配置管理工具可以还原或替换该文件，并将您的配置恢复到已知状态。最后，配置管理工具也可用于部署更新;简化安全补丁流程。这些工具具有广泛的功能，在该领域非常有用。保护云的关键点是选择一种配置管理工具并使用它。</p>
+<p>有许多配置管理解决方案;在撰写本文时，市场上有两个在支持 OpenStack 环境方面非常强大的公司：Chef 和 Puppet。下面提供了此空间中的工具的非详尽列表：</p>
+<ul>
+<li>Chef</li>
+<li>Puppet</li>
+<li>Salt Stack</li>
+<li>Ansible</li>
+</ul>
+<h5 id="_66">策略更改<a class="headerlink" href="#_66" title="Permanent link">&para;</a></h5>
+<p>每当更改策略或配置管理时，最好记录活动并备份新集的副本。通常，此类策略和配置存储在受版本控制的存储库（如 Git）中。</p>
+<h4 id="_67">安全备份和恢复<a class="headerlink" href="#_67" title="Permanent link">&para;</a></h4>
+<p>在整个系统安全计划中包括备份过程和策略非常重要。有关 OpenStack 备份和恢复功能和过程的概述，请参阅有关备份和恢复的 OpenStack 操作指南。</p>
+<ul>
+<li>确保只有经过身份验证的用户和备份客户端才能访问备份服务器。</li>
+<li>使用数据加密选项来存储和传输备份。</li>
+<li>使用专用且强化的备份服务器。备份服务器的日志必须每天进行监视，并且只有少数人可以访问。</li>
+<li>定期测试数据恢复选项，包括存储在安全备份中的镜像，是确保灾难恢复准备的关键部分。在发生安全漏洞或受损时，终止运行中的实例并从已知的安全镜像备份中重新启动实例确实是最佳做法。这有助于确保受损的实例被消除，并且可以迅速从备份的镜像中重新部署干净、可信赖的版本。</li>
+</ul>
+<h4 id="_68">安全审计工具<a class="headerlink" href="#_68" title="Permanent link">&para;</a></h4>
+<p>安全审核工具可以补充配置管理工具。安全审核工具可自动执行验证给定系统配置是否满足大量安全控制的过程。这些工具有助于弥合从安全配置指南文档（例如，STIG 和 NSA 指南）到特定系统安装的差距。例如，SCAP 可以将正在运行的系统与预定义的配置文件进行比较。SCAP  输出一份报告，详细说明配置文件中的哪些控件已满足，哪些控件未通过，哪些控件未选中。</p>
+<p>将配置管理和安全审计工具相结合，形成了一个强大的组合。审核工具将突出显示部署问题。配置管理工具简化了更改每个系统的过程，以解决审计问题。以这种方式一起使用，这些工具有助于维护满足从基本强化到合规性验证等安全要求的云环境。</p>
+<p>配置管理和安全审计工具将给云带来另一层复杂性。这种复杂性带来了额外的安全问题。考虑到其安全优势，我们认为这是一种可接受的风险权衡。对于这些工具的操作安全性保障超出了本指南的范围。</p>
+<h3 id="_69">完整性生命周期<a class="headerlink" href="#_69" title="Permanent link">&para;</a></h3>
+<p>我们将完整性生命周期定义为一个深思熟虑的过程，它确保我们始终在整个云中以预期的配置运行预期的软件。此过程从安全引导开始，并通过配置管理和安全监控进行维护。本章就如何处理完整性生命周期过程提供了建议。</p>
+<h4 id="_70">安全引导<a class="headerlink" href="#_70" title="Permanent link">&para;</a></h4>
+<p>云中的节点，包括计算、存储、网络、服务和混合节点，应该有一个自动化的配置过程。这确保了节点的一致和正确配置。这也便于安全补丁、升级、故障修复和其他关键变更。由于这个过程安装了在云中具有最高特权级别的新软件，因此验证安装正确的软件非常重要，包括启动过程的最早阶段。</p>
+<p>有多种技术可以验证这些早期启动阶段。这些通常需要硬件支持，例如可信平台模块 （TPM）、英特尔可信执行技术 （TXT）、动态信任根测量 （DRTM） 和统一可扩展固件接口 （UEFI）  安全启动。在本书中，我们将所有这些统称为安全启动技术。我们建议使用安全启动，同时承认部署此启动所需的许多部分需要高级技术技能才能为每个环境自定义工具。与本指南中的许多其他建议相比，使用安全启动需要更深入的集成和自定义。TPM 技术虽然在大多数商务级笔记本电脑和台式机中很常见数年，但现在已与支持的 BIOS  一起在服务器中可用。正确的规划对于成功的安全启动部署至关重要。</p>
+<p>有关安全启动部署的完整教程超出了本书的范围。相反，我们在这里提供了一个框架，用于将安全启动技术与典型的节点预配过程集成。有关更多详细信息，云架构师应参考相关规范和软件配置手册。</p>
+<h5 id="_71">节点配置<a class="headerlink" href="#_71" title="Permanent link">&para;</a></h5>
+<p>节点应使用预引导执行环境（PXE）进行配置。这大大减少了重新部署节点所需的工作量。典型的过程涉及节点从服务器接收各种引导阶段（即执行的软件逐渐复杂）。</p>
+<p><img alt="../_images/node-provisioning-pxe.png" src="https://docs.openstack.org/security-guide/_images/node-provisioning-pxe.png" /></p>
+<p>我们建议在管理安全域中使用单独的隔离网络进行置备。此网络将处理所有 PXE 流量，以及上面描述的后续启动阶段下载。请注意，节点引导过程从两个不安全的操作开始：DHCP 和 TFTP。然后，引导过程使用 TLS  下载部署节点所需的其余信息。这可能是操作系统安装程序、由 Chef 或 Puppet 管理的基本安装，甚至是直接写入磁盘的完整文件系统映像。</p>
+<p>虽然在 PXE 启动过程中使用 TLS 更具挑战性，但常见的 PXE 固件项目（如 iPXE）提供了这种支持。通常，这涉及在了解允许的 TLS  证书链的情况下构建 PXE 固件，以便它可以正确验证服务器证书。这通过限制不安全的纯文本网络操作的数量来提高攻击者的门槛。</p>
+<h5 id="_72">验证启动<a class="headerlink" href="#_72" title="Permanent link">&para;</a></h5>
+<p>通常，有两种不同的策略来验证启动过程。传统的安全启动将验证在过程中的每个步骤运行的代码，并在代码不正确时停止启动。启动证明将记录在每个步骤中运行的代码，并将此信息提供给另一台计算机，以证明启动过程按预期完成。在这两种情况下，第一步都是在运行之前测量每段代码。在这种情况下，测量实际上是代码的 SHA-1 哈希值，在执行之前获取。哈希存储在 TPM 的平台配置寄存器 （PCR） 中。</p>
+<p><strong>注意</strong></p>
+<pre class="highlight"><code>此处使用 SHA-1，因为这是 TPM 芯片支持的内容。</code></pre>
+<p>每个 TPM 至少有 24 个 PCR。2005 年 3 月的 TCG 通用服务器规范 v1.0 定义了启动时完整性测量的 PCR  分配。下表显示了典型的PCR配置。上下文指示这些值是根据节点硬件（固件）还是根据节点上置备的软件确定的。某些值受固件版本、磁盘大小和其他低级信息的影响。因此，在配置管理方面采取良好的做法非常重要，以确保部署的每个系统都完全按照预期进行配置。</p>
+<table>
+<thead>
+<tr>
+<th>注册</th>
+<th>测量内容</th>
+<th>上下文</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PCR-00</td>
+<td>核心信任根测量 （CRTM）、BIOS 代码、主机平台扩展</td>
+<td>硬件</td>
+</tr>
+<tr>
+<td>PCR-01</td>
+<td>主机平台配置</td>
+<td>硬件</td>
+</tr>
+<tr>
+<td>PCR-02</td>
+<td>选项 ROM 代码</td>
+<td>硬件</td>
+</tr>
+<tr>
+<td>PCR-03</td>
+<td>选项 ROM 配置和数据</td>
+<td>硬件</td>
+</tr>
+<tr>
+<td>PCR-04</td>
+<td>初始程序加载程序 （IPL） 代码。例如，主引导记录。</td>
+<td>软件</td>
+</tr>
+<tr>
+<td>PCR-05</td>
+<td>IPL 代码配置和数据</td>
+<td>软件</td>
+</tr>
+<tr>
+<td>PCR-06</td>
+<td>状态转换和唤醒事件</td>
+<td>软件</td>
+</tr>
+<tr>
+<td>PCR-07</td>
+<td>主机平台制造商控制</td>
+<td>软件</td>
+</tr>
+<tr>
+<td>PCR-08</td>
+<td>特定于平台，通常是内核、内核扩展和驱动程序</td>
+<td>软件</td>
+</tr>
+<tr>
+<td>PCR-09</td>
+<td>特定于平台，通常是 Initramfs</td>
+<td>软件</td>
+</tr>
+<tr>
+<td>PCR-10 至 PCR-23</td>
+<td>特定于平台</td>
+<td>软件</td>
+</tr>
+</tbody>
+</table>
+<p>安全启动可能是构建云的一个选项，但需要在硬件选择方面进行仔细规划。例如，确保您具有 TPM 和英特尔 TXT 支持。然后验证节点硬件供应商如何填充 PCR 值。例如，哪些值可用于验证。通常，上表中软件上下文下列出的 PCR  值是云架构师可以直接控制的值。但即使这些也可能随着云中软件的升级而改变。配置管理应链接到 PCR 策略引擎，以确保验证始终是最新的。</p>
+<p>每个制造商都必须为其服务器提供 BIOS 和固件代码。不同的服务器、虚拟机监控程序和操作系统将选择填充不同的  PCR。在大多数实际部署中，不可能根据已知的良好数量（“黄金测量”）验证每个PCR。经验表明，即使在单个供应商的产品线中，给定PCR的测量过程也可能不一致。建议为每个服务器建立基线，并监视 PCR 值以查找意外更改。第三方软件可能可用于协助 TPM 预配和监视过程，具体取决于所选的虚拟机监控程序解决方案。</p>
+<p>初始程序加载程序 （IPL） 代码很可能是 PXE 固件，假设采用上述节点部署策略。因此，安全启动或启动证明过程可以测量所有早期启动代码，例如  BIOS、固件、PXE 固件和内核映像。确保每个节点都安装了这些部件的正确版本，为构建节点软件堆栈的其余部分奠定了坚实的基础。</p>
+<p>根据所选的策略，在发生故障时，节点将无法启动，或者它可以将故障报告给云中的另一个实体。为了实现安全引导，节点将无法引导，管理安全域中的置备服务必须识别这一点并记录事件。对于启动证明，当检测到故障时，节点将已经在运行。在这种情况下，应通过禁用节点的网络访问来立即隔离节点。然后，应分析事件的根本原因。无论哪种情况，策略都应规定在失败后如何继续。云可能会自动尝试重新配置节点一定次数。或者，它可能会立即通知云管理员调查问题。此处的正确策略是特定于部署和故障模式的。</p>
+<h5 id="_73">节点加固<a class="headerlink" href="#_73" title="Permanent link">&para;</a></h5>
+<p>此时，我们知道节点已使用正确的内核和底层组件启动。下一步是强化操作系统，它从一组行业公认的强化控件开始。以下指南是很好的示例：</p>
+<p>安全技术实施指南 （STIG）</p>
+<p>国防信息系统局 （DISA）（隶属于美国国防部）发布适用于各种操作系统、应用程序和硬件的 STIG 内容。这些控件在未附加任何许可证的情况下发布。</p>
+<p>互联网安全中心 （CIS） 基准测试</p>
+<p>CIS 会定期发布安全基准以及自动应用这些安全控制的自动化工具。这些基准测试是在具有一些限制的知识共享许可下发布的。</p>
+<p>这些安全控制最好通过自动化方法应用。自动化确保每次对每个系统都以相同的方式应用控制，并且它们还提供了一种用于审核现有系统的快速方法。自动化有多种选择：</p>
+<p>OpenSCAP</p>
+<p>OpenSCAP 是一个开源工具，它采用 SCAP 内容（描述安全控制的 XML 文件）并将该内容应用于各种系统。目前可用的大多数内容都适用于 Red Hat  Enterprise Linux 和 CentOS，但这些工具适用于任何 Linux 或 Windows 系统。</p>
+<p>ansible 加固</p>
+<p>ansible-hardening 项目提供了一个 Ansible 角色，可将安全控制应用于各种 Linux  操作系统。它还可用于审核现有系统。仔细检查每个控制措施，以确定它是否可能对生产系统造成损害。这些控件基于 Red Hat Enterprise  Linux 7 STIG。</p>
+<p>完全加固的系统是一个具有挑战性的过程，可能需要对某些系统进行大量更改。其中一些更改可能会影响生产工作负载。如果系统无法完全加固，强烈建议进行以下两项更改，以便在不造成重大中断的情况下提高安全性：</p>
+<h6 id="mac">强制访问控制 （MAC）<a class="headerlink" href="#mac" title="Permanent link">&para;</a></h6>
+<p>强制访问控制会影响系统上的所有用户，包括 root，内核的工作是根据当前安全策略审查活动。如果活动不在允许的策略范围内，则会被阻止，即使对于 root  用户也是如此。有关更多详细信息，请查看下面关于 sVirt、SELinux 和 AppArmor 的讨论。</p>
+<h6 id="_74">删除软件包并停止服务<a class="headerlink" href="#_74" title="Permanent link">&para;</a></h6>
+<p>确保系统安装的软件包数量尽可能少，并且运行的服务数量尽可能少。删除不需要的软件包可以更轻松地进行修补，并减少系统上可能导致违规的项目数量。停止不需要的服务会缩小系统上的攻击面，并使攻击更加困难。</p>
+<p>我们还建议对生产节点执行以下附加步骤：</p>
+<h6 id="_75">只读文件系统<a class="headerlink" href="#_75" title="Permanent link">&para;</a></h6>
+<p>尽可能使用只读文件系统。确保可写文件系统不允许执行。这可以使用 <code>noexec</code> 中的 、 <code>nosuid</code> 和 <code>nodev</code> 挂载选项来处理 <code>/etc/fstab</code> 。</p>
+<h6 id="_76">系统验证<a class="headerlink" href="#_76" title="Permanent link">&para;</a></h6>
+<p>最后，节点内核应该有一种机制来验证节点的其余部分是否以已知的良好状态启动。这提供了从引导验证过程到验证整个系统的必要链接。执行此操作的步骤将特定于部署。例如，内核模块可以在使用 dm-verity 挂载文件系统之前验证组成文件系统的块的哈希值。</p>
+<h4 id="_77">运行时验证<a class="headerlink" href="#_77" title="Permanent link">&para;</a></h4>
+<p>一旦节点运行，我们需要确保它随着时间的推移保持良好的状态。从广义上讲，这包括配置管理和安全监控。这些领域中每个领域的目标都不同。通过检查这两者，我们可以更好地确保系统按预期运行。我们将在管理部分讨论配置管理，并在下面讨论安全监控。</p>
+<h5 id="_78">入侵检测系统<a class="headerlink" href="#_78" title="Permanent link">&para;</a></h5>
+<p>基于主机的入侵检测工具对于自动验证云内部也很有用。有各种各样的基于主机的入侵检测工具可用。有些是免费提供的开源项目，而另一些则是商业项目。通常，这些工具会分析来自各种来源的数据，并根据规则集和/或训练生成安全警报。典型功能包括日志分析、文件完整性检查、策略监控和 rootkit 检测。更高级（通常是自定义）工具可以验证内存中进程映像是否与磁盘上的可执行文件匹配，并验证正在运行的进程的执行状态。</p>
+<p>对于云架构师来说，一个关键的策略决策是如何处理安全监控工具的输出。实际上有两种选择。首先是提醒人类进行调查和/或采取纠正措施。这可以通过在云管理员的日志或事件源中包含安全警报来完成。第二种选择是让云自动采取某种形式的补救措施，以及记录事件。补救措施可能包括从重新安装节点到执行次要服务配置的任何内容。但是，由于可能存在误报，自动补救措施可能具有挑战性。</p>
+<p>当安全监视工具为良性事件生成安全警报时，会发生误报。由于安全监控工具的性质，误报肯定会不时发生。通常，云管理员可以调整安全监控工具以减少误报，但这也可能同时降低整体检测率。在云中设置安全监控系统时，必须了解并考虑这些经典的权衡。</p>
+<p>基于主机的入侵检测工具的选择和配置具有高度的部署特异性。我们建议从探索以下开源项目开始，这些项目实现了各种基于主机的入侵检测和文件监控功能。</p>
+<ul>
+<li>OSSEC</li>
+<li>Samhain</li>
+<li>Tripwire</li>
+<li>AIDE</li>
+</ul>
+<p>网络入侵检测工具是对基于主机的工具的补充。OpenStack 没有内置特定的网络 IDS，但 OpenStack Networking 提供了一种插件机制，可以通过 Networking API  启用不同的技术。此插件体系结构将允许租户开发 API 扩展，以插入和配置自己的高级网络服务，例如防火墙、入侵检测系统或虚拟机之间的 VPN。</p>
+<p>与基于主机的工具类似，基于网络的入侵检测工具的选择和配置是特定于部署的。Snort 是领先的开源网络入侵检测工具，也是了解更多信息的良好起点。</p>
+<p>对于基于网络和主机的入侵检测系统，有一些重要的安全注意事项。</p>
+<ul>
+<li>重要的是要考虑将网络 IDS 放置在云上（例如，将其添加到网络边界和/或敏感网络周围）。放置位置取决于您的网络环境，但请确保监控 IDS  可能对您的服务产生的影响，具体取决于您选择添加的位置。网络 IDS 通常无法检查加密流量（如 TLS）的内容。但是，网络 IDS  在识别网络上的异常未加密流量方面仍可能提供一些好处。</li>
+<li>在某些部署中，可能需要在安全域网桥上的敏感组件上添加基于主机的 IDS。基于主机的 IDS 可能会通过组件上遭到入侵或未经授权的进程来检测异常活动。IDS 应在管理网络上传输警报和日志信息。</li>
+</ul>
+<h4 id="_79">服务器加固<a class="headerlink" href="#_79" title="Permanent link">&para;</a></h4>
+<p>云环境中的服务器，包括 undercloud 和 overcloud 基础架构，应实施强化最佳实践。由于操作系统和服务器强化很常见，因此此处不涵盖适用的最佳实践，包括但不限于日志记录、用户帐户限制和定期更新，但应应用于所有基础结构。</p>
+<h5 id="fim">文件完整性管理（FIM）<a class="headerlink" href="#fim" title="Permanent link">&para;</a></h5>
+<p>文件完整性管理 （FIM） 是确保敏感系统或应用程序配置文件等文件不会损坏或更改以允许未经授权的访问或恶意行为的方法。这可以通过实用程序（如  Samhain）来完成，该实用程序将创建指定资源的校验和哈希，然后定期验证该哈希，或者通过 DMVerity  等工具来完成，该工具可以获取块设备的哈希值，并在系统访问这些哈希值时对其进行验证，然后再将其呈现给用户。</p>
+<p>这些应该放在适当的位置，以监控和报告对系统、虚拟机管理程序和应用程序配置文件（如 和 <code>/etc/keystone/keystone.conf</code> ）以及内核模块（如 <code>/etc/pam.d/system-auth</code> virtio）的更改。最佳做法是使用 lsmod 命令来显示系统上定期加载的内容，以帮助确定 FIM 检查中应包含或不应包含的内容。</p>
+<h3 id="_80">管理界面<a class="headerlink" href="#_80" title="Permanent link">&para;</a></h3>
+<p>管理员需要对云执行命令和控制，以实现各种操作功能。理解和保护这些指挥和控制设施非常重要。</p>
+<p>OpenStack 为运维人员和租户提供了多种管理界面：</p>
+<ul>
+<li>OpenStack 仪表板 （horizon）</li>
+<li>OpenStack 接口</li>
+<li>安全外壳 （SSH）</li>
+<li>OpenStack 管理实用程序，例如 nova-manage 和 glance-manage</li>
+<li>带外管理接口，如 IPMI</li>
+</ul>
+<h4 id="_81">仪表板<a class="headerlink" href="#_81" title="Permanent link">&para;</a></h4>
+<p>OpenStack 仪表板 （horizon） 为管理员和租户提供了一个基于 Web 的图形界面，用于置备和访问基于云的资源。仪表板通过调用 OpenStack API 与后端服务进行通信。</p>
+<h5 id="_82">功能<a class="headerlink" href="#_82" title="Permanent link">&para;</a></h5>
+<ul>
+<li>作为云管理员，仪表板提供云大小和状态的整体视图。您可以创建用户和租户/项目，将用户分配给租户/项目，并对可供他们使用的资源设置限制。</li>
+<li>仪表板为租户用户提供了一个自助服务门户，用于在管理员设置的限制范围内预配自己的资源。</li>
+<li>仪表板为路由器和负载平衡器提供 GUI 支持。例如，仪表板现在实现了所有主要的网络功能。</li>
+<li>它是一个可扩展的 Django Web 应用程序，允许轻松插入第三方产品和服务，例如计费、监控和其他管理工具。</li>
+<li>仪表板还可以为服务提供商和其他商业供应商打造品牌。</li>
+</ul>
+<h5 id="_83">安全注意事项<a class="headerlink" href="#_83" title="Permanent link">&para;</a></h5>
+<ul>
+<li>仪表板要求在 Web 浏览器中启用 Cookie 和 JavaScript。</li>
+<li>托管仪表板的 Web 服务器应配置为使用 TLS，以确保数据已加密。</li>
+<li>Horizon Web Service 及其用于与后端通信的 OpenStack API 都容易受到 Web 攻击媒介（如拒绝服务）的攻击，因此必须对其进行监控。</li>
+<li>现在可以通过仪表板将镜像文件直接从用户的硬盘上传到 OpenStack 镜像服务（尽管存在许多部署/安全隐患）。对于多 GB 的映像，仍强烈建议使用 <code>glance</code> CLI 进行上传。</li>
+<li>通过仪表盘创建和管理安全组。安全组允许对安全策略进行 L3-L4 数据包筛选，以保护虚拟机。</li>
+</ul>
+<h5 id="_84">参考书目<a class="headerlink" href="#_84" title="Permanent link">&para;</a></h5>
+<p>OpenStack.org，ReleaseNotes/Liberty。2015. OpenStack Liberty 发行说明</p>
+<h4 id="openstack_3">OpenStack 接口<a class="headerlink" href="#openstack_3" title="Permanent link">&para;</a></h4>
+<p>OpenStack API 是一个 RESTful Web 服务端点，用于访问、配置和自动化基于云的资源。操作员和用户通常通过命令行实用程序（例如， <code>nova</code> 或）、特定于语言的库或 <code>glance</code> 第三方工具访问 API。</p>
+<h5 id="_85">功能<a class="headerlink" href="#_85" title="Permanent link">&para;</a></h5>
+<ul>
+<li>To the cloud administrator, the API provides an overall view of the size and state of the cloud deployment and allows the creation of users, tenants/projects, assigning users to tenants/projects, and specifying resource quotas on a per tenant/project basis.
+  对于云管理员来说，API 提供了云部署大小和状态的整体视图，并允许创建用户、租户/项目、将用户分配给租户/项目，以及为每个租户/项目指定资源配额。</li>
+<li>The API provides a tenant interface for provisioning, managing, and accessing their resources.
+  API 提供了一个租户接口，用于预配、管理和访问其资源。</li>
+</ul>
+<h5 id="_86">安全注意事项<a class="headerlink" href="#_86" title="Permanent link">&para;</a></h5>
+<ul>
+<li>应为 TLS 配置 API 服务，以确保数据已加密。</li>
+<li>作为 Web 服务，OpenStack API 容易受到熟悉的网站攻击媒介的影响，例如拒绝服务攻击。</li>
+</ul>
+<h4 id="ssh">安全外壳 （SSH）<a class="headerlink" href="#ssh" title="Permanent link">&para;</a></h4>
+<p>使用安全外壳 （SSH） 访问来管理 Linux 和 Unix 系统已成为行业惯例。SSH 使用安全的加密原语进行通信。鉴于 SSH 在典型 OpenStack 部署中的范围和重要性，了解部署 SSH 的最佳实践非常重要。</p>
+<h5 id="_87">主机密钥指纹<a class="headerlink" href="#_87" title="Permanent link">&para;</a></h5>
+<p>经常被忽视的是 SSH 主机的密钥管理需求。由于 OpenStack 部署中的大多数或所有主机都将提供 SSH 服务，因此对与这些主机的连接充满信心非常重要。不能低估的是，未能提供合理安全且可访问的方法来验证 SSH 主机密钥指纹是滥用和利用的成熟时机。</p>
+<p>所有 SSH 守护程序都具有专用主机密钥，并在连接时提供主机密钥指纹。此主机密钥指纹是未签名公钥的哈希值。在与这些主机建立 SSH 连接之前，必须知道这些主机密钥指纹。验证主机密钥指纹有助于检测中间人攻击。</p>
+<p>通常，在安装 SSH 守护程序时，将生成主机密钥。在主机密钥生成过程中，主机必须具有足够的熵。主机密钥生成期间的熵不足可能导致窃听 SSH 会话。</p>
+<p>生成 SSH 主机密钥后，主机密钥指纹应存储在安全且可查询的位置。一个特别方便的解决方案是使用 RFC-4255 中定义的 SSHFP 资源记录的 DNS。为了安全起见，有必要部署 DNSSEC。</p>
+<h4 id="_88">管理实用程序<a class="headerlink" href="#_88" title="Permanent link">&para;</a></h4>
+<p>OpenStack Management Utilities 是进行 API 调用的开源 Python 命令行客户端。每个 OpenStack  服务都有一个客户端（例如，nova、glance）。除了标准的 CLI  客户端之外，大多数服务都具有管理命令行实用程序，用于直接调用数据库。这些专用管理实用程序正在慢慢被弃用。</p>
+<h5 id="_89">安全注意事项<a class="headerlink" href="#_89" title="Permanent link">&para;</a></h5>
+<ul>
+<li>在某些情况下，专用管理实用程序 （*-manage） 使用直接数据库连接。</li>
+<li>确保包含凭据信息的 .rc 文件是安全的。</li>
+</ul>
+<h5 id="_90">参考书目<a class="headerlink" href="#_90" title="Permanent link">&para;</a></h5>
+<p>OpenStack.org，“OpenStack 最终用户指南”部分。2016. OpenStack 命令行客户端概述。</p>
+<p>OpenStack.org，使用 OpenStack RC 文件设置环境变量。2016. 下载并获取 OpenStack RC 文件。</p>
+<h4 id="_91">带外管理接口<a class="headerlink" href="#_91" title="Permanent link">&para;</a></h4>
+<p>OpenStack 管理依赖于带外管理接口（如 IPMI 协议）来访问运行 OpenStack 组件的节点。IPMI 是一种非常流行的规范，用于远程管理、诊断和重新启动服务器，无论操作系统正在运行还是系统崩溃。</p>
+<h5 id="_92">安全注意事项<a class="headerlink" href="#_92" title="Permanent link">&para;</a></h5>
+<ul>
+<li>使用强密码并保护它们，或使用客户端 TLS 身份验证。</li>
+<li>确保网络接口位于其自己的专用（管理或单独的）网络上。使用防火墙或其他网络设备隔离管理域。</li>
+<li>如果您使用 Web 界面与 BMC/IPMI 交互，请始终使用 TLS 接口，例如 HTTPS 或端口 443。此 TLS 接口不应使用自签名证书（通常是默认的），但应具有使用正确定义的完全限定域名 （FQDN） 的受信任证书。</li>
+<li>监控管理网络上的流量。与繁忙的计算节点相比，异常可能更容易跟踪。</li>
+</ul>
+<p>带外管理界面通常还包括图形计算机控制台访问。这些接口通常可以加密，但不一定是默认的。请参阅系统软件文档以加密这些接口。</p>
+<h5 id="_93">参考书目<a class="headerlink" href="#_93" title="Permanent link">&para;</a></h5>
+<p>SANS 技术研究所，InfoSec Handlers 日记博客。2012. 黑客攻击已关闭的服务器。</p>
+<h2 id="_94">安全通信<a class="headerlink" href="#_94" title="Permanent link">&para;</a></h2>
+<p>设备间通信是一个严重的安全问题。在大型项目错误（如 Heartbleed）或更高级的攻击（如 BEAST 和  CRIME）之间，通过网络进行安全通信的方法变得越来越重要。但是，应该记住，加密应该作为更大的安全策略的一部分来应用。端点的入侵意味着攻击者不再需要破坏所使用的加密，而是能够在系统处理消息时查看和操纵消息。</p>
+<p>本章将回顾有关配置 TLS 以保护内部和外部资源的几个功能，并指出应特别注意的特定类别的系统。</p>
+<ul>
+<li>TLS 和 SSL 简介</li>
+<li>证书颁发机构</li>
+<li>TLS 库</li>
+<li>加密算法、密码模式和协议</li>
+<li>总结</li>
+<li>TLS 代理和 HTTP 服务</li>
+<li>例子</li>
+<li>HTTP 严格传输安全性</li>
+<li>完美前向保密</li>
+<li>安全参考架构</li>
+<li>SSL/TLS 代理在前面</li>
+<li>SSL/TLS 与 API 端点位于同一物理主机上</li>
+<li>负载均衡器上的 SSL/TLS</li>
+<li>外部和内部环境的加密分离</li>
+</ul>
+<h3 id="tls-ssl">TLS 和 SSL 简介<a class="headerlink" href="#tls-ssl" title="Permanent link">&para;</a></h3>
+<p>在某些情况下，需要安全来确保 OpenStack 部署中网络流量的机密性或完整性。这通常是使用加密措施实现的，例如传输层安全性 （TLS） 协议。</p>
+<p>在典型部署中，通过公共网络传输的所有流量都是安全的，但安全最佳实践要求内部流量也必须得到保护。仅仅依靠安全域分离进行保护是不够的。如果攻击者获得对虚拟机监控程序或主机资源的访问权限，破坏 API 端点或任何其他服务，则他们一定无法轻松注入或捕获消息、命令或以其他方式影响云的管理功能。</p>
+<p>所有域都应使用 TLS 进行保护，包括管理域服务和服务内通信。TLS 提供了确保用户与 OpenStack 服务之间以及 OpenStack 服务本身之间通信的身份验证、不可否认性、机密性和完整性的机制。</p>
+<p>由于安全套接字层 （SSL） 协议中已发布的漏洞，我们强烈建议优先使用 TLS 而不是 SSL，并且在任何情况下都禁用 SSL，除非需要与过时的浏览器或库兼容。</p>
+<p>公钥基础设施 （PKI） 是用于保护网络通信的框架。它由一组系统和流程组成，以确保在验证各方身份的同时可以安全地发送流量。此处描述的 PKI 配置文件是由  PKIX 工作组开发的 Internet 工程任务组 （IETF） 公钥基础结构 （PKIX） 配置文件。PKI的核心组件包括：</p>
+<p><strong>数字证书</strong></p>
+<p>签名公钥证书是具有实体的可验证数据、其公钥以及其他一些属性的数据结构。这些证书由证书颁发机构 （CA） 颁发。由于证书由受信任的 CA 签名，因此一旦验证，与实体关联的公钥将保证与所述实体相关联。用于定义这些证书的最常见标准是  X.509 标准。X.509 v3 是当前的标准，在 RFC5280 中进行了详细描述。证书由 CA 颁发，作为证明在线实体身份的机制。CA  通过从证书创建消息摘要并使用其私钥对摘要进行加密，对证书进行数字签名。</p>
+<p><strong>结束实体</strong></p>
+<p>作为证书主题的用户、进程或系统。最终实体将其证书请求发送到注册机构 （RA） 进行审批。如果获得批准，RA 会将请求转发给证书颁发机构 （CA）。证书颁发机构验证请求，如果信息正确，则生成证书并签名。然后，此签名证书将发送到证书存储库。</p>
+<p><strong>信赖方</strong></p>
+<p>接收数字签名证书的终结点，该证书可参考证书上列出的公钥进行验证。信赖方应能够验证证书的链上，确保它不存在于 CRL 中，并且还必须能够验证证书的到期日期。</p>
+<p><strong>证书颁发机构 （CA）</strong></p>
+<p>CA 是受信任的实体，无论是最终方还是依赖证书进行证书策略、管理处理和证书颁发的一方。</p>
+<p><strong>注册机构 （RA）</strong></p>
+<p>CA 将某些管理功能委派给的可选系统，这包括在 CA 颁发证书之前对终端实体进行身份验证等功能。</p>
+<p><strong>证书吊销列表 （CRL）</strong></p>
+<p>证书吊销列表 （CRL） 是已吊销的证书序列号列表。在 PKI 模型中，不应信任提供这些证书的最终实体。吊销可能由于多种原因而发生，例如密钥泄露、CA 泄露。</p>
+<p><strong>CRL 发行人</strong></p>
+<p>CA 将证书吊销列表的发布委托给的可选系统。</p>
+<p><strong>证书存储库</strong></p>
+<p>存储和查找最终实体证书和证书吊销列表的位置 - 有时称为证书捆绑包。</p>
+<p>PKI 构建了一个框架，用于提供加密算法、密码模式和协议，以保护数据和身份验证。强烈建议使用公钥基础结构 （PKI） 保护所有服务，包括对 API  终结点使用  TLS。仅靠传输或消息的加密或签名是不可能解决所有这些问题的。主机本身必须是安全的，并实施策略、命名空间和其他控制措施来保护其私有凭据和密钥。但是，密钥管理和保护的挑战并没有减少这些控制的必要性，也没有降低它们的重要性。</p>
+<h4 id="_95">证书颁发机构<a class="headerlink" href="#_95" title="Permanent link">&para;</a></h4>
+<p>许多组织都建立了公钥基础设施，其中包含自己的证书颁发机构 （CA）、证书策略和管理，他们应该使用这些证书为内部 OpenStack 用户或服务颁发证书。公共安全域面向 Internet  的组织还需要由广泛认可的公共 CA 签名的证书。对于通过管理网络进行的加密通信，建议不要使用公共  CA。相反，我们期望并建议大多数部署部署自己的内部 CA。</p>
+<p>建议 OpenStack 云架构师考虑对内部系统和面向客户的服务使用单独的 PKI 部署。这使云部署人员能够保持对其 PKI  基础设施的控制，并且使内部系统的证书请求、签名和部署变得更加容易。高级配置可以对不同的安全域使用单独的 PKI  部署。这允许部署人员保持环境的加密隔离，确保颁发给一个环境的证书不被另一个环境识别。</p>
+<p>用于在面向 Internet 的云端点（或客户接口，其中客户预计不会安装除标准操作系统提供的证书捆绑包以外的任何内容）上支持 TLS  的证书应使用安装在操作系统证书捆绑包中的证书颁发机构进行预配。典型的知名供应商包括 Let's Encrypt、Verisign 和  Thawte，但还有许多其他供应商。</p>
+<p>在创建和签署证书方面存在管理、策略和技术方面的挑战。在这个领域，云架构师或操作员可能希望寻求行业领导者和供应商的建议，以及此处推荐的指导。</p>
+<h4 id="tls">TLS 库<a class="headerlink" href="#tls" title="Permanent link">&para;</a></h4>
+<p>OpenStack 生态系统中的组件、服务和应用程序或 OpenStack 的依赖项已实现或可以配置为使用 TLS 库。OpenStack 中的 TLS 和  HTTP 服务通常使用 OpenSSL 实现，OpenSSL 具有已针对 FIPS 140-2  验证的模块。但是，请记住，每个应用程序或服务在使用 OpenSSL 库的方式上仍可能引入弱点。</p>
+<h4 id="_96">加密算法、密码模式和协议<a class="headerlink" href="#_96" title="Permanent link">&para;</a></h4>
+<p>建议至少使用 TLS 1.2。旧版本（如 TLS 1.0、1.1 和所有版本的 SSL（TLS 的前身）容易受到多种公开已知的攻击，因此不得使用。TLS  1.2 可用于广泛的客户端兼容性，但在启用此协议时要小心。仅当存在强制性兼容性要求并且您了解所涉及的风险时，才启用 TLS 版本 1.1。</p>
+<p>使用 TLS 1.2 并同时控制客户端和服务器时，密码套件应限制为 <code>ECDHE-ECDSA-AES256-GCM-SHA384</code> .在不控制这两个终结点并使用 TLS 1.1 或 1.2 的情况下，更通用 <code>HIGH:!aNULL:!eNULL:!DES:!3DES:!SSLv3:!TLSv1:!CAMELLIA</code> 的是合理的密码选择。</p>
+<p>但是，由于本书并不打算全面介绍密码学，因此我们不希望规定在OpenStack服务中应该启用或禁用哪些特定的算法或密码模式。我们想推荐一些权威的参考资料，以提供更多信息：</p>
+<ul>
+<li>国家安全局，Suite B 密码学</li>
+<li>OWASP密码学指南</li>
+<li>OWASP 传输层保护备忘单</li>
+<li>SoK：SSL 和 HTTPS：重温过去的挑战并评估证书信任模型增强功能</li>
+<li>世界上最危险的代码：在非浏览器软件中验证SSL证书</li>
+<li>OpenSSL 和 FIPS 140-2</li>
+</ul>
+<h4 id="_97">总结<a class="headerlink" href="#_97" title="Permanent link">&para;</a></h4>
+<p>鉴于 OpenStack 组件的复杂性和部署可能性的数量，您必须注意确保每个组件都获得 TLS 证书、密钥和 CA 的适当配置。后续部分将讨论以下服务：</p>
+<ul>
+<li>计算 API 端点</li>
+<li>身份 API 端点</li>
+<li>网络 API 端点</li>
+<li>存储 API 端点</li>
+<li>消息服务器</li>
+<li>数据库服务器</li>
+<li>仪表板</li>
+</ul>
+<h3 id="tls-http">TLS 代理和 HTTP 服务<a class="headerlink" href="#tls-http" title="Permanent link">&para;</a></h3>
+<p>OpenStack的终端是提供API给公共网络上的终端用户和管理网络上的其他OpenStack服务的HTTP服务。强烈建议所有这些请求，无论是内部还是外部，都使用TLS进行操作。为了实现这个目标，API服务必须部署在TLS代理后面，该代理能够建立和终止TLS会话。下表提供了可用于此目的的开源软件的非详尽列表：</p>
+<ul>
+<li>
+<p>Pound</p>
+</li>
+<li>
+<p>Stud</p>
+</li>
+<li>
+<p>Nginx</p>
+</li>
+<li>
+<p>Apache httpd</p>
+</li>
+</ul>
+<p>在软件终端性能不足的情况下，硬件加速器可能值得探索作为替代选项。请务必注意任何选定的 TLS 代理将处理的请求的大小。</p>
+<h4 id="_98">示例<a class="headerlink" href="#_98" title="Permanent link">&para;</a></h4>
+<p>下面我们提供了一些更流行的 Web 服务器/TLS 终结器中启用 TLS 的推荐配置设置示例。</p>
+<p>在深入研究配置之前，我们简要讨论密码的配置元素及其格式。有关可用密码和 OpenSSL 密码列表格式的更详尽处理，请参阅：密码。</p>
+<pre class="highlight"><code>ciphers = "HIGH:!RC4:!MD5:!aNULL:!eNULL:!EXP:!LOW:!MEDIUM"</code></pre>
+<p>或</p>
+<pre class="highlight"><code>ciphers = "kEECDH:kEDH:kRSA:HIGH:!RC4:!MD5:!aNULL:!eNULL:!EXP:!LOW:!MEDIUM"</code></pre>
+<p>密码字符串选项由 “：” 分隔，而 “！” 提供紧接着的元素的否定。元素顺序指示首选项，除非被限定符（如 HIGH）覆盖。让我们仔细看看上面示例字符串中的元素。</p>
+<p><strong>kEECDH:kEDH</strong></p>
+<p>临时椭圆曲线 Diffie-Hellman（缩写为 EECDH 和 ECDHE）。</p>
+<p>Ephemeral Diffie-Hellman（缩写为 EDH 或 DHE）使用素数场群。</p>
+<p>这两种方法都提供完全前向保密 （PFS）。有关正确配置 PFS 的更多讨论，请参阅完全前向保密。</p>
+<p>临时椭圆曲线要求服务器配置命名曲线，并提供比主字段组更好的安全性和更低的计算成本。但是，主要字段组的实现范围更广，因此通常两者都包含在列表中。</p>
+<p><strong>kRSA</strong></p>
+<p>分别使用 RSA 交换、身份验证或两者之一的密码套件。</p>
+<p><strong>HIGH</strong></p>
+<p>在协商阶段选择可能的最高安全密码。这些密钥通常具有长度为 128 位或更长的密钥。</p>
+<p><strong>!RC4</strong></p>
+<p>没有 RC4。RC4 在 TLS V3 的上下文中存在缺陷。请参阅 TLS 和 WPA 中 RC4 的安全性。</p>
+<p><strong>!MD5</strong></p>
+<p>没有 MD5。MD5 不具有防冲突功能，因此不接受消息验证码 （MAC） 或签名。</p>
+<p><strong>!aNULL:!eNULL</strong></p>
+<p>Disallows clear text. 不允许明文。</p>
+<p><strong>!EXP</strong></p>
+<p>不允许导出加密算法，这些算法在设计上往往很弱，通常使用 40 位和 56 位密钥。</p>
+<p>美国对密码学系统的出口限制已被取消，不再需要支持。</p>
+<p><strong>!LOW:!MEDIUM</strong></p>
+<p>不允许使用低（56 或 64 位长密钥）和中等（128 位长密钥）密码，因为它们容易受到暴力攻击（示例 2-DES）。此规则仍允许三重数据加密标准 （Triple DES），也称为三重数据加密算法 （TDEA） 和高级加密标准 （AES），每个标准都具有大于等于 128 位的密钥，因此更安全。</p>
+<p><strong>Protocols</strong></p>
+<p>协议通过SSL_CTX_set_options启用/禁用。建议禁用 SSLv2/v3 并启用 TLS。</p>
+<h5 id="pound">Pound<a class="headerlink" href="#pound" title="Permanent link">&para;</a></h5>
+<p>此 Pound 示例启用 <code>AES-NI</code> 加速，这有助于提高具有支持此功能的处理器的系统的性能。默认配置文件位于 <code>/etc/pound/pound.cfg</code> Ubuntu、RHEL、CentOS、 <code>/etc/pound.cfg</code> openSUSE 和 SUSE Linux Enterprise 上。</p>
+<pre class="highlight"><code>## see pound(8) for details
+daemon      1
+######################################################################
+## global options:
+User        "swift"
+Group       "swift"
+#RootJail   "/chroot/pound"
+## Logging: (goes to syslog by default)
+##  0   no logging
+##  1   normal
+##  2   extended
+##  3   Apache-style (common log format)
+LogLevel    0
+## turn on dynamic scaling (off by default)
+# Dyn Scale 1
+## check backend every X secs:
+Alive       30
+## client timeout
+#Client     10
+## allow 10 second proxy connect time
+ConnTO      10
+## use hardware-acceleration card supported by openssl(1):
+SSLEngine   "aesni"
+# poundctl control socket
+Control "/var/run/pound/poundctl.socket"
+######################################################################
+## listen, redirect and ... to:
+## redirect all swift requests on port 443 to local swift proxy
+ListenHTTPS
+    Address 0.0.0.0
+    Port    443
+    Cert    "/etc/pound/cert.pem"
+    ## Certs to accept from clients
+    ##  CAlist      "CA_file"
+    ## Certs to use for client verification
+    ##  VerifyList  "Verify_file"
+    ## Request client cert - don't verify
+    ##  Ciphers     "AES256-SHA"
+    ## allow PUT and DELETE also (by default only GET, POST and HEAD)?:
+    NoHTTPS11   0
+    ## allow PUT and DELETE also (by default only GET, POST and HEAD)?:
+    xHTTP       1
+    Service
+        BackEnd
+            Address 127.0.0.1
+            Port    80
+        End
+    End
+End</code></pre>
+<h5 id="stud">Stud<a class="headerlink" href="#stud" title="Permanent link">&para;</a></h5>
+<p>密码行可以根据您的需要进行调整，但这是一个合理的起点。默认配置文件位于目录中 <code>/etc/stud</code> 。但是，默认情况下不提供它。</p>
+<pre class="highlight"><code># SSL x509 certificate file.
+pem-file = "
+# SSL protocol.
+tls = on
+ssl = off
+# List of allowed SSL ciphers.
+# OpenSSL's high-strength ciphers which require authentication
+# NOTE: forbids clear text, use of RC4 or MD5 or LOW and MEDIUM strength ciphers
+ciphers = "HIGH:!RC4:!MD5:!aNULL:!eNULL:!EXP:!LOW:!MEDIUM"
+# Enforce server cipher list order
+prefer-server-ciphers = on
+# Number of worker processes
+workers = 4
+# Listen backlog size
+backlog = 1000
+# TCP socket keepalive interval in seconds
+keepalive = 3600
+# Chroot directory
+chroot = ""
+# Set uid after binding a socket
+user = "www-data"
+# Set gid after binding a socket
+group = "www-data"
+# Quiet execution, report only error messages
+quiet = off
+# Use syslog for logging
+syslog = on
+# Syslog facility to use
+syslog-facility = "daemon"
+# Run as daemon
+daemon = off
+# Report client address using SENDPROXY protocol for haproxy
+# Disabling this until we upgrade to HAProxy 1.5
+write-proxy = off</code></pre>
+<h5 id="nginx">Nginx<a class="headerlink" href="#nginx" title="Permanent link">&para;</a></h5>
+<p>此 Nginx 示例需要 TLS v1.1 或 v1.2 才能获得最大的安全性。可以根据您的需要调整生产线 <code>ssl_ciphers</code> ，但这是一个合理的起点。缺省配置文件为 <code>/etc/nginx/nginx.conf</code> 。</p>
+<pre class="highlight"><code>server {
+    listen : ssl;
+    ssl_certificate ;
+    ssl_certificate_key ;
+    ssl_protocols TLSv1.1 TLSv1.2;
+    ssl_ciphers HIGH:!RC4:!MD5:!aNULL:!eNULL:!EXP:!LOW:!MEDIUM
+    ssl_session_tickets off;
+
+    server_name _;
+    keepalive_timeout 5;
+
+    location / {
+
+    }
+}</code></pre>
+<h5 id="apache">Apache<a class="headerlink" href="#apache" title="Permanent link">&para;</a></h5>
+<p>默认配置文件位于 <code>/etc/apache2/apache2.conf</code> Ubuntu、RHEL 和 CentOS、 <code>/etc/httpd/conf/httpd.conf</code> <code>/etc/apache2/httpd.conf</code> openSUSE 和 SUSE Linux Enterprise 上。</p>
+<pre class="highlight"><code>&lt;VirtualHost &lt;ip address&gt;:80&gt;
+  ServerName &lt;site FQDN&gt;
+  RedirectPermanent / https://&lt;site FQDN&gt;/
+&lt;/VirtualHost&gt;
+&lt;VirtualHost &lt;ip address&gt;:443&gt;
+  ServerName &lt;site FQDN&gt;
+  SSLEngine On
+  SSLProtocol +TLSv1 +TLSv1.1 +TLSv1.2
+  SSLCipherSuite HIGH:!RC4:!MD5:!aNULL:!eNULL:!EXP:!LOW:!MEDIUM
+  SSLCertificateFile    /path/&lt;site FQDN&gt;.crt
+  SSLCACertificateFile  /path/&lt;site FQDN&gt;.crt
+  SSLCertificateKeyFile /path/&lt;site FQDN&gt;.key
+  WSGIScriptAlias / &lt;WSGI script location&gt;
+  WSGIDaemonProcess horizon user=&lt;user&gt; group=&lt;group&gt; processes=3 threads=10
+  Alias /static &lt;static files location&gt;
+  &lt;Directory &lt;WSGI dir&gt;&gt;
+    # For http server 2.2 and earlier:
+    Order allow,deny
+    Allow from all
+
+    # Or, in Apache http server 2.4 and later:
+    # Require all granted
+  &lt;/Directory&gt;
+&lt;/VirtualHost&gt;</code></pre>
+<p>Apache 中的计算 API SSL 端点，必须与简短的 WSGI 脚本配对。</p>
+<pre class="highlight"><code>&lt;VirtualHost &lt;ip address&gt;:8447&gt;
+  ServerName &lt;site FQDN&gt;
+  SSLEngine On
+  SSLProtocol +TLSv1 +TLSv1.1 +TLSv1.2
+  SSLCipherSuite HIGH:!RC4:!MD5:!aNULL:!eNULL:!EXP:!LOW:!MEDIUM
+  SSLCertificateFile    /path/&lt;site FQDN&gt;.crt
+  SSLCACertificateFile  /path/&lt;site FQDN&gt;.crt
+  SSLCertificateKeyFile /path/&lt;site FQDN&gt;.key
+  SSLSessionTickets Off
+  WSGIScriptAlias / &lt;WSGI script location&gt;
+  WSGIDaemonProcess osapi user=&lt;user&gt; group=&lt;group&gt; processes=3 threads=10
+  &lt;Directory &lt;WSGI dir&gt;&gt;
+    # For http server 2.2 and earlier:
+    Order allow,deny
+    Allow from all
+
+    # Or, in Apache http server 2.4 and later:
+    # Require all granted
+  &lt;/Directory&gt;
+&lt;/VirtualHost&gt;</code></pre>
+<h4 id="http">HTTP 严格传输安全<a class="headerlink" href="#http" title="Permanent link">&para;</a></h4>
+<p>建议所有生产部署都使用 HTTP 严格传输安全性 （HSTS）。此标头可防止浏览器在建立单个安全连接后建立不安全的连接。如果您已将 HTTP  服务部署在公共域或不受信任的域上，则 HSTS 尤为重要。要启用 HSTS，请将 Web 服务器配置为发送包含所有请求的标头，如下所示：</p>
+<pre class="highlight"><code>Strict-Transport-Security: max-age=31536000; includeSubDomains</code></pre>
+<p>在测试期间从 1 天的短暂停开始，并在测试表明您没有给用户带来问题后将其提高到一年。请注意，一旦此标头设置为较大的超时，它（根据设计）就很难禁用。</p>
+<h4 id="_99">完全前向保密<a class="headerlink" href="#_99" title="Permanent link">&para;</a></h4>
+<p>配置 TLS 服务器以实现完美的前向保密需要围绕密钥大小、会话 ID  和会话票证进行仔细规划。此外，对于多服务器部署，共享状态也是一个重要的考虑因素。上面的 Apache 和 Nginx  示例配置禁用了会话票证选项，以帮助缓解其中一些问题。实际部署可能希望启用此功能以提高性能。这可以安全地完成，但需要特别考虑密钥管理。此类配置超出了本指南的范围。我们建议阅读 ImperialViolet 的 How to botch TLS forward secrecy 作为理解问题空间的起点。</p>
+<h3 id="_100">安全参考架构<a class="headerlink" href="#_100" title="Permanent link">&para;</a></h3>
+<p>建议在 TLS 代理和 HTTP 服务的公用网络和管理网络上使用 SSL/TLS。但是，如果实际在任何地方部署 SSL/TLS 太困难，我们建议您评估您的 OpenStack SSL/TLS 需求，并遵循此处讨论的架构之一。</p>
+<p>在评估其 OpenStack SSL/TLS 需求时，应该做的第一件事是识别威胁。您可以将这些威胁分为外部攻击者和内部攻击者类别，但由于 OpenStack 的某些组件在公共和管理网络上运行，因此界限往往会变得模糊。</p>
+<p>对于面向公众的服务，威胁非常简单。用户将使用其用户名和密码对 Horizon 和 Keystone 进行身份验证。用户还将使用其 keystone 令牌访问其他服务的 API  端点。如果此网络流量未加密，则攻击者可以使用中间人攻击截获密码和令牌。然后，攻击者可以使用这些有效凭据执行恶意操作。所有实际部署都应使用  SSL/TLS 来保护面向公众的服务。</p>
+<p>对于部署在管理网络上的服务，由于安全域与网络安全的桥接，威胁并不那么明确。有权访问管理网络的管理员总是有可能决定执行恶意操作。在这种情况下，如果允许攻击者访问私钥，SSL/TLS 将无济于事。当然，并不是管理网络上的每个人都被允许访问私钥，因此使用 SSL/TLS  来保护自己免受内部攻击者的攻击仍然很有价值。即使允许访问您的管理网络的每个人都是 100%  受信任的，仍然存在未经授权的用户通过利用错误配置或软件漏洞访问您的内部网络的威胁。必须记住，用户在 OpenStack Compute  节点中的实例上运行自己的代码，这些节点部署在管理网络上。如果漏洞允许他们突破虚拟机管理程序，他们将可以访问您的管理网络。在管理网络上使用  SSL/TLS 可以最大程度地减少攻击者可能造成的损害。</p>
+<h4 id="ssltls">SSL/TLS 代理在前面<a class="headerlink" href="#ssltls" title="Permanent link">&para;</a></h4>
+<p>人们普遍认为，最好尽早加密敏感数据，并尽可能晚地解密。尽管有这种最佳实践，但在OpenStack服务前面使用SSL / TLS代理并在之后使用清晰的通信似乎是很常见的，如下所示：</p>
+<p><img alt="../_images/secure-arch-ref-1.png" src="https://docs.openstack.org/security-guide/_images/secure-arch-ref-1.png" /></p>
+<p>如上图所示，使用 SSL/TLS 代理的一些问题：</p>
+<ul>
+<li>OpenStack 服务中的原生 SSL/TLS 的性能/扩展性不如 SSL 代理（特别是对于像 Eventlet 这样的 Python 实现）。</li>
+<li>OpenStack 服务中的原生 SSL/TLS 没有像更成熟的解决方案那样经过仔细审查/审计。</li>
+<li>本机 SSL/TLS 配置很困难（没有很好的文档记录、测试或跨服务保持一致）。</li>
+<li>权限分离（OpenStack 服务进程不应直接访问用于 SSL/TLS 的私钥）。</li>
+<li>流量检查需要负载均衡。</li>
+</ul>
+<p>以上所有问题都是有道理的，但它们都不能阻止在管理网络上使用 SSL/TLS。让我们考虑下一个部署模型。</p>
+<h4 id="api-ssltls">与 API 端点位于同一物理主机上的 SSL/TLS<a class="headerlink" href="#api-ssltls" title="Permanent link">&para;</a></h4>
+<p><img alt="../_images/secure-arch-ref-2.png" src="https://docs.openstack.org/security-guide/_images/secure-arch-ref-2.png" /></p>
+<p>这与前面的 SSL/TLS 代理非常相似，但 SSL/TLS 代理与 API 端点位于同一物理系统上。API 端点将配置为仅侦听本地网络接口。与 API  端点的所有远程通信都将通过 SSL/TLS 代理进行。通过此部署模型，我们将解决 SSL/TLS 代理中的许多要点：将使用性能良好的经过验证的  SSL 实现。所有服务都将使用相同的 SSL 代理软件，因此 API 端点的 SSL 配置将是一致的。OpenStack  服务进程将无法直接访问用于 SSL/TLS 的私钥，因为您将以不同的用户身份运行 SSL 代理，并使用权限限制访问（以及使用 SELinux  之类的额外强制访问控制）。理想情况下，我们会让 API 端点在 Unix  套接字上监听，这样我们就可以使用权限和强制访问控制来限制对它的访问。不幸的是，根据我们的测试，这在 Eventlet  中目前似乎不起作用。这是一个很好的未来发展目标。</p>
+<h4 id="ssltls_1">SSL/TLS负载平衡器<a class="headerlink" href="#ssltls_1" title="Permanent link">&para;</a></h4>
+<p>需要检查流量的高可用性或负载均衡部署会怎样？以前的部署模型（与 API 端点位于同一物理主机上的  SSL/TLS）不允许进行深度数据包检测，因为流量是加密的。如果仅出于基本路由目的而需要检查流量，则负载均衡器可能没有必要访问未加密的流量。HAProxy 能够在握手期间提取 SSL/TLS 会话 ID，然后可以使用该 ID 来实现会话亲和性（会话 ID 配置详细信息 此处  ）。HAProxy还可以使用TLS服务器名称指示（SNI）扩展来确定应将流量路由到的位置（SNI配置详细信息请在此处）。这些功能可能涵盖了一些最常见的负载均衡器需求。在这种情况下，HAProxy 将能够将 HTTPS 流量直接传递到 API 端点系统：</p>
+<p><img alt="../_images/secure-arch-ref-3.png" src="https://docs.openstack.org/security-guide/_images/secure-arch-ref-3.png" /></p>
+<h4 id="_101">外部和内部环境的加密分离<a class="headerlink" href="#_101" title="Permanent link">&para;</a></h4>
+<p>如果您希望对外部和内部环境进行加密分离，该怎么办？公有云提供商可能希望其面向公众的服务（或代理）使用由 CA 颁发的证书，该证书链接到受信任的根 CA，该根 CA 分布在流行的 SSL/TLS Web  浏览器软件中。对于内部服务，可能希望改用自己的 PKI 来颁发 SSL/TLS 证书。可以通过在网络边界终止  SSL，然后使用内部颁发的证书重新加密来实现这种加密分离。流量将在面向公众的 SSL/TLS  代理上短时间内未加密，但永远不会以明文形式通过网络传输。如果负载均衡器上确实需要深度数据包检测，也可以使用用于实现加密分离的相同重新加密方法。下面是此部署模型的样子：下面是此部署模型的外观:</p>
+<p><img alt="../_images/secure-arch-ref-4.png" src="https://docs.openstack.org/security-guide/_images/secure-arch-ref-4.png" /></p>
+<p>与大多数事情一样，需要权衡取舍。主要的权衡是在安全性和性能之间。加密是有代价的，但被黑客入侵也是有代价的。每个部署的安全性和性能要求都会有所不同，因此如何使用 SSL/TLS 最终将由个人决定。</p>
+<h2 id="api">API 端点<a class="headerlink" href="#api" title="Permanent link">&para;</a></h2>
+<p>使用 OpenStack 云的过程是通过查询 API 端点开始的。虽然公共和专用终结点面临不同的挑战，但这些是高价值资产，如果遭到入侵，可能会带来重大风险。</p>
+<p>本章建议对面向公共和私有的 API 端点进行安全增强。</p>
+<ul>
+<li>API 端点配置建议</li>
+<li>内部 API 通信</li>
+<li>粘贴件和中间件</li>
+<li>API 端点进程隔离和策略</li>
+<li>API 终端节点速率限制</li>
+</ul>
+<h3 id="api_1">API 端点配置建议<a class="headerlink" href="#api_1" title="Permanent link">&para;</a></h3>
+<h4 id="api_2">内部 API 通信<a class="headerlink" href="#api_2" title="Permanent link">&para;</a></h4>
+<p>OpenStack 提供面向公众和私有的 API 端点。默认情况下，OpenStack 组件使用公开定义的端点。建议将这些组件配置为在适当的安全域中使用 API 端点。</p>
+<p>服务根据 OpenStack 服务目录选择各自的 API 端点。这些服务可能不遵守列出的公共或内部 API 端点值。这可能会导致内部管理流量路由到外部 API 终结点。</p>
+<h5 id="url">在身份服务目录中配置内部 URL<a class="headerlink" href="#url" title="Permanent link">&para;</a></h5>
+<p>Identity 服务目录应了解您的内部 URL。虽然默认情况下不使用此功能，但可以通过配置来利用它。此外，一旦此行为成为默认行为，它应该与预期的更改向前兼容。</p>
+<p>要为终结点注册内部 URL，请执行以下操作：</p>
+<pre class="highlight"><code>$ openstack endpoint create identity \
+  --region RegionOne internal \
+  https://MANAGEMENT_IP:5000/v3</code></pre>
+<p>替换为 <code>MANAGEMENT_IP</code> 控制器节点的管理 IP 地址。</p>
+<h5 id="url_1">为内部 URL 配置应用程序<a class="headerlink" href="#url_1" title="Permanent link">&para;</a></h5>
+<p>您可以强制某些服务使用特定的 API 端点。因此，建议必须将每个与另一个服务的 API 通信的 OpenStack 服务显式配置为访问正确的内部 API 端点。</p>
+<p>每个项目都可能呈现定义目标 API 端点的不一致方式。OpenStack 的未来版本试图通过一致地使用身份服务目录来解决这些不一致问题。</p>
+<p><strong>配置示例 #1：nova</strong></p>
+<pre class="highlight"><code>cinder_catalog_info='volume:cinder:internalURL'
+glance_protocol='https'
+neutron_url='https://neutron-host:9696'
+neutron_admin_auth_url='https://neutron-host:9696'
+s3_host='s3-host'
+s3_use_ssl=True</code></pre>
+<p><strong>配置示例 #2：cinder</strong> </p>
+<pre class="highlight"><code>glance_host = 'https://glance-server'</code></pre>
+<h4 id="_102">粘贴和中间件<a class="headerlink" href="#_102" title="Permanent link">&para;</a></h4>
+<p>OpenStack 中的大多数 API 端点和其他 HTTP 服务都使用 Python Paste Deploy  库。从安全角度来看，此库允许通过应用程序的配置来操作请求筛选器管道。此链中的每个元素都称为中间件。更改管道中筛选器的顺序或添加其他中间件可能会产生不可预知的安全影响。</p>
+<p>通常，实现者会添加中间件来扩展 OpenStack 的基本功能。我们建议实现者仔细考虑将非标准软件组件添加到其 HTTP 请求管道中可能带来的风险。</p>
+<p>有关粘贴部署的更多信息，请参阅 Python 粘贴部署文档。</p>
+<h4 id="api_3">API 端点进程隔离和策略<a class="headerlink" href="#api_3" title="Permanent link">&para;</a></h4>
+<p>您应该隔离 API 端点进程，尤其是那些位于公共安全域中的进程，应尽可能隔离。在部署允许的情况下，API 端点应部署在单独的主机上，以增强隔离性。</p>
+<h5 id="_103">命名空间<a class="headerlink" href="#_103" title="Permanent link">&para;</a></h5>
+<p>现在，许多操作系统都提供分区化支持。Linux 支持命名空间将进程分配到独立的域中。本指南的其他部分更详细地介绍了系统区隔。</p>
+<h5 id="_104">网络策略<a class="headerlink" href="#_104" title="Permanent link">&para;</a></h5>
+<p>由于 API 端点通常桥接多个安全域，因此您必须特别注意 API 进程的划分。有关此区域的其他信息，请参阅桥接安全域。</p>
+<p>通过仔细建模，您可以使用网络 ACL 和 IDS 技术在网络服务之间强制实施显式点对点通信。作为一项关键的跨域服务，这种显式强制执行对 OpenStack 的消息队列服务非常有效。</p>
+<p>要实施策略，您可以配置服务、基于主机的防火墙（例如 iptables）、本地策略（SELinux 或 AppArmor）以及可选的全局网络策略。</p>
+<h5 id="_105">强制访问控制<a class="headerlink" href="#_105" title="Permanent link">&para;</a></h5>
+<p>您应该将 API  端点进程彼此隔离，并隔离计算机上的其他进程。这些进程的配置不仅应通过任意访问控制，还应通过强制访问控制来限制这些进程。这些增强的访问控制的目标是帮助遏制和升级 API 端点安全漏洞。通过强制访问控制，此类违规行为会严重限制对资源的访问，并针对此类事件提供早期警报。</p>
+<h4 id="api_4">API 端点速率限制<a class="headerlink" href="#api_4" title="Permanent link">&para;</a></h4>
+<p>速率限制是一种控制基于网络的应用程序接收事件频率的方法。如果不存在可靠的速率限制，则可能导致应用程序容易受到各种拒绝服务攻击。对于 API 尤其如此，因为 API 的本质是旨在接受高频率的类似请求类型和操作。</p>
+<p>在 OpenStack 中，建议通过速率限制代理或 Web 应用程序防火墙为所有端点（尤其是公共端点）提供额外的保护层。</p>
+<p>在配置和实现任何速率限制功能时，运营商必须仔细规划并考虑其 OpenStack 云中用户和服务的个人性能需求，这一点至关重要。</p>
+<p>提供速率限制的常见解决方案是 Nginx、HAProxy、OpenPose 或 Apache 模块，例如 mod_ratelimit、mod_qos 或 mod_security。</p>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="页脚导航">
+        <a href="../../spec/priority_vm/" class="btn btn-neutral float-left" title="虚拟机高低优先级"><span class="icon icon-circle-arrow-left"></span> 上一章</a>
+    </div>
 
   <hr/>
 
@@ -747,6 +1630,8 @@
   <div class="rst-versions" role="note" aria-label="版本">
   <span class="rst-current-version" data-toggle="rst-current-version">
     
+    
+      <span><a href="../../spec/priority_vm/" style="color: #fcfcfc">&laquo; 上一章</a></span>
     
     
   </span>
