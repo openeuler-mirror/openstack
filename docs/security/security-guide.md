@@ -1497,5 +1497,1319 @@ OpenStack 中的大多数 API 端点和其他 HTTP 服务都使用 Python Paste 
 
 提供速率限制的常见解决方案是 Nginx、HAProxy、OpenPose 或 Apache 模块，例如 mod_ratelimit、mod_qos 或 mod_security。
 
+## 身份鉴别
+
+Keystone身份服务为OpenStack系列服务专门提供身份、令牌、目录和策略服务。身份服务组织为一组内部服务，通过一个或多个端点暴露。这些服务中的许多是由前端以组合方式使用的。例如，身份验证调用通过身份服务验证用户和项目凭据。如果成功，它将使用令牌服务创建并返回令牌。更多信息可以在Keystone开发者文档中找到。
+
+- 认证
+  - 无效的登录尝试
+  - 多因素认证
+- 认证方法
+  - 内部实施的认证方法
+  - 外部认证方法
+- 授权
+  - 建立正式的访问控制策略
+  - 服务授权
+  - 管理原用户
+  - 终端用户
+- 策略
+- 令牌
+  - Fernet 令牌
+  - JWT 令牌
+- 域
+- 联合 Keystone
+  - 为什么要使用联合鉴别
+- 检查表
+  - Check-Identity-01：配置文件的用户/组所有权是否设置为 keystone？
+  - Check-Identity-02：是否为身份配置文件设置了严格权限
+  - Check-Identity-03：是否为 Identity 启用了 TLS？
+  - Check-Identity-04：（已过时）
+  - Check-Identity-05：是否 max_request_body_size 设置为默认值 （114688）？
+  - check-identity-06:禁用/etc/keystone/keystone.conf中的管理令牌
+  - check-identity-07:/etc/keystone/keystone.conf中的不安全_调试为假
+  - check-identity-08:使用/etc/keystone/keystone.conf中的Fernet令牌
+
+### 认证
+
+身份认证是任何实际OpenStack部署中不可或缺的一部分，因此应该仔细考虑系统设计的这一方面。本主题的完整处理超出了本指南的范围，但是以下各节介绍了一些关键主题。
+
+从根本上说，身份认证是确认身份的过程 - 用户实际上是他们声称的身份。一个熟悉的示例是在登录系统时提供用户名和密码。
+
+OpenStack 身份鉴别服务（keystone）支持多种身份验证方法，包括用户名和密码、LDAP 和外部身份验证方法。身份认证成功后，身份鉴别服务会向用户提供用于后续服务请求的授权令牌。
+
+传输层安全性 （TLS） 使用 X.509 证书在服务和人员之间提供身份验证。尽管 TLS 的默认模式是仅服务器端身份验证，但证书也可用于客户端身份验证。
+
+#### 无效的登录尝试
+
+从 Newton 版本开始，身份鉴别服务可以在多次登录尝试失败后限制对帐户的访问。重复失败登录尝试的模式通常是暴力攻击的指标（请参阅攻击类型）。这种类型的攻击在公有云部署中更为普遍。
+
+对于需要此功能的旧部署，可以使用外部身份验证系统进行预防，该系统在配置的登录尝试失败次数后锁定帐户。然后，只有通过进一步的侧信道干预才能解锁该帐户。
+
+如果无法预防，则可以使用检测来减轻损害。检测涉及频繁查看访问控制日志，以识别未经授权的帐户访问尝试。可能的补救措施包括检查用户密码的强度，或通过防火墙规则阻止攻击的网络源。Keystone 服务器上限制连接数的防火墙规则可用于降低攻击效率，从而劝阻攻击者。
+
+此外，检查帐户活动是否存在异常登录时间和可疑操作，并采取纠正措施（如禁用帐户）也很有用。通常，信用卡提供商采用这种方法进行欺诈检测和警报。
+
+#### 多因素身份验证 
+
+采用多重身份验证对特权用户帐户进行网络访问。身份鉴别服务通过可提供此功能的 Apache Web 服务器支持外部身份验证服务。服务器还可以使用证书强制执行客户端身份验证。
+
+此建议可防止暴力破解、社会工程以及可能泄露管理员密码的狙击和大规模网络钓鱼攻击。
+
+### 身份验证方法
+
+#### 内部实现的认证方式 
+
+身份认证服务可以将用户凭据存储在 SQL 数据库中，也可以使用符合 LDAP 的目录服务器。身份数据库可以与其他 OpenStack 服务使用的数据库分开，以降低存储凭据泄露的风险。
+
+当您使用用户名和密码进行身份验证时，身份服务不会强制执行 NIST Special Publication 800-118（草案）中推荐的有关密码强度、过期或失败身份验证尝试的策略。希望执行更严格密码策略的组织应考虑使用身份服务的扩展或外部认证服务。
+
+LDAP 简化了身份认证与组织现有目录服务和用户帐户管理流程的集成。
+
+OpenStack 中的身份验证和授权策略可以委托给其他服务。一个典型的用例是寻求部署私有云的组织，并且已经在 LDAP  系统中拥有员工和用户的数据库。使用此身份验证机构，将对身份服务的请求委托给 LDAP 系统，然后 LDAP  系统将根据其策略进行授权或拒绝。身份验证成功后，身份鉴别服务会生成一个令牌，用于访问授权服务。
+
+请注意，如果 LDAP 系统具有为用户定义的属性，例如 admin、finance、HR 等，则必须将这些属性映射到身份鉴别中的角色和组，以供各种 OpenStack 服务使用。该文件 `/etc/keystone/keystone.conf` 将 LDAP 属性映射到身份属性。
+
+不得允许身份服务写入用于 OpenStack 部署之外的身份验证的 LDAP 服务，因为这将允许具有足够权限的 keystone 用户对 LDAP  目录进行更改。这将允许在更广泛的组织内进行权限升级，或促进对其他信息和资源的未经授权的访问。在这样的部署中，用户配置将超出 OpenStack  部署的范围。
+
+**注意**
+
+```
+有一个关于 keystone.conf 权限的 OpenStack 安全说明 （OSSN）。
+
+有一个关于潜在 DoS 攻击的 OpenStack 安全说明 （OSSN）。
+```
+
+#### 外部认证方式
+
+本组织可能希望实现外部身份验证，以便与现有身份验证服务兼容，或强制实施更强的身份验证策略要求。尽管密码是最常见的身份验证形式，但它们可以通过多种方法泄露，包括击键记录和密码泄露。外部身份验证服务可以提供替代形式的身份验证，以最大程度地降低弱密码带来的风险。
+
+ 这些包括：
+
+**密码策略实施**
+
+要求用户密码符合长度、字符多样性、过期或登录尝试失败的最低标准。在外部身份验证方案中，这将是原始身份存储上的密码策略。
+
+**多因素身份验证**
+
+身份验证服务要求用户根据他们拥有的内容（如一次性密码令牌或 X.509 证书）和他们知道的内容（如密码）提供信息。
+
+**Kerberos**
+
+一种使用“票证”进行双向认证的网络协议，用于保护客户端和服务器之间的通信。Kerberos 票证授予票证可安全地为特定服务提供票证。
+
+### 授权
+
+身份服务支持组和角色的概念。用户属于组，而组具有角色列表。OpenStack 服务引用尝试访问该服务的用户的角色。OpenStack  策略执行器中间件会考虑与每个资源关联的策略规则，然后考虑用户的组/角色和关联，以确定是否允许访问所请求的资源。
+
+策略实施中间件支持对 OpenStack 资源进行细粒度的访问控制。策略中深入讨论了策略的行为。
+
+#### 建立正式的访问控制策略 
+
+在配置角色、组和用户之前，请记录 OpenStack  安装所需的访问控制策略。这些策略应与组织的任何法规或法律要求保持一致。将来对访问控制配置的修改应与正式策略保持一致。策略应包括创建、删除、禁用和启用帐户以及为帐户分配权限的条件和过程。定期查看策略，并确保配置符合批准的策略。
+
+#### 服务授权
+
+云管理员必须为每个服务定义一个具有管理员角色的用户，如《OpenStack 管理员指南》中所述。此服务帐户为服务提供对用户进行身份验证的授权。
+
+可以将计算和对象存储服务配置为使用身份服务来存储身份验证信息。存储身份验证信息的其他选项包括使用“tempAuth”文件，但不应将其部署在生产环境中，因为密码以纯文本形式显示。
+
+身份鉴别服务支持对 TLS 进行客户端身份验证，该身份验证可能已启用。除了用户名和密码之外，TLS  客户端身份验证还提供了额外的身份验证因素，从而提高了用户标识的可靠性。当用户名和密码可能被泄露时，它降低了未经授权访问的风险。但是，向用户颁发证书会产生额外的管理开销和成本，这在每次部署中都可能不可行。
+
+**注意**
+
+```
+我们建议您将客户端身份验证与 TLS 结合使用，以便对身份鉴别服务进行身份验证。
+```
+
+云管理员应保护敏感的配置文件免遭未经授权的修改。这可以通过强制性访问控制框架（如 SELinux）来实现，包括 `/etc/keystone/keystone.conf` X.509 证书。
+
+使用 TLS 的客户端身份验证需要向服务颁发证书。这些证书可以由外部或内部证书颁发机构签名。默认情况下，OpenStack 服务会根据受信任的 CA 检查证书签名的有效性，如果签名无效或 CA  不可信，连接将失败。云部署人员可以使用自签名证书。在这种情况下，必须禁用有效性检查，或者应将证书标记为受信任。若要禁用自签名证书的验证，请在 `/etc/nova/api.paste.ini` 文件的 `[filter:authtoken]` “部分”中进行设置 `insecure=False` 。此设置还会禁用其他组件的证书。
+
+#### 管理员用户
+
+我们建议管理员用户使用身份服务和支持 2 因素身份验证的外部身份验证服务（例如证书）进行身份验证。这样可以降低密码可能被泄露的风险。此建议符合 NIST 800-53 IA-2（1） 指南，即使用多重身份验证对特权帐户进行网络访问。
+
+#### 终端用户
+
+身份鉴别服务可以直接提供最终用户身份验证，也可以配置为使用外部身份验证方法以符合组织的安全策略和要求。
+
+###  政策
+
+每个 OpenStack 服务都在关联的策略文件中定义其资源的访问策略。例如，资源可以是 API 访问、附加到卷或启动实例的能力。策略规则以 JSON 格式指定，文件称为 `policy.json` .此文件的语法和格式在配置参考中进行了讨论。
+
+云管理员可以修改或更新这些策略，以控制对各种资源的访问。确保对访问控制策略的任何更改都不会无意中削弱任何资源的安全性。另请注意，对 `policy.json` 文件的更改会立即生效，并且不需要重新启动服务。
+
+以下示例显示了该服务如何将创建、更新和删除资源的访问权限限制为仅具有角色 `cloud_admin` 的用户，该角色已定义为 `role = admin` 和 `domain_id = admin_domain_id` 的结合，而 get 和 list 资源可供角色为 `cloud_admin` 或 `admin` 的用户使用。
+
+```
+{
+    "admin_required": "role:admin",
+    "cloud_admin": "rule:admin_required and domain_id:admin_domain_id",
+    "service_role": "role:service",
+    "service_or_admin": "rule:admin_required or rule:service_role",
+    "owner" : "user_id:%(user_id)s or user_id:%(target.token.user_id)s",
+    "admin_or_owner": "(rule:admin_required and domain_id:%(target.token.user.domain.id)s) or rule:owner",
+    "admin_or_cloud_admin": "rule:admin_required or rule:cloud_admin",
+    "admin_and_matching_domain_id": "rule:admin_required and domain_id:%(domain_id)s",
+    "service_admin_or_owner": "rule:service_or_admin or rule:owner",
+
+    "default": "rule:admin_required",
+
+    "identity:get_service": "rule:admin_or_cloud_admin",
+    "identity:list_services": "rule:admin_or_cloud_admin",
+    "identity:create_service": "rule:cloud_admin",
+    "identity:update_service": "rule:cloud_admin",
+    "identity:delete_service": "rule:cloud_admin",
+
+    "identity:get_endpoint": "rule:admin_or_cloud_admin",
+    "identity:list_endpoints": "rule:admin_or_cloud_admin",
+    "identity:create_endpoint": "rule:cloud_admin",
+    "identity:update_endpoint": "rule:cloud_admin",
+    "identity:delete_endpoint": "rule:cloud_admin",
+
+}
+```
+
+### 令牌
+
+用户通过身份验证后，将生成一个令牌，用于授权和访问 OpenStack 环境。代币可以具有可变的生命周期;但是，expiry 的默认值为 1  小时。建议的过期值应设置为较低的值，以便内部服务有足够的时间完成任务。如果令牌在任务完成之前过期，云可能会变得无响应或停止提供服务。例如，计算服务将磁盘映像传输到虚拟机监控程序以进行本地缓存所需的时间。允许在使用有效的服务令牌时提取过期的令牌。
+
+令牌通常在 Identity 服务响应的较大上下文的结构中传递。这些响应还提供了各种 OpenStack 服务的目录。列出了每个服务的名称、内部访问、管理员访问和公共访问的访问终结点。
+
+可以使用标识 API 吊销令牌。
+
+在 Stein 版本中，有两种受支持的令牌类型：fernet 和 JWT。
+
+fernet 和 JWT 令牌都不需要持久性。Keystone 令牌数据库不再因身份验证的副作用而遭受膨胀。过期令牌的修剪会自动进行。也不再需要跨多个节点进行复制。只要每个 keystone 节点共享相同的存储库，就可以在所有节点上立即创建和验证令牌。
+
+####  Fernet 令牌
+
+Fernet 令牌是 Stein 支持的令牌提供程序（默认）。Fernet 是一种安全的消息传递格式，专门设计用于 API 令牌。它们是轻量级的（范围在  180 到 240 字节之间），并减少了运行云所需的运营开销。身份验证和授权元数据被整齐地捆绑到消息打包的有效负载中，然后对其进行加密并作为  fernet 令牌登录。
+
+#### JWT 令牌
+
+JSON Web 签名 （JWS） 令牌是在 Stein 版本中引入的。与fernet相比，JWS通过限制需要共享对称加密密钥的主机数量，为运营商提供了潜在的好处。这有助于防止可能已在部署中站稳脚跟的恶意参与者扩散到其他节点。
+
+有关这些令牌提供程序之间差异的更多详细信息，请参阅此处 https://docs.openstack.org/keystone/stein/admin/tokens-overview.html#token-providers
+
+### 域
+
+域是项目、用户和组的高级容器。因此，它们可用于集中管理所有基于 keystone  的身份组件。随着帐户域的引入，服务器、存储和其他资源现在可以在逻辑上分组到多个项目（以前称为租户）中，这些项目本身可以分组到类似主帐户的容器下。此外，可以在一个帐户域中管理多个用户，并为每个项目分配不同的角色。
+
+Identity V3 API 支持多个域。不同域的用户可能在不同的身份验证后端中表示，甚至具有不同的属性，这些属性必须映射到一组角色和权限，这些角色和权限在策略定义中用于访问各种服务资源。
+
+如果规则可以仅指定对管理员用户和属于租户的用户的访问权限，则映射可能很简单。在其他情况下，云管理员可能需要批准每个租户的映射例程。
+
+特定于域的身份验证驱动程序允许使用特定于域的配置文件为多个域配置标识服务。启用驱动程序并设置特定于域的配置文件位置发生在 `keystone.conf` 文件 `[identity]` 部分中：
+
+```
+[identity]
+domain_specific_drivers_enabled = True
+domain_config_dir = /etc/keystone/domains
+```
+
+任何没有特定于域的配置文件的域都将使用主 `keystone.conf` 文件中的选项。
+
+### 联合鉴权
+
+重要定义：
+
+**服务提供商 （SP）**
+
+向委托人或其他系统实体提供服务的系统实体，在本例中，OpenStack Identity 是服务提供者。
+
+**身份提供商 （IdP）**
+
+目录服务（如 LDAP、RADIUS 和 Active Directory）允许用户使用用户名和密码登录，是身份提供商处身份验证令牌（例如密码）的典型来源。
+
+联合鉴权是一种在 IdP 和 SP 之间建立信任的机制，在本例中，是在身份提供者和 OpenStack Cloud 提供的服务之间建立信任。它提供了一种安全的方法，可以使用现有凭据跨多个端点访问云资源，例如服务器、卷和数据库。凭证由用户的 IdP 维护。
+
+#### 为什么要使用联合身份？
+
+两个根本原因：
+
+1. 降低复杂性使部署更易于保护。
+2. 它为您和您的用户节省了时间。
+
+- 集中管理帐户，防止 OpenStack 基础架构内部的重复工作。
+- 减轻用户负担。单点登录允许使用单一身份验证方法来访问许多不同的服务和环境。
+- 将密码恢复过程的责任转移到 IdP。
+
+进一步的理由和细节可以在 Keystone 关于联合的文档中找到。
+
+### 检查表
+
+#### Check-Identity-01：配置文件的用户/组所有权是否设置为 keystone？
+
+配置文件包含组件平稳运行所需的关键参数和信息。如果非特权用户有意或无意地修改或删除任何参数或文件本身，则会导致严重的可用性问题，从而导致对其他最终用户的拒绝服务。因此，此类关键配置文件的用户和组所有权必须设置为该组件所有者。此外，包含目录应具有相同的所有权，以确保正确拥有新文件。
+
+运行以下命令：
+
+```
+$ stat -L -c "%U %G" /etc/keystone/keystone.conf | egrep "keystone keystone"
+$ stat -L -c "%U %G" /etc/keystone/keystone-paste.ini | egrep "keystone keystone"
+$ stat -L -c "%U %G" /etc/keystone/policy.json | egrep "keystone keystone"
+$ stat -L -c "%U %G" /etc/keystone/logging.conf | egrep "keystone keystone"
+$ stat -L -c "%U %G" /etc/keystone/ssl/certs/signing_cert.pem | egrep "keystone keystone"
+$ stat -L -c "%U %G" /etc/keystone/ssl/private/signing_key.pem | egrep "keystone keystone"
+$ stat -L -c "%U %G" /etc/keystone/ssl/certs/ca.pem | egrep "keystone keystone"
+$ stat -L -c "%U %G" /etc/keystone | egrep "keystone keystone"
+```
+
+**通过：**如果所有这些配置文件的用户和组所有权都设置为 keystone。上述命令显示 keystone keystone 的输出。
+
+**失败：**如果上述命令未返回任何输出，因为用户或组所有权可能已设置为除 keystone 以外的任何用户。
+
+推荐于：内部实现的身份验证方法。
+
+#### Check-Identity-02：是否为 Identity 配置文件设置了严格权限？
+
+与前面的检查类似，建议对此类配置文件设置严格的访问权限。
+
+运行以下命令：
+
+```
+$ stat -L -c "%a" /etc/keystone/keystone.conf
+$ stat -L -c "%a" /etc/keystone/keystone-paste.ini
+$ stat -L -c "%a" /etc/keystone/policy.json
+$ stat -L -c "%a" /etc/keystone/logging.conf
+$ stat -L -c "%a" /etc/keystone/ssl/certs/signing_cert.pem
+$ stat -L -c "%a" /etc/keystone/ssl/private/signing_key.pem
+$ stat -L -c "%a" /etc/keystone/ssl/certs/ca.pem
+$ stat -L -c "%a" /etc/keystone
+```
+
+还可以进行更广泛的限制：如果包含目录设置为 750，则保证此目录中新创建的文件具有所需的权限。
+
+**通过：**如果权限设置为 640 或更严格，或者包含目录设置为 750。
+
+**失败：**如果权限未设置为至少 640/750。
+
+推荐于：内部实现的身份验证方法。
+
+#### Check-Identity-03：是否为 Identity 启用了 TLS？
+
+OpenStack 组件使用各种协议相互通信，通信可能涉及敏感或机密数据。攻击者可能会尝试窃听频道以访问敏感信息。因此，所有组件都必须使用安全通信协议（如 HTTPS）相互通信。
+
+如果将 HTTP/WSGI 服务器用于标识，则应在 HTTP/WSGI 服务器上启用 TLS。
+
+**通过：**如果在 HTTP 服务器上启用了 TLS。
+
+**失败：**如果 HTTP 服务器上未启用 TLS。
+
+推荐于：安全通信。
+
+#### Check-Identity-04：（已过时）
+
+#### Check-Identity-05：是否 `max_request_body_size` 设置为默认值 （114688）？
+
+该参数 `max_request_body_size` 定义每个请求的最大正文大小（以字节为单位）。如果未定义最大大小，攻击者可以构建任意大容量请求，导致服务崩溃，最终导致拒绝服务攻击。分配最大值可确保阻止任何恶意的超大请求，从而确保组件的持续可用性。
+
+**通过：**如果参数 `max_request_body_size` in `/etc/keystone/keystone.conf` 的值设置为默认值 （114688） 或根据您的环境设置的某个合理值。
+
+**失败：**如果未设置参数 `max_request_body_size` 值。
+
+#### check-identity-06:禁用/etc/keystone/keystone.conf中的管理令牌
+
+管理员令牌通常用于引导 Identity。此令牌是最有价值的标识资产，可用于获取云管理员权限。
+
+**通过：**如果 `admin_token` under `[DEFAULT]` section in `/etc/keystone/keystone.conf` 被禁用。并且， `AdminTokenAuthMiddleware` under `[filter:admin_token_auth]` 从 `/etc/keystone/keystone-paste.ini`
+
+**失败：**如果 `admin_token` 设置了 under `[DEFAULT]` 部分并 `AdminTokenAuthMiddleware` 存在于 `keystone-paste.ini` 中。
+
+**建议**
+
+```
+禁用 `admin_token` 意味着它的值为 `<none>` 。
+```
+
+#### check-identity-07:/etc/keystone/keystone.conf中的不安全_调试为假
+
+如果 `insecure_debug` 设置为 true，则服务器将在 HTTP 响应中返回信息，这些信息可能允许未经身份验证或经过身份验证的用户获取比正常情况更多的信息，例如有关身份验证失败原因的其他详细信息。
+
+**通过：**如果 `insecure_debug` under `[DEFAULT]` section in `/etc/keystone/keystone.conf` 为 false。
+
+**失败：**如果 `insecure_debug` under `[DEFAULT]` section in `/etc/keystone/keystone.conf` 为 true。
+
+#### check-identity-08:使用/etc/keystone/keystone.conf中的Fernet令牌
+
+OpenStack Identity 服务提供 `uuid` 和 `fernet` 作为令牌提供者。 `uuid` 令牌必须持久化，并被视为不安全。
+
+**通过：**如果 section in `/etc/keystone/keystone.conf` 下的 `[token]` 参数 `provider` 值设置为 fernet。
+
+**失败：**如果 section 下的 `[token]` 参数 `provider` 值设置为 uuid。
+
+
+## 仪表板
+
+Dashboard （horizon） 是 OpenStack  仪表板，它为用户提供了一个自助服务门户，以便在管理员设置的限制范围内配置自己的资源。其中包括预置用户、定义实例变种、上传虚拟机 （VM）  映像、管理网络、设置安全组、启动实例以及通过控制台访问实例。
+
+仪表板基于 Django Web 框架，确保 Django 的安全部署实践直接应用于 Horizon。本指南提供了一组 Django 安全建议。更多信息可以通过阅读 Django 文档找到。
+
+仪表板附带默认安全设置，并具有部署和配置文档。
+
+- 域名、仪表板升级和基本 Web 服务器配置
+  - 域名
+  - 基本 Web 服务器配置
+  - 允许的主机
+  - 映像上传
+- HTTPS、HSTS、XSS 和 SSRF
+  - 跨站点脚本 （XSS）
+  - 跨站点请求伪造 （CSRF）
+  - 跨帧脚本 （XFS）
+  - HTTPS协议
+  - HTTP 严格传输安全 （HSTS）
+- 前端缓存和会话后端
+  - 前端缓存
+  - 会话后端
+- 静态媒体
+- 密码
+- 密钥
+- 网站数据
+- 跨域资源共享 （CORS）
+- 调试
+- 检查表
+  - Check-Dashboard-01：用户/配置文件组是否设置为 root/horizon？
+  - Check-Dashboard-02：是否为 Horizon 配置文件设置了严格权限？
+  - Check-Dashboard-03：参数是否 DISALLOW_IFRAME_EMBED 设置为 True ？
+  - Check-Dashboard-04：参数是否 CSRF_COOKIE_SECURE 设置为 True ？
+  - Check-Dashboard-05：参数是否 SESSION_COOKIE_SECURE 设置为 True ？
+  - Check-Dashboard-06：参数是否 SESSION_COOKIE_HTTPONLY 设置为 True ？
+  - Check-Dashboard-07： PASSWORD_AUTOCOMPLETE 设置为 False ？
+  - Check-Dashboard-08： DISABLE_PASSWORD_REVEAL 设置为 True ？
+  - Check-Dashboard-09： ENFORCE_PASSWORD_CHECK 设置为 True ？
+  - Check-Dashboard-10：是否 PASSWORD_VALIDATOR 已配置？
+  - Check-Dashboard-11：是否 SECURE_PROXY_SSL_HEADER 已配置？
+
+### 域名、仪表板升级和基本 Web 服务器配置
+
+#### 域名 
+
+许多组织通常在总体组织域的子域中部署 Web 应用程序。用户很自然地期望 `openstack.example.org` .在此上下文中，通常存在部署在同一个二级命名空间中的应用程序。此名称结构非常方便，并简化了名称服务器的维护。
+
+我们强烈建议将仪表板部署到二级域，例如 ，而不是在任何级别的共享子域上部署仪表板，例如 `https://example.com` `https://openstack.example.org` 或 `https://horizon.openstack.example.org` 。我们还建议不要部署到裸内部域，例如 `https://horizon/` .这些建议基于浏览器同源策略的限制。
+
+如果将仪表板部署在还托管用户生成内容的域中，则本指南中提供的建议无法有效防范已知攻击，即使此内容驻留在单独的子域中也是如此。用户生成的内容可以包含任何类型的脚本、图像或上传内容。大多数主要的 Web 存在（包括 googleusercontent.com、fbcdn.com、github.io 和  twimg.co）都使用这种方法将用户生成的内容与 Cookie 和安全令牌隔离开来。
+
+如果您不遵循有关二级域的建议，请避免使用 Cookie 支持的会话存储，并采用 HTTP 严格传输安全 （HSTS）。当部署在子域上时，仪表板的安全性等同于部署在同一二级域上的安全性最低的应用程序。
+
+#### 基本的 Web 服务器配置 
+
+仪表板应部署为 HTTPS 代理（如 Apache 或 Nginx）后面的 Web 服务网关接口 （WSGI） 应用程序。如果 Apache 尚未使用，我们建议使用 Nginx，因为它是轻量级的，并且更容易正确配置。
+
+使用 Nginx 时，我们建议 gunicorn 作为 WSGI 主机，并具有适当数量的同步工作线程。使用 Apache 时，我们建议 `mod_wsgi` 托管仪表板。
+
+#### 允许的主机
+
+使用 OpenStack 仪表板提供的完全限定主机名配置设置 `ALLOWED_HOSTS` 。提供此设置后，如果传入 HTTP 请求的“Host：”标头中的值与此列表中的任何值都不匹配，则将引发错误，并且请求者将无法继续。如果未能配置此选项，或者在指定的主机名中使用通配符，将导致仪表板容易受到与虚假 HTTP 主机标头关联的安全漏洞的影响。
+
+有关更多详细信息，请参阅 Django 文档。
+
+#### Horizon 镜像上传
+
+我们建议实施者禁用HORIZON_IMAGES_ALLOW_UPLOAD，除非他们已实施防止资源耗尽和拒绝服务的计划。
+
+### HTTPS、HSTS、XSS 和 SSRF
+
+#### 跨站脚本 （XSS）
+
+与许多类似的系统不同，OpenStack 仪表板允许在大多数字段中使用整个 Unicode 字符集。这意味着开发人员犯错误的自由度较小，这些错误为跨站点脚本 （XSS） 打开了攻击媒介。
+
+Dashboard 为开发人员提供了避免创建 XSS 漏洞的工具，但它们只有在开发人员正确使用它们时才有效。审核任何自定义仪表板，特别注意 `mark_safe` 函数的使用、与自定义模板标记的使用 `is_safe` 、 `safe` 模板标记的使用、关闭自动转义的任何位置，以及任何可能评估不当转义数据的 JavaScript。
+
+#### 跨站请求伪造 （CSRF）
+
+Django 有专门的中间件用于跨站请求伪造 （CSRF）。有关更多详细信息，请参阅 Django 文档。
+
+OpenStack 仪表板旨在阻止开发人员在引入线程时使用自定义仪表板引入跨站点脚本漏洞。应审核使用多个 JavaScript 实例的仪表板是否存在漏洞，例如不当使用 `@csrf_exempt` 装饰器。在放宽限制之前，应仔细评估任何不遵循这些建议的安全设置的仪表板。
+
+#### 跨帧脚本 （XFS）
+
+传统浏览器仍然容易受到跨帧脚本 （XFS） 漏洞的攻击，因此 OpenStack 仪表板提供了一个选项 `DISALLOW_IFRAME_EMBED` ，允许在部署中不使用 iframe 的情况下进行额外的安全强化。
+
+#### HTTPS 函数 
+
+使用来自公认的证书颁发机构 （CA） 的有效受信任证书，将仪表板部署在安全 HTTPS 服务器后面。仅当信任根预安装在所有用户浏览器中时，私有组织颁发的证书才适用。
+
+配置对仪表板域的 HTTP 请求，以重定向到完全限定的 HTTPS URL。
+
+#### HTTP 严格传输安全 （HSTS）
+
+强烈建议使用 HTTP 严格传输安全 （HSTS）。
+
+**注意**
+
+```
+如果您在 Web 服务器前面使用 HTTPS 代理，而不是使用具有 HTTPS 功能的 HTTP 服务器，请修改该 `SECURE_PROXY_SSL_HEADER` 变量。有关修改 `SECURE_PROXY_SSL_HEADER` 变量的信息，请参阅 Django 文档。
+```
+
+有关 HTTPS 配置（包括 HSTS 配置）的更具体建议和服务器配置，请参阅“安全通信”一章。
+
+### 前端缓存和会话后端
+
+####  前端缓存
+
+我们不建议在仪表板中使用前端缓存工具。仪表板正在渲染直接由 OpenStack API 请求生成的动态内容，前端缓存层（如 varnish）可能会阻止显示正确的内容。在 Django 中，静态媒体直接从 Apache 或 Nginx 提供，并且已经受益于 Web 主机缓存。
+
+#### 会话后端 
+
+Horizon 的默认会话后端 `django.contrib.sessions.backends.signed_cookies` 将用户数据保存在浏览器中存储的已签名但未加密的 Cookie 中。由于每个仪表板实例都是无状态的，因此前面提到的方法提供了实现最简单的会话后端扩展的能力。
+
+应该注意的是，在这种类型的实现中，敏感的访问令牌将存储在浏览器中，并将随着每个请求的发出而传输。后端确保会话数据的完整性，即使传输的数据仅通过 HTTPS 加密。
+
+如果您的架构允许共享存储，并且您正确配置了缓存，我们建议您将其设置为 `SESSION_ENGINE`  `django.contrib.sessions.backends.cache` 并用作基于缓存的会话后端，并将 memcached 作为缓存。Memcached  是一种高效的内存键值存储，用于存储数据块，可在高可用性和分布式环境中使用，并且易于配置。但是，您需要确保没有数据泄漏。Memcached  利用备用 RAM 来存储经常访问的数据块，就像重复访问信息的内存缓存一样。由于 memcached  使用本地内存，因此不会产生数据库和文件系统使用开销，从而导致直接从 RAM 而不是从磁盘访问数据。
+
+我们建议使用 memcached 而不是本地内存缓存，因为它速度快，数据保留时间更长，多进程安全，并且能够在多个服务器上共享缓存，但仍将其视为单个缓存。
+
+要启用 memcached，请执行以下命令：
+
+```
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+CACHES = {
+    'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache'
+}
+```
+
+有关更多详细信息，请参阅 Django 文档。
+
+### 静态媒体
+
+仪表板的静态媒体应部署到仪表板域的子域，并由 Web 服务器提供服务。使用外部内容分发网络 （CDN） 也是可以接受的。此子域不应设置 Cookie 或提供用户提供的内容。媒体也应使用 HTTPS 提供。
+
+Django 媒体设置记录在 Django 文档中。
+
+Dashboard 的默认配置使用 django_compressor 来压缩和缩小 CSS 和 JavaScript  内容，然后再提供这些内容。此过程应在部署仪表板之前静态完成，而不是使用默认的请求内动态压缩，并将生成的文件与已部署的代码一起复制到 CDN  服务器。压缩应在非生产生成环境中完成。如果这不可行，我们建议完全禁用资源压缩。不应在生产计算机上安装联机压缩依赖项（较少，Node.js）。
+
+### 密码
+
+密码管理应该是云管理计划不可或缺的一部分。关于密码的权威教程超出了本书的范围;但是，云管理员应参考 NIST 企业密码管理特别出版物指南第 4 章中推荐的最佳实践。
+
+无论是通过仪表板还是其他应用程序，基于浏览器的 OpenStack  云访问都会引入额外的注意事项。现代浏览器都支持某种形式的密码存储和自动填充记住的站点的凭据。这在使用不容易记住或键入的强密码时非常有用，但如果客户端的物理安全性受到威胁，可能会导致浏览器成为薄弱环节。如果浏览器的密码存储本身不受强密码保护，或者如果允许密码存储在会话期间保持解锁状态，则很容易获得对系统的未经授权的访问。
+
+KeePassX 和 Password Safe 等密码管理应用程序非常有用，因为大多数应用程序都支持生成强密码和定期提醒生成新密码。最重要的是，密码存储仅短暂保持解锁状态，从而降低了密码泄露和通过浏览器或系统入侵进行未经授权的资源访问的风险。
+
+### 密钥
+
+仪表板依赖于某些安全功能的共享 `SECRET_KEY` 设置。密钥应为随机生成的字符串，长度至少为 64 个字符，必须在所有活动仪表板实例之间共享。泄露此密钥可能允许远程攻击者执行任意代码。轮换此密钥会使现有用户会话和缓存失效。请勿将此密钥提交到公共存储库。
+
+### Cookies
+
+会话Cookies应设置为 HTTPONLY：
+
+```
+SESSION_COOKIE_HTTPONLY = True
+```
+
+切勿将 CSRF 或会话 Cookie 配置为具有带前导点的通配符域。使用 HTTPS 部署时，应保护 Horizon 的会话和 CSRF Cookie：
+
+```
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+```
+
+### 跨域资源共享 （CORS）
+
+将 Web 服务器配置为在每次响应时发送限制性 CORS 标头，仅允许仪表板域和协议：
+
+```
+Access-Control-Allow-Origin: https://example.com/
+```
+
+永远不允许通配符来源。
+
+### 调试
+
+建议在生产环境中将 `DEBUG` 该设置设置为 `False` 。如果 `DEBUG` 设置为 True，则当抛出异常时，Django 将显示堆栈跟踪和敏感的 Web 服务器状态信息。
+
+### 检查表
+
+#### Check-Dashboard-01：用户/配置文件组是否设置为 root/horizon？
+
+配置文件包含组件平稳运行所需的关键参数和信息。如果非特权用户有意或无意地修改或删除任何参数或文件本身，则会导致严重的可用性问题，从而导致对其他最终用户的拒绝服务。因此，此类关键配置文件的用户所有权必须设置为 root，组所有权必须设置为 horizon。
+
+运行以下命令：
+
+```
+$ stat -L -c "%U %G"  /etc/openstack-dashboard/local_settings.py | egrep "root horizon"
+```
+
+通过：如果配置文件的用户和组所有权分别设置为 root 和 horizon。上面的命令显示了根地平线的输出。
+
+失败：如果上述命令未返回任何输出，因为用户和组所有权可能已设置为除 root 以外的任何用户或除 Horizon 以外的任何组。
+
+#### Check-Dashboard-02：是否为 Horizon 配置文件设置了严格权限？
+
+与前面的检查类似，建议对此类配置文件设置严格的访问权限。
+
+运行以下命令：
+
+```
+$ stat -L -c "%a" /etc/openstack-dashboard/local_settings.py
+```
+
+通过：如果权限设置为 640 或更严格。640 的权限转换为所有者 r/w、组 r，而对其他人没有权限，即“u=rw，g=r，o=”。请注意，使用  Check-Dashboard-01 时：用户/配置文件组是否设置为 root/horizon？权限设置为 640，则 root  用户具有读/写访问权限，Horizon 具有对这些配置文件的读取访问权限。也可以使用以下命令验证访问权限。仅当此命令支持 ACL  时，它才在您的系统上可用。
+
+```
+$ getfacl --tabular -a /etc/openstack-dashboard/local_settings.py
+getfacl: Removing leading '/' from absolute path names
+# file: etc/openstack-dashboard/local_settings.py
+USER   root     rw-
+GROUP  horizon  r--
+mask            r--
+other           ---
+```
+
+失败：如果权限未设置为至少 640。
+
+#### Check-Dashboard-03：参数是否 `DISALLOW_IFRAME_EMBED` 设置为 `True` ？
+
+`DISALLOW_IFRAME_EMBED` 可用于防止 OpenStack Dashboard 嵌入到 iframe 中。
+
+旧版浏览器仍然容易受到跨帧脚本 （XFS） 漏洞的影响，因此此选项允许在部署中未使用 iframe 的情况下进行额外的安全强化。
+
+默认设置为 True。
+
+通过：如果参数 `DISALLOW_IFRAME_EMBED` in `/etc/openstack-dashboard/local_settings.py` 的值设置为 `True` 。
+
+失败：如果参数 `DISALLOW_IFRAME_EMBED` in `/etc/openstack-dashboard/local_settings.py` 的值设置为 `False` 。
+
+推荐用于：HTTPS、HSTS、XSS 和 SSRF。
+
+#### Check-Dashboard-04：参数是否 `CSRF_COOKIE_SECURE` 设置为 `True` ？
+
+CSRF（跨站点请求伪造）是一种攻击，它迫使最终用户在他/她当前经过身份验证的 Web 应用程序上执行未经授权的命令。成功的 CSRF 漏洞可能会危及最终用户的数据和操作。如果目标最终用户具有管理员权限，这可能会危及整个 Web 应用程序。
+
+通过：如果参数 `CSRF_COOKIE_SECURE` in `/etc/openstack-dashboard/local_settings.py` 的值设置为 `True` 。
+
+失败：如果参数 `CSRF_COOKIE_SECURE` in `/etc/openstack-dashboard/local_settings.py` 的值设置为 `False` 。
+
+推荐于：Cookies。
+
+#### Check-Dashboard-05：参数是否 `SESSION_COOKIE_SECURE` 设置为 `True` ？
+
+“SECURE”cookie 属性指示 Web 浏览器仅通过加密的 HTTPS （SSL/TLS） 连接发送 cookie。此会话保护机制是强制性的，以防止通过  MitM（中间人）攻击泄露会话 ID。它确保攻击者无法简单地从 Web 浏览器流量中捕获会话 ID。
+
+通过：如果参数 `SESSION_COOKIE_SECURE` in `/etc/openstack-dashboard/local_settings.py` 的值设置为 `True` 。
+
+失败：如果参数 `SESSION_COOKIE_SECURE` in `/etc/openstack-dashboard/local_settings.py` 的值设置为 `False` 。
+
+推荐于：Cookies。
+
+#### Check-Dashboard-06：参数是否 `SESSION_COOKIE_HTTPONLY` 设置为 `True` ？
+
+“HTTPONLY”cookie 属性指示 Web 浏览器不允许脚本（例如 JavaScript 或 VBscript）通过 DOM `document.cookie` 对象访问 cookie。此会话 ID 保护是必需的，以防止通过 XSS 攻击窃取会话 ID。
+
+通过：如果参数 `SESSION_COOKIE_HTTPONLY` in `/etc/openstack-dashboard/local_settings.py` 的值设置为 `True` 。
+
+失败：如果参数 `SESSION_COOKIE_HTTPONLY` in `/etc/openstack-dashboard/local_settings.py` 的值设置为 `False` 。
+
+推荐于：Cookies。
+
+#### Check-Dashboard-07： `PASSWORD_AUTOCOMPLETE` 设置为 `False` ？
+
+应用程序用于为用户提供便利的常见功能是将密码本地缓存在浏览器中（在客户端计算机上），并在所有后续请求中“预先键入”。虽然此功能对普通用户来说非常友好，但同时，它引入了一个缺陷，因为在客户端计算机上使用相同帐户的任何人都可以轻松访问用户帐户，从而可能导致用户帐户受损。
+
+通过：如果参数 `PASSWORD_AUTOCOMPLETE` in `/etc/openstack-dashboard/local_settings.py` 的值设置为 `off` 。
+
+失败：如果参数 `PASSWORD_AUTOCOMPLETE` in `/etc/openstack-dashboard/local_settings.py` 的值设置为 `on` 。
+
+#### Check-Dashboard-08： `DISABLE_PASSWORD_REVEAL` 设置为 `True` ？
+
+与之前的检查类似，建议不要显示密码字段。
+
+通过：如果参数 `DISABLE_PASSWORD_REVEAL` in `/etc/openstack-dashboard/local_settings.py` 的值设置为 `True` 。
+
+失败：如果参数 `DISABLE_PASSWORD_REVEAL` in `/etc/openstack-dashboard/local_settings.py` 的值设置为 `False` 。
+
+**注意**
+
+```
+此选项是在 Kilo 版本中引入的。
+```
+
+#### Check-Dashboard-09： `ENFORCE_PASSWORD_CHECK` 设置为 `True` ？
+
+设置为 `ENFORCE_PASSWORD_CHECK` True 将在“更改密码”窗体上显示“管理员密码”字段，以验证是否确实是管理员登录的要更改密码。
+
+通过：如果参数 `ENFORCE_PASSWORD_CHECK` in `/etc/openstack-dashboard/local_settings.py` 的值设置为 `True` 。
+
+失败：如果参数 `ENFORCE_PASSWORD_CHECK` in `/etc/openstack-dashboard/local_settings.py` 的值设置为 `False` 。
+
+#### Check-Dashboard-10：是否 `PASSWORD_VALIDATOR` 已配置？
+
+允许正则表达式验证用户密码的复杂性。
+
+通过：如果参数 `PASSWORD_VALIDATOR` in `/etc/openstack-dashboard/local_settings.py` 的值设置为 defaul 之外的任何值，则允许所有 “regex”： '.*'，
+
+失败：如果参数 `PASSWORD_VALIDATOR` in `/etc/openstack-dashboard/local_settings.py` 的值设置为允许所有 “regex”： '.*'
+
+#### Check-Dashboard-11：是否 `SECURE_PROXY_SSL_HEADER` 已配置？
+
+如果 OpenStack Dashboard 部署在代理后面，并且代理从所有传入请求中剥离 `X-Forwarded-Proto` 标头，或者设置标头 `X-Forwarded-Proto` 并将其发送到 Dashboard，但仅适用于最初通过 HTTPS 传入的请求，那么您应该考虑配置 `SECURE_PROXY_SSL_HEADER`
+
+更多信息可以在 Django 文档中找到。
+
+通过：如果参数 `SECURE_PROXY_SSL_HEADER` in `/etc/openstack-dashboard/local_settings.py` 的值设置为 `'HTTP_X_FORWARDED_PROTO', 'https'`
+
+失败：如果参数 `SECURE_PROXY_SSL_HEADER` in `/etc/openstack-dashboard/local_settings.py` 的值未设置为 `'HTTP_X_FORWARDED_PROTO', 'https'` 或注释掉。
+
+## 计算
+
+OpenStack 计算服务 （nova） 在整个云中的许多位置运行，并与各种内部服务进行交互。OpenStack 计算服务提供了多种配置选项，这些选项可能是特定于部署的。
+
+在本章中，我们将介绍有关计算安全性的一般最佳实践，以及可能导致安全问题的特定已知配置。 `nova.conf` 文件和 `/var/lib/nova` 位置应受到保护。应实施集中式日志记录、 `policy.json` 文件和强制访问控制框架等控制措施。
+
+- 虚拟机管理程序选择
+  - OpenStack 中的虚拟机管理程序
+  - 纳入排除标准
+  - 团队专长
+  - 产品或项目成熟度
+  - 认证和证明
+  - 通用标准
+  - 加密标准
+  - FIPS 140-2
+  - 硬件问题
+  - 虚拟机管理程序与裸机
+  - 虚拟机管理程序内存优化
+    KVM 内核 Samepage 合并
+  - XEN透明页面共享
+  - 内存优化的安全注意事项
+  - 其他安全功能
+  - 书目
+- 强化虚拟化层
+  - 
+  - 物理硬件（PCI 直通）
+  - 虚拟硬件 （QEMU）
+  - 最小化 QEMU 代码库
+  - 编译器强化
+  - 安全加密虚拟化
+  - 强制访问控制
+  - sVirt：SELinux 和虚拟化
+  - 标签和类别
+  - SELinux 用户和角色
+  - 布尔值
+- 强化计算部署
+  - OpenStack 漏洞管理团队
+  - OpenStack 安全说明
+  - OpenStack-dev 邮件列表
+  - 虚拟机管理程序邮件列表
+- 漏洞意识
+  - OpenStack 漏洞管理团队
+  - OpenStack 安全说明
+  - OpenStack-讨论邮件列表
+  - 虚拟机管理程序邮件列表
+- 如何选择虚拟控制台
+  - 虚拟网络计算机 （VNC）
+  - 独立计算环境的简单协议 （SPICE）
+- 检查表
+  - Check-Compute-01：配置文件的用户/组所有权是否设置为 root/nova？
+  - Check-Compute-02：是否为配置文件设置了严格的权限？
+  - Check-Compute-03：Keystone 是否用于身份验证？
+  - Check-Compute-04：是否使用安全协议进行身份验证？
+  - Check-Compute-05：Nova 与 Glance 的通信是否安全？
+
+### 虚拟机管理程序选择
+
+#### OpenStack 中的虚拟机管理程序
+
+无论OpenStack是部署在私有数据中心内，还是作为公共云服务部署，底层虚拟化技术都能在可扩展性、资源效率和正常运行时间方面提供企业级功能。虽然在许多 OpenStack 支持的虚拟机管理程序技术中通常都具有这种高级优势，但每个虚拟机管理程序的安全架构和功能都存在显著差异，尤其是在考虑弹性  OpenStack 环境特有的安全威胁向量时。随着应用程序整合到单个基础架构即服务 （IaaS）  平台中，虚拟机管理程序级别的实例隔离变得至关重要。安全隔离的要求在商业、政府和军事社区中都适用。
+
+在 OpenStack 框架中，您可以在众多虚拟机管理程序平台和相应的 OpenStack  插件中进行选择，以优化您的云环境。在本指南的上下文中，重点介绍了虚拟机管理程序选择注意事项，因为它们与对安全性至关重要的功能集有关。但是，这些注意事项并不意味着对特定虚拟机管理程序的优缺点进行详尽的调查。NIST 在特别出版物 800-125“完整虚拟化技术安全指南”中提供了其他指导。
+
+#### 选择标准
+
+作为虚拟机管理程序选择过程的一部分，您必须考虑许多重要因素，以帮助改善您的安全状况。具体来说，您必须熟悉以下方面：
+
+- 团队专长
+- 产品或项目成熟度
+- 通用标准
+- 认证和证明
+- 硬件问题
+- 虚拟机管理程序与裸机
+- 其他安全功能
+
+此外，强烈建议在为 OpenStack 部署选择虚拟机管理程序时评估以下与安全相关的标准： * 虚拟机管理程序是否经过通用标准认证？如果是这样，达到什么水平？* 底层密码学是否经过第三方认证？
+
+#### 团队专长
+
+最有可能的是，在选择虚拟机管理程序时，最重要的方面是您的员工在管理和维护特定虚拟机管理程序平台方面的专业知识。您的团队对给定产品、其配置及其怪癖越熟悉，配置错误就越少。此外，在给定的虚拟机管理程序上将员工专业知识分布在整个组织中可以提高系统的可用性，允许职责分离，并在团队成员不可用时缓解问题。
+
+#### 产品或项目成熟度
+
+给定虚拟机管理程序产品或项目的成熟度对您的安全状况也至关重要。部署云后，产品成熟度会产生许多影响：给定虚拟机管理程序产品或项目的成熟度对您的安全状况也至关重要。部署云后，产品成熟度会产生许多影响：
+
+- 专业知识的可用性
+- 活跃的开发人员和用户社区
+- 更新的及时性和可用性
+- 发病率响应
+
+虚拟机管理程序成熟度的最大指标之一是围绕它的社区的规模和活力。由于这涉及安全性，因此如果您需要额外的云操作员，社区的质量会影响专业知识的可用性。这也表明了虚拟机管理程序的广泛部署，进而导致任何参考架构和最佳实践的战备状态。
+
+此外，社区的质量，因为它围绕着KVM或Xen等开源虚拟机管理程序，对错误修复和安全更新的及时性有直接影响。在调查商业和开源虚拟机管理程序时，您必须查看它们的发布和支持周期，以及发布错误或安全问题与补丁或响应之间的时间差。最后，OpenStack 计算支持的功能因所选的虚拟机管理程序而异。请参阅 OpenStack Hypervisor Support Matrix，了解  Hypervisor 对 OpenStack 计算功能的支持。
+
+#### 认证和证明
+
+选择虚拟机管理程序时，另一个考虑因素是各种正式认证和证明的可用性。虽然它们可能不是特定组织的要求，但这些认证和证明说明了特定虚拟机管理程序平台所经过的测试的成熟度、生产准备情况和彻底性。
+
+#### 通用标准
+
+通用标准是一个国际标准化的软件评估过程，政府和商业公司使用它来验证软件技术是否如宣传的那样。在政府部门，NSTISSP 第 11 号规定美国政府机构只能采购已通过通用标准认证的软件，该政策自 2002 年 7 月起实施。
+
+**注意**
+
+OpenStack尚未通过通用标准认证，但许多可用的虚拟机管理程序都经过了认证。
+
+除了验证技术能力外，通用标准流程还评估技术的开发方式。
+
+- 如何进行源代码管理？
+- 如何授予用户对构建系统的访问权限？
+- 该技术在分发前是否经过加密签名？
+
+KVM 虚拟机管理程序已通过美国政府和商业发行版的通用标准认证。这些已经过验证，可以将虚拟机的运行时环境彼此分离，从而提供基础技术来实施实例隔离。除了虚拟机隔离之外，KVM 还通过了通用标准认证：
+
+```
+"...provide system-inherent separation mechanisms to the resources of virtual
+machines. This separation ensures that large software component used for
+virtualizing and simulating devices executing for each virtual machine
+cannot interfere with each other. Using the SELinux multi-category
+mechanism, the virtualization and simulation software instances are
+isolated. The virtual machine management framework configures SELinux
+multi-category settings transparently to the administrator."
+```
+
+虽然许多虚拟机管理程序供应商（如 Red Hat、Microsoft 和 VMware）已获得通用标准认证，但其基础认证功能集有所不同，但我们建议评估供应商声明，以确保它们至少满足以下要求：
+
+|                    |                                                              |
+| ------------------ | ------------------------------------------------------------ |
+| 审计               | 该系统提供了审核大量事件的功能，包括单个系统调用和受信任进程生成的事件。审计数据以 ASCII  格式收集在常规文件中。系统提供了一个用于搜索审计记录的程序。系统管理员可以定义一个规则库，以将审核限制为他们感兴趣的事件。这包括将审核限制为特定事件、特定用户、特定对象或所有这些的组合的能力。审计记录可以传输到远程审计守护程序。 |
+| 自主访问控制       | 自主访问控制 （DAC） 限制对基于 ACL 的文件系统对象的访问，这些对象包括用户、组和其他人员的标准 UNIX 权限。访问控制机制还可以保护 IPC  对象免受未经授权的访问。该系统包括 ext4 文件系统，它支持 POSIX  ACL。这允许定义对此类文件系统中文件的访问权限，精确到单个用户的粒度。 |
+| 强制访问控制       | 强制访问控制 （MAC） 根据分配给主体和对象的标签来限制对对象的访问。敏感度标签会自动附加到进程和对象。使用这些标签强制实施的访问控制策略派生自  Bell-LaPadula 模型。SELinux  类别附加到虚拟机及其资源。如果虚拟机的类别与所访问资源的类别相同，则使用这些类别强制实施的访问控制策略将授予虚拟机对资源的访问权限。TOE  实现非分层类别来控制对虚拟机的访问。 |
+| 基于角色的访问控制 | 基于角色的访问控制 （RBAC） 允许角色分离，无需全能的系统管理员。 |
+| 对象重用           | 文件系统对象、内存和 IPC 对象在被属于其他用户的进程重用之前会被清除。 |
+| 安全管理           | 系统安全关键参数的管理由管理用户执行。一组需要 root 权限（或使用 RBAC 时需要特定角色）的命令用于系统管理。安全参数存储在特定文件中，这些文件受系统的访问控制机制保护，防止非管理用户未经授权的访问。 |
+| 安全通信           | 系统支持使用 SSH 定义可信通道。支持基于密码的身份验证。在评估的配置中，这些协议仅支持有限数量的密码套件。 |
+| 存储加密           | 系统支持加密块设备，通过 `dm_crypt` 提供存储机密性。         |
+| TSF 保护           | 在运行时，内核软件和数据受到硬件内存保护机制的保护。内核的内存和进程管理组件确保用户进程无法访问内核存储或属于其他进程的存储。非内核 TSF 软件和数据受 DAC 和进程隔离机制保护。在评估的配置中，保留用户 ID root 拥有定义 TSF 配置的目录和文件。通常，包含内部 TSF 数据的文件和目录（如配置文件和批处理作业队列）也受到 DAC  权限的保护，不会被读取。系统以及硬件和固件组件需要受到物理保护，以防止未经授权的访问。系统内核调解对硬件机制本身的所有访问，但程序可见的 CPU 指令函数除外。此外，还提供了防止堆栈溢出攻击的机制。 |
+
+#### 密码学标准
+
+OpenStack 中提供了多种加密算法，用于识别和授权、数据传输和静态数据保护。选择虚拟机管理程序时，我们建议采用以下算法和实现标准：
+
+| 算法                             | 密钥长度              | 预期目的           | 安全功能                                                     | 执行标准                                                     |
+| -------------------------------- | --------------------- | ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| AES                              | 128、192 或 256 位    | 加密/解密          | 受保护的数据传输，保护静态数据                               | [RFC 4253](http://www.ietf.org/rfc/rfc4253.txt)              |
+| TDES                             | 168 位                | 加密/解密          | 受保护的数据传输                                             | [RFC 4253](http://www.ietf.org/rfc/rfc4253.txt)              |
+| RSA                              | 1024、2048 或 3072 位 | 身份验证、密钥交换 | 识别和身份验证，受保护的数据传输                             | [U.S. NIST FIPS PUB 186-3](http://csrc.nist.gov/publications/fips/fips186-3/fips_186-3.pdf) |
+| DSA                              | L=1024，N=160位       | 身份验证、密钥交换 | 识别和身份验证，受保护的数据传输                             | [U.S. NIST FIPS PUB 186-3](http://csrc.nist.gov/publications/fips/fips186-3/fips_186-3.pdf) |
+| Serpent                          | 128、192 或 256 位    | 加密/解密          | 静态数据保护                                                 | http://www.cl.cam.ac.uk/~rja14/Papers/serpent.pdf            |
+| Twofish                          | 128、192 或 256 位    | 加密/解密          | 静态数据保护                                                 | https://www.schneier.com/paper-twofish-paper.html            |
+| SHA-1                            |                       | 消息摘要           | 保护静态数据，受保护的数据传输                               | [U.S. NIST FIPS PUB 180-3](http://csrc.nist.gov/publications/fips/fips180-3/fips180-3_final.pdf) |
+| SHA-2（224、256、384 或 512 位） |                       | 消息摘要           | Protection for data at rest, identification and authentication 保护静态数据、识别和身份验证 | [U.S. NIST FIPS PUB 180-3](http://csrc.nist.gov/publications/fips/fips180-3/fips180-3_final.pdf) |
+
+#### FIPS 140-2
+
+在美国，美国国家科学技术研究院 （NIST） 通过称为加密模块验证计划的过程对加密算法进行认证。NIST 认证算法符合联邦信息处理标准 140-2 （FIPS 140-2），确保：
+
+```
+"... Products validated as conforming to FIPS 140-2 are accepted by the Federal
+agencies of both countries [United States and Canada] for the protection of
+sensitive information (United States) or Designated Information (Canada).
+The goal of the CMVP is to promote the use of validated cryptographic
+modules and provide Federal agencies with a security metric to use in
+procuring equipment containing validated cryptographic modules."
+```
+
+在评估基本虚拟机管理程序技术时，请考虑虚拟机管理程序是否已通过 FIPS 140-2 认证。根据美国政府政策，不仅强制要求符合 FIPS  140-2，而且正式认证表明已对加密算法的给定实现进行了审查，以确保符合模块规范、加密模块端口和接口;角色、服务和身份验证;有限状态模型;人身安全;操作环境;加密密钥管理;电磁干扰/电磁兼容性（EMI/EMC）;自检;设计保证;以及缓解其他攻击。
+
+#### 硬件问题 
+
+在评估虚拟机管理程序平台时，请考虑运行虚拟机管理程序的硬件的可支持性。此外，请考虑硬件中可用的其他功能，以及您在 OpenStack 部署中选择的虚拟机管理程序如何支持这些功能。为此，每个虚拟机管理程序都有自己的硬件兼容性列表  （HCL）。在选择兼容的硬件时，从安全角度来看，提前了解哪些基于硬件的虚拟化技术是重要的，这一点很重要。
+
+| 描述               | 科技                | 解释                                |
+| ------------------ | ------------------- | ----------------------------------- |
+| I/O MMU            | VT-d / AMD-Vi       | 保护 PCI 直通所必需的               |
+| 英特尔可信执行技术 | Intel TXT / SEM     | 动态证明服务是必需的                |
+| PCI-SIG I/O 虚拟化 | SR-IOV, MR-IOV, ATS | 需要允许安全共享 PCI Express 设备   |
+| 网络虚拟化         | VT-c                | 提高虚拟机管理程序上的网络 I/O 性能 |
+
+#### 虚拟机管理程序与裸机
+
+重要的是要认识到使用 Linux 容器 （LXC） 或裸机系统与使用 KVM 等虚拟机管理程序之间的区别。具体来说，本安全指南的重点主要基于拥有虚拟机管理程序和虚拟化平台。但是，如果您的实现需要使用裸机或 LXC 环境，则必须注意该环境部署方面的特殊差异。
+
+在重新预配之前，请确保最终用户已正确清理节点的数据。此外，在重用节点之前，必须保证硬件未被篡改或以其他方式受到损害。
+
+**注意**
+
+虽然OpenStack有一个裸机项目，但对运行裸机的特殊安全影响的讨论超出了本书的范围。
+
+由于书本冲刺的时间限制，该团队选择在我们的示例实现和架构中使用 KVM 作为虚拟机管理程序。
+
+**注意**
+
+有一个关于在计算中使用 LXC 的 OpenStack 安全说明。
+
+#### Hypervisor 内存优化 
+
+许多虚拟机监控程序使用内存优化技术将内存过量使用到来宾虚拟机。这是一项有用的功能，可用于部署非常密集的计算群集。实现此目的的一种方法是通过重复数据消除或共享内存页。当两个虚拟机在内存中具有相同的数据时，让它们引用相同的内存是有好处的。
+
+通常，这是通过写入时复制 （COW） 机制实现的。这些机制已被证明容易受到侧信道攻击，其中一个 VM 可以推断出另一个 VM 的状态，并且可能不适用于并非所有租户都受信任或共享相同信任级别的多租户环境。
+
+#### KVM 内核同页合并
+
+在版本 2.6.32 中引入到 Linux 内核中，内核相同页合并 （KSM） 在 Linux 进程之间整合了相同的内存页。由于 KVM 虚拟机管理程序下的每个客户机虚拟机都在自己的进程中运行，因此 KSM 可用于优化虚拟机之间的内存使用。
+
+#### XEN 透明页面共享
+
+XenServer 5.6 包含一个名为透明页面共享 （TPS） 的内存过量使用功能。TPS 扫描 4 KB 区块中的内存以查找任何重复项。找到后，Xen 虚拟机监视器 （VMM） 将丢弃其中一个重复项，并记录第二个副本的引用。
+
+#### 内存优化的安全注意事项 
+
+传统上，内存重复数据消除系统容易受到侧信道攻击。KSM 和 TPS 都已被证明容易受到某种形式的攻击。在学术研究中，攻击者能够通过分析攻击者虚拟机上的内存访问时间来识别相邻虚拟机上运行的软件包和版本，以及软件下载和其他敏感信息。
+
+如果云部署需要强租户分离（如公有云和某些私有云的情况），部署人员应考虑禁用 TPS 和 KSM 内存优化。
+
+#### 其他安全功能
+
+选择虚拟机管理程序平台时要考虑的另一件事是特定安全功能的可用性。特别是功能。例如，Xen Server 的 XSM 或 Xen 安全模块、sVirt、Intel TXT 或 AppArmor。
+
+下表按常见虚拟机管理程序平台列出了这些功能。
+
+|         | XSM  | sVirt | TXT  | AppArmor | cgroups | MAC 策略 |
+| ------- | ---- | ----- | ---- | -------- | ------- | -------- |
+| KVM     |      | X     | X    | X        | X       | X        |
+| Xen     | X    |       | X    |          |         |          |
+| ESXi    |      |       | X    |          |         |          |
+| Hyper-V |      |       |      |          |         |          |
+
+**注意**
+
+此表中的功能可能不适用于所有虚拟机管理程序，也可能无法在虚拟机管理程序之间直接映射。
+
+#### 参考书目
+
+- Sunar、Eisenbarth、Inci、Gorka Irazoqui Apecechea。对 Xen 和 VMware 进行细粒度跨虚拟机攻击是可能的！2014。 https://eprint.iacr.org/2014/248.pfd
+- Artho、Yagi、Iijima、Kuniyasu Suzaki。内存重复数据删除对客户机操作系统的威胁。2011 年。https://staff.aist.go.jp/c.artho/papers/EuroSec2011-suzaki.pdf
+- KVM：基于内核的虚拟机。内核相同页合并。2010。http://www.linux-kvm.org/page/KSM
+- Xen 项目，Xen 安全模块：XSM-FLASK。2014。 http://wiki.xen.org/wiki/Xen_Security_Modules_:_XSM-FLASK
+- SELinux 项目，SVirt。2011。 http://selinuxproject.org/page/SVirt
+- Intel.com，采用英特尔可信执行技术 （Intel TXT） 的可信计算池。http://www.intel.com/txt
+- AppArmor.net，AppArmor 主页。2011。 http://wiki.apparmor.net/index.php/Main_Page
+- Kernel.org，CGroups。2004。https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt
+- 计算机安全资源中心。完整虚拟化技术安全指南。2011。 http://csrc.nist.gov/publications/nistpubs/800-125/SP800-125-final.pdf
+- 国家信息保障伙伴关系，国家安全电信和信息系统安全政策。2003。http://www.niap-ccevs.org/cc-scheme/nstissp_11_revised_factsheet.pdf
+
+### 加固虚拟化层
+
+在本章的开头，我们将讨论实例对物理和虚拟硬件的使用、相关的安全风险以及缓解这些风险的一些建议。然后，我们将讨论如何使用安全加密虚拟化技术来加密支持该技术的基于 AMD 的机器上的虚拟机的内存。在本章的最后，我们将讨论 sVirt，这是一个开源项目，用于将 SELinux 强制访问控制与虚拟化组件集成。
+
+#### 物理硬件（PCI直通）
+
+许多虚拟机管理程序都提供一种称为 PCI 直通的功能。这允许实例直接访问节点上的硬件。例如，这可用于允许实例访问提供计算统一设备架构 （CUDA） 以实现高性能计算的视频卡或 GPU。此功能存在两种类型的安全风险：直接内存访问和硬件感染。
+
+直接内存访问 （DMA）  是一种功能，它允许某些硬件设备访问主机中的任意物理内存地址。视频卡通常具有此功能。但是，不应向实例授予任意物理内存访问权限，因为这将使其能够全面了解主机系统和在同一节点上运行的其他实例。在这些情况下，硬件供应商使用输入/输出内存管理单元 （IOMMU） 来管理 DMA 访问。我们建议云架构师应确保虚拟机监控程序配置为使用此硬件功能。
+
+KVM: KVM：
+
+如何在 KVM 中使用 VT-d 分配设备
+
+Xen: Xen：
+
+Xen VTd Howto Xen VTd 贴士指南
+
+**注意**
+
+IOMMU 功能由 Intel 作为 VT-d 销售，由 AMD 以 AMD-Vi 销售。
+
+当实例对固件或设备的某些其他部分进行恶意修改时，就会发生硬件感染。由于此设备由其他实例或主机操作系统使用，因此恶意代码可能会传播到这些系统中。最终结果是，一个实例可以在其安全域之外运行代码。这是一个重大的漏洞，因为重置物理硬件的状态比重置虚拟硬件更难，并且可能导致额外的暴露，例如访问管理网络。
+
+硬件感染问题的解决方案是特定于域的。该策略是确定实例如何修改硬件状态，然后确定在使用硬件完成实例时如何重置任何修改。例如，一种选择可能是在使用后重新刷新固件。需要平衡硬件寿命和安全性，因为某些固件在大量写入后会出现故障。安全引导中所述的 TPM  技术是一种用于检测未经授权的固件更改的解决方案。无论选择哪种策略，都必须了解与此类硬件共享相关的风险，以便针对给定的部署方案适当缓解这些风险。
+
+由于与 PCI 直通相关的风险和复杂性，默认情况下应禁用它。如果为特定需求启用，则需要制定适当的流程，以确保硬件在重新发行之前是干净的。
+
+#### 虚拟硬件 （QEMU）
+
+运行虚拟机时，虚拟硬件是为虚拟机提供硬件接口的软件层。实例使用此功能提供可能需要的网络、存储、视频和其他设备。考虑到这一点，环境中的大多数实例将专门使用虚拟硬件，少数实例需要直接硬件访问。主要的开源虚拟机管理程序使用 QEMU 来实现此功能。虽然 QEMU 满足了对虚拟化平台的重要需求，但它已被证明是一个非常具有挑战性的软件项目。QEMU  中的许多功能都是通过大多数开发人员难以理解的低级代码实现的。QEMU 虚拟化的硬件包括许多传统设备，这些设备有自己的一套怪癖。综上所述，QEMU 一直是许多安全问题的根源，包括虚拟机管理程序突破攻击。
+
+采取积极主动的措施来强化 QEMU 非常重要。我们建议执行三个具体步骤：
+
+- 最小化代码库。
+- 使用编译器强化。
+- 使用强制访问控制，例如 sVirt、SELinux 或 AppArmor。
+
+确保您的 iptables 具有过滤网络流量的默认策略，并考虑检查现有规则集以了解每个规则并确定是否需要扩展该策略。
+
+#### 最小化 QEMU 代码库 
+
+我们建议通过从系统中删除未使用的组件来最小化 QEMU 代码库。QEMU 为许多不同的虚拟硬件设备提供支持，但给定实例只需要少量设备。最常见的硬件设备是 virtio 设备。某些旧实例将需要访问特定硬件，这些硬件可以使用 glance 元数据指定：
+
+```
+$ glance image-update \
+--property hw_disk_bus=ide \
+--property hw_cdrom_bus=ide \
+--property hw_vif_model=e1000 \
+f16-x86_64-openstack-sda
+```
+
+云架构师应决定向云用户提供哪些设备。任何不需要的东西都应该从 QEMU 中删除。此步骤需要在修改传递给 QEMU 配置脚本的选项后重新编译 QEMU。要获得最新选项的完整列表，只需从 QEMU  源目录中运行 ./configure --help。确定部署所需的内容，并禁用其余选项。
+
+#### 编译器加固
+
+使用编译器强化选项强化 QEMU。现代编译器提供了多种编译时选项，以提高生成的二进制文件的安全性。这些功能包括只读重定位 （RELRO）、堆栈金丝雀、从不执行 （NX）、位置无关可执行文件 （PIE） 和地址空间布局随机化 （ASLR）。
+
+许多现代 Linux 发行版已经在构建启用编译器强化的 QEMU，我们建议在继续操作之前验证现有的可执行文件。可以帮助您进行此验证的一种工具称为 checksec.sh
+
+RELocation 只读 （RELRO）
+
+强化可执行文件的数据部分。gcc 支持完整和部分 RELRO 模式。对于QEMU来说，完整的RELLO是您的最佳选择。这将使全局偏移表成为只读的，并在生成的可执行文件中将各种内部数据部分放在程序数据部分之前。
+
+栈保护
+
+将值放在堆栈上并验证其是否存在，以帮助防止缓冲区溢出攻击。
+
+从不执行 （NX）
+
+也称为数据执行保护 （DEP），确保无法执行可执行文件的数据部分。
+
+位置无关可执行文件 （PIE）
+
+生成一个独立于位置的可执行文件，这是 ASLR 所必需的。
+
+地址空间布局随机化 （ASLR）
+
+这确保了代码和数据区域的放置都是随机的。当使用 PIE 构建可执行文件时，由内核启用（所有现代 Linux 内核都支持 ASLR）。
+
+编译 QEMU 时，建议对 GCC 使用以下编译器选项：
+
+```
+CFLAGS="-arch x86_64 -fstack-protector-all -Wstack-protector \
+--param ssp-buffer-size=4 -pie -fPIE -ftrapv -D_FORTIFY_SOURCE=2 -O2 \
+-Wl,-z,relro,-z,now"
+```
+
+我们建议在编译 QEMU 可执行文件后对其进行测试，以确保编译器强化正常工作。
+
+大多数云部署不会手动构建软件，例如 QEMU。最好使用打包来确保该过程是可重复的，并确保最终结果可以轻松地部署在整个云中。下面的参考资料提供了有关将编译器强化选项应用于现有包的一些其他详细信息。
+
+DEB 封装：
+
+硬化指南
+
+RPM 包：
+
+如何创建 RPM 包
+
+#### 安全加密虚拟化
+
+安全加密虚拟化 （SEV） 是 AMD 的一项技术，它允许使用 VM 唯一的密钥对 VM 的内存进行加密。SEV 在 Train 版本中作为技术预览版提供，在某些基于 AMD 的机器上提供 KVM 客户机，用于评估技术。
+
+nova 配置指南的 KVM 虚拟机管理程序部分包含配置计算机和虚拟机管理程序所需的信息，并列出了 SEV 的几个限制。
+
+SEV 为正在运行的 VM 使用的内存中的数据提供保护。但是，虽然 SEV 与 OpenStack 集成的第一阶段支持虚拟机加密内存，但重要的是它不提供 SEV 固件提供的 `LAUNCH_MEASURE` or `LAUNCH_SECRET` 功能。这意味着受 SEV 保护的 VM  使用的数据可能会受到控制虚拟机监控程序的有动机的对手的攻击。例如，虚拟机监控程序计算机上的恶意管理员可以为具有后门和间谍软件的租户提供 VM  映像，这些后门和间谍软件能够窃取机密，或者替换 VNC 服务器进程以窥探发送到 VM 控制台或从 VM  控制台发送的数据，包括解锁全磁盘加密解决方案的密码。
+
+为了减少恶意管理员未经授权访问数据的机会，使用 SEV 时应遵循以下安全做法：
+
+- VM 应使用完整磁盘加密解决方案。
+- 应在 VM 上使用引导加载程序密码。
+
+此外，应将标准安全最佳做法用于 VM，包括以下内容：
+
+- VM 应得到良好的维护，包括定期进行安全扫描和修补，以确保 VM 持续保持强大的安全态势。
+- 与 VM 的连接应使用加密和经过身份验证的协议，例如 HTTPS 和 SSH。
+- 应考虑使用其他安全工具和流程，并将其用于适合数据敏感度级别的 VM。
+
+#### 强制访问控制
+
+编译器加固使攻击 QEMU 进程变得更加困难。但是，如果攻击者得逞，则需要限制攻击的影响。强制访问控制通过将 QEMU  进程上的权限限制为仅需要的权限来实现此目的。这可以通过使用 sVirt、SELinux 或 AppArmor 来实现。使用 sVirt  时，SELinux 配置为在单独的安全上下文下运行每个 QEMU 进程。AppArmor 可以配置为提供类似的功能。我们在以下 sVirt  和实例隔离部分中提供了有关 sVirt 和实例隔离的更多详细信息：SELinux 和虚拟化。
+
+特定的 SELinux 策略可用于许多 OpenStack 服务。CentOS 用户可以通过安装 selinux-policy  源码包来查看这些策略。最新的策略出现在 Fedora 的 selinux-policy 存储库中。rawhide-contrib 分支包含以 `.te` 结尾的文件，例如 `cinder.te` ，这些文件可以在运行 SELinux 的系统上使用。
+
+OpenStack 服务的 AppArmor 配置文件当前不存在，但 OpenStack-Ansible 项目通过将 AppArmor 配置文件应用于运行 OpenStack 服务的每个容器来处理此问题。
+
+#### sVirt：SELinux 和虚拟化 
+
+凭借独特的内核级架构和国家安全局 （NSA） 开发的安全机制，KVM 为多租户提供了基础隔离技术。安全虚拟化 （sVirt） 技术的发展起源于 2002 年，是 SELinux 对现代虚拟化的应用。SELinux  旨在应用基于标签的分离控制，现已扩展为在虚拟机进程、设备、数据文件和代表它们执行操作的系统进程之间提供隔离。
+
+OpenStack 的 sVirt 实现旨在保护虚拟机管理程序主机和虚拟机免受两个主要威胁媒介的侵害：
+
+虚拟机监控程序威胁
+
+在虚拟机中运行的受损应用程序会攻击虚拟机监控程序以访问底层资源。例如，当虚拟机能够访问虚拟机监控程序操作系统、物理设备或其他应用程序时。此威胁向量存在相当大的风险，因为虚拟机监控程序上的入侵可能会感染物理硬件并暴露其他虚拟机和网段。
+
+虚拟机（多租户）威胁
+
+在 VM  中运行的受损应用程序会攻击虚拟机监控程序，以访问或控制另一个虚拟机及其资源。这是虚拟化特有的威胁向量，存在相当大的风险，因为大量虚拟机文件映像可能因单个应用程序中的漏洞而受到损害。这种虚拟网络攻击是一个主要问题，因为用于保护真实网络的管理技术并不直接适用于虚拟环境。
+
+每个基于 KVM 的虚拟机都是一个由 SELinux 标记的进程，从而有效地在每个虚拟机周围建立安全边界。此安全边界由 Linux 内核监视和强制执行，从而限制虚拟机访问其边界之外的资源，例如主机数据文件或其他 VM。
+
+无论虚拟机内运行的客户机操作系统如何，都会提供 sVirt 隔离。可以使用 Linux 或 Windows VM。此外，许多 Linux 发行版在操作系统中提供 SELinux，使虚拟机能够保护内部虚拟资源免受威胁。
+
+#### 标签和类别 
+
+基于 KVM 的虚拟机实例使用其自己的 SELinux 数据类型进行标记，称为 `svirt_image_t` 。内核级保护可防止未经授权的系统进程（如恶意软件）操纵磁盘上的虚拟机映像文件。关闭虚拟机电源后，映像的存储 `svirt_image_t` 方式如下所示：
+
+```
+system_u:object_r:svirt_image_t:SystemLow image1
+system_u:object_r:svirt_image_t:SystemLow image2
+system_u:object_r:svirt_image_t:SystemLow image3
+system_u:object_r:svirt_image_t:SystemLow image4
+```
+
+该 `svirt_image_t` 标签唯一标识磁盘上的图像文件，允许 SELinux 策略限制访问。当基于 KVM 的计算映像通电时，sVirt  会将随机数字标识符附加到映像中。sVirt 能够为每个虚拟机管理程序节点最多分配 524,288 个虚拟机的数字标识符，但大多数  OpenStack 部署极不可能遇到此限制。
+
+此示例显示了 sVirt 类别标识符：
+
+```
+system_u:object_r:svirt_image_t:s0:c87,c520 image1
+system_u:object_r:svirt_image_t:s0:419,c172 image2
+```
+
+#### SELinux 用户和角色
+
+SELinux 管理用户角色。可以通过 `-Z` 标志或使用 semanage 命令查看这些内容。在虚拟机管理程序上，只有管理员才能访问系统，并且应该围绕管理用户和系统上的任何其他用户具有适当的上下文。有关更多信息，请参阅 SELinux 用户文档。
+
+#### 布尔值
+
+为了减轻管理 SELinux 的管理负担，许多企业 Linux 平台利用 SELinux 布尔值来快速改变 sVirt 的安全态势。
+
+基于 Red Hat Enterprise Linux 的 KVM 部署使用以下 sVirt 布尔值：
+
+| sVirt SELinux 布尔值 | 描述                                |
+| -------------------- | ----------------------------------- |
+| virt_use_common      | 允许 virt 使用串行或并行通信端口。  |
+| virt_use_fusefs      | 允许 virt 读取 FUSE 挂载的文件。    |
+| virt_use_nfs         | 允许 virt 管理 NFS 挂载的文件。     |
+| virt_use_samba       | 允许 virt 管理 CIFS 挂载的文件。    |
+| virt_use_sanlock     | 允许受限的虚拟访客与 sanlock 交互。 |
+| virt_use_sysfs       | 允许 virt 管理设备配置 （PCI）。    |
+| virt_use_usb         | 允许 virt 使用 USB 设备。           |
+| virt_use_xserver     | 允许虚拟机与 X Window 系统交互。    |
+
+### 加固计算部署
+
+任何OpenStack部署的主要安全问题之一是围绕敏感文件（如 `nova.conf` 文件）的安全性和控制。此配置文件通常包含在 `/etc` 目录中，包含许多敏感选项，包括配置详细信息和服务密码。应为所有此类敏感文件授予严格的文件级权限，并通过文件完整性监视 （FIM） 工具（如  iNotify 或  Samhain）监视更改。这些实用程序将获取处于已知良好状态的目标文件的哈希值，然后定期获取该文件的新哈希值，并将其与已知良好的哈希值进行比较。如果发现警报被意外修改，则可以创建警报。
+
+可以检查文件的权限，我移动到文件所在的目录并运行 ls -lh 命令。这将显示有权访问文件的权限、所有者和组，以及其他信息，例如上次修改文件的时间和创建时间。
+
+该 `/var/lib/nova` 目录用于保存有关给定计算主机上的实例的详细信息。此目录也应被视为敏感目录，并具有严格强制执行的文件权限。此外，应定期备份它，因为它包含与该主机关联的实例的信息和元数据。
+
+如果部署不需要完整的虚拟机备份，建议排除该 `/var/lib/nova/instances` 目录，因为它的大小将与该节点上运行的每个 VM 的总空间一样大。如果部署确实需要完整 VM 备份，则需要确保成功备份此目录。
+
+监视是 IT 基础结构的关键组件，我们建议监视和分析计算日志文件，以便可以创建有意义的警报。
+
+#### OpenStack 漏洞管理团队 
+
+我们建议在发布安全问题和建议时及时了解它们。OpenStack 安全门户是一个中央门户，可以在这里协调建议、通知、会议和流程。此外，OpenStack 漏洞管理团队 （VMT） 门户通过将 Bug  标记为“此 bug 是安全漏洞”来协调 OpenStack 项目内的补救措施，以及调查负责任地（私下）向 VMT 披露的报告 bug  的过程。VMT 流程页面中概述了更多详细信息，并生成了 OpenStack 安全公告 （OSSA）。此 OSSA  概述了问题和修复程序，并链接到原始错误和补丁托管位置。
+
+#### OpenStack 安全注意事项 
+
+报告的安全漏洞被发现是配置错误的结果，或者不是严格意义上的 OpenStack 的一部分，这些漏洞将被起草到 OpenStack 安全说明 （OSSN）  中。这些问题包括配置问题，例如确保身份提供程序映射以及非 OpenStack，但关键问题（例如影响 OpenStack 使用的平台的  Bashbug/Ghost 或 Venom 漏洞）。当前的 OSSN 集位于安全说明 wiki 中。
+
+#### OpenStack-dev 邮件列表
+
+所有错误、OSSA 和 OSSN 都通过 openstack-discuss 邮件列表公开发布，主题行中带有 [security]  主题。我们建议订阅此列表以及邮件过滤规则，以确保不会遗漏 OSSN、OSSA 和其他重要公告。openstack-discuss 邮件列表通过  OpenStack Development Mailing List 进行管理。openstack-discuss  使用《项目团队指南》中定义的标记。
+
+#### 虚拟机管理程序邮件列表
+
+在实施OpenStack时，核心决策之一是使用哪个虚拟机管理程序。我们建议您了解与您选择的虚拟机管理程序相关的公告。以下是几个常见的虚拟机管理程序安全列表：
+
+Xen：
+
+http://xenbits.xen.org/xsa/
+
+VMWare：
+
+http://blogs.vmware.com/security/
+
+其他（KVM 等）：
+
+http://seclists.org/oss-sec
+
+### 漏洞意识
+
+#### OpenStack 漏洞管理团队
+
+我们建议在发布安全问题和建议时及时了解它们。OpenStack 安全门户是一个中央门户，可以在这里协调建议、通知、会议和流程。此外，OpenStack 漏洞管理团队 （VMT） 门户协调 OpenStack 内部的补救措施，以及调查负责任地（私下）向 VMT 披露的报告错误的过程，方法是将错误标记为“此错误是安全漏洞”。VMT  流程页面中概述了更多详细信息，并生成了 OpenStack 安全公告 （OSSA）。此 OSSA  概述了问题和修复程序，并链接到原始错误和补丁托管位置。
+
+#### OpenStack 安全注意事项
+
+报告的安全漏洞被发现是配置错误的结果，或者不是严格意义上的 OpenStack 的一部分，将被起草到 OpenStack 安全说明 （OSSN） 中。这些问题包括配置问题，例如确保身份提供商映射，以及非 OpenStack 但关键的问题，例如影响 OpenStack 使用的平台的 Bashbug/Ghost 或 Venom 漏洞。当前的  OSSN 集位于安全说明 wiki 中。
+
+#### OpenStack-discuss 邮件列表
+
+所有 bug、OSSA 和 OSSN 都通过 openstack-discuss 邮件列表公开发布，主题行中包含 [security]  主题。我们建议订阅此列表以及邮件过滤规则，以确保不会遗漏 OSSN、OSSA 和其他重要公告。openstack-discuss 邮件列表通过  http://lists.openstack.org/cgi-bin/mailman/listinfo/openstack-discuss  进行管理。openstack-discuss 使用《项目团队指南》中定义的标记。
+
+#### 虚拟机管理程序邮件列表
+
+在实施OpenStack时，核心决策之一是使用哪个虚拟机管理程序。我们建议您了解与您选择的虚拟机管理程序相关的公告。以下是几个常见的虚拟机管理程序安全列表：
+
+- Xen：
+
+  http://xenbits.xen.org/xsa/
+
+- VMWare：
+
+  http://blogs.vmware.com/security/
+
+- 其他（KVM 等）：
+
+  http://seclists.org/oss-sec
+
+### 如何选择虚拟控制台
+
+云架构师需要做出的有关计算服务配置的一个决定是使用 VNC 还是 SPICE。
+
+#### 虚拟网络计算机 （VNC）
+
+OpenStack 可以配置为使用虚拟网络计算机 （VNC） 协议为租户和管理员提供对实例的远程桌面控制台访问。
+
+##### 功能
+
+1. OpenStack Dashboard （horizon） 可以使用 HTML5 noVNC 客户端直接在网页上为实例提供 VNC 控制台。这要求 `nova-novncproxy` 服务从公用网络桥接到管理网络。
+2. `nova` 命令行实用程序可以返回 VNC 控制台的 URL，以供 nova Java VNC 客户端访问。这要求 `nova-xvpvncproxy` 服务从公用网络桥接到管理网络。
+
+##### 安全注意事项
+
+1. 默认情况下， `nova-novncproxy` 和 `nova-xvpvncproxy` 服务会打开经过令牌身份验证的面向公众的端口。
+2. 默认情况下，远程桌面流量未加密。可以启用 TLS 来加密 VNC 流量。请参阅 TLS 和 SSL 简介以获取适当的建议。
+
+##### 参考书目
+
+1. blog.malchuk.ru, OpenStack VNC Security. 2013. [Secure Connections to VNC ports](http://blog.malchuk.ru/2013/05/21/47)
+   blog.malchuk.ru，OpenStack VNC 安全性。2013. 与 VNC 端口的安全连接
+2. OpenStack Mailing List, [OpenStack] nova-novnc SSL configuration - Havana. 2014. [OpenStack nova-novnc SSL Configuration](http://lists.openstack.org/pipermail/openstack/2014-February/005357.html)
+   OpenStack 邮件列表，[OpenStack] nova-novnc SSL 配置 - 哈瓦那。2014. OpenStack nova-novnc SSL配置
+3. Redhat.com/solutions，在 OpenStack 中使用 SSL 加密 nova-novacproxy。2014. OpenStack nova-novncproxy SSL加密
+
+#### 独立计算环境的简单协议 （SPICE）
+
+作为 VNC 的替代方案，OpenStack 使用独立计算环境的简单协议 （SPICE） 协议提供对客户机虚拟机的远程桌面访问。
+
+##### 功能
+
+1. OpenStack Dashboard （horizon） 直接在实例网页上支持 SPICE。这需要服务 `nova-spicehtml5proxy` 。
+2. nova 命令行实用程序可以返回 SPICE 控制台的 URL，以供 SPICE-html 客户端访问。
+
+##### 限制
+
+1. 尽管 SPICE 与 VNC 相比具有许多优势，但 spice-html5 浏览器集成目前不允许管理员利用这些优势。为了利用        多显示器、USB 直通等 SPICE 功能，我们建议管理员在管理网络中使用独立的 SPICE 客户端。
+
+##### 安全注意事项
+
+1. 默认情况下，该 `nova-spicehtml5proxy` 服务会打开经过令牌身份验证的面向公众的端口。
+2. 功能和集成仍在不断发展。我们将在下一个版本中访问这些功能并提出建议。
+3. 与 VNC 的情况一样，目前我们建议从管理网络使用 SPICE，此外还限制使用少数人。
+
+##### 参考书目
+
+1. OpenStack 管理员指南。SPICE控制台。SPICE控制台。
+2. bugzilla.redhat.com， Bug 913607 - RFE： 支持通过 websockets 隧道传输 SPICE。2013. RedHat 错误913607。
+
+### 检查表
+
+#### Check-Compute-01：配置文件的用户/组所有权是否设置为 root/nova？
+
+配置文件包含组件平稳运行所需的关键参数和信息。如果非特权用户有意或无意地修改或删除任何参数或文件本身，则会导致严重的可用性问题，从而导致拒绝向其他最终用户提供服务。此类关键配置文件的用户所有权必须设置为 `nova` ， `root` 并且组所有权必须设置为 。此外，包含目录应具有相同的所有权，以确保正确拥有新文件。
+
+运行以下命令：
+
+```
+$ stat -L -c "%U %G" /etc/nova/nova.conf | egrep "root nova"
+$ stat -L -c "%U %G" /etc/nova/api-paste.ini | egrep "root nova"
+$ stat -L -c "%U %G" /etc/nova/policy.json | egrep "root nova"
+$ stat -L -c "%U %G" /etc/nova/rootwrap.conf | egrep "root nova"
+$ stat -L -c "%U %G" /etc/nova | egrep "root nova"
+```
+
+通过：如果所有这些配置文件的用户和组所有权分别设置为 `root` 和 `nova` 。上述命令显示 的 `root nova` 输出。
+
+失败：如果上述命令未返回任何输出，则用户和组所有权可能已设置为除 以外的任何用户或除 `nova` 以外的 `root` 任何组。
+
+推荐于：计算。
+
+#### Check-Compute-02：是否为配置文件设置了严格的权限？
+
+与前面的检查类似，我们建议为此类配置文件设置严格的访问权限。
+
+运行以下命令：
+
+```
+$ stat -L -c "%a" /etc/nova/nova.conf
+$ stat -L -c "%a" /etc/nova/api-paste.ini
+$ stat -L -c "%a" /etc/nova/policy.json
+$ stat -L -c "%a" /etc/nova/rootwrap.conf
+```
+
+还可以进行更广泛的限制：如果包含目录设置为 750，则保证此目录中新创建的文件具有所需的权限。
+
+通过：如果权限设置为 640 或更严格，或者包含目录设置为 750。640/750 的权限转换为所有者 r/w、组 r，而对其他人没有权限。例如，“u=rw，g=r，o=”。
+
+**注意**
+
+```
+如果 Check-Compute-01：配置文件的用户/组所有权是否设置为 root/nova？权限设置为 640，root  具有读/写访问权限，nova 具有对这些配置文件的读取访问权限。也可以使用以下命令验证访问权限。仅当此命令支持 ACL  时，它才在您的系统上可用。
+```
+
+
+
+```
+$ getfacl --tabular -a /etc/nova/nova.conf
+getfacl: Removing leading '/' from absolute path names
+# file: etc/nova/nova.conf
+USER   root  rw-
+GROUP  nova  r--
+mask         r--
+other        ---
+```
+
+失败：如果权限未设置为至少 640/750。
+
+推荐于：计算。
+
+#### Check-Compute-03：Keystone 是否用于身份验证？
+
+**注意**
+
+```
+此项仅适用于 OpenStack 版本 Rocky 及之前版本，因为 `auth_strategy` Stein 中已弃用。
+```
+
+OpenStack 支持各种身份验证策略，如 noauth 和 keystone。如果使用 noauth 策略，那么用户无需任何身份验证即可与 OpenStack 服务进行交互。这可能是一个潜在的风险，因为攻击者可能会获得对 OpenStack  组件的未经授权的访问。我们强烈建议所有服务都必须使用其服务帐户通过 keystone 进行身份验证。
+
+在Ocata之前：
+
+通过：如果 section in 下的参数 `auth_strategy` 设置为 `keystone` 。 `[DEFAULT]` `/etc/nova/nova.conf`
+
+失败：如果 section 下的 `[DEFAULT]` 参数 `auth_strategy` 值设置为 `noauth` 或 `noauth2` 。
+
+在Ocata之后：
+
+通过：如果 under `[api]` 或 `[DEFAULT]` section in `/etc/nova/nova.conf` 的参数 `auth_strategy` 值设置为 `keystone` 。
+
+失败：如果 or `[DEFAULT]` 部分下的 `[api]` 参数 `auth_strategy` 值设置为 `noauth` 或 `noauth2` 。
+
+#### Check-Compute-04：是否使用安全协议进行身份验证？
+
+OpenStack 组件使用各种协议相互通信，通信可能涉及敏感或机密数据。攻击者可能会尝试窃听频道以访问敏感信息。所有组件必须使用安全通信协议相互通信。
+
+通过：如果 section in `/etc/nova/nova.conf` 下的参数值设置为 Identity API 端点开头， `https://` 并且 same `/etc/nova/nova.conf` 中同一 `[keystone_authtoken]` 部分下的 `[keystone_authtoken]` 参数 `www_authenticate_uri`  `insecure` 值设置为 `False` 。
+
+失败：如果 in `/etc/nova/nova.conf` 部分下的 `[keystone_authtoken]` 参数 `www_authenticate_uri` 值未设置为以 开头的身份 API 端点， `https://` 或者同一 `/etc/nova/nova.conf` 部分中的参数 `insecure`  `[keystone_authtoken]` 值设置为 `True` 。
+
+#### Check-Compute-05：Nova 与 Glance 的通信是否安全？
+
+OpenStack 组件使用各种协议相互通信，通信可能涉及敏感或机密数据。攻击者可能会尝试窃听频道以访问敏感信息。所有组件必须使用安全通信协议相互通信。
+
+通过：如果 section in 下的参数值设置为 `False` ，并且 section in `/etc/nova/nova.conf` `/etc/nova/nova.conf` 下的 `[glance]`  `[glance]` 参数 `api_insecure`  `api_servers` 值设置为以 `https://` 开头的值。
+
+失败：如果 in `/etc/nova/nova.conf` 节下的参数值设置为 `True` ，或者 in `/etc/nova/nova.conf` 节下的 `[glance]`  `[glance]` 参数 `api_insecure`  `api_servers` 值设置为不以 `https://` 开头的值。
+
+
+
+
+
+
+
+
+
 
 
