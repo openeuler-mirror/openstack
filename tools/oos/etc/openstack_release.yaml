@@ -2379,6 +2379,7 @@ yoga:
   openstack-cyborg: 8.0.1
   openstack-heat: 18.0.1
   openstack-placement: 7.0.0
+  openstack-release-test: 3.8.0
   openstacksdk: 0.62.0
   os-brick: 5.2.4
   os-ken: 2.3.1
@@ -2637,6 +2638,7 @@ zed:
   openstack-cyborg: 9.0.0
   openstack-heat: 19.0.1
   openstack-placement: 8.0.0
+  openstack-release-test: 3.9.0
   openstack-venus: 1.0.0
   openstacksdk: 0.101.0
   os-brick: 6.1.2
