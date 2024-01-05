@@ -144,13 +144,17 @@ def check_ebs_status():
         result[branch][fail_link] = {}  # 保持格式 value赋值为字典
 
         for i in range(2):
-            source = ebs_result[i]['_source']
-            check_ebs_pkgs(
-                source['build_packages'],
-                branch, white_list,
-                result,
-                source['build_target']['architecture']
-            )
+            # 这里简单的try一下，防止ebs构建异常导致字典取值失败等报错
+            try:
+                source = ebs_result[i]['_source']
+                check_ebs_pkgs(
+                    source['build_packages'],
+                    branch, white_list,
+                    result,
+                    source['build_target']['architecture']
+                )
+            except:
+                pass
 
     return result, prompt
 
