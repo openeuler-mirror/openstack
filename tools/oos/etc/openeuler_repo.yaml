@@ -3139,7 +3139,9 @@ src-openeuler:
   kdevelop: sig-KDE
   kdevelop-pg-qt: sig-KDE
   kdevelopkdevelop-pg-qt: sig-KDE
+  kdf: sig-KDE
   kdiagram: sig-KDE
+  kdialog: sig-KDE
   kdl_parser: sig-ROS
   kdnssd: sig-KDE
   kdsoap: sig-KDE
@@ -3148,12 +3150,14 @@ src-openeuler:
   keditbookmarks: sig-KDE
   keepalived: Networking
   kernel: Kernel
+  keurocalc: sig-KDE
   kexec-tools: Base-service
   keybinder: xfce
   keybinder3: Desktop
   keyboard_handler: sig-ROS
   keycloak-httpd-client-install: sig-security-facility
   keyrings-filesystem: Others
+  keysmith: sig-KDE
   keyutils: sig-security-facility
   kf5: sig-KDE
   kf5-akonadi-calendar: sig-KDE
@@ -3268,6 +3272,8 @@ src-openeuler:
   kf5-syndication: sig-KDE
   kf5-syntax-highlighting: sig-KDE
   kf5-threadweaver: sig-KDE
+  kfind: sig-KDE
+  kfloppy: sig-KDE
   khelpcenter: sig-KDE
   khmeros-fonts: System-tool
   khotkeys: sig-KDE
@@ -3310,10 +3316,12 @@ src-openeuler:
   kiran-themes: sig-KIRAN-DESKTOP
   kiran-wallpapers: sig-KIRAN-DESKTOP
   kiran-widgets-qt5: sig-KIRAN-DESKTOP
+  kirigami-addons: sig-KDE
   kite-sdk: bigdata
   kiwi: Base-service
   kiwi-dlimage: Private
   kiwi-template-openEuler: Private
+  klimbgrades: sig-KDE
   kmail: sig-KDE
   kmail-account-wizard: sig-KDE
   kmenuedit: sig-KDE
@@ -3326,14 +3334,21 @@ src-openeuler:
   kobuki_velocity_smoother: sig-ROS
   kohsuke-pom: Application
   koji: ecopkg
+  kongress: sig-KDE
   konsole5: sig-KDE
   kontact: sig-KDE
+  kookbook: sig-KDE
   korganizer: sig-KDE
   kpatch: Base-service
   kpeoplevcard: sig-KDE
   kpublictransport: sig-KDE
   krb5: Base-service
+  krecorder: sig-KDE
+  kregexpeditor: sig-KDE
+  krename: sig-KDE
+  kronometer: sig-KDE
   kronosnet: Networking
+  krusader: sig-KDE
   kryo: sig-Java
   ks-scmc: sig-KIRAN-DESKTOP
   ks-scmc-gui: sig-KIRAN-DESKTOP
@@ -3344,6 +3359,7 @@ src-openeuler:
   kscreenlocker: sig-KDE
   ksh: Base-service
   ksystemstats: sig-KDE
+  kteatime: sig-KDE
   ktextaddons: sig-KDE
   ktimer: sig-KDE
   ktrip: sig-KDE
@@ -6959,6 +6975,7 @@ src-openeuler:
   po4a: Application
   poco: sig-ROS
   podman: sig-CloudNative
+  podofo: Desktop
   point_cloud_msg_wrapper: sig-ROS
   pointcloud_to_laserscan: sig-ROS
   policycoreutils: sig-security-facility
@@ -10231,6 +10248,7 @@ src-openeuler:
   sonatype-oss-parent: sig-Java
   sonatype-plugins-parent: sig-Java
   sophus: sig-ROS
+  soprano: sig-KDE
   sord: sig-epol
   sos: Base-service
   sos-collector: Private
@@ -11025,6 +11043,7 @@ src-openeuler:
   zip: Base-service
   zipkin: sig-epol
   zlib: Base-service
+  zlib-ng: sig-AccLib
   zlog: sig-KIRAN-DESKTOP
   zmqpp_vendor: sig-ROS
   znerd-oss-parent: sig-Java
