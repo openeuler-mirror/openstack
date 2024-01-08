@@ -16,8 +16,12 @@ zuul_url = 'https://zuul.opendev.org/api/tenant/openstack/builds?job_name=%s'
 
 
 def get_ci_result(job):
-    response = requests.get(zuul_url % job)
-    return json.loads(response.content.decode('utf8'))
+    try:
+        response = requests.get(zuul_url % job)
+        return json.loads(response.content.decode('utf8'))
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching data for {job}: {e}")
+        return None
 
 
 if __name__ == '__main__':
