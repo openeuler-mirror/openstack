@@ -1070,7 +1070,7 @@ src-openeuler:
   bpg-fonts: Desktop
   bpytop: System-tool
   brasero: Application
-  breeze-icon-theme: Others
+  breeze-icon-theme: sig-KDE
   bridge-method-injector: dev-utils
   bridge-utils: Networking
   brltty: Desktop
@@ -6874,7 +6874,7 @@ src-openeuler:
   phidgets_drivers: sig-ROS
   phodav: GNOME
   phoenix: DB
-  phonon: Others
+  phonon: sig-KDE
   phonon-backend-gstreamer: Private
   phonon-qt4: sig-KDE
   php: Base-service
@@ -8288,6 +8288,7 @@ src-openeuler:
   python-nudatus: sig-python-modules
   python-num2words: sig-python-modules
   python-numba: A-Tune
+  python-numcodecs: sig-python-modules
   python-numexpr: Private
   python-numpoly: sig-python-modules
   python-numpydoc: sig-python-modules
