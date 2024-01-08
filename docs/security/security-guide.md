@@ -2177,7 +2177,6 @@ OpenStack 计算服务 （nova） 在整个云中的许多位置运行，并与�
   - 其他安全功能
   - 书目
 - 强化虚拟化层
-  - 
   - 物理硬件（PCI 直通）
   - 虚拟硬件 （QEMU）
   - 最小化 QEMU 代码库
@@ -2383,7 +2382,9 @@ XenServer 5.6 包含一个名为透明页面共享 （TPS） 的内存过量使�
 
 **注意**
 
+```
 此表中的功能可能不适用于所有虚拟机管理程序，也可能无法在虚拟机管理程序之间直接映射。
+```
 
 #### 参考书目
 
@@ -2802,6 +2803,973 @@ OpenStack 组件使用各种协议相互通信，通信可能涉及敏感或机�
 通过：如果 section in 下的参数值设置为 `False` ，并且 section in `/etc/nova/nova.conf` `/etc/nova/nova.conf` 下的 `[glance]`  `[glance]` 参数 `api_insecure`  `api_servers` 值设置为以 `https://` 开头的值。
 
 失败：如果 in `/etc/nova/nova.conf` 节下的参数值设置为 `True` ，或者 in `/etc/nova/nova.conf` 节下的 `[glance]`  `[glance]` 参数 `api_insecure`  `api_servers` 值设置为不以 `https://` 开头的值。
+
+## 块存储
+
+OpenStack Block Storage （cinder）  是一项服务，它提供软件（服务和库）来自助管理持久性块级存储设备。这将创建对块存储资源的按需访问，以便与 OpenStack 计算 （nova）  实例一起使用。通过将块存储池虚拟化到各种后端存储设备（可以是软件实现或传统硬件存储产品），通过抽象创建软件定义存储。其主要功能是管理块设备的创建、附加和分离。消费者不需要知道后端存储设备的类型或它的位置。
+
+计算实例通过行业标准存储协议（如 iSCSI、以太网 ATA 或光纤通道）存储和检索块存储。这些资源通过 OpenStack 原生标准 HTTP RESTful API 进行管理和配置。有关 API 的更多详细信息，请参阅 OpenStack 块存储文档。
+
+- 卷擦除
+- 检查表
+  - Check-Block-01：配置文件的用户/组所有权是否设置为 root/cinder？
+  - Check-Block-02：是否为配置文件设置了严格的权限？
+  - Check-Block-03：Keystone 是否用于身份验证？
+  - Check-Block-04：是否启用了 TLS 进行身份验证？
+  - Check-Block-05：cinder 是否通过 TLS 与 nova 通信？
+  - Check-Block-06：cinder 是否通过 TLS 与 glance 通信？
+  - Check-Block-07： NAS 是否在安全的环境中运行？
+  - Check-Block-08：请求正文的最大大小是否设置为默认值 （114688）？
+  - Check-Block-09：是否启用了卷加密功能？
+
+**注意**
+
+```
+虽然本章目前对具体指南的介绍很少，但预计将遵循标准的强化实践。本节将扩展相关信息。
+```
+
+#### 卷擦除
+
+有几种方法可以擦除块存储设备。传统的方法是将 `lvm_type` 设置为 `thin` ，如果使用 LVM 后端，则使用 `volume_clear` 该参数。或者，如果使用卷加密功能，则在删除卷加密密钥时不需要卷擦除。有关设置的详细信息，请参阅卷加密部分中的 OpenStack 配置参考文档，以及有关密钥删除的 Castellan 使用文档
+
+**注意**
+
+```
+在较旧的 OpenStack 版本中， `lvm_type=default` 用于表示擦除。虽然此方法仍然有效，但 `lvm_type=default` 不建议用于设置安全删除。
+```
+
+该 `volume_clear` 参数可以设置为 `zero` 。该 `zero` 参数将向设备写入一次零传递。
+
+有关该 `lvm_type` 参数的更多信息，请参阅 cinder 项目文档的精简置备中的 LVM 和超额订阅部分。
+
+有关该 `volume_clear` 参数的详细信息，请参阅 cinder 项目文档的 Cinder 配置选项部分。
+
+#### 检查表
+
+#### Check-Block-01：配置文件的用户/组所有权是否设置为 root/cinder？
+
+配置文件包含组件平稳运行所需的关键参数和信息。如果非特权用户有意或无意地修改或删除任何参数或文件本身，则会导致严重的可用性问题，从而导致拒绝向其他最终用户提供服务。因此，此类关键配置文件的用户所有权必须设置为 root，组所有权必须设置为 cinder。此外，包含目录应具有相同的所有权，以确保正确拥有新文件。
+
+运行以下命令：
+
+```
+$ stat -L -c "%U %G" /etc/cinder/cinder.conf | egrep "root cinder"
+$ stat -L -c "%U %G" /etc/cinder/api-paste.ini | egrep "root cinder"
+$ stat -L -c "%U %G" /etc/cinder/policy.json | egrep "root cinder"
+$ stat -L -c "%U %G" /etc/cinder/rootwrap.conf | egrep "root cinder"
+$ stat -L -c "%U %G" /etc/cinder | egrep "root cinder"
+```
+
+通过：如果所有这些配置文件的用户和组所有权分别设置为 root 和 cinder。上面的命令显示了根煤渣的输出。
+
+失败：如果上述命令未返回任何输出，因为用户和组所有权可能已设置为除 root 以外的任何用户或除 cinder 以外的任何组。
+
+#### Check-Block-02：是否为配置文件设置了严格的权限？
+
+与前面的检查类似，我们建议为此类配置文件设置严格的访问权限。
+
+运行以下命令：
+
+```
+$ stat -L -c "%a" /etc/cinder/cinder.conf
+$ stat -L -c "%a" /etc/cinder/api-paste.ini
+$ stat -L -c "%a" /etc/cinder/policy.json
+$ stat -L -c "%a" /etc/cinder/rootwrap.conf
+$ stat -L -c "%a" /etc/cinder
+```
+
+还可以进行更广泛的限制：如果包含目录设置为 750，则保证此目录中新创建的文件具有所需的权限。
+
+通过：如果权限设置为 640 或更严格，或者包含目录设置为 750。640/750 的权限转换为所有者 r/w、组  r，而对其他人没有权限，即“u=rw，g=r，o=”。请注意，使用 Check-Block-01 时：配置文件的用户/组所有权是否设置为  root/cinder？权限设置为 640，root 具有读/写访问权限，cinder  具有对这些配置文件的读取访问权限。也可以使用以下命令验证访问权限。仅当此命令支持 ACL 时，它才在您的系统上可用。
+
+```
+$ getfacl --tabular -a /etc/cinder/cinder.conf
+getfacl: Removing leading '/' from absolute path names
+# file: etc/cinder/cinder.conf
+USER   root  rw-
+GROUP  cinder  r--
+mask         r--
+other        ---
+```
+
+失败：如果权限未设置为至少 640。
+
+#### Check-Block-03：Keystone 是否用于身份验证？
+
+**注意**
+
+```
+此项仅适用于 OpenStack 版本 Rocky 及之前版本，因为 `auth_strategy` Stein 中已弃用。
+```
+
+OpenStack 支持各种身份验证策略，如 noauth、keystone  等。如果使用“noauth”策略，那么用户无需任何身份验证即可与OpenStack服务进行交互。这可能是一个潜在的风险，因为攻击者可能会获得对  OpenStack 组件的未经授权的访问。因此，我们强烈建议所有服务都必须使用其服务帐户通过 keystone 进行身份验证。
+
+通过：如果 section in 下的参数 `auth_strategy` 设置为 `keystone` 。 `[DEFAULT]` `/etc/cinder/cinder.conf`
+
+失败：如果 section 下的 `[DEFAULT]` 参数 `auth_strategy` 值设置为 `noauth` 。
+
+#### Check-Block-04：是否启用了 TLS 进行身份验证？
+
+OpenStack 组件使用各种协议相互通信，通信可能涉及敏感/机密数据。攻击者可能会尝试窃听频道以访问敏感信息。因此，所有组件都必须使用安全的通信协议相互通信。
+
+通过：如果 section in `/etc/cinder/cinder.conf` 下的参数值设置为 Identity API 端点开头， `https://` 并且 same `/etc/cinder/cinder.conf` 中同一 `[keystone_authtoken]` 部分下的 `[keystone_authtoken]` 参数 `www_authenticate_uri`  `insecure` 值设置为 `False` 。
+
+失败：如果 in `/etc/cinder/cinder.conf` 部分下的 `[keystone_authtoken]` 参数 `www_authenticate_uri` 值未设置为以 开头的身份 API 端点， `https://` 或者同一 `/etc/cinder/cinder.conf` 部分中的参数 `insecure`  `[keystone_authtoken]` 值设置为 `True` 。
+
+#### Check-Block-05：cinder 是否通过 TLS 与 nova 通信？
+
+OpenStack 组件使用各种协议相互通信，通信可能涉及敏感/机密数据。攻击者可能会尝试窃听频道以访问敏感信息。因此，所有组件都必须使用安全的通信协议相互通信。
+
+通过：如果 section in 下的参数 `nova_api_insecure` 设置为 `False` 。 `[DEFAULT]` `/etc/cinder/cinder.conf`
+
+失败：如果 section in 下的参数 `nova_api_insecure` 设置为 `True` 。 `[DEFAULT]` `/etc/cinder/cinder.conf`
+
+#### Check-Block-06：cinder 是否通过 TLS 与 glance 通信？
+
+与之前的检查（Check-Block-05：cinder 是否通过 TLS 与 nova 通信？）类似，我们建议所有组件使用安全通信协议相互通信。
+
+通过：如果 in 部分下的 `[DEFAULT]` 参数值设置为 `False` 并且参数 `glance_api_servers`  `glance_api_insecure` 值设置为以 `https://` 开头 `/etc/cinder/cinder.conf` 的值。
+
+失败：如果将 section in 下的参数值设置为 `True` 或参数 `glance_api_servers`  `glance_api_insecure` 值设置为不以 `https://` 开头的值。 `[DEFAULT]` `/etc/cinder/cinder.conf`
+
+#### Check-Block-07： NAS 是否在安全的环境中运行？
+
+Cinder 支持 NFS 驱动程序，其工作方式与传统的块存储驱动程序不同。NFS 驱动程序实际上不允许实例在块级别访问存储设备。相反，文件是在 NFS  共享上创建的，并映射到模拟块储存设备的实例。Cinder 通过在创建 Cinder 卷时控制文件权限来支持此类文件的安全配置。Cinder  配置还可以控制是以 root 用户身份还是当前 OpenStack 进程用户身份运行文件操作。
+
+通过：如果 section in 下的参数 `nas_secure_file_permissions` 设置为 `auto` 。 `[DEFAULT]` `/etc/cinder/cinder.conf` 如果设置为 `auto` ，则在 cinder 启动期间进行检查以确定是否存在现有的 cinder 卷，任何卷都不会将选项设置为 `True` ，并使用安全文件权限。检测现有卷会将选项设置为 `False` ，并使用当前不安全的方法来处理文件权限。如果 section in 下的参数 `nas_secure_file_operations` 设置为 `auto` 。 `[DEFAULT]` `/etc/cinder/cinder.conf` 当设置为“auto”时，在 cinder 启动期间进行检查以确定是否存在现有的 cinder 卷，任何卷都不会将选项设置为 `True` ，安全且不以 `root` 用户身份运行。对现有卷的检测会将选项设置为 `False` ，并使用当前方法以 `root` 用户身份运行操作。对于新安装，会编写一个“标记文件”，以便随后重新启动 cinder 将知道原始确定是什么。
+
+失败：如果 section in 下的参数值设置为 `False` ，并且 section in `/etc/cinder/cinder.conf` `/etc/cinder/cinder.conf` 下的 `[DEFAULT]`  `[DEFAULT]` 参数 `nas_secure_file_permissions`  `nas_secure_file_operations` 值设置为 `False` 。
+
+#### Check-Block-08：请求正文的最大大小是否设置为默认值 （114688）？
+
+如果未定义每个请求的最大正文大小，攻击者可以构建任意较大的osapi请求，导致服务崩溃，最终导致拒绝服务攻击。分配最大值可确保阻止任何恶意超大请求，从而确保服务的持续可用性。
+
+通过：如果 section in 下的参数值设置为 `114688` `114688` ，或者 section in `/etc/cinder/cinder.conf` `/etc/cinder/cinder.conf` 下的 `[oslo_middleware]`  `[DEFAULT]` 参数 `osapi_max_request_body_size`  `max_request_body_size` 值设置为 。
+
+失败：如果 section in 下的参数值未设置为 `114688` ， `114688` 或者 section in `/etc/cinder/cinder.conf` `/etc/cinder/cinder.conf` 下的 `[oslo_middleware]`  `[DEFAULT]` 参数 `osapi_max_request_body_size`  `max_request_body_size` 值未设置为 。
+
+#### Check-Block-09：是否启用了卷加密功能？
+
+未加密的卷数据使卷托管平台成为攻击者特别高价值的目标，因为它允许攻击者读取许多不同 VM 的数据。此外，物理存储介质可能会被窃取、重新装载和从另一台计算机访问。加密卷数据可以降低这些风险，并为卷托管平台提供深度防御。块存储  （cinder） 能够在将卷数据写入磁盘之前对其进行加密，因此建议开启卷加密功能。有关说明，请参阅 Openstack Cinder  服务配置文档的卷加密部分。
+
+通过：如果 1） 设置了 in `[key_manager]` 部分下的参数值，2） 设置了 in 下的 `[key_manager]` 参数 `backend`  `backend` 值，以及 3） 如果正确遵循了 `/etc/cinder/cinder.conf`  `/etc/nova/nova.conf` 上述文档中的说明。
+
+若要进一步验证，请在完成卷加密设置并为 LUKS 创建卷类型后执行这些步骤，如上述文档中所述。
+
+1. 创建 VM：
+
+   ```
+   $ openstack server create --image cirros-0.3.1-x86_64-disk --flavor m1.tiny TESTVM
+   ```
+
+2. 创建加密卷并将其附加到 VM：
+
+   ```
+   $ openstack volume create --size 1 --type LUKS 'encrypted volume'
+   $ openstack volume list
+   $ openstack server add volume --device /dev/vdb TESTVM 'encrypted volume'
+   ```
+
+3. 在 VM 上，将一些文本发送到新附加的卷并同步它：
+
+   ```
+   # echo "Hello, world (encrypted /dev/vdb)" >> /dev/vdb
+   # sync && sleep 2
+   ```
+
+4. 在托管 cinder 卷服务的系统上，同步以刷新 I/O 缓存，然后测试是否可以找到字符串：
+
+   ```
+   # sync && sleep 2
+   # strings /dev/stack-volumes/volume-* | grep "Hello"
+   ```
+
+搜索不应返回写入加密卷的字符串。
+
+失败：如果未设置 in 部分下的参数值，或者未设置 in `/etc/cinder/cinder.conf` `/etc/nova/nova.conf` 部分下的 `[key_manager]`  `[key_manager]` 参数 `backend`  `backend` 值，或者未正确遵循上述文档中的说明。
+
+## 图像存储
+
+OpenStack Image Storage （glance） 是一项服务，用户可以在其中上传和发现旨在与其他服务一起使用的数据资产。这目前包括图像和元数据定义。
+
+映像服务包括发现、注册和检索虚拟机映像。Glance 有一个 RESTful API，允许查询 VM 映像元数据以及检索实际映像。
+
+有关该服务的更多详细信息，请参阅 OpenStack Glance 文档。
+
+- 检查表
+  - Check-Image-01：配置文件的用户/组所有权是否设置为 root/glance？
+  - Check-Image-02：是否为配置文件设置了严格的权限？
+  - Check-Image-03：Keystone 是否用于身份验证？
+  - Check-Image-04：是否启用了 TLS 进行身份验证？
+  - Check-Image-05：是否阻止了屏蔽端口扫描？
+
+**注意**
+
+```
+虽然本章目前对具体指南的介绍很少，但预计将遵循标准的强化实践。本节将扩展相关信息。
+```
+
+### 检查表
+
+#### Check-Image-01：配置文件的用户/组所有权是否设置为 root/glance？
+
+配置文件包含组件平稳运行所需的关键参数和信息。如果非特权用户有意或无意地修改或删除任何参数或文件本身，则会导致严重的可用性问题，从而导致拒绝向其他最终用户提供服务。因此，必须将此类关键配置文件的用户所有权设置为 `glance` ， `root` 并且必须将组所有权设置为 。此外，包含目录应具有相同的所有权，以确保正确拥有新文件。
+
+运行以下命令：
+
+```
+$ stat -L -c "%U %G" /etc/glance/glance-api-paste.ini | egrep "root glance"
+$ stat -L -c "%U %G" /etc/glance/glance-api.conf | egrep "root glance"
+$ stat -L -c "%U %G" /etc/glance/glance-cache.conf | egrep "root glance"
+$ stat -L -c "%U %G" /etc/glance/glance-manage.conf | egrep "root glance"
+$ stat -L -c "%U %G" /etc/glance/glance-registry-paste.ini | egrep "root glance"
+$ stat -L -c "%U %G" /etc/glance/glance-registry.conf | egrep "root glance"
+$ stat -L -c "%U %G" /etc/glance/glance-scrubber.conf | egrep "root glance"
+$ stat -L -c "%U %G" /etc/glance/glance-swift-store.conf | egrep "root glance"
+$ stat -L -c "%U %G" /etc/glance/policy.json | egrep "root glance"
+$ stat -L -c "%U %G" /etc/glance/schema-image.json | egrep "root glance"
+$ stat -L -c "%U %G" /etc/glance/schema.json | egrep "root glance"
+$ stat -L -c "%U %G" /etc/glance | egrep "root glance"
+```
+
+通过：如果所有这些配置文件的用户和组所有权分别设置为 root 和 glance。上面的命令显示了 root glance 的输出。
+
+失败：如果上述命令不返回任何输出。
+
+#### Check-Image-02：是否为配置文件设置了严格的权限？
+
+与前面的检查类似，我们建议您为此类配置文件设置严格的访问权限。
+
+运行以下命令：
+
+```
+$ stat -L -c "%a" /etc/glance/glance-api-paste.ini
+$ stat -L -c "%a" /etc/glance/glance-api.conf
+$ stat -L -c "%a" /etc/glance/glance-cache.conf
+$ stat -L -c "%a" /etc/glance/glance-manage.conf
+$ stat -L -c "%a" /etc/glance/glance-registry-paste.ini
+$ stat -L -c "%a" /etc/glance/glance-registry.conf
+$ stat -L -c "%a" /etc/glance/glance-scrubber.conf
+$ stat -L -c "%a" /etc/glance/glance-swift-store.conf
+$ stat -L -c "%a" /etc/glance/policy.json
+$ stat -L -c "%a" /etc/glance/schema-image.json
+$ stat -L -c "%a" /etc/glance/schema.json
+$ stat -L -c "%a" /etc/glance
+```
+
+还可以进行更广泛的限制：如果包含目录设置为 750，则保证此目录中新创建的文件具有所需的权限。
+
+通过：如果权限设置为 640 或更严格，或者包含目录设置为 750。640/750 的权限转换为所有者 r/w、组 r，而对其他人没有权限。例如， `u=rw,g=r,o=` .
+
+**注意**
+
+```
+使用 Check-Image-01： Devices / Group Ownership of config files 是否设置为  root/glance？，权限设置为 640，则 root 具有读/写访问权限，glance  具有对这些配置文件的读取访问权限。也可以使用以下命令验证访问权限。仅当此命令支持 ACL 时，它才在您的系统上可用。
+```
+
+```
+$ getfacl --tabular -a /etc/glance/glance-api.conf
+getfacl: Removing leading '/' from absolute path names
+# file: /etc/glance/glance-api.conf
+USER   root  rw-
+GROUP  glance  r--
+mask         r--
+other        ---
+```
+
+失败：如果权限未设置为至少 640。
+
+#### Check-Image-03：Keystone 是否用于身份验证？
+
+**注意**
+
+```
+此项仅适用于 OpenStack 版本 Rocky 及之前版本，因为 `auth_strategy` Stein 中已弃用。
+```
+
+OpenStack 支持各种身份验证策略，包括 noauth 和 keystone。如果使用该 `noauth` 策略，则用户无需任何身份验证即可与 OpenStack 服务进行交互。这可能是一个潜在的风险，因为攻击者可能会获得对 OpenStack 组件的未经授权的访问。我们强烈建议所有服务都必须使用其服务帐户通过 keystone 进行身份验证。
+
+通过：如果 section in 下的参数值设置为 ， `keystone` 并且 section in `/etc/glance/glance-api.conf` `/etc/glance /glance-registry.conf` 下的 `[DEFAULT]`  `[DEFAULT]` 参数 `auth_strategy`  `auth_strategy` 值设置为 `keystone` 。
+
+失败：如果 section in 下的参数值设置为 `noauth` 或 section in `/etc/glance/glance-api.conf` `/etc/glance/glance- registry.conf` 下的 `[DEFAULT]`  `[DEFAULT]` 参数 `auth_strategy`  `auth_strategy` 值设置为 `noauth` 。
+
+#### Check-Image-04：是否启用了 TLS 进行身份验证？
+
+OpenStack 组件使用各种协议相互通信，通信可能涉及敏感或机密数据。攻击者可能会尝试窃听频道以访问敏感信息。所有组件必须使用安全的通信协议相互通信。
+
+通过：如果 section in 下的参数值设置为以 开头的 Identity API 端点 `https://` ，并且该参数 `insecure`  `www_authenticate_uri` 的值位于 same `/etc/glance/glance-registry.conf` 中的同一 `[keystone_authtoken]` 部分下，则设置为 `False` 。 `[keystone_authtoken]` `/etc/glance/glance-api.conf`
+
+失败：如果 中的 `/etc/glance/glance-api.conf` 部分下的 `[keystone_authtoken]` 参数 `www_authenticate_uri` 值未设置为以 `https://` 开头的标识 API 端点，或者同一 `/etc/glance/glance-api.conf` 部分中的参数 `insecure`  `[keystone_authtoken]` 值设置为 `True` 。
+
+#### Check-Image-05：是否阻止了屏蔽端口扫描？
+
+Glance 提供的映像服务 API v1 中的 `copy_from` 功能可允许攻击者执行屏蔽的网络端口扫描。如果启用了 v1 API，则应将此策略设置为受限值。
+
+通过：如果参数 `copy_from` in `/etc/glance/policy.json` 的值设置为受限值，例如 `role:admin` .
+
+失败：未设置参数 `copy_from` in `/etc/glance/policy.json` 的值。
+
+## 共享文件系统
+
+共享文件系统服务（manila）提供了一组服务，用于管理多租户云环境中的共享文件系统。它类似于OpenStack通过OpenStack块存储服务（cinder）项目提供基于块的存储管理的方式。使用共享文件系统服务，您可以创建共享文件系统并管理其属性，例如可见性、可访问性和使用配额。
+
+共享文件系统服务适用于使用以下共享文件系统协议的各种存储提供程序：NFS、CIFS、GlusterFS 和 HDFS。
+
+共享文件系统服务的用途与 Amazon Elastic File System （EFS） 相同。
+
+- 介绍
+  - 一般安全信息
+- 网络和安全模型
+  - 共享后端模式
+  - 扁平化网络与分段化网络
+  - 网络插件
+- 安全服务
+  - 安全服务简介
+  - 安全服务管理
+- 共享访问控制
+- 共享类型访问控制
+- 政策
+- 检查表
+  - Check-Shared-01：配置文件的用户/组所有权是否设置为 root/manila？
+  - Check-Shared-02：是否为配置文件设置了严格的权限？
+  - Check-Shared-03：OpenStack Identity 是否用于身份验证？
+  - Check-Shared-04：是否启用了 TLS 进行身份验证？
+  - Check-Shared-05：共享文件系统是否通过 TLS 与计算联系？
+  - Check-Shared-06：共享文件系统是否通过 TLS 与网络联系？
+  - Check-Shared-07：共享文件系统是否通过 TLS 与块存储联系？
+  - Check-Shared-08：请求正文的最大大小是否设置为默认值 （114688）？
+
+### 介绍
+
+共享文件系统服务（马尼拉）旨在在单节点或跨多个节点运行。共享文件系统服务由四个主要服务组成，它们类似于块存储服务：
+
+- `manila-api`
+- `manila-scheduler`
+- `manila-share`
+- `manila-data`
+
+manila-api
+
+提供稳定 RESTful API 的服务。该服务在整个共享文件系统服务中对请求进行身份验证和路由。有 python-manilaclient 可以与 API 交互。有关共享文件系统 API 的更多详细信息，请参阅 OpenStack 共享文件系统 API。
+
+manila-share
+
+负责管理共享文件服务设备，特别是后端设备。
+
+manila-scheduler
+
+负责安排请求并将其路由到相应的 `manila-share` 服务。它通过选择一个后端，同时过滤除一个后端之外的所有后端来实现这一点。
+
+manila-data
+
+此服务负责管理数据操作，如果不单独处理，可能需要很长时间才能完成，并阻止其他服务。
+
+共享文件系统服务使用基于 SQL 的中央数据库，该数据库由系统中的所有共享文件系统服务共享。它可以使用 ORM SQLALcvery 支持的任何 SQL 方言，但仅使用 MySQL 和 PostgreSQL 数据库进行测试。
+
+使用 SQL，共享文件系统服务类似于其他 OpenStack 服务，可以与任何 OpenStack 部署一起使用。有关 API  的更多详细信息，请参阅 OpenStack 共享文件系统 API 说明。有关 CLI 用法和配置的更多详细信息，请参阅共享文件系统云管理指南。
+
+下图中，您可以看到共享文件系统服务的不同部分如何相互交互。
+
+![../_images/manila-intro.png](https://docs.openstack.org/security-guide/_images/manila-intro.png)
+
+除了已经描述的服务之外，您还可以在图像上看到另外两个实体： `python-manilaclient` 和 `storage controller` 。
+
+python-manilaclient
+
+命令行界面，用于通过 `manila-api` 与共享文件系统服务进行交互，以及用于以编程方式与共享文件系统服务交互的 Python 模块。
+
+Storage controller
+
+通常是一个金属盒，带有旋转磁盘、以太网端口和某种软件，允许网络客户端在磁盘上读取和写入文件。还有一些在任意硬件上运行的纯软件存储控制器，群集控制器可能允许多个物理设备显示为单个存储控制器，或纯虚拟存储控制器。
+
+共享是远程的、可装载的文件系统。您可以一次将共享装载到多个主机，也可以由多个用户从多个主机访问共享。
+
+共享文件系统服务可以使用不同的网络类型：扁平网络、VLAN、VXLAN 或 GRE，并支持分段网络。此外，还有不同的网络插件，它们提供了与 OpenStack 提供的网络服务的各种集成方法。
+
+不同供应商创建了大量共享驱动程序，这些驱动程序支持不同的硬件存储解决方案，例如 NetApp 集群模式 Data ONTAP （ cDOT ）驱动程序，华为 NAS 驱动程序或 GlusterFS  驱动程序。每个共享驱动程序都是一个 Python 类，可以为后端设置并在后端运行以管理共享操作，其中一些操作可能是特定于供应商的。后端是  manila-share 服务的一个实例。
+
+客户端用于身份验证和授权的配置数据可以由安全服务存储。可以配置和使用 LDAP、Kerberos 或 Microsoft Active Directory 身份验证服务等协议。
+
+除非未在 `policy.json` 中显式更改，否则管理员或拥有共享的租户都能够管理对共享的访问。访问管理是通过创建访问规则来完成的，该规则通过 IP 地址、用户、组或 TLS 证书进行身份验证。可用的身份验证方法取决于您配置和使用的共享驱动程序和安全服务。
+
+**注意**
+
+```
+不同的驱动程序支持不同的访问选项，具体取决于使用的共享文件系统协议。支持的共享文件系统协议包括 NFS、CIFS、GlusterFS 和  HDFS。例如，通用（块存储作为后端）驱动程序不支持用户和证书身份验证方法。它还不支持任何安全服务，例如 LDAP、Kerberos 或  Active Directory。有关不同驱动程序支持的功能的详细信息，请参阅马尼拉共享功能支持映射。
+```
+
+作为管理员，您可以创建共享类型，使计划程序能够在创建共享之前筛选后端。共享类型具有额外的规范，您可以为计划程序设置这些规范，以筛选和权衡后端，以便为请求创建共享的用户选择适当的共享类型。共享和共享类型可以创建为公共或私有。此可见性级别定义其他租户是否能够看到这些对象并对其进行操作。管理员可以为身份服务中的特定用户或租户添加对专用共享类型的访问权限。因此，您授予访问权限的用户可以看到可用的共享类型，并使用它们创建共享。
+
+不同用户及其角色的 API 调用权限由策略决定，就像在其他 OpenStack 服务中一样。
+
+标识服务可用于共享文件系统服务中的身份验证。请参阅“身份”部分中的身份服务安全性的详细信息。
+
+#### 一般安全信息
+
+与其他 OpenStack 项目类似，共享文件系统服务已注册到 Identity 服务，因此您可以使用 manila endpoints 命令查找共享服务 v1 和 v2 的 API 端点：
+
+```
+$ manila endpoints
++-------------+-----------------------------------------+
+| manila      | Value                                   |
++-------------+-----------------------------------------+
+| adminURL    | http://172.18.198.55:8786/v1/20787a7b...|
+| region      | RegionOne                               |
+| publicURL   | http://172.18.198.55:8786/v1/20787a7b...|
+| internalURL | http://172.18.198.55:8786/v1/20787a7b...|
+| id          | 82cc5535aa444632b64585f138cb9b61        |
++-------------+-----------------------------------------+
+
++-------------+-----------------------------------------+
+| manilav2    | Value                                   |
++-------------+-----------------------------------------+
+| adminURL    | http://172.18.198.55:8786/v2/20787a7b...|
+| region      | RegionOne                               |
+| publicURL   | http://172.18.198.55:8786/v2/20787a7b...|
+| internalURL | http://172.18.198.55:8786/v2/20787a7b...|
+| id          | 2e8591bfcac4405fa7e5dc3fd61a2b85        |
++-------------+-----------------------------------------+
+```
+
+默认情况下，共享文件系统 API 服务仅侦听 `tcp6` 类型同时支持 IPv4 和 IPv6 的端口 `8786` 。
+
+**注意**
+
+该端口是共享文件系统服务的默认端口 `8786` 。它可以更改为任何其他端口，但此更改也应在配置文件中的 选项中进行，该选项 `osapi_share_listen_port` 默认为 `8786` 。
+
+在 `/etc/manila/` 目录中，您可以找到几个配置文件：
+
+```
+api-paste.ini
+manila.conf
+policy.json
+rootwrap.conf
+rootwrap.d
+
+./rootwrap.d:
+share.filters
+```
+
+建议您将共享文件系统服务配置为在非 root 服务帐户下运行，并更改文件权限，以便只有系统管理员才能修改它们。共享文件系统服务要求只有管理员才能写入配置文件，而服务只能通过其在组中的 `manila` 组成员身份读取它们。其他人一定无法读取这些文件，因为这些文件包含不同服务的管理员密码。
+
+应用检查 Check-Shared-01：配置文件的用户/组所有权是否设置为 root/manila？和 Check-Shared-02：是否为配置文件设置了严格的权限？从清单中验证权限设置是否正确。
+
+**注意**
+
+```
+文件中的 manila-rootwrap 配置和文件中 `rootwrap.conf`  `rootwrap.d/share.filters` 共享节点的 manila-rootwrap 命令过滤器应归 root 用户所有，并且只能由 root 用户写入。
+```
+
+**建议**
+
+```
+manila 配置文件 `manila.conf` 可以放置在任何位置。默认情况下，该路径 `/etc/manila/manila.conf` 是必需的。
+```
+
+### 网络和安全模型
+
+共享文件系统服务中的共享驱动程序是一个 Python 类，可以为后端设置并在其中运行以管理共享操作，其中一些操作是特定于供应商的。后端是 manila-share  服务的实例。共享文件系统服务中有许多由不同供应商创建的共享驱动程序。每个共享驱动程序都支持一种或多种后端模式：共享服务器和无共享服务器。管理员通过在配置文件中 `manila.conf` 指定模式来选择使用哪种模式。它使用了一个选项 `driver_handles_share_servers` 。
+
+共享服务器模式可以配置为扁平网络，也可以配置分段网络。这取决于网络提供商。
+
+如果您想使用不同的配置，则可以为不同的模式使用相同的硬件使用单独的驱动程序。根据选择的模式，管理员可能需要通过配置文件提供更多配置详细信息。
+
+#### 共享后端模式
+
+每个共享驱动程序至少支持一种可能的驱动程序模式：
+
+- 共享服务器模式
+- 无共享服务器模式
+
+设置共享服务器模式或无共享服务器模式的 `manila.conf` 配置选项是 `driver_handles_share_servers` 选项。它指示驱动程序是自行处理共享服务器，还是期望共享文件系统服务执行此操作。
+
+| 模式         | 配置选项                            | 描述                                                         |
+| ------------ | ----------------------------------- | ------------------------------------------------------------ |
+| 共享服务器   | driver_handles_share_servers =True  | 共享驱动程序创建共享服务器并管理或处理共享服务器生命周期。   |
+| 无共享服务器 | driver_handles_share_servers =False | 管理员（而不是共享驱动程序）使用某些网络接口（而不是共享服务器的存在）管理裸机存储。 |
+
+无共享服务器模式
+
+在这种模式下，驱动程序基本上没有任何网络要求。假定由驱动程序管理的存储控制器具有所需的所有网络接口。共享文件系统服务将期望驱动程序直接设置共享，而无需事先创建任何共享服务器。此模式对应于某些现有驱动程序已在执行的操作，但它使管理员可以明确选择。在此模式下，共享创建时不需要共享网络，也不得提供共享网络。
+
+**注意**
+
+```
+在无共享服务器模式下，共享文件系统服务将假定所有租户都已可访问用于导出任何共享的网络接口。
+```
+
+在无共享服务器模式下，共享驱动程序不处理存储生命周期。管理员应处理存储、网络接口和其他主机配置。在此模式下，管理员可以将存储设置为导出共享的主机。此模式的主要特征是存储不由共享文件系统服务处理。租户中的用户共享公共网络、主机、处理器和网络管道。如果管理员或代理之前配置的存储没有正确的平衡调整，它们可能会相互阻碍。在公有云中，所有网络容量可能都由一个客户端使用，因此管理员应注意不要发生这种情况。平衡调整可以通过任何方式完成，而不一定是使用 OpenStack 工具。
+
+共享服务器模式
+
+在此模式下，驱动程序能够创建共享服务器并将其插入现有网络。提供新的共享服务器时，驱动程序需要来自共享文件系统服务的 IP 地址和子网。
+
+与无共享服务器模式不同，在共享服务器模式下，用户具有一个共享网络和一个为每个共享网络创建的共享服务器。因此，所有用户都有单独的 CPU、CPU 时间、网络、容量和吞吐量。
+
+您还可以在共享服务器和无共享服务器后端模式下配置安全服务。但是，如果没有共享服务器后端模式，管理员应在主机上手动设置所需的身份验证服务。在共享服务器模式下，可以使用共享驱动程序支持的任何现有安全服务自动配置共享文件系统服务。
+
+#### 扁平化与分段化网络
+
+共享文件系统服务允许使用不同类型的网络：
+
+- `flat`
+- `GRE`
+- `VLAN`
+- `VXLAN`
+
+**注意**
+
+```
+共享文件系统服务只是将有关网络的信息保存在数据库中，而真正的网络则由网络提供商提供。在OpenStack中，它可以是传统网络（nova-network）或网络（neutron）服务，但共享文件系统服务甚至可以在OpenStack之外工作。这是允许的， `StandaloneNetworkPlugin` 可以与任何网络平台一起使用，并且不需要OpenStack中的某些特定网络服务，如Networking或Legacy网络服务。您可以在其配置文件中设置网络参数。
+```
+
+在共享服务器后端模式下，共享驱动程序为每个共享网络创建和管理共享服务器。此模式可分为两种变体：
+
+- 共享服务器后端模式下的扁平网络
+- 共享服务器后端模式下的分段网络
+
+最初，在创建共享网络时，您可以设置 OpenStack Networking （neutron） 的网络和子网，也可以设置 Legacy 网络 （nova-network） 服务网络。第三种方法是在没有旧版网络和网络服务的情况下配置网络。 `StandaloneNetworkPlugin` 可与任何网络平台一起使用。您可以在其配置文件中设置网络参数。
+
+**建议**
+
+```
+所有使用 OpenStack Compute 服务的共享驱动程序都不使用网络插件。在 Mitaka 版本中，它是 Windows 和通用驱动程序。这些共享驱动器具有其他选项并使用不同的方法。
+```
+
+创建共享网络后，共享文件系统服务将检索由网络提供商确定的网络信息：网络类型、分段标识符（如果网络使用分段）和 CIDR 表示法中的 IP 块，以便从中分配网络。
+
+共享服务器后端模式下的扁平网络
+
+在此模式下，某些存储控制器可以创建共享服务器，但由于物理或逻辑网络的各种限制，所有共享服务器都必须位于扁平网络上。在此模式下，共享驱动程序需要一些东西来为共享服务器预配 IP 地址，但 IP 将全部来自同一子网，并且假定所有租户都可以访问该子网本身。
+
+共享网络的安全服务部分指定安全要求，例如 AD 或 LDAP 域或 Kerberos 域。共享文件系统服务假定安全服务中引用的任何主机都可以从创建共享服务器的子网访问，这限制了可以使用此模式的情况数。
+
+共享服务器后端模式下的分段网络
+
+在此模式下，共享驱动程序能够创建共享服务器并将其插入到现有的分段网络。共享驱动程序期望共享文件系统服务为每个新的共享服务器提供子网定义。此定义应包括分段类型、分段 ID 以及与分段类型相关的任何其他信息。
+
+**注意**
+
+```
+某些共享驱动程序可能不支持所有类型的分段，有关详细信息，请参阅正在使用的驱动程序的规范。
+```
+
+#### 网络插件
+
+共享文件系统服务体系结构定义了用于网络资源调配的抽象层。它允许管理员从不同的选项中进行选择，以决定如何将网络资源分配给其租户的网络存储。有几个网络插件提供了与OpenStack提供的网络服务的各种集成方法。
+
+网络插件允许使用 OpenStack Networking 和 Legacy 网络服务的任何功能、配置。可以使用网络服务支持的任何网络分段，也可以使用传统网络  （nova-network） 服务的扁平网络或 VLAN 分段网络，也可以使用插件来独立于 OpenStack  网络服务指定网络。有关如何使用不同网络插件的详细信息，请参阅共享文件系统服务网络插件。
+
+### 安全服务
+
+对于客户端的身份验证和授权，可以选择使用不同的网络身份验证协议配置共享文件系统存储服务。支持的身份验证协议包括 LDAP、Kerberos 和 Microsoft Active Directory 身份验证服务。
+
+#### 安全服务介绍
+
+创建共享并获取其导出位置后，用户无权装载该共享并处理文件。共享文件系统服务需要显式授予对新共享的访问权限。
+
+用于身份验证和授权 （AuthN/AuthZ） 的客户机配置数据可以通过 存储 `security services` 。如果使用的驱动程序和后端支持 LDAP、Kerberos 或 Microsoft Active Directory，则共享文件系统服务可以使用它们。身份验证服务也可以在没有共享文件系统服务的情况下进行配置。
+
+**注意**
+
+```
+在某些情况下，需要显式指定其中一项安全服务，例如，NetApp、EMC 和 Windows 驱动程序需要 Active Directory 才能创建与 CIFS 协议的共享。
+```
+
+#### 安全服务管理
+
+安全服务是共享文件系统服务（马尼拉）实体，它抽象出一组选项，这些选项为特定共享文件系统协议（如 Active Directory 域或 Kerberos 域）定义安全域。安全服务包含共享文件系统创建加入给定域的服务器所需的所有信息。
+
+使用 API，用户可以创建、更新、查看和删除安全服务。安全服务的设计基于以下假设：
+
+- 租户提供安全服务的详细信息。
+- 管理员关心安全服务：他们配置此类安全服务的服务器端。
+- 在共享文件系统 API 中，a `security_service` 与 `share_networks` 关联。
+- 共享驱动程序使用安全服务中的数据来配置新创建的共享服务器。
+
+创建安全服务时，可以选择以下身份验证服务之一：
+
+| 身份验证服务 | 描述                                                         |
+| ------------ | ------------------------------------------------------------ |
+| LDAP         | 轻量级目录访问协议。用于通过 IP 网络访问和维护分布式目录信息服务的应用程序协议。 |
+| Kerberos     | 网络身份验证协议，它基于票证工作，允许通过非安全网络进行通信的节点以安全的方式相互证明其身份。 |
+| 活动目录     | Microsoft 为 Windows 域网络开发的目录服务。使用 LDAP、Microsoft 的 Kerberos 版本和 DNS。 |
+
+共享文件系统服务允许您使用以下选项配置安全服务：
+
+- 租户网络内部使用的 DNS IP 地址。
+- 安全服务的 IP 地址或主机名。
+- 安全服务的域。
+- 租户使用的用户名或组名。
+- 如果指定用户名，则需要一个用户密码。
+
+现有安全服务实体可以与共享网络实体相关联，这些实体通知共享文件系统服务一组共享的安全性和网络配置。您还可以查看指定共享网络的所有安全服务的列表，并取消它们与共享网络的关联。
+
+有关通过 API 管理安全服务的详细信息，请参阅安全服务 API。您还可以通过 python-manilaclient 管理安全服务，请参阅安全服务 CLI 管理。
+
+管理员和作为共享所有者的用户可以通过创建访问规则，并通过 IP 地址、用户、组或 TLS 证书进行身份验证来管理对共享的访问。身份验证方法取决于您配置和使用的共享驱动程序和安全服务。
+
+因此，作为管理员，您可以将后端配置为通过网络使用特定的身份验证服务，它将存储用户。身份验证服务可以在没有共享文件系统和标识服务的客户端上运行。
+
+**注意**
+
+```
+不同的共享驱动程序支持不同的身份验证服务。有关不同驱动程序支持功能的详细信息，请参阅马尼拉共享功能支持映射。驱动程序对特定身份验证服务的支持并不意味着可以使用任何共享文件系统协议对其进行配置。支持的共享文件系统协议包括 NFS、CIFS、GlusterFS 和 HDFS。有关特定驱动程序及其安全服务配置的信息，请参阅驱动程序供应商的文档。
+```
+
+某些驱动程序支持安全服务，而其他驱动程序不支持上述任何安全服务。例如，具有 NFS 或 CIFS 共享文件系统协议的通用驱动程序仅支持通过 IP 地址的身份验证方法。
+
+**建议**
+
+```
+- 在大多数情况下，支持 CIFS 共享文件系统协议的驱动程序可以配置为使用 Active Directory 并通过用户身份验证管理访问。
+- 支持 GlusterFS 协议的驱动程序可以通过 TLS 证书进行身份验证。
+- 使用支持 NFS 协议的驱动程序，通过 IP 地址进行身份验证是唯一受支持的选项。
+- 由于 HDFS 共享文件系统协议使用 NFS 访问，因此也可以将其配置为通过 IP 地址进行身份验证。
+
+但请注意，通过 IP 进行的身份验证是最不安全的身份验证类型。
+```
+
+共享文件系统服务实际使用情况的建议配置是使用 CIFS 共享协议创建共享，并向其添加 Microsoft Active Directory  目录服务。在此配置中，您将获得集中式数据库以及将Kerberos和LDAP方法结合在一起的服务。这是一个真实的用例，对于生产共享文件系统来说很方便。
+
+### 共享访问控制
+
+共享文件系统服务允许授予或拒绝其他客户端对服务的不同实体的访问。
+
+将共享作为文件系统的可远程挂载实例，可以管理对指定共享的访问，并列出指定共享的权限。
+
+共享可以是公共的，也可以是私有的。这是共享的可见性级别，用于定义其他租户是否可以看到共享。默认情况下，所有共享都创建为专用共享。创建共享时，请使用密钥 `--public` 将共享公开，供其他租户查看共享列表并查看其详细信息。
+
+根据 policy.json 文件，管理员和作为共享所有者的用户可以通过创建访问规则来管理对共享的访问。使用 manila  access-allow、manila access-deny 和 manila access-list  命令，您可以相应地授予、拒绝和列出对指定共享的访问权限。
+
+**建议**
+
+```
+默认情况下，当创建共享并具有其导出位置时，共享文件系统服务期望任何人都无法通过装载共享来访问该共享。请注意，您使用的共享驱动程序可以更改此配置，也可以直接在共享存储上更改。要确保访问共享，请检查导出协议的挂载配置。
+```
+
+刚创建共享时，没有与之关联的默认访问规则和装载权限。这可以在正在使用的导出协议的挂载配置中看到。例如，存储上有一个 NFS 命令 `exportfs` 或 `/etc/exports` 文件，用于控制每个远程共享并定义可以访问它的主机。如果没有人可以挂载共享，则为空。对于远程 CIFS 服务器，有一个 `net conf list` 显示配置的命令。 `hosts deny` 参数应由共享驱动程序设置 `0.0.0.0/0` ，这意味着任何主机都被拒绝挂载共享。
+
+使用共享文件系统服务，可以通过指定以下支持的共享访问级别之一来授予或拒绝对共享的访问：
+
+- rw。读取和写入 （RW） 访问。这是默认值。
+- ro。只读 （RO） 访问。
+
+**建议**
+
+```
+当管理员为某些特定编辑者或贡献者提供读写 （RW） 访问权限并为其余用户（查看者）提供只读 （RO） 访问权限时，RO 访问级别在公共共享中会很有帮助。
+```
+
+您还必须指定以下受支持的身份验证方法之一：
+
+- ip。通过实例的 IP 地址对实例进行身份验证。有效格式为 XX.XX.XX.XX 或 XX.XX.XX.XX/XX。例如，0.0.0.0/0。
+- cert。通过 TLS 证书对实例进行身份验证。将 TLS 标识指定为 IDENTKEY。有效值是证书公用名 （CN） 中长度不超过 64 个字符的任何字符串。
+- user。按指定的用户名或组名进行身份验证。有效值是一个字母数字字符串，可以包含一些特殊字符，长度为 4 到 32 个字符。
+
+**注意**
+
+```
+支持的身份验证方法取决于您配置和使用的共享驱动程序、安全服务和共享文件系统协议。支持的共享文件系统协议包括 NFS、CIFS、GlusterFS 和 HDFS。支持的安全服务包括 LDAP、Kerberos 协议或 Microsoft Active  Directory 服务。有关不同驱动程序支持功能的详细信息，请参阅马尼拉共享功能支持映射。
+```
+
+下面是与通用驱动程序共享的 NFS 示例。创建共享后，它具有导出位置 `10.254.0.3:/shares/share-b2874f8d-d428-4a5c-b056-e6af80a995de` 。如果您尝试使用 `10.254.0.4` IP 地址将其挂载到主机上，您将收到“权限被拒绝”消息。
+
+```
+# mount.nfs -v 10.254.0.3:/shares/share-b2874f8d-d428-4a5c-b056-e6af80a995de /mnt
+mount.nfs: timeout set for Mon Oct 12 13:07:47 2015
+mount.nfs: trying text-based options 'vers=4,addr=10.254.0.3,clientaddr=10.254.0.4'
+mount.nfs: mount(2): Permission denied
+mount.nfs: access denied by server while mounting 10.254.0.3:/shares/share-b2874f8d-...
+```
+
+作为管理员，您可以通过 SSH 连接到具有 IP 地址的 `10.254.0.3` 主机，检查其 `/etc/exports` 上的文件并查看它是否为空：
+
+```
+# cat /etc/exports
+#
+```
+
+我们在示例中使用的通用驱动程序不支持任何安全服务，因此使用 NFS 共享文件系统协议，我们只能通过 IP 地址授予访问权限：
+
+```
+$ manila access-allow Share_demo2 ip 10.254.0.4
++--------------+--------------------------------------+
+| Property     | Value                                |
++--------------+--------------------------------------+
+| share_id     | e57c25a8-0392-444f-9ffc-5daadb9f756c |
+| access_type  | ip                                   |
+| access_to    | 10.254.0.4                           |
+| access_level | rw                                   |
+| state        | new                                  |
+| id           | 62b8e453-d712-4074-8410-eab6227ba267 |
++--------------+--------------------------------------+
+```
+
+规则进入状态 `active` 后，我们可以再次连接到 `10.254.0.3` 主机并检查 `/etc/exports` 文件，并查看是否添加了带有规则的行：
+
+```
+# cat /etc/exports
+/shares/share-b2874f8d-d428-4a5c-b056-e6af80a995de     10.254.0.4(rw,sync,wdelay,hide,nocrossmnt,secure,root_squash,no_all_squash,no_subtree_check,secure_locks,acl,anonuid=65534,anongid=65534,sec=sys,rw,root_squash,no_all_squash)
+```
+
+现在，我们可以使用 IP 地址 `10.254.0.4` 在主机上挂载共享，并拥有 `rw` 共享权限：
+
+```
+# mount.nfs -v 10.254.0.3:/shares/share-b2874f8d-d428-4a5c-b056-e6af80a995de /mnt
+# ls -a /mnt
+.  ..  lost+found
+# echo "Hello!" > /mnt/1.txt
+# ls -a /mnt
+.  ..  1.txt  lost+found
+#
+```
+
+### 共享类型访问控制
+
+共享类型是管理员定义的“服务类型”，由租户可见描述和租户不可见键值对列表（额外规范）组成。manila-scheduler 使用额外的规范来做出调度决策，驱动程序控制共享创建。
+
+管理员可以创建和删除共享类型，还可以管理在共享文件系统服务中赋予它们含义的额外规范。租户可以列出共享类型，并可以使用它们创建新共享。有关管理共享类型的详细信息，请参阅共享文件系统 API 和共享类型管理文档。
+
+共享类型可以创建为公共和私有。这是共享类型的可见性级别，用于定义其他租户是否可以在共享类型列表中看到它，并使用它来创建新共享。
+
+默认情况下，共享类型创建为公共类型。创建共享类型时，请使用 `--is_public` 参数集 设置为 `False` 私有共享类型，这将防止其他租户在共享类型列表中看到它并使用它创建新共享。另一方面，公共共享类型可供云中的每个租户使用。
+
+共享文件系统服务允许管理员授予或拒绝对租户的专用共享类型的访问权限。还可以获取有关指定专用共享类型的访问权限的信息。
+
+**建议**
+
+```
+由于共享类型由于其额外的规范而有助于在用户创建共享之前筛选或选择后端，因此使用对共享类型的访问权限，可以限制客户端选择特定的后端。
+```
+
+例如，作为管理员租户中的管理员用户，可以创建名为 `my_type` 的专用共享类型，并在列表中查看它。在控制台示例中，省略了登录和注销，并提供了环境变量以显示当前登录的用户。
+
+```
+$ env | grep OS_
+...
+OS_USERNAME=admin
+OS_TENANT_NAME=admin
+...
+$ manila type-list --all
++----+--------+-----------+-----------+-----------------------------------+-----------------------+
+| ID | Name   | Visibility| is_default| required_extra_specs              | optional_extra_specs  |
++----+--------+-----------+-----------+-----------------------------------+-----------------------+
+| 4..| my_type| private   | -         | driver_handles_share_servers:False| snapshot_support:True |
+| 5..| default| public    | YES       | driver_handles_share_servers:True | snapshot_support:True |
++----+--------+-----------+-----------+-----------------------------------+-----------------------+
+```
+
+`demo` 租户中的 `demo` 用户可以列出类型，并且命名 `my_type` 的专用共享类型对他不可见。
+
+```
+$ env | grep OS_
+...
+OS_USERNAME=demo
+OS_TENANT_NAME=demo
+...
+$ manila type-list --all
++----+--------+-----------+-----------+----------------------------------+----------------------+
+| ID | Name   | Visibility| is_default| required_extra_specs             | optional_extra_specs |
++----+--------+-----------+-----------+----------------------------------+----------------------+
+| 5..| default| public    | YES       | driver_handles_share_servers:True| snapshot_support:True|
++----+--------+-----------+-----------+----------------------------------+----------------------+
+```
+
+管理员可以授予对租户 ID 等于 df29a37db5ae48d19b349fe947fada46 的演示租户的专用共享类型的访问权限：
+
+```
+$ env | grep OS_
+...
+OS_USERNAME=admin
+OS_TENANT_NAME=admin
+...
+$ openstack project list
++----------------------------------+--------------------+
+| ID                               | Name               |
++----------------------------------+--------------------+
+| ...                              | ...                |
+| df29a37db5ae48d19b349fe947fada46 | demo               |
++----------------------------------+--------------------+
+$ manila type-access-add my_type df29a37db5ae48d19b349fe947fada46
+```
+
+因此，现在演示租户中的用户可以看到专用共享类型，并在共享创建中使用它：
+
+```
+$ env | grep OS_
+...
+OS_USERNAME=demo
+OS_TENANT_NAME=demo
+...
+$ manila type-list --all
++----+--------+-----------+-----------+-----------------------------------+-----------------------+
+| ID | Name   | Visibility| is_default| required_extra_specs              | optional_extra_specs  |
++----+--------+-----------+-----------+-----------------------------------+-----------------------+
+| 4..| my_type| private   | -         | driver_handles_share_servers:False| snapshot_support:True |
+| 5..| default| public    | YES       | driver_handles_share_servers:True | snapshot_support:True |
++----+--------+-----------+-----------+-----------------------------------+-
+```
+
+要拒绝对指定项目的访问，请使用 manila type-access-remove   命令。
+
+**建议**
+
+```
+一个真实的生产用例显示了共享类型的用途和对它们的访问，当你有两个后端时：廉价的 LVM 作为公共存储，昂贵的 Ceph 作为私有存储。在这种情况下，可以向某些租户授予访问权限，并使用 `user/group` 身份验证方法进行访问。
+```
+
+### 政策
+
+共享文件系统服务有自己的基于角色的访问策略。它们确定哪个用户可以以哪种方式访问哪些对象，并在服务的 `policy.json` 文件中定义。
+
+**建议**
+
+```
+配置文件 `policy.json` 可以放置在任何位置。默认情况下，该路径 `/etc/manila/policy.json` 是必需的。
+```
+
+每当对共享文件系统服务进行 API 调用时，策略引擎都会使用相应的策略定义来确定是否可以接受该调用。
+
+策略规则确定在什么情况下允许 API 调用。当 `/etc/manila/policy.json` 规则为空字符串时，该文件具有始终允许操作的规则： `""` ;基于用户角色或规则的规则;带有布尔表达式的规则。下面是共享文件系统服务 `policy.json` 的文件片段。从一个OpenStack版本到另一个OpenStack版本，可以对其进行更改。
+
+```
+{
+    "context_is_admin": "role:admin",
+    "admin_or_owner": "is_admin:True or project_id:%(project_id)s",
+    "default": "rule:admin_or_owner",
+    "share_extension:quotas:show": "",
+    "share_extension:quotas:update": "rule:admin_api",
+    "share_extension:quotas:delete": "rule:admin_api",
+    "share_extension:quota_classes": "",
+}
+```
+
+必须将用户分配到策略中引用的组和角色。当使用用户管理命令时，服务会自动完成此操作。
+
+**注意**
+
+```
+任何更改 `/etc/manila/policy.json` 都会立即生效，这允许在共享文件系统服务运行时实施新策略。手动修改策略可能会产生意想不到的副作用，因此不鼓励这样做。有关详细信息，请参阅 policy.json 文件。
+```
+
+### 检查表
+
+#### Check-Shared-01：配置文件的用户/组所有权是否设置为 root/manila？
+
+配置文件包含组件平稳运行所需的关键参数和信息。如果非特权用户有意或无意地修改或删除任何参数或文件本身，则会导致严重的可用性问题，从而导致拒绝向其他最终用户提供服务。因此，此类关键配置文件的用户所有权必须设置为 root，组所有权必须设置为 manila。此外，包含目录应具有相同的所有权，以确保正确拥有新文件。
+
+运行以下命令：
+
+```
+$ stat -L -c "%U %G" /etc/manila/manila.conf | egrep "root manila"
+$ stat -L -c "%U %G" /etc/manila/api-paste.ini | egrep "root manila"
+$ stat -L -c "%U %G" /etc/manila/policy.json | egrep "root manila"
+$ stat -L -c "%U %G" /etc/manila/rootwrap.conf | egrep "root manila"
+$ stat -L -c "%U %G" /etc/manila | egrep "root manila"
+```
+
+通过：如果所有这些配置文件的用户和组所有权分别设置为 root 和 manila。上面的命令显示了根马尼拉的输出。
+
+失败：如果上述命令未返回任何输出，因为用户和组所有权可能已设置为除 root 以外的任何用户或马尼拉以外的任何组。
+
+#### Check-Shared-02：是否为配置文件设置了严格的权限？
+
+与前面的检查类似，建议对此类配置文件设置严格的访问权限。
+
+运行以下命令：
+
+```
+$ stat -L -c "%a" /etc/manila/manila.conf
+$ stat -L -c "%a" /etc/manila/api-paste.ini
+$ stat -L -c "%a" /etc/manila/policy.json
+$ stat -L -c "%a" /etc/manila/rootwrap.conf
+$ stat -L -c "%a" /etc/manila
+```
+
+还可以进行更广泛的限制：如果包含目录设置为 750，则保证此目录中新创建的文件具有所需的权限。
+
+通过：如果权限设置为 640 或更严格，或者包含目录设置为 750。640 的权限转换为所有者 r/w、组  r，而对其他人没有权限，即“u=rw，g=r，o=”。请注意，使用 Check-Shared-01：配置文件的用户/组所有权是否设置为  root/manila？权限设置为 640，root 具有读/写访问权限，manila  具有对这些配置文件的读取访问权限。也可以使用以下命令验证访问权限。仅当此命令支持 ACL 时，它才在您的系统上可用。
+
+```
+$ getfacl --tabular -a /etc/manila/manila.conf
+getfacl: Removing leading '/' from absolute path names
+# file: etc/manila/manila.conf
+USER   root  rw-
+GROUP  manila  r--
+mask         r--
+other        ---
+```
+
+失败：如果权限未设置为至少 640。
+
+#### Check-Shared-03：OpenStack Identity 是否用于身份验证？
+
+**注意**
+
+```
+此项仅适用于 OpenStack 版本 Rocky 及之前版本，因为 `auth_strategy` Stein 中已弃用。
+```
+
+OpenStack 支持各种身份验证策略，如 noauth 和 keystone。如果使用 ' `noauth` ' 策略，则用户无需任何身份验证即可与 OpenStack 服务进行交互。这可能是一个潜在的风险，因为攻击者可能会获得对 OpenStack 组件的未经授权的访问。因此，强烈建议所有服务都必须使用其服务帐户通过 keystone 进行身份验证。
+
+通过：如果 section in 下的参数 `auth_strategy` 设置为 `keystone` 。 `[DEFAULT]` `manila.conf`
+
+失败：如果 section 下的 `[DEFAULT]` 参数 `auth_strategy` 值设置为 `noauth` 。
+
+#### Check-Shared-04：是否启用了 TLS 进行身份验证？
+
+OpenStack 组件使用各种协议相互通信，通信可能涉及敏感或机密数据。攻击者可能会尝试窃听频道以访问敏感信息。所有组件必须使用安全通信协议相互通信。
+
+通过：如果 section in `/etc/manila/manila.conf` 下的参数值设置为 Identity API 端点开头， `https://` 并且 same `/etc/manila/manila.conf` 中同一 `[keystone_authtoken]` 部分下的 `[keystone_authtoken]` 参数 `www_authenticate_uri`  `insecure` 值设置为 `False` 。
+
+失败：如果 in `/etc/manila/manila.conf` 部分下的 `[keystone_authtoken]` 参数 `www_authenticate_uri` 值未设置为以 开头的身份 API 端点， `https://` 或者同一 `/etc/manila/manila.conf` 部分中的参数 `insecure`  `[keystone_authtoken]` 值设置为 `True` 。
+
+#### Check-Shared-05：共享文件系统是否通过 TLS 与计算联系？
+
+**注意**
+
+此项仅适用于 OpenStack 版本 Train 及之前版本，因为 `auth_strategy` Ussuri 中已弃用。
+
+OpenStack 组件使用各种协议相互通信，通信可能涉及敏感或机密数据。攻击者可能会尝试窃听频道以访问敏感信息。因此，所有组件都必须使用安全的通信协议相互通信。
+
+通过：如果 section in 下的参数 `nova_api_insecure` 设置为 `False` 。 `[DEFAULT]` `manila.conf`
+
+失败：如果 section in 下的参数 `nova_api_insecure` 设置为 `True` 。 `[DEFAULT]` `manila.conf`
+
+#### Check-Shared-06：共享文件系统是否通过 TLS 与网络联系？
+
+**注意**
+
+此项仅适用于 OpenStack 版本 Train 及之前版本，因为 `auth_strategy` Ussuri 中已弃用。
+
+与之前的检查（Check-Shared-05：共享文件系统是否通过 TLS 与计算联系？）类似，建议所有组件必须使用安全通信协议相互通信。
+
+通过：如果 section in 下的参数 `neutron_api_insecure` 设置为 `False` 。 `[DEFAULT]` `manila.conf`
+
+失败：如果 section in 下的参数 `neutron_api_insecure` 设置为 `True` 。 `[DEFAULT]` `manila.conf`
+
+#### Check-Shared-07：共享文件系统是否通过 TLS 与块存储联系？
+
+**注意**
+
+```
+此项仅适用于 OpenStack 版本 Train 及之前版本，因为 `auth_strategy` Ussuri 中已弃用。
+```
+
+与之前的检查（Check-Shared-05：共享文件系统是否通过 TLS 与计算联系？）类似，建议所有组件必须使用安全通信协议相互通信。
+
+通过：如果 section in 下的参数 `cinder_api_insecure` 设置为 `False` 。 `[DEFAULT]` `manila.conf`
+
+失败：如果 section in 下的参数 `cinder_api_insecure` 设置为 `True` 。 `[DEFAULT]` `manila.conf`
+
+#### Check-Shared-08：请求正文的最大大小是否设置为默认值 （114688）？
+
+如果未定义每个请求的最大正文大小，攻击者可以构建任意较大的OSAPI请求，导致服务崩溃，最终导致拒绝服务攻击。分配最大值可确保阻止任何恶意超大请求，从而确保服务的持续可用性。
+
+通过：如果 in 节下的参数值设置为 ，或者 in `manila.conf` `manila.conf` 节下的 `[oslo_middleware]`  `[DEFAULT]` 参数 `max_request_body_size`  `osapi_max_request_body_size` 值设置为 `114688` 。 `114688` 下面的 `[DEFAULT]` 参数 `osapi_max_request_body_size` 已弃用，最好使用 [oslo_middleware]/ `max_request_body_size` 。
+
+失败：如果 in `manila.conf` 节下的参数值未设置为 `114688` ，或者 in `manila.conf` 节下的 `[DEFAULT]`  `[oslo_middleware]` 参数 `max_request_body_size`  `osapi_max_request_body_size` 值未设置为 `114688` 。
 
 
 
