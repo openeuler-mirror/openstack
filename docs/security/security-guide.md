@@ -3729,7 +3729,9 @@ OpenStack 组件使用各种协议相互通信，通信可能涉及敏感或机�
 
 **注意**
 
+```
 此项仅适用于 OpenStack 版本 Train 及之前版本，因为 `auth_strategy` Ussuri 中已弃用。
+```
 
 OpenStack 组件使用各种协议相互通信，通信可能涉及敏感或机密数据。攻击者可能会尝试窃听频道以访问敏感信息。因此，所有组件都必须使用安全的通信协议相互通信。
 
@@ -3741,7 +3743,9 @@ OpenStack 组件使用各种协议相互通信，通信可能涉及敏感或机�
 
 **注意**
 
+```
 此项仅适用于 OpenStack 版本 Train 及之前版本，因为 `auth_strategy` Ussuri 中已弃用。
+```
 
 与之前的检查（Check-Shared-05：共享文件系统是否通过 TLS 与计算联系？）类似，建议所有组件必须使用安全通信协议相互通信。
 
@@ -3771,7 +3775,825 @@ OpenStack 组件使用各种协议相互通信，通信可能涉及敏感或机�
 
 失败：如果 in `manila.conf` 节下的参数值未设置为 `114688` ，或者 in `manila.conf` 节下的 `[DEFAULT]`  `[oslo_middleware]` 参数 `max_request_body_size`  `osapi_max_request_body_size` 值未设置为 `114688` 。
 
+## 联网
 
+OpenStack 网络服务 （neutron） 使最终用户或租户能够定义、利用和使用网络资源。OpenStack Networking 提供了一个面向租户的  API，用于定义云中实例的网络连接和 IP 寻址，以及编排网络配置。随着向以 API  为中心的网络服务的过渡，云架构师和管理员应考虑最佳实践来保护物理和虚拟网络基础架构和服务。
+
+OpenStack Networking 采用插件架构设计，通过开源社区或第三方服务提供 API 的可扩展性。在评估架构设计要求时，确定 OpenStack  Networking 核心服务中有哪些功能、第三方产品提供的任何其他服务以及需要在物理基础架构中实现哪些补充服务非常重要。
+
+本节简要概述了在实现 OpenStack Networking 时应考虑哪些流程和最佳实践。
+
+- 网络架构
+  - 在物理服务器上放置 OpenStack Networking 服务
+- 网络服务
+  - 使用 VLAN 和隧道的 L2 隔离
+  - 网络服务
+  - 网络服务扩展
+  - 网络服务限制
+- 网络服务安全最佳做法
+  - OpenStack Networking 服务配置
+
+- 保护 OpenStack 网络服务
+  - 项目网络服务工作流程
+  - 网络资源策略引擎
+  - 安全组
+  - 配额
+  - 缓解 ARP 欺骗
+
+- 检查表
+  - Check-Neutron-01：配置文件的用户/组所有权是否设置为 root/neutron？
+  - Check-Neutron-02：是否为配置文件设置了严格的权限？
+  - Check-Neutron-03：Keystone是否用于身份验证？
+  - Check-Neutron-04：是否使用安全协议进行身份验证？
+  - Check-Neutron-05：Neutron API 服务器上是否启用了 TLS？
+
+### 网络架构
+
+OpenStack Networking 是一个独立的服务，通常在多个节点上部署多个进程。这些进程彼此交互，并与其他 OpenStack  服务交互。OpenStack Networking 服务的主要进程是 neutron-server，这是一个 Python 守护进程，它公开  OpenStack Networking API，并将租户请求传递给一组插件进行额外处理。
+
+OpenStack Networking 组件包括：
+
+neutron 服务器（neutron-server 和 neutron-*-plugin）
+
+此服务在网络节点上运行，为网络 API 及其扩展提供服务。它还强制执行每个端口的网络模型和 IP 寻址。neutron-server 需要间接访问持久性数据库。这是通过插件实现的，插件使用 AMQP（高级消息队列协议）与数据库进行通信。
+
+插件代理 （neutron-*-agent）
+
+在每个计算节点上运行，以管理本地虚拟交换机 （vswitch） 配置。您使用的插件决定了运行哪些代理。此服务需要消息队列访问，并取决于所使用的插件。一些插件，如  OpenDaylight（ODL） 和开放虚拟网络 （OVN），在计算节点上不需要任何 python 代理。
+
+DHCP 代理 （neutron-dhcp-agent）
+
+为租户网络提供DHCP服务。此代理在所有插件中都是相同的，并负责维护 DHCP 配置。neutron-dhcp-agent 需要消息队列访问。可选，具体取决于插件。
+
+L3 代理（neutron-L3-agent）
+
+为租户网络上的虚拟机提供 L3/NAT 转发。需要消息队列访问权限。可选，具体取决于插件。
+
+网络提供商服务（SDN 服务器/服务）
+
+为租户网络提供其他网络服务。这些 SDN 服务可以通过 REST API 等通信通道与 neutron-server、neutron-plugin 和 plugin-agents 进行交互。
+
+下图显示了 OpenStack Networking 组件的架构和网络流程图：
+
+[![../_images/sdn-connections.png](https://docs.openstack.org/security-guide/_images/sdn-connections.png)](https://docs.openstack.org/security-guide/_images/sdn-connections.png)
+
+#### OpenStack Networking 服务在物理服务器上的放置 
+
+本指南重点介绍一个标准架构，其中包括一个云控制器主机、一个网络主机和一组用于运行 VM 的计算虚拟机监控程序。
+
+##### 物理服务器的网络连接 
+
+[![../_images/1aa-network-domains-diagram.png](https://docs.openstack.org/security-guide/_images/1aa-network-domains-diagram.png)](https://docs.openstack.org/security-guide/_images/1aa-network-domains-diagram.png)
+
+标准的 OpenStack Networking 设置最多有四个不同的物理数据中心网络：
+
+- 管理网络
+
+  用于 OpenStack 组件之间的内部通信。此网络上的 IP 地址应只能在数据中心内访问，并被视为管理安全域。
+
+- 访客网络
+
+  用于云部署中的 VM 数据通信。此网络的 IP 寻址要求取决于所使用的 OpenStack Networking 插件以及租户对虚拟网络所做的网络配置选择。此网络被视为客户机安全域。
+
+- 外部网络
+
+  用于在某些部署方案中为 VM 提供 Internet 访问权限。Internet 上的任何人都可以访问此网络上的 IP 地址。此网络被视为属于公共安全域。
+
+- API网络
+
+  向租户公开所有 OpenStack API，包括 OpenStack 网络 API。Internet 上的任何人都可以访问此网络上的 IP  地址。这可能与外部网络是同一网络，因为可以为使用 IP 分配范围的外部网络创建一个子网，以便仅使用 IP 块中小于全部范围的 IP  地址。此网络被视为公共安全域。
+
+有关更多信息，请参阅《OpenStack 管理员指南》。
+
+### 网络服务
+
+在设计 OpenStack 网络基础架构的初始架构阶段，确保提供适当的专业知识来协助设计物理网络基础架构，确定适当的安全控制和审计机制非常重要。
+
+OpenStack Networking  增加了一层虚拟化网络服务，使租户能够构建自己的虚拟网络。目前，这些虚拟化服务还没有传统网络的成熟。在采用这些虚拟化服务之前，请考虑这些服务的当前状态，因为它决定了您可能需要在虚拟化和传统网络边界上实现哪些控制。
+
+#### 使用 VLAN 和隧道的 L2 隔离
+
+OpenStack Networking 可以采用两种不同的机制对每个租户/网络组合进行流量隔离：VLAN（IEEE 802.1Q 标记）或使用 GRE 封装的 L2 隧道。OpenStack 部署的范围和规模决定了您应该使用哪种方法进行流量隔离或隔离。
+
+##### VLANs
+
+VLAN 在特定物理网络上实现为数据包，其中包含具有特定 VLAN ID （VID） 字段值的 IEEE 802.1Q 标头。共享同一物理网络的  VLAN 网络在 L2 上彼此隔离，甚至可以有重叠的 IP 地址空间。每个支持 VLAN 网络的不同物理网络都被视为一个单独的 VLAN  中继，具有不同的 VID 值空间。有效的 VID 值为 1 到 4094。
+
+VLAN 配置的复杂性取决于您的 OpenStack 设计要求。为了让 OpenStack Networking 能够有效地使用 VLAN，您必须分配一个 VLAN 范围（每个租户一个），并将每个计算节点物理交换机端口转换为 VLAN 中继端口。
+
+**注意**
+
+```
+如果您打算让您的网络支持超过 4094 个租户，则 VLAN 可能不是您的正确选择，因为需要多个“黑客”才能将 VLAN 标记扩展到超过 4094 个租户。
+```
+
+##### L2 隧道 
+
+网络隧道使用唯一的“tunnel-id”封装每个租户/网络组合，该 ID 用于标识属于该组合的网络流量。租户的 L2 网络连接与物理位置或基础网络设计无关。通过将流量封装在 IP 数据包中，该流量可以跨越第 3 层边界，无需预配置 VLAN 和 VLAN 中继。隧道为网络数据流量增加了一层混淆，从监控的角度降低了单个租户流量的可见性。
+
+OpenStack Networking 目前支持 GRE 和 VXLAN 封装。
+
+提供 L2 隔离的技术选择取决于将在部署中创建的租户网络的范围和大小。如果您的环境的 VLAN ID 可用性有限或将具有大量 L2 网络，我们建议您使用隧道。
+
+#### 网络服务 
+
+租户网络隔离的选择会影响租户服务的网络安全和控制边界的实现方式。以下附加网络服务已经可用或目前正在开发中，以增强 OpenStack 网络架构的安全态势。
+
+##### 访问控制列表
+
+OpenStack 计算在与旧版 nova-network 服务一起部署时直接支持租户网络流量访问控制，或者可以将访问控制推迟到 OpenStack Networking 服务。
+
+请注意，旧版 nova-network 安全组使用 iptables 应用于实例上的所有虚拟接口端口。
+
+安全组允许管理员和租户指定流量类型以及允许通过虚拟接口端口的方向（入口/出口）。安全组规则是有状态的 L2-L4 流量过滤器。
+
+使用网络服务时，建议在此服务中启用安全组，并在计算服务中禁用安全组。
+
+##### L3 路由和 NAT 
+
+OpenStack Networking 路由器可以连接多个 L2 网络，并且还可以提供连接一个或多个私有 L2 网络到共享外部网络（例如用于访问互联网的公共网络）的网关。
+
+L3 路由器在将路由器上行链路到外部网络的网关端口上提供基本的网络地址转换 （NAT） 功能。默认情况下，此路由器会 SNAT（静态  NAT）所有流量，并支持浮动 IP，这会创建从外部网络上的公共 IP 到连接到路由器的其他子网上的专用 IP 的静态一对一映射。
+
+我们建议利用每个租户的 L3 路由和浮动 IP 来实现租户 VM 的更精细连接。
+
+##### 服务质量 （QoS）
+
+默认情况下，服务质量 （QoS） 策略和规则由云管理员管理，这会导致租户无法创建特定的 QoS 规则，也无法将特定端口附加到策略。在某些用例中，例如某些电信应用程序，管理员可能信任租户，因此允许他们创建自己的策略并将其附加到端口。这可以通过修改 `policy.json` 文件和特定文档来实现。将与扩展一起发布。
+
+网络服务 （neutron） 支持 Liberty 及更高版本中的带宽限制 QoS 规则。此 QoS 规则已命名 `QosBandwidthLimitRule` ，它接受两个非负整数，以千比特/秒为单位：
+
+- `max-kbps` ：带宽
+- `max-burst-kbps` ：突发缓冲区
+
+已 `QoSBandwidthLimitRule` 在 neutron Open vSwitch、Linux 网桥和单根输入/输出虚拟化 （SR-IOV） 驱动程序中实现。
+
+在 Newton 中，添加了 QoS 规则 `QosDscpMarkingRule` 。此规则在 IPv4 （RFC 2474） 上的服务标头类型和 IPv6 上的流量类标头中标记差分服务代码点 （DSCP）  值，这些值适用于应用规则的虚拟机的所有流量。这是一个 6 位标头，具有 21  个有效值，表示数据包在遇到拥塞时穿过网络时的丢弃优先级。防火墙还可以使用它来将有效或无效流量与其访问控制列表进行匹配。
+
+端口镜像服务涉及将进入或离开一个端口的数据包副本发送到另一个端口，该端口通常与被镜像数据包的原始目的地不同。Tap-as-a-Service （TaaS） 是 OpenStack 网络服务 （neutron）  的扩展。它为租户虚拟网络提供远程端口镜像功能。此服务主要旨在帮助租户（或云管理员）调试复杂的虚拟网络，并通过监视与其关联的网络流量来了解其  VM。TaaS 遵循租户边界，其镜像会话能够跨越多个计算和网络节点。它是一个必不可少的基础设施组件，可用于向各种网络分析和安全应用程序提供数据。
+
+##### 负载均衡 
+
+OpenStack Networking 的另一个特性是负载均衡器即服务 （LBaaS）。LBaaS 参考实现基于 HA-Proxy。OpenStack Networking 中的扩展正在开发第三方插件，以便为虚拟接口端口提供广泛的 L4-L7 功能。
+
+##### 防火墙
+
+FW-as-a-Service（FWaaS）被认为是OpenStack Networking的Kilo版本的实验性功能。FWaaS  满足了管理和利用典型防火墙产品提供的丰富安全功能的需求，这些产品通常比当前安全组提供的要全面得多。飞思卡尔和英特尔都开发了第三方插件作为OpenStack Networking的扩展，以在Kilo版本中支持此组件。有关 FWaaS 管理的更多详细信息，请参阅《OpenStack  管理员指南》中的防火墙即服务 （FWaaS） 概述。
+
+在设计 OpenStack Networking 基础架构时，了解可用网络服务的当前特性和局限性非常重要。了解虚拟网络和物理网络的边界将有助于在您的环境中添加所需的安全控件。
+
+#### 网络服务扩展
+
+开源社区或使用 OpenStack Networking 的 SDN 公司提供的已知插件列表可在 OpenStack neutron 插件和驱动程序 wiki 页面上找到。
+
+#### 网络服务限制
+
+OpenStack Networking 具有以下已知限制：
+
+重叠的 IP 地址
+
+如果运行 neutron-l3-agent 或 neutron-dhcp-agent 的节点使用重叠的 IP 地址，则这些节点必须使用 Linux  网络命名空间。默认情况下，DHCP 和 L3 代理使用 Linux 网络命名空间，并在各自的命名空间中运行。但是，如果主机不支持多个命名空间，则 DHCP 和 L3 代理应在不同的主机上运行。这是因为 L3 代理和 DHCP 代理创建的 IP 地址之间没有隔离。
+
+如果不存在网络命名空间支持，则 L3 代理的另一个限制是仅支持单个逻辑路由器。
+
+多主机 DHCP 代理
+
+OpenStack Networking 支持多个具有负载均衡功能的 L3 和 DHCP 代理。但是，不支持虚拟机位置的紧密耦合。换言之，在创建虚拟机时，默认虚拟机调度程序不会考虑代理的位置。
+
+L3 代理不支持 IPv6
+
+neutron-l3-agent 被许多插件用于实现 L3 转发，仅支持 IPv4 转发。
+
+### 网络服务安全最佳做法
+
+要保护 OpenStack Networking，您必须了解如何将租户实例创建的工作流过程映射到安全域。
+
+有四个主要服务与 OpenStack Networking 交互。在典型的 OpenStack 部署中，这些服务映射到以下安全域：
+
+- OpenStack 仪表板：公共和管理
+- OpenStack Identity：管理
+- OpenStack 计算节点：管理和客户端
+- OpenStack 网络节点：管理、客户端，以及可能的公共节点，具体取决于正在使用的 neutron-plugin。
+- SDN 服务节点：管理、访客和可能的公共服务，具体取决于使用的产品。
+
+[![../_images/1aa-logical-neutron-flow.png](https://docs.openstack.org/security-guide/_images/1aa-logical-neutron-flow.png)](https://docs.openstack.org/security-guide/_images/1aa-logical-neutron-flow.png)
+
+要隔离 OpenStack Networking 服务与其他 OpenStack 核心服务之间的敏感数据通信，请将这些通信通道配置为仅允许通过隔离的管理网络进行通信。
+
+#### OpenStack Networking 服务配置 
+
+##### 限制 API 服务器的绑定地址：neutron-server
+
+要限制 OpenStack Networking API 服务为传入客户端连接绑定网络套接字的接口或 IP 地址，请在 neutron.conf 文件中指定 bind_host 和 bind_port，如下所示：
+
+```
+# Address to bind the API server
+bind_host = IP ADDRESS OF SERVER
+
+# Port the bind the API server to
+bind_port = 9696
+```
+
+##### 限制 OpenStack Networking 服务的 DB 和 RPC 通信
+
+OpenStack Networking 服务的各种组件使用消息队列或数据库连接与 OpenStack Networking 中的其他组件进行通信。
+
+对于需要直接数据库连接的所有组件，建议您遵循数据库身份验证和访问控制中提供的准则。
+
+建议您遵循队列身份验证和访问控制中提供的准则，适用于需要 RPC 通信的所有组件。
+
+### 保护 OpenStack 网络服务
+
+本节讨论 OpenStack Networking 配置最佳实践，因为它们适用于 OpenStack 部署中的项目网络安全。
+
+#### 项目网络服务工作流 
+
+OpenStack Networking 为用户提供网络资源和配置的自助服务。云架构师和运维人员必须评估其设计用例，以便为用户提供创建、更新和销毁可用网络资源的能力。
+
+#### 网络资源策略引擎
+
+OpenStack Networking 中的策略引擎及其配置文件 `policy.json` 提供了一种方法，可以对用户在项目网络方法和对象上提供更细粒度的授权。OpenStack Networking  策略定义会影响网络可用性、网络安全和整体 OpenStack 安全性。云架构师和运维人员应仔细评估其对用户和项目访问网络资源管理的策略。有关  OpenStack Networking 策略定义的更详细说明，请参阅《OpenStack 管理员指南》中的“身份验证和授权”部分。
+
+**注意**
+
+```
+请务必查看默认网络资源策略，因为可以修改此策略以适合您的安全状况。
+```
+
+如果您的 OpenStack 部署为不同的安全域提供了多个外部访问点，那么限制项目将多个 vNIC  连接到多个外部访问点的能力非常重要，这将桥接这些安全域，并可能导致不可预见的安全危害。通过利用 OpenStack Compute  提供的主机聚合功能，或者将项目虚拟机拆分为具有不同虚拟网络配置的多个项目项目，可以降低这种风险。
+
+####  安全组
+
+OpenStack Networking 服务使用比 OpenStack Compute 中内置的安全组功能更灵活、更强大的机制提供安全组功能。因此，在使用 OpenStack Network 时，应始终禁用内置安全组， `nova.conf` 并将所有安全组调用代理到 OpenStack Networking API。如果不这样做，将导致两个服务同时应用冲突的安全策略。要将安全组代理到 OpenStack Networking，请使用以下配置值：
+
+- `firewall_driver` 必须设置为 `nova.virt.firewall.NoopFirewallDriver` ，以便 nova-compute 本身不执行基于 iptables 的过滤。
+- `security_group_api` 必须设置为 `neutron` 以便将所有安全组请求代理到 OpenStack Networking 服务。
+
+安全组是安全组规则的容器。安全组及其规则允许管理员和项目指定允许通过虚拟接口端口的流量类型和方向（入口/出口）。在 OpenStack Networking  中创建虚拟接口端口时，该端口与安全组相关联。有关端口安全组默认行为的更多详细信息，请参阅网络安全组行为文档。可以将规则添加到默认安全组，以便根据每个部署更改行为。
+
+使用 OpenStack Compute API 修改安全组时，更新后的安全组将应用于实例上的所有虚拟接口端口。这是因为 OpenStack  Compute 安全组 API 是基于实例的，而不是基于端口的，如 OpenStack Networking 中所示。
+
+#### 配额
+
+配额提供了限制项目可用的网络资源数量的功能。您可以对所有项目强制实施默认配额。包括 `/etc/neutron/neutron.conf` 以下配额选项：
+
+```
+[QUOTAS]
+# resource name(s) that are supported in quota features
+quota_items = network,subnet,port
+
+# default number of resource allowed per tenant, minus for unlimited
+#default_quota = -1
+
+# number of networks allowed per tenant, and minus means unlimited
+quota_network = 10
+
+# number of subnets allowed per tenant, and minus means unlimited
+quota_subnet = 10
+
+# number of ports allowed per tenant, and minus means unlimited
+quota_port = 50
+
+# number of security groups allowed per tenant, and minus means unlimited
+quota_security_group = 10
+
+# number of security group rules allowed per tenant, and minus means unlimited
+quota_security_group_rule = 100
+
+# default driver to use for quota checks
+quota_driver = neutron.quota.ConfDriver
+```
+
+OpenStack Networking 还通过配额扩展 API 支持每个项目的配额限制。要启用每个项目的配额，必须在 中设置选项 `quota_driver` `neutron.conf` 。
+
+```
+quota_driver = neutron.db.quota.driver.DbQuotaDriver
+```
+
+#### 缓解 ARP 欺骗
+
+使用扁平网络时，不能假定共享同一第 2 层网络（或广播域）的项目彼此完全隔离。这些项目可能容易受到 ARP 欺骗的攻击，从而有可能遭受中间人攻击。
+
+如果使用支持 ARP 字段匹配的 Open vSwitch 版本，则可以通过启用 Open vSwitch 代理 `prevent_arp_spoofing` 选项来帮助降低此风险。此选项可防止实例执行欺骗攻击;它不能保护他们免受欺骗攻击。请注意，此设置预计将在 Ocata 中删除，该行为将永久处于活动状态。
+
+例如，在 `/etc/neutron/plugins/ml2/openvswitch_agent.ini` ：
+
+```
+prevent_arp_spoofing = True
+```
+
+除 Open vSwitch 外，其他插件也可能包含类似的缓解措施;建议您在适当的情况下启用此功能。
+
+**注意**
+
+```
+即使启用 `prevent_arp_spoofing` 了扁平网络，也无法提供完整的项目隔离级别，因为所有项目流量仍会发送到同一 VLAN。
+```
+
+### 检查表
+
+#### Check-Neutron-01：配置文件的用户/组所有权是否设置为 root/neutron？
+
+配置文件包含组件平稳运行所需的关键参数和信息。如果非特权用户有意或无意地修改或删除任何参数或文件本身，则会导致严重的可用性问题，从而导致对其他最终用户的拒绝服务。因此，此类关键配置文件的用户所有权必须设置为 root，组所有权必须设置为 neutron。此外，包含目录应具有相同的所有权，以确保正确拥有新文件。
+
+运行以下命令：
+
+```
+$ stat -L -c "%U %G" /etc/neutron/neutron.conf | egrep "root neutron"
+$ stat -L -c "%U %G" /etc/neutron/api-paste.ini | egrep "root neutron"
+$ stat -L -c "%U %G" /etc/neutron/policy.json | egrep "root neutron"
+$ stat -L -c "%U %G" /etc/neutron/rootwrap.conf | egrep "root neutron"
+$ stat -L -c "%U %G" /etc/neutron | egrep "root neutron"
+```
+
+通过：如果所有这些配置文件的用户和组所有权分别设置为 root 和 neutron。上面的命令显示了根中子的输出。
+
+失败：如果上述命令未返回任何输出，因为用户和组所有权可能已设置为除 root 以外的任何用户或除 neutron 以外的任何组。
+
+#### Check-Neutron-02：是否为配置文件设置了严格的权限？
+
+与前面的检查类似，建议对此类配置文件设置严格的访问权限。
+
+运行以下命令：
+
+```
+$ stat -L -c "%a" /etc/neutron/neutron.conf
+$ stat -L -c "%a" /etc/neutron/api-paste.ini
+$ stat -L -c "%a" /etc/neutron/policy.json
+$ stat -L -c "%a" /etc/neutron/rootwrap.conf
+$ stat -L -c "%a" /etc/neutron
+```
+
+还可以进行更广泛的限制：如果包含目录设置为 750，则保证此目录中新创建的文件具有所需的权限。
+
+通过：如果权限设置为 640 或更严格，或者包含目录设置为 750。640 的权限转换为所有者 r/w、组 r，而对其他人没有权限，即“u=rw，g=r，o=”。
+
+请注意，使用 Check-Neutron-01：配置文件的用户/组所有权是否设置为 root/neutron？权限设置为 640，root  具有读/写访问权限，neutron 具有对这些配置文件的读取访问权限。也可以使用以下命令验证访问权限。仅当此命令支持 ACL  时，它才在您的系统上可用。
+
+```
+$ getfacl --tabular -a /etc/neutron/neutron.conf
+getfacl: Removing leading '/' from absolute path names
+# file: etc/neutron/neutron.conf
+USER   root     rw-
+GROUP  neutron  r--
+mask            r--
+other           ---
+```
+
+失败：如果权限没有设置至少为640。
+
+#### Check-Neutron-03：Keystone是否用于身份验证？
+
+**注意**
+
+```
+此项仅适用于 OpenStack 版本 Rocky 及之前版本，因为 `auth_strategy` Stein 中已弃用。
+```
+
+OpenStack 支持各种身份验证策略，如 noauth、keystone  等。如果使用“noauth”策略，那么用户无需任何身份验证即可与OpenStack服务进行交互。这可能是一个潜在的风险，因为攻击者可能会获得对  OpenStack 组件的未经授权的访问。因此，强烈建议所有服务都必须使用其服务帐户通过 keystone 进行身份验证。
+
+通过：如果 section in 下的参数 `auth_strategy` 设置为 `keystone` 。 `[DEFAULT]` `/etc/neutron/neutron.conf`
+
+失败：如果 section 下的 `[DEFAULT]` 参数 `auth_strategy` 值设置为 `noauth` 或 `noauth2` 。
+
+#### Check-Neutron-04：是否使用安全协议进行身份验证？
+
+OpenStack 组件使用各种协议相互通信，通信可能涉及敏感/机密数据。攻击者可能会尝试窃听频道以访问敏感信息。因此，所有组件都必须使用安全的通信协议相互通信。
+
+通过：如果 section in `/etc/neutron/neutron.conf` 下的参数值设置为 Identity API 端点开头， `https://` 并且 same `/etc/neutron/neutron.conf` 中同一 `[keystone_authtoken]` 部分下的 `[keystone_authtoken]` 参数 `www_authenticate_uri`  `insecure` 值设置为 `False` 。
+
+失败：如果 in `/etc/neutron/neutron.conf` 部分下的 `[keystone_authtoken]` 参数 `www_authenticate_uri` 值未设置为以 开头的身份 API 端点， `https://` 或者同一 `/etc/neutron/neutron.conf` 部分中的参数 `insecure`  `[keystone_authtoken]` 值设置为 `True` 。
+
+#### Check-Neutron-05：Neutron API 服务器上是否启用了 TLS？
+
+与之前的检查类似，建议在 API 服务器上启用安全通信。
+
+通过：如果 section in 下的参数 `use_ssl` 设置为 `True` 。 `[DEFAULT]` `/etc/neutron/neutron.conf`
+
+失败：如果 section in 下的参数 `use_ssl` 设置为 `False` 。 `[DEFAULT]` `/etc/neutron/neutron.conf`
+
+## 对象存储
+
+OpenStack 对象存储 （swift） 服务提供通过 HTTP 存储和检索数据的软件。对象（数据 blob）存储在组织层次结构中，该层次结构提供匿名只读访问、ACL 定义的访问，甚至临时访问。对象存储支持通过中间件实现的多种基于令牌的身份验证机制。
+
+应用程序通过行业标准的 HTTP RESTful API 在对象存储中存储和检索数据。对象存储的后端组件遵循相同的 RESTful 模型，尽管某些  API（例如管理持久性的 API）对集群是私有的。有关 API 的更多详细信息，请参阅 OpenStack Storage API。
+
+对象存储的组件分为以下主要组：
+
+1. 代理服务
+2. 身份验证服务
+3. 存储服务
+   - 账户服务
+   - 容器服务
+   - 对象服务
+
+[![_images/swift_network_diagram-1.png](https://docs.openstack.org/security-guide/_images/swift_network_diagram-1.png)](https://docs.openstack.org/security-guide/_images/swift_network_diagram-1.png)
+
+OpenStack 对象存储管理指南 （2013） 中的示例图 
+
+**注意**
+
+```
+对象存储安装不必位于 Internet 上，也可以是私有云，其中公共交换机是组织内部网络基础架构的一部分。
+```
+
+### 网络安全
+
+要保护对象存储服务，首先要保护网络组件。如果您跳过了网络章节，请返回到网络部分。
+
+rsync 协议用于在存储服务节点之间复制数据以实现高可用性。此外，在客户端端点和云环境之间来回中继数据时，代理服务会与存储服务进行通信。
+
+**警告**
+
+```
+对象存储不对节点间通信进行加密或身份验证。这就是您在体系结构图中看到专用交换机或专用网络 （[V]LAN） 的原因。这个数据域也应该与其他OpenStack数据网络分开。有关安全域的进一步讨论，请参阅安全边界和威胁。
+```
+
+**建议**
+
+```
+对数据域中的存储节点使用专用 （V）LAN 网段。
+```
+
+这需要代理节点具有双接口（物理或虚拟）：
+
+1. 一个作为消费者访问的公共界面。
+2. 另一个作为可以访问存储节点的专用接口。
+
+下图演示了一种可能的网络体系结构。
+
+[![_images/swift_network_diagram-2.png](https://docs.openstack.org/security-guide/_images/swift_network_diagram-2.png)](https://docs.openstack.org/security-guide/_images/swift_network_diagram-2.png)
+
+具有管理节点（OSAM）的对象存储网络架构
+
+### 一般服务安全
+
+#### 以非 root 用户身份运行服务
+
+我们建议您将对象存储服务配置为在非 root （UID 0） 服务帐户下运行。一个建议是 `swift` 具有主组 `swift` 的用户名。例如， `proxy-server` 对象存储服务包括、、 `container-server` `account-server` 。有关设置和配置的详细步骤，请参阅《安装指南》的“添加对象存储”一章的 OpenStack 文档索引。
+
+**注意**
+
+```
+上面的链接默认为Ubuntu版本。
+```
+
+##### 文件权限
+
+该 `/etc/swift` 目录包含有关环形拓扑和环境配置的信息。建议使用以下权限：
+
+```
+# chown -R root:swift /etc/swift/*
+# find /etc/swift/ -type f -exec chmod 640 {} \;
+# find /etc/swift/ -type d -exec chmod 750 {} \;
+```
+
+这将限制只有 root 用户能够修改配置文件，同时允许服务通过其 `swift` 在组中的组成员身份读取它们。
+
+#### 保护存储服务
+
+以下是各种存储服务的默认侦听端口：
+
+| 服务名称 | 港口 | 类型 |
+| -------- | ---- | ---- |
+| 账户服务 | 6002 | TCP  |
+| 容器服务 | 6001 | TCP  |
+| 对象服务 | 6000 | TCP  |
+| 同步 [1] | 873  | TCP  |
+
+如果使用 ssync 而不是 rsync，则使用对象服务端口来维护持久性。
+
+**重要**
+
+```
+在存储节点上不进行身份验证。如果能够在其中一个端口上连接到存储节点，则无需身份验证即可访问或修改数据。为了防止此问题，您应该遵循之前给出的有关使用专用存储网络的建议。
+```
+
+##### 对象存储帐户术语
+
+对象存储帐户不是用户帐户或凭据。下面对这些关系进行说明：
+
+| 对象存储帐户 | 容器的收集;不是用户帐户或身份验证。哪些用户与该帐户相关联以及他们如何访问该帐户取决于所使用的身份验证系统。请参阅对象存储身份验证。 |
+| ------------ | ------------------------------------------------------------ |
+| 对象存储容器 | 对象的集合。容器上的元数据可用于 ACL。ACL 的含义取决于所使用的身份验证系统。 |
+| 对象存储对象 | 实际数据对象。对象级别的 ACL 也可以与元数据一起使用，并且取决于所使用的身份验证系统。 |
+
+在每个级别，您都有 ACL，用于指示谁拥有哪种类型的访问权限。ACL 是根据正在使用的身份验证系统进行解释的。最常用的两种身份验证提供程序类型是 Identity service （keystone） 和 TempAuth。自定义身份验证提供程序也是可能的。有关更多信息，请参阅对象存储身份验证。
+
+#### 保护代理服务
+
+代理节点应至少具有两个接口（物理或虚拟）：一个公共接口和一个专用接口。防火墙或服务绑定可能会保护公共接口。面向公众的服务是一个 HTTP Web  服务器，用于处理端点客户端请求、对其进行身份验证并执行相应的操作。专用接口不需要任何侦听服务，而是用于建立与专用存储网络上的存储节点的传出连接。
+
+##### HTTP 监听端口
+
+如前所述，您应该将 Web 服务配置为非 root（无 UID 0）用户 `swift` 。需要使用大于 1024 的端口才能轻松完成此操作，并避免以 root 身份运行 Web 容器的任何部分。通常，使用 HTTP REST  API 并执行身份验证的客户端会自动从身份验证响应中检索所需的完整 REST API URL。OpenStack 的 REST API  允许客户端对一个 URL 进行身份验证，然后被告知对实际服务使用完全不同的 URL。例如，客户端向  https://identity.cloud.example.org:55443/v1/auth 进行身份验证，并获取其身份验证密钥和存储  URL（代理节点或负载均衡器的 URL）https://swift.cloud.example.org:44443/v1/AUTH_8980  响应。
+
+将 Web 服务器配置为以非 root 用户身份启动和运行的方法因 Web 服务器和操作系统而异。
+
+##### 负载均衡器
+
+如果使用 Apache 的选项不可行，或者为了提高性能，您希望减轻 TLS 工作，则可以使用专用的网络设备负载平衡器。这是在使用多个代理节点时提供冗余和负载平衡的常用方法。
+
+如果选择卸载 TLS，请确保负载均衡器和代理节点之间的网络链路位于专用 （V）LAN 网段上，以便网络上的其他节点（可能已泄露）无法窃听（嗅探）未加密的流量。如果发生此类违规行为，攻击者可以访问端点客户端或云管理员凭据并访问云数据。
+
+您使用的身份验证服务（例如身份服务（keystone）或TempAuth）将决定如何在对端点客户端的响应中配置不同的URL，以便它们使用负载平衡器而不是单个代理节点。
+
+#### 对象存储身份验证
+
+对象存储使用 WSGI  模型来提供中间件功能，该功能不仅提供通用可扩展性，还用于端点客户端的身份验证。身份验证提供程序定义存在的角色和用户类型。有些使用传统的用户名和密码凭据，而另一些则可能利用 API 密钥令牌甚至客户端 x.509 证书。自定义提供程序可以集成到使用自定义中间件中。
+
+对象存储默认自带两个认证中间件模块，其中任何一个模块都可以作为开发自定义认证中间件的示例代码。
+
+##### TempAuth 函数
+
+TempAuth 是对象存储的默认身份验证。与 Identity 相比，它将用户帐户、凭据和元数据存储在对象存储本身中。有关更多信息，请参阅对象存储 （swift） 文档的身份验证系统部分。
+
+##### Keystone
+
+Keystone 是 OpenStack 中常用的身份提供程序。它还可用于对象存储中的身份验证。Identity 中已提供保护 keystone 的覆盖范围。
+
+#### 其他值得注意的事项
+
+在 中 `/etc/swift` ，在每个节点上，都有一个设置和一个 `swift_hash_path_prefix`  `swift_hash_path_suffix` 设置。提供这些是为了减少存储对象发生哈希冲突的可能性，并避免一个用户覆盖另一个用户的数据。
+
+此值最初应使用加密安全的随机数生成器进行设置，并在所有节点上保持一致。确保它受到适当的 ACL 保护，并且您有备份副本以避免数据丢失。
+
+## 机密管理
+
+操作员通过使用各种加密应用程序来保护云部署中的敏感信息。例如，对静态数据进行加密或对映像进行签名以证明其未被篡改。在所有情况下，这些加密功能都需要某种密钥材料才能运行。
+
+机密管理描述了一组旨在保护软件系统中的关键材料的技术。传统上，密钥管理涉及硬件安全模块 （HSM） 的部署。这些设备已经过物理强化，可防止篡改。
+
+随着技术的进步，需要保护的秘密物品的数量已经从密钥材料增加到包括证书对、API  密钥、系统密码、签名密钥等。这种增长产生了对更具可扩展性的密钥管理方法的需求，并导致创建了许多提供可扩展动态密钥管理的软件服务。本章介绍了目前存在的服务，并重点介绍了那些能够集成到OpenStack云中的服务。
+
+- 现有技术摘要
+- 相关 Openstack 项目
+- 使用案例
+  - 镜像签名验证
+  - 卷加密
+  - 临时磁盘加密
+  - Sahara 
+  - Magnum
+  - Octavia/LBaaS 
+  - Swift
+  - 配置文件中的密码
+- Barbican
+  - 概述
+  - 加密插件
+  - 简单的加密插件
+  - PKCS#11加密插件
+  - 密钥商店插件
+  - KMIP插件
+  - Dogtag 插件
+  - Vault 插件
+- Castellan 
+  - 概述
+- 常见问题解答
+- 检查表
+  - Check-Key-Manager-01：配置文件的所有权是否设置为 root/barbican？
+  - Check-Key-Manager-02：是否为配置文件设置了严格的权限？
+  - Check-Key-Manager-03：OpenStack Identity 是否用于身份验证？
+  - Check-Key-Manager-04：是否启用了 TLS 进行身份验证？
+
+### 现有技术摘要
+
+在OpenStack中，有两种推荐用于机密管理的解决方案，即Barbican和Castellan。本章将概述不同的方案，以帮助操作员选择使用哪个密钥管理器。
+
+第三种不受支持的方法是固定/硬编码密钥。众所周知，某些 OpenStack 服务可以选择在其配置文件中指定密钥。这是最不安全的操作方式，我们不建议在任何类型的生产环境中使用。
+
+其他解决方案包括 KeyWhiz、Confidant、Conjur、EJSON、Knox 和 Red October，但在本文档的讨论范围之外，无法涵盖所有可用的 Key Manager。
+
+对于机密的存储，强烈建议使用硬件安全模块 （HSM） 。HSM 可以有多种形式。传统设备是机架式设备，如以下博客文章中所示。
+
+### 相关 Openstack 项目
+
+Castellan 是一个库，它提供了一个简单的通用接口来存储、生成和检索机密。大多数 Openstack 服务都使用它进行机密管理。作为一个图书馆，Castellan 本身并不提供秘密存储。相反，需要部署后端实现。
+
+请注意，Castellan 不提供任何身份验证。它只是通过身份验证凭据（例如Keystone令牌）传递到后端。
+
+Barbican 是一个 OpenStack 服务，为 Castellan 提供后端。Barbican 需要并验证 keystone  身份验证令牌，以识别访问或存储密钥的用户和项目。然后，它应用策略来确定是否允许访问。它还提供了许多额外的有用功能来改进密钥管理，包括配额、每个密钥的 ACL、跟踪密钥使用者以及密钥容器中的密钥分组。例如，明锐直接与巴比肯（而不是卡斯特拉兰）集成，以利用其中一些功能。
+
+Barbican 有许多后端插件，可用于将机密安全地存储在本地数据库或 HSM 中。
+
+目前，Barbican 是 Castellan 唯一可用的后端。然而，有几个后端正在开发中，包括 KMIP、Dogtag、Hashicorp Vault 和  Custodia。对于那些不希望部署 Barbican  并且密钥管理需求相对简单的部署人员来说，使用这些后端之一可能是一个可行的替代方案。但是，在检索密钥时，缺少的是多租户和租户策略的实施，以及上面提到的任何额外功能。
+
+### 使用案例
+
+#### 镜像签名验证
+
+验证镜像签名可确保镜像自原始上传以来不会被替换或更改。镜像签名验证功能使用 Castellan 作为其密钥管理器来存储加密签名。镜像签名和证书 UUID 将与镜像一起上传到镜像 （glance） 服务。Glance  在从密钥管理器检索证书后验证签名。启动镜像时，计算服务 （nova） 在从密钥管理器检索证书后验证签名。
+
+有关更多详细信息，请参阅可信映像文档。
+
+#### 卷加密
+
+卷加密功能使用 Castellan 提供静态数据加密。当用户创建加密卷类型并使用该类型创建卷时，块存储 （cinder） 服务会请求密钥管理器创建要与该卷关联的密钥。当卷附加到实例时，nova 会检索密钥。
+
+有关详细信息，请参阅数据加密部分。和卷加密。
+
+#### 临时磁盘加密
+
+临时磁盘加密功能可解决数据隐私问题。临时磁盘是虚拟主机操作系统使用的临时工作空间。如果不加密，可以在此磁盘上访问敏感的用户信息，并且在卸载磁盘后可能会保留残留信息。
+
+临时磁盘加密功能可以通过安全包装器与密钥管理服务交互，并通过按租户提供临时磁盘加密密钥来支持数据隔离。建议使用后端密钥存储以增强安全性（例如，HSM 或 KMIP 服务器可用作 barbican 后端密钥存储）。
+
+有关详细信息，请参阅临时磁盘加密文档。
+
+#### Sahara
+
+Sahara在操作过程中生成并存储多个密码。为了加强Sahara对密码的使用，可以指示它使用外部密钥管理器来存储和检索这些密钥。要启用此功能，必须首先在堆栈中部署一个 OpenStack Key Manager 服务。
+
+在堆栈上部署密钥管理器服务后，必须将 sahara 配置为启用密钥的外部存储。Sahara 使用 Castellan 库与 OpenStack Key Manager 服务进行交互。此库提供对密钥管理器的可配置访问。
+
+有关详细信息，请参阅 Sahara 高级配置指南。
+
+#### Magnum
+
+为了使用本机客户端（ `docker` 或 `kubectl` 分别）提供对 Docker Swarm 或 Kubernetes 的访问，magnum 使用 TLS 证书。要存储证书，建议使用 Barbican 或 Magnum 数据库 （ `x590keypair` ）。
+
+也可以使用本地目录 （ `local` ），但被认为是不安全的，不适合生产环境。
+
+有关为 Magnum 设置证书管理器的更多详细信息，请参阅容器基础架构管理服务文档。
+
+#### Octavia/LBaaS
+
+Neutron 和 Octavia 项目的 LBaaS（负载均衡器即服务）功能需要证书及其私钥来为 TLS 连接提供负载均衡。Barbican 可用于存储此敏感信息。
+
+有关详细信息，请参阅如何创建 TLS 负载均衡器和部署以 TLS 结尾的 HTTPS 负载均衡器。
+
+#### Swift
+
+对称密钥可用于加密 Swift 容器，以降低用户数据被读取的风险，如果未经授权的一方要获得对磁盘的物理访问权限。
+
+有关更多详细信息，请参阅官方 swift 文档中的对象加密部分。
+
+#### 配置文件中的密码 
+
+OpenStack 服务的配置文件包含许多纯文本密码。例如，这些包括服务用户用于向 keystone 进行身份验证以验证 keystone 令牌的密码。
+
+目前没有对这些密码进行模糊处理的解决方案。建议通过文件权限适当地保护这些文件。
+
+目前正在努力将这些密钥存储在 Castellan 后端，然后让 oslo.config 使用 Castellan 来检索这些密钥。
+
+### Barbican
+
+#### 概述
+
+Barbican 是一个 REST API，旨在安全存储、配置和管理密码、加密密钥和 X.509 证书等机密。它旨在对所有环境都有用，包括大型短暂云。
+
+Barbican 与多个 OpenStack 功能集成，可以直接集成，也可以作为 Castellan 的后端集成。
+
+Barbican 通常用作密钥管理系统，以实现图像签名验证、卷加密等用例。这些用例在用例中进行了概述
+
+##### Barbican 基于角色的访问控制
+
+待定
+
+##### 机密存储后端
+
+Key Manager  服务具有插件架构，允许部署程序将密钥存储在一个或多个密钥存储中。机密存储可以是基于软件的（如软件令牌），也可以是基于硬件设备（如硬件安全模块  （HSM））的。本节介绍当前可用的插件，并讨论每个插件的安全状况。插件已启用并使用配置文件中的 `/etc/barbican/barbican.conf` 设置进行配置。
+
+有两种类型的插件：加密插件和机密存储插件。
+
+#### 加密插件
+
+加密插件将机密存储为 Barbican 数据库中的加密 blob。调用该插件来加密密钥存储上的密钥，并在密钥检索时解密密钥。目前有两种类型的存储插件可用：Simple Crypto 插件和 PKCS#11 加密插件。
+
+#### 简单的加密插件
+
+默认情况下，在 中 `barbican.conf` 配置了简单的加密插件。该插件使用单个对称密钥（KEK - 或“密钥加密密钥”），该密钥以纯文本形式存储在 `barbican.conf` 文件中，以加密和解密所有机密。此插件被认为是不太安全的选项，仅适用于开发和测试，因为主密钥以纯文本形式存储在配置文件中，因此不建议在生产部署中使用。
+
+#### PKCS#11 加密插件 
+
+PKCS#11 加密插件可用于与使用 PKCS#11 协议的硬件安全模块 （HSM） 连接。机密由项目特定的密钥加密密钥 （KEK） 加密 （并在检索时解密） 。KEK 受主 KEK （MKEK） 保护（加密）。MKEK 与 HMAC 一起驻留在 HSM 中。由于每个项目都使用不同的 KEK，并且由于 KEK 以加密形式（而不是配置文件中的明文）存储在数据库中，因此 PKCS#11 插件比简单的加密插件安全得多。它是 Barbican  部署中最受欢迎的后端。
+
+#### 机密存储插件
+
+密钥存储插件与安全存储系统接口，以将密钥存储在这些系统中。密钥存储插件有三种类型：KMIP 插件、Dogtag 插件和 Vault 插件。
+
+#### KMIP 插件
+
+密钥管理互操作性协议 （KMIP） 密钥存储插件用于与启用了 KMIP 的设备（如硬件安全模块 （HSM））进行通信。密钥直接安全地存储在启用了 KMIP  的设备中，而不是存储在 Barbican 数据库中。Barbican  数据库维护对密钥位置的引用，以供以后检索。该插件可以配置为使用用户名和密码或使用客户端证书向启用了 KMIP 的设备进行身份验证。此信息存储在  Barbican 配置文件中。
+
+#### Dogtag 插件 
+
+Dogtag 秘密存储插件用于与 Dogtag 通信。Dogtag 是对应于 Red Hat 证书系统的上游项目，Red Hat Certificate  System 是一个通用标准/FIPS 认证的 PKI 解决方案，包含证书管理器 （CA） 和密钥恢复机构 （KRA），用于安全存储机密。KRA 将机密作为加密的 blob 存储在其内部数据库中，主加密密钥存储在基于软件的 NSS 安全数据库中，或存储在硬件安全模块 （HSM）  中。基于软件的 NSS 数据库配置为不希望使用 HSM 的部署提供了安全选项。KRA 是 FreeIPA 的一个组件，因此可以使用  FreeIPA 服务器配置插件。以下博客文章中提供了有关如何使用 FreeIPA 设置 Barbican 的更详细说明。
+
+####  Vault 插件
+
+Vault 是 Hashicorp 开发的秘密存储，用于安全访问机密和其他对象，例如 API  密钥、密码或证书。保险柜为任何机密提供统一的界面，同时提供严格的访问控制并记录详细的审核日志。Vault 企业版还允许与 HSM  集成以进行自动解封、提供 FIPS 密钥存储和熵增强。但是，Vault  插件的缺点是它不支持多租户，因此所有密钥都将存储在同一个键/值密钥引擎下。挂载点。
+
+##### 威胁分析 
+
+Barbican 团队与 OpenStack 安全项目合作，对最佳实践 Barbican 部署进行了安全审查。安全审查的目的是识别服务设计和体系结构中的弱点和缺陷，并提出解决这些问题的控制或修复措施。
+
+巴比肯威胁分析确定了八项安全发现和两项建议，以提高巴比肯部署的安全性。这些结果可以在安全分析存储库中查看，以及 Barbican 体系结构图和体系结构描述页。
+
+### Castellan 
+
+####  概述
+
+Castellan 是由 Barbican 团队开发的通用密钥管理器界面。它使项目能够使用可配置的密钥管理器，该管理器可以特定于部署。
+
+### 常见问题解答
+
+​      1.在 OpenStack 中安全存储密钥的推荐方法是什么？
+
+在OpenStack中安全地存储和管理密钥的推荐方法是使用Barbican。
+
+​      2.我为什么要使用Barbican？
+
+Barbican 是一种 OpenStack 服务，它支持多租户，并使用 Keystone 令牌进行身份验证。这意味着对密钥的访问是通过租户和 RBAC 角色的 OpenStack 策略来控制的。
+
+Barbican 具有多个可插拔后端，可以使用 PKCS#11 或 KMIP 与基于软件和硬件的安全模块进行通信。
+
+​      3.如果我不想使用Barbican怎么办？
+
+在 Openstack 上下文中，需要管理两种类型的密钥 - 需要密钥失真令牌才能访问的密钥，以及不需要密钥验证令牌的密钥。
+
+需要 keystone 身份验证的密钥的一个示例是特定项目拥有的密码和密钥。例如，这些包括项目加密煤渣卷的加密密钥或项目概览图像的签名密钥。
+
+不需要 keystone 令牌即可访问的密钥示例包括服务配置文件中服务用户的密码或不属于任何特定项目的加密密钥。
+
+需要 keystone 令牌的机密应使用 Barbican 进行存储。
+
+不需要 keystone 身份验证的密钥可以存储在任何密钥存储中，该密钥存储实现了通过 Castellan 公开的简单密钥存储 API。这也包括巴比肯。
+
+​      4.如何使用 Vault、Keywhiz、Custodia 等...？
+
+如果已为该密钥管理器编写了 Castellan 插件，则您选择的密钥管理器可以与该密钥管理器一起使用。一旦该插件被编写出来，直接使用该插件或在 Barbican 后面使用该插件是相对微不足道的。
+
+目前，Vault 和 Custodia 插件正在为 Queens 周期开发。
+
+### 检查表
+
+#### Check-Key-Manager-01：配置文件的所有权是否设置为 root/barbican？
+
+配置文件包含组件平稳运行所需的关键参数和信息。如果非特权用户有意或无意地修改或删除任何参数或文件本身，则会导致严重的可用性问题，从而导致拒绝向其他最终用户提供服务。此类关键配置文件的用户所有权必须设置为 root，组所有权必须设置为 barbican。此外，包含目录应具有相同的所有权，以确保正确拥有新文件。
+
+运行以下命令：
+
+```
+$ stat -L -c "%U %G" /etc/barbican/barbican.conf | egrep "root barbican"
+$ stat -L -c "%U %G" /etc/barbican/barbican-api-paste.ini | egrep "root barbican"
+$ stat -L -c "%U %G" /etc/barbican/policy.json | egrep "root barbican"
+$ stat -L -c "%U %G" /etc/barbican | egrep "root barbican"
+```
+
+通过：如果所有这些配置文件的用户和组所有权分别设置为 root 和 barbican。上面的命令显示了 root / barbican 的输出。
+
+失败：如果上述命令未返回任何输出，则用户和组所有权可能已设置为除 root 以外的任何用户或除 barbican 以外的任何组。
+
+#### Check-Key-Manager-02：是否为配置文件设置了严格的权限？
+
+与前面的检查类似，我们建议为此类配置文件设置严格的访问权限。
+
+运行以下命令：
+
+```
+$ stat -L -c "%a" /etc/barbican/barbican.conf
+$ stat -L -c "%a" /etc/barbican/barbican-api-paste.ini
+$ stat -L -c "%a" /etc/barbican/policy.json
+$ stat -L -c "%a" /etc/barbican
+```
+
+还可以进行更广泛的限制：如果包含目录设置为 750，则保证此目录中新创建的文件具有所需的权限。
+
+通过：如果权限设置为 640 或更严格，或者包含目录设置为 750。640 的权限转换为所有者 r/w、组 r，而对其他人没有权限，例如“u=rw，g=r，o=”。
+
+**注意**
+
+```
+使用 Check-Key-Manager-01：配置文件的所有权是否设置为 root/barbican？权限设置为 640，root  具有读/写访问权限，Barbican 具有对这些配置文件的读取访问权限。也可以使用以下命令验证访问权限。仅当此命令支持 ACL  时，它才在您的系统上可用。
+```
+
+```
+$ getfacl --tabular -a /etc/barbican/barbican.conf
+getfacl: Removing leading '/' from absolute path names
+# file: etc/barbican/barbican.conf
+USER   root  rw-
+GROUP  barbican  r--
+mask         r--
+other        ---
+```
+
+失败：如果权限设置大于 640。
+
+#### Check-Key-Manager-03：OpenStack Identity 是否用于身份验证？
+
+OpenStack 支持各种身份验证策略，如 `noauth` 和 `keystone` 。如果使用该 `noauth` 策略，则用户无需任何身份验证即可与 OpenStack 服务进行交互。这可能是一个潜在的风险，因为攻击者可能会获得对 OpenStack 组件的未经授权的访问。我们强烈建议所有服务都必须使用其服务帐户通过 keystone 进行身份验证。
+
+通过：如果参数 `authtoken` 列在 中的 `pipeline:barbican-api-keystone` `barbican-api-paste.ini` 部分下。
+
+失败：如果 中的 `pipeline:barbican-api-keystone` `barbican-api-paste.ini` 部分下缺少该参数 `authtoken` 。
+
+#### Check-Key-Manager-04：是否启用了 TLS 进行身份验证？
+
+OpenStack 组件使用各种协议相互通信，通信可能涉及敏感或机密数据。攻击者可能会尝试窃听频道以访问敏感信息。所有组件必须使用安全通信协议相互通信。
+
+通过：如果 section in `/etc/barbican/barbican.conf` 下的参数值设置为 Identity API 端点开头， `https://` 并且 same `/etc/barbican/barbican.conf` 中同一 `[keystone_authtoken]` 部分下的 `[keystone_authtoken]` 参数 `www_authenticate_uri`  `insecure` 值设置为 `False` 。
+
+失败：如果 in `/etc/barbican/barbican.conf` 部分下的 `[keystone_authtoken]` 参数 `www_authenticate_uri` 值未设置为以 开头的身份 API 端点， `https://` 或者同一 `/etc/barbican/barbican.conf` 部分中的参数 `insecure`  `[keystone_authtoken]` 值设置为 `True` 。
 
 
 
