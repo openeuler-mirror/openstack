@@ -4595,7 +4595,650 @@ OpenStack 组件使用各种协议相互通信，通信可能涉及敏感或机�
 
 失败：如果 in `/etc/barbican/barbican.conf` 部分下的 `[keystone_authtoken]` 参数 `www_authenticate_uri` 值未设置为以 开头的身份 API 端点， `https://` 或者同一 `/etc/barbican/barbican.conf` 部分中的参数 `insecure`  `[keystone_authtoken]` 值设置为 `True` 。
 
+## 消息队列
 
+消息队列服务促进了 OpenStack 中的进程间通信。OpenStack 支持以下消息队列服务后端：
+
+- RabbitMQ
+- Qpid
+- ZeroMQ 或 0MQ
+
+RabbitMQ 和 Qpid 都是高级消息队列协议 （AMQP） 框架，它们为点对点通信提供消息队列。队列实现通常部署为集中式或分散式队列服务器池。ZeroMQ 通过 TCP 套接字提供直接的点对点通信。
+
+消息队列有效地促进了跨 OpenStack 部署的命令和控制功能。一旦允许访问队列，就不会执行进一步的授权检查。可通过队列访问的服务会验证实际消息负载中的上下文和令牌。但是，您必须注意令牌的到期日期，因为令牌可能可重播，并且可以授权基础结构中的其他服务。
+
+OpenStack 不支持消息级别的安全性，例如消息签名。因此，您必须对消息传输本身进行安全和身份验证。对于高可用性 （HA） 配置，您必须执行队列对队列的身份验证和加密。
+
+通过 ZeroMQ 消息传递，IPC 套接字在单个机器上使用。由于这些套接字容易受到攻击，因此请确保云运营商已保护它们。
+
+- 消息安全
+  - 消息传输安全
+  - 队列身份验证和访问控制
+  - 消息队列进程隔离和策略
+
+### 消息安全
+
+本节讨论 OpenStack 中使用的三种最常见的消息队列解决方案的安全强化方法：RabbitMQ、Qpid 和 ZeroMQ。
+
+#### 消息传输安全
+
+基于 AMQP 的解决方案（Qpid 和 RabbitMQ）支持使用 TLS 的传输级安全性。ZeroMQ 消息传递本身不支持 TLS，但使用标记的 IPsec 或 CIPSO 网络标签可以实现传输级安全性。
+
+我们强烈建议为您的消息队列启用传输级加密。将 TLS 用于消息传递客户端连接可以保护通信在传输到消息传递服务器的过程中不被篡改和窃听。以下是有关如何为两个常用消息传递服务器 Qpid 和  RabbitMQ 配置 TLS 的指南。在配置消息传递服务器用于验证客户机连接的可信证书颁发机构 （CA）  捆绑软件时，建议仅将其限制为用于节点的 CA，最好是内部管理的 CA。受信任的 CA 捆绑包将确定哪些客户端证书将获得授权，并通过设置 TLS  连接的客户端-服务器验证步骤。请注意，在安装证书和密钥文件时，请确保文件权限受到限制，例如使用 `chmod 0600` ，并且所有权限制为消息传递服务器守护程序用户，以防止消息传递服务器上的其他进程和用户进行未经授权的访问。
+
+##### RabbitMQ 服务器 SSL 配置
+
+应将以下行添加到系统范围的 RabbitMQ 配置文件中，通常 `/etc/rabbitmq/rabbitmq.config` ：
+
+```
+[
+  {rabbit, [
+     {tcp_listeners, [] },
+     {ssl_listeners, [{"<IP address or hostname of management network interface>", 5671}] },
+     {ssl_options, [{cacertfile,"/etc/ssl/cacert.pem"},
+                    {certfile,"/etc/ssl/rabbit-server-cert.pem"},
+                    {keyfile,"/etc/ssl/rabbit-server-key.pem"},
+                    {verify,verify_peer},
+                    {fail_if_no_peer_cert,true}]}
+   ]}
+].
+```
+
+请注意，该 `tcp_listeners` 选项设置为 `[]` 阻止它侦听非 SSL 端口。应将该 `ssl_listeners` 选项限制为仅在管理网络上侦听服务。
+
+有关 RabbitMQ SSL 配置的更多信息，请参阅：
+
+- RabbitMQ 配置
+- RabbitMQ SSL协议
+
+##### Qpid 服务器 SSL 配置 
+
+Apache 基金会为 Qpid 提供了消息传递安全指南。请参阅：
+
+- Apache Qpid SSL
+
+#### 队列认证和访问控制
+
+RabbitMQ 和 Qpid 提供身份验证和访问控制机制，用于控制对队列的访问。ZeroMQ 不提供此类机制。
+
+简单身份验证和安全层 （SASL） 是 Internet 协议中用于身份验证和数据安全的框架。RabbitMQ 和 Qpid 都提供 SASL  和其他可插入的身份验证机制，而不仅仅是简单的用户名和密码，从而可以提高身份验证安全性。虽然 RabbitMQ 支持 SASL，但  OpenStack 中的支持目前不允许请求特定的 SASL 身份验证机制。OpenStack 中的 RabbitMQ  支持允许通过未加密的连接进行用户名和密码身份验证，或者将用户名和密码与 X.509 客户端证书结合使用，以建立安全的 TLS 连接。
+
+我们建议在所有 OpenStack 服务节点上配置 X.509 客户端证书，以便客户端连接到消息传递队列，并在可能的情况下（目前仅 Qpid）使用 X.509 客户端证书执行身份验证。使用用户名和密码时，应按服务和节点创建帐户，以便对队列的访问进行更精细的可审核性。
+
+在部署之前，请考虑排队服务器使用的 TLS 库。Qpid 使用 Mozilla 的 NSS 库，而 RabbitMQ 使用 Erlang 的 TLS 模块，该模块使用 OpenSSL。
+
+##### 身份验证配置示例：RabbitMQ 
+
+在 RabbitMQ 服务器上，删除默认 `guest` 用户：
+
+```
+# rabbitmqctl delete_user guest
+```
+
+在 RabbitMQ 服务器上，对于与消息队列通信的每个 OpenStack 服务或节点，请设置用户帐户和权限：
+
+```
+# rabbitmqctl add_user compute01 RABBIT_PASS
+# rabbitmqctl set_permissions compute01 ".*" ".*" ".*"
+```
+
+将RABBIT_PASS替换为合适的密码。
+
+有关其他配置信息，请参阅：
+
+- RabbitMQ 访问控制
+- RabbitMQ 身份验证
+- RabbitMQ 插件
+- RabbitMQ SASL 外部身份验证
+
+##### OpenStack 服务配置：RabbitMQ
+
+```
+[DEFAULT]
+rpc_backend = nova.openstack.common.rpc.impl_kombu
+rabbit_use_ssl = True
+rabbit_host = RABBIT_HOST
+rabbit_port = 5671
+rabbit_user = compute01
+rabbit_password = RABBIT_PASS
+kombu_ssl_keyfile = /etc/ssl/node-key.pem
+kombu_ssl_certfile = /etc/ssl/node-cert.pem
+kombu_ssl_ca_certs = /etc/ssl/cacert.pem
+```
+
+##### 身份验证配置示例：Qpid 
+
+有关配置信息，请参阅：
+
+- Apache Qpid 身份验证
+- Apache Qpid 授权
+
+##### OpenStack 服务配置：Qpid
+
+```
+[DEFAULT]
+rpc_backend = nova.openstack.common.rpc.impl_qpid
+qpid_protocol = ssl
+qpid_hostname = <IP or hostname of management network interface of messaging server>
+qpid_port = 5671
+qpid_username = compute01
+qpid_password = QPID_PASS
+```
+
+（可选）如果将 SASL 与 Qpid 一起使用，请通过添加以下内容来指定正在使用的 SASL 机制：
+
+```
+qpid_sasl_mechanisms = <space separated list of SASL mechanisms to use for auth>
+```
+
+#### 消息队列进程隔离和策略
+
+每个项目都提供了许多发送和使用消息的服务。每个发送消息的二进制文件都应该使用队列中的消息，如果只是回复的话。
+
+消息队列服务进程应彼此隔离，并应与计算机上的其他进程隔离。
+
+##### 命名空间
+
+强烈建议在 OpenStack Compute Hypervisor 上运行的所有服务使用网络命名空间。这将有助于防止 VM 来宾和管理网络之间的网络流量桥接。
+
+使用 ZeroMQ 消息传递时，每个主机必须至少运行一个 ZeroMQ 消息接收器，以接收来自网络的消息并通过 IPC 将消息转发到本地进程。在 IPC 命名空间中为每个项目运行一个独立的消息接收器是可能的，也是可取的，以及同一项目中的其他服务。
+
+##### 网络策略
+
+队列服务器应仅接受来自管理网络的连接。这适用于所有实现。这应通过服务配置来实现，并可选择通过全局网络策略强制实施。
+
+使用 ZeroMQ 消息传递时，每个项目都应在专用于属于该项目的服务的端口上运行单独的 ZeroMQ 接收方进程。这相当于 AMQP 的控制交换概念。
+
+##### 强制访问控制
+
+使用强制访问控制 （MAC） 和自由访问控制 （DAC） 将进程的配置限制为仅这些进程。此限制可防止这些进程与在同一台计算机上运行的其他进程隔离。
+
+## 数据处理
+
+数据处理服务（sahara）提供了一个平台，用于使用Hadoop和Spark等处理框架来配置和管理实例集群。通过 OpenStack Dashboard 或 REST  API，用户能够上传和执行框架应用程序，这些应用程序可以访问对象存储或外部提供程序中的数据。数据处理控制器使用编排服务 （heat）  创建实例集群，这些集群可以作为长期运行的组存在，这些组可以根据请求进行扩展和收缩，也可以作为为单个工作负载创建的瞬态组存在。
+
+- 数据处理简介
+  - 架构
+  - 涉及的技术
+  - 用户对资源的访问权限
+- 部署
+  - 控制器对集群的网络访问
+- 配置和强化
+  - TLS
+  - 基于角色的访问控制策略
+  - 安全组
+  - 代理域
+  - 自定义网络拓扑
+  - 间接访问
+  - 根包装
+  - 日志记录
+  - 参考书目
+
+### 数据处理简介
+
+数据处理服务控制器将负责创建、维护和销毁为其集群创建的任何实例。控制器将使用网络服务在自身和集群实例之间建立网络路径。它还将管理要在集群上运行的用户应用程序的部署和生命周期。集群中的实例包含框架处理引擎的核心，数据处理服务提供了多个选项来创建和管理与这些实例的连接。
+
+数据处理资源（群集、作业和数据源）按身份服务中定义的项目进行分隔。这些资源在项目中共享，了解使用该服务的人员的访问需求非常重要。通过使用基于角色的访问控制，可以进一步限制项目中的活动（例如启动集群、上传作业等）。
+
+在本章中，我们将讨论如何评估数据处理用户对其应用程序、他们使用的数据以及他们在项目中的预期功能的需求。我们还将演示服务控制器及其集群的一些强化技术，并提供各种控制器配置和用户管理方法的示例，以确保足够的安全和隐私级别。
+
+#### 架构
+
+下图显示了数据处理服务如何适应更大的 OpenStack 生态系统的概念视图。
+
+![../_images/data_processing_architecture.png](https://docs.openstack.org/security-guide/_images/data_processing_architecture.png)
+
+数据处理服务在集群配置过程中大量使用计算、编排、镜像和块存储服务。它还将使用在群集创建期间提供的由网络服务创建的一个或多个网络来管理实例。当用户运行框架应用程序时，控制器和集群将访问对象存储服务。鉴于这些服务用法，我们建议按照系统文档中概述的说明对安装的所有组件进行编目。
+
+#### 涉及的技术
+
+数据处理服务负责部署和管理多个应用程序。为了全面了解所提供的安全选项，我们建议操作员大致熟悉这些应用程序。突出显示的技术列表分为两部分：第一部分，对安全性影响较大的高优先级应用程序，第二部分，支持影响较小的应用程序。
+
+更高的影响
+
+- Hadoop
+- Hadoop安全模式文档
+- HDFS
+- Spark 
+- Spark 安全
+- Storm 
+- Zookeeper
+
+较低的影响
+
+- Oozie
+- Hive
+- Pig
+
+这些技术构成了与数据处理服务一起部署的框架的核心。除了这些技术之外，该服务还包括第三方供应商提供的捆绑框架。这些捆绑框架是使用上述相同核心部分以及供应商包含的配置和应用程序构建的。有关第三方框架捆绑包的更多信息，请参阅以下链接：
+
+- Cloudera CDH
+- Hortonworks Data Platform
+- MapR
+
+#### 用户访问资源
+
+数据处理服务的资源（集群、作业和数据源）在项目范围内共享。尽管单个控制器安装可以管理多组资源，但这些资源的范围将限定为单个项目。鉴于此限制，我们建议密切监视项目中的用户成员身份，以保持资源的适当隔离。
+
+由于部署此服务的组织的安全要求会根据其特定需求而有所不同，因此我们建议运营商将重点放在数据隐私、集群管理和最终用户应用程序上，作为评估用户需求的起点。这些决策将有助于指导配置用户对服务的访问的过程。有关数据隐私的扩展讨论，请参阅租户数据隐私。
+
+数据处理安装的默认假设是用户将有权访问其项目中的所有功能。如果需要更精细的控制，数据处理服务会提供策略文件（如策略中所述）。这些配置将高度依赖于安装组织的需求，因此没有关于其使用的一般建议：有关详细信息，请参阅基于角色的访问控制策略。
+
+### 部署
+
+与许多其他 OpenStack 服务一样，数据处理服务被部署为在连接到堆栈的主机上运行的应用程序。从 Kilo  版本开始，它能够以分布式方式部署多个冗余控制器。与其他服务一样，它也需要一个数据库来存储有关其资源的信息。请参阅数据库。请务必注意，数据处理服务将需要管理多个标识服务信任，直接与业务流程和网络服务通信，并可能在代理域中创建用户。由于这些原因，控制器将需要访问控制平面，因此我们建议将其与其他服务控制器一起安装。
+
+数据处理直接与多个 OpenStack 服务交互：
+
+- 计算
+- 身份验证
+- 联网
+- 对象存储
+- 配器
+- 块存储（可选）
+
+建议记录这些服务与数据处理控制器之间的所有数据流和桥接点。请参阅系统文档。
+
+数据处理服务使用对象存储服务来存储作业二进制文件和数据源。希望访问完整数据处理服务功能的用户将需要在他们正在使用的项目中存储对象。
+
+网络服务在群集的配置中起着重要作用。在预配之前，用户应为群集实例提供一个或多个网络。关联网络的操作类似于通过仪表板启动实例时分配网络的过程。控制器使用这些网络对其集群的实例和框架进行管理访问。
+
+另外值得注意的是身份服务。数据处理服务的用户需要在其项目中具有适当的角色，以允许为其集群预置实例。使用代理域配置的安装需要特别注意。请参阅代理域。具体而言，数据处理服务将需要能够在代理域中创建用户。
+
+#### 控制器对集群的网络访问
+
+数据处理控制器的主要任务之一是与其生成的实例进行通信。这些实例是预置的，然后根据所使用的框架进行配置。控制器和实例之间的通信使用安全外壳 （SSH） 和 HTTP 协议。
+
+在预配集群时，将在用户提供的网络中为每个实例提供一个 IP 地址。第一个网络通常称为数据处理管理网络，实例可以使用网络服务为此网络分配的固定 IP  地址。控制器还可以配置为除了固定地址之外，还对实例使用浮动 IP 地址。与实例通信时，控制器将首选浮动地址（如果启用）。
+
+对于固定和浮动 IP  地址无法提供所需功能的情况，控制器可以通过两种替代方法提供访问：自定义网络拓扑和间接访问。自定义网络拓扑功能允许控制器通过配置文件中提供的  shell 命令访问实例。间接访问用于指定用户在集群置备期间可用作代理网关的实例。这些选项通过配置和强化中的用法示例进行讨论。
+
+### 配置和强化
+
+有多个配置选项和部署策略可以提高数据处理服务的安全性。服务控制器通过主配置文件和一个或多个策略文件进行配置。使用数据局部性功能的安装还将具有两个附加文件，用于指定计算节点和对象存储节点的物理位置。
+
+#### TLS系统
+
+与许多其他 OpenStack 控制器一样，数据处理服务控制器可以配置为需要 TLS 连接。
+
+Pre-Kilo 版本将需要 TLS 代理，因为控制器不允许直接 TLS 连接。TLS 代理和 HTTP 服务中介绍了如何配置 TLS 代理，我们建议按照其中的建议创建此类安装。
+
+从 Kilo 版本开始，数据处理控制器允许直接 TLS 连接，我们建议这样做。启用此行为需要对控制器配置文件进行一些小的调整。
+
+**例。配置对控制器的 TLS 访问**
+
+```
+[ssl]
+ca_file = cafile.pem
+cert_file = certfile.crt
+key_file = keyfile.key
+```
+
+#### 基于角色的访问控制策略
+
+数据处理服务使用策略文件（如策略中所述）来配置基于角色的访问控制。使用策略文件，操作员可以限制组对特定数据处理功能的访问。
+
+执行此操作的原因将根据安装的组织要求而更改。通常，这些细粒度控件用于操作员需要限制数据处理服务资源的创建、删除和检索的情况。需要限制项目内访问的操作员应充分意识到，需要有其他方法让用户访问服务的核心功能（例如，配置集群）。
+
+**例。允许所有用户使用所有方法（默认策略）**
+
+```
+{
+    "default": ""
+}
+```
+
+**例。禁止对非管理员用户进行映像注册表操作**
+
+```
+{
+    "default": "",
+
+    "data-processing:images:register": "role:admin",
+    "data-processing:images:unregister": "role:admin",
+    "data-processing:images:add_tags": "role:admin",
+    "data-processing:images:remove_tags": "role:admin"
+}
+```
+
+#### 安全组
+
+数据处理服务允许将安全组与为其集群预置的实例相关联。无需其他配置，该服务将对预置集群的任何项目使用默认安全组。如果请求，可以使用不同的安全组，或者存在一个自动选项，该选项指示服务根据所访问框架指定的端口创建安全组。
+
+对于生产环境，我们建议手动控制安全组，并创建一组适合安装的组规则。通过这种方式，操作员可以确保默认安全组将包含所有适当的规则。有关安全组的扩展讨论，请参阅安全组。
+
+#### 代理域
+
+将对象存储服务与数据处理结合使用时，需要添加存储访问凭据。使用代理域，数据处理服务可以改用来自标识服务的委派信任，以允许通过域中创建的临时用户进行存储访问。要使此委派机制起作用，必须将数据处理服务配置为使用代理域，并且操作员必须为代理用户配置身份域。
+
+数据处理控制器保留为对象存储访问提供的用户名和密码的临时存储。使用代理域时，控制器将为代理用户生成此对，并且此用户的访问将仅限于身份信任的访问。我们建议在控制器或其数据库具有与公共网络之间的路由的任何安装中使用代理域。
+
+**示例：为名为“dp_proxy”的代理域进行配置**
+
+```
+[DEFAULT]
+use_domain_for_proxy_users = true
+proxy_user_domain_name = dp_proxy
+proxy_user_role_names = Member
+```
+
+#### 自定义网络拓扑 
+
+数据处理控制器可以配置为使用代理命令来访问其集群实例。通过这种方式，可以为不使用网络服务直接提供的网络的安装创建自定义网络拓扑。对于需要限制控制器和实例之间访问的安装，我们建议使用此选项。
+
+**示例：通过指定的中继机访问实例**
+
+```
+[DEFAULT]
+proxy_command='ssh relay-machine-{tenant_id} nc {host} {port}'
+```
+
+**示例：通过自定义网络命名空间访问实例**
+
+```
+[DEFAULT]
+proxy_command='ip netns exec ns_for_{network_id} nc {host} {port}'
+```
+
+#### 间接访问
+
+对于控制器对集群所有实例的访问权限有限的安装，由于对浮动 IP 地址或安全规则的限制，可以配置间接访问。这允许将某些实例指定为集群其他实例的代理网关。
+
+只有在定义将构成数据处理集群的节点组模板时，才能启用此配置。它作为运行时选项提供，可在群集置备过程中启用。
+
+#### Rootwrap
+
+在为网络访问创建自定义拓扑时，可能需要允许非 root 用户运行代理命令。对于这些情况，oslo rootwrap 软件包用于为非 root  用户提供运行特权命令的工具。此配置要求与数据处理控制器应用程序关联的用户位于 sudoers  列表中，并在配置文件中启用该选项。或者，可以提供备用 rootwrap 命令。
+
+**示例：启用 rootwrap 用法并显示默认命令**
+
+```
+[DEFAULT]
+use_rootwrap=True
+rootwrap_command=’sudo sahara-rootwrap /etc/sahara/rootwrap.conf’
+```
+
+关于 rootwrap 项目的更多信息，请参考官方文档：https://wiki.openstack.org/wiki/Rootwrap
+
+#### 日志
+
+监视服务控制器的输出是一个强大的取证工具，如监视和日志记录中更详细地描述的那样。数据处理服务控制器提供了几个选项来设置日志记录的位置和级别。
+
+**示例：将日志级别设置为高于警告并指定输出文件。**
+
+```
+[DEFAULT]
+verbose = true
+log_file = /var/log/data-processing.log
+```
+
+#### 参考书目
+
+OpenStack.org，欢迎来到Sahara！2016.Sahara项目文档
+
+Apache 软件基金会，欢迎来到 Apache Hadoop！2016. Apache Hadoop 项目
+
+Apache 软件基金会，安全模式下的 Hadoop。2016. Hadoop 安全模式文档
+
+Apache 软件基金会，HDFS 用户指南。2016. Hadoop HDFS 文档
+
+Apache 软件基金会，Spark。2016. Spark项目
+
+Apache 软件基金会，Spark Security。2016. Spark 安全文档
+
+Apache 软件基金会，Apache Storm。2016. Storm 项目
+
+Apache 软件基金会，Apache Zookeeper。2016. Zookeeper 项目
+
+Apache 软件基金会，Apache Oozie Workflow Scheduler for Hadoop。2016. Oozie项目
+
+Apache 软件基金会，Apache Hive。2016. Hive
+
+Apache 软件基金会，欢迎来到 Apache Pig。2016.Pig
+
+Apache 软件基金会，Cloudera 产品文档。2016. Cloudera CDH 文档
+
+Hortonworks，Hortonworks。2016. Hortonworks 数据平台文档
+
+MapR Technologies，用于 MapR 融合数据平台的 Apache Hadoop。2016. MapR 项目
+
+## 数据库
+
+数据库服务器的选择是 OpenStack 部署安全性的一个重要考虑因素。在决定使用数据库服务器时，应考虑多种因素，但在本本书的范围内，将只讨论安全注意事项。OpenStack 支持多种数据库类型。有关更多信息，请参阅《OpenStack 管理员指南》。
+
+《安全指南》目前主要针对 PostgreSQL 和 MySQL。
+
+- 数据库后端注意事项
+  - 数据库后端的安全参考
+- 数据库访问控制
+  - OpenStack 数据库访问模型
+  - 数据库身份验证和访问控制
+  - 要求用户帐户需要 SSL 传输
+  - 使用 X.509 证书进行身份验证
+  - OpenStack 服务数据库配置
+  - Nova-conductor 
+- 数据库传输安全性
+  - 数据库服务器 IP 地址绑定
+  - 数据库传输
+  - MySQL SSL配置
+  - PostgreSQL SSL 配置
+
+### 数据库后端注意事项
+
+PostgreSQL 具有许多理想的安全功能，例如 Kerberos 身份验证、对象级安全性和加密支持。PostgreSQL 社区在提供可靠的指导、文档和工具以促进积极的安全实践方面做得很好。
+
+MySQL拥有庞大的社区，被广泛采用，并提供高可用性选项。MySQL还能够通过插件身份验证机制提供增强的客户端身份验证。MySQL社区中的分叉发行版提供了许多可供考虑的选项。根据对安全态势的全面评估和为给定发行版提供的支持级别，选择MySQL的特定实现非常重要。
+
+#### 数据库后端的安全参考
+
+建议部署 MySQL 或 PostgreSQL 的用户参考现有的安全指南。下面列出了一些参考资料：
+
+MySQL数据库：
+
+- OWASP MySQL强化
+
+- MySQL 可插入身份验证
+- MySQL中的安全性
+
+PostgreSQL格式：
+
+- OWASP PostgreSQL 强化
+- PostgreSQL 数据库中的总体安全性
+
+### 数据库访问控制
+
+每个核心 OpenStack 服务（计算、身份、网络、块存储）都将状态和配置信息存储在数据库中。在本章中，我们将讨论当前在OpenStack中使用数据库的方式。我们还探讨了安全问题，以及数据库后端选择的安全后果。
+
+#### OpenStack 数据库访问模型 
+
+OpenStack 项目中的所有服务都访问单个数据库。目前没有用于创建基于表或行的数据库访问限制的参考策略。
+
+在OpenStack中，没有对数据库操作进行精细控制的一般规定。访问权限和特权的授予仅基于节点是否有权访问数据库。在这种情况下，有权访问数据库的节点可能具有 DROP、INSERT 或 UPDATE 函数的完全权限。
+
+##### 精细访问控制
+
+默认情况下，每个 OpenStack 服务及其进程都使用一组共享凭据访问数据库。这使得审核数据库操作和撤消服务及其进程对数据库的访问权限变得特别困难。
+
+![../_images/databaseusername.png](https://docs.openstack.org/security-guide/_images/databaseusername.png)
+
+##### Nova-conductor
+
+计算节点是 OpenStack 中最不受信任的服务，因为它们托管租户实例。引入该 `nova-conductor` 服务作为数据库代理，充当计算节点和数据库之间的中介。我们将在本章后面讨论其后果。
+
+我们强烈建议：
+
+- 所有数据库通信都与管理网络隔离
+- 使用 TLS 保护通信
+- 为每个 OpenStack 服务端点创建唯一的数据库用户帐户（如下图所示）
+
+![../_images/databaseusernamessl.png](https://docs.openstack.org/security-guide/_images/databaseusernamessl.png)
+
+#### 数据库认证和访问控制
+
+考虑到访问数据库的风险，我们强烈建议为每个需要访问数据库的节点创建唯一的数据库用户帐户。这样做有助于更好地进行分析和审核，以确保合规性，或者在节点遭到入侵时，通过在检测到该节点时删除该节点对数据库的访问来隔离受感染的主机。创建这些每个服务终结点数据库用户帐户时，应注意确保将其配置为需要 TLS。或者，为了提高安全性，建议除了用户名和密码外，还使用 X.509 证书身份验证来配置数据库帐户。
+
+##### 权限 
+
+应创建并保护一个单独的数据库管理员 （DBA） 帐户，该帐户具有创建/删除数据库、创建用户帐户和更新用户权限的完全权限。这种简单的责任分离方法有助于防止意外配置错误，降低风险并缩小危害范围。
+
+为 OpenStack 服务和每个节点创建的数据库用户帐户的权限应仅限于与该节点所属的服务相关的数据库。
+
+#### 要求用户帐户需要 SSL 传输
+
+##### 配置示例 #1：（MySQL）
+
+```
+GRANT ALL ON dbname.* to 'compute01'@'hostname' IDENTIFIED BY 'NOVA_DBPASS' REQUIRE SSL;
+```
+
+##### 配置示例 #2：（PostgreSQL）
+
+在文件中 `pg_hba.conf` ：
+
+```
+hostssl dbname compute01 hostname md5
+```
+
+请注意，此命令仅添加通过 SSL 进行通信的功能，并且是非独占的。应禁用可能允许未加密传输的其他访问方法，以便 SSL 是唯一的访问方法。
+
+该 `md5` 参数将身份验证方法定义为哈希密码。我们在以下部分中提供了一个安全身份验证示例。
+
+##### OpenStack 服务数据库配置
+
+如果数据库服务器配置为使用 TLS 传输，则需要指定用于 SQLAlchemy 查询中的初始连接字符串的证书颁发机构信息。
+
+###### MySQL `:sql_connection` 的字符串示例：
+
+```
+sql_connection = mysql://compute01:NOVA_DBPASS@localhost/nova?charset=utf8&ssl_ca=/etc/mysql/cacert.pem
+```
+
+#### 使用 X.509 证书进行身份验证 
+
+通过要求使用 X.509 客户端证书进行身份验证，可以增强安全性。以这种方式对数据库进行身份验证可以为与数据库建立连接的客户端提供更好的身份保证，并确保通信是加密的。
+
+##### 配置示例 #1：（MySQL）
+
+```
+GRANT ALL on dbname.* to 'compute01'@'hostname' IDENTIFIED BY 'NOVA_DBPASS' REQUIRE SUBJECT
+'/C=XX/ST=YYY/L=ZZZZ/O=cloudycloud/CN=compute01' AND ISSUER
+'/C=XX/ST=YYY/L=ZZZZ/O=cloudycloud/CN=cloud-ca';
+```
+
+##### 配置示例 #2：（PostgreSQL）
+
+```
+hostssl dbname compute01 hostname cert
+```
+
+#### OpenStack 服务数据库配置 
+
+如果数据库服务器配置为需要 X.509 证书进行身份验证，则需要为数据库后端指定相应的 SQLAlchemy 查询参数。这些参数指定用于初始连接字符串的证书、私钥和证书颁发机构信息。
+
+MySQL 的 X.509 证书身份验证 `:sql_connection` 字符串示例：
+
+```
+sql_connection = mysql://compute01:NOVA_DBPASS@localhost/nova?
+charset=utf8&ssl_ca = /etc/mysql/cacert.pem&ssl_cert=/etc/mysql/server-cert.pem&ssl_key=/etc/mysql/server-key.pem
+```
+
+#### Nova-conductor
+
+OpenStack Compute 提供了一个称为 nova-conductor 的子服务，用于代理数据库连接，其主要目的是让 nova 计算节点与 nova-conductor 连接以满足数据持久性需求，而不是直接与数据库通信。
+
+Nova-conductor 通过 RPC 接收请求并代表调用服务执行操作，而无需授予对数据库、其表或其中数据的精细访问权限。Nova-conductor 实质上将直接数据库访问从计算节点中抽象出来。
+
+这种抽象的优点是将服务限制为使用参数执行方法，类似于存储过程，从而防止大量系统直接访问或修改数据库数据。这是在不在数据库本身的上下文或范围内存储或执行这些过程的情况下完成的，这是对典型存储过程的常见批评。
+
+![../_images/novaconductor.png](https://docs.openstack.org/security-guide/_images/novaconductor.png)
+
+遗憾的是，此解决方案使更细粒度的访问控制和审核数据访问的能力的任务复杂化。由于 nova-conductor 服务通过 RPC 接收请求，因此它突出了提高消息传递安全性的重要性。任何有权访问消息队列的节点都可以执行  nova-conductor 提供的这些方法，并有效地修改数据库。
+
+请注意，由于 nova-conductor 仅适用于 OpenStack Compute，因此对于其他 OpenStack 组件（如 Telemetry（云高计）、网络和块存储）的运行，可能仍然需要从计算主机直接访问数据库。
+
+若要禁用 nova-conductor，请将以下内容放入 `nova.conf` 文件中（在计算主机上）：
+
+```
+[conductor]
+use_local = true
+```
+
+### 数据库传输安全性
+
+本章介绍与数据库服务器之间的网络通信相关的问题。这包括 IP 地址绑定和使用 TLS 加密网络流量。
+
+#### 数据库服务器 IP 地址绑定
+
+若要隔离服务和数据库之间的敏感数据库通信，强烈建议将数据库服务器配置为仅允许通过隔离的管理网络与数据库进行通信。这是通过限制数据库服务器为传入客户端连接绑定网络套接字的接口或 IP 地址来实现的。
+
+##### 限制 MySQL 的绑定地址
+
+在 `my.cnf` ：
+
+```
+[mysqld]
+...
+bind-address <ip address or hostname of management network interface>
+```
+
+##### 限制 PostgreSQL 的监听地址 
+
+在 `postgresql.conf` ：
+
+```
+listen_addresses = <ip address or hostname of management network interface>
+```
+
+#### 数据库传输
+
+除了将数据库通信限制为管理网络外，我们还强烈建议云管理员将其数据库后端配置为需要 TLS。将 TLS 用于数据库客户端连接可保护通信不被篡改和窃听。正如下一节将讨论的那样，使用 TLS 还提供了通过 X.509  证书（通常称为 PKI）执行数据库用户身份验证的框架。以下是有关如何为两个流行的数据库后端 MySQL 和 PostgreSQL 配置 TLS  的指南。
+
+**注意**
+
+```
+安装证书和密钥文件时，请确保文件权限受到限制，例如 `chmod 0600` ，所有权限制为数据库守护程序用户，以防止数据库服务器上的其他进程和用户进行未经授权的访问。
+```
+
+#### MySQL SSL配置
+
+应在系统范围的MySQL配置文件中添加以下行：
+
+在 `my.cnf` ：
+
+```
+[[mysqld]]
+...
+ssl-ca = /path/to/ssl/cacert.pem
+ssl-cert = /path/to/ssl/server-cert.pem
+ssl-key = /path/to/ssl/server-key.pem
+```
+
+（可选）如果您希望限制用于加密连接的 SSL 密码集。有关密码列表和用于指定密码字符串的语法，请参阅密码：
+
+```
+ssl-cipher = 'cipher:list'
+```
+
+#### PostgreSQL SSL 配置
+
+应在系统范围的 PostgreSQL 配置文件中添加以下行。 `postgresql.conf` 
+
+```
+ssl = true
+```
+
+（可选）如果您希望限制用于加密连接的 SSL 密码集。有关密码列表和用于指定密码字符串的语法，请参阅密码：
+
+```
+ssl-ciphers = 'cipher:list'
+```
+
+服务器证书、密钥和证书颁发机构 （CA） 文件应放在以下文件的 $PGDATA 目录中：
+
+-  `$PGDATA/server.crt` - 服务器证书
+-  `$PGDATA/server.key` - 私钥对应于 `server.crt` 
+-  `$PGDATA/root.crt` - 可信证书颁发机构
+-  `$PGDATA/root.crl` - 证书撤销列表
 
 
 
