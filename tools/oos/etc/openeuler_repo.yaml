@@ -49,6 +49,7 @@ openeuler:
   OpenArkCompiler: Compiler
   PRIP: Networking
   PilotGo: sig-ops
+  PilotGo-plugin-a-tune: sig-ops
   PilotGo-plugin-container: sig-ops
   PilotGo-plugin-gala-ops: sig-ops
   PilotGo-plugin-grafana: sig-ops
@@ -581,6 +582,7 @@ src-openeuler:
   PackageKit-Qt: Desktop
   Picard: sig-bio
   PilotGo: sig-ops
+  PilotGo-plugin-a-tune: sig-ops
   PilotGo-plugin-grafana: sig-ops
   PilotGo-plugin-prometheus: sig-ops
   PilotGo-plugin-topology: sig-ops
@@ -3714,6 +3716,7 @@ src-openeuler:
   libmaxminddb: Base-service
   libmbim: Networking
   libmcrypt: sig-desktop-apps
+  libmd: sig-security-facility
   libmediaart: Desktop
   libmediainfo: Desktop
   libmemcached: Programming-language
@@ -4026,6 +4029,7 @@ src-openeuler:
   lshw-B.02.18: sig-recycle
   lsof: Base-service
   lsscsi: Storage
+  lsvpd: sig-POWER
   lsyncd: Application
   ltrace: Programming-language
   lttng-tools: sig-ROS
@@ -4958,6 +4962,7 @@ src-openeuler:
   oniguruma: Base-service
   oozie: bigdata
   opa-psm2: dev-utils
+  opal-prd: sig-POWER
   open-chinese-fonts: sig-mate-desktop
   open-iscsi: Storage
   open-isns: Storage
@@ -7005,6 +7010,7 @@ src-openeuler:
   potrace: Application
   powerapi: sig-power-efficient
   powermock: sig-Java
+  powerpc-utils: sig-POWER
   powertop: Base-service
   ppp: Networking
   pps-tools: System-tool
