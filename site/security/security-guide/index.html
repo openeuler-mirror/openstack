@@ -677,6 +677,372 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_186">联网</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_187">网络架构</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#openstack-networking">OpenStack Networking 服务在物理服务器上的放置</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_189">网络服务</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#vlan-l2">使用 VLAN 和隧道的 L2 隔离</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_190">网络服务</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_194">网络服务扩展</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_195">网络服务限制</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_196">网络服务安全最佳做法</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#openstack-networking_1">OpenStack Networking 服务配置</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#openstack_9">保护 OpenStack 网络服务</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_197">项目网络服务工作流</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_198">网络资源策略引擎</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_199">安全组</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_200">配额</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#arp">缓解 ARP 欺骗</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_201">检查表</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#check-neutron-01-rootneutron">Check-Neutron-01：配置文件的用户/组所有权是否设置为 root/neutron？</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#check-neutron-02">Check-Neutron-02：是否为配置文件设置了严格的权限？</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#check-neutron-03keystone">Check-Neutron-03：Keystone是否用于身份验证？</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#check-neutron-04">Check-Neutron-04：是否使用安全协议进行身份验证？</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#check-neutron-05neutron-api-tls">Check-Neutron-05：Neutron API 服务器上是否启用了 TLS？</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_202">对象存储</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_203">网络安全</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_204">一般服务安全</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#root">以非 root 用户身份运行服务</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_206">保护存储服务</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_208">保护代理服务</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_210">对象存储身份验证</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_211">其他值得注意的事项</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_212">机密管理</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_213">现有技术摘要</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#openstack_10">相关 Openstack 项目</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_214">使用案例</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_215">镜像签名验证</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_216">卷加密</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_217">临时磁盘加密</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#sahara">Sahara</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#magnum">Magnum</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#octavialbaas">Octavia/LBaaS</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#swift">Swift</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_218">配置文件中的密码</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#barbican">Barbican</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_219">概述</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_221">加密插件</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_222">简单的加密插件</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#pkcs11">PKCS#11 加密插件</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_223">机密存储插件</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#kmip">KMIP 插件</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#dogtag">Dogtag 插件</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#vault">Vault 插件</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#castellan">Castellan</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_225">概述</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_226">常见问题解答</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_227">检查表</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#check-key-manager-01-rootbarbican">Check-Key-Manager-01：配置文件的所有权是否设置为 root/barbican？</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#check-key-manager-02">Check-Key-Manager-02：是否为配置文件设置了严格的权限？</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#check-key-manager-03openstack-identity">Check-Key-Manager-03：OpenStack Identity 是否用于身份验证？</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#check-key-manager-04-tls">Check-Key-Manager-04：是否启用了 TLS 进行身份验证？</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_228">消息队列</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_229">消息安全</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_230">消息传输安全</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_231">队列认证和访问控制</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_232">消息队列进程隔离和策略</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_236">数据处理</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_237">数据处理简介</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_238">架构</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_239">涉及的技术</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_240">用户访问资源</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_241">部署</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_242">控制器对集群的网络访问</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_243">配置和强化</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#tls_1">TLS系统</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_244">基于角色的访问控制策略</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_245">安全组</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_246">代理域</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_247">自定义网络拓扑</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_248">间接访问</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#rootwrap">Rootwrap</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_249">日志</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_250">参考书目</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_251">数据库</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_252">数据库后端注意事项</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_253">数据库后端的安全参考</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_254">数据库访问控制</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#openstack_11">OpenStack 数据库访问模型</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_256">数据库认证和访问控制</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#ssl">要求用户帐户需要 SSL 传输</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#x509">使用 X.509 证书进行身份验证</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#openstack_13">OpenStack 服务数据库配置</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#nova-conductor_1">Nova-conductor</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_258">数据库传输安全性</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#ip">数据库服务器 IP 地址绑定</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_259">数据库传输</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#mysql-ssl">MySQL SSL配置</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#postgresql-ssl">PostgreSQL SSL 配置</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_260">租户数据隐私</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_261">数据隐私问题</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_262">数据驻留</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_263">数据处置</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_270">数据加密</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_271">卷加密</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_272">临时磁盘加密</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_273">对象存储对象</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_274">块存储性能和后端</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_275">网络数据</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_276">密钥管理</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_277">参考书目：</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_278">实例安全管理</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_279">实例的安全服务</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_280">实例的熵</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_281">将实例调度到节点</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_282">可信镜像</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_285">实例迁移</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_291">监控、告警和报告</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_292">更新和补丁</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_293">防火墙和其他基于主机的安全控制</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_294">监视和日志记录</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_295">取证和事件响应</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_296">监控用例</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_297">参考书目</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_298">合规</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_299">合规性概述</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_300">安全原则</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_307">常用控制框架</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_308">审计参考</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_309">了解审核流程</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_310">确定审计范围</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_311">审计的阶段</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_312">内部审计</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_313">准备外部审计</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_314">外部审计</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_315">合规性维护</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_316">合规活动</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#isms">信息安全管理系统 （ISMS）</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_317">风险评估</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_318">访问和日志审查</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_319">备份和灾难恢复</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_320">安全培训</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_321">安全审查</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_322">漏洞管理</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_323">数据分类</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_324">异常过程</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_325">认证和合规声明</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_326">商业标准</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_327">政府标准</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_328">隐私</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                   </li>
               </ul>
@@ -3547,13 +3913,13 @@ other        ---</code></pre>
 <p>失败：如果 in <code>/etc/manila/manila.conf</code> 部分下的 <code>[keystone_authtoken]</code> 参数 <code>www_authenticate_uri</code> 值未设置为以 开头的身份 API 端点， <code>https://</code> 或者同一 <code>/etc/manila/manila.conf</code> 部分中的参数 <code>insecure</code>  <code>[keystone_authtoken]</code> 值设置为 <code>True</code> 。</p>
 <h4 id="check-shared-05-tls">Check-Shared-05：共享文件系统是否通过 TLS 与计算联系？<a class="headerlink" href="#check-shared-05-tls" title="Permanent link">&para;</a></h4>
 <p><strong>注意</strong></p>
-<p>此项仅适用于 OpenStack 版本 Train 及之前版本，因为 <code>auth_strategy</code> Ussuri 中已弃用。</p>
+<pre class="highlight"><code>此项仅适用于 OpenStack 版本 Train 及之前版本，因为 `auth_strategy` Ussuri 中已弃用。</code></pre>
 <p>OpenStack 组件使用各种协议相互通信，通信可能涉及敏感或机密数据。攻击者可能会尝试窃听频道以访问敏感信息。因此，所有组件都必须使用安全的通信协议相互通信。</p>
 <p>通过：如果 section in 下的参数 <code>nova_api_insecure</code> 设置为 <code>False</code> 。 <code>[DEFAULT]</code> <code>manila.conf</code></p>
 <p>失败：如果 section in 下的参数 <code>nova_api_insecure</code> 设置为 <code>True</code> 。 <code>[DEFAULT]</code> <code>manila.conf</code></p>
 <h4 id="check-shared-06-tls">Check-Shared-06：共享文件系统是否通过 TLS 与网络联系？<a class="headerlink" href="#check-shared-06-tls" title="Permanent link">&para;</a></h4>
 <p><strong>注意</strong></p>
-<p>此项仅适用于 OpenStack 版本 Train 及之前版本，因为 <code>auth_strategy</code> Ussuri 中已弃用。</p>
+<pre class="highlight"><code>此项仅适用于 OpenStack 版本 Train 及之前版本，因为 `auth_strategy` Ussuri 中已弃用。</code></pre>
 <p>与之前的检查（Check-Shared-05：共享文件系统是否通过 TLS 与计算联系？）类似，建议所有组件必须使用安全通信协议相互通信。</p>
 <p>通过：如果 section in 下的参数 <code>neutron_api_insecure</code> 设置为 <code>False</code> 。 <code>[DEFAULT]</code> <code>manila.conf</code></p>
 <p>失败：如果 section in 下的参数 <code>neutron_api_insecure</code> 设置为 <code>True</code> 。 <code>[DEFAULT]</code> <code>manila.conf</code></p>
@@ -3567,6 +3933,1429 @@ other        ---</code></pre>
 <p>如果未定义每个请求的最大正文大小，攻击者可以构建任意较大的OSAPI请求，导致服务崩溃，最终导致拒绝服务攻击。分配最大值可确保阻止任何恶意超大请求，从而确保服务的持续可用性。</p>
 <p>通过：如果 in 节下的参数值设置为 ，或者 in <code>manila.conf</code> <code>manila.conf</code> 节下的 <code>[oslo_middleware]</code>  <code>[DEFAULT]</code> 参数 <code>max_request_body_size</code>  <code>osapi_max_request_body_size</code> 值设置为 <code>114688</code> 。 <code>114688</code> 下面的 <code>[DEFAULT]</code> 参数 <code>osapi_max_request_body_size</code> 已弃用，最好使用 [oslo_middleware]/ <code>max_request_body_size</code> 。</p>
 <p>失败：如果 in <code>manila.conf</code> 节下的参数值未设置为 <code>114688</code> ，或者 in <code>manila.conf</code> 节下的 <code>[DEFAULT]</code>  <code>[oslo_middleware]</code> 参数 <code>max_request_body_size</code>  <code>osapi_max_request_body_size</code> 值未设置为 <code>114688</code> 。</p>
+<h2 id="_186">联网<a class="headerlink" href="#_186" title="Permanent link">&para;</a></h2>
+<p>OpenStack 网络服务 （neutron） 使最终用户或租户能够定义、利用和使用网络资源。OpenStack Networking 提供了一个面向租户的  API，用于定义云中实例的网络连接和 IP 寻址，以及编排网络配置。随着向以 API  为中心的网络服务的过渡，云架构师和管理员应考虑最佳实践来保护物理和虚拟网络基础架构和服务。</p>
+<p>OpenStack Networking 采用插件架构设计，通过开源社区或第三方服务提供 API 的可扩展性。在评估架构设计要求时，确定 OpenStack  Networking 核心服务中有哪些功能、第三方产品提供的任何其他服务以及需要在物理基础架构中实现哪些补充服务非常重要。</p>
+<p>本节简要概述了在实现 OpenStack Networking 时应考虑哪些流程和最佳实践。</p>
+<ul>
+<li>网络架构</li>
+<li>在物理服务器上放置 OpenStack Networking 服务</li>
+<li>网络服务</li>
+<li>使用 VLAN 和隧道的 L2 隔离</li>
+<li>网络服务</li>
+<li>网络服务扩展</li>
+<li>网络服务限制</li>
+<li>网络服务安全最佳做法</li>
+<li>
+<p>OpenStack Networking 服务配置</p>
+</li>
+<li>
+<p>保护 OpenStack 网络服务</p>
+</li>
+<li>项目网络服务工作流程</li>
+<li>网络资源策略引擎</li>
+<li>安全组</li>
+<li>配额</li>
+<li>
+<p>缓解 ARP 欺骗</p>
+</li>
+<li>
+<p>检查表</p>
+</li>
+<li>Check-Neutron-01：配置文件的用户/组所有权是否设置为 root/neutron？</li>
+<li>Check-Neutron-02：是否为配置文件设置了严格的权限？</li>
+<li>Check-Neutron-03：Keystone是否用于身份验证？</li>
+<li>Check-Neutron-04：是否使用安全协议进行身份验证？</li>
+<li>Check-Neutron-05：Neutron API 服务器上是否启用了 TLS？</li>
+</ul>
+<h3 id="_187">网络架构<a class="headerlink" href="#_187" title="Permanent link">&para;</a></h3>
+<p>OpenStack Networking 是一个独立的服务，通常在多个节点上部署多个进程。这些进程彼此交互，并与其他 OpenStack  服务交互。OpenStack Networking 服务的主要进程是 neutron-server，这是一个 Python 守护进程，它公开  OpenStack Networking API，并将租户请求传递给一组插件进行额外处理。</p>
+<p>OpenStack Networking 组件包括：</p>
+<p>neutron 服务器（neutron-server 和 neutron-*-plugin）</p>
+<p>此服务在网络节点上运行，为网络 API 及其扩展提供服务。它还强制执行每个端口的网络模型和 IP 寻址。neutron-server 需要间接访问持久性数据库。这是通过插件实现的，插件使用 AMQP（高级消息队列协议）与数据库进行通信。</p>
+<p>插件代理 （neutron-*-agent）</p>
+<p>在每个计算节点上运行，以管理本地虚拟交换机 （vswitch） 配置。您使用的插件决定了运行哪些代理。此服务需要消息队列访问，并取决于所使用的插件。一些插件，如  OpenDaylight（ODL） 和开放虚拟网络 （OVN），在计算节点上不需要任何 python 代理。</p>
+<p>DHCP 代理 （neutron-dhcp-agent）</p>
+<p>为租户网络提供DHCP服务。此代理在所有插件中都是相同的，并负责维护 DHCP 配置。neutron-dhcp-agent 需要消息队列访问。可选，具体取决于插件。</p>
+<p>L3 代理（neutron-L3-agent）</p>
+<p>为租户网络上的虚拟机提供 L3/NAT 转发。需要消息队列访问权限。可选，具体取决于插件。</p>
+<p>网络提供商服务（SDN 服务器/服务）</p>
+<p>为租户网络提供其他网络服务。这些 SDN 服务可以通过 REST API 等通信通道与 neutron-server、neutron-plugin 和 plugin-agents 进行交互。</p>
+<p>下图显示了 OpenStack Networking 组件的架构和网络流程图：</p>
+<p><a href="https://docs.openstack.org/security-guide/_images/sdn-connections.png"><img alt="../_images/sdn-connections.png" src="https://docs.openstack.org/security-guide/_images/sdn-connections.png" /></a></p>
+<h4 id="openstack-networking">OpenStack Networking 服务在物理服务器上的放置<a class="headerlink" href="#openstack-networking" title="Permanent link">&para;</a></h4>
+<p>本指南重点介绍一个标准架构，其中包括一个云控制器主机、一个网络主机和一组用于运行 VM 的计算虚拟机监控程序。</p>
+<h5 id="_188">物理服务器的网络连接<a class="headerlink" href="#_188" title="Permanent link">&para;</a></h5>
+<p><a href="https://docs.openstack.org/security-guide/_images/1aa-network-domains-diagram.png"><img alt="../_images/1aa-network-domains-diagram.png" src="https://docs.openstack.org/security-guide/_images/1aa-network-domains-diagram.png" /></a></p>
+<p>标准的 OpenStack Networking 设置最多有四个不同的物理数据中心网络：</p>
+<ul>
+<li>管理网络</li>
+</ul>
+<p>用于 OpenStack 组件之间的内部通信。此网络上的 IP 地址应只能在数据中心内访问，并被视为管理安全域。</p>
+<ul>
+<li>访客网络</li>
+</ul>
+<p>用于云部署中的 VM 数据通信。此网络的 IP 寻址要求取决于所使用的 OpenStack Networking 插件以及租户对虚拟网络所做的网络配置选择。此网络被视为客户机安全域。</p>
+<ul>
+<li>外部网络</li>
+</ul>
+<p>用于在某些部署方案中为 VM 提供 Internet 访问权限。Internet 上的任何人都可以访问此网络上的 IP 地址。此网络被视为属于公共安全域。</p>
+<ul>
+<li>API网络</li>
+</ul>
+<p>向租户公开所有 OpenStack API，包括 OpenStack 网络 API。Internet 上的任何人都可以访问此网络上的 IP  地址。这可能与外部网络是同一网络，因为可以为使用 IP 分配范围的外部网络创建一个子网，以便仅使用 IP 块中小于全部范围的 IP  地址。此网络被视为公共安全域。</p>
+<p>有关更多信息，请参阅《OpenStack 管理员指南》。</p>
+<h3 id="_189">网络服务<a class="headerlink" href="#_189" title="Permanent link">&para;</a></h3>
+<p>在设计 OpenStack 网络基础架构的初始架构阶段，确保提供适当的专业知识来协助设计物理网络基础架构，确定适当的安全控制和审计机制非常重要。</p>
+<p>OpenStack Networking  增加了一层虚拟化网络服务，使租户能够构建自己的虚拟网络。目前，这些虚拟化服务还没有传统网络的成熟。在采用这些虚拟化服务之前，请考虑这些服务的当前状态，因为它决定了您可能需要在虚拟化和传统网络边界上实现哪些控制。</p>
+<h4 id="vlan-l2">使用 VLAN 和隧道的 L2 隔离<a class="headerlink" href="#vlan-l2" title="Permanent link">&para;</a></h4>
+<p>OpenStack Networking 可以采用两种不同的机制对每个租户/网络组合进行流量隔离：VLAN（IEEE 802.1Q 标记）或使用 GRE 封装的 L2 隧道。OpenStack 部署的范围和规模决定了您应该使用哪种方法进行流量隔离或隔离。</p>
+<h5 id="vlans">VLANs<a class="headerlink" href="#vlans" title="Permanent link">&para;</a></h5>
+<p>VLAN 在特定物理网络上实现为数据包，其中包含具有特定 VLAN ID （VID） 字段值的 IEEE 802.1Q 标头。共享同一物理网络的  VLAN 网络在 L2 上彼此隔离，甚至可以有重叠的 IP 地址空间。每个支持 VLAN 网络的不同物理网络都被视为一个单独的 VLAN  中继，具有不同的 VID 值空间。有效的 VID 值为 1 到 4094。</p>
+<p>VLAN 配置的复杂性取决于您的 OpenStack 设计要求。为了让 OpenStack Networking 能够有效地使用 VLAN，您必须分配一个 VLAN 范围（每个租户一个），并将每个计算节点物理交换机端口转换为 VLAN 中继端口。</p>
+<p><strong>注意</strong></p>
+<pre class="highlight"><code>如果您打算让您的网络支持超过 4094 个租户，则 VLAN 可能不是您的正确选择，因为需要多个“黑客”才能将 VLAN 标记扩展到超过 4094 个租户。</code></pre>
+<h5 id="l2">L2 隧道<a class="headerlink" href="#l2" title="Permanent link">&para;</a></h5>
+<p>网络隧道使用唯一的“tunnel-id”封装每个租户/网络组合，该 ID 用于标识属于该组合的网络流量。租户的 L2 网络连接与物理位置或基础网络设计无关。通过将流量封装在 IP 数据包中，该流量可以跨越第 3 层边界，无需预配置 VLAN 和 VLAN 中继。隧道为网络数据流量增加了一层混淆，从监控的角度降低了单个租户流量的可见性。</p>
+<p>OpenStack Networking 目前支持 GRE 和 VXLAN 封装。</p>
+<p>提供 L2 隔离的技术选择取决于将在部署中创建的租户网络的范围和大小。如果您的环境的 VLAN ID 可用性有限或将具有大量 L2 网络，我们建议您使用隧道。</p>
+<h4 id="_190">网络服务<a class="headerlink" href="#_190" title="Permanent link">&para;</a></h4>
+<p>租户网络隔离的选择会影响租户服务的网络安全和控制边界的实现方式。以下附加网络服务已经可用或目前正在开发中，以增强 OpenStack 网络架构的安全态势。</p>
+<h5 id="_191">访问控制列表<a class="headerlink" href="#_191" title="Permanent link">&para;</a></h5>
+<p>OpenStack 计算在与旧版 nova-network 服务一起部署时直接支持租户网络流量访问控制，或者可以将访问控制推迟到 OpenStack Networking 服务。</p>
+<p>请注意，旧版 nova-network 安全组使用 iptables 应用于实例上的所有虚拟接口端口。</p>
+<p>安全组允许管理员和租户指定流量类型以及允许通过虚拟接口端口的方向（入口/出口）。安全组规则是有状态的 L2-L4 流量过滤器。</p>
+<p>使用网络服务时，建议在此服务中启用安全组，并在计算服务中禁用安全组。</p>
+<h5 id="l3-nat">L3 路由和 NAT<a class="headerlink" href="#l3-nat" title="Permanent link">&para;</a></h5>
+<p>OpenStack Networking 路由器可以连接多个 L2 网络，并且还可以提供连接一个或多个私有 L2 网络到共享外部网络（例如用于访问互联网的公共网络）的网关。</p>
+<p>L3 路由器在将路由器上行链路到外部网络的网关端口上提供基本的网络地址转换 （NAT） 功能。默认情况下，此路由器会 SNAT（静态  NAT）所有流量，并支持浮动 IP，这会创建从外部网络上的公共 IP 到连接到路由器的其他子网上的专用 IP 的静态一对一映射。</p>
+<p>我们建议利用每个租户的 L3 路由和浮动 IP 来实现租户 VM 的更精细连接。</p>
+<h5 id="qos">服务质量 （QoS）<a class="headerlink" href="#qos" title="Permanent link">&para;</a></h5>
+<p>默认情况下，服务质量 （QoS） 策略和规则由云管理员管理，这会导致租户无法创建特定的 QoS 规则，也无法将特定端口附加到策略。在某些用例中，例如某些电信应用程序，管理员可能信任租户，因此允许他们创建自己的策略并将其附加到端口。这可以通过修改 <code>policy.json</code> 文件和特定文档来实现。将与扩展一起发布。</p>
+<p>网络服务 （neutron） 支持 Liberty 及更高版本中的带宽限制 QoS 规则。此 QoS 规则已命名 <code>QosBandwidthLimitRule</code> ，它接受两个非负整数，以千比特/秒为单位：</p>
+<ul>
+<li><code>max-kbps</code> ：带宽</li>
+<li><code>max-burst-kbps</code> ：突发缓冲区</li>
+</ul>
+<p>已 <code>QoSBandwidthLimitRule</code> 在 neutron Open vSwitch、Linux 网桥和单根输入/输出虚拟化 （SR-IOV） 驱动程序中实现。</p>
+<p>在 Newton 中，添加了 QoS 规则 <code>QosDscpMarkingRule</code> 。此规则在 IPv4 （RFC 2474） 上的服务标头类型和 IPv6 上的流量类标头中标记差分服务代码点 （DSCP）  值，这些值适用于应用规则的虚拟机的所有流量。这是一个 6 位标头，具有 21  个有效值，表示数据包在遇到拥塞时穿过网络时的丢弃优先级。防火墙还可以使用它来将有效或无效流量与其访问控制列表进行匹配。</p>
+<p>端口镜像服务涉及将进入或离开一个端口的数据包副本发送到另一个端口，该端口通常与被镜像数据包的原始目的地不同。Tap-as-a-Service （TaaS） 是 OpenStack 网络服务 （neutron）  的扩展。它为租户虚拟网络提供远程端口镜像功能。此服务主要旨在帮助租户（或云管理员）调试复杂的虚拟网络，并通过监视与其关联的网络流量来了解其  VM。TaaS 遵循租户边界，其镜像会话能够跨越多个计算和网络节点。它是一个必不可少的基础设施组件，可用于向各种网络分析和安全应用程序提供数据。</p>
+<h5 id="_192">负载均衡<a class="headerlink" href="#_192" title="Permanent link">&para;</a></h5>
+<p>OpenStack Networking 的另一个特性是负载均衡器即服务 （LBaaS）。LBaaS 参考实现基于 HA-Proxy。OpenStack Networking 中的扩展正在开发第三方插件，以便为虚拟接口端口提供广泛的 L4-L7 功能。</p>
+<h5 id="_193">防火墙<a class="headerlink" href="#_193" title="Permanent link">&para;</a></h5>
+<p>FW-as-a-Service（FWaaS）被认为是OpenStack Networking的Kilo版本的实验性功能。FWaaS  满足了管理和利用典型防火墙产品提供的丰富安全功能的需求，这些产品通常比当前安全组提供的要全面得多。飞思卡尔和英特尔都开发了第三方插件作为OpenStack Networking的扩展，以在Kilo版本中支持此组件。有关 FWaaS 管理的更多详细信息，请参阅《OpenStack  管理员指南》中的防火墙即服务 （FWaaS） 概述。</p>
+<p>在设计 OpenStack Networking 基础架构时，了解可用网络服务的当前特性和局限性非常重要。了解虚拟网络和物理网络的边界将有助于在您的环境中添加所需的安全控件。</p>
+<h4 id="_194">网络服务扩展<a class="headerlink" href="#_194" title="Permanent link">&para;</a></h4>
+<p>开源社区或使用 OpenStack Networking 的 SDN 公司提供的已知插件列表可在 OpenStack neutron 插件和驱动程序 wiki 页面上找到。</p>
+<h4 id="_195">网络服务限制<a class="headerlink" href="#_195" title="Permanent link">&para;</a></h4>
+<p>OpenStack Networking 具有以下已知限制：</p>
+<p>重叠的 IP 地址</p>
+<p>如果运行 neutron-l3-agent 或 neutron-dhcp-agent 的节点使用重叠的 IP 地址，则这些节点必须使用 Linux  网络命名空间。默认情况下，DHCP 和 L3 代理使用 Linux 网络命名空间，并在各自的命名空间中运行。但是，如果主机不支持多个命名空间，则 DHCP 和 L3 代理应在不同的主机上运行。这是因为 L3 代理和 DHCP 代理创建的 IP 地址之间没有隔离。</p>
+<p>如果不存在网络命名空间支持，则 L3 代理的另一个限制是仅支持单个逻辑路由器。</p>
+<p>多主机 DHCP 代理</p>
+<p>OpenStack Networking 支持多个具有负载均衡功能的 L3 和 DHCP 代理。但是，不支持虚拟机位置的紧密耦合。换言之，在创建虚拟机时，默认虚拟机调度程序不会考虑代理的位置。</p>
+<p>L3 代理不支持 IPv6</p>
+<p>neutron-l3-agent 被许多插件用于实现 L3 转发，仅支持 IPv4 转发。</p>
+<h3 id="_196">网络服务安全最佳做法<a class="headerlink" href="#_196" title="Permanent link">&para;</a></h3>
+<p>要保护 OpenStack Networking，您必须了解如何将租户实例创建的工作流过程映射到安全域。</p>
+<p>有四个主要服务与 OpenStack Networking 交互。在典型的 OpenStack 部署中，这些服务映射到以下安全域：</p>
+<ul>
+<li>OpenStack 仪表板：公共和管理</li>
+<li>OpenStack Identity：管理</li>
+<li>OpenStack 计算节点：管理和客户端</li>
+<li>OpenStack 网络节点：管理、客户端，以及可能的公共节点，具体取决于正在使用的 neutron-plugin。</li>
+<li>SDN 服务节点：管理、访客和可能的公共服务，具体取决于使用的产品。</li>
+</ul>
+<p><a href="https://docs.openstack.org/security-guide/_images/1aa-logical-neutron-flow.png"><img alt="../_images/1aa-logical-neutron-flow.png" src="https://docs.openstack.org/security-guide/_images/1aa-logical-neutron-flow.png" /></a></p>
+<p>要隔离 OpenStack Networking 服务与其他 OpenStack 核心服务之间的敏感数据通信，请将这些通信通道配置为仅允许通过隔离的管理网络进行通信。</p>
+<h4 id="openstack-networking_1">OpenStack Networking 服务配置<a class="headerlink" href="#openstack-networking_1" title="Permanent link">&para;</a></h4>
+<h5 id="api-neutron-server">限制 API 服务器的绑定地址：neutron-server<a class="headerlink" href="#api-neutron-server" title="Permanent link">&para;</a></h5>
+<p>要限制 OpenStack Networking API 服务为传入客户端连接绑定网络套接字的接口或 IP 地址，请在 neutron.conf 文件中指定 bind_host 和 bind_port，如下所示：</p>
+<pre class="highlight"><code># Address to bind the API server
+bind_host = IP ADDRESS OF SERVER
+
+# Port the bind the API server to
+bind_port = 9696</code></pre>
+<h5 id="openstack-networking-db-rpc">限制 OpenStack Networking 服务的 DB 和 RPC 通信<a class="headerlink" href="#openstack-networking-db-rpc" title="Permanent link">&para;</a></h5>
+<p>OpenStack Networking 服务的各种组件使用消息队列或数据库连接与 OpenStack Networking 中的其他组件进行通信。</p>
+<p>对于需要直接数据库连接的所有组件，建议您遵循数据库身份验证和访问控制中提供的准则。</p>
+<p>建议您遵循队列身份验证和访问控制中提供的准则，适用于需要 RPC 通信的所有组件。</p>
+<h3 id="openstack_9">保护 OpenStack 网络服务<a class="headerlink" href="#openstack_9" title="Permanent link">&para;</a></h3>
+<p>本节讨论 OpenStack Networking 配置最佳实践，因为它们适用于 OpenStack 部署中的项目网络安全。</p>
+<h4 id="_197">项目网络服务工作流<a class="headerlink" href="#_197" title="Permanent link">&para;</a></h4>
+<p>OpenStack Networking 为用户提供网络资源和配置的自助服务。云架构师和运维人员必须评估其设计用例，以便为用户提供创建、更新和销毁可用网络资源的能力。</p>
+<h4 id="_198">网络资源策略引擎<a class="headerlink" href="#_198" title="Permanent link">&para;</a></h4>
+<p>OpenStack Networking 中的策略引擎及其配置文件 <code>policy.json</code> 提供了一种方法，可以对用户在项目网络方法和对象上提供更细粒度的授权。OpenStack Networking  策略定义会影响网络可用性、网络安全和整体 OpenStack 安全性。云架构师和运维人员应仔细评估其对用户和项目访问网络资源管理的策略。有关  OpenStack Networking 策略定义的更详细说明，请参阅《OpenStack 管理员指南》中的“身份验证和授权”部分。</p>
+<p><strong>注意</strong></p>
+<pre class="highlight"><code>请务必查看默认网络资源策略，因为可以修改此策略以适合您的安全状况。</code></pre>
+<p>如果您的 OpenStack 部署为不同的安全域提供了多个外部访问点，那么限制项目将多个 vNIC  连接到多个外部访问点的能力非常重要，这将桥接这些安全域，并可能导致不可预见的安全危害。通过利用 OpenStack Compute  提供的主机聚合功能，或者将项目虚拟机拆分为具有不同虚拟网络配置的多个项目项目，可以降低这种风险。</p>
+<h4 id="_199">安全组<a class="headerlink" href="#_199" title="Permanent link">&para;</a></h4>
+<p>OpenStack Networking 服务使用比 OpenStack Compute 中内置的安全组功能更灵活、更强大的机制提供安全组功能。因此，在使用 OpenStack Network 时，应始终禁用内置安全组， <code>nova.conf</code> 并将所有安全组调用代理到 OpenStack Networking API。如果不这样做，将导致两个服务同时应用冲突的安全策略。要将安全组代理到 OpenStack Networking，请使用以下配置值：</p>
+<ul>
+<li><code>firewall_driver</code> 必须设置为 <code>nova.virt.firewall.NoopFirewallDriver</code> ，以便 nova-compute 本身不执行基于 iptables 的过滤。</li>
+<li><code>security_group_api</code> 必须设置为 <code>neutron</code> 以便将所有安全组请求代理到 OpenStack Networking 服务。</li>
+</ul>
+<p>安全组是安全组规则的容器。安全组及其规则允许管理员和项目指定允许通过虚拟接口端口的流量类型和方向（入口/出口）。在 OpenStack Networking  中创建虚拟接口端口时，该端口与安全组相关联。有关端口安全组默认行为的更多详细信息，请参阅网络安全组行为文档。可以将规则添加到默认安全组，以便根据每个部署更改行为。</p>
+<p>使用 OpenStack Compute API 修改安全组时，更新后的安全组将应用于实例上的所有虚拟接口端口。这是因为 OpenStack  Compute 安全组 API 是基于实例的，而不是基于端口的，如 OpenStack Networking 中所示。</p>
+<h4 id="_200">配额<a class="headerlink" href="#_200" title="Permanent link">&para;</a></h4>
+<p>配额提供了限制项目可用的网络资源数量的功能。您可以对所有项目强制实施默认配额。包括 <code>/etc/neutron/neutron.conf</code> 以下配额选项：</p>
+<pre class="highlight"><code>[QUOTAS]
+# resource name(s) that are supported in quota features
+quota_items = network,subnet,port
+
+# default number of resource allowed per tenant, minus for unlimited
+#default_quota = -1
+
+# number of networks allowed per tenant, and minus means unlimited
+quota_network = 10
+
+# number of subnets allowed per tenant, and minus means unlimited
+quota_subnet = 10
+
+# number of ports allowed per tenant, and minus means unlimited
+quota_port = 50
+
+# number of security groups allowed per tenant, and minus means unlimited
+quota_security_group = 10
+
+# number of security group rules allowed per tenant, and minus means unlimited
+quota_security_group_rule = 100
+
+# default driver to use for quota checks
+quota_driver = neutron.quota.ConfDriver</code></pre>
+<p>OpenStack Networking 还通过配额扩展 API 支持每个项目的配额限制。要启用每个项目的配额，必须在 中设置选项 <code>quota_driver</code> <code>neutron.conf</code> 。</p>
+<pre class="highlight"><code>quota_driver = neutron.db.quota.driver.DbQuotaDriver</code></pre>
+<h4 id="arp">缓解 ARP 欺骗<a class="headerlink" href="#arp" title="Permanent link">&para;</a></h4>
+<p>使用扁平网络时，不能假定共享同一第 2 层网络（或广播域）的项目彼此完全隔离。这些项目可能容易受到 ARP 欺骗的攻击，从而有可能遭受中间人攻击。</p>
+<p>如果使用支持 ARP 字段匹配的 Open vSwitch 版本，则可以通过启用 Open vSwitch 代理 <code>prevent_arp_spoofing</code> 选项来帮助降低此风险。此选项可防止实例执行欺骗攻击;它不能保护他们免受欺骗攻击。请注意，此设置预计将在 Ocata 中删除，该行为将永久处于活动状态。</p>
+<p>例如，在 <code>/etc/neutron/plugins/ml2/openvswitch_agent.ini</code> ：</p>
+<pre class="highlight"><code>prevent_arp_spoofing = True</code></pre>
+<p>除 Open vSwitch 外，其他插件也可能包含类似的缓解措施;建议您在适当的情况下启用此功能。</p>
+<p><strong>注意</strong></p>
+<pre class="highlight"><code>即使启用 `prevent_arp_spoofing` 了扁平网络，也无法提供完整的项目隔离级别，因为所有项目流量仍会发送到同一 VLAN。</code></pre>
+<h3 id="_201">检查表<a class="headerlink" href="#_201" title="Permanent link">&para;</a></h3>
+<h4 id="check-neutron-01-rootneutron">Check-Neutron-01：配置文件的用户/组所有权是否设置为 root/neutron？<a class="headerlink" href="#check-neutron-01-rootneutron" title="Permanent link">&para;</a></h4>
+<p>配置文件包含组件平稳运行所需的关键参数和信息。如果非特权用户有意或无意地修改或删除任何参数或文件本身，则会导致严重的可用性问题，从而导致对其他最终用户的拒绝服务。因此，此类关键配置文件的用户所有权必须设置为 root，组所有权必须设置为 neutron。此外，包含目录应具有相同的所有权，以确保正确拥有新文件。</p>
+<p>运行以下命令：</p>
+<pre class="highlight"><code>$ stat -L -c "%U %G" /etc/neutron/neutron.conf | egrep "root neutron"
+$ stat -L -c "%U %G" /etc/neutron/api-paste.ini | egrep "root neutron"
+$ stat -L -c "%U %G" /etc/neutron/policy.json | egrep "root neutron"
+$ stat -L -c "%U %G" /etc/neutron/rootwrap.conf | egrep "root neutron"
+$ stat -L -c "%U %G" /etc/neutron | egrep "root neutron"</code></pre>
+<p>通过：如果所有这些配置文件的用户和组所有权分别设置为 root 和 neutron。上面的命令显示了根中子的输出。</p>
+<p>失败：如果上述命令未返回任何输出，因为用户和组所有权可能已设置为除 root 以外的任何用户或除 neutron 以外的任何组。</p>
+<h4 id="check-neutron-02">Check-Neutron-02：是否为配置文件设置了严格的权限？<a class="headerlink" href="#check-neutron-02" title="Permanent link">&para;</a></h4>
+<p>与前面的检查类似，建议对此类配置文件设置严格的访问权限。</p>
+<p>运行以下命令：</p>
+<pre class="highlight"><code>$ stat -L -c "%a" /etc/neutron/neutron.conf
+$ stat -L -c "%a" /etc/neutron/api-paste.ini
+$ stat -L -c "%a" /etc/neutron/policy.json
+$ stat -L -c "%a" /etc/neutron/rootwrap.conf
+$ stat -L -c "%a" /etc/neutron</code></pre>
+<p>还可以进行更广泛的限制：如果包含目录设置为 750，则保证此目录中新创建的文件具有所需的权限。</p>
+<p>通过：如果权限设置为 640 或更严格，或者包含目录设置为 750。640 的权限转换为所有者 r/w、组 r，而对其他人没有权限，即“u=rw，g=r，o=”。</p>
+<p>请注意，使用 Check-Neutron-01：配置文件的用户/组所有权是否设置为 root/neutron？权限设置为 640，root  具有读/写访问权限，neutron 具有对这些配置文件的读取访问权限。也可以使用以下命令验证访问权限。仅当此命令支持 ACL  时，它才在您的系统上可用。</p>
+<pre class="highlight"><code>$ getfacl --tabular -a /etc/neutron/neutron.conf
+getfacl: Removing leading '/' from absolute path names
+# file: etc/neutron/neutron.conf
+USER   root     rw-
+GROUP  neutron  r--
+mask            r--
+other           ---</code></pre>
+<p>失败：如果权限没有设置至少为640。</p>
+<h4 id="check-neutron-03keystone">Check-Neutron-03：Keystone是否用于身份验证？<a class="headerlink" href="#check-neutron-03keystone" title="Permanent link">&para;</a></h4>
+<p><strong>注意</strong></p>
+<pre class="highlight"><code>此项仅适用于 OpenStack 版本 Rocky 及之前版本，因为 `auth_strategy` Stein 中已弃用。</code></pre>
+<p>OpenStack 支持各种身份验证策略，如 noauth、keystone  等。如果使用“noauth”策略，那么用户无需任何身份验证即可与OpenStack服务进行交互。这可能是一个潜在的风险，因为攻击者可能会获得对  OpenStack 组件的未经授权的访问。因此，强烈建议所有服务都必须使用其服务帐户通过 keystone 进行身份验证。</p>
+<p>通过：如果 section in 下的参数 <code>auth_strategy</code> 设置为 <code>keystone</code> 。 <code>[DEFAULT]</code> <code>/etc/neutron/neutron.conf</code></p>
+<p>失败：如果 section 下的 <code>[DEFAULT]</code> 参数 <code>auth_strategy</code> 值设置为 <code>noauth</code> 或 <code>noauth2</code> 。</p>
+<h4 id="check-neutron-04">Check-Neutron-04：是否使用安全协议进行身份验证？<a class="headerlink" href="#check-neutron-04" title="Permanent link">&para;</a></h4>
+<p>OpenStack 组件使用各种协议相互通信，通信可能涉及敏感/机密数据。攻击者可能会尝试窃听频道以访问敏感信息。因此，所有组件都必须使用安全的通信协议相互通信。</p>
+<p>通过：如果 section in <code>/etc/neutron/neutron.conf</code> 下的参数值设置为 Identity API 端点开头， <code>https://</code> 并且 same <code>/etc/neutron/neutron.conf</code> 中同一 <code>[keystone_authtoken]</code> 部分下的 <code>[keystone_authtoken]</code> 参数 <code>www_authenticate_uri</code>  <code>insecure</code> 值设置为 <code>False</code> 。</p>
+<p>失败：如果 in <code>/etc/neutron/neutron.conf</code> 部分下的 <code>[keystone_authtoken]</code> 参数 <code>www_authenticate_uri</code> 值未设置为以 开头的身份 API 端点， <code>https://</code> 或者同一 <code>/etc/neutron/neutron.conf</code> 部分中的参数 <code>insecure</code>  <code>[keystone_authtoken]</code> 值设置为 <code>True</code> 。</p>
+<h4 id="check-neutron-05neutron-api-tls">Check-Neutron-05：Neutron API 服务器上是否启用了 TLS？<a class="headerlink" href="#check-neutron-05neutron-api-tls" title="Permanent link">&para;</a></h4>
+<p>与之前的检查类似，建议在 API 服务器上启用安全通信。</p>
+<p>通过：如果 section in 下的参数 <code>use_ssl</code> 设置为 <code>True</code> 。 <code>[DEFAULT]</code> <code>/etc/neutron/neutron.conf</code></p>
+<p>失败：如果 section in 下的参数 <code>use_ssl</code> 设置为 <code>False</code> 。 <code>[DEFAULT]</code> <code>/etc/neutron/neutron.conf</code></p>
+<h2 id="_202">对象存储<a class="headerlink" href="#_202" title="Permanent link">&para;</a></h2>
+<p>OpenStack 对象存储 （swift） 服务提供通过 HTTP 存储和检索数据的软件。对象（数据 blob）存储在组织层次结构中，该层次结构提供匿名只读访问、ACL 定义的访问，甚至临时访问。对象存储支持通过中间件实现的多种基于令牌的身份验证机制。</p>
+<p>应用程序通过行业标准的 HTTP RESTful API 在对象存储中存储和检索数据。对象存储的后端组件遵循相同的 RESTful 模型，尽管某些  API（例如管理持久性的 API）对集群是私有的。有关 API 的更多详细信息，请参阅 OpenStack Storage API。</p>
+<p>对象存储的组件分为以下主要组：</p>
+<ol>
+<li>代理服务</li>
+<li>身份验证服务</li>
+<li>存储服务</li>
+<li>账户服务</li>
+<li>容器服务</li>
+<li>对象服务</li>
+</ol>
+<p><a href="https://docs.openstack.org/security-guide/_images/swift_network_diagram-1.png"><img alt="_images/swift_network_diagram-1.png" src="https://docs.openstack.org/security-guide/_images/swift_network_diagram-1.png" /></a></p>
+<p>OpenStack 对象存储管理指南 （2013） 中的示例图 </p>
+<p><strong>注意</strong></p>
+<pre class="highlight"><code>对象存储安装不必位于 Internet 上，也可以是私有云，其中公共交换机是组织内部网络基础架构的一部分。</code></pre>
+<h3 id="_203">网络安全<a class="headerlink" href="#_203" title="Permanent link">&para;</a></h3>
+<p>要保护对象存储服务，首先要保护网络组件。如果您跳过了网络章节，请返回到网络部分。</p>
+<p>rsync 协议用于在存储服务节点之间复制数据以实现高可用性。此外，在客户端端点和云环境之间来回中继数据时，代理服务会与存储服务进行通信。</p>
+<p><strong>警告</strong></p>
+<pre class="highlight"><code>对象存储不对节点间通信进行加密或身份验证。这就是您在体系结构图中看到专用交换机或专用网络 （[V]LAN） 的原因。这个数据域也应该与其他OpenStack数据网络分开。有关安全域的进一步讨论，请参阅安全边界和威胁。</code></pre>
+<p><strong>建议</strong></p>
+<pre class="highlight"><code>对数据域中的存储节点使用专用 （V）LAN 网段。</code></pre>
+<p>这需要代理节点具有双接口（物理或虚拟）：</p>
+<ol>
+<li>一个作为消费者访问的公共界面。</li>
+<li>另一个作为可以访问存储节点的专用接口。</li>
+</ol>
+<p>下图演示了一种可能的网络体系结构。</p>
+<p><a href="https://docs.openstack.org/security-guide/_images/swift_network_diagram-2.png"><img alt="_images/swift_network_diagram-2.png" src="https://docs.openstack.org/security-guide/_images/swift_network_diagram-2.png" /></a></p>
+<p>具有管理节点（OSAM）的对象存储网络架构</p>
+<h3 id="_204">一般服务安全<a class="headerlink" href="#_204" title="Permanent link">&para;</a></h3>
+<h4 id="root">以非 root 用户身份运行服务<a class="headerlink" href="#root" title="Permanent link">&para;</a></h4>
+<p>我们建议您将对象存储服务配置为在非 root （UID 0） 服务帐户下运行。一个建议是 <code>swift</code> 具有主组 <code>swift</code> 的用户名。例如， <code>proxy-server</code> 对象存储服务包括、、 <code>container-server</code> <code>account-server</code> 。有关设置和配置的详细步骤，请参阅《安装指南》的“添加对象存储”一章的 OpenStack 文档索引。</p>
+<p><strong>注意</strong></p>
+<pre class="highlight"><code>上面的链接默认为Ubuntu版本。</code></pre>
+<h5 id="_205">文件权限<a class="headerlink" href="#_205" title="Permanent link">&para;</a></h5>
+<p>该 <code>/etc/swift</code> 目录包含有关环形拓扑和环境配置的信息。建议使用以下权限：</p>
+<pre class="highlight"><code># chown -R root:swift /etc/swift/*
+# find /etc/swift/ -type f -exec chmod 640 {} \;
+# find /etc/swift/ -type d -exec chmod 750 {} \;</code></pre>
+<p>这将限制只有 root 用户能够修改配置文件，同时允许服务通过其 <code>swift</code> 在组中的组成员身份读取它们。</p>
+<h4 id="_206">保护存储服务<a class="headerlink" href="#_206" title="Permanent link">&para;</a></h4>
+<p>以下是各种存储服务的默认侦听端口：</p>
+<table>
+<thead>
+<tr>
+<th>服务名称</th>
+<th>港口</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>账户服务</td>
+<td>6002</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>容器服务</td>
+<td>6001</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>对象服务</td>
+<td>6000</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>同步 [1]</td>
+<td>873</td>
+<td>TCP</td>
+</tr>
+</tbody>
+</table>
+<p>如果使用 ssync 而不是 rsync，则使用对象服务端口来维护持久性。</p>
+<p><strong>重要</strong></p>
+<pre class="highlight"><code>在存储节点上不进行身份验证。如果能够在其中一个端口上连接到存储节点，则无需身份验证即可访问或修改数据。为了防止此问题，您应该遵循之前给出的有关使用专用存储网络的建议。</code></pre>
+<h5 id="_207">对象存储帐户术语<a class="headerlink" href="#_207" title="Permanent link">&para;</a></h5>
+<p>对象存储帐户不是用户帐户或凭据。下面对这些关系进行说明：</p>
+<table>
+<thead>
+<tr>
+<th>对象存储帐户</th>
+<th>容器的收集;不是用户帐户或身份验证。哪些用户与该帐户相关联以及他们如何访问该帐户取决于所使用的身份验证系统。请参阅对象存储身份验证。</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>对象存储容器</td>
+<td>对象的集合。容器上的元数据可用于 ACL。ACL 的含义取决于所使用的身份验证系统。</td>
+</tr>
+<tr>
+<td>对象存储对象</td>
+<td>实际数据对象。对象级别的 ACL 也可以与元数据一起使用，并且取决于所使用的身份验证系统。</td>
+</tr>
+</tbody>
+</table>
+<p>在每个级别，您都有 ACL，用于指示谁拥有哪种类型的访问权限。ACL 是根据正在使用的身份验证系统进行解释的。最常用的两种身份验证提供程序类型是 Identity service （keystone） 和 TempAuth。自定义身份验证提供程序也是可能的。有关更多信息，请参阅对象存储身份验证。</p>
+<h4 id="_208">保护代理服务<a class="headerlink" href="#_208" title="Permanent link">&para;</a></h4>
+<p>代理节点应至少具有两个接口（物理或虚拟）：一个公共接口和一个专用接口。防火墙或服务绑定可能会保护公共接口。面向公众的服务是一个 HTTP Web  服务器，用于处理端点客户端请求、对其进行身份验证并执行相应的操作。专用接口不需要任何侦听服务，而是用于建立与专用存储网络上的存储节点的传出连接。</p>
+<h5 id="http_1">HTTP 监听端口<a class="headerlink" href="#http_1" title="Permanent link">&para;</a></h5>
+<p>如前所述，您应该将 Web 服务配置为非 root（无 UID 0）用户 <code>swift</code> 。需要使用大于 1024 的端口才能轻松完成此操作，并避免以 root 身份运行 Web 容器的任何部分。通常，使用 HTTP REST  API 并执行身份验证的客户端会自动从身份验证响应中检索所需的完整 REST API URL。OpenStack 的 REST API  允许客户端对一个 URL 进行身份验证，然后被告知对实际服务使用完全不同的 URL。例如，客户端向  https://identity.cloud.example.org:55443/v1/auth 进行身份验证，并获取其身份验证密钥和存储  URL（代理节点或负载均衡器的 URL）https://swift.cloud.example.org:44443/v1/AUTH_8980  响应。</p>
+<p>将 Web 服务器配置为以非 root 用户身份启动和运行的方法因 Web 服务器和操作系统而异。</p>
+<h5 id="_209">负载均衡器<a class="headerlink" href="#_209" title="Permanent link">&para;</a></h5>
+<p>如果使用 Apache 的选项不可行，或者为了提高性能，您希望减轻 TLS 工作，则可以使用专用的网络设备负载平衡器。这是在使用多个代理节点时提供冗余和负载平衡的常用方法。</p>
+<p>如果选择卸载 TLS，请确保负载均衡器和代理节点之间的网络链路位于专用 （V）LAN 网段上，以便网络上的其他节点（可能已泄露）无法窃听（嗅探）未加密的流量。如果发生此类违规行为，攻击者可以访问端点客户端或云管理员凭据并访问云数据。</p>
+<p>您使用的身份验证服务（例如身份服务（keystone）或TempAuth）将决定如何在对端点客户端的响应中配置不同的URL，以便它们使用负载平衡器而不是单个代理节点。</p>
+<h4 id="_210">对象存储身份验证<a class="headerlink" href="#_210" title="Permanent link">&para;</a></h4>
+<p>对象存储使用 WSGI  模型来提供中间件功能，该功能不仅提供通用可扩展性，还用于端点客户端的身份验证。身份验证提供程序定义存在的角色和用户类型。有些使用传统的用户名和密码凭据，而另一些则可能利用 API 密钥令牌甚至客户端 x.509 证书。自定义提供程序可以集成到使用自定义中间件中。</p>
+<p>对象存储默认自带两个认证中间件模块，其中任何一个模块都可以作为开发自定义认证中间件的示例代码。</p>
+<h5 id="tempauth">TempAuth 函数<a class="headerlink" href="#tempauth" title="Permanent link">&para;</a></h5>
+<p>TempAuth 是对象存储的默认身份验证。与 Identity 相比，它将用户帐户、凭据和元数据存储在对象存储本身中。有关更多信息，请参阅对象存储 （swift） 文档的身份验证系统部分。</p>
+<h5 id="keystone">Keystone<a class="headerlink" href="#keystone" title="Permanent link">&para;</a></h5>
+<p>Keystone 是 OpenStack 中常用的身份提供程序。它还可用于对象存储中的身份验证。Identity 中已提供保护 keystone 的覆盖范围。</p>
+<h4 id="_211">其他值得注意的事项<a class="headerlink" href="#_211" title="Permanent link">&para;</a></h4>
+<p>在 中 <code>/etc/swift</code> ，在每个节点上，都有一个设置和一个 <code>swift_hash_path_prefix</code>  <code>swift_hash_path_suffix</code> 设置。提供这些是为了减少存储对象发生哈希冲突的可能性，并避免一个用户覆盖另一个用户的数据。</p>
+<p>此值最初应使用加密安全的随机数生成器进行设置，并在所有节点上保持一致。确保它受到适当的 ACL 保护，并且您有备份副本以避免数据丢失。</p>
+<h2 id="_212">机密管理<a class="headerlink" href="#_212" title="Permanent link">&para;</a></h2>
+<p>操作员通过使用各种加密应用程序来保护云部署中的敏感信息。例如，对静态数据进行加密或对映像进行签名以证明其未被篡改。在所有情况下，这些加密功能都需要某种密钥材料才能运行。</p>
+<p>机密管理描述了一组旨在保护软件系统中的关键材料的技术。传统上，密钥管理涉及硬件安全模块 （HSM） 的部署。这些设备已经过物理强化，可防止篡改。</p>
+<p>随着技术的进步，需要保护的秘密物品的数量已经从密钥材料增加到包括证书对、API  密钥、系统密码、签名密钥等。这种增长产生了对更具可扩展性的密钥管理方法的需求，并导致创建了许多提供可扩展动态密钥管理的软件服务。本章介绍了目前存在的服务，并重点介绍了那些能够集成到OpenStack云中的服务。</p>
+<ul>
+<li>现有技术摘要</li>
+<li>相关 Openstack 项目</li>
+<li>使用案例</li>
+<li>镜像签名验证</li>
+<li>卷加密</li>
+<li>临时磁盘加密</li>
+<li>Sahara </li>
+<li>Magnum</li>
+<li>Octavia/LBaaS </li>
+<li>Swift</li>
+<li>配置文件中的密码</li>
+<li>Barbican</li>
+<li>概述</li>
+<li>加密插件</li>
+<li>简单的加密插件</li>
+<li>PKCS#11加密插件</li>
+<li>密钥商店插件</li>
+<li>KMIP插件</li>
+<li>Dogtag 插件</li>
+<li>Vault 插件</li>
+<li>Castellan </li>
+<li>概述</li>
+<li>常见问题解答</li>
+<li>检查表</li>
+<li>Check-Key-Manager-01：配置文件的所有权是否设置为 root/barbican？</li>
+<li>Check-Key-Manager-02：是否为配置文件设置了严格的权限？</li>
+<li>Check-Key-Manager-03：OpenStack Identity 是否用于身份验证？</li>
+<li>Check-Key-Manager-04：是否启用了 TLS 进行身份验证？</li>
+</ul>
+<h3 id="_213">现有技术摘要<a class="headerlink" href="#_213" title="Permanent link">&para;</a></h3>
+<p>在OpenStack中，有两种推荐用于机密管理的解决方案，即Barbican和Castellan。本章将概述不同的方案，以帮助操作员选择使用哪个密钥管理器。</p>
+<p>第三种不受支持的方法是固定/硬编码密钥。众所周知，某些 OpenStack 服务可以选择在其配置文件中指定密钥。这是最不安全的操作方式，我们不建议在任何类型的生产环境中使用。</p>
+<p>其他解决方案包括 KeyWhiz、Confidant、Conjur、EJSON、Knox 和 Red October，但在本文档的讨论范围之外，无法涵盖所有可用的 Key Manager。</p>
+<p>对于机密的存储，强烈建议使用硬件安全模块 （HSM） 。HSM 可以有多种形式。传统设备是机架式设备，如以下博客文章中所示。</p>
+<h3 id="openstack_10">相关 Openstack 项目<a class="headerlink" href="#openstack_10" title="Permanent link">&para;</a></h3>
+<p>Castellan 是一个库，它提供了一个简单的通用接口来存储、生成和检索机密。大多数 Openstack 服务都使用它进行机密管理。作为一个图书馆，Castellan 本身并不提供秘密存储。相反，需要部署后端实现。</p>
+<p>请注意，Castellan 不提供任何身份验证。它只是通过身份验证凭据（例如Keystone令牌）传递到后端。</p>
+<p>Barbican 是一个 OpenStack 服务，为 Castellan 提供后端。Barbican 需要并验证 keystone  身份验证令牌，以识别访问或存储密钥的用户和项目。然后，它应用策略来确定是否允许访问。它还提供了许多额外的有用功能来改进密钥管理，包括配额、每个密钥的 ACL、跟踪密钥使用者以及密钥容器中的密钥分组。例如，明锐直接与巴比肯（而不是卡斯特拉兰）集成，以利用其中一些功能。</p>
+<p>Barbican 有许多后端插件，可用于将机密安全地存储在本地数据库或 HSM 中。</p>
+<p>目前，Barbican 是 Castellan 唯一可用的后端。然而，有几个后端正在开发中，包括 KMIP、Dogtag、Hashicorp Vault 和  Custodia。对于那些不希望部署 Barbican  并且密钥管理需求相对简单的部署人员来说，使用这些后端之一可能是一个可行的替代方案。但是，在检索密钥时，缺少的是多租户和租户策略的实施，以及上面提到的任何额外功能。</p>
+<h3 id="_214">使用案例<a class="headerlink" href="#_214" title="Permanent link">&para;</a></h3>
+<h4 id="_215">镜像签名验证<a class="headerlink" href="#_215" title="Permanent link">&para;</a></h4>
+<p>验证镜像签名可确保镜像自原始上传以来不会被替换或更改。镜像签名验证功能使用 Castellan 作为其密钥管理器来存储加密签名。镜像签名和证书 UUID 将与镜像一起上传到镜像 （glance） 服务。Glance  在从密钥管理器检索证书后验证签名。启动镜像时，计算服务 （nova） 在从密钥管理器检索证书后验证签名。</p>
+<p>有关更多详细信息，请参阅可信映像文档。</p>
+<h4 id="_216">卷加密<a class="headerlink" href="#_216" title="Permanent link">&para;</a></h4>
+<p>卷加密功能使用 Castellan 提供静态数据加密。当用户创建加密卷类型并使用该类型创建卷时，块存储 （cinder） 服务会请求密钥管理器创建要与该卷关联的密钥。当卷附加到实例时，nova 会检索密钥。</p>
+<p>有关详细信息，请参阅数据加密部分。和卷加密。</p>
+<h4 id="_217">临时磁盘加密<a class="headerlink" href="#_217" title="Permanent link">&para;</a></h4>
+<p>临时磁盘加密功能可解决数据隐私问题。临时磁盘是虚拟主机操作系统使用的临时工作空间。如果不加密，可以在此磁盘上访问敏感的用户信息，并且在卸载磁盘后可能会保留残留信息。</p>
+<p>临时磁盘加密功能可以通过安全包装器与密钥管理服务交互，并通过按租户提供临时磁盘加密密钥来支持数据隔离。建议使用后端密钥存储以增强安全性（例如，HSM 或 KMIP 服务器可用作 barbican 后端密钥存储）。</p>
+<p>有关详细信息，请参阅临时磁盘加密文档。</p>
+<h4 id="sahara">Sahara<a class="headerlink" href="#sahara" title="Permanent link">&para;</a></h4>
+<p>Sahara在操作过程中生成并存储多个密码。为了加强Sahara对密码的使用，可以指示它使用外部密钥管理器来存储和检索这些密钥。要启用此功能，必须首先在堆栈中部署一个 OpenStack Key Manager 服务。</p>
+<p>在堆栈上部署密钥管理器服务后，必须将 sahara 配置为启用密钥的外部存储。Sahara 使用 Castellan 库与 OpenStack Key Manager 服务进行交互。此库提供对密钥管理器的可配置访问。</p>
+<p>有关详细信息，请参阅 Sahara 高级配置指南。</p>
+<h4 id="magnum">Magnum<a class="headerlink" href="#magnum" title="Permanent link">&para;</a></h4>
+<p>为了使用本机客户端（ <code>docker</code> 或 <code>kubectl</code> 分别）提供对 Docker Swarm 或 Kubernetes 的访问，magnum 使用 TLS 证书。要存储证书，建议使用 Barbican 或 Magnum 数据库 （ <code>x590keypair</code> ）。</p>
+<p>也可以使用本地目录 （ <code>local</code> ），但被认为是不安全的，不适合生产环境。</p>
+<p>有关为 Magnum 设置证书管理器的更多详细信息，请参阅容器基础架构管理服务文档。</p>
+<h4 id="octavialbaas">Octavia/LBaaS<a class="headerlink" href="#octavialbaas" title="Permanent link">&para;</a></h4>
+<p>Neutron 和 Octavia 项目的 LBaaS（负载均衡器即服务）功能需要证书及其私钥来为 TLS 连接提供负载均衡。Barbican 可用于存储此敏感信息。</p>
+<p>有关详细信息，请参阅如何创建 TLS 负载均衡器和部署以 TLS 结尾的 HTTPS 负载均衡器。</p>
+<h4 id="swift">Swift<a class="headerlink" href="#swift" title="Permanent link">&para;</a></h4>
+<p>对称密钥可用于加密 Swift 容器，以降低用户数据被读取的风险，如果未经授权的一方要获得对磁盘的物理访问权限。</p>
+<p>有关更多详细信息，请参阅官方 swift 文档中的对象加密部分。</p>
+<h4 id="_218">配置文件中的密码<a class="headerlink" href="#_218" title="Permanent link">&para;</a></h4>
+<p>OpenStack 服务的配置文件包含许多纯文本密码。例如，这些包括服务用户用于向 keystone 进行身份验证以验证 keystone 令牌的密码。</p>
+<p>目前没有对这些密码进行模糊处理的解决方案。建议通过文件权限适当地保护这些文件。</p>
+<p>目前正在努力将这些密钥存储在 Castellan 后端，然后让 oslo.config 使用 Castellan 来检索这些密钥。</p>
+<h3 id="barbican">Barbican<a class="headerlink" href="#barbican" title="Permanent link">&para;</a></h3>
+<h4 id="_219">概述<a class="headerlink" href="#_219" title="Permanent link">&para;</a></h4>
+<p>Barbican 是一个 REST API，旨在安全存储、配置和管理密码、加密密钥和 X.509 证书等机密。它旨在对所有环境都有用，包括大型短暂云。</p>
+<p>Barbican 与多个 OpenStack 功能集成，可以直接集成，也可以作为 Castellan 的后端集成。</p>
+<p>Barbican 通常用作密钥管理系统，以实现图像签名验证、卷加密等用例。这些用例在用例中进行了概述</p>
+<h5 id="barbican_1">Barbican 基于角色的访问控制<a class="headerlink" href="#barbican_1" title="Permanent link">&para;</a></h5>
+<p>待定</p>
+<h5 id="_220">机密存储后端<a class="headerlink" href="#_220" title="Permanent link">&para;</a></h5>
+<p>Key Manager  服务具有插件架构，允许部署程序将密钥存储在一个或多个密钥存储中。机密存储可以是基于软件的（如软件令牌），也可以是基于硬件设备（如硬件安全模块  （HSM））的。本节介绍当前可用的插件，并讨论每个插件的安全状况。插件已启用并使用配置文件中的 <code>/etc/barbican/barbican.conf</code> 设置进行配置。</p>
+<p>有两种类型的插件：加密插件和机密存储插件。</p>
+<h4 id="_221">加密插件<a class="headerlink" href="#_221" title="Permanent link">&para;</a></h4>
+<p>加密插件将机密存储为 Barbican 数据库中的加密 blob。调用该插件来加密密钥存储上的密钥，并在密钥检索时解密密钥。目前有两种类型的存储插件可用：Simple Crypto 插件和 PKCS#11 加密插件。</p>
+<h4 id="_222">简单的加密插件<a class="headerlink" href="#_222" title="Permanent link">&para;</a></h4>
+<p>默认情况下，在 中 <code>barbican.conf</code> 配置了简单的加密插件。该插件使用单个对称密钥（KEK - 或“密钥加密密钥”），该密钥以纯文本形式存储在 <code>barbican.conf</code> 文件中，以加密和解密所有机密。此插件被认为是不太安全的选项，仅适用于开发和测试，因为主密钥以纯文本形式存储在配置文件中，因此不建议在生产部署中使用。</p>
+<h4 id="pkcs11">PKCS#11 加密插件<a class="headerlink" href="#pkcs11" title="Permanent link">&para;</a></h4>
+<p>PKCS#11 加密插件可用于与使用 PKCS#11 协议的硬件安全模块 （HSM） 连接。机密由项目特定的密钥加密密钥 （KEK） 加密 （并在检索时解密） 。KEK 受主 KEK （MKEK） 保护（加密）。MKEK 与 HMAC 一起驻留在 HSM 中。由于每个项目都使用不同的 KEK，并且由于 KEK 以加密形式（而不是配置文件中的明文）存储在数据库中，因此 PKCS#11 插件比简单的加密插件安全得多。它是 Barbican  部署中最受欢迎的后端。</p>
+<h4 id="_223">机密存储插件<a class="headerlink" href="#_223" title="Permanent link">&para;</a></h4>
+<p>密钥存储插件与安全存储系统接口，以将密钥存储在这些系统中。密钥存储插件有三种类型：KMIP 插件、Dogtag 插件和 Vault 插件。</p>
+<h4 id="kmip">KMIP 插件<a class="headerlink" href="#kmip" title="Permanent link">&para;</a></h4>
+<p>密钥管理互操作性协议 （KMIP） 密钥存储插件用于与启用了 KMIP 的设备（如硬件安全模块 （HSM））进行通信。密钥直接安全地存储在启用了 KMIP  的设备中，而不是存储在 Barbican 数据库中。Barbican  数据库维护对密钥位置的引用，以供以后检索。该插件可以配置为使用用户名和密码或使用客户端证书向启用了 KMIP 的设备进行身份验证。此信息存储在  Barbican 配置文件中。</p>
+<h4 id="dogtag">Dogtag 插件<a class="headerlink" href="#dogtag" title="Permanent link">&para;</a></h4>
+<p>Dogtag 秘密存储插件用于与 Dogtag 通信。Dogtag 是对应于 Red Hat 证书系统的上游项目，Red Hat Certificate  System 是一个通用标准/FIPS 认证的 PKI 解决方案，包含证书管理器 （CA） 和密钥恢复机构 （KRA），用于安全存储机密。KRA 将机密作为加密的 blob 存储在其内部数据库中，主加密密钥存储在基于软件的 NSS 安全数据库中，或存储在硬件安全模块 （HSM）  中。基于软件的 NSS 数据库配置为不希望使用 HSM 的部署提供了安全选项。KRA 是 FreeIPA 的一个组件，因此可以使用  FreeIPA 服务器配置插件。以下博客文章中提供了有关如何使用 FreeIPA 设置 Barbican 的更详细说明。</p>
+<h4 id="vault">Vault 插件<a class="headerlink" href="#vault" title="Permanent link">&para;</a></h4>
+<p>Vault 是 Hashicorp 开发的秘密存储，用于安全访问机密和其他对象，例如 API  密钥、密码或证书。保险柜为任何机密提供统一的界面，同时提供严格的访问控制并记录详细的审核日志。Vault 企业版还允许与 HSM  集成以进行自动解封、提供 FIPS 密钥存储和熵增强。但是，Vault  插件的缺点是它不支持多租户，因此所有密钥都将存储在同一个键/值密钥引擎下。挂载点。</p>
+<h5 id="_224">威胁分析<a class="headerlink" href="#_224" title="Permanent link">&para;</a></h5>
+<p>Barbican 团队与 OpenStack 安全项目合作，对最佳实践 Barbican 部署进行了安全审查。安全审查的目的是识别服务设计和体系结构中的弱点和缺陷，并提出解决这些问题的控制或修复措施。</p>
+<p>巴比肯威胁分析确定了八项安全发现和两项建议，以提高巴比肯部署的安全性。这些结果可以在安全分析存储库中查看，以及 Barbican 体系结构图和体系结构描述页。</p>
+<h3 id="castellan">Castellan<a class="headerlink" href="#castellan" title="Permanent link">&para;</a></h3>
+<h4 id="_225">概述<a class="headerlink" href="#_225" title="Permanent link">&para;</a></h4>
+<p>Castellan 是由 Barbican 团队开发的通用密钥管理器界面。它使项目能够使用可配置的密钥管理器，该管理器可以特定于部署。</p>
+<h3 id="_226">常见问题解答<a class="headerlink" href="#_226" title="Permanent link">&para;</a></h3>
+<p>​      1.在 OpenStack 中安全存储密钥的推荐方法是什么？</p>
+<p>在OpenStack中安全地存储和管理密钥的推荐方法是使用Barbican。</p>
+<p>​      2.我为什么要使用Barbican？</p>
+<p>Barbican 是一种 OpenStack 服务，它支持多租户，并使用 Keystone 令牌进行身份验证。这意味着对密钥的访问是通过租户和 RBAC 角色的 OpenStack 策略来控制的。</p>
+<p>Barbican 具有多个可插拔后端，可以使用 PKCS#11 或 KMIP 与基于软件和硬件的安全模块进行通信。</p>
+<p>​      3.如果我不想使用Barbican怎么办？</p>
+<p>在 Openstack 上下文中，需要管理两种类型的密钥 - 需要密钥失真令牌才能访问的密钥，以及不需要密钥验证令牌的密钥。</p>
+<p>需要 keystone 身份验证的密钥的一个示例是特定项目拥有的密码和密钥。例如，这些包括项目加密煤渣卷的加密密钥或项目概览图像的签名密钥。</p>
+<p>不需要 keystone 令牌即可访问的密钥示例包括服务配置文件中服务用户的密码或不属于任何特定项目的加密密钥。</p>
+<p>需要 keystone 令牌的机密应使用 Barbican 进行存储。</p>
+<p>不需要 keystone 身份验证的密钥可以存储在任何密钥存储中，该密钥存储实现了通过 Castellan 公开的简单密钥存储 API。这也包括巴比肯。</p>
+<p>​      4.如何使用 Vault、Keywhiz、Custodia 等...？</p>
+<p>如果已为该密钥管理器编写了 Castellan 插件，则您选择的密钥管理器可以与该密钥管理器一起使用。一旦该插件被编写出来，直接使用该插件或在 Barbican 后面使用该插件是相对微不足道的。</p>
+<p>目前，Vault 和 Custodia 插件正在为 Queens 周期开发。</p>
+<h3 id="_227">检查表<a class="headerlink" href="#_227" title="Permanent link">&para;</a></h3>
+<h4 id="check-key-manager-01-rootbarbican">Check-Key-Manager-01：配置文件的所有权是否设置为 root/barbican？<a class="headerlink" href="#check-key-manager-01-rootbarbican" title="Permanent link">&para;</a></h4>
+<p>配置文件包含组件平稳运行所需的关键参数和信息。如果非特权用户有意或无意地修改或删除任何参数或文件本身，则会导致严重的可用性问题，从而导致拒绝向其他最终用户提供服务。此类关键配置文件的用户所有权必须设置为 root，组所有权必须设置为 barbican。此外，包含目录应具有相同的所有权，以确保正确拥有新文件。</p>
+<p>运行以下命令：</p>
+<pre class="highlight"><code>$ stat -L -c "%U %G" /etc/barbican/barbican.conf | egrep "root barbican"
+$ stat -L -c "%U %G" /etc/barbican/barbican-api-paste.ini | egrep "root barbican"
+$ stat -L -c "%U %G" /etc/barbican/policy.json | egrep "root barbican"
+$ stat -L -c "%U %G" /etc/barbican | egrep "root barbican"</code></pre>
+<p>通过：如果所有这些配置文件的用户和组所有权分别设置为 root 和 barbican。上面的命令显示了 root / barbican 的输出。</p>
+<p>失败：如果上述命令未返回任何输出，则用户和组所有权可能已设置为除 root 以外的任何用户或除 barbican 以外的任何组。</p>
+<h4 id="check-key-manager-02">Check-Key-Manager-02：是否为配置文件设置了严格的权限？<a class="headerlink" href="#check-key-manager-02" title="Permanent link">&para;</a></h4>
+<p>与前面的检查类似，我们建议为此类配置文件设置严格的访问权限。</p>
+<p>运行以下命令：</p>
+<pre class="highlight"><code>$ stat -L -c "%a" /etc/barbican/barbican.conf
+$ stat -L -c "%a" /etc/barbican/barbican-api-paste.ini
+$ stat -L -c "%a" /etc/barbican/policy.json
+$ stat -L -c "%a" /etc/barbican</code></pre>
+<p>还可以进行更广泛的限制：如果包含目录设置为 750，则保证此目录中新创建的文件具有所需的权限。</p>
+<p>通过：如果权限设置为 640 或更严格，或者包含目录设置为 750。640 的权限转换为所有者 r/w、组 r，而对其他人没有权限，例如“u=rw，g=r，o=”。</p>
+<p><strong>注意</strong></p>
+<pre class="highlight"><code>使用 Check-Key-Manager-01：配置文件的所有权是否设置为 root/barbican？权限设置为 640，root  具有读/写访问权限，Barbican 具有对这些配置文件的读取访问权限。也可以使用以下命令验证访问权限。仅当此命令支持 ACL  时，它才在您的系统上可用。</code></pre>
+<pre class="highlight"><code>$ getfacl --tabular -a /etc/barbican/barbican.conf
+getfacl: Removing leading '/' from absolute path names
+# file: etc/barbican/barbican.conf
+USER   root  rw-
+GROUP  barbican  r--
+mask         r--
+other        ---</code></pre>
+<p>失败：如果权限设置大于 640。</p>
+<h4 id="check-key-manager-03openstack-identity">Check-Key-Manager-03：OpenStack Identity 是否用于身份验证？<a class="headerlink" href="#check-key-manager-03openstack-identity" title="Permanent link">&para;</a></h4>
+<p>OpenStack 支持各种身份验证策略，如 <code>noauth</code> 和 <code>keystone</code> 。如果使用该 <code>noauth</code> 策略，则用户无需任何身份验证即可与 OpenStack 服务进行交互。这可能是一个潜在的风险，因为攻击者可能会获得对 OpenStack 组件的未经授权的访问。我们强烈建议所有服务都必须使用其服务帐户通过 keystone 进行身份验证。</p>
+<p>通过：如果参数 <code>authtoken</code> 列在 中的 <code>pipeline:barbican-api-keystone</code> <code>barbican-api-paste.ini</code> 部分下。</p>
+<p>失败：如果 中的 <code>pipeline:barbican-api-keystone</code> <code>barbican-api-paste.ini</code> 部分下缺少该参数 <code>authtoken</code> 。</p>
+<h4 id="check-key-manager-04-tls">Check-Key-Manager-04：是否启用了 TLS 进行身份验证？<a class="headerlink" href="#check-key-manager-04-tls" title="Permanent link">&para;</a></h4>
+<p>OpenStack 组件使用各种协议相互通信，通信可能涉及敏感或机密数据。攻击者可能会尝试窃听频道以访问敏感信息。所有组件必须使用安全通信协议相互通信。</p>
+<p>通过：如果 section in <code>/etc/barbican/barbican.conf</code> 下的参数值设置为 Identity API 端点开头， <code>https://</code> 并且 same <code>/etc/barbican/barbican.conf</code> 中同一 <code>[keystone_authtoken]</code> 部分下的 <code>[keystone_authtoken]</code> 参数 <code>www_authenticate_uri</code>  <code>insecure</code> 值设置为 <code>False</code> 。</p>
+<p>失败：如果 in <code>/etc/barbican/barbican.conf</code> 部分下的 <code>[keystone_authtoken]</code> 参数 <code>www_authenticate_uri</code> 值未设置为以 开头的身份 API 端点， <code>https://</code> 或者同一 <code>/etc/barbican/barbican.conf</code> 部分中的参数 <code>insecure</code>  <code>[keystone_authtoken]</code> 值设置为 <code>True</code> 。</p>
+<h2 id="_228">消息队列<a class="headerlink" href="#_228" title="Permanent link">&para;</a></h2>
+<p>消息队列服务促进了 OpenStack 中的进程间通信。OpenStack 支持以下消息队列服务后端：</p>
+<ul>
+<li>RabbitMQ</li>
+<li>Qpid</li>
+<li>ZeroMQ 或 0MQ</li>
+</ul>
+<p>RabbitMQ 和 Qpid 都是高级消息队列协议 （AMQP） 框架，它们为点对点通信提供消息队列。队列实现通常部署为集中式或分散式队列服务器池。ZeroMQ 通过 TCP 套接字提供直接的点对点通信。</p>
+<p>消息队列有效地促进了跨 OpenStack 部署的命令和控制功能。一旦允许访问队列，就不会执行进一步的授权检查。可通过队列访问的服务会验证实际消息负载中的上下文和令牌。但是，您必须注意令牌的到期日期，因为令牌可能可重播，并且可以授权基础结构中的其他服务。</p>
+<p>OpenStack 不支持消息级别的安全性，例如消息签名。因此，您必须对消息传输本身进行安全和身份验证。对于高可用性 （HA） 配置，您必须执行队列对队列的身份验证和加密。</p>
+<p>通过 ZeroMQ 消息传递，IPC 套接字在单个机器上使用。由于这些套接字容易受到攻击，因此请确保云运营商已保护它们。</p>
+<ul>
+<li>消息安全</li>
+<li>消息传输安全</li>
+<li>队列身份验证和访问控制</li>
+<li>消息队列进程隔离和策略</li>
+</ul>
+<h3 id="_229">消息安全<a class="headerlink" href="#_229" title="Permanent link">&para;</a></h3>
+<p>本节讨论 OpenStack 中使用的三种最常见的消息队列解决方案的安全强化方法：RabbitMQ、Qpid 和 ZeroMQ。</p>
+<h4 id="_230">消息传输安全<a class="headerlink" href="#_230" title="Permanent link">&para;</a></h4>
+<p>基于 AMQP 的解决方案（Qpid 和 RabbitMQ）支持使用 TLS 的传输级安全性。ZeroMQ 消息传递本身不支持 TLS，但使用标记的 IPsec 或 CIPSO 网络标签可以实现传输级安全性。</p>
+<p>我们强烈建议为您的消息队列启用传输级加密。将 TLS 用于消息传递客户端连接可以保护通信在传输到消息传递服务器的过程中不被篡改和窃听。以下是有关如何为两个常用消息传递服务器 Qpid 和  RabbitMQ 配置 TLS 的指南。在配置消息传递服务器用于验证客户机连接的可信证书颁发机构 （CA）  捆绑软件时，建议仅将其限制为用于节点的 CA，最好是内部管理的 CA。受信任的 CA 捆绑包将确定哪些客户端证书将获得授权，并通过设置 TLS  连接的客户端-服务器验证步骤。请注意，在安装证书和密钥文件时，请确保文件权限受到限制，例如使用 <code>chmod 0600</code> ，并且所有权限制为消息传递服务器守护程序用户，以防止消息传递服务器上的其他进程和用户进行未经授权的访问。</p>
+<h5 id="rabbitmq-ssl">RabbitMQ 服务器 SSL 配置<a class="headerlink" href="#rabbitmq-ssl" title="Permanent link">&para;</a></h5>
+<p>应将以下行添加到系统范围的 RabbitMQ 配置文件中，通常 <code>/etc/rabbitmq/rabbitmq.config</code> ：</p>
+<pre class="highlight"><code>[
+  {rabbit, [
+     {tcp_listeners, [] },
+     {ssl_listeners, [{"&lt;IP address or hostname of management network interface&gt;", 5671}] },
+     {ssl_options, [{cacertfile,"/etc/ssl/cacert.pem"},
+                    {certfile,"/etc/ssl/rabbit-server-cert.pem"},
+                    {keyfile,"/etc/ssl/rabbit-server-key.pem"},
+                    {verify,verify_peer},
+                    {fail_if_no_peer_cert,true}]}
+   ]}
+].</code></pre>
+<p>请注意，该 <code>tcp_listeners</code> 选项设置为 <code>[]</code> 阻止它侦听非 SSL 端口。应将该 <code>ssl_listeners</code> 选项限制为仅在管理网络上侦听服务。</p>
+<p>有关 RabbitMQ SSL 配置的更多信息，请参阅：</p>
+<ul>
+<li>RabbitMQ 配置</li>
+<li>RabbitMQ SSL协议</li>
+</ul>
+<h5 id="qpid-ssl">Qpid 服务器 SSL 配置<a class="headerlink" href="#qpid-ssl" title="Permanent link">&para;</a></h5>
+<p>Apache 基金会为 Qpid 提供了消息传递安全指南。请参阅：</p>
+<ul>
+<li>Apache Qpid SSL</li>
+</ul>
+<h4 id="_231">队列认证和访问控制<a class="headerlink" href="#_231" title="Permanent link">&para;</a></h4>
+<p>RabbitMQ 和 Qpid 提供身份验证和访问控制机制，用于控制对队列的访问。ZeroMQ 不提供此类机制。</p>
+<p>简单身份验证和安全层 （SASL） 是 Internet 协议中用于身份验证和数据安全的框架。RabbitMQ 和 Qpid 都提供 SASL  和其他可插入的身份验证机制，而不仅仅是简单的用户名和密码，从而可以提高身份验证安全性。虽然 RabbitMQ 支持 SASL，但  OpenStack 中的支持目前不允许请求特定的 SASL 身份验证机制。OpenStack 中的 RabbitMQ  支持允许通过未加密的连接进行用户名和密码身份验证，或者将用户名和密码与 X.509 客户端证书结合使用，以建立安全的 TLS 连接。</p>
+<p>我们建议在所有 OpenStack 服务节点上配置 X.509 客户端证书，以便客户端连接到消息传递队列，并在可能的情况下（目前仅 Qpid）使用 X.509 客户端证书执行身份验证。使用用户名和密码时，应按服务和节点创建帐户，以便对队列的访问进行更精细的可审核性。</p>
+<p>在部署之前，请考虑排队服务器使用的 TLS 库。Qpid 使用 Mozilla 的 NSS 库，而 RabbitMQ 使用 Erlang 的 TLS 模块，该模块使用 OpenSSL。</p>
+<h5 id="rabbitmq">身份验证配置示例：RabbitMQ<a class="headerlink" href="#rabbitmq" title="Permanent link">&para;</a></h5>
+<p>在 RabbitMQ 服务器上，删除默认 <code>guest</code> 用户：</p>
+<pre class="highlight"><code># rabbitmqctl delete_user guest</code></pre>
+<p>在 RabbitMQ 服务器上，对于与消息队列通信的每个 OpenStack 服务或节点，请设置用户帐户和权限：</p>
+<pre class="highlight"><code># rabbitmqctl add_user compute01 RABBIT_PASS
+# rabbitmqctl set_permissions compute01 ".*" ".*" ".*"</code></pre>
+<p>将RABBIT_PASS替换为合适的密码。</p>
+<p>有关其他配置信息，请参阅：</p>
+<ul>
+<li>RabbitMQ 访问控制</li>
+<li>RabbitMQ 身份验证</li>
+<li>RabbitMQ 插件</li>
+<li>RabbitMQ SASL 外部身份验证</li>
+</ul>
+<h5 id="openstack-rabbitmq">OpenStack 服务配置：RabbitMQ<a class="headerlink" href="#openstack-rabbitmq" title="Permanent link">&para;</a></h5>
+<pre class="highlight"><code>[DEFAULT]
+rpc_backend = nova.openstack.common.rpc.impl_kombu
+rabbit_use_ssl = True
+rabbit_host = RABBIT_HOST
+rabbit_port = 5671
+rabbit_user = compute01
+rabbit_password = RABBIT_PASS
+kombu_ssl_keyfile = /etc/ssl/node-key.pem
+kombu_ssl_certfile = /etc/ssl/node-cert.pem
+kombu_ssl_ca_certs = /etc/ssl/cacert.pem</code></pre>
+<h5 id="qpid">身份验证配置示例：Qpid<a class="headerlink" href="#qpid" title="Permanent link">&para;</a></h5>
+<p>有关配置信息，请参阅：</p>
+<ul>
+<li>Apache Qpid 身份验证</li>
+<li>Apache Qpid 授权</li>
+</ul>
+<h5 id="openstack-qpid">OpenStack 服务配置：Qpid<a class="headerlink" href="#openstack-qpid" title="Permanent link">&para;</a></h5>
+<pre class="highlight"><code>[DEFAULT]
+rpc_backend = nova.openstack.common.rpc.impl_qpid
+qpid_protocol = ssl
+qpid_hostname = &lt;IP or hostname of management network interface of messaging server&gt;
+qpid_port = 5671
+qpid_username = compute01
+qpid_password = QPID_PASS</code></pre>
+<p>（可选）如果将 SASL 与 Qpid 一起使用，请通过添加以下内容来指定正在使用的 SASL 机制：</p>
+<pre class="highlight"><code>qpid_sasl_mechanisms = &lt;space separated list of SASL mechanisms to use for auth&gt;</code></pre>
+<h4 id="_232">消息队列进程隔离和策略<a class="headerlink" href="#_232" title="Permanent link">&para;</a></h4>
+<p>每个项目都提供了许多发送和使用消息的服务。每个发送消息的二进制文件都应该使用队列中的消息，如果只是回复的话。</p>
+<p>消息队列服务进程应彼此隔离，并应与计算机上的其他进程隔离。</p>
+<h5 id="_233">命名空间<a class="headerlink" href="#_233" title="Permanent link">&para;</a></h5>
+<p>强烈建议在 OpenStack Compute Hypervisor 上运行的所有服务使用网络命名空间。这将有助于防止 VM 来宾和管理网络之间的网络流量桥接。</p>
+<p>使用 ZeroMQ 消息传递时，每个主机必须至少运行一个 ZeroMQ 消息接收器，以接收来自网络的消息并通过 IPC 将消息转发到本地进程。在 IPC 命名空间中为每个项目运行一个独立的消息接收器是可能的，也是可取的，以及同一项目中的其他服务。</p>
+<h5 id="_234">网络策略<a class="headerlink" href="#_234" title="Permanent link">&para;</a></h5>
+<p>队列服务器应仅接受来自管理网络的连接。这适用于所有实现。这应通过服务配置来实现，并可选择通过全局网络策略强制实施。</p>
+<p>使用 ZeroMQ 消息传递时，每个项目都应在专用于属于该项目的服务的端口上运行单独的 ZeroMQ 接收方进程。这相当于 AMQP 的控制交换概念。</p>
+<h5 id="_235">强制访问控制<a class="headerlink" href="#_235" title="Permanent link">&para;</a></h5>
+<p>使用强制访问控制 （MAC） 和自由访问控制 （DAC） 将进程的配置限制为仅这些进程。此限制可防止这些进程与在同一台计算机上运行的其他进程隔离。</p>
+<h2 id="_236">数据处理<a class="headerlink" href="#_236" title="Permanent link">&para;</a></h2>
+<p>数据处理服务（sahara）提供了一个平台，用于使用Hadoop和Spark等处理框架来配置和管理实例集群。通过 OpenStack Dashboard 或 REST  API，用户能够上传和执行框架应用程序，这些应用程序可以访问对象存储或外部提供程序中的数据。数据处理控制器使用编排服务 （heat）  创建实例集群，这些集群可以作为长期运行的组存在，这些组可以根据请求进行扩展和收缩，也可以作为为单个工作负载创建的瞬态组存在。</p>
+<ul>
+<li>数据处理简介</li>
+<li>架构</li>
+<li>涉及的技术</li>
+<li>用户对资源的访问权限</li>
+<li>部署</li>
+<li>控制器对集群的网络访问</li>
+<li>配置和强化</li>
+<li>TLS</li>
+<li>基于角色的访问控制策略</li>
+<li>安全组</li>
+<li>代理域</li>
+<li>自定义网络拓扑</li>
+<li>间接访问</li>
+<li>根包装</li>
+<li>日志记录</li>
+<li>参考书目</li>
+</ul>
+<h3 id="_237">数据处理简介<a class="headerlink" href="#_237" title="Permanent link">&para;</a></h3>
+<p>数据处理服务控制器将负责创建、维护和销毁为其集群创建的任何实例。控制器将使用网络服务在自身和集群实例之间建立网络路径。它还将管理要在集群上运行的用户应用程序的部署和生命周期。集群中的实例包含框架处理引擎的核心，数据处理服务提供了多个选项来创建和管理与这些实例的连接。</p>
+<p>数据处理资源（群集、作业和数据源）按身份服务中定义的项目进行分隔。这些资源在项目中共享，了解使用该服务的人员的访问需求非常重要。通过使用基于角色的访问控制，可以进一步限制项目中的活动（例如启动集群、上传作业等）。</p>
+<p>在本章中，我们将讨论如何评估数据处理用户对其应用程序、他们使用的数据以及他们在项目中的预期功能的需求。我们还将演示服务控制器及其集群的一些强化技术，并提供各种控制器配置和用户管理方法的示例，以确保足够的安全和隐私级别。</p>
+<h4 id="_238">架构<a class="headerlink" href="#_238" title="Permanent link">&para;</a></h4>
+<p>下图显示了数据处理服务如何适应更大的 OpenStack 生态系统的概念视图。</p>
+<p><img alt="../_images/data_processing_architecture.png" src="https://docs.openstack.org/security-guide/_images/data_processing_architecture.png" /></p>
+<p>数据处理服务在集群配置过程中大量使用计算、编排、镜像和块存储服务。它还将使用在群集创建期间提供的由网络服务创建的一个或多个网络来管理实例。当用户运行框架应用程序时，控制器和集群将访问对象存储服务。鉴于这些服务用法，我们建议按照系统文档中概述的说明对安装的所有组件进行编目。</p>
+<h4 id="_239">涉及的技术<a class="headerlink" href="#_239" title="Permanent link">&para;</a></h4>
+<p>数据处理服务负责部署和管理多个应用程序。为了全面了解所提供的安全选项，我们建议操作员大致熟悉这些应用程序。突出显示的技术列表分为两部分：第一部分，对安全性影响较大的高优先级应用程序，第二部分，支持影响较小的应用程序。</p>
+<p>更高的影响</p>
+<ul>
+<li>Hadoop</li>
+<li>Hadoop安全模式文档</li>
+<li>HDFS</li>
+<li>Spark </li>
+<li>Spark 安全</li>
+<li>Storm </li>
+<li>Zookeeper</li>
+</ul>
+<p>较低的影响</p>
+<ul>
+<li>Oozie</li>
+<li>Hive</li>
+<li>Pig</li>
+</ul>
+<p>这些技术构成了与数据处理服务一起部署的框架的核心。除了这些技术之外，该服务还包括第三方供应商提供的捆绑框架。这些捆绑框架是使用上述相同核心部分以及供应商包含的配置和应用程序构建的。有关第三方框架捆绑包的更多信息，请参阅以下链接：</p>
+<ul>
+<li>Cloudera CDH</li>
+<li>Hortonworks Data Platform</li>
+<li>MapR</li>
+</ul>
+<h4 id="_240">用户访问资源<a class="headerlink" href="#_240" title="Permanent link">&para;</a></h4>
+<p>数据处理服务的资源（集群、作业和数据源）在项目范围内共享。尽管单个控制器安装可以管理多组资源，但这些资源的范围将限定为单个项目。鉴于此限制，我们建议密切监视项目中的用户成员身份，以保持资源的适当隔离。</p>
+<p>由于部署此服务的组织的安全要求会根据其特定需求而有所不同，因此我们建议运营商将重点放在数据隐私、集群管理和最终用户应用程序上，作为评估用户需求的起点。这些决策将有助于指导配置用户对服务的访问的过程。有关数据隐私的扩展讨论，请参阅租户数据隐私。</p>
+<p>数据处理安装的默认假设是用户将有权访问其项目中的所有功能。如果需要更精细的控制，数据处理服务会提供策略文件（如策略中所述）。这些配置将高度依赖于安装组织的需求，因此没有关于其使用的一般建议：有关详细信息，请参阅基于角色的访问控制策略。</p>
+<h3 id="_241">部署<a class="headerlink" href="#_241" title="Permanent link">&para;</a></h3>
+<p>与许多其他 OpenStack 服务一样，数据处理服务被部署为在连接到堆栈的主机上运行的应用程序。从 Kilo  版本开始，它能够以分布式方式部署多个冗余控制器。与其他服务一样，它也需要一个数据库来存储有关其资源的信息。请参阅数据库。请务必注意，数据处理服务将需要管理多个标识服务信任，直接与业务流程和网络服务通信，并可能在代理域中创建用户。由于这些原因，控制器将需要访问控制平面，因此我们建议将其与其他服务控制器一起安装。</p>
+<p>数据处理直接与多个 OpenStack 服务交互：</p>
+<ul>
+<li>计算</li>
+<li>身份验证</li>
+<li>联网</li>
+<li>对象存储</li>
+<li>配器</li>
+<li>块存储（可选）</li>
+</ul>
+<p>建议记录这些服务与数据处理控制器之间的所有数据流和桥接点。请参阅系统文档。</p>
+<p>数据处理服务使用对象存储服务来存储作业二进制文件和数据源。希望访问完整数据处理服务功能的用户将需要在他们正在使用的项目中存储对象。</p>
+<p>网络服务在群集的配置中起着重要作用。在预配之前，用户应为群集实例提供一个或多个网络。关联网络的操作类似于通过仪表板启动实例时分配网络的过程。控制器使用这些网络对其集群的实例和框架进行管理访问。</p>
+<p>另外值得注意的是身份服务。数据处理服务的用户需要在其项目中具有适当的角色，以允许为其集群预置实例。使用代理域配置的安装需要特别注意。请参阅代理域。具体而言，数据处理服务将需要能够在代理域中创建用户。</p>
+<h4 id="_242">控制器对集群的网络访问<a class="headerlink" href="#_242" title="Permanent link">&para;</a></h4>
+<p>数据处理控制器的主要任务之一是与其生成的实例进行通信。这些实例是预置的，然后根据所使用的框架进行配置。控制器和实例之间的通信使用安全外壳 （SSH） 和 HTTP 协议。</p>
+<p>在预配集群时，将在用户提供的网络中为每个实例提供一个 IP 地址。第一个网络通常称为数据处理管理网络，实例可以使用网络服务为此网络分配的固定 IP  地址。控制器还可以配置为除了固定地址之外，还对实例使用浮动 IP 地址。与实例通信时，控制器将首选浮动地址（如果启用）。</p>
+<p>对于固定和浮动 IP  地址无法提供所需功能的情况，控制器可以通过两种替代方法提供访问：自定义网络拓扑和间接访问。自定义网络拓扑功能允许控制器通过配置文件中提供的  shell 命令访问实例。间接访问用于指定用户在集群置备期间可用作代理网关的实例。这些选项通过配置和强化中的用法示例进行讨论。</p>
+<h3 id="_243">配置和强化<a class="headerlink" href="#_243" title="Permanent link">&para;</a></h3>
+<p>有多个配置选项和部署策略可以提高数据处理服务的安全性。服务控制器通过主配置文件和一个或多个策略文件进行配置。使用数据局部性功能的安装还将具有两个附加文件，用于指定计算节点和对象存储节点的物理位置。</p>
+<h4 id="tls_1">TLS系统<a class="headerlink" href="#tls_1" title="Permanent link">&para;</a></h4>
+<p>与许多其他 OpenStack 控制器一样，数据处理服务控制器可以配置为需要 TLS 连接。</p>
+<p>Pre-Kilo 版本将需要 TLS 代理，因为控制器不允许直接 TLS 连接。TLS 代理和 HTTP 服务中介绍了如何配置 TLS 代理，我们建议按照其中的建议创建此类安装。</p>
+<p>从 Kilo 版本开始，数据处理控制器允许直接 TLS 连接，我们建议这样做。启用此行为需要对控制器配置文件进行一些小的调整。</p>
+<p><strong>例。配置对控制器的 TLS 访问</strong></p>
+<pre class="highlight"><code>[ssl]
+ca_file = cafile.pem
+cert_file = certfile.crt
+key_file = keyfile.key</code></pre>
+<h4 id="_244">基于角色的访问控制策略<a class="headerlink" href="#_244" title="Permanent link">&para;</a></h4>
+<p>数据处理服务使用策略文件（如策略中所述）来配置基于角色的访问控制。使用策略文件，操作员可以限制组对特定数据处理功能的访问。</p>
+<p>执行此操作的原因将根据安装的组织要求而更改。通常，这些细粒度控件用于操作员需要限制数据处理服务资源的创建、删除和检索的情况。需要限制项目内访问的操作员应充分意识到，需要有其他方法让用户访问服务的核心功能（例如，配置集群）。</p>
+<p><strong>例。允许所有用户使用所有方法（默认策略）</strong></p>
+<pre class="highlight"><code>{
+    "default": ""
+}</code></pre>
+<p><strong>例。禁止对非管理员用户进行映像注册表操作</strong></p>
+<pre class="highlight"><code>{
+    "default": "",
+
+    "data-processing:images:register": "role:admin",
+    "data-processing:images:unregister": "role:admin",
+    "data-processing:images:add_tags": "role:admin",
+    "data-processing:images:remove_tags": "role:admin"
+}</code></pre>
+<h4 id="_245">安全组<a class="headerlink" href="#_245" title="Permanent link">&para;</a></h4>
+<p>数据处理服务允许将安全组与为其集群预置的实例相关联。无需其他配置，该服务将对预置集群的任何项目使用默认安全组。如果请求，可以使用不同的安全组，或者存在一个自动选项，该选项指示服务根据所访问框架指定的端口创建安全组。</p>
+<p>对于生产环境，我们建议手动控制安全组，并创建一组适合安装的组规则。通过这种方式，操作员可以确保默认安全组将包含所有适当的规则。有关安全组的扩展讨论，请参阅安全组。</p>
+<h4 id="_246">代理域<a class="headerlink" href="#_246" title="Permanent link">&para;</a></h4>
+<p>将对象存储服务与数据处理结合使用时，需要添加存储访问凭据。使用代理域，数据处理服务可以改用来自标识服务的委派信任，以允许通过域中创建的临时用户进行存储访问。要使此委派机制起作用，必须将数据处理服务配置为使用代理域，并且操作员必须为代理用户配置身份域。</p>
+<p>数据处理控制器保留为对象存储访问提供的用户名和密码的临时存储。使用代理域时，控制器将为代理用户生成此对，并且此用户的访问将仅限于身份信任的访问。我们建议在控制器或其数据库具有与公共网络之间的路由的任何安装中使用代理域。</p>
+<p><strong>示例：为名为“dp_proxy”的代理域进行配置</strong></p>
+<pre class="highlight"><code>[DEFAULT]
+use_domain_for_proxy_users = true
+proxy_user_domain_name = dp_proxy
+proxy_user_role_names = Member</code></pre>
+<h4 id="_247">自定义网络拓扑<a class="headerlink" href="#_247" title="Permanent link">&para;</a></h4>
+<p>数据处理控制器可以配置为使用代理命令来访问其集群实例。通过这种方式，可以为不使用网络服务直接提供的网络的安装创建自定义网络拓扑。对于需要限制控制器和实例之间访问的安装，我们建议使用此选项。</p>
+<p><strong>示例：通过指定的中继机访问实例</strong></p>
+<pre class="highlight"><code>[DEFAULT]
+proxy_command='ssh relay-machine-{tenant_id} nc {host} {port}'</code></pre>
+<p><strong>示例：通过自定义网络命名空间访问实例</strong></p>
+<pre class="highlight"><code>[DEFAULT]
+proxy_command='ip netns exec ns_for_{network_id} nc {host} {port}'</code></pre>
+<h4 id="_248">间接访问<a class="headerlink" href="#_248" title="Permanent link">&para;</a></h4>
+<p>对于控制器对集群所有实例的访问权限有限的安装，由于对浮动 IP 地址或安全规则的限制，可以配置间接访问。这允许将某些实例指定为集群其他实例的代理网关。</p>
+<p>只有在定义将构成数据处理集群的节点组模板时，才能启用此配置。它作为运行时选项提供，可在群集置备过程中启用。</p>
+<h4 id="rootwrap">Rootwrap<a class="headerlink" href="#rootwrap" title="Permanent link">&para;</a></h4>
+<p>在为网络访问创建自定义拓扑时，可能需要允许非 root 用户运行代理命令。对于这些情况，oslo rootwrap 软件包用于为非 root  用户提供运行特权命令的工具。此配置要求与数据处理控制器应用程序关联的用户位于 sudoers  列表中，并在配置文件中启用该选项。或者，可以提供备用 rootwrap 命令。</p>
+<p><strong>示例：启用 rootwrap 用法并显示默认命令</strong></p>
+<pre class="highlight"><code>[DEFAULT]
+use_rootwrap=True
+rootwrap_command=’sudo sahara-rootwrap /etc/sahara/rootwrap.conf’</code></pre>
+<p>关于 rootwrap 项目的更多信息，请参考官方文档：https://wiki.openstack.org/wiki/Rootwrap</p>
+<h4 id="_249">日志<a class="headerlink" href="#_249" title="Permanent link">&para;</a></h4>
+<p>监视服务控制器的输出是一个强大的取证工具，如监视和日志记录中更详细地描述的那样。数据处理服务控制器提供了几个选项来设置日志记录的位置和级别。</p>
+<p><strong>示例：将日志级别设置为高于警告并指定输出文件。</strong></p>
+<pre class="highlight"><code>[DEFAULT]
+verbose = true
+log_file = /var/log/data-processing.log</code></pre>
+<h4 id="_250">参考书目<a class="headerlink" href="#_250" title="Permanent link">&para;</a></h4>
+<p>OpenStack.org，欢迎来到Sahara！2016.Sahara项目文档</p>
+<p>Apache 软件基金会，欢迎来到 Apache Hadoop！2016. Apache Hadoop 项目</p>
+<p>Apache 软件基金会，安全模式下的 Hadoop。2016. Hadoop 安全模式文档</p>
+<p>Apache 软件基金会，HDFS 用户指南。2016. Hadoop HDFS 文档</p>
+<p>Apache 软件基金会，Spark。2016. Spark项目</p>
+<p>Apache 软件基金会，Spark Security。2016. Spark 安全文档</p>
+<p>Apache 软件基金会，Apache Storm。2016. Storm 项目</p>
+<p>Apache 软件基金会，Apache Zookeeper。2016. Zookeeper 项目</p>
+<p>Apache 软件基金会，Apache Oozie Workflow Scheduler for Hadoop。2016. Oozie项目</p>
+<p>Apache 软件基金会，Apache Hive。2016. Hive</p>
+<p>Apache 软件基金会，欢迎来到 Apache Pig。2016.Pig</p>
+<p>Apache 软件基金会，Cloudera 产品文档。2016. Cloudera CDH 文档</p>
+<p>Hortonworks，Hortonworks。2016. Hortonworks 数据平台文档</p>
+<p>MapR Technologies，用于 MapR 融合数据平台的 Apache Hadoop。2016. MapR 项目</p>
+<h2 id="_251">数据库<a class="headerlink" href="#_251" title="Permanent link">&para;</a></h2>
+<p>数据库服务器的选择是 OpenStack 部署安全性的一个重要考虑因素。在决定使用数据库服务器时，应考虑多种因素，但在本本书的范围内，将只讨论安全注意事项。OpenStack 支持多种数据库类型。有关更多信息，请参阅《OpenStack 管理员指南》。</p>
+<p>《安全指南》目前主要针对 PostgreSQL 和 MySQL。</p>
+<ul>
+<li>数据库后端注意事项</li>
+<li>数据库后端的安全参考</li>
+<li>数据库访问控制</li>
+<li>OpenStack 数据库访问模型</li>
+<li>数据库身份验证和访问控制</li>
+<li>要求用户帐户需要 SSL 传输</li>
+<li>使用 X.509 证书进行身份验证</li>
+<li>OpenStack 服务数据库配置</li>
+<li>Nova-conductor </li>
+<li>数据库传输安全性</li>
+<li>数据库服务器 IP 地址绑定</li>
+<li>数据库传输</li>
+<li>MySQL SSL配置</li>
+<li>PostgreSQL SSL 配置</li>
+</ul>
+<h3 id="_252">数据库后端注意事项<a class="headerlink" href="#_252" title="Permanent link">&para;</a></h3>
+<p>PostgreSQL 具有许多理想的安全功能，例如 Kerberos 身份验证、对象级安全性和加密支持。PostgreSQL 社区在提供可靠的指导、文档和工具以促进积极的安全实践方面做得很好。</p>
+<p>MySQL拥有庞大的社区，被广泛采用，并提供高可用性选项。MySQL还能够通过插件身份验证机制提供增强的客户端身份验证。MySQL社区中的分叉发行版提供了许多可供考虑的选项。根据对安全态势的全面评估和为给定发行版提供的支持级别，选择MySQL的特定实现非常重要。</p>
+<h4 id="_253">数据库后端的安全参考<a class="headerlink" href="#_253" title="Permanent link">&para;</a></h4>
+<p>建议部署 MySQL 或 PostgreSQL 的用户参考现有的安全指南。下面列出了一些参考资料：</p>
+<p>MySQL数据库：</p>
+<ul>
+<li>
+<p>OWASP MySQL强化</p>
+</li>
+<li>
+<p>MySQL 可插入身份验证</p>
+</li>
+<li>MySQL中的安全性</li>
+</ul>
+<p>PostgreSQL格式：</p>
+<ul>
+<li>OWASP PostgreSQL 强化</li>
+<li>PostgreSQL 数据库中的总体安全性</li>
+</ul>
+<h3 id="_254">数据库访问控制<a class="headerlink" href="#_254" title="Permanent link">&para;</a></h3>
+<p>每个核心 OpenStack 服务（计算、身份、网络、块存储）都将状态和配置信息存储在数据库中。在本章中，我们将讨论当前在OpenStack中使用数据库的方式。我们还探讨了安全问题，以及数据库后端选择的安全后果。</p>
+<h4 id="openstack_11">OpenStack 数据库访问模型<a class="headerlink" href="#openstack_11" title="Permanent link">&para;</a></h4>
+<p>OpenStack 项目中的所有服务都访问单个数据库。目前没有用于创建基于表或行的数据库访问限制的参考策略。</p>
+<p>在OpenStack中，没有对数据库操作进行精细控制的一般规定。访问权限和特权的授予仅基于节点是否有权访问数据库。在这种情况下，有权访问数据库的节点可能具有 DROP、INSERT 或 UPDATE 函数的完全权限。</p>
+<h5 id="_255">精细访问控制<a class="headerlink" href="#_255" title="Permanent link">&para;</a></h5>
+<p>默认情况下，每个 OpenStack 服务及其进程都使用一组共享凭据访问数据库。这使得审核数据库操作和撤消服务及其进程对数据库的访问权限变得特别困难。</p>
+<p><img alt="../_images/databaseusername.png" src="https://docs.openstack.org/security-guide/_images/databaseusername.png" /></p>
+<h5 id="nova-conductor">Nova-conductor<a class="headerlink" href="#nova-conductor" title="Permanent link">&para;</a></h5>
+<p>计算节点是 OpenStack 中最不受信任的服务，因为它们托管租户实例。引入该 <code>nova-conductor</code> 服务作为数据库代理，充当计算节点和数据库之间的中介。我们将在本章后面讨论其后果。</p>
+<p>我们强烈建议：</p>
+<ul>
+<li>所有数据库通信都与管理网络隔离</li>
+<li>使用 TLS 保护通信</li>
+<li>为每个 OpenStack 服务端点创建唯一的数据库用户帐户（如下图所示）</li>
+</ul>
+<p><img alt="../_images/databaseusernamessl.png" src="https://docs.openstack.org/security-guide/_images/databaseusernamessl.png" /></p>
+<h4 id="_256">数据库认证和访问控制<a class="headerlink" href="#_256" title="Permanent link">&para;</a></h4>
+<p>考虑到访问数据库的风险，我们强烈建议为每个需要访问数据库的节点创建唯一的数据库用户帐户。这样做有助于更好地进行分析和审核，以确保合规性，或者在节点遭到入侵时，通过在检测到该节点时删除该节点对数据库的访问来隔离受感染的主机。创建这些每个服务终结点数据库用户帐户时，应注意确保将其配置为需要 TLS。或者，为了提高安全性，建议除了用户名和密码外，还使用 X.509 证书身份验证来配置数据库帐户。</p>
+<h5 id="_257">权限<a class="headerlink" href="#_257" title="Permanent link">&para;</a></h5>
+<p>应创建并保护一个单独的数据库管理员 （DBA） 帐户，该帐户具有创建/删除数据库、创建用户帐户和更新用户权限的完全权限。这种简单的责任分离方法有助于防止意外配置错误，降低风险并缩小危害范围。</p>
+<p>为 OpenStack 服务和每个节点创建的数据库用户帐户的权限应仅限于与该节点所属的服务相关的数据库。</p>
+<h4 id="ssl">要求用户帐户需要 SSL 传输<a class="headerlink" href="#ssl" title="Permanent link">&para;</a></h4>
+<h5 id="1mysql">配置示例 #1：（MySQL）<a class="headerlink" href="#1mysql" title="Permanent link">&para;</a></h5>
+<pre class="highlight"><code>GRANT ALL ON dbname.* to 'compute01'@'hostname' IDENTIFIED BY 'NOVA_DBPASS' REQUIRE SSL;</code></pre>
+<h5 id="2postgresql">配置示例 #2：（PostgreSQL）<a class="headerlink" href="#2postgresql" title="Permanent link">&para;</a></h5>
+<p>在文件中 <code>pg_hba.conf</code> ：</p>
+<pre class="highlight"><code>hostssl dbname compute01 hostname md5</code></pre>
+<p>请注意，此命令仅添加通过 SSL 进行通信的功能，并且是非独占的。应禁用可能允许未加密传输的其他访问方法，以便 SSL 是唯一的访问方法。</p>
+<p>该 <code>md5</code> 参数将身份验证方法定义为哈希密码。我们在以下部分中提供了一个安全身份验证示例。</p>
+<h5 id="openstack_12">OpenStack 服务数据库配置<a class="headerlink" href="#openstack_12" title="Permanent link">&para;</a></h5>
+<p>如果数据库服务器配置为使用 TLS 传输，则需要指定用于 SQLAlchemy 查询中的初始连接字符串的证书颁发机构信息。</p>
+<h6 id="mysql-sql_connection">MySQL <code>:sql_connection</code> 的字符串示例：<a class="headerlink" href="#mysql-sql_connection" title="Permanent link">&para;</a></h6>
+<pre class="highlight"><code>sql_connection = mysql://compute01:NOVA_DBPASS@localhost/nova?charset=utf8&amp;ssl_ca=/etc/mysql/cacert.pem</code></pre>
+<h4 id="x509">使用 X.509 证书进行身份验证<a class="headerlink" href="#x509" title="Permanent link">&para;</a></h4>
+<p>通过要求使用 X.509 客户端证书进行身份验证，可以增强安全性。以这种方式对数据库进行身份验证可以为与数据库建立连接的客户端提供更好的身份保证，并确保通信是加密的。</p>
+<h5 id="1mysql_1">配置示例 #1：（MySQL）<a class="headerlink" href="#1mysql_1" title="Permanent link">&para;</a></h5>
+<pre class="highlight"><code>GRANT ALL on dbname.* to 'compute01'@'hostname' IDENTIFIED BY 'NOVA_DBPASS' REQUIRE SUBJECT
+'/C=XX/ST=YYY/L=ZZZZ/O=cloudycloud/CN=compute01' AND ISSUER
+'/C=XX/ST=YYY/L=ZZZZ/O=cloudycloud/CN=cloud-ca';</code></pre>
+<h5 id="2postgresql_1">配置示例 #2：（PostgreSQL）<a class="headerlink" href="#2postgresql_1" title="Permanent link">&para;</a></h5>
+<pre class="highlight"><code>hostssl dbname compute01 hostname cert</code></pre>
+<h4 id="openstack_13">OpenStack 服务数据库配置<a class="headerlink" href="#openstack_13" title="Permanent link">&para;</a></h4>
+<p>如果数据库服务器配置为需要 X.509 证书进行身份验证，则需要为数据库后端指定相应的 SQLAlchemy 查询参数。这些参数指定用于初始连接字符串的证书、私钥和证书颁发机构信息。</p>
+<p>MySQL 的 X.509 证书身份验证 <code>:sql_connection</code> 字符串示例：</p>
+<pre class="highlight"><code>sql_connection = mysql://compute01:NOVA_DBPASS@localhost/nova?
+charset=utf8&amp;ssl_ca = /etc/mysql/cacert.pem&amp;ssl_cert=/etc/mysql/server-cert.pem&amp;ssl_key=/etc/mysql/server-key.pem</code></pre>
+<h4 id="nova-conductor_1">Nova-conductor<a class="headerlink" href="#nova-conductor_1" title="Permanent link">&para;</a></h4>
+<p>OpenStack Compute 提供了一个称为 nova-conductor 的子服务，用于代理数据库连接，其主要目的是让 nova 计算节点与 nova-conductor 连接以满足数据持久性需求，而不是直接与数据库通信。</p>
+<p>Nova-conductor 通过 RPC 接收请求并代表调用服务执行操作，而无需授予对数据库、其表或其中数据的精细访问权限。Nova-conductor 实质上将直接数据库访问从计算节点中抽象出来。</p>
+<p>这种抽象的优点是将服务限制为使用参数执行方法，类似于存储过程，从而防止大量系统直接访问或修改数据库数据。这是在不在数据库本身的上下文或范围内存储或执行这些过程的情况下完成的，这是对典型存储过程的常见批评。</p>
+<p><img alt="../_images/novaconductor.png" src="https://docs.openstack.org/security-guide/_images/novaconductor.png" /></p>
+<p>遗憾的是，此解决方案使更细粒度的访问控制和审核数据访问的能力的任务复杂化。由于 nova-conductor 服务通过 RPC 接收请求，因此它突出了提高消息传递安全性的重要性。任何有权访问消息队列的节点都可以执行  nova-conductor 提供的这些方法，并有效地修改数据库。</p>
+<p>请注意，由于 nova-conductor 仅适用于 OpenStack Compute，因此对于其他 OpenStack 组件（如 Telemetry（云高计）、网络和块存储）的运行，可能仍然需要从计算主机直接访问数据库。</p>
+<p>若要禁用 nova-conductor，请将以下内容放入 <code>nova.conf</code> 文件中（在计算主机上）：</p>
+<pre class="highlight"><code>[conductor]
+use_local = true</code></pre>
+<h3 id="_258">数据库传输安全性<a class="headerlink" href="#_258" title="Permanent link">&para;</a></h3>
+<p>本章介绍与数据库服务器之间的网络通信相关的问题。这包括 IP 地址绑定和使用 TLS 加密网络流量。</p>
+<h4 id="ip">数据库服务器 IP 地址绑定<a class="headerlink" href="#ip" title="Permanent link">&para;</a></h4>
+<p>若要隔离服务和数据库之间的敏感数据库通信，强烈建议将数据库服务器配置为仅允许通过隔离的管理网络与数据库进行通信。这是通过限制数据库服务器为传入客户端连接绑定网络套接字的接口或 IP 地址来实现的。</p>
+<h5 id="mysql">限制 MySQL 的绑定地址<a class="headerlink" href="#mysql" title="Permanent link">&para;</a></h5>
+<p>在 <code>my.cnf</code> ：</p>
+<pre class="highlight"><code>[mysqld]
+...
+bind-address &lt;ip address or hostname of management network interface&gt;</code></pre>
+<h5 id="postgresql">限制 PostgreSQL 的监听地址<a class="headerlink" href="#postgresql" title="Permanent link">&para;</a></h5>
+<p>在 <code>postgresql.conf</code> ：</p>
+<pre class="highlight"><code>listen_addresses = &lt;ip address or hostname of management network interface&gt;</code></pre>
+<h4 id="_259">数据库传输<a class="headerlink" href="#_259" title="Permanent link">&para;</a></h4>
+<p>除了将数据库通信限制为管理网络外，我们还强烈建议云管理员将其数据库后端配置为需要 TLS。将 TLS 用于数据库客户端连接可保护通信不被篡改和窃听。正如下一节将讨论的那样，使用 TLS 还提供了通过 X.509  证书（通常称为 PKI）执行数据库用户身份验证的框架。以下是有关如何为两个流行的数据库后端 MySQL 和 PostgreSQL 配置 TLS  的指南。</p>
+<p><strong>注意</strong></p>
+<pre class="highlight"><code>安装证书和密钥文件时，请确保文件权限受到限制，例如 `chmod 0600` ，所有权限制为数据库守护程序用户，以防止数据库服务器上的其他进程和用户进行未经授权的访问。</code></pre>
+<h4 id="mysql-ssl">MySQL SSL配置<a class="headerlink" href="#mysql-ssl" title="Permanent link">&para;</a></h4>
+<p>应在系统范围的MySQL配置文件中添加以下行：</p>
+<p>在 <code>my.cnf</code> ：</p>
+<pre class="highlight"><code>[[mysqld]]
+...
+ssl-ca = /path/to/ssl/cacert.pem
+ssl-cert = /path/to/ssl/server-cert.pem
+ssl-key = /path/to/ssl/server-key.pem</code></pre>
+<p>（可选）如果您希望限制用于加密连接的 SSL 密码集。有关密码列表和用于指定密码字符串的语法，请参阅密码：</p>
+<pre class="highlight"><code>ssl-cipher = 'cipher:list'</code></pre>
+<h4 id="postgresql-ssl">PostgreSQL SSL 配置<a class="headerlink" href="#postgresql-ssl" title="Permanent link">&para;</a></h4>
+<p>应在系统范围的 PostgreSQL 配置文件中添加以下行。 <code>postgresql.conf</code> </p>
+<pre class="highlight"><code>ssl = true</code></pre>
+<p>（可选）如果您希望限制用于加密连接的 SSL 密码集。有关密码列表和用于指定密码字符串的语法，请参阅密码：</p>
+<pre class="highlight"><code>ssl-ciphers = 'cipher:list'</code></pre>
+<p>服务器证书、密钥和证书颁发机构 （CA） 文件应放在以下文件的 $PGDATA 目录中：</p>
+<ul>
+<li><code>$PGDATA/server.crt</code> - 服务器证书</li>
+<li><code>$PGDATA/server.key</code> - 私钥对应于 <code>server.crt</code> </li>
+<li><code>$PGDATA/root.crt</code> - 可信证书颁发机构</li>
+<li><code>$PGDATA/root.crl</code> - 证书撤销列表</li>
+</ul>
+<h2 id="_260">租户数据隐私<a class="headerlink" href="#_260" title="Permanent link">&para;</a></h2>
+<p>OpenStack旨在支持多租户，这些租户很可能有不同的数据要求。作为云构建者或运营商，您必须确保您的 OpenStack 环境能够解决数据隐私问题和法规。在本章中，我们将讨论与 OpenStack 实现相关的数据驻留和处置。</p>
+<ul>
+<li>数据隐私问题</li>
+<li>数据驻留</li>
+<li>数据处置</li>
+<li>数据加密</li>
+<li>卷加密</li>
+<li>临时磁盘加密</li>
+<li>对象存储对象</li>
+<li>块存储性能和后端</li>
+<li>网络数据</li>
+<li>密钥管理</li>
+<li>参考书目:</li>
+</ul>
+<h3 id="_261">数据隐私问题<a class="headerlink" href="#_261" title="Permanent link">&para;</a></h3>
+<h4 id="_262">数据驻留<a class="headerlink" href="#_262" title="Permanent link">&para;</a></h4>
+<p>在过去几年中，数据的隐私和隔离一直被认为是采用云的主要障碍。过去，对谁拥有云中数据以及云运营商是否可以最终信任这些数据的保管人的担忧一直是重大问题。</p>
+<p>许多 OpenStack 服务维护属于租户的数据和元数据或参考租户信息。</p>
+<p>存储在 OpenStack 云中的租户数据可能包括以下项目：</p>
+<ul>
+<li>对象存储对象</li>
+<li>计算实例临时文件系统存储</li>
+<li>计算实例内存</li>
+<li>块存储卷数据</li>
+<li>用于计算访问的公钥</li>
+<li>映像服务中的虚拟机映像</li>
+<li>计算机快照</li>
+<li>传递给 OpenStack Compute 的配置驱动器扩展的数据</li>
+</ul>
+<p>OpenStack 云存储的元数据包括以下非详尽项目：</p>
+<ul>
+<li>组织名称</li>
+<li>用户的“真实姓名”</li>
+<li>正在运行的实例、存储桶、对象、卷和其他配额相关项目的数量或大小</li>
+<li>运行实例或存储数据的小时数</li>
+<li>用户的 IP 地址</li>
+<li>内部生成的用于计算映像捆绑的私钥</li>
+</ul>
+<h4 id="_263">数据处置<a class="headerlink" href="#_263" title="Permanent link">&para;</a></h4>
+<p>OpenStack运营商应努力提供一定程度的租户数据处置保证。最佳实践建议操作员在处置、释放组织控制或释放以供重复使用之前对云系统介质（数字和非数字）进行清理。鉴于信息的特定安全域和敏感性，清理方法应实现适当级别的强度和完整性。</p>
+<p>“清理过程会从介质中删除信息，因此无法检索或重建信息。清理技术，包括清除、清除、加密擦除和销毁，可防止在重复使用或释放处置此类介质时向未经授权的个人披露信息。NIST 特别出版物 800-53 修订版 4</p>
+<p>NIST建议的安全控制措施中采用的一般数据处置和清理指南。云运营商应：</p>
+<ol>
+<li>跟踪、记录和验证介质清理和处置操作。</li>
+<li>测试清理设备和程序以验证其性能是否正常。</li>
+<li>在将便携式可移动存储设备连接到云基础架构之前，先对其进行清理。</li>
+<li>销毁无法清理的云系统介质。</li>
+</ol>
+<p>在 OpenStack 部署中，您需要解决以下问题：</p>
+<ul>
+<li>安全数据擦除</li>
+<li>实例内存清理</li>
+<li>块存储卷数据</li>
+<li>计算实例临时存储</li>
+<li>裸机服务器清理</li>
+</ul>
+<h5 id="_264">数据未安全删除<a class="headerlink" href="#_264" title="Permanent link">&para;</a></h5>
+<p>在OpenStack中，某些数据可能会被删除，但在上述NIST标准的上下文中不会被安全删除。这通常适用于存储在数据库中的大多数或全部上述定义的元数据和信息。这可以通过数据库和/或系统配置进行自动吸尘和定期可用空间擦除来修复。</p>
+<h5 id="_265">实例内存清理<a class="headerlink" href="#_265" title="Permanent link">&para;</a></h5>
+<p>特定于各种虚拟机管理程序的是实例内存的处理。OpenStack Compute 中没有定义此行为，尽管通常期望 hypervisor 在删除实例和/或创建实例时尽最大努力清理内存。</p>
+<p>Xen 显式地为实例分配专用内存区域，并在实例（或 Xen 术语中的域）销毁时清理数据。KVM 在很大程度上依赖于 Linux 页面管理;KVM 文档中定义了一组与 KVM 分页相关的复杂规则。</p>
+<p>需要注意的是，使用 Xen 内存气球功能可能会导致信息泄露。我们强烈建议避免使用此功能。</p>
+<p>对于这些和其他虚拟机管理程序，我们建议参考特定于虚拟机管理程序的文档。</p>
+<h5 id="cinder">Cinder 卷数据<a class="headerlink" href="#cinder" title="Permanent link">&para;</a></h5>
+<p>强烈建议使用 OpenStack  卷加密功能。下面“卷加密”下的“数据加密”部分对此进行了讨论。使用此功能时，通过安全地删除加密密钥来完成数据销毁。最终用户可以在创建卷时选择此功能，但请注意，管理员必须先执行卷加密功能的一次性设置。有关此设置的说明，请参阅“配置参考”的“块存储”部分的“卷加密”下。</p>
+<p>如果不使用 OpenStack 卷加密功能，那么其他方法通常更难启用。如果使用后端插件，则可能存在独立的加密方法或非标准覆盖解决方案。OpenStack  Block Storage 的插件将以多种方式存储数据。许多插件特定于供应商或技术，而其他插件则更多地是围绕文件系统（如 LVM 或 ZFS）的 DIY 解决方案。安全销毁数据的方法因插件而异，因供应商的解决方案而异，也因文件系统而异。</p>
+<p>一些后端（如 ZFS）将支持写入时复制，以防止数据泄露。在这些情况下，从未写入块中读取将始终返回零。其他后端（如  LVM）可能本身不支持此功能，因此块存储插件负责在将之前写入的块交给用户之前覆盖它们。请务必查看所选卷后端提供哪些保证，并查看哪些中介可用于未提供的保证。</p>
+<h5 id="_266">镜像服务延时删除功能<a class="headerlink" href="#_266" title="Permanent link">&para;</a></h5>
+<p>OpenStack 镜像服务具有延迟删除功能，该功能将在定义的时间段内等待镜像的删除。如果存在安全问题，建议通过编辑 <code>etc/glance/glance-api.conf</code> 文件并将 <code>delayed_delete</code> 选项设置为 False 来禁用此功能。</p>
+<h5 id="_267">计算软删除功能<a class="headerlink" href="#_267" title="Permanent link">&para;</a></h5>
+<p>OpenStack Compute 具有软删除功能，该功能使被删除的实例在定义的时间段内处于软删除状态。实例可以在此时间段内恢复。若要禁用软删除功能，请编辑 <code>etc/nova/nova.conf</code> 文件并将该 <code>reclaim_instance_interval</code> 选项留空。</p>
+<h5 id="_268">计算实例临时存储<a class="headerlink" href="#_268" title="Permanent link">&para;</a></h5>
+<p>请注意，OpenStack 临时磁盘加密功能提供了一种改进临时存储隐私和隔离的方法，无论是在主动使用期间还是在销毁数据时。与加密块存储一样，只需删除加密密钥即可有效地销毁数据。</p>
+<p>在创建和销毁临时存储时，提供数据隐私的替代措施将在一定程度上取决于所选的虚拟机管理程序和 OpenStack 计算插件。</p>
+<p>用于计算的 libvirt 插件可以直接在文件系统上或 LVM 中维护临时存储。文件系统存储通常不会在删除数据时覆盖数据，但可以保证不会向用户提供脏盘区。</p>
+<p>当使用 LVM 支持的基于块的临时存储时，OpenStack 计算软件必须安全地擦除块以防止信息泄露。过去曾存在与不当擦除的临时块存储设备相关的信息泄露漏洞。</p>
+<p>文件系统存储对于临时块存储设备来说是一种比 LVM 更安全的解决方案，因为无法为用户提供脏盘区。但是，需要注意的是，用户数据不会被破坏，因此建议对后备文件系统进行加密。</p>
+<h5 id="_269">裸机服务器清理<a class="headerlink" href="#_269" title="Permanent link">&para;</a></h5>
+<p>用于计算的裸机服务器驱动程序正在开发中，此后已转移到一个名为 ironic 的单独项目中。在撰写本文时，具有讽刺意味的是，似乎没有解决驻留在物理硬件中的租户数据的清理问题。</p>
+<p>此外，裸机系统的租户可以修改系统固件。安全引导中所述的 TPM 技术提供了一种用于检测未经授权的固件更改的解决方案。</p>
+<h3 id="_270">数据加密<a class="headerlink" href="#_270" title="Permanent link">&para;</a></h3>
+<p>该选项可供实施者加密租户数据，无论这些数据存储在磁盘上或通过网络传输，例如下面描述的 OpenStack 卷加密功能。这超出了用户在将自己的数据发送给提供商之前加密自己的数据的一般建议。</p>
+<p>代表租户加密数据的重要性很大程度上与提供商承担的攻击者可能访问租户数据的风险有关。政府可能有要求，也有每个策略的要求，私有合同，甚至与公共云提供商的私有合同有关的判例法。建议在选择租户加密策略之前进行风险评估和法律顾问。</p>
+<p>按实例或按对象加密比按项目、按租户、按主机和按云聚合降序进行加密更可取。这项建议与实施的复杂性和难度相反。目前，在某些项目中，很难或不可能实现像每个租户一样松散的加密。我们建议实现者尽最大努力加密租户数据。</p>
+<p>通常，数据加密与可靠地销毁租户和每个实例数据的能力呈正相关，只需丢弃密钥即可。应该指出的是，在这样做时，以可靠和安全的方式销毁这些密钥变得非常重要。</p>
+<p>Opportunities to encrypt data for users are present:
+存在为用户加密数据的机会：</p>
+<ul>
+<li>对象存储对象</li>
+<li>网络数据</li>
+</ul>
+<h4 id="_271">卷加密<a class="headerlink" href="#_271" title="Permanent link">&para;</a></h4>
+<p>OpenStack 中的卷加密功能支持基于每个租户的隐私保护。从 Kilo 版本开始，支持以下功能：</p>
+<ul>
+<li>创建和使用加密卷类型，通过仪表板或命令行界面启动</li>
+<li>启用加密并选择加密算法和密钥大小等参数</li>
+<li>iSCSI 数据包中包含的卷数据已加密</li>
+<li>如果原始卷已加密，则支持加密备份</li>
+<li>仪表板指示卷加密状态。包括卷已加密的指示，并包括算法和密钥大小等加密参数</li>
+<li>通过安全包装器与密钥管理服务交互</li>
+<li>后端密钥存储支持卷加密，以增强安全性（例如，硬件安全模块 （HSM） 或 KMIP 服务器可用作 barbican 后端密钥存储）</li>
+</ul>
+<h4 id="_272">临时磁盘加密<a class="headerlink" href="#_272" title="Permanent link">&para;</a></h4>
+<p>临时磁盘加密功能可解决数据隐私问题。临时磁盘是虚拟主机操作系统使用的临时工作空间。如果不加密，可以在此磁盘上访问敏感的用户信息，并且在卸载磁盘后可能会保留残留信息。从 Kilo 版本开始，支持以下临时磁盘加密功能：</p>
+<ul>
+<li>创建和使用加密的 LVM 临时磁盘（注意：目前 OpenStack 计算服务仅支持 LVM 格式的加密临时磁盘）</li>
+<li>计算配置 ， <code>nova.conf</code> 在“[ephemeral_storage_encryption]”部分中具有以下默认参数<ul>
+<li>选项：“密码 = AES-XTS-plain64”</li>
+<li>此字段设置用于加密临时存储的密码和模式。NIST建议将AES-XTS专门用于磁盘存储，该名称是使用XTS加密模式的AES加密的简写。可用的密码取决于内核支持。在命令行中，输入“cryptsetup benchmark”以确定可用选项（并查看基准测试结果），或转到 /proc/crypto</li>
+<li>选项： 'enabled = false'</li>
+<li>要使用临时磁盘加密，请设置选项：“enabled = true”</li>
+<li>选项：“key_size = 512”</li>
+<li>请注意，后端密钥管理器可能存在密钥大小限制，可能需要使用“key_size = 256”，这仅提供 128 位的 AES 密钥大小。除了 AES 所需的加密密钥外，XTS  还需要自己的“调整密钥”。这通常表示为单个大键。在这种情况下，使用 512 位设置，AES 将使用 256 位，XTS 将使用 256  位。（见NIST）</li>
+</ul>
+</li>
+<li>通过安全包装器与密钥管理服务交互</li>
+<li>密钥管理服务将通过为每个租户提供临时磁盘加密密钥来支持数据隔离</li>
+<li>后端密钥存储支持临时磁盘加密，以增强安全性（例如，HSM 或 KMIP 服务器可用作 barbican 后端密钥存储）</li>
+<li>使用密钥管理服务时，当不再需要临时磁盘时，只需删除密钥即可取代覆盖临时磁盘存储区域</li>
+</ul>
+<h4 id="_273">对象存储对象<a class="headerlink" href="#_273" title="Permanent link">&para;</a></h4>
+<p>对象存储 （swift） 支持对存储节点上的静态对象数据进行可选加密。对象数据的加密旨在降低在未经授权的一方获得对磁盘的物理访问权限时读取用户数据的风险。</p>
+<p>静态数据加密由中间件实现，中间件可能包含在代理服务器 WSGI 管道中。该功能是 swift 集群内部的，不通过 API 公开。客户端不知道 swift 服务内部的此功能对数据进行了加密;内部加密的数据不应通过 swift API 返回给客户端。</p>
+<p>以下数据在 swift 中静态时被加密：</p>
+<ul>
+<li>对象内容。例如，对象 PUT 请求正文的内容</li>
+<li>具有非零内容的对象的实体标记 （ETag）</li>
+<li>所有自定义用户对象元数据值。例如，使用 <code>X-Object-Meta-</code> 带有 PUT 或 POST 请求的前缀标头发送的元数据</li>
+</ul>
+<p>上述列表中未包含的任何数据或元数据均未加密，包括：</p>
+<ul>
+<li>帐户、容器和对象名称</li>
+<li>帐户和容器自定义用户元数据值</li>
+<li>所有自定义用户元数据名称</li>
+<li>对象内容类型值</li>
+<li>对象大小</li>
+<li>系统元数据</li>
+</ul>
+<p>有关对象存储加密的部署、操作或实施的更多信息，请参阅有关对象加密的 swift 开发人员文档。</p>
+<h4 id="_274">块存储性能和后端<a class="headerlink" href="#_274" title="Permanent link">&para;</a></h4>
+<p>启用操作系统时，可以使用 Intel 和 AMD 处理器中当前可用的硬件加速功能来增强 OpenStack Volume Encryption 性能。OpenStack 卷加密功能和 OpenStack 临时磁盘加密功能都用于 <code>dm-crypt</code> 保护卷数据。 <code>dm-crypt</code> 是 Linux 内核版本 2.6 及更高版本中的透明磁盘加密功能。启用卷加密后，加密数据将通过 iSCSI 发送到块存储，从而同时保护传输中的数据和静态数据。使用硬件加速时，这两种加密功能对性能的影响都会降到最低。</p>
+<p>虽然我们建议使用 OpenStack 卷加密功能，但块存储支持多种替代后端来提供可挂载卷，其中一些还可能提供卷加密。由于后端如此之多，并且必须从每个供应商处获取信息，因此指定在任何一个供应商中实施加密的建议超出了本指南的范围。</p>
+<h4 id="_275">网络数据<a class="headerlink" href="#_275" title="Permanent link">&para;</a></h4>
+<p>计算的租户数据可以通过 IPsec 或其他隧道进行加密。这在OpenStack中并不常见或标准，但对于有动力和感兴趣的实现者来说，这是一个选项。</p>
+<p>同样，加密数据在通过网络传输时将保持加密状态。</p>
+<h3 id="_276">密钥管理<a class="headerlink" href="#_276" title="Permanent link">&para;</a></h3>
+<p>为了解决经常提到的租户数据隐私和限制云提供商责任的问题，OpenStack社区对使数据加密更加普遍的兴趣越来越大。对于最终用户来说，在将数据保存到云之前对其进行加密相对容易，这是租户对象（如媒体文件、数据库存档等）的可行路径。在某些情况下，客户端加密用于加密虚拟化技术保存的数据，这需要客户端交互（例如提供密钥）来解密数据以供将来使用。为了无缝地保护数据并使其可访问，而无需给客户带来管理其密钥的负担，并以交互方式向他们提供 OpenStack  中的密钥管理服务。作为OpenStack的一部分，提供加密和密钥管理服务可以简化静态数据安全采用，并解决客户对隐私或数据滥用的担忧，同时也限制了云提供商的责任。这有助于减少提供商在多租户公有云中的事件调查期间处理租户数据时的责任。</p>
+<p>卷加密和临时磁盘加密功能依赖于密钥管理服务（例如，barbican）来创建和安全存储密钥。密钥管理器是可插入的，以方便需要第三方硬件安全模块 （HSM） 或使用密钥管理交换协议 （KMIP） 的部署，该协议由名为 PyKMIP 的开源项目支持。</p>
+<h4 id="_277">参考书目：<a class="headerlink" href="#_277" title="Permanent link">&para;</a></h4>
+<ul>
+<li>OpenStack.org，欢迎来到 barbican 的开发者文档！2014。Barbican 开发者文档</li>
+<li>oasis-open.org，OASIS 密钥管理互操作性协议 （KMIP）。2014年。KMIP</li>
+<li>PyKMIP 库</li>
+<li>机密管理 机密管理</li>
+</ul>
+<h2 id="_278">实例安全管理<a class="headerlink" href="#_278" title="Permanent link">&para;</a></h2>
+<p>在虚拟化环境中运行实例的优点之一是，它为安全控制开辟了新的机会，而这些控制在部署到裸机上时通常不可用。有几种技术可以应用于虚拟化堆栈，为云租户带来更好的信息保障。</p>
+<p>具有强烈安全要求的 OpenStack 部署人员或用户可能需要考虑部署这些技术。并非所有情况都适用。在某些情况下，由于规范性业务需求，可能会排除在云中使用技术。同样，某些技术会检查实例数据，例如运行状态，这对系统用户来说可能是不希望的。</p>
+<p>在本章中，我们将探讨这些技术，并描述它们可用于增强实例或底层实例安全性的情况。我们还试图强调可能存在隐私问题的地方。这些包括数据传递、内省或提供熵源。在本节中，我们将重点介绍以下附加安全服务：</p>
+<ul>
+<li>实例的熵</li>
+<li>将实例调度到节点</li>
+<li>受信任的映像</li>
+<li>实例迁移</li>
+<li>监控、警报和报告</li>
+<li>更新和补丁</li>
+<li>防火墙和其他基于主机的安全控制</li>
+<li>实例的安全服务</li>
+<li>实例的熵</li>
+<li>将实例调度到节点</li>
+<li>受信任的映像</li>
+<li>实例迁移</li>
+<li>监控、警报和报告</li>
+<li>更新和补丁</li>
+<li>防火墙和其他基于主机的安全控制</li>
+</ul>
+<h3 id="_279">实例的安全服务<a class="headerlink" href="#_279" title="Permanent link">&para;</a></h3>
+<h4 id="_280">实例的熵<a class="headerlink" href="#_280" title="Permanent link">&para;</a></h4>
+<p>我们认为熵是指实例可用的随机数据的质量和来源。加密技术通常严重依赖随机性，需要高质量的熵池才能从中汲取。虚拟机通常很难获得足够的熵来支持这些操作，这称为熵饥饿。熵饥饿可以表现为看似无关的事情。例如，启动时间慢可能是由于实例等待 ssh 密钥生成造成的。熵饥饿还可能促使用户在实例中使用质量较差的熵源，从而使在云中运行的应用程序整体安全性降低。</p>
+<p>幸运的是，云架构师可以通过为云实例提供高质量的熵源来解决这些问题。这可以通过在云中拥有足够的硬件随机数生成器 （HRNG） 来支持实例来实现。在这种情况下，“足够”在某种程度上是特定于域的。对于日常操作，现代 HRNG 可能会产生足够的熵来支持  50-100 个计算节点。高带宽 HRNG（例如英特尔 Ivy Bridge 和更新的处理器提供的 RdRand  指令）可能会处理更多节点。对于给定的云，架构师需要了解应用程序要求，以确保有足够的熵可用。</p>
+<p>Virtio RNG 是一个随机数生成器，默认情况下用作 <code>/dev/random</code> 熵源，但可以配置为使用硬件 RNG 或熵收集守护程序 （EGD） 等工具，以提供一种通过分布式系统公平安全地分配熵的方法。Virtio RNG 是使用用于创建实例的元数据的 <code>hw_rng</code> 属性启用的。</p>
+<h4 id="_281">将实例调度到节点<a class="headerlink" href="#_281" title="Permanent link">&para;</a></h4>
+<p>在创建实例之前，必须选择用于镜像实例化的主机。此选择由 <code>nova-scheduler</code> 确定如何分派计算和卷请求的 执行。</p>
+<p>这是 <code>FilterScheduler</code> OpenStack Compute的默认调度程序，尽管存在其他调度程序（请参阅 OpenStack Configuration  Reference 中的 Scheduling  部分）。这与“过滤器提示”协同工作，以决定实例的启动位置。此主机选择过程允许管理员满足许多不同的安全性和合规性要求。例如，根据云部署类型，如果数据隔离是主要问题，则可以选择尽可能让租户实例驻留在相同的主机上。相反，出于可用性或容错原因，可以尝试将租户的实例驻留在尽可能多的不同主机上。</p>
+<p>筛选器计划程序分为四大类：</p>
+<p>基于资源的筛选器</p>
+<p>这些筛选器将根据虚拟机监控程序主机集的利用率创建实例，并可以在可用或使用的属性（如 RAM、IO 或 CPU 利用率）上触发。</p>
+<p>基于映像的过滤器</p>
+<p>这将根据使用的映像（例如 VM 的操作系统或使用的映像类型）委派实例创建。</p>
+<p>基于环境的过滤器</p>
+<p>此筛选器将基于外部详细信息创建实例，例如在特定 IP 范围内、跨可用区或与其他实例位于同一主机上。</p>
+<p>自定义条件</p>
+<p>此筛选器将根据用户或管理员提供的条件（如信任或元数据分析）委派实例创建。</p>
+<p>可以同时应用多个筛选器，例如，筛选器用于确保在一组特定主机的成员上创建实例，以及 <code>ServerGroupAntiAffinity</code> 用于确保不会在另一组特定主机上创建同一实例的筛选器 <code>ServerGroupAffinity</code> 。应仔细分析这些筛选器，以确保它们不会相互冲突，并导致阻止创建实例的规则。</p>
+<p><img alt="../_images/filteringWorkflow1.png" src="https://docs.openstack.org/security-guide/_images/filteringWorkflow1.png" /></p>
+<p><code>GroupAffinity</code> 和 <code>GroupAntiAffinity</code> 筛选器冲突，不应同时启用。</p>
+<p>筛选器 <code>DiskFilter</code> 能够超额订阅磁盘空间。虽然通常不是问题，但对于精简预配的存储设备来说，这可能是一个问题，并且此筛选器应与应用经过充分测试的配额一起使用。</p>
+<p>我们建议您禁用过滤器，这些过滤器可以分析用户提供的内容或可操作的内容，例如元数据。</p>
+<h4 id="_282">可信镜像<a class="headerlink" href="#_282" title="Permanent link">&para;</a></h4>
+<p>在云环境中，用户使用预安装的映像或他们自己上传的映像。在这两种情况下，用户都应该能够确保他们正在使用的图像没有被篡改。验证图像的能力是安全性的基本要求。从映像源到使用映像的目标需要信任链。这可以通过对从受信任来源获取的映像进行签名并在使用前验证签名来实现。下面将讨论获取和创建已验证图像的各种方法，然后介绍图像签名验证功能。</p>
+<h5 id="_283">镜像创建过程<a class="headerlink" href="#_283" title="Permanent link">&para;</a></h5>
+<p>OpenStack  文档提供了有关如何创建映像并将其上传到映像服务的指导。此外，假定您有一个安装和强化操作系统的过程。因此，以下各项将提供有关如何确保将映像安全地传输到 OpenStack 中的额外指导。有多种选项可用于获取图像。每个步骤都有特定的步骤，有助于验证图像的出处。</p>
+<p>第一个选项是从受信任的来源获取启动媒体。</p>
+<pre class="highlight"><code>$ mkdir -p /tmp/download_directorycd /tmp/download_directory
+$ wget http://mirror.anl.gov/pub/ubuntu-iso/CDs/precise/ubuntu-12.04.2-server-amd64.iso
+$ wget http://mirror.anl.gov/pub/ubuntu-iso/CDs/precise/SHA256SUMS
+$ wget http://mirror.anl.gov/pub/ubuntu-iso/CDs/precise/SHA256SUMS.gpg
+$ gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0xFBB75451
+$ gpg --verify SHA256SUMS.gpg SHA256SUMSsha256sum -c SHA256SUMS 2&gt;&amp;1 | grep OK</code></pre>
+<p>第二种选择是使用 OpenStack 虚拟机映像指南。在这种情况下，您需要遵循组织的操作系统强化准则或受信任的第三方（如 Linux STIG）提供的准则。</p>
+<p>最后一种选择是使用自动映像生成器。以下示例使用 Oz 映像生成器。OpenStack 社区最近创建了一个值得研究的新工具：disk-image-builder。我们尚未从安全角度评估此工具。</p>
+<p>RHEL 6 CCE-26976-1 示例，这将有助于在 OZ 中实施 NIST 800-53 第 AC-19（d）节。</p>
+<pre class="highlight"><code>&lt;template&gt;
+&lt;name&gt;centos64&lt;/name&gt;
+&lt;os&gt;
+  &lt;name&gt;RHEL-6&lt;/name&gt;
+  &lt;version&gt;4&lt;/version&gt;
+  &lt;arch&gt;x86_64&lt;/arch&gt;
+  &lt;install type='iso'&gt;
+  &lt;iso&gt;http://trusted_local_iso_mirror/isos/x86_64/RHEL-6.4-x86_64-bin-DVD1.iso&lt;/iso&gt;
+  &lt;/install&gt;
+  &lt;rootpw&gt;CHANGE THIS TO YOUR ROOT PASSWORD&lt;/rootpw&gt;
+&lt;/os&gt;
+&lt;description&gt;RHEL 6.4 x86_64&lt;/description&gt;
+&lt;repositories&gt;
+  &lt;repository name='epel-6'&gt;
+  &lt;url&gt;http://download.fedoraproject.org/pub/epel/6/$basearch&lt;/url&gt;
+  &lt;signed&gt;no&lt;/signed&gt;
+  &lt;/repository&gt;
+&lt;/repositories&gt;
+&lt;packages&gt;
+  &lt;package name='epel-release'/&gt;
+  &lt;package name='cloud-utils'/&gt;
+  &lt;package name='cloud-init'/&gt;
+&lt;/packages&gt;
+&lt;commands&gt;
+  &lt;command name='update'&gt;
+  yum update
+  yum clean all
+  rm -rf /var/log/yum
+  sed -i '/^HWADDR/d' /etc/sysconfig/network-scripts/ifcfg-eth0
+  echo -n &gt; /etc/udev/rules.d/70-persistent-net.rules
+  echo -n &gt; /lib/udev/rules.d/75-persistent-net-generator.rules
+  chkconfig --level 0123456 autofs off
+  service autofs stop
+  &lt;/command&gt;
+&lt;/commands&gt;
+&lt;/template&gt;</code></pre>
+<p>建议避免手动映像构建过程，因为它很复杂且容易出错。此外，使用 Oz 等自动化系统进行映像构建，或使用 Chef 或 Puppet 等配置管理实用程序进行启动后映像强化，使您能够生成一致的映像，并跟踪基础映像在一段时间内是否符合其各自的强化准则。</p>
+<p>如果订阅公有云服务，则应与云提供商联系，了解用于生成其默认映像的过程的概述。如果提供商允许您上传自己的映像，则需要确保在使用映像创建实例之前能够验证映像是否未被修改。为此，请参阅以下有关图像签名验证的部分，如果无法使用签名，请参阅以下段落。</p>
+<p>映像从节点上的映像服务传输到计算服务。应通过通过 TLS  运行来保护此传输。映像位于节点上后，将使用基本校验和对其进行验证，然后根据要启动的实例的大小扩展其磁盘。如果稍后在此节点上以相同的实例大小启动同一映像，则会从同一扩展映像启动该映像。由于此扩展映像在启动前默认不会重新验证，因此它可能已被篡改。除非在生成的映像中对文件执行手动检查，否则用户不会意识到篡改。</p>
+<h5 id="_284">映像签名验证<a class="headerlink" href="#_284" title="Permanent link">&para;</a></h5>
+<p>OpenStack 中现在提供了一些与映像签名相关的功能。从 Mitaka  版本开始，映像服务可以验证这些已签名的映像，并且为了提供完整的信任链，计算服务可以选择在映像启动之前执行映像签名验证。在映像启动之前成功进行签名验证可确保已签名的映像未更改。启用此功能后，可以检测到未经授权的映像修改（例如，修改映像以包含恶意软件或 rootkit）。</p>
+<p>管理员可以通过在文件中将 <code>verify_glance_signatures</code> 标志设置为来 <code>True</code> 启用实例签名 <code>/etc/nova/nova.conf</code> 验证。启用后，计算服务会在从影像服务检索签名实例时自动对其进行验证。如果此验证失败，则不会启动。《OpenStack 操作指南》提供了有关如何创建和上传签名映像以及如何使用此功能的指导。有关更多信息，请参阅《操作指南》中的添加签名映像。</p>
+<h4 id="_285">实例迁移<a class="headerlink" href="#_285" title="Permanent link">&para;</a></h4>
+<p>OpenStack 和底层虚拟化层提供在 OpenStack 节点之间实时迁移映像，使您能够无缝地执行 OpenStack 计算节点的滚动升级，而无需实例停机。但是，实时迁移也存在重大风险。若要了解所涉及的风险，以下是在实时迁移期间执行的高级步骤：</p>
+<ol>
+<li>在目标主机上启动实例</li>
+<li>传输内存</li>
+<li>停止客户机和同步磁盘</li>
+<li>传输状态</li>
+<li>启动客户机</li>
+</ol>
+<h5 id="_286">实时迁移风险<a class="headerlink" href="#_286" title="Permanent link">&para;</a></h5>
+<p>在实时迁移过程的各个阶段，实例运行时、内存和磁盘的内容以纯文本形式通过网络传输。因此，在使用实时迁移时需要解决一些风险。以下详尽列表详细介绍了其中的一些风险：</p>
+<ul>
+<li>拒绝服务 （DoS）：如果在迁移过程中出现故障，实例可能会丢失。</li>
+<li>数据泄露：必须安全地处理内存或磁盘传输。</li>
+<li>数据操纵：如果内存或磁盘传输未得到安全处理，则攻击者可以在迁移过程中操纵用户数据。</li>
+<li>代码注入：如果内存或磁盘传输未得到安全处理，则攻击者可以在迁移期间操纵磁盘或内存中的可执行文件。</li>
+</ul>
+<h5 id="_287">实时迁移缓解措施<a class="headerlink" href="#_287" title="Permanent link">&para;</a></h5>
+<p>有几种方法可以缓解与实时迁移相关的一些风险，以下列表详细介绍了其中的一些方法：</p>
+<ul>
+<li>禁用实时迁移</li>
+<li>I隔离的迁移网络</li>
+<li>加密实时迁移</li>
+</ul>
+<h5 id="_288">禁用实时迁移<a class="headerlink" href="#_288" title="Permanent link">&para;</a></h5>
+<p>目前，OpenStack 中默认启用实时迁移。可以通过向 nova <code>policy.json</code> 文件添加以下行来禁用实时迁移：</p>
+<pre class="highlight"><code>{
+    "compute_extension:admin_actions:migrate": "!",
+    "compute_extension:admin_actions:migrateLive": "!",
+}</code></pre>
+<h5 id="_289">迁移网络<a class="headerlink" href="#_289" title="Permanent link">&para;</a></h5>
+<p>一般做法是，实时迁移流量应限制在管理安全域内，请参阅安全边界和威胁。对于实时迁移流量，由于其纯文本性质以及您正在传输正在运行的实例的磁盘和内存内容，因此建议您进一步将实时迁移流量分离到专用网络上。将流量隔离到专用网络可以降低暴露风险。</p>
+<h5 id="_290">加密实时迁移<a class="headerlink" href="#_290" title="Permanent link">&para;</a></h5>
+<p>如果有足够的业务案例来保持实时迁移的启用状态，则 libvirtd 可以为实时迁移提供加密隧道。但是，此功能目前尚未在 OpenStack Dashboard 或 nova-client  命令中公开，只能通过手动配置 libvirtd 来访问。然后，实时迁移过程将更改为以下高级步骤：</p>
+<ol>
+<li>实例数据从虚拟机管理程序复制到 libvirtd。</li>
+<li>在源主机和目标主机上的 libvirtd 进程之间创建加密隧道。</li>
+<li>目标 libvirtd 主机将实例复制回底层虚拟机管理程序。</li>
+</ol>
+<h4 id="_291">监控、告警和报告<a class="headerlink" href="#_291" title="Permanent link">&para;</a></h4>
+<p>由于 OpenStack  虚拟机是能够跨主机复制的服务器映像，因此日志记录的最佳实践同样适用于物理主机和虚拟主机。应记录操作系统级和应用程序级事件，包括对主机和数据的访问事件、用户添加和删除、权限更改以及环境规定的其他事件。理想情况下，您可以将这些日志配置为导出到日志聚合器，该聚合器收集日志事件，将它们关联起来进行分析，并存储它们以供参考或进一步操作。实现此目的的一个常见工具是 ELK 堆栈，即 Elasticsearch、Logstash 和 Kibana。</p>
+<p>应定期查看这些日志，例如由网络运营中心 （NOC） 实时查看，或者如果环境不够大而不需要 NOC，则日志应定期进行日志审查过程。</p>
+<p>很多时候，有趣的事件会触发警报，该警报将发送给响应方以采取行动。通常，此警报采用包含相关消息的电子邮件形式。一个有趣的事件可能是重大故障，也可能是挂起故障的已知运行状况指示器。用于管理告警的两个常见实用程序是 Nagios 和 Zabbix。</p>
+<h4 id="_292">更新和补丁<a class="headerlink" href="#_292" title="Permanent link">&para;</a></h4>
+<p>虚拟机监控程序运行独立的虚拟机。此虚拟机管理程序可以在操作系统中运行，也可以直接在硬件上运行（称为裸机）。对虚拟机监控程序的更新不会向下传播到虚拟机。例如，如果部署使用的是 XenServer，并且具有一组 Debian 虚拟机，则对 XenServer 的更新不会更新 Debian 虚拟机上运行的任何内容。</p>
+<p>因此，我们建议分配虚拟机的明确所有权，并由这些所有者负责虚拟机的强化、部署和持续功能。我们还建议定期部署更新。这些补丁应在尽可能接近生产环境的环境中进行测试，以确保补丁背后的问题的稳定性和解决方案。</p>
+<h4 id="_293">防火墙和其他基于主机的安全控制<a class="headerlink" href="#_293" title="Permanent link">&para;</a></h4>
+<p>最常见的操作系统包括基于主机的防火墙，以提高安全性。虽然我们建议虚拟机运行尽可能少的应用程序（如果可能的话，达到单一用途实例的程度），但应分析虚拟机上运行的所有应用程序，以确定应用程序需要访问哪些系统资源、运行所需的最低特权级别，以及将进出虚拟机的预期网络流量。此预期流量应作为允许的流量（或列入白名单）添加到基于主机的防火墙中，以及任何必要的日志记录和管理通信，例如 SSH 或 RDP。应在防火墙配置中明确拒绝所有其他流量。</p>
+<p>在 Linux 虚拟机上，上述应用程序配置文件可以与 audit2allow 等工具结合使用，以构建 SELinux 策略，以进一步保护大多数  Linux 发行版上的敏感系统信息。SELinux  使用用户、策略和安全上下文的组合来划分应用程序运行所需的资源，并将其与其他不需要的系统资源区分开来。</p>
+<p>OpenStack  为主机和网络提供安全组，以增加对给定项目中虚拟机的深度防御。这些规则类似于基于主机的防火墙，因为它们根据端口、协议和地址允许或拒绝传入流量，但安全组规则仅适用于传入流量，而基于主机的防火墙规则能够应用于传入和传出流量。主机和网络安全组规则也可能发生冲突并拒绝合法流量。我们建议确保为正在使用的网络正确配置安全组。有关详细信息，请参阅本指南中的安全组。</p>
+<h2 id="_294">监视和日志记录<a class="headerlink" href="#_294" title="Permanent link">&para;</a></h2>
+<p>在云环境中，硬件、操作系统、虚拟机管理器、OpenStack 服务、云用户活动（例如创建实例和附加存储）、网络以及使用在各种实例上运行的应用程序的最终用户混合在一起。</p>
+<p>日志记录的基础知识：配置、设置日志级别、日志文件的位置、如何使用和自定义日志，以及如何集中收集日志，这些在 OpenStack 操作指南中都有很好的介绍。</p>
+<ul>
+<li>取证和事件响应</li>
+<li>监控用例</li>
+<li>参考书目</li>
+</ul>
+<h3 id="_295">取证和事件响应<a class="headerlink" href="#_295" title="Permanent link">&para;</a></h3>
+<p>日志的生成和收集是安全监控 OpenStack 基础架构的重要组成部分。日志提供对管理员、租户和来宾日常操作的可见性，以及计算、网络和存储以及构成 OpenStack 部署的其他组件中的活动。</p>
+<p>日志不仅对主动安全和持续合规性活动很有价值，而且也是调查和响应事件的宝贵信息源。</p>
+<p>例如，分析身份服务或其替代身份验证系统的访问日志会提醒我们登录失败、频率、源 IP、事件是否仅限于选择帐户和其他相关信息。日志分析支持检测。</p>
+<p>可以采取措施来缓解潜在的恶意活动，例如将 IP 地址列入黑名单、建议加强用户密码或停用被视为休眠的用户帐户。</p>
+<h4 id="_296">监控用例<a class="headerlink" href="#_296" title="Permanent link">&para;</a></h4>
+<p>事件监控是一种更主动的方法，可以保护环境，提供实时检测和响应。有几种工具可以帮助进行监控。</p>
+<p>对于OpenStack云实例，我们需要监控硬件、OpenStack服务和云资源使用情况。后者源于希望具有弹性，以适应用户的动态需求。</p>
+<p>以下是在实施日志聚合、分析和监控时需要考虑的几个重要用例。这些用例可以通过各种应用程序、工具或脚本来实现和监控。有开源和商业解决方案，一些运营商开发自己的内部解决方案。这些工具和脚本可以生成事件，这些事件可以通过电子邮件发送给管理员或在集成仪表板中查看。请务必考虑可能适用于您的特定网络的其他用例，以及您可能认为的异常行为。</p>
+<ul>
+<li>检测日志生成缺失是一个具有很高价值的事件。此类事件将表明服务失败，甚至表示入侵者暂时关闭了日志记录或修改了日志级别以隐藏其踪迹。</li>
+<li>应用程序事件（如计划外的启动或停止事件）也是要监视和检查可能的安全隐患的事件。</li>
+<li>OpenStack 服务机器上的操作系统事件（如用户登录或重新启动）也为系统的正确和不当使用提供了有价值的见解。</li>
+<li>能够检测OpenStack服务器上的负载还可以通过引入其他服务器进行负载平衡来做出响应，以确保高可用性。</li>
+<li>其他可操作的事件包括网络网桥关闭、计算节点上的 IP 表被刷新，以及随之而来的对实例的访问丢失，导致客户不满意。</li>
+<li>为了降低在身份服务中删除用户、租户或域时孤立实例的安全风险，我们讨论了在系统中生成通知，并让 OpenStack 组件适当地响应这些事件，例如终止实例、断开连接的卷、回收 CPU 和存储资源等。</li>
+</ul>
+<p>云将托管许多虚拟实例，并且监视这些实例超出了可能仅包含 CRUD 事件的硬件监视和日志文件。</p>
+<p>安全监控控制（如入侵检测软件、防病毒软件以及间谍软件检测和删除实用程序）可以生成日志，显示攻击或入侵发生的时间和方式。在云计算机上部署这些工具可提供价值和保护。云用户，即在云上运行实例的用户，可能也希望在其实例上运行此类工具。</p>
+<h4 id="_297">参考书目<a class="headerlink" href="#_297" title="Permanent link">&para;</a></h4>
+<p>Siwczak, Piotr，在 OpenStack 云中进行监控的一些实际注意事项。2012.</p>
+<p>blog.sflow.com， sflow：主机 sFlow 分布式代理。2012.</p>
+<p>blog.sflow.com，sflow：LAN 和 WAN。2009.</p>
+<p>blog.sflow.com、sflow：快速检测大流量 sFlow 与 NetFlow/IPFIX。2013.</p>
+<h2 id="_298">合规<a class="headerlink" href="#_298" title="Permanent link">&para;</a></h2>
+<p>OpenStack  部署可能需要出于多种目的进行合规性活动，例如法规和法律要求、客户需求、隐私注意事项和安全最佳实践。合规功能对企业及其客户很重要。合规意味着遵守法规、规范、标准和法律。它还用于描述有关评估、审核和认证的组织状态。如果操作得当，合规性可以统一和加强本指南中讨论的其他安全主题。</p>
+<p>本章有几个目标：</p>
+<ul>
+<li>查看常见的安全原则。</li>
+<li>讨论常见的控制框架和认证资源，以实现行业认证或监管机构认证。</li>
+<li>在评估 OpenStack 部署时，可作为审计人员的参考。</li>
+<li>介绍特定于 OpenStack 和云环境的隐私注意事项。</li>
+<li>合规性概述</li>
+<li>安全原则</li>
+<li>常见控制框架</li>
+<li>审核参考</li>
+<li>了解审核流程</li>
+<li>确定审计范围</li>
+<li>审计阶段</li>
+<li>内部审计</li>
+<li>准备外部审计</li>
+<li>外部审计</li>
+<li>合规性维护</li>
+<li>合规活动</li>
+<li>信息安全管理系统（ISMS）</li>
+<li>风险评估</li>
+<li>访问和日志审查</li>
+<li>备份和灾难恢复</li>
+<li>安全培训</li>
+<li>安全审查</li>
+<li>漏洞管理</li>
+<li>数据分类</li>
+<li>异常过程</li>
+<li>认证和合规声明</li>
+<li>商业标准</li>
+<li>政府标准</li>
+<li>隐私</li>
+</ul>
+<h3 id="_299">合规性概述<a class="headerlink" href="#_299" title="Permanent link">&para;</a></h3>
+<h4 id="_300">安全原则<a class="headerlink" href="#_300" title="Permanent link">&para;</a></h4>
+<p>行业标准安全原则为合规性认证和证明提供了基准。如果在整个 OpenStack 部署过程中考虑和引用这些原则，则可以简化认证活动。</p>
+<h5 id="_301">分层防御<a class="headerlink" href="#_301" title="Permanent link">&para;</a></h5>
+<p>确定云架构中存在风险的位置，并应用控制措施来降低风险。在重大关注领域，分层防御提供多种互补控制，将风险管理到可接受的水平。例如，为了确保云租户之间的充分隔离，我们建议强化 QEMU，使用支持 SELinux  的虚拟机管理程序，实施强制访问控制策略，并减少整体攻击面。基本原则是用多层防御来强化关注区域，这样，如果任何一层受到损害，其他层将存在以提供保护并最大限度地减少暴露。</p>
+<h5 id="_302">安全失败<a class="headerlink" href="#_302" title="Permanent link">&para;</a></h5>
+<p>在发生故障的情况下，系统应配置为在关闭的安全状态中失败。例如，如果TLS证书验证未通过，即CNAME与服务器的DNS名称不匹配，应通过切断网络连接来安全失败。在这种情况下，软件通常会以开放方式失败，允许连接在没有CNAME匹配的情况下继续进行，这样不够安全，也不建议。</p>
+<h5 id="_303">最小权限<a class="headerlink" href="#_303" title="Permanent link">&para;</a></h5>
+<p>仅授予用户和系统服务的最低访问级别。这种访问基于角色、职责和工作职能。这种最小特权安全原则已写入多个国际政府安全策略中，例如美国境内的 NIST 800-53 第 AC-6 节。</p>
+<h5 id="_304">分隔<a class="headerlink" href="#_304" title="Permanent link">&para;</a></h5>
+<p>系统应以这样一种方式隔离，即如果一台计算机或系统级服务受到损害，其他系统的安全性将保持不变。实际上，SELinux 的启用和正确使用有助于实现这一目标。</p>
+<h5 id="_305">促进隐私<a class="headerlink" href="#_305" title="Permanent link">&para;</a></h5>
+<p>应尽量减少可以收集的有关系统及其用户的信息量。</p>
+<h5 id="_306">日志记录能力<a class="headerlink" href="#_306" title="Permanent link">&para;</a></h5>
+<p>实施适当的日志记录以监控未经授权的使用、事件响应和取证。我们强烈建议选定的审计子系统通过通用标准认证，该标准在大多数国家/地区提供不可证明的事件记录。</p>
+<h4 id="_307">常用控制框架<a class="headerlink" href="#_307" title="Permanent link">&para;</a></h4>
+<p>以下是组织可用于构建其安全控制的控制框架列表。</p>
+<p>云安全联盟 （CSA） 通用控制矩阵 （CCM）</p>
+<p>CSA CCM 专门用于提供基本的安全原则，以指导云供应商并帮助潜在的云客户评估云提供商的整体安全风险。CSA CCM 提供了一个跨 16  个安全域保持一致的控制框架。云控制矩阵的基础在于其与其他行业标准、法规和控制框架的定制关系，例如：ISO 27001：2013、COBIT  5.0、PCI：DSS v3、AICPA 2014 信任服务原则和标准，并增强了服务组织控制报告证明的内部控制方向。</p>
+<p>CSA CCM 通过减少云中的安全威胁和漏洞来加强现有的信息安全控制环境，提供标准化的安全和运营风险管理，并寻求规范化安全期望、云分类和术语以及在云中实施的安全措施。</p>
+<p>ISO 27001/2:2013 ISO 27001/2：2013 认证</p>
+<p>ISO 27001 信息安全标准和认证多年来一直用于评估和区分组织是否符合信息安全最佳实践。该标准由两部分组成：定义信息安全管理系统 （ISMS） 的强制性条款和包含按领域组织的控制列表的附录 A。</p>
+<p>信息安全管理系统通过应用风险管理流程来保持信息的机密性、完整性和可用性，并使相关方相信风险得到充分管理。</p>
+<p>可信安全原则</p>
+<p>信托服务是一套基于一套核心原则和标准的专业认证和咨询服务，用于解决 IT 系统和隐私计划的风险和机遇。通常称为 SOC 审计，这些原则定义了要求是什么，组织有责任定义满足要求的控制措施。</p>
+<h4 id="_308">审计参考<a class="headerlink" href="#_308" title="Permanent link">&para;</a></h4>
+<p>OpenStack在许多方面都是创新的，但是用于审计OpenStack部署的过程相当普遍。审核员将根据两个标准评估流程：控制是否有效设计以及控制是否有效运行。了解审计师如何评估控制措施是否有效设计和运行，将在“了解审计过程”一节中讨论。</p>
+<p>用于审核和评估云部署的最常见框架包括前面提到的 ISO 27001/2 信息安全标准、ISACA 的信息和相关技术控制目标 （COBIT） 框架、特雷德韦委员会赞助组织委员会 （COSO）  和信息技术基础设施库  （ITIL）。审计通常包括一个或多个这些框架中的重点领域。幸运的是，这些框架之间有很多重叠，因此采用框架的组织将在审计时处于有利地位。</p>
+<h3 id="_309">了解审核流程<a class="headerlink" href="#_309" title="Permanent link">&para;</a></h3>
+<p>信息系统安全合规性依赖于两个基本流程的完成：</p>
+<p>安全控制的实施和操作</p>
+<p>使信息系统与范围内的标准和法规保持一致涉及内部任务，这些任务必须在正式评估之前进行。审核员可能会参与此状态，以进行差距分析，提供指导，并增加成功认证的可能性。</p>
+<p>独立验证和确认</p>
+<p>在许多信息系统获得认证状态之前，需要向中立的第三方证明系统安全控制已实施并有效运行，符合范围内的标准和法规。许多认证需要定期审核，以确保持续认证，这被认为是总体持续监控实践的一部分。</p>
+<h4 id="_310">确定审计范围<a class="headerlink" href="#_310" title="Permanent link">&para;</a></h4>
+<p>确定审计范围，特别是需要哪些控制措施，以及如何设计或修改OpenStack部署以满足这些控制措施，应该是最初的规划步骤。</p>
+<p>在出于合规性目的确定 OpenStack 部署范围时，应优先考虑对敏感服务的控制，例如命令和控制功能以及基本虚拟化技术。这些设施的妥协可能会影响整个 OpenStack 环境。</p>
+<p>缩小范围有助于确保 OpenStack  架构师建立针对特定部署量身定制的高质量安全控制，但最重要的是确保这些实践不会遗漏安全强化中的区域或功能。一个常见的例子是PCI-DSS准则，其中与支付相关的基础设施可能会受到安全问题的审查，但支持服务被忽视，并且容易受到攻击。</p>
+<p>在解决合规性问题时，您可以通过确定适用于多个认证的常见领域和标准来提高效率并减少工作量。本书中讨论的许多审计原则和准则将有助于确定这些控制措施，此外，一些外部实体提供了全面的清单。以下是一些示例：</p>
+<p>云安全联盟云控制矩阵 （CCM） 可帮助云提供商和消费者评估云提供商的整体安全性。CSA CMM 提供了一个控制框架，该框架映射到许多行业公认的标准和法规，包括  ISO 27001/2、ISACA、COBIT、PCI、NIST、Jericho Forum 和 NERC CIP。</p>
+<p>《SCAP 安全指南》是另一个有用的参考。这仍然是一个新兴的来源，但我们预计这将发展成为一个工具，其控件映射更侧重于美国联邦政府的认证和建议。例如，SCAP 安全指南目前包含安全技术实施指南 （STIG） 和 NIST-800-53 的一些映射。</p>
+<p>这些控制映射将有助于识别跨认证的通用控制标准，并为审核员和被审核方提供对特定合规性认证和证明的控制集中问题区域的可见性。</p>
+<h4 id="_311">审计的阶段<a class="headerlink" href="#_311" title="Permanent link">&para;</a></h4>
+<p>审计有四个不同的阶段，尽管大多数利益相关者和控制所有者只会参与一两个阶段。四个阶段是规划、实地考察、报告和总结。下面将讨论这些阶段中的每一个。</p>
+<p>规划阶段通常在实地工作开始前两周到六个月进行。在此阶段，将讨论并最终确定时间范围、时间表、要评估的控制措施和控制所有者等审计项目。对资源可用性、公正性和成本的担忧也得到了解决。</p>
+<p>实地考察阶段是审计中最明显的部分。这是审计员在现场的地方，与控制所有者面谈，记录现有的控制措施，并确定任何问题。需要注意的是，审计师将使用两部分流程来评估现有的控制措施。第一部分是评估控制的设计有效性。在这里，审计员将评估控制是否能够有效地预防或检测和纠正弱点和缺陷。控件必须通过此测试才能在第二阶段进行评估。这是因为对于设计无效的控件，没有必要考虑它是否有效运行。第二部分是运营效率。操作有效性测试将确定如何应用控制措施，应用控制措施的一致性以及由谁或以何种方式应用控制措施。一项控制可能依赖于其他控制（间接控制），如果它们依赖于其他控制，则审计师可能需要额外的证据来证明这些间接控制的运作有效性，以确定控制的整体运作有效性。</p>
+<p>在报告阶段，管理层将对在实地工作阶段发现的任何问题进行验证。出于后勤目的，一些活动（例如问题验证）可能会在实地工作阶段执行。管理层还需要提供补救计划来解决问题，并确保它们不会再次发生。将向利益攸关方和管理层分发一份总体报告草稿，供其审查。商定的修改被纳入，更新后的草案将送交高级管理层审查和批准。一旦高级管理层批准报告，该报告就会定稿并分发给执行管理层。任何问题都会输入到组织使用的问题跟踪或风险跟踪机制中。</p>
+<p>总结阶段是审计正式终止的地方。此时，管理层将开始整改活动。使用过程和通知确保将任何与审计相关的信息都被移至安全存储库0。</p>
+<h4 id="_312">内部审计<a class="headerlink" href="#_312" title="Permanent link">&para;</a></h4>
+<p>部署云后，就该进行内部审计了。现在是时候将上面确定的控件与云中使用的设计、功能和部署策略进行比较了。目标是了解每个控件的处理方式以及存在差距的位置。记录所有发现以备将来参考。</p>
+<p>在审计OpenStack云时，了解OpenStack架构固有的多租户环境是很重要的。需要关注的一些关键领域包括数据处置、虚拟机管理程序安全性、节点强化和身份验证机制。</p>
+<h4 id="_313">准备外部审计<a class="headerlink" href="#_313" title="Permanent link">&para;</a></h4>
+<p>一旦内部审计结果看起来不错，就该为外部审计做准备了。在此阶段需要采取几项关键行动，这些行动概述如下：</p>
+<ul>
+<li>保持内部审计的良好记录。这些将在外部审计期间证明很有用，因此您可以准备好回答有关将合规性控制映射到特定部署的问题。</li>
+<li>部署自动化测试工具，确保云长期保持合规。</li>
+<li>选择审计员。</li>
+</ul>
+<p>选择审计师可能具有挑战性。理想情况下，您正在寻找具有云合规性审核经验的人。OpenStack经验是另一大优势。通常，最好咨询经历过此过程的人进行转诊。成本可能会因参与范围和所考虑的审计公司而有很大差异。</p>
+<h4 id="_314">外部审计<a class="headerlink" href="#_314" title="Permanent link">&para;</a></h4>
+<p>这是正式的审计过程。审计员将测试特定认证范围内的安全控制措施，并要求提供证据要求，以证明这些控制措施在审计窗口内也已到位（例如，SOC 2 审计通常在 6-12 个月内评估安全控制措施）。任何控制失败都会被记录下来，并将记录在外部审计师的最终报告中。根据 OpenStack  部署的类型，客户可能会查看这些报告，因此避免控制失败非常重要。这就是为什么审计准备如此重要的原因。</p>
+<h4 id="_315">合规性维护<a class="headerlink" href="#_315" title="Permanent link">&para;</a></h4>
+<p>该过程不会因单一的外部审计而结束。大多数认证都需要持续的合规活动，这意味着要定期重复审核过程。我们建议将自动合规性验证工具集成到云中，以确保其始终合规。除了其他安全监控工具之外，还应该这样做。请记住，目标既是安全性，也是合规性。如果在上述任何一项方面都失败，将使未来的审计变得非常复杂。</p>
+<h3 id="_316">合规活动<a class="headerlink" href="#_316" title="Permanent link">&para;</a></h3>
+<p>有许多标准活动将极大地帮助合规过程。本章概述了一些最常见的合规性活动。这些并不是OpenStack所特有的，但是本书中提供了相关章节的参考资料，作为有用的上下文。</p>
+<h4 id="isms">信息安全管理系统 （ISMS）<a class="headerlink" href="#isms" title="Permanent link">&para;</a></h4>
+<p>信息安全管理系统 （ISMS） 是组织创建和维护的一套全面的策略和流程，用于管理信息资产的风险。云部署最常见的 ISMS 是 ISO/IEC  27001/2，它为安全控制和实践奠定了坚实的基础，以实现更严格的合规性认证。该标准于 2013  年进行了更新，以反映云服务的日益使用，并更加强调衡量和评估组织的 ISMS 性能。</p>
+<h4 id="_317">风险评估<a class="headerlink" href="#_317" title="Permanent link">&para;</a></h4>
+<p>风险评估框架可识别组织或服务中的风险，并指定这些风险的所有权，以及实施和缓解策略。风险适用于服务的所有领域，从技术控制到环境灾难场景和人为因素。例如，恶意内部人员。可以使用多种机制对风险进行评级。例如，可能性与影响。OpenStack 部署风险评估可以包括控制差距。</p>
+<h4 id="_318">访问和日志审查<a class="headerlink" href="#_318" title="Permanent link">&para;</a></h4>
+<p>需要定期访问和日志审查，以确保服务部署中的身份验证、授权和问责制。有关这些主题的 OpenStack 的具体指南在监控和日志记录中进行了深入讨论。</p>
+<p>OpenStack Identity 服务支持云审计数据联合 （CADF） 通知，提供审计数据以符合安全性、操作和业务流程。有关更多信息，请参阅 Keystone 开发人员文档。</p>
+<h4 id="_319">备份和灾难恢复<a class="headerlink" href="#_319" title="Permanent link">&para;</a></h4>
+<p>灾难恢复 （DR） 和业务连续性规划 （BCP） 计划是 ISMS 和合规性活动的常见要求。这些计划必须定期测试并记录在案。在 OpenStack 中，关键区域位于管理安全域中，以及任何可以识别单点故障 （SPOF） 的地方。</p>
+<h4 id="_320">安全培训<a class="headerlink" href="#_320" title="Permanent link">&para;</a></h4>
+<p>针对特定角色的年度安全培训是几乎所有合规性认证和证明的强制性要求。为了优化安全培训的有效性，一种常见的方法是提供特定于角色的培训，例如向开发人员、操作人员和非技术人员提供培训。基于此强化指南的其他云安全或 OpenStack 安全培训将是理想的选择。</p>
+<h4 id="_321">安全审查<a class="headerlink" href="#_321" title="Permanent link">&para;</a></h4>
+<p>由于OpenStack是一个流行的开源项目，因此许多代码库和架构已经过个人贡献者、组织和企业的审查。从安全角度来看，这可能是有利的，但是对于服务提供商来说，安全审查的需求仍然是一个关键的考虑因素，因为部署各不相同，而且安全性并不总是贡献者的主要关注点。全面的安全审查过程可能包括架构审查、威胁建模、源代码分析和渗透测试。有许多用于进行安全审查的技术和建议，可以在公开发布中找到。一个经过充分测试的例子是 Microsoft SDL，它是作为 Microsoft 可信计算计划的一部分创建的。</p>
+<h4 id="_322">漏洞管理<a class="headerlink" href="#_322" title="Permanent link">&para;</a></h4>
+<p>安全更新对于任何 IaaS  部署（无论是私有部署还是公共部署）都至关重要。易受攻击的系统扩大了攻击面，是攻击者的明显目标。常见的扫描技术和漏洞通知服务可以帮助缓解这种威胁。重要的是，扫描要经过身份验证，并且缓解策略要超越简单的外围强化。OpenStack 等多租户架构特别容易受到虚拟机管理程序漏洞的影响，因此这是漏洞管理系统的关键部分。</p>
+<h4 id="_323">数据分类<a class="headerlink" href="#_323" title="Permanent link">&para;</a></h4>
+<p>数据分类定义了一种对信息进行分类和处理的方法，通常用于保护客户信息免遭意外或故意盗窃、丢失或不当披露。最常见的情况是，这涉及将信息分类为敏感或非敏感信息，或个人身份信息  （PII）。根据部署的上下文，可以使用各种其他分类标准（政府、医疗保健）。基本原则是明确定义和使用数据分类。最常见的保护机制包括行业标准加密技术。</p>
+<h4 id="_324">异常过程<a class="headerlink" href="#_324" title="Permanent link">&para;</a></h4>
+<p>异常过程是 ISMS  的重要组成部分。当某些操作不符合组织定义的安全策略时，必须记录这些操作。需要包括适当的理由、描述和缓解细节，并由有关当局签署。OpenStack 默认配置在满足各种合规性标准方面可能会有所不同，应记录不符合合规性要求的区域，并考虑潜在的修复程序以对社区做出贡献。</p>
+<h3 id="_325">认证和合规声明<a class="headerlink" href="#_325" title="Permanent link">&para;</a></h3>
+<p>合规性和安全性不是排他性的，必须一起解决。如果不进行安全强化，OpenStack 部署不太可能满足合规性要求。下面的列表提供了 OpenStack 架构师的基础知识和指导，以实现对商业和政府认证和标准的合规性。</p>
+<h4 id="_326">商业标准<a class="headerlink" href="#_326" title="Permanent link">&para;</a></h4>
+<p>对于OpenStack的商业部署，我们建议将SOC 1/2与ISO 2700 1/2相结合，作为OpenStack认证活动的起点。这些认证规定的所需安全活动有助于为安全最佳实践和通用控制标准奠定基础，从而有助于实现更严格的合规性活动，包括政府证明和认证。</p>
+<p>完成这些初始认证后，其余认证将更加特定于部署。例如，处理信用卡交易的云需要 PCI-DSS，存储医疗保健信息的云需要 HIPAA，联邦政府内部的云可能需要 FedRAMP/FISMA 和 ITAR 认证。</p>
+<h5 id="soc-1-ssae-16-isae-3402">SOC 1 （SSAE 16） / ISAE 3402<a class="headerlink" href="#soc-1-ssae-16-isae-3402" title="Permanent link">&para;</a></h5>
+<p>服务组织控制 （SOC） 标准由美国注册会计师协会 （AICPA） 定义。SOC  控制评估服务提供商的相关财务报表和断言，例如是否遵守《萨班斯-奥克斯利法案》。 SOC 1 取代了审计准则第 70 号声明 （SAS 70）  II 类报告。这些控制措施通常包括范围内的物理数据中心。</p>
+<p>有两种类型的 SOC 1 报告：</p>
+<ul>
+<li>类型 1 - 报告管理层对服务组织系统的描述的公允性，以及控制设计是否适合实现截至指定日期的描述中包含的相关控制目标。</li>
+<li>类型 2 - 报告管理层对服务组织系统的描述的公允性，以及控制措施的设计和运营有效性是否适合在特定时期内实现描述中包含的相关控制目标</li>
+</ul>
+<p>有关详细信息，请参阅AICPA关于与用户实体财务报告内部控制相关的服务组织控制的报告。</p>
+<h5 id="soc-2">SOC 2 函数<a class="headerlink" href="#soc-2" title="Permanent link">&para;</a></h5>
+<p>服务组织控制 （SOC） 2  是对影响服务组织用于处理用户数据的系统的安全性、可用性和处理完整性以及这些系统处理的信息的机密性和隐私性的控制的自我证明。用户示例包括负责服务组织治理的人员、服务组织的客户、监管机构、业务合作伙伴、供应商以及了解服务组织及其控制措施的其他人员。</p>
+<p>有两种类型的 SOC 2 报告：</p>
+<ul>
+<li>类型 1 - 报告管理层对服务组织系统的描述的公允性，以及控制设计是否适合实现截至指定日期的描述中包含的相关控制目标。</li>
+<li>类型 2 - 报告管理层对服务组织系统的描述的公允性，以及控制的设计和运营有效性的适用性，以在特定时期内实现描述中包含的相关控制目标。</li>
+</ul>
+<p>有关详细信息，请参阅 AICPA 关于服务组织中与安全性、可用性、处理完整性、机密性或隐私相关的控制的报告。</p>
+<h5 id="soc-3">SOC 3 函数<a class="headerlink" href="#soc-3" title="Permanent link">&para;</a></h5>
+<p>服务组织控制 （SOC） 3  是服务组织的信任服务报告。这些报告旨在满足以下用户的需求：这些用户希望确保服务组织中与安全性、可用性、处理完整性、机密性或隐私相关的控制措施，但没有有效使用 SOC 2 报告所需的知识。这些报告是根据 AICPA/加拿大特许会计师协会 （CICA）  关于安全性、可用性、处理完整性、机密性和隐私的信托服务原则、标准和插图编写的。由于 SOC 3  报告是通用报告，因此可以作为印章自由分发或发布在网站上。</p>
+<p>有关详细信息，请参阅服务组织的 AICPA 信任服务报告。</p>
+<h5 id="iso-270012">ISO 27001/2 认证<a class="headerlink" href="#iso-270012" title="Permanent link">&para;</a></h5>
+<p>ISO/IEC 27001/2 标准取代了 BS7799-2，是信息安全管理体系 （ISMS） 的规范。ISMS  是组织为管理信息资产风险而创建和维护的一整套策略和过程。这些风险基于用户信息的机密性、完整性和可用性  （CIA）。中央情报局的安全三合会已被用作本书大部分章节的基础。</p>
+<p>有关详细信息，请参阅 ISO 27001。</p>
+<h5 id="hipaa-hitech">HIPAA / HITECH<a class="headerlink" href="#hipaa-hitech" title="Permanent link">&para;</a></h5>
+<p>健康保险流通与责任法案 （HIPAA） 是美国国会的一项法案，用于管理患者健康记录的收集、存储、使用和销毁。该法案规定，受保护的健康信息（PHI）必须对未经授权的人员“不可用、不可读或无法破译”，并且应解决“静态”和“动态”数据的加密问题。</p>
+<p>HIPAA 不是认证，而是保护医疗保健数据的指南。与 PCI-DSS 类似，PCI 和 HIPPA  最重要的问题是不会发生信用卡信息和健康数据泄露的情况。在发生违规行为时，将仔细审查云提供商是否符合 PCI 和 HIPPA  控制措施。如果证明合规，提供商将立即实施补救控制、违规通知责任以及用于额外合规活动的大量支出。如果不合规，云提供商可能会面临现场审计团队、罚款、潜在的商家 ID （PCI） 丢失以及巨大的声誉影响。</p>
+<p>拥有 PHI 的用户或组织必须支持 HIPAA 要求，并且是 HIPAA  涵盖的实体。如果实体打算使用某项服务，或者在本例中，使用可能使用、存储或访问该 PHI 的 OpenStack 云，则必须签署业务伙伴协议  （BAA）。BAA 是 HIPAA 涵盖的实体与 OpenStack 服务提供商之间的合同，要求提供商根据 HIPAA 要求处理该  PHI。如果服务提供商不处理 PHI，例如安全控制和强化，那么他们将受到 HIPAA 的罚款和处罚。</p>
+<p>OpenStack 架构师解释和响应 HIPAA 声明，数据加密仍然是核心实践。目前，这将要求使用行业标准加密算法对 OpenStack 部署中包含的任何受保护的健康信息进行加密。未来潜在的OpenStack项目，如对象加密，将促进HIPAA准则的遵守。</p>
+<p>有关详细信息，请参阅《健康保险流通与责任法案》。</p>
+<h5 id="pci-dss">PCI-DSS<a class="headerlink" href="#pci-dss" title="Permanent link">&para;</a></h5>
+<p>支付卡行业数据安全标准 （PCI DSS） 由支付卡行业标准委员会定义，旨在加强对持卡人数据的控制，以减少信用卡欺诈。年度合规性验证由外部合格安全评估机构 （QSA） 进行评估，该评估机构会根据持卡人的交易量创建合规报告 （ROC），或通过自我评估问卷 （SAQ） 进行评估。</p>
+<p>存储、处理或传输支付卡详细信息的 OpenStack 部署在 PCI-DSS 的范围内。所有未从处理支付数据的系统或网络中正确分割的 OpenStack 组件都属于  PCI-DSS 的准则。PCI-DSS 上下文中的分段不支持多租户，而是物理分离（主机/网络）。</p>
+<p>有关详细信息，请参阅 PCI 安全标准。</p>
+<h4 id="_327">政府标准<a class="headerlink" href="#_327" title="Permanent link">&para;</a></h4>
+<h5 id="fedramp">FedRAMP<a class="headerlink" href="#fedramp" title="Permanent link">&para;</a></h5>
+<p>“联邦风险和授权管理计划 （FedRAMP） 是一项政府范围的计划，它为云产品和服务的安全评估、授权和持续监控提供了一种标准化方法”。NIST 800-53 是  FISMA 和 FedRAMP  的基础，后者要求专门选择安全控制以在云环境中提供保护。由于安全控制的特殊性以及满足政府标准所需的文档量，FedRAMP 可能非常密集。</p>
+<p>有关详细信息，请参阅 FedRAMP。</p>
+<h5 id="itar">ITAR<a class="headerlink" href="#itar" title="Permanent link">&para;</a></h5>
+<p>《国际武器贸易条例》（ITAR） 是一套美国政府法规，用于控制美国军需品清单 （USML）  和相关技术数据中与国防相关的物品和服务的进出口。ITAR通常被云提供商视为“操作一致性”，而不是正式认证。这通常涉及按照 FISMA  要求，遵循基于 NIST 800-53 框架的做法实施隔离的云环境，并辅以限制仅访问“美国人”和背景筛选的额外控制措施。</p>
+<p>有关详细信息，请参阅《国际武器贸易条例》（ITAR）。</p>
+<h5 id="fisma">FISMA<a class="headerlink" href="#fisma" title="Permanent link">&para;</a></h5>
+<p>《联邦信息安全管理法》要求政府机构制定一项全面的计划，以实施众多政府安全标准，并在 2002 年的《电子政务法》中颁布。FISMA概述了一个过程，该过程利用多个NIST出版物，准备了一个信息系统来存储和处理政府数据。</p>
+<p>此过程分为三个主要类别：</p>
+<p>系统分类：</p>
+<p>信息系统将收到联邦信息处理标准出版物 199 （FIPS 199） 中定义的安全类别。这些类别反映了系统入侵的潜在影响。</p>
+<p>控件选择：</p>
+<p>根据 FIPS 199 中定义的系统安全类别，组织利用 FIPS 200 来确定信息系统的特定安全控制要求。例如，如果系统被归类为“中等”，则可能会引入强制要求“安全密码”的要求。</p>
+<p>控制定制：</p>
+<p>一旦确定了系统安全控制措施，OpenStack 架构师将利用 NIST 800-53 来提取量身定制的控制措施选择。例如，规范什么是“安全密码”。</p>
+<h3 id="_328">隐私<a class="headerlink" href="#_328" title="Permanent link">&para;</a></h3>
+<p>隐私是合规计划中越来越重要的元素。客户对企业的要求越来越高，他们越来越有兴趣从隐私的角度了解他们的数据是如何被处理的。</p>
+<p>OpenStack部署可能需要证明符合组织的隐私政策，以及美国-欧盟。安全港框架、ISO/IEC 29100：2011  隐私框架或其他特定于隐私的准则。在美国，美国注册会计师协会（AICPA）已经定义了10个隐私重点领域，在商业环境中部署OpenStack可能希望证明其中的部分或全部原则。</p>
+<p>为了帮助 OpenStack 架构师保护个人数据，我们建议 OpenStack 架构师查看 NIST 出版物 800-122，标题为“保护个人身份信息 （PII） 机密性指南”。本指南逐步完成保护过程：</p>
+<blockquote>
+<p>"...由机构维护的有关个人的任何信息，包括 （1） 可用于区分或追踪个人身份的任何信息，例如姓名、社会安全号码、出生日期和地点、母亲的婚前姓氏或生物识别记录;（2）与个人有联系或可联系的任何其他信息，如医疗、教育、财务和就业信息......”</p>
+</blockquote>
+<p>全面的隐私管理需要大量的准备、思考和投资。在构建全球OpenStack云时，还引入了额外的复杂性，例如，在美国和更严格的欧盟隐私法之间的差异中导航。此外，在处理敏感的 PII  时需要格外小心，其中可能包括信用卡号或医疗记录等信息。这些敏感数据不仅受隐私法的约束，还受监管和政府法规的约束。通过遵循既定的最佳实践，包括政府发布的最佳实践，可以为OpenStack部署创建和实践一个全面的隐私管理政策。</p>
               
             </div>
           </div><footer>
