@@ -16,13 +16,16 @@ releases = [
     'wallaby',
     'xena',
     'yoga',
-    'zed'
+    'zed',
+    '2023.1 antelope',
+    '2023.2 bobcat'
 ]
 
 
 all_res = dict()
 for release in releases:
-    url = 'https://releases.openstack.org/' + release
+    release_name = release.split()[-1]
+    url = 'https://releases.openstack.org/' + release_name
     try:
         url_os_content = requests.get(url, verify=True).content.decode()
 
@@ -47,7 +50,16 @@ for release in releases:
                 # if current versions < new version, then update it
                 if version.parse(results.get(pkg_name)) < version.parse(pkg_ver):
                     results[pkg_name] = pkg_ver
-        all_res[release] = results
+        # Store the release information.
+        # For releases after "Zed", use the release number:
+        # "year.release count within the year" (e.g., "2023.1").
+        # For "Zed" and earlier releases, use the release name (e.g., "zed").
+        # 
+        # After the release "Zed", each OpenStack release has an identification
+        # code. And the release number will be used as the primary identifier
+        # in the development cycle.
+        # Reference: https://governance.openstack.org/tc/reference/release-naming.html
+        all_res[release.split()[0]] = results
     except requests.exceptions.RequestException as e:
             print(f"Error fetching data for {release}: {e}")
 
