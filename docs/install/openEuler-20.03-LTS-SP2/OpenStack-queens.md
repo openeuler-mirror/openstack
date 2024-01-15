@@ -965,7 +965,7 @@ Openstack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
     配置ML2插件：
 
     ```shell
-    vim /etc/neutron/plugins/ml2/ml2_conf.ini
+    vim /etc/neutron/plugins/ml2/ml2_conf.ini                                                      (CTL)
 
     [ml2]
     type_drivers = flat,vlan,vxlan
