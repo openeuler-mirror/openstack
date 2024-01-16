@@ -105,6 +105,25 @@ SUPPORT_RELEASE = {
             "gnocchi": "4.4.1"
         }
     },
+    # antelope
+    # After the release "Zed", each OpenStack release has an identification
+    # code: "year"."release count within the year"
+    # And the release number will be used as the primary identifier in the
+    # development cycle.
+    # https://governance.openstack.org/tc/reference/release-naming.html
+    "2023.1": {
+        "base_service": _SEARVICE,
+        "extra_service": {
+            "gnocchi": "4.5.1"
+        }
+    },
+    # bobcat
+    "2023.2": {
+        "base_service": _SEARVICE,
+        "extra_service": {
+            "gnocchi": "4.6.0"
+        }
+    },
 }
 PYTHON_REGEX = {
     'python_version_gt_regex': ([r"(?<=python_version>)[0-9\.'\"]+", r"(?<=python_version >) [0-9\.'\"]+"], '>='),
@@ -426,7 +445,7 @@ class InitDependence(object):
 @click.command()
 @click.option('-p', '--projects', default=None, help='Specify the projects to be generated. Format should be like project1,project2')
 @click.option('-c', '--core', is_flag=True, help='Only fetch core depencence.')
-@click.option('-r', '--runtime', default='3.10', help='Target python runtime version')
+@click.option('-r', '--runtime', default='3.11', help='Target python runtime version')
 @click.argument('release', type=click.Choice(SUPPORT_RELEASE.keys()))
 def run(projects, core, runtime, release):
     upper_url = "https://opendev.org/openstack/requirements/raw/branch/stable/%s/upper-constraints.txt" % release
