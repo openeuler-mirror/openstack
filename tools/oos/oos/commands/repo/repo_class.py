@@ -169,3 +169,62 @@ class PkgGitRepo(object):
             click.echo("Getting PR list failed, reason: %s" % resp.reason,
                        err=True)
         return resp.json()
+
+    def branch_version_list(self, suffix, keyword):
+        try:
+            # https://gitee.com/api/v5/repos/{owner}/{repo}/branches
+            br_url = 'https://gitee.com/api/v5/repos/%s/%s/branches' % (
+                    self.gitee_org, self.repo_name)
+            resp = requests.request('GET', br_url,
+                                    data={'access_token': self.gitee_pat})
+        except requests.RequestException as e:
+            click.echo("HTTP request to gitee failed: %s" % e, err=True)
+            return
+
+        res = ''
+        try:
+            for ele in resp.json():
+                try:
+                    br = ele['name']
+                except:
+                    # 获取ele['name']失败的直接跳过
+                    res += br + '\t' + 'BAD BRANCH' + '\n'
+                    continue
+
+                if keyword and keyword not in br:
+                    continue
+
+                # https://gitee.com/api/v5/repos/{owner}/{repo}/contents(/{path})
+                url = 'https://gitee.com/api/v5/repos/%s/%s/contents/' % (
+                        self.gitee_org, 
+                        self.repo_name)
+                headers = {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                }
+                params = {
+                    'access_token': self.gitee_pat,
+                    'ref': br
+                }
+
+                try:
+                    branch_content = requests.get(url, headers=headers, params=params)
+                except Exception as e:
+                    res += br + '\t' + e + '\n'
+                    continue
+
+                not_found = True
+                for content in branch_content.json():
+                    if 'file' == content['type'] and content['name'].endswith(suffix):
+                        res += br + '\t' + content['name'] + '\n'
+                        not_found = False
+                        break
+
+                if not_found:
+                    res += br + '\t' + 'NO TAR FILE' + '\n'
+                    continue
+
+        except Exception as e:
+            click.echo('exception info: %s' % e)
+            return
+
+        click.echo(res)
