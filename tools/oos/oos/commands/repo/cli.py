@@ -364,3 +364,17 @@ def fork_repos(token, names, gitee_org):
     repo_obj = PkgGitRepo(gitee_pat=token, repo_name='nouse', gitee_org=gitee_org)
     for name in names.split():
         repo_obj.fork_repo(name)
+
+@group.command(name='branch-version-list', help='list pkg version of all branches')
+@click.argument('repo', type=str)
+@click.option("-t", "--gitee-pat", envvar='GITEE_PAT', required=True,
+              help="Gitee personal access token")
+@click.option('-o', '--gitee-org', envvar='GITEE_ORG', required=True,
+              default='src-openeuler', show_default=True,
+              help='Gitee organization name of repos')
+@click.option('-s', '--suffix', default='.tar.gz',
+              help='specify the suffix of file')
+@click.option('-k', '--keyword', help='specify the keyword in branch')
+def branch_version_list(repo, gitee_pat, gitee_org, suffix, keyword):
+    repo_obj = PkgGitRepo(gitee_pat=gitee_pat, repo_name=repo, gitee_org=gitee_org)
+    repo_obj.branch_version_list(suffix, keyword)

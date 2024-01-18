@@ -228,6 +228,25 @@ oos repo fork ****** 'python-repo1 repo2'
     [可选] repo所属的gitee组织名称，默认为src-openeuler
 ```
 
+## 查看软件仓的各个分支的文件版本
+
+可使用`oos repo branch-version-list`命令查看某个软件仓的各个分支的文件版本
+```shell
+oos repo branch-version-list repo -t GITEE_PAT
+```
+
+该命令所支持的参数如下：
+
+```
+-t, --gitee-pat
+    [必选] 个人Gitee账户personal access token，可以使用GITEE_PAT环境变量指定
+-o, --gitee-org
+    [可选] repo所属的gitee组织名称，默认为src-openeuler
+-s, --suffix
+    [可选] 文件的后缀，默认为.tar.gz
+-k, --keyword
+    [可选] 查看包含指定关键字的分支，默认为查看所有分支
+```
 
 ## 华为弹性云服务器操作
 
