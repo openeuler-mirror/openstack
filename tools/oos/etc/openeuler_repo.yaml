@@ -20,6 +20,7 @@ openeuler:
   Cpds: sig-CloudNative
   CreateImage: sig-Gatekeeper
   CuckooSQL: bigdata
+  CyclOne: sig-ops
   DDE-GoCode: sig-DDE
   DyscheOS-kernel: sig-recycle
   DyscheOS-meta: sig-recycle
@@ -65,6 +66,8 @@ openeuler:
   QARobot: sig-QA
   RISC-V: sig-RISC-V
   Replay-N: sig-high-performance-network
+  RobotBrain: sig-embedded
+  RobotStudio: sig-embedded
   TC: TC
   TCP_option_address: Kernel
   TSSE-driver: sig-Compatibility-Infra
@@ -522,6 +525,7 @@ src-openeuler:
   Control-FREEC: sig-bio
   Cpds: sig-CloudNative
   CreateImage: sig-Gatekeeper
+  CyclOne: sig-ops
   Cython: Programming-language
   DCache: Storage
   DDE-GoCode: sig-DDE
@@ -777,6 +781,7 @@ src-openeuler:
   akonadi-import-wizard: sig-KDE
   alertmanager: sig-CloudNative
   alex: sig-haskell
+  alien: sig-Edge
   allegro: Private
   alluxio: bigdata
   alpine: Application
@@ -1333,6 +1338,7 @@ src-openeuler:
   csmith: dev-utils
   ct-ng: sig-embedded
   ctags: Base-service
+  cube: sig-HPC
   cudnn_cmake_module: sig-ROS
   cufflinks: sig-bio
   culmus-fonts: Application
@@ -1409,6 +1415,7 @@ src-openeuler:
   dde-server-industry-config: sig-DDE
   dde-session-shell: sig-DDE
   dde-session-ui: sig-DDE
+  debhelper: sig-Edge
   debian-keyring: Private
   debootstrap: Others
   debugedit: Base-service
@@ -1534,7 +1541,7 @@ src-openeuler:
   dovecot: Application
   doxygen: Application
   dpdk: sig-high-performance-network
-  dpkg: Others
+  dpkg: sig-Edge
   dpu-utilities: sig-DPU
   dracut: Base-service
   drbd: sig-Ha
@@ -4963,6 +4970,7 @@ src-openeuler:
   oozie: bigdata
   opa-psm2: dev-utils
   opal-prd: sig-POWER
+  opari2: sig-HPC
   open-chinese-fonts: sig-mate-desktop
   open-iscsi: Storage
   open-isns: Storage
@@ -5136,6 +5144,7 @@ src-openeuler:
   osrf_testing_tools_cpp: sig-ROS
   ostree: Base-service
   ostree_assembly: sig-Ostree-Assembly
+  otf2: sig-HPC
   otopi: oVirt
   ouxt_common: sig-ROS
   overpass-fonts: System-tool
