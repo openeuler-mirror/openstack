@@ -101,6 +101,7 @@ openeuler:
   beijing_est_institute_2021: sig-recycle
   bgmprovider: Compiler
   bigdata: bigdata
+  bigtop-manager: bigdata
   bioinformatics: sig-bio
   bishengjdk-11: Compiler
   bishengjdk-17: Compiler
@@ -739,6 +740,7 @@ src-openeuler:
   WasmEngine: sig-CloudNative
   X-diagnosis: sig-ops
   Xaw3d: Desktop
+  Xen: sig-industrial-control
   Xenomai4: sig-industrial-control
   XmlSchema: Application
   a52dec: sig-epol
@@ -7027,6 +7029,7 @@ src-openeuler:
   powermock: sig-Java
   powerpc-utils: sig-POWER
   powertop: Base-service
+  ppc64-diag: sig-POWER
   ppp: Networking
   pps-tools: System-tool
   pptp: Application
