@@ -2,7 +2,7 @@
 
 本文翻译自[上游安全指南](https://gitee.com/link?target=https%3A%2F%2Fdocs.openstack.org%2Fsecurity-guide%2F)
 
-[Toc]
+[TOC]
 
 ## 摘要
 
@@ -14,141 +14,164 @@
 
 - 约定
 
-  - 通知
+    - 通知
+    - 命令提示符
 
-  - 命令提示符
 - 介绍
 
-  - 确定
-  - 我们为什么以及如何写这本书
-  - OpenStack简介
-  - 安全边界和威胁
-  - 选择支持软件
+    - 确定
+    - 我们为什么以及如何写这本书
+    - OpenStack简介
+    - 安全边界和威胁
+    - 选择支持软件
+
 - 系统文档
 
-  - 系统文档要求
+    - 系统文档要求
+
 - 管理
 
-  - 持续的系统管理
-  - 完整性生命周期
-  - 管理界面
+    - 持续的系统管理
+    - 完整性生命周期
+    - 管理界面
+
 - 安全通信
 
-  - TLS和SSL简介
-  - TLS代理和HTTP服务
-  - 安全参考架构
+    - TLS和SSL简介
+    - TLS代理和HTTP服务
+    - 安全参考架构
+
 - 端点
 
-  - APL端点配置建议
+    - APL端点配置建议
+
 - 身份
 
-  - 认证
-  - 身份验证方法
-  - 授权
-  - 政策
-  - 令牌
-  - 域
-  - 联合梯形失真
-  - 清单
+    - 认证
+    - 身份验证方法
+    - 授权
+    - 政策
+    - 令牌
+    - 域
+    - 联合梯形失真
+    - 清单
+
 - 仪表板
 
-  - 域名、仪表板升级和基本Web服务器配置
-  - HTTPS、HSTS、XSS和SSRF
-  - 前端缓存和会话后端
-  - 静态媒体
-  - 密码
-  - 密钥
-  - 网站数据
-  - 跨域资源共享 （CORS）
-  - 调试
-  - 检查表
+    - 域名、仪表板升级和基本Web服务器配置
+    - HTTPS、HSTS、XSS和SSRF
+    - 前端缓存和会话后端
+    - 静态媒体
+    - 密码
+    - 密钥
+    - 网站数据
+    - 跨域资源共享 （CORS）
+    - 调试
+    - 检查表
+
 - 计算
 
-  - 虚拟机管理程序选择
-  - 强化虚拟化层
-  - 强化计算部署
-  - 漏洞意识
-  - 如何选择虚拟控制台
-  - 检查表
+    - 虚拟机管理程序选择
+    - 强化虚拟化层
+    - 强化计算部署
+    - 漏洞意识
+    - 如何选择虚拟控制台
+    - 检查表
+
 - 块存储
 
-  - 音量擦除
-  - 检查表
+    - 音量擦除
+    - 检查表
+
 - 图像存储
 
-  - 检查表
+    - 检查表
+
 - 共享文件系统
 
-  - 介绍
-  - 网络和安全模型
-  - 安全服务
-  - 共享访问控制
-  - 共享类型访问控制
-  - 政策
-  - 检查表
+    - 介绍
+    - 网络和安全模型
+    - 安全服务
+    - 共享访问控制
+    - 共享类型访问控制
+    - 政策
+    - 检查表
+
 - 联网
 
-  - 网络架构
-  - 网络服务
-  - 网络服务安全最佳做法
-  - 保护 OpenStack 网络服务
-  - 检查表
+    - 网络架构
+    - 网络服务
+    - 网络服务安全最佳做法
+    - 保护 OpenStack 网络服务
+    - 检查表
+
 - 对象存储
 
-  - 网络安全
-  - 一般事务安全
-  - 保护存储服务
-  - 保护代理服务
-  - 对象存储身份验证
-  - 其他值得注意的项目
+    - 网络安全
+    - 一般事务安全
+    - 保护存储服务
+    - 保护代理服务
+    - 对象存储身份验证
+    - 其他值得注意的项目
+
 - 机密管理
 
-  - 现有技术摘要
-  - 相关 Openstack 项目
-  - 使用案例
-  - 密钥管理服务
-  - 密钥管理接口
-  - 常见问题解答
-  - 检查表
+    - 现有技术摘要
+    - 相关 Openstack 项目
+    - 使用案例
+    - 密钥管理服务
+    - 密钥管理接口
+    - 常见问题解答
+    - 检查表
+
 - 消息队列
 
-  - 邮件安全
+    - 邮件安全
+
 - 数据处理
 
-  - 数据处理简介
-  - 部署
-  - 配置和强化
+    - 数据处理简介
+    - 部署
+    - 配置和强化
+
 - 数据库
 
-  - 数据库后端注意事项
-  - 数据库访问控制
-  - 数据库传输安全性
+    - 数据库后端注意事项
+    - 数据库访问控制
+    - 数据库传输安全性
+
 - 租户数据隐私
 
-  - 数据隐私问题
-  - 数据加密
-  - 密钥管理
+    - 数据隐私问题
+    - 数据加密
+    - 密钥管理
+
 - 实例安全管理
 
-  - 实例的安全服务
+    - 实例的安全服务
+
 - 监视和日志记录
 
-  - 取证和事件响应
+    - 取证和事件响应
+
 - 合规
 
-  - 合规性概述
-  - 了解审核流程
-  - 合规活动
-  - 认证和合规声明
-  - 隐私
+    - 合规性概述
+    - 了解审核流程
+    - 合规活动
+    - 认证和合规声明
+    - 隐私
+
 - 安全审查
 
-  - 体系结构页面指南
+    - 体系结构页面指南
+
 - 安全检查表
 - 附录
 
-  - 社区支持
-  - 词汇表
+    - 社区支持
+    - 词汇表
+
 
 ## 约定
 
@@ -208,20 +231,28 @@ root用户必须运行前缀为#提示符的命令。您还可以在这些命令
 
 - 致谢
 - 我们为什么以及如何写这本书
-  - 目标
-  - 如何
+
+    - 目标
+    - 如何
+
 - OpenStack 简介
-  - 云类型
-  - OpenStack 服务概述
+
+    - 云类型
+    - OpenStack 服务概述
+
 - 安全边界和威胁
-  - 安全域
-  - 桥接安全域
-  - 威胁分类、参与者和攻击媒介
+
+    - 安全域
+    - 桥接安全域
+    - 威胁分类、参与者和攻击媒介
+
 - 选择支持软件
-  - 团队专长
-  - 产品或项目成熟度
-  - 通用标准
-  - 硬件问题
+
+    - 团队专长
+    - 产品或项目成熟度
+    - 通用标准
+    - 硬件问题
+
 
 ### 致谢
 
@@ -576,10 +607,12 @@ OpenStack的设计使得安全域的分离是很困难的。由于核心服务�
 OpenStack 云部署的系统文档应遵循组织中企业信息技术系统的模板和最佳实践。组织通常有合规性要求，这可能需要一个整体的系统安全计划来清点和记录给定系统的架构。整个行业都面临着与记录动态云基础架构和保持信息最新相关的共同挑战。
 
 - 系统文档要求
-  - 系统角色和类型
-  - 系统清单
-  - 网络拓扑
-  - 服务、协议和端口
+
+    - 系统角色和类型
+    - 系统清单
+    - 网络拓扑
+    - 服务、协议和端口
+
 
 ### 系统文档要求
 
@@ -646,20 +679,26 @@ OpenStack 云部署的系统文档应遵循组织中企业信息技术系统的�
 管理员必须对云执行命令和控制，以实现各种操作功能。理解和保护这些指挥和控制设施非常重要。
 
 - 持续的系统管理
-  - 漏洞管理
-  - 配置管理
-  - 安全备份和恢复
-  - 安全审计工具
+
+    - 漏洞管理
+    - 配置管理
+    - 安全备份和恢复
+    - 安全审计工具
+
 - 完整性生命周期
-  - 安全引导
-  - 运行时验证
-  - 服务器加固
+
+    - 安全引导
+    - 运行时验证
+    - 服务器加固
+
 - 管理界面
-  - 仪表板
-  - OpenStack 接口
-  - 安全外壳 （SSH）
-  - 管理实用程序
-  - 带外管理接口
+
+    - 仪表板
+    - OpenStack 接口
+    - 安全外壳 （SSH）
+    - 管理实用程序
+    - 带外管理接口
+
 
 ### 持续的系统管理
 
@@ -990,19 +1029,24 @@ SANS 技术研究所，InfoSec Handlers 日记博客。2012. 黑客攻击已关�
 本章将回顾有关配置 TLS 以保护内部和外部资源的几个功能，并指出应特别注意的特定类别的系统。
 
 - TLS 和 SSL 简介
-  - 证书颁发机构
-  - TLS 库
-  - 加密算法、密码模式和协议
-  - 总结
+
+    - 证书颁发机构
+    - TLS 库
+    - 加密算法、密码模式和协议
+    - 总结
+
 - TLS 代理和 HTTP 服务
-  - 例子
-  - HTTP 严格传输安全性
-  - 完美前向保密
+
+    - 例子
+    - HTTP 严格传输安全性
+    - 完美前向保密
+
 - 安全参考架构
-  - SSL/TLS 代理在前面
-  - SSL/TLS 与 API 端点位于同一物理主机上
-  - 负载均衡器上的 SSL/TLS
-  - 外部和内部环境的加密分离
+
+    - SSL/TLS 代理在前面
+    - SSL/TLS 与 API 端点位于同一物理主机上
+    - 负载均衡器上的 SSL/TLS
+    - 外部和内部环境的加密分离
 
 ### TLS 和 SSL 简介
 
@@ -1409,10 +1453,11 @@ Strict-Transport-Security: max-age=31536000; includeSubDomains
 本章建议对面向公共和私有的 API 端点进行安全增强。
 
 - API 端点配置建议
-  - 内部 API 通信
-  - 粘贴件和中间件
-  - API 端点进程隔离和策略
-  - API 终端节点速率限制
+
+    - 内部 API 通信
+    - 粘贴件和中间件
+    - API 端点进程隔离和策略
+    - API 终端节点速率限制
 
 ### API 端点配置建议
 
@@ -1502,32 +1547,43 @@ OpenStack 中的大多数 API 端点和其他 HTTP 服务都使用 Python Paste 
 Keystone身份服务为OpenStack系列服务专门提供身份、令牌、目录和策略服务。身份服务组织为一组内部服务，通过一个或多个端点暴露。这些服务中的许多是由前端以组合方式使用的。例如，身份验证调用通过身份服务验证用户和项目凭据。如果成功，它将使用令牌服务创建并返回令牌。更多信息可以在Keystone开发者文档中找到。
 
 - 认证
-  - 无效的登录尝试
-  - 多因素认证
+
+    - 无效的登录尝试
+    - 多因素认证
+
 - 认证方法
-  - 内部实施的认证方法
-  - 外部认证方法
+
+    - 内部实施的认证方法
+    - 外部认证方法
+
 - 授权
-  - 建立正式的访问控制策略
-  - 服务授权
-  - 管理原用户
-  - 终端用户
+
+    - 建立正式的访问控制策略
+    - 服务授权
+    - 管理原用户
+    - 终端用户
+
 - 策略
 - 令牌
-  - Fernet 令牌
-  - JWT 令牌
+
+    - Fernet 令牌
+    - JWT 令牌
+
 - 域
 - 联合 Keystone
-  - 为什么要使用联合鉴别
+
+   - 为什么要使用联合鉴别
+
 - 检查表
-  - Check-Identity-01：配置文件的用户/组所有权是否设置为 keystone？
-  - Check-Identity-02：是否为身份配置文件设置了严格权限
-  - Check-Identity-03：是否为 Identity 启用了 TLS？
-  - Check-Identity-04：（已过时）
-  - Check-Identity-05：是否 max_request_body_size 设置为默认值 （114688）？
-  - check-identity-06:禁用/etc/keystone/keystone.conf中的管理令牌
-  - check-identity-07:/etc/keystone/keystone.conf中的不安全_调试为假
-  - check-identity-08:使用/etc/keystone/keystone.conf中的Fernet令牌
+
+    - Check-Identity-01：配置文件的用户/组所有权是否设置为 keystone？
+    - Check-Identity-02：是否为身份配置文件设置了严格权限
+    - Check-Identity-03：是否为 Identity 启用了 TLS？
+    - Check-Identity-04：（已过时）
+    - Check-Identity-05：是否 max_request_body_size 设置为默认值 （114688）？
+    - check-identity-06:禁用/etc/keystone/keystone.conf中的管理令牌
+    - check-identity-07:/etc/keystone/keystone.conf中的不安全_调试为假
+    - check-identity-08:使用/etc/keystone/keystone.conf中的Fernet令牌
 
 ### 认证
 
@@ -1849,19 +1905,25 @@ Dashboard （horizon） 是 OpenStack  仪表板，它为用户提供了一个�
 仪表板附带默认安全设置，并具有部署和配置文档。
 
 - 域名、仪表板升级和基本 Web 服务器配置
-  - 域名
-  - 基本 Web 服务器配置
-  - 允许的主机
-  - 映像上传
+
+    - 域名
+    - 基本 Web 服务器配置
+    - 允许的主机
+    - 映像上传
+
 - HTTPS、HSTS、XSS 和 SSRF
-  - 跨站点脚本 （XSS）
-  - 跨站点请求伪造 （CSRF）
-  - 跨帧脚本 （XFS）
-  - HTTPS协议
-  - HTTP 严格传输安全 （HSTS）
+
+    - 跨站点脚本 （XSS）
+    - 跨站点请求伪造 （CSRF）
+    - 跨帧脚本 （XFS）
+    - HTTPS协议
+    - HTTP 严格传输安全 （HSTS）
+
 - 前端缓存和会话后端
-  - 前端缓存
-  - 会话后端
+
+    - 前端缓存
+    - 会话后端
+
 - 静态媒体
 - 密码
 - 密钥
@@ -1869,17 +1931,18 @@ Dashboard （horizon） 是 OpenStack  仪表板，它为用户提供了一个�
 - 跨域资源共享 （CORS）
 - 调试
 - 检查表
-  - Check-Dashboard-01：用户/配置文件组是否设置为 root/horizon？
-  - Check-Dashboard-02：是否为 Horizon 配置文件设置了严格权限？
-  - Check-Dashboard-03：参数是否 DISALLOW_IFRAME_EMBED 设置为 True ？
-  - Check-Dashboard-04：参数是否 CSRF_COOKIE_SECURE 设置为 True ？
-  - Check-Dashboard-05：参数是否 SESSION_COOKIE_SECURE 设置为 True ？
-  - Check-Dashboard-06：参数是否 SESSION_COOKIE_HTTPONLY 设置为 True ？
-  - Check-Dashboard-07： PASSWORD_AUTOCOMPLETE 设置为 False ？
-  - Check-Dashboard-08： DISABLE_PASSWORD_REVEAL 设置为 True ？
-  - Check-Dashboard-09： ENFORCE_PASSWORD_CHECK 设置为 True ？
-  - Check-Dashboard-10：是否 PASSWORD_VALIDATOR 已配置？
-  - Check-Dashboard-11：是否 SECURE_PROXY_SSL_HEADER 已配置？
+
+    - Check-Dashboard-01：用户/配置文件组是否设置为 root/horizon？
+    - Check-Dashboard-02：是否为 Horizon 配置文件设置了严格权限？
+    - Check-Dashboard-03：参数是否 DISALLOW_IFRAME_EMBED 设置为 True ？
+    - Check-Dashboard-04：参数是否 CSRF_COOKIE_SECURE 设置为 True ？
+    - Check-Dashboard-05：参数是否 SESSION_COOKIE_SECURE 设置为 True ？
+    - Check-Dashboard-06：参数是否 SESSION_COOKIE_HTTPONLY 设置为 True ？
+    - Check-Dashboard-07： PASSWORD_AUTOCOMPLETE 设置为 False ？
+    - Check-Dashboard-08： DISABLE_PASSWORD_REVEAL 设置为 True ？
+    - Check-Dashboard-09： ENFORCE_PASSWORD_CHECK 设置为 True ？
+    - Check-Dashboard-10：是否 PASSWORD_VALIDATOR 已配置？
+    - Check-Dashboard-11：是否 SECURE_PROXY_SSL_HEADER 已配置？
 
 ### 域名、仪表板升级和基本 Web 服务器配置
 
@@ -2160,52 +2223,64 @@ OpenStack 计算服务 （nova） 在整个云中的许多位置运行，并与�
 在本章中，我们将介绍有关计算安全性的一般最佳实践，以及可能导致安全问题的特定已知配置。 `nova.conf` 文件和 `/var/lib/nova` 位置应受到保护。应实施集中式日志记录、 `policy.json` 文件和强制访问控制框架等控制措施。
 
 - 虚拟机管理程序选择
-  - OpenStack 中的虚拟机管理程序
-  - 纳入排除标准
-  - 团队专长
-  - 产品或项目成熟度
-  - 认证和证明
-  - 通用标准
-  - 加密标准
-  - FIPS 140-2
-  - 硬件问题
-  - 虚拟机管理程序与裸机
-  - 虚拟机管理程序内存优化
-    KVM 内核 Samepage 合并
-  - XEN透明页面共享
-  - 内存优化的安全注意事项
-  - 其他安全功能
-  - 书目
+
+    - OpenStack 中的虚拟机管理程序
+    - 纳入排除标准
+    - 团队专长
+    - 产品或项目成熟度
+    - 认证和证明
+    - 通用标准
+    - 加密标准
+    - FIPS 140-2
+    - 硬件问题
+    - 虚拟机管理程序与裸机
+    - 虚拟机管理程序内存优化
+    - KVM 内核 Samepage 合并
+    - XEN透明页面共享
+    - 内存优化的安全注意事项
+    - 其他安全功能
+    - 书目
+
 - 强化虚拟化层
-  - 物理硬件（PCI 直通）
-  - 虚拟硬件 （QEMU）
-  - 最小化 QEMU 代码库
-  - 编译器强化
-  - 安全加密虚拟化
-  - 强制访问控制
-  - sVirt：SELinux 和虚拟化
-  - 标签和类别
-  - SELinux 用户和角色
-  - 布尔值
+
+    - 物理硬件（PCI 直通）
+    - 虚拟硬件 （QEMU）
+    - 最小化 QEMU 代码库
+    - 编译器强化
+    - 安全加密虚拟化
+    - 强制访问控制
+    - sVirt：SELinux 和虚拟化
+    - 标签和类别
+    - SELinux 用户和角色
+    - 布尔值
+
 - 强化计算部署
-  - OpenStack 漏洞管理团队
-  - OpenStack 安全说明
-  - OpenStack-dev 邮件列表
-  - 虚拟机管理程序邮件列表
+
+    - OpenStack 漏洞管理团队
+    - OpenStack 安全说明
+    - OpenStack-dev 邮件列表
+    - 虚拟机管理程序邮件列表
+ 
 - 漏洞意识
-  - OpenStack 漏洞管理团队
-  - OpenStack 安全说明
-  - OpenStack-讨论邮件列表
-  - 虚拟机管理程序邮件列表
+
+    - OpenStack 漏洞管理团队
+    - OpenStack 安全说明
+    - OpenStack-讨论邮件列表
+    - 虚拟机管理程序邮件列表
+
 - 如何选择虚拟控制台
-  - 虚拟网络计算机 （VNC）
-  - 独立计算环境的简单协议 （SPICE）
+
+    - 虚拟网络计算机 （VNC）
+    - 独立计算环境的简单协议 （SPICE）
+
 - 检查表
-  - Check-Compute-01：配置文件的用户/组所有权是否设置为 root/nova？
-  - Check-Compute-02：是否为配置文件设置了严格的权限？
-  - Check-Compute-03：Keystone 是否用于身份验证？
-  - Check-Compute-04：是否使用安全协议进行身份验证？
-  - Check-Compute-05：Nova 与 Glance 的通信是否安全？
+
+    - Check-Compute-01：配置文件的用户/组所有权是否设置为 root/nova？
+    - Check-Compute-02：是否为配置文件设置了严格的权限？
+    - Check-Compute-03：Keystone 是否用于身份验证？
+    - Check-Compute-04：是否使用安全协议进行身份验证？
+    - Check-Compute-05：Nova 与 Glance 的通信是否安全？
+
 
 ### 虚拟机管理程序选择
 
