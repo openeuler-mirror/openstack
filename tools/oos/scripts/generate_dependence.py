@@ -165,7 +165,11 @@ class Project(object):
 
     def _refresh(self, local_project):
         is_out_of_date = False
-        if p_version.parse(self.version) > p_version.parse(local_project.version):
+        # Ensure version comparison works correctly by converting versions to
+        # strings. This handles edge cases where versions from
+        # pypi_version_fix of CONSTANTS might not be in string format.
+        # Closes-Bug: https://gitee.com/openeuler/openstack/issues/I90U2K
+        if p_version.parse(str(self.version)) > p_version.parse(str(local_project.version)):
             is_out_of_date = True
         if not is_out_of_date:
             self.name = local_project.name
