@@ -75,6 +75,58 @@ oos dependence generate train_cached_file
 
 该命令运行完后，根目录下会生成1个结果文件，默认为`result.csv`。
 
+
+3. 调用oos命令，比较openEuler软件仓中不同分支的版本是否满足依赖要求
+
+由于网络等原因，请求出现报错的软件仓会记录在最后两行。
+第一行列出了依赖文件名，可使用-p参数再次执行命令。
+第二行列出了openEuler软件仓名称及简单的错误原因，方便访问查看仓库情况。
+
+```
+oos dependence compare train_cached_file
+```
+
+其他支持的参数有：
+
+```
+-b, --branches
+    指定openEuler需要对比的仓库分支，默认是master，多个分支要求以空格分隔
+-o, --output
+    指定命令行生成的文件名，默认为compare_result.csv
+-r, --release
+    指定release名称，如wallaby antelope，获取openstack release网页中的软件包版本
+-p, --packages
+    指定需要分析的软件包名，不包含后缀，自动添加.json后缀
+-a, --append
+    追加模式写入文件，默认不追加
+
+```
+
+命令举例：
+```
+oos dependence compare 2023.1_cached_file -b 'master openEuler-23.03' -o my_result -r antelope -p 'aodh aodhclient autobahn'
+```
+
+生成csv文件示例及解释：
+
+|Name|RepoName|SIG|eq Version|ge Version|lt Version|ne Version|Upper Version|of community|master|status|openEuler-23.03|status|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|asgiref|python-asgiref|sig-python-modules||3.3.2|4|[]|3.5.2|[]|3.7.2|ge-match lt-match downgrade max3.5.2|3.5.2|ge-match lt-match up-match|
+|openstack-cyborg|openstack-cyborg|sig-openstack|10.0.0|||[]||['10.0.0']|[no tar]||8.0.0|specify ['10.0.0']|
+
+- Name: json文件名称
+- RepoName: Name在openEuler对应的仓库名
+- eq/ge/lt/ne/Upper Version: json文件中version_dict对应的版本
+- of community: OpenStack release网页列出的软件版本，[]表示无该软件包
+- branch和status: 如上表title中`masteer` `openEuler-23.03`为指定分支名称，
+表格中为软件包在该分支的版本，status为对应分支的软件包版本和eq/ge/lt/ne/Upper Version的比较结果
+
+如上表中:  
+`asgiref`的版本要求为大于等于3.3.2，小于4，上限为3.5.2，
+master分支3.7.2，高于上限要求，openEuler-23.03分支3.5.2，满足版本要求。  
+`openstack-cyborg`属于社区指定的软件包，要求版本为10.0.0。指定分支均不满足要求
+
+
 ## 获取OpenStack SIG PR列表
 
 该工具能够扫描OpenStack SIG包含项目的PR，梳理成列表。
