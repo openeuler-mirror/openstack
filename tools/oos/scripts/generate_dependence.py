@@ -190,7 +190,7 @@ class Project(object):
         if not self._generate_cache_from_opendev():
             self._generate_cache_from_pypi()
         with open(file_path, 'w', encoding='utf8') as fp:
-            json.dump(self.to_dict(), fp, ensure_ascii=False)
+            json.dump(self.to_dict(), fp, ensure_ascii=False, indent=4)
 
     def _python_version_check(self, regex_list, target, compare):
         for regex in regex_list:

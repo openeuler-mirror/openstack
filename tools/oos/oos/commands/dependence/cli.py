@@ -9,6 +9,9 @@ from packaging import version as p_version
 from oos.common import gitee
 from oos.common import utils
 
+from bs4 import BeautifulSoup
+import requests
+import re
 
 class CountDependence(object):
     def __init__(self, output, token, location):
@@ -130,6 +133,227 @@ class CountDependence(object):
             self._generate_with_compare(file_list, compare_from, compare_branch)
 
 
+class Comp:
+    def __init__(self, branches, output, release, packages, append, location):
+        self.branches = branches.split()
+        self.packages = packages
+        self.output = output + ".csv" if not output.endswith(".csv") else output
+        self.location = location
+        self.append = append
+        self.pkg_dirs = [
+            'Service Projects',
+            'Service Client Projects',
+            'Library Projects',
+            'Horizon Plugins',
+            'Other Projects',
+            'Deployment and Packaging Tools',
+            'Tempest Plugins'
+        ]
+        self.release = self._get_openstack_release_version(release)
+
+    def _get_openstack_release_version(self, release, is_write=False):
+        '''
+        获取对应release网页的交付件版本 个别非链接的格式会获取失败
+        2023.1a 仅openstack-ansible这个包获取失败 其他包正常
+
+        :param release: 发布版本 (wallaby, antelope...)
+        :type release: str
+        :param is_write: 是否保存deliverables结果到本地文件tmp_deliverables
+        :type is_write: bool
+        :return: 发布版本的集合 key值小写 {'name': [1.1.1, 1.1.2]}
+        :rtype: dict
+        '''
+
+        url = 'https://releases.openstack.org/%s' % release
+        resp = requests.get(url)
+        res = {}
+        try:
+            soup = BeautifulSoup(resp.content.decode(), features='lxml')
+            for section in self.pkg_dirs:
+                one_section = soup.find('section', {'id': section.replace(' ', '-').lower()})
+                contents = one_section.find_all('section')
+                for pkg in contents:
+                    pkg_name = pkg.find('h3').next.lower()
+                    ver = pkg.find_all('a', {'class': 'reference external'})
+                    all_version = []
+                    for v in ver:
+                        if not v.text[0].isalpha():
+                            all_version.append(v.text)
+                    res[pkg_name] = all_version
+        except Exception as e:
+            raise Exception('Get release project fail: %s' % e)
+        
+        if is_write:
+            with open('tmp_deliverables', 'w', encoding='utf-8') as f:
+                json.dump(res, f, ensure_ascii=False, indent=4)
+
+        return res
+    
+    def _get_repo_version(self, repo_name, branch):
+        '''获取某个分支的文件 获取.tar.gz后缀文件的版本
+        用BeautifulSoup获取
+        :param repo_name: 仓库名
+        :type repo_name: str
+        :param branch: 分支
+        :type branch: str
+        '''
+        url = 'https://gitee.com/src-openeuler/%s/tree/%s/' % (repo_name, branch)
+        headers = {
+            'Content-Type': 'application/json;charset=UTF-8',
+        }
+
+        try:
+            resp = requests.get(url, headers=headers)
+            if resp.status_code == 404:
+                # 404的单独区分下
+                return '[no branch]'
+            if resp.status_code != 200:
+                return '[not 200 ok]'
+
+            soup = BeautifulSoup(resp.content.decode(), features='lxml')
+            div = soup.find_all('div', {'class': 'five wide column tree-item-file-name tree-list-item'})
+            for ele in div:
+                name = ele.text.strip()
+                if re.search(r'\.(tar\.gz|tar\.bz2|zip|tgz)$', name):
+                    sub_str = re.split(r'\.(tar\.gz|tar\.bz2|zip|tgz)$', name)[0]
+                    version = re.split(r'[-_]', sub_str)[-1].strip('v')
+                    try:
+                        p_version.parse(version)
+                        return version
+                    except p_version.InvalidVersion:
+                        continue
+
+        except Exception as e:
+            return '[request Exception]'
+        
+        return '[no tar]'
+    
+    def _comp_repo_version(self, repo_version, version_dict, community_version_list):
+        project_eq_version = version_dict['eq_version']
+        project_ge_version = version_dict['ge_version']
+        project_lt_version = version_dict['lt_version']
+        project_ne_version = version_dict['ne_version']
+        project_upper_version = version_dict['upper_version']
+        version_match = ''
+        if community_version_list:
+            if repo_version in community_version_list:
+                return 'community match'
+            else:
+                return 'specify ' + str(community_version_list)
+
+        if project_eq_version:
+            if project_eq_version == repo_version:
+                return 'eq-match'
+            else:
+                return 'specify ' + repo_version
+        if project_ge_version:
+            if repo_version >= project_ge_version:
+                version_match = 'ge-match '
+            else:
+                version_match += 'upgrade ge' + project_ge_version + ' '
+        if project_lt_version:
+            if repo_version < project_lt_version:
+                version_match += 'lt-match '
+            else:
+                version_match += 'downgrade lt' + project_lt_version + ' '
+        if project_ne_version:
+            if repo_version not in project_ne_version:
+                version_match += 'ne-match '
+            else:
+                version_match += 'ne ' + str(project_ne_version) + ' '
+
+        if project_upper_version:
+            if repo_version <= project_upper_version:
+                version_match += 'up-match'
+            else:
+                version_match += 'downgrade max' + project_upper_version
+        return version_match
+
+
+    def _comp_community_version(self, name: str):
+        if name.startswith('openstack-'):
+            name = name.replace('openstack-', '')
+        for n in ['', 'python-', 'openstack-']:
+            community_version = self.release.get(n + name.lower(), [])
+            if community_version:
+                return community_version
+        return []
+
+    def compare_dependence_with_branch_version(self):
+        valid_data = []
+        invalid_data = ''
+        invalid_repo_name = ''
+
+        title = ["Name", "RepoName", "SIG",
+            "eq Version", "ge Version", "lt Version", "ne Version", 
+            "Upper Version", "of community"
+            ]
+        for br in self.branches:
+            title.append(br)
+            title.append('status')
+        valid_data.append(title)
+
+        if self.packages:
+            file_list = self.packages.split()
+        else:
+            file_list = os.listdir(self.location)
+
+        for file_name in file_list:
+            file_name = file_name + '.json' if self.packages else file_name
+            try:
+                with open(self.location + '/' + file_name, 'r', encoding='utf8') as fp:
+                    if file_name != 'unknown':
+                        project_dict = json.load(fp)
+            except:
+                print('no such file ' + file_name)
+                continue  # 打开文件失败的跳过
+            
+            project_name = project_dict['name']
+            print('process: ' + project_name)
+            version_dict = project_dict.get('version_dict')
+            if not version_dict:
+                raise Exception('bad json dependence')  # 讲道理不应该到这里
+            repo_name, sig = utils.get_openeuler_repo_name_and_sig(project_name)
+            community_version_list = self._comp_community_version(project_name)
+            row = [
+                    project_name, repo_name, sig,
+                    version_dict['eq_version'], version_dict['ge_version'],
+                    version_dict['lt_version'], version_dict['ne_version'],
+                    version_dict['upper_version'], community_version_list
+                    ]
+            valid_flag = True
+            for branch in self.branches:
+                repo_version = self._get_repo_version(repo_name, branch)
+                # 下面的if需要根据_get_repo_version函数的返回值判断 Exception的不记录
+                if repo_version == '[request Exception]':
+                    invalid_data += project_name + ' '
+                    invalid_repo_name += repo_name + repo_version + ' '
+                    valid_flag = False
+                    break
+
+                match_result = ''
+                if repo_version[0] != '[':
+                    match_result = self._comp_repo_version(repo_version, 
+                                                    version_dict, 
+                                                    community_version_list)
+
+                row.append(repo_version)
+                row.append(match_result)
+
+            if valid_flag:
+                valid_data.append(row)
+
+        if self.append:
+            write_mode = 'a'
+        else:
+            write_mode = 'w'
+        with open(self.output, write_mode, newline='') as csv_file:
+            writer=csv.writer(csv_file)
+            writer.writerows(valid_data)
+            csv_file.write(invalid_data + '\n')
+            csv_file.write(invalid_repo_name + '\n')
+
+
 @click.group(name='dependence', help='package dependence related commands')
 def group():
     pass
@@ -145,4 +369,16 @@ def group():
 def generate(compare, compare_from, compare_branch, output, token, location):
     myobj = CountDependence(output, token, location)
     myobj.get_all_dep(compare, compare_from, compare_branch)
-    print("Success generate dependencies, the result is saved into %s file" % output)    
+    print("Success generate dependencies, the result is saved into %s file" % output)
+
+
+@group.command(name='compare', help='Compare specify branches version')
+@click.option('-b', '--branches', default='master', help='Specify branches')
+@click.option('-o', '--output', default='compare_result', help='Output file name, default: compare_result')
+@click.option('-r', '--release', help='Openstack release name')
+@click.option('-p', '--packages', help='Specfigy file list range')
+@click.option('-a', '--append', is_flag=True, default=False, help='Append to the \'compare_result\' file')
+@click.argument('location', type=click.Path(dir_okay=True))
+def compare(branches, output, release, packages, append, location):
+    comp = Comp(branches, output, release, packages, append, location)
+    comp.compare_dependence_with_branch_version()
