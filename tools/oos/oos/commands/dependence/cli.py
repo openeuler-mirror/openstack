@@ -191,30 +191,31 @@ class Comp:
     
     def _get_repo_version(self, repo_name, branch):
         '''获取某个分支的文件 获取.tar.gz后缀文件的版本
-        用BeautifulSoup获取
         :param repo_name: 仓库名
         :type repo_name: str
         :param branch: 分支
         :type branch: str
         '''
-        url = 'https://gitee.com/src-openeuler/%s/tree/%s/' % (repo_name, branch)
+        url = 'https://gitee.com/api/v5/repos/src-openeuler/%s/contents/' % repo_name
         headers = {
             'Content-Type': 'application/json;charset=UTF-8',
         }
+        params = {
+            'ref': branch
+        }
 
         try:
-            resp = requests.get(url, headers=headers)
+            resp = requests.get(url, headers=headers, params=params)
             if resp.status_code == 404:
                 # 404的单独区分下
                 return '[no branch]'
             if resp.status_code != 200:
+                print(str(resp.status_code) + ' ' + resp.content.decode())
                 return '[not 200 ok]'
 
-            soup = BeautifulSoup(resp.content.decode(), features='lxml')
-            div = soup.find_all('div', {'class': 'five wide column tree-item-file-name tree-list-item'})
-            for ele in div:
-                name = ele.text.strip()
-                if re.search(r'\.(tar\.gz|tar\.bz2|zip|tgz)$', name):
+            for content in resp.json():
+                name = content['name']
+                if 'file' == content['type'] and re.search(r'\.(tar\.gz|tar\.bz2|zip|tgz)$', name):
                     sub_str = re.split(r'\.(tar\.gz|tar\.bz2|zip|tgz)$', name)[0]
                     version = re.split(r'[-_]', sub_str)[-1].strip('v')
                     try:

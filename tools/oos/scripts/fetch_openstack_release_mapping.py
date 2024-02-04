@@ -47,9 +47,15 @@ for release in releases:
             if pkg_name not in results:
                 results[pkg_name] = pkg_ver
             else:
-                # if current versions < new version, then update it
-                if version.parse(results.get(pkg_name)) < version.parse(pkg_ver):
-                    results[pkg_name] = pkg_ver
+                # yoga have some link name yaga-eom
+                # and packaging-23.2 raise a exception for alpha in version.parse
+                try:
+                    # if current versions < new version, then update it
+                    if version.parse(results.get(pkg_name)) < version.parse(pkg_ver):
+                        results[pkg_name] = pkg_ver
+                except:
+                    print(release + ': ' + pkg_name)
+                    pass
         # Store the release information.
         # For releases after "Zed", use the release number:
         # "year.release count within the year" (e.g., "2023.1").
