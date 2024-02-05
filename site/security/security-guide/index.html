@@ -100,6 +100,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../spec/priority_vm/">虚拟机高低优先级</a>
                   </li>
+                  <li class="toctree-l1"><a class="" href="../../spec/distribute-traffic.md">流量分散</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">安全指南</span></p>
               <ul class="current">
@@ -1180,7 +1182,823 @@
               
                 <h1 id="openstack">OpenStack安全指南<a class="headerlink" href="#openstack" title="Permanent link">&para;</a></h1>
 <p>本文翻译自<a href="https://gitee.com/link?target=https%3A%2F%2Fdocs.openstack.org%2Fsecurity-guide%2F">上游安全指南</a></p>
-<p>[Toc]</p>
+<div class="toc">
+<ul>
+<li><a href="#openstack">OpenStack安全指南</a><ul>
+<li><a href="#_1">摘要</a></li>
+<li><a href="#_2">内容</a></li>
+<li><a href="#_3">约定</a><ul>
+<li><a href="#_4">注意事项</a></li>
+<li><a href="#_5">命令提示符</a></li>
+</ul>
+</li>
+<li><a href="#_6">介绍</a><ul>
+<li><a href="#_7">致谢</a></li>
+<li><a href="#_8">我们为什么以及如何写这本书</a><ul>
+<li><a href="#_9">目标</a></li>
+<li><a href="#_10">写作记录</a></li>
+<li><a href="#_11">如何为本书做贡献</a></li>
+</ul>
+</li>
+<li><a href="#openstack_1">OpenStack 简介</a><ul>
+<li><a href="#_12">云类型</a></li>
+<li><a href="#_13">公有云</a></li>
+<li><a href="#_14">私有云</a></li>
+<li><a href="#_15">社区云</a></li>
+<li><a href="#_16">混合云</a></li>
+</ul>
+</li>
+<li><a href="#openstack_2">OpenStack 服务概述</a></li>
+<li><a href="#_17">计算</a><ul>
+<li><a href="#_18">对象存储</a></li>
+<li><a href="#_19">块存储</a></li>
+<li><a href="#_20">共享文件系统</a></li>
+<li><a href="#_21">网络</a></li>
+<li><a href="#_22">仪表板</a></li>
+<li><a href="#_23">身份鉴别服务</a></li>
+<li><a href="#_24">镜像服务</a></li>
+<li><a href="#_25">数据处理服务</a></li>
+<li><a href="#_26">其他配套技术</a></li>
+</ul>
+</li>
+<li><a href="#_27">安全边界和威胁</a><ul>
+<li><a href="#_28">安全域</a></li>
+<li><a href="#_29">公共</a></li>
+<li><a href="#_30">访客</a></li>
+<li><a href="#_31">管理</a></li>
+<li><a href="#_32">数据</a></li>
+<li><a href="#_33">桥接安全域</a></li>
+<li><a href="#_34">威胁分类、参与者和攻击向量</a></li>
+<li><a href="#_35">威胁参与者</a><ul>
+<li><a href="#_36">情报机构</a></li>
+<li><a href="#_37">严重有组织犯罪</a></li>
+<li><a href="#_38">高能力的团队</a></li>
+<li><a href="#_39">有动机的个人</a></li>
+<li><a href="#_40">脚本攻击者</a></li>
+</ul>
+</li>
+<li><a href="#_41">公有云和私有云注意事项</a></li>
+<li><a href="#_42">出站攻击和声誉风险</a></li>
+<li><a href="#_43">攻击类型</a></li>
+</ul>
+</li>
+<li><a href="#_44">选择支持软件</a><ul>
+<li><a href="#_45">团队专业知识</a></li>
+<li><a href="#_46">产品或项目成熟度</a></li>
+<li><a href="#_47">通用标准</a></li>
+<li><a href="#_48">硬件问题</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_49">系统文档</a><ul>
+<li><a href="#_50">系统文档要求</a><ul>
+<li><a href="#_51">系统角色和类型</a><ul>
+<li><a href="#_52">基础设施节点</a></li>
+<li><a href="#_53">计算、存储或其他资源节点</a></li>
+</ul>
+</li>
+<li><a href="#_54">系统清单</a></li>
+<li><a href="#_55">硬件清单</a></li>
+<li><a href="#_56">软件清单</a></li>
+<li><a href="#_57">网络拓扑</a></li>
+<li><a href="#_58">服务、协议和端口</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_59">管理</a><ul>
+<li><a href="#_60">持续的系统管理</a><ul>
+<li><a href="#_61">漏洞管理</a><ul>
+<li><a href="#_62">分类</a></li>
+<li><a href="#_63">测试更新</a></li>
+<li><a href="#_64">部署更新</a></li>
+</ul>
+</li>
+<li><a href="#_65">配置管理</a><ul>
+<li><a href="#_66">策略更改</a></li>
+</ul>
+</li>
+<li><a href="#_67">安全备份和恢复</a></li>
+<li><a href="#_68">安全审计工具</a></li>
+</ul>
+</li>
+<li><a href="#_69">完整性生命周期</a><ul>
+<li><a href="#_70">安全引导</a><ul>
+<li><a href="#_71">节点配置</a></li>
+<li><a href="#_72">验证启动</a></li>
+<li><a href="#_73">节点加固</a><ul>
+<li><a href="#mac">强制访问控制 （MAC）</a></li>
+<li><a href="#_74">删除软件包并停止服务</a></li>
+<li><a href="#_75">只读文件系统</a></li>
+<li><a href="#_76">系统验证</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_77">运行时验证</a><ul>
+<li><a href="#_78">入侵检测系统</a></li>
+</ul>
+</li>
+<li><a href="#_79">服务器加固</a><ul>
+<li><a href="#fim">文件完整性管理（FIM）</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_80">管理界面</a><ul>
+<li><a href="#_81">仪表板</a><ul>
+<li><a href="#_82">功能</a></li>
+<li><a href="#_83">安全注意事项</a></li>
+<li><a href="#_84">参考书目</a></li>
+</ul>
+</li>
+<li><a href="#openstack_3">OpenStack 接口</a><ul>
+<li><a href="#_85">功能</a></li>
+<li><a href="#_86">安全注意事项</a></li>
+</ul>
+</li>
+<li><a href="#ssh">安全外壳 （SSH）</a><ul>
+<li><a href="#_87">主机密钥指纹</a></li>
+</ul>
+</li>
+<li><a href="#_88">管理实用程序</a><ul>
+<li><a href="#_89">安全注意事项</a></li>
+<li><a href="#_90">参考书目</a></li>
+</ul>
+</li>
+<li><a href="#_91">带外管理接口</a><ul>
+<li><a href="#_92">安全注意事项</a></li>
+<li><a href="#_93">参考书目</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_94">安全通信</a><ul>
+<li><a href="#tls-ssl">TLS 和 SSL 简介</a><ul>
+<li><a href="#_95">证书颁发机构</a></li>
+<li><a href="#tls">TLS 库</a></li>
+<li><a href="#_96">加密算法、密码模式和协议</a></li>
+<li><a href="#_97">总结</a></li>
+</ul>
+</li>
+<li><a href="#tls-http">TLS 代理和 HTTP 服务</a><ul>
+<li><a href="#_98">示例</a><ul>
+<li><a href="#pound">Pound</a></li>
+<li><a href="#stud">Stud</a></li>
+<li><a href="#nginx">Nginx</a></li>
+<li><a href="#apache">Apache</a></li>
+</ul>
+</li>
+<li><a href="#http">HTTP 严格传输安全</a></li>
+<li><a href="#_99">完全前向保密</a></li>
+</ul>
+</li>
+<li><a href="#_100">安全参考架构</a><ul>
+<li><a href="#ssltls">SSL/TLS 代理在前面</a></li>
+<li><a href="#api-ssltls">与 API 端点位于同一物理主机上的 SSL/TLS</a></li>
+<li><a href="#ssltls_1">SSL/TLS负载平衡器</a></li>
+<li><a href="#_101">外部和内部环境的加密分离</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#api">API 端点</a><ul>
+<li><a href="#api_1">API 端点配置建议</a><ul>
+<li><a href="#api_2">内部 API 通信</a><ul>
+<li><a href="#url">在身份服务目录中配置内部 URL</a></li>
+<li><a href="#url_1">为内部 URL 配置应用程序</a></li>
+</ul>
+</li>
+<li><a href="#_102">粘贴和中间件</a></li>
+<li><a href="#api_3">API 端点进程隔离和策略</a><ul>
+<li><a href="#_103">命名空间</a></li>
+<li><a href="#_104">网络策略</a></li>
+<li><a href="#_105">强制访问控制</a></li>
+</ul>
+</li>
+<li><a href="#api_4">API 端点速率限制</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_106">身份鉴别</a><ul>
+<li><a href="#_107">认证</a><ul>
+<li><a href="#_108">无效的登录尝试</a></li>
+<li><a href="#_109">多因素身份验证</a></li>
+</ul>
+</li>
+<li><a href="#_110">身份验证方法</a><ul>
+<li><a href="#_111">内部实现的认证方式</a></li>
+<li><a href="#_112">外部认证方式</a></li>
+</ul>
+</li>
+<li><a href="#_113">授权</a><ul>
+<li><a href="#_114">建立正式的访问控制策略</a></li>
+<li><a href="#_115">服务授权</a></li>
+<li><a href="#_116">管理员用户</a></li>
+<li><a href="#_117">终端用户</a></li>
+</ul>
+</li>
+<li><a href="#_118">政策</a></li>
+<li><a href="#_119">令牌</a><ul>
+<li><a href="#fernet">Fernet 令牌</a></li>
+<li><a href="#jwt">JWT 令牌</a></li>
+</ul>
+</li>
+<li><a href="#_120">域</a></li>
+<li><a href="#_121">联合鉴权</a><ul>
+<li><a href="#_122">为什么要使用联合身份？</a></li>
+</ul>
+</li>
+<li><a href="#_123">检查表</a><ul>
+<li><a href="#check-identity-01-keystone">Check-Identity-01：配置文件的用户/组所有权是否设置为 keystone？</a></li>
+<li><a href="#check-identity-02-identity">Check-Identity-02：是否为 Identity 配置文件设置了严格权限？</a></li>
+<li><a href="#check-identity-03-identity-tls">Check-Identity-03：是否为 Identity 启用了 TLS？</a></li>
+<li><a href="#check-identity-04">Check-Identity-04：（已过时）</a></li>
+<li><a href="#check-identity-05-max_request_body_size-114688">Check-Identity-05：是否 max_request_body_size 设置为默认值 （114688）？</a></li>
+<li><a href="#check-identity-06etckeystonekeystoneconf">check-identity-06:禁用/etc/keystone/keystone.conf中的管理令牌</a></li>
+<li><a href="#check-identity-07etckeystonekeystoneconf_">check-identity-07:/etc/keystone/keystone.conf中的不安全_调试为假</a></li>
+<li><a href="#check-identity-08etckeystonekeystoneconffernet">check-identity-08:使用/etc/keystone/keystone.conf中的Fernet令牌</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_124">仪表板</a><ul>
+<li><a href="#web">域名、仪表板升级和基本 Web 服务器配置</a><ul>
+<li><a href="#_125">域名</a></li>
+<li><a href="#web_1">基本的 Web 服务器配置</a></li>
+<li><a href="#_126">允许的主机</a></li>
+<li><a href="#horizon">Horizon 镜像上传</a></li>
+</ul>
+</li>
+<li><a href="#httpshstsxss-ssrf">HTTPS、HSTS、XSS 和 SSRF</a><ul>
+<li><a href="#xss">跨站脚本 （XSS）</a></li>
+<li><a href="#csrf">跨站请求伪造 （CSRF）</a></li>
+<li><a href="#xfs">跨帧脚本 （XFS）</a></li>
+<li><a href="#https">HTTPS 函数</a></li>
+<li><a href="#http-hsts">HTTP 严格传输安全 （HSTS）</a></li>
+</ul>
+</li>
+<li><a href="#_127">前端缓存和会话后端</a><ul>
+<li><a href="#_128">前端缓存</a></li>
+<li><a href="#_129">会话后端</a></li>
+</ul>
+</li>
+<li><a href="#_130">静态媒体</a></li>
+<li><a href="#_131">密码</a></li>
+<li><a href="#_132">密钥</a></li>
+<li><a href="#cookies">Cookies</a></li>
+<li><a href="#cors">跨域资源共享 （CORS）</a></li>
+<li><a href="#_133">调试</a></li>
+<li><a href="#_134">检查表</a><ul>
+<li><a href="#check-dashboard-01-roothorizon">Check-Dashboard-01：用户/配置文件组是否设置为 root/horizon？</a></li>
+<li><a href="#check-dashboard-02-horizon">Check-Dashboard-02：是否为 Horizon 配置文件设置了严格权限？</a></li>
+<li><a href="#check-dashboard-03-disallow_iframe_embed-true">Check-Dashboard-03：参数是否 DISALLOW_IFRAME_EMBED 设置为 True ？</a></li>
+<li><a href="#check-dashboard-04-csrf_cookie_secure-true">Check-Dashboard-04：参数是否 CSRF_COOKIE_SECURE 设置为 True ？</a></li>
+<li><a href="#check-dashboard-05-session_cookie_secure-true">Check-Dashboard-05：参数是否 SESSION_COOKIE_SECURE 设置为 True ？</a></li>
+<li><a href="#check-dashboard-06-session_cookie_httponly-true">Check-Dashboard-06：参数是否 SESSION_COOKIE_HTTPONLY 设置为 True ？</a></li>
+<li><a href="#check-dashboard-07-password_autocomplete-false">Check-Dashboard-07： PASSWORD_AUTOCOMPLETE 设置为 False ？</a></li>
+<li><a href="#check-dashboard-08-disable_password_reveal-true">Check-Dashboard-08： DISABLE_PASSWORD_REVEAL 设置为 True ？</a></li>
+<li><a href="#check-dashboard-09-enforce_password_check-true">Check-Dashboard-09： ENFORCE_PASSWORD_CHECK 设置为 True ？</a></li>
+<li><a href="#check-dashboard-10-password_validator">Check-Dashboard-10：是否 PASSWORD_VALIDATOR 已配置？</a></li>
+<li><a href="#check-dashboard-11-secure_proxy_ssl_header">Check-Dashboard-11：是否 SECURE_PROXY_SSL_HEADER 已配置？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_135">计算</a><ul>
+<li><a href="#_136">虚拟机管理程序选择</a><ul>
+<li><a href="#openstack_4">OpenStack 中的虚拟机管理程序</a></li>
+<li><a href="#_137">选择标准</a></li>
+<li><a href="#_138">团队专长</a></li>
+<li><a href="#_139">产品或项目成熟度</a></li>
+<li><a href="#_140">认证和证明</a></li>
+<li><a href="#_141">通用标准</a></li>
+<li><a href="#_142">密码学标准</a></li>
+<li><a href="#fips-140-2">FIPS 140-2</a></li>
+<li><a href="#_143">硬件问题</a></li>
+<li><a href="#_144">虚拟机管理程序与裸机</a></li>
+<li><a href="#hypervisor">Hypervisor 内存优化</a></li>
+<li><a href="#kvm">KVM 内核同页合并</a></li>
+<li><a href="#xen">XEN 透明页面共享</a></li>
+<li><a href="#_145">内存优化的安全注意事项</a></li>
+<li><a href="#_146">其他安全功能</a></li>
+<li><a href="#_147">参考书目</a></li>
+</ul>
+</li>
+<li><a href="#_148">加固虚拟化层</a><ul>
+<li><a href="#pci">物理硬件（PCI直通）</a></li>
+<li><a href="#qemu">虚拟硬件 （QEMU）</a></li>
+<li><a href="#qemu_1">最小化 QEMU 代码库</a></li>
+<li><a href="#_149">编译器加固</a></li>
+<li><a href="#_150">安全加密虚拟化</a></li>
+<li><a href="#_151">强制访问控制</a></li>
+<li><a href="#svirtselinux">sVirt：SELinux 和虚拟化</a></li>
+<li><a href="#_152">标签和类别</a></li>
+<li><a href="#selinux">SELinux 用户和角色</a></li>
+<li><a href="#_153">布尔值</a></li>
+</ul>
+</li>
+<li><a href="#_154">加固计算部署</a><ul>
+<li><a href="#openstack_5">OpenStack 漏洞管理团队</a></li>
+<li><a href="#openstack_6">OpenStack 安全注意事项</a></li>
+<li><a href="#openstack-dev">OpenStack-dev 邮件列表</a></li>
+<li><a href="#_155">虚拟机管理程序邮件列表</a></li>
+</ul>
+</li>
+<li><a href="#_156">漏洞意识</a><ul>
+<li><a href="#openstack_7">OpenStack 漏洞管理团队</a></li>
+<li><a href="#openstack_8">OpenStack 安全注意事项</a></li>
+<li><a href="#openstack-discuss">OpenStack-discuss 邮件列表</a></li>
+<li><a href="#_157">虚拟机管理程序邮件列表</a></li>
+</ul>
+</li>
+<li><a href="#_158">如何选择虚拟控制台</a><ul>
+<li><a href="#vnc">虚拟网络计算机 （VNC）</a><ul>
+<li><a href="#_159">功能</a></li>
+<li><a href="#_160">安全注意事项</a></li>
+<li><a href="#_161">参考书目</a></li>
+</ul>
+</li>
+<li><a href="#spice">独立计算环境的简单协议 （SPICE）</a><ul>
+<li><a href="#_162">功能</a></li>
+<li><a href="#_163">限制</a></li>
+<li><a href="#_164">安全注意事项</a></li>
+<li><a href="#_165">参考书目</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_166">检查表</a><ul>
+<li><a href="#check-compute-01-rootnova">Check-Compute-01：配置文件的用户/组所有权是否设置为 root/nova？</a></li>
+<li><a href="#check-compute-02">Check-Compute-02：是否为配置文件设置了严格的权限？</a></li>
+<li><a href="#check-compute-03keystone">Check-Compute-03：Keystone 是否用于身份验证？</a></li>
+<li><a href="#check-compute-04">Check-Compute-04：是否使用安全协议进行身份验证？</a></li>
+<li><a href="#check-compute-05nova-glance">Check-Compute-05：Nova 与 Glance 的通信是否安全？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_167">块存储</a><ul>
+<li><a href="#_168">卷擦除</a></li>
+<li><a href="#_169">检查表</a></li>
+<li><a href="#check-block-01-rootcinder">Check-Block-01：配置文件的用户/组所有权是否设置为 root/cinder？</a></li>
+<li><a href="#check-block-02">Check-Block-02：是否为配置文件设置了严格的权限？</a></li>
+<li><a href="#check-block-03keystone">Check-Block-03：Keystone 是否用于身份验证？</a></li>
+<li><a href="#check-block-04-tls">Check-Block-04：是否启用了 TLS 进行身份验证？</a></li>
+<li><a href="#check-block-05cinder-tls-nova">Check-Block-05：cinder 是否通过 TLS 与 nova 通信？</a></li>
+<li><a href="#check-block-06cinder-tls-glance">Check-Block-06：cinder 是否通过 TLS 与 glance 通信？</a></li>
+<li><a href="#check-block-07-nas">Check-Block-07： NAS 是否在安全的环境中运行？</a></li>
+<li><a href="#check-block-08-114688">Check-Block-08：请求正文的最大大小是否设置为默认值 （114688）？</a></li>
+<li><a href="#check-block-09">Check-Block-09：是否启用了卷加密功能？</a></li>
+</ul>
+</li>
+<li><a href="#_170">图像存储</a><ul>
+<li><a href="#_171">检查表</a><ul>
+<li><a href="#check-image-01-rootglance">Check-Image-01：配置文件的用户/组所有权是否设置为 root/glance？</a></li>
+<li><a href="#check-image-02">Check-Image-02：是否为配置文件设置了严格的权限？</a></li>
+<li><a href="#check-image-03keystone">Check-Image-03：Keystone 是否用于身份验证？</a></li>
+<li><a href="#check-image-04-tls">Check-Image-04：是否启用了 TLS 进行身份验证？</a></li>
+<li><a href="#check-image-05">Check-Image-05：是否阻止了屏蔽端口扫描？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_172">共享文件系统</a><ul>
+<li><a href="#_173">介绍</a><ul>
+<li><a href="#_174">一般安全信息</a></li>
+</ul>
+</li>
+<li><a href="#_175">网络和安全模型</a><ul>
+<li><a href="#_176">共享后端模式</a></li>
+<li><a href="#_177">扁平化与分段化网络</a></li>
+<li><a href="#_178">网络插件</a></li>
+</ul>
+</li>
+<li><a href="#_179">安全服务</a><ul>
+<li><a href="#_180">安全服务介绍</a></li>
+<li><a href="#_181">安全服务管理</a></li>
+</ul>
+</li>
+<li><a href="#_182">共享访问控制</a></li>
+<li><a href="#_183">共享类型访问控制</a></li>
+<li><a href="#_184">政策</a></li>
+<li><a href="#_185">检查表</a><ul>
+<li><a href="#check-shared-01-rootmanila">Check-Shared-01：配置文件的用户/组所有权是否设置为 root/manila？</a></li>
+<li><a href="#check-shared-02">Check-Shared-02：是否为配置文件设置了严格的权限？</a></li>
+<li><a href="#check-shared-03openstack-identity">Check-Shared-03：OpenStack Identity 是否用于身份验证？</a></li>
+<li><a href="#check-shared-04-tls">Check-Shared-04：是否启用了 TLS 进行身份验证？</a></li>
+<li><a href="#check-shared-05-tls">Check-Shared-05：共享文件系统是否通过 TLS 与计算联系？</a></li>
+<li><a href="#check-shared-06-tls">Check-Shared-06：共享文件系统是否通过 TLS 与网络联系？</a></li>
+<li><a href="#check-shared-07-tls">Check-Shared-07：共享文件系统是否通过 TLS 与块存储联系？</a></li>
+<li><a href="#check-shared-08-114688">Check-Shared-08：请求正文的最大大小是否设置为默认值 （114688）？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_186">联网</a><ul>
+<li><a href="#_187">网络架构</a><ul>
+<li><a href="#openstack-networking">OpenStack Networking 服务在物理服务器上的放置</a><ul>
+<li><a href="#_188">物理服务器的网络连接</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_189">网络服务</a><ul>
+<li><a href="#vlan-l2">使用 VLAN 和隧道的 L2 隔离</a><ul>
+<li><a href="#vlans">VLANs</a></li>
+<li><a href="#l2">L2 隧道</a></li>
+</ul>
+</li>
+<li><a href="#_190">网络服务</a><ul>
+<li><a href="#_191">访问控制列表</a></li>
+<li><a href="#l3-nat">L3 路由和 NAT</a></li>
+<li><a href="#qos">服务质量 （QoS）</a></li>
+<li><a href="#_192">负载均衡</a></li>
+<li><a href="#_193">防火墙</a></li>
+</ul>
+</li>
+<li><a href="#_194">网络服务扩展</a></li>
+<li><a href="#_195">网络服务限制</a></li>
+</ul>
+</li>
+<li><a href="#_196">网络服务安全最佳做法</a><ul>
+<li><a href="#openstack-networking_1">OpenStack Networking 服务配置</a><ul>
+<li><a href="#api-neutron-server">限制 API 服务器的绑定地址：neutron-server</a></li>
+<li><a href="#openstack-networking-db-rpc">限制 OpenStack Networking 服务的 DB 和 RPC 通信</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#openstack_9">保护 OpenStack 网络服务</a><ul>
+<li><a href="#_197">项目网络服务工作流</a></li>
+<li><a href="#_198">网络资源策略引擎</a></li>
+<li><a href="#_199">安全组</a></li>
+<li><a href="#_200">配额</a></li>
+<li><a href="#arp">缓解 ARP 欺骗</a></li>
+</ul>
+</li>
+<li><a href="#_201">检查表</a><ul>
+<li><a href="#check-neutron-01-rootneutron">Check-Neutron-01：配置文件的用户/组所有权是否设置为 root/neutron？</a></li>
+<li><a href="#check-neutron-02">Check-Neutron-02：是否为配置文件设置了严格的权限？</a></li>
+<li><a href="#check-neutron-03keystone">Check-Neutron-03：Keystone是否用于身份验证？</a></li>
+<li><a href="#check-neutron-04">Check-Neutron-04：是否使用安全协议进行身份验证？</a></li>
+<li><a href="#check-neutron-05neutron-api-tls">Check-Neutron-05：Neutron API 服务器上是否启用了 TLS？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_202">对象存储</a><ul>
+<li><a href="#_203">网络安全</a></li>
+<li><a href="#_204">一般服务安全</a><ul>
+<li><a href="#root">以非 root 用户身份运行服务</a><ul>
+<li><a href="#_205">文件权限</a></li>
+</ul>
+</li>
+<li><a href="#_206">保护存储服务</a><ul>
+<li><a href="#_207">对象存储帐户术语</a></li>
+</ul>
+</li>
+<li><a href="#_208">保护代理服务</a><ul>
+<li><a href="#http_1">HTTP 监听端口</a></li>
+<li><a href="#_209">负载均衡器</a></li>
+</ul>
+</li>
+<li><a href="#_210">对象存储身份验证</a><ul>
+<li><a href="#tempauth">TempAuth 函数</a></li>
+<li><a href="#keystone">Keystone</a></li>
+</ul>
+</li>
+<li><a href="#_211">其他值得注意的事项</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_212">机密管理</a><ul>
+<li><a href="#_213">现有技术摘要</a></li>
+<li><a href="#openstack_10">相关 Openstack 项目</a></li>
+<li><a href="#_214">使用案例</a><ul>
+<li><a href="#_215">镜像签名验证</a></li>
+<li><a href="#_216">卷加密</a></li>
+<li><a href="#_217">临时磁盘加密</a></li>
+<li><a href="#sahara">Sahara</a></li>
+<li><a href="#magnum">Magnum</a></li>
+<li><a href="#octavialbaas">Octavia/LBaaS</a></li>
+<li><a href="#swift">Swift</a></li>
+<li><a href="#_218">配置文件中的密码</a></li>
+</ul>
+</li>
+<li><a href="#barbican">Barbican</a><ul>
+<li><a href="#_219">概述</a><ul>
+<li><a href="#barbican_1">Barbican 基于角色的访问控制</a></li>
+<li><a href="#_220">机密存储后端</a></li>
+</ul>
+</li>
+<li><a href="#_221">加密插件</a></li>
+<li><a href="#_222">简单的加密插件</a></li>
+<li><a href="#pkcs11">PKCS#11 加密插件</a></li>
+<li><a href="#_223">机密存储插件</a></li>
+<li><a href="#kmip">KMIP 插件</a></li>
+<li><a href="#dogtag">Dogtag 插件</a></li>
+<li><a href="#vault">Vault 插件</a><ul>
+<li><a href="#_224">威胁分析</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#castellan">Castellan</a><ul>
+<li><a href="#_225">概述</a></li>
+</ul>
+</li>
+<li><a href="#_226">常见问题解答</a></li>
+<li><a href="#_227">检查表</a><ul>
+<li><a href="#check-key-manager-01-rootbarbican">Check-Key-Manager-01：配置文件的所有权是否设置为 root/barbican？</a></li>
+<li><a href="#check-key-manager-02">Check-Key-Manager-02：是否为配置文件设置了严格的权限？</a></li>
+<li><a href="#check-key-manager-03openstack-identity">Check-Key-Manager-03：OpenStack Identity 是否用于身份验证？</a></li>
+<li><a href="#check-key-manager-04-tls">Check-Key-Manager-04：是否启用了 TLS 进行身份验证？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_228">消息队列</a><ul>
+<li><a href="#_229">消息安全</a><ul>
+<li><a href="#_230">消息传输安全</a><ul>
+<li><a href="#rabbitmq-ssl">RabbitMQ 服务器 SSL 配置</a></li>
+<li><a href="#qpid-ssl">Qpid 服务器 SSL 配置</a></li>
+</ul>
+</li>
+<li><a href="#_231">队列认证和访问控制</a><ul>
+<li><a href="#rabbitmq">身份验证配置示例：RabbitMQ</a></li>
+<li><a href="#openstack-rabbitmq">OpenStack 服务配置：RabbitMQ</a></li>
+<li><a href="#qpid">身份验证配置示例：Qpid</a></li>
+<li><a href="#openstack-qpid">OpenStack 服务配置：Qpid</a></li>
+</ul>
+</li>
+<li><a href="#_232">消息队列进程隔离和策略</a><ul>
+<li><a href="#_233">命名空间</a></li>
+<li><a href="#_234">网络策略</a></li>
+<li><a href="#_235">强制访问控制</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_236">数据处理</a><ul>
+<li><a href="#_237">数据处理简介</a><ul>
+<li><a href="#_238">架构</a></li>
+<li><a href="#_239">涉及的技术</a></li>
+<li><a href="#_240">用户访问资源</a></li>
+</ul>
+</li>
+<li><a href="#_241">部署</a><ul>
+<li><a href="#_242">控制器对集群的网络访问</a></li>
+</ul>
+</li>
+<li><a href="#_243">配置和强化</a><ul>
+<li><a href="#tls_1">TLS系统</a></li>
+<li><a href="#_244">基于角色的访问控制策略</a></li>
+<li><a href="#_245">安全组</a></li>
+<li><a href="#_246">代理域</a></li>
+<li><a href="#_247">自定义网络拓扑</a></li>
+<li><a href="#_248">间接访问</a></li>
+<li><a href="#rootwrap">Rootwrap</a></li>
+<li><a href="#_249">日志</a></li>
+<li><a href="#_250">参考书目</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_251">数据库</a><ul>
+<li><a href="#_252">数据库后端注意事项</a><ul>
+<li><a href="#_253">数据库后端的安全参考</a></li>
+</ul>
+</li>
+<li><a href="#_254">数据库访问控制</a><ul>
+<li><a href="#openstack_11">OpenStack 数据库访问模型</a><ul>
+<li><a href="#_255">精细访问控制</a></li>
+<li><a href="#nova-conductor">Nova-conductor</a></li>
+</ul>
+</li>
+<li><a href="#_256">数据库认证和访问控制</a><ul>
+<li><a href="#_257">权限</a></li>
+</ul>
+</li>
+<li><a href="#ssl">要求用户帐户需要 SSL 传输</a><ul>
+<li><a href="#1mysql">配置示例 #1：（MySQL）</a></li>
+<li><a href="#2postgresql">配置示例 #2：（PostgreSQL）</a></li>
+<li><a href="#openstack_12">OpenStack 服务数据库配置</a><ul>
+<li><a href="#mysql-sql_connection">MySQL :sql_connection 的字符串示例：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#x509">使用 X.509 证书进行身份验证</a><ul>
+<li><a href="#1mysql_1">配置示例 #1：（MySQL）</a></li>
+<li><a href="#2postgresql_1">配置示例 #2：（PostgreSQL）</a></li>
+</ul>
+</li>
+<li><a href="#openstack_13">OpenStack 服务数据库配置</a></li>
+<li><a href="#nova-conductor_1">Nova-conductor</a></li>
+</ul>
+</li>
+<li><a href="#_258">数据库传输安全性</a><ul>
+<li><a href="#ip">数据库服务器 IP 地址绑定</a><ul>
+<li><a href="#mysql">限制 MySQL 的绑定地址</a></li>
+<li><a href="#postgresql">限制 PostgreSQL 的监听地址</a></li>
+</ul>
+</li>
+<li><a href="#_259">数据库传输</a></li>
+<li><a href="#mysql-ssl">MySQL SSL配置</a></li>
+<li><a href="#postgresql-ssl">PostgreSQL SSL 配置</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_260">租户数据隐私</a><ul>
+<li><a href="#_261">数据隐私问题</a><ul>
+<li><a href="#_262">数据驻留</a></li>
+<li><a href="#_263">数据处置</a><ul>
+<li><a href="#_264">数据未安全删除</a></li>
+<li><a href="#_265">实例内存清理</a></li>
+<li><a href="#cinder">Cinder 卷数据</a></li>
+<li><a href="#_266">镜像服务延时删除功能</a></li>
+<li><a href="#_267">计算软删除功能</a></li>
+<li><a href="#_268">计算实例临时存储</a></li>
+<li><a href="#_269">裸机服务器清理</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_270">数据加密</a><ul>
+<li><a href="#_271">卷加密</a></li>
+<li><a href="#_272">临时磁盘加密</a></li>
+<li><a href="#_273">对象存储对象</a></li>
+<li><a href="#_274">块存储性能和后端</a></li>
+<li><a href="#_275">网络数据</a></li>
+</ul>
+</li>
+<li><a href="#_276">密钥管理</a><ul>
+<li><a href="#_277">参考书目：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_278">实例安全管理</a><ul>
+<li><a href="#_279">实例的安全服务</a><ul>
+<li><a href="#_280">实例的熵</a></li>
+<li><a href="#_281">将实例调度到节点</a></li>
+<li><a href="#_282">可信镜像</a><ul>
+<li><a href="#_283">镜像创建过程</a></li>
+<li><a href="#_284">映像签名验证</a></li>
+</ul>
+</li>
+<li><a href="#_285">实例迁移</a><ul>
+<li><a href="#_286">实时迁移风险</a></li>
+<li><a href="#_287">实时迁移缓解措施</a></li>
+<li><a href="#_288">禁用实时迁移</a></li>
+<li><a href="#_289">迁移网络</a></li>
+<li><a href="#_290">加密实时迁移</a></li>
+</ul>
+</li>
+<li><a href="#_291">监控、告警和报告</a></li>
+<li><a href="#_292">更新和补丁</a></li>
+<li><a href="#_293">防火墙和其他基于主机的安全控制</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_294">监视和日志记录</a><ul>
+<li><a href="#_295">取证和事件响应</a><ul>
+<li><a href="#_296">监控用例</a></li>
+<li><a href="#_297">参考书目</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_298">合规</a><ul>
+<li><a href="#_299">合规性概述</a><ul>
+<li><a href="#_300">安全原则</a><ul>
+<li><a href="#_301">分层防御</a></li>
+<li><a href="#_302">安全失败</a></li>
+<li><a href="#_303">最小权限</a></li>
+<li><a href="#_304">分隔</a></li>
+<li><a href="#_305">促进隐私</a></li>
+<li><a href="#_306">日志记录能力</a></li>
+</ul>
+</li>
+<li><a href="#_307">常用控制框架</a></li>
+<li><a href="#_308">审计参考</a></li>
+</ul>
+</li>
+<li><a href="#_309">了解审核流程</a><ul>
+<li><a href="#_310">确定审计范围</a></li>
+<li><a href="#_311">审计的阶段</a></li>
+<li><a href="#_312">内部审计</a></li>
+<li><a href="#_313">准备外部审计</a></li>
+<li><a href="#_314">外部审计</a></li>
+<li><a href="#_315">合规性维护</a></li>
+</ul>
+</li>
+<li><a href="#_316">合规活动</a><ul>
+<li><a href="#isms">信息安全管理系统 （ISMS）</a></li>
+<li><a href="#_317">风险评估</a></li>
+<li><a href="#_318">访问和日志审查</a></li>
+<li><a href="#_319">备份和灾难恢复</a></li>
+<li><a href="#_320">安全培训</a></li>
+<li><a href="#_321">安全审查</a></li>
+<li><a href="#_322">漏洞管理</a></li>
+<li><a href="#_323">数据分类</a></li>
+<li><a href="#_324">异常过程</a></li>
+</ul>
+</li>
+<li><a href="#_325">认证和合规声明</a><ul>
+<li><a href="#_326">商业标准</a><ul>
+<li><a href="#soc-1-ssae-16-isae-3402">SOC 1 （SSAE 16） / ISAE 3402</a></li>
+<li><a href="#soc-2">SOC 2 函数</a></li>
+<li><a href="#soc-3">SOC 3 函数</a></li>
+<li><a href="#iso-270012">ISO 27001/2 认证</a></li>
+<li><a href="#hipaa-hitech">HIPAA / HITECH</a></li>
+<li><a href="#pci-dss">PCI-DSS</a></li>
+</ul>
+</li>
+<li><a href="#_327">政府标准</a><ul>
+<li><a href="#fedramp">FedRAMP</a></li>
+<li><a href="#itar">ITAR</a></li>
+<li><a href="#fisma">FISMA</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_328">隐私</a></li>
+</ul>
+</li>
+<li><a href="#_329">安全审查</a><ul>
+<li><a href="#_330">架构页面指南</a><ul>
+<li><a href="#_331">标题、版本信息、联系方式</a></li>
+<li><a href="#_332">项目描述和目的</a></li>
+<li><a href="#_333">主要用户和用例</a></li>
+<li><a href="#_334">外部依赖和相关的安全假设</a></li>
+<li><a href="#_335">组件</a></li>
+<li><a href="#_336">服务架构图</a></li>
+<li><a href="#_337">数据资产</a></li>
+<li><a href="#_338">数据资产影响分析</a></li>
+<li><a href="#_339">接口</a></li>
+<li><a href="#_340">资源</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_341">安全检查表</a></li>
+<li><a href="#_342">附录</a><ul>
+<li><a href="#_343">社区支持</a><ul>
+<li><a href="#_344">文档</a></li>
+<li><a href="#openstack-wiki">OpenStack wiki</a></li>
+<li><a href="#launchpad-bug">Launchpad bug 区域</a></li>
+<li><a href="#_345">文档反馈</a></li>
+<li><a href="#openstack-irc">OpenStack IRC 频道</a></li>
+<li><a href="#openstack_14">OpenStack 邮件列表</a></li>
+<li><a href="#openstack_15">OpenStack 发行包</a></li>
+</ul>
+</li>
+<li><a href="#_346">词汇表</a><ul>
+<li><a href="#0-9">0-9</a></li>
+<li><a href="#a">A</a></li>
+<li><a href="#b">B</a></li>
+<li><a href="#c">C</a></li>
+<li><a href="#d">D</a></li>
+<li><a href="#e">E</a></li>
+<li><a href="#f">F</a></li>
+<li><a href="#g">G</a></li>
+<li><a href="#h">H</a></li>
+<li><a href="#i">I</a></li>
+<li><a href="#j">J</a></li>
+<li><a href="#k">K</a></li>
+<li><a href="#m">M</a></li>
+<li><a href="#n">N</a></li>
+<li><a href="#o">O</a></li>
+<li><a href="#p">P</a></li>
+<li><a href="#q">Q</a></li>
+<li><a href="#r">R</a></li>
+<li><a href="#s">S</a></li>
+<li><a href="#t">T</a></li>
+<li><a href="#u">U</a></li>
+<li><a href="#v">V</a></li>
+<li><a href="#w">W</a></li>
+<li><a href="#x">X</a></li>
+<li><a href="#y">Y</a></li>
+<li><a href="#z">Z</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
 <h2 id="_1">摘要<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>本书提供了有关保护OpenStack云的最佳实践和概念信息。</p>
 <p>本指南最后一次更新是在Train发布期间，记录了OpenStack Train、Stein和Rocky版本。它可能不适用于EOL版本（例如Newton）。我们建议您在计划为您的OpenStack云实施安全措施时，自行阅读本文。本指南仅供参考。OpenStack安全团队基于OpenStack社区的自愿贡献。您可以在OFTC IRC上的#OpenStack-Security频道中直接联系安全社区，或者通过向OpenStack-Discussion邮件列表发送主题标题中带有[Security]前缀的邮件来联系。</p>
@@ -1188,57 +2006,53 @@
 <ul>
 <li>
 <p>约定</p>
-</li>
-<li>
-<p>通知</p>
-</li>
-<li>
-<p>命令提示符</p>
+<ul>
+<li>通知</li>
+<li>命令提示符</li>
+</ul>
 </li>
 <li>
 <p>介绍</p>
-</li>
-<li>
-<p>确定</p>
-</li>
+<ul>
+<li>确定</li>
 <li>我们为什么以及如何写这本书</li>
 <li>OpenStack简介</li>
 <li>安全边界和威胁</li>
 <li>选择支持软件</li>
-<li>
-<p>系统文档</p>
+</ul>
 </li>
 <li>
-<p>系统文档要求</p>
+<p>系统文档</p>
+<ul>
+<li>系统文档要求</li>
+</ul>
 </li>
 <li>
 <p>管理</p>
-</li>
-<li>
-<p>持续的系统管理</p>
-</li>
+<ul>
+<li>持续的系统管理</li>
 <li>完整性生命周期</li>
 <li>管理界面</li>
+</ul>
+</li>
 <li>
 <p>安全通信</p>
-</li>
-<li>
-<p>TLS和SSL简介</p>
-</li>
+<ul>
+<li>TLS和SSL简介</li>
 <li>TLS代理和HTTP服务</li>
 <li>安全参考架构</li>
-<li>
-<p>端点</p>
+</ul>
 </li>
 <li>
-<p>APL端点配置建议</p>
+<p>端点</p>
+<ul>
+<li>APL端点配置建议</li>
+</ul>
 </li>
 <li>
 <p>身份</p>
-</li>
-<li>
-<p>认证</p>
-</li>
+<ul>
+<li>认证</li>
 <li>身份验证方法</li>
 <li>授权</li>
 <li>政策</li>
@@ -1246,12 +2060,12 @@
 <li>域</li>
 <li>联合梯形失真</li>
 <li>清单</li>
+</ul>
+</li>
 <li>
 <p>仪表板</p>
-</li>
-<li>
-<p>域名、仪表板升级和基本Web服务器配置</p>
-</li>
+<ul>
+<li>域名、仪表板升级和基本Web服务器配置</li>
 <li>HTTPS、HSTS、XSS和SSRF</li>
 <li>前端缓存和会话后端</li>
 <li>静态媒体</li>
@@ -1261,141 +2075,145 @@
 <li>跨域资源共享 （CORS）</li>
 <li>调试</li>
 <li>检查表</li>
+</ul>
+</li>
 <li>
 <p>计算</p>
-</li>
-<li>
-<p>虚拟机管理程序选择</p>
-</li>
+<ul>
+<li>虚拟机管理程序选择</li>
 <li>强化虚拟化层</li>
 <li>强化计算部署</li>
 <li>漏洞意识</li>
 <li>如何选择虚拟控制台</li>
 <li>检查表</li>
+</ul>
+</li>
 <li>
 <p>块存储</p>
-</li>
-<li>
-<p>音量擦除</p>
-</li>
+<ul>
+<li>音量擦除</li>
 <li>检查表</li>
+</ul>
+</li>
 <li>
 <p>图像存储</p>
-</li>
-<li>
-<p>检查表</p>
+<ul>
+<li>检查表</li>
+</ul>
 </li>
 <li>
 <p>共享文件系统</p>
-</li>
-<li>
-<p>介绍</p>
-</li>
+<ul>
+<li>介绍</li>
 <li>网络和安全模型</li>
 <li>安全服务</li>
 <li>共享访问控制</li>
 <li>共享类型访问控制</li>
 <li>政策</li>
 <li>检查表</li>
+</ul>
+</li>
 <li>
 <p>联网</p>
-</li>
-<li>
-<p>网络架构</p>
-</li>
+<ul>
+<li>网络架构</li>
 <li>网络服务</li>
 <li>网络服务安全最佳做法</li>
 <li>保护 OpenStack 网络服务</li>
 <li>检查表</li>
+</ul>
+</li>
 <li>
 <p>对象存储</p>
-</li>
-<li>
-<p>网络安全</p>
-</li>
+<ul>
+<li>网络安全</li>
 <li>一般事务安全</li>
 <li>保护存储服务</li>
 <li>保护代理服务</li>
 <li>对象存储身份验证</li>
 <li>其他值得注意的项目</li>
+</ul>
+</li>
 <li>
 <p>机密管理</p>
-</li>
-<li>
-<p>现有技术摘要</p>
-</li>
+<ul>
+<li>现有技术摘要</li>
 <li>相关 Openstack 项目</li>
 <li>使用案例</li>
 <li>密钥管理服务</li>
 <li>密钥管理接口</li>
 <li>常见问题解答</li>
 <li>检查表</li>
-<li>
-<p>消息队列</p>
+</ul>
 </li>
 <li>
-<p>邮件安全</p>
+<p>消息队列</p>
+<ul>
+<li>邮件安全</li>
+</ul>
 </li>
 <li>
 <p>数据处理</p>
-</li>
-<li>
-<p>数据处理简介</p>
-</li>
+<ul>
+<li>数据处理简介</li>
 <li>部署</li>
 <li>配置和强化</li>
+</ul>
+</li>
 <li>
 <p>数据库</p>
-</li>
-<li>
-<p>数据库后端注意事项</p>
-</li>
+<ul>
+<li>数据库后端注意事项</li>
 <li>数据库访问控制</li>
 <li>数据库传输安全性</li>
+</ul>
+</li>
 <li>
 <p>租户数据隐私</p>
-</li>
-<li>
-<p>数据隐私问题</p>
-</li>
+<ul>
+<li>数据隐私问题</li>
 <li>数据加密</li>
 <li>密钥管理</li>
-<li>
-<p>实例安全管理</p>
+</ul>
 </li>
 <li>
-<p>实例的安全服务</p>
+<p>实例安全管理</p>
+<ul>
+<li>实例的安全服务</li>
+</ul>
 </li>
 <li>
 <p>监视和日志记录</p>
-</li>
-<li>
-<p>取证和事件响应</p>
+<ul>
+<li>取证和事件响应</li>
+</ul>
 </li>
 <li>
 <p>合规</p>
-</li>
-<li>
-<p>合规性概述</p>
-</li>
+<ul>
+<li>合规性概述</li>
 <li>了解审核流程</li>
 <li>合规活动</li>
 <li>认证和合规声明</li>
 <li>隐私</li>
+</ul>
+</li>
 <li>
 <p>安全审查</p>
+<ul>
+<li>体系结构页面指南</li>
+</ul>
 </li>
 <li>
-<p>体系结构页面指南</p>
+<p>安全检查表</p>
 </li>
-<li>安全检查表</li>
 <li>
 <p>附录</p>
-</li>
-<li>
-<p>社区支持</p>
-</li>
+<ul>
+<li>社区支持</li>
 <li>词汇表</li>
+</ul>
+</li>
 </ul>
 <h2 id="_3">约定<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>OpenStack 文档使用了几种排版约定。</p>
@@ -1419,21 +2237,37 @@
 <p>《OpenStack 安全指南》是许多人经过五天协作的成果。本文档旨在提供部署安全 OpenStack 云的最佳实践指南。它旨在反映OpenStack社区的当前安全状态，并为由于复杂性或其他特定于环境的细节而无法列出特定安全控制措施的决策提供框架。</p>
 <ul>
 <li>致谢</li>
-<li>我们为什么以及如何写这本书</li>
+<li>
+<p>我们为什么以及如何写这本书</p>
+<ul>
 <li>目标</li>
 <li>如何</li>
-<li>OpenStack 简介</li>
+</ul>
+</li>
+<li>
+<p>OpenStack 简介</p>
+<ul>
 <li>云类型</li>
 <li>OpenStack 服务概述</li>
-<li>安全边界和威胁</li>
+</ul>
+</li>
+<li>
+<p>安全边界和威胁</p>
+<ul>
 <li>安全域</li>
 <li>桥接安全域</li>
 <li>威胁分类、参与者和攻击媒介</li>
-<li>选择支持软件</li>
+</ul>
+</li>
+<li>
+<p>选择支持软件</p>
+<ul>
 <li>团队专长</li>
 <li>产品或项目成熟度</li>
 <li>通用标准</li>
 <li>硬件问题</li>
+</ul>
+</li>
 </ul>
 <h3 id="_7">致谢<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>OpenStack 安全组要感谢以下组织的贡献，他们为本书的出版做出了贡献。这些组织是：</p>
@@ -1653,11 +2487,15 @@
 <h2 id="_49">系统文档<a class="headerlink" href="#_49" title="Permanent link">&para;</a></h2>
 <p>OpenStack 云部署的系统文档应遵循组织中企业信息技术系统的模板和最佳实践。组织通常有合规性要求，这可能需要一个整体的系统安全计划来清点和记录给定系统的架构。整个行业都面临着与记录动态云基础架构和保持信息最新相关的共同挑战。</p>
 <ul>
-<li>系统文档要求</li>
+<li>
+<p>系统文档要求</p>
+<ul>
 <li>系统角色和类型</li>
 <li>系统清单</li>
 <li>网络拓扑</li>
 <li>服务、协议和端口</li>
+</ul>
+</li>
 </ul>
 <h3 id="_50">系统文档要求<a class="headerlink" href="#_50" title="Permanent link">&para;</a></h3>
 <h4 id="_51">系统角色和类型<a class="headerlink" href="#_51" title="Permanent link">&para;</a></h4>
@@ -1755,21 +2593,33 @@
 <p>保护云部署不被恶意实体配置或操纵非常重要。由于云中的许多系统都采用计算和网络虚拟化，因此 OpenStack 面临着明显的挑战，必须通过完整性生命周期管理来解决这些挑战。</p>
 <p>管理员必须对云执行命令和控制，以实现各种操作功能。理解和保护这些指挥和控制设施非常重要。</p>
 <ul>
-<li>持续的系统管理</li>
+<li>
+<p>持续的系统管理</p>
+<ul>
 <li>漏洞管理</li>
 <li>配置管理</li>
 <li>安全备份和恢复</li>
 <li>安全审计工具</li>
-<li>完整性生命周期</li>
+</ul>
+</li>
+<li>
+<p>完整性生命周期</p>
+<ul>
 <li>安全引导</li>
 <li>运行时验证</li>
 <li>服务器加固</li>
-<li>管理界面</li>
+</ul>
+</li>
+<li>
+<p>管理界面</p>
+<ul>
 <li>仪表板</li>
 <li>OpenStack 接口</li>
 <li>安全外壳 （SSH）</li>
 <li>管理实用程序</li>
 <li>带外管理接口</li>
+</ul>
+</li>
 </ul>
 <h3 id="_60">持续的系统管理<a class="headerlink" href="#_60" title="Permanent link">&para;</a></h3>
 <p>云系统总会存在漏洞，其中一些可能是安全问题。因此，准备好应用安全更新和常规软件更新至关重要。这涉及到配置管理工具的智能使用，下面将对此进行讨论。这还涉及了解何时需要升级。</p>
@@ -2082,20 +2932,32 @@
 <p>设备间通信是一个严重的安全问题。在大型项目错误（如 Heartbleed）或更高级的攻击（如 BEAST 和  CRIME）之间，通过网络进行安全通信的方法变得越来越重要。但是，应该记住，加密应该作为更大的安全策略的一部分来应用。端点的入侵意味着攻击者不再需要破坏所使用的加密，而是能够在系统处理消息时查看和操纵消息。</p>
 <p>本章将回顾有关配置 TLS 以保护内部和外部资源的几个功能，并指出应特别注意的特定类别的系统。</p>
 <ul>
-<li>TLS 和 SSL 简介</li>
+<li>
+<p>TLS 和 SSL 简介</p>
+<ul>
 <li>证书颁发机构</li>
 <li>TLS 库</li>
 <li>加密算法、密码模式和协议</li>
 <li>总结</li>
-<li>TLS 代理和 HTTP 服务</li>
+</ul>
+</li>
+<li>
+<p>TLS 代理和 HTTP 服务</p>
+<ul>
 <li>例子</li>
 <li>HTTP 严格传输安全性</li>
 <li>完美前向保密</li>
-<li>安全参考架构</li>
+</ul>
+</li>
+<li>
+<p>安全参考架构</p>
+<ul>
 <li>SSL/TLS 代理在前面</li>
 <li>SSL/TLS 与 API 端点位于同一物理主机上</li>
 <li>负载均衡器上的 SSL/TLS</li>
 <li>外部和内部环境的加密分离</li>
+</ul>
+</li>
 </ul>
 <h3 id="tls-ssl">TLS 和 SSL 简介<a class="headerlink" href="#tls-ssl" title="Permanent link">&para;</a></h3>
 <p>在某些情况下，需要安全来确保 OpenStack 部署中网络流量的机密性或完整性。这通常是使用加密措施实现的，例如传输层安全性 （TLS） 协议。</p>
@@ -2384,11 +3246,15 @@ write-proxy = off</code></pre>
 <p>使用 OpenStack 云的过程是通过查询 API 端点开始的。虽然公共和专用终结点面临不同的挑战，但这些是高价值资产，如果遭到入侵，可能会带来重大风险。</p>
 <p>本章建议对面向公共和私有的 API 端点进行安全增强。</p>
 <ul>
-<li>API 端点配置建议</li>
+<li>
+<p>API 端点配置建议</p>
+<ul>
 <li>内部 API 通信</li>
 <li>粘贴件和中间件</li>
 <li>API 端点进程隔离和策略</li>
 <li>API 终端节点速率限制</li>
+</ul>
+</li>
 </ul>
 <h3 id="api_1">API 端点配置建议<a class="headerlink" href="#api_1" title="Permanent link">&para;</a></h3>
 <h4 id="api_2">内部 API 通信<a class="headerlink" href="#api_2" title="Permanent link">&para;</a></h4>
@@ -2435,25 +3301,51 @@ s3_use_ssl=True</code></pre>
 <h2 id="_106">身份鉴别<a class="headerlink" href="#_106" title="Permanent link">&para;</a></h2>
 <p>Keystone身份服务为OpenStack系列服务专门提供身份、令牌、目录和策略服务。身份服务组织为一组内部服务，通过一个或多个端点暴露。这些服务中的许多是由前端以组合方式使用的。例如，身份验证调用通过身份服务验证用户和项目凭据。如果成功，它将使用令牌服务创建并返回令牌。更多信息可以在Keystone开发者文档中找到。</p>
 <ul>
-<li>认证</li>
+<li>
+<p>认证</p>
+<ul>
 <li>无效的登录尝试</li>
 <li>多因素认证</li>
-<li>认证方法</li>
+</ul>
+</li>
+<li>
+<p>认证方法</p>
+<ul>
 <li>内部实施的认证方法</li>
 <li>外部认证方法</li>
-<li>授权</li>
+</ul>
+</li>
+<li>
+<p>授权</p>
+<ul>
 <li>建立正式的访问控制策略</li>
 <li>服务授权</li>
 <li>管理原用户</li>
 <li>终端用户</li>
-<li>策略</li>
-<li>令牌</li>
+</ul>
+</li>
+<li>
+<p>策略</p>
+</li>
+<li>
+<p>令牌</p>
+<ul>
 <li>Fernet 令牌</li>
 <li>JWT 令牌</li>
-<li>域</li>
-<li>联合 Keystone</li>
-<li>为什么要使用联合鉴别</li>
-<li>检查表</li>
+</ul>
+</li>
+<li>
+<p>域</p>
+</li>
+<li>
+<p>联合 Keystone</p>
+</li>
+<li>
+<p>为什么要使用联合鉴别</p>
+</li>
+<li>
+<p>检查表</p>
+<ul>
 <li>Check-Identity-01：配置文件的用户/组所有权是否设置为 keystone？</li>
 <li>Check-Identity-02：是否为身份配置文件设置了严格权限</li>
 <li>Check-Identity-03：是否为 Identity 启用了 TLS？</li>
@@ -2462,6 +3354,8 @@ s3_use_ssl=True</code></pre>
 <li>check-identity-06:禁用/etc/keystone/keystone.conf中的管理令牌</li>
 <li>check-identity-07:/etc/keystone/keystone.conf中的不安全_调试为假</li>
 <li>check-identity-08:使用/etc/keystone/keystone.conf中的Fernet令牌</li>
+</ul>
+</li>
 </ul>
 <h3 id="_107">认证<a class="headerlink" href="#_107" title="Permanent link">&para;</a></h3>
 <p>身份认证是任何实际OpenStack部署中不可或缺的一部分，因此应该仔细考虑系统设计的这一方面。本主题的完整处理超出了本指南的范围，但是以下各节介绍了一些关键主题。</p>
@@ -2645,27 +3539,43 @@ $ stat -L -c "%a" /etc/keystone</code></pre>
 <p>仪表板基于 Django Web 框架，确保 Django 的安全部署实践直接应用于 Horizon。本指南提供了一组 Django 安全建议。更多信息可以通过阅读 Django 文档找到。</p>
 <p>仪表板附带默认安全设置，并具有部署和配置文档。</p>
 <ul>
-<li>域名、仪表板升级和基本 Web 服务器配置</li>
+<li>
+<p>域名、仪表板升级和基本 Web 服务器配置</p>
+<ul>
 <li>域名</li>
 <li>基本 Web 服务器配置</li>
 <li>允许的主机</li>
 <li>映像上传</li>
-<li>HTTPS、HSTS、XSS 和 SSRF</li>
+</ul>
+</li>
+<li>
+<p>HTTPS、HSTS、XSS 和 SSRF</p>
+<ul>
 <li>跨站点脚本 （XSS）</li>
 <li>跨站点请求伪造 （CSRF）</li>
 <li>跨帧脚本 （XFS）</li>
 <li>HTTPS协议</li>
 <li>HTTP 严格传输安全 （HSTS）</li>
-<li>前端缓存和会话后端</li>
+</ul>
+</li>
+<li>
+<p>前端缓存和会话后端</p>
+<ul>
 <li>前端缓存</li>
 <li>会话后端</li>
-<li>静态媒体</li>
+</ul>
+</li>
+<li>
+<p>静态媒体</p>
+</li>
 <li>密码</li>
 <li>密钥</li>
 <li>网站数据</li>
 <li>跨域资源共享 （CORS）</li>
 <li>调试</li>
-<li>检查表</li>
+<li>
+<p>检查表</p>
+<ul>
 <li>Check-Dashboard-01：用户/配置文件组是否设置为 root/horizon？</li>
 <li>Check-Dashboard-02：是否为 Horizon 配置文件设置了严格权限？</li>
 <li>Check-Dashboard-03：参数是否 DISALLOW_IFRAME_EMBED 设置为 True ？</li>
@@ -2677,6 +3587,8 @@ $ stat -L -c "%a" /etc/keystone</code></pre>
 <li>Check-Dashboard-09： ENFORCE_PASSWORD_CHECK 设置为 True ？</li>
 <li>Check-Dashboard-10：是否 PASSWORD_VALIDATOR 已配置？</li>
 <li>Check-Dashboard-11：是否 SECURE_PROXY_SSL_HEADER 已配置？</li>
+</ul>
+</li>
 </ul>
 <h3 id="web">域名、仪表板升级和基本 Web 服务器配置<a class="headerlink" href="#web" title="Permanent link">&para;</a></h3>
 <h4 id="_125">域名<a class="headerlink" href="#_125" title="Permanent link">&para;</a></h4>
@@ -2814,7 +3726,9 @@ other           ---</code></pre>
 <p>OpenStack 计算服务 （nova） 在整个云中的许多位置运行，并与各种内部服务进行交互。OpenStack 计算服务提供了多种配置选项，这些选项可能是特定于部署的。</p>
 <p>在本章中，我们将介绍有关计算安全性的一般最佳实践，以及可能导致安全问题的特定已知配置。 <code>nova.conf</code> 文件和 <code>/var/lib/nova</code> 位置应受到保护。应实施集中式日志记录、 <code>policy.json</code> 文件和强制访问控制框架等控制措施。</p>
 <ul>
-<li>虚拟机管理程序选择</li>
+<li>
+<p>虚拟机管理程序选择</p>
+<ul>
 <li>OpenStack 中的虚拟机管理程序</li>
 <li>纳入排除标准</li>
 <li>团队专长</li>
@@ -2825,13 +3739,17 @@ other           ---</code></pre>
 <li>FIPS 140-2</li>
 <li>硬件问题</li>
 <li>虚拟机管理程序与裸机</li>
-<li>虚拟机管理程序内存优化
-    KVM 内核 Samepage 合并</li>
+<li>虚拟机管理程序内存优化</li>
+<li>KVM 内核 Samepage 合并</li>
 <li>XEN透明页面共享</li>
 <li>内存优化的安全注意事项</li>
 <li>其他安全功能</li>
 <li>书目</li>
-<li>强化虚拟化层</li>
+</ul>
+</li>
+<li>
+<p>强化虚拟化层</p>
+<ul>
 <li>物理硬件（PCI 直通）</li>
 <li>虚拟硬件 （QEMU）</li>
 <li>最小化 QEMU 代码库</li>
@@ -2842,25 +3760,43 @@ other           ---</code></pre>
 <li>标签和类别</li>
 <li>SELinux 用户和角色</li>
 <li>布尔值</li>
-<li>强化计算部署</li>
+</ul>
+</li>
+<li>
+<p>强化计算部署</p>
+<ul>
 <li>OpenStack 漏洞管理团队</li>
 <li>OpenStack 安全说明</li>
 <li>OpenStack-dev 邮件列表</li>
 <li>虚拟机管理程序邮件列表</li>
-<li>漏洞意识</li>
+</ul>
+</li>
+<li>
+<p>漏洞意识</p>
+<ul>
 <li>OpenStack 漏洞管理团队</li>
 <li>OpenStack 安全说明</li>
 <li>OpenStack-讨论邮件列表</li>
 <li>虚拟机管理程序邮件列表</li>
-<li>如何选择虚拟控制台</li>
+</ul>
+</li>
+<li>
+<p>如何选择虚拟控制台</p>
+<ul>
 <li>虚拟网络计算机 （VNC）</li>
 <li>独立计算环境的简单协议 （SPICE）</li>
-<li>检查表</li>
+</ul>
+</li>
+<li>
+<p>检查表</p>
+<ul>
 <li>Check-Compute-01：配置文件的用户/组所有权是否设置为 root/nova？</li>
 <li>Check-Compute-02：是否为配置文件设置了严格的权限？</li>
 <li>Check-Compute-03：Keystone 是否用于身份验证？</li>
 <li>Check-Compute-04：是否使用安全协议进行身份验证？</li>
 <li>Check-Compute-05：Nova 与 Glance 的通信是否安全？</li>
+</ul>
+</li>
 </ul>
 <h3 id="_136">虚拟机管理程序选择<a class="headerlink" href="#_136" title="Permanent link">&para;</a></h3>
 <h4 id="openstack_4">OpenStack 中的虚拟机管理程序<a class="headerlink" href="#openstack_4" title="Permanent link">&para;</a></h4>
