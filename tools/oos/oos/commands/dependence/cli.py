@@ -133,12 +133,13 @@ class CountDependence(object):
 
 
 class Comp:
-    def __init__(self, branches, output, release, packages, append, location):
+    def __init__(self, branches, output, release, packages, append, token, location):
         self.branches = branches.split()
         self.packages = packages
         self.output = output + ".csv" if not output.endswith(".csv") else output
         self.location = location
         self.append = append
+        self.token = token
         self.pkg_dirs = [
             'Service Projects',
             'Service Client Projects',
@@ -200,7 +201,8 @@ class Comp:
             'Content-Type': 'application/json;charset=UTF-8',
         }
         params = {
-            'ref': branch
+            'ref': branch,
+            'access_token': self.token
         }
 
         try:
@@ -229,6 +231,10 @@ class Comp:
         return '[no tar]'
     
     def _comp_repo_version(self, repo_version, version_dict, community_version_list):
+        '''
+        比较依赖中的版本和分支的版本
+        '''
+        # 不加异常处理 报错再解决
         project_eq_version = version_dict['eq_version']
         project_ge_version = version_dict['ge_version']
         project_lt_version = version_dict['lt_version']
@@ -245,14 +251,14 @@ class Comp:
             if project_eq_version == repo_version:
                 return 'eq-match'
             else:
-                return 'specify ' + repo_version
+                return 'specify ' + project_eq_version
         if project_ge_version:
-            if repo_version >= project_ge_version:
+            if p_version.parse(repo_version) >= p_version.parse(project_ge_version):
                 version_match = 'ge-match '
             else:
                 version_match += 'upgrade ge' + project_ge_version + ' '
         if project_lt_version:
-            if repo_version < project_lt_version:
+            if p_version.parse(repo_version) < p_version.parse(project_lt_version):
                 version_match += 'lt-match '
             else:
                 version_match += 'downgrade lt' + project_lt_version + ' '
@@ -263,12 +269,18 @@ class Comp:
                 version_match += 'ne ' + str(project_ne_version) + ' '
 
         if project_upper_version:
-            if repo_version <= project_upper_version:
+            if p_version.parse(repo_version) <= p_version.parse(project_upper_version):
                 version_match += 'up-match'
             else:
                 version_match += 'downgrade max' + project_upper_version
         return version_match
 
+    def _is_branch_match(self, match_result):
+        if not match_result:
+            return False
+        if re.search(r'(specify|upgrade|downgrade|ne |no branch|no tar|not 200 ok)', match_result):
+            return False
+        return True
 
     def _comp_community_version(self, name: str):
         if name.startswith('openstack-'):
@@ -291,6 +303,7 @@ class Comp:
         for br in self.branches:
             title.append(br)
             title.append('status')
+        title.append('advise')
         valid_data.append(title)
 
         if self.packages:
@@ -322,6 +335,7 @@ class Comp:
                     version_dict['upper_version'], community_version_list
                     ]
             valid_flag = True
+            match_branches = []
             for branch in self.branches:
                 repo_version = self._get_repo_version(repo_name, branch)
                 # 下面的if需要根据_get_repo_version函数的返回值判断 Exception的不记录
@@ -339,6 +353,10 @@ class Comp:
 
                 row.append(repo_version)
                 row.append(match_result)
+                if self._is_branch_match(match_result):
+                    match_branches.append(branch)
+
+            row.append(match_branches)
 
             if valid_flag:
                 valid_data.append(row)
@@ -378,7 +396,8 @@ def generate(compare, compare_from, compare_branch, output, token, location):
 @click.option('-r', '--release', help='Openstack release name')
 @click.option('-p', '--packages', help='Specfigy file list range')
 @click.option('-a', '--append', is_flag=True, default=False, help='Append to the \'compare_result\' file')
+@click.option('-t', '--token', help='Personal gitee access token used for fetching info from gitee')
 @click.argument('location', type=click.Path(dir_okay=True))
-def compare(branches, output, release, packages, append, location):
-    comp = Comp(branches, output, release, packages, append, location)
+def compare(branches, output, release, packages, append, token, location):
+    comp = Comp(branches, output, release, packages, append, token, location)
     comp.compare_dependence_with_branch_version()
