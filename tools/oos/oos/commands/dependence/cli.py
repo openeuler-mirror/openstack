@@ -6,8 +6,7 @@ from pathlib import Path
 import click
 from packaging import version as p_version
 
-from oos.common import gitee
-from oos.common import utils
+from oos.common import gitee,utils
 
 from bs4 import BeautifulSoup
 import requests
@@ -84,7 +83,7 @@ class CountDependence(object):
                 "Required (Min) Version", "lt Version", "ne Version", "Upper Version", "Status",
                 "Requires", "Depth"])
             for file_name in file_list:
-                with open(self.location + '/' + file_name, 'r', encoding='utf8') as fp:
+                with open(self.location + '/' + file_name, 'r', encoding='utf-8') as fp:
                     if file_name != 'unknown':
                         project_list = [json.load(fp)]
                 for project_dict in project_list:
@@ -302,7 +301,7 @@ class Comp:
         for file_name in file_list:
             file_name = file_name + '.json' if self.packages else file_name
             try:
-                with open(self.location + '/' + file_name, 'r', encoding='utf8') as fp:
+                with open(self.location + '/' + file_name, 'r', encoding='utf-8') as fp:
                     if file_name != 'unknown':
                         project_dict = json.load(fp)
             except:
