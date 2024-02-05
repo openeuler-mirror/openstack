@@ -52,15 +52,15 @@
   ironic-python-agent-builder: 5.1.0
   ironic-tempest-plugin: 2.6.1
   ironic-ui: 6.1.0
-  kayobe: 14.2.0
-  kayobe-config: 14.2.0
+  kayobe: 14.3.0
+  kayobe-config: 14.3.0
   kayobe-config-dev: 14.2.0
   keystone: 23.0.1
   keystone_tempest_plugin: 0.12.0
   keystoneauth1: 5.1.2
   keystonemiddleware: 10.2.0
-  kolla: 16.2.0
-  kolla-ansible: 16.2.0
+  kolla: 16.3.0
+  kolla-ansible: 16.3.0
   kuryr-kubernetes: 8.0.0
   kuryr-lib: 2.7.0
   kuryr-libnetwork: 11.0.0
@@ -68,7 +68,7 @@
   magnum: 16.0.1
   magnum-ui: 12.0.0
   magnum_tempest_plugin: 2.0.0
-  manila: 16.1.0
+  manila: 16.2.0
   manila-tempest-plugin: 1.13.0
   manila-ui: 9.0.0
   masakari: 15.0.0
@@ -114,7 +114,7 @@
   octavia-lib: 3.2.0
   octavia-tempest-plugin: 2.3.0
   openstack-cyborg: 10.0.0
-  openstack-heat: 20.0.0
+  openstack-heat: 20.0.1
   openstack-placement: 9.0.0
   openstack-release-test: 4.0.0
   openstack-venus: 2.0.0
@@ -133,7 +133,7 @@
   oslo.i18n: 6.0.0
   oslo.limit: 2.1.0
   oslo.log: 5.2.0
-  oslo.messaging: 14.2.3
+  oslo.messaging: 14.2.4
   oslo.metrics: 0.6.0
   oslo.middleware: 5.1.1
   oslo.policy: 4.1.1
@@ -201,7 +201,7 @@
   python-ironicclient: 5.1.0
   python-keystoneclient: 5.1.0
   python-magnumclient: 4.1.0
-  python-manilaclient: 4.4.0
+  python-manilaclient: 4.4.1
   python-masakariclient: 8.1.0
   python-mistralclient: 5.0.0
   python-monascaclient: 2.7.0
@@ -320,15 +320,15 @@
   ironic-python-agent-builder: 5.2.0
   ironic-tempest-plugin: 2.7.0
   ironic-ui: 6.2.1
-  kayobe: 15.0.0
-  kayobe-config: 15.0.0
-  kayobe-config-dev: 15.0.0
+  kayobe: 15.1.0
+  kayobe-config: 15.1.0
+  kayobe-config-dev: 15.1.0
   keystone: 24.0.0
   keystone_tempest_plugin: 0.13.0
   keystoneauth1: 5.3.0
   keystonemiddleware: 10.4.1
-  kolla: 17.0.0
-  kolla-ansible: 17.0.0
+  kolla: 17.1.0
+  kolla-ansible: 17.1.0
   kuryr-kubernetes: 9.0.0
   kuryr-lib: 2.8.0
   kuryr-libnetwork: 12.0.0
@@ -336,7 +336,7 @@
   magnum: 17.0.1
   magnum-ui: 13.0.0
   magnum_tempest_plugin: 2.1.0
-  manila: 17.1.0
+  manila: 17.2.0
   manila-tempest-plugin: 2.0.0
   manila-ui: 10.0.0
   masakari: 16.0.0
@@ -464,7 +464,7 @@
   python-ironicclient: 5.4.0
   python-keystoneclient: 5.2.0
   python-magnumclient: 4.2.0
-  python-manilaclient: 4.6.0
+  python-manilaclient: 4.6.1
   python-masakariclient: 8.2.0
   python-mistralclient: 5.1.0
   python-monascaclient: 2.8.0
@@ -2800,12 +2800,18 @@ yoga:
   adjutant-ui: 4.0.0
   ansible-collection-kolla: 1.4.0
   ansible-role-atos-hsm: 3.0.0
+  ansible-role-atos-hsm-yoga: eom
   ansible-role-lunasa-hsm: 3.0.0
+  ansible-role-lunasa-hsm-yoga: eom
   ansible-role-thales-hsm: 3.0.0
+  ansible-role-thales-hsm-yoga: eom
   aodh: 14.1.0
+  aodh-yoga: eom
   aodhclient: 2.4.1
+  aodhclient-yoga: eom
   automaton: 2.5.0
   barbican: 14.0.2
+  barbican-yoga: eom
   barbican_tempest_plugin: 1.6.0
   bifrost: 14.1.0
   blazar: 9.0.0
@@ -2814,7 +2820,9 @@ yoga:
   blazar_tempest_plugin: 0.8.0
   castellan: 3.10.2
   ceilometer: 18.1.0
+  ceilometer-yoga: eom
   ceilometermiddleware: 2.4.1
+  ceilometermiddleware-yoga: eom
   cinder: 20.3.2
   cinder-tempest-plugin: 1.6.0
   cinderlib: 4.2.0
@@ -2842,23 +2850,23 @@ yoga:
   heat-tempest-plugin: 1.5.0
   heat-translator: 2.5.0
   horizon: 22.1.1
-  ironic: 20.1.2
+  ironic: 20.1.3
   ironic-inspector: 10.11.0
   ironic-lib: 5.2.0
   ironic-prometheus-exporter: 3.1.0
-  ironic-python-agent: 8.5.2
+  ironic-python-agent: 8.5.3
   ironic-python-agent-builder: 4.1.0
   ironic-tempest-plugin: 2.4.0
   ironic-ui: 5.1.0
-  kayobe: 12.9.0
-  kayobe-config: 12.7.0
+  kayobe: 12.10.0
+  kayobe-config: 12.10.0
   kayobe-config-dev: 12.4.0
   keystone: 21.0.1
   keystone_tempest_plugin: 0.9.0
   keystoneauth1: 4.5.0
   keystonemiddleware: 9.4.0
-  kolla: 14.11.0
-  kolla-ansible: 14.10.0
+  kolla: 14.12.0
+  kolla-ansible: 14.11.0
   kuryr-kubernetes: 6.0.1
   kuryr-lib: 2.5.0
   kuryr-libnetwork: 9.0.0
@@ -2913,6 +2921,7 @@ yoga:
   openstack-heat: 18.0.1
   openstack-placement: 7.0.0
   openstack-release-test: 3.8.0
+  openstack-release-test-yoga: eom
   openstacksdk: 0.62.0
   os-brick: 5.2.4
   os-ken: 2.3.1
@@ -2979,6 +2988,7 @@ yoga:
   python-adjutant: 4.0.0
   python-adjutantclient: 0.10.0
   python-barbicanclient: 5.3.0
+  python-barbicanclient-yoga: eom
   python-blazarclient: 3.4.1
   python-brick-cinderclient-ext: 1.5.0
   python-cinderclient: 8.3.0
@@ -3031,7 +3041,7 @@ yoga:
   solum-tempest-plugin: 2.4.0
   stevedore: 3.5.2
   storlets: 9.0.0
-  sushy: 4.1.6
+  sushy: 4.1.7
   swift: 2.29.2
   tacker: 7.1.0
   tacker-horizon: 5.0.0
@@ -3107,15 +3117,15 @@ zed:
   ironic-python-agent-builder: 5.0.0
   ironic-tempest-plugin: 2.5.0
   ironic-ui: 6.0.0
-  kayobe: 13.3.0
-  kayobe-config: 13.1.0
+  kayobe: 13.4.0
+  kayobe-config: 13.4.0
   kayobe-config-dev: 13.3.0
   keystone: 22.0.1
   keystone_tempest_plugin: 0.10.0
   keystoneauth1: 5.0.0
   keystonemiddleware: 10.1.0
-  kolla: 15.3.0
-  kolla-ansible: 15.3.0
+  kolla: 15.4.0
+  kolla-ansible: 15.4.0
   kuryr-kubernetes: 7.0.0
   kuryr-lib: 2.6.0
   kuryr-libnetwork: 10.0.0
@@ -3163,13 +3173,13 @@ zed:
   neutron-tempest-plugin: 2.0.0
   neutron-vpnaas: 21.0.0
   neutron-vpnaas-dashboard: 7.0.0
-  nova: 26.2.0
+  nova: 26.2.1
   octavia: 11.0.1
   octavia-dashboard: 10.0.0
   octavia-lib: 3.1.0
   octavia-tempest-plugin: 2.0.0
   openstack-cyborg: 9.0.0
-  openstack-heat: 19.0.1
+  openstack-heat: 19.0.2
   openstack-placement: 8.0.0
   openstack-release-test: 3.9.0
   openstack-venus: 1.0.0
