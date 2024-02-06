@@ -184,7 +184,7 @@ class Project(object):
         return is_out_of_date
 
     def refresh_from_local(self, file_path):
-        with open(file_path, 'r', encoding='utf8') as fp:
+        with open(file_path, 'r', encoding='utf-8') as fp:
             project_dict = json.load(fp)
             local_project = Project.from_dict(**project_dict)
         is_out_of_date = self._refresh(local_project)
@@ -193,7 +193,7 @@ class Project(object):
     def refresh_from_upstream(self, file_path):
         if not self._generate_cache_from_opendev():
             self._generate_cache_from_pypi()
-        with open(file_path, 'w', encoding='utf8') as fp:
+        with open(file_path, 'w', encoding='utf-8') as fp:
             json.dump(self.to_dict(), fp, ensure_ascii=False, indent=4)
 
     def _python_version_check(self, regex_list, target, compare):
@@ -420,7 +420,7 @@ class InitDependence(object):
         for file_name in file_list:
             if not file_name.endswith('.json'):
                 continue
-            with open(self.pypi_cache_path + '/' + file_name, 'r', encoding='utf8') as fp:
+            with open(self.pypi_cache_path + '/' + file_name, 'r', encoding='utf-8') as fp:
                 project_dict = json.load(fp)
                 all_project.update(project_dict['requires'].keys())
         for file_name in file_list:
