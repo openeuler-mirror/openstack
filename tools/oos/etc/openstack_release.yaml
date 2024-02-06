@@ -2798,7 +2798,9 @@ xena:
   zun-ui: 8.0.0
 yoga:
   adjutant-ui: 4.0.0
+  adjutant-ui-yoga: eom
   ansible-collection-kolla: 1.4.0
+  ansible-collection-kolla-yoga: eom
   ansible-role-atos-hsm: 3.0.0
   ansible-role-atos-hsm-yoga: eom
   ansible-role-lunasa-hsm: 3.0.0
@@ -2816,7 +2818,10 @@ yoga:
   bifrost: 14.1.0
   blazar: 9.0.0
   blazar-dashboard: 7.0.0
+  blazar-dashboard-yoga: eom
   blazar-nova: 2.5.0
+  blazar-nova-yoga: eom
+  blazar-yoga: eom
   blazar_tempest_plugin: 0.8.0
   castellan: 3.10.2
   ceilometer: 18.1.0
@@ -2825,17 +2830,25 @@ yoga:
   ceilometermiddleware-yoga: eom
   cinder: 20.3.2
   cinder-tempest-plugin: 1.6.0
+  cinder-yoga: eom
   cinderlib: 4.2.0
+  cinderlib-yoga: eom
   cliff: 3.10.1
+  cliff-yoga: eom
   cloudkitty: 16.0.1
   cloudkitty-dashboard: 14.0.1
+  cloudkitty-dashboard-yoga: eom
+  cloudkitty-yoga: eom
   cloudkitty_tempest_plugin: 2.5.0
   compute-hyperv: 14.0.0
   cyborg-tempest-plugin: 1.4.0
   designate: 14.0.4
   designate-dashboard: 14.0.1
+  designate-dashboard-yoga: eom
   designate-tempest-plugin: 0.13.0
+  designate-yoga: eom
   ec2-api: 14.0.2
+  ec2-api-yoga: eom
   ec2api-tempest-plugin: 1.4.0
   freezer: 12.0.0
   freezer-api: 12.0.0
@@ -2846,9 +2859,12 @@ yoga:
   glance-tempest-plugin: 0.3.0
   glance_store: 3.0.1
   heat-agents: 4.0.1
+  heat-agents-yoga: eom
   heat-dashboard: 7.0.1
+  heat-dashboard-yoga: eom
   heat-tempest-plugin: 1.5.0
   heat-translator: 2.5.0
+  heat-translator-yoga: eom
   horizon: 22.1.1
   ironic: 20.1.3
   ironic-inspector: 10.11.0
@@ -2861,12 +2877,17 @@ yoga:
   kayobe: 12.10.0
   kayobe-config: 12.10.0
   kayobe-config-dev: 12.4.0
+  kayobe-config-dev-yoga: eom
+  kayobe-config-yoga: eom
+  kayobe-yoga: eom
   keystone: 21.0.1
   keystone_tempest_plugin: 0.9.0
   keystoneauth1: 4.5.0
   keystonemiddleware: 9.4.0
   kolla: 14.12.0
   kolla-ansible: 14.11.0
+  kolla-ansible-yoga: eom
+  kolla-yoga: eom
   kuryr-kubernetes: 6.0.1
   kuryr-lib: 2.5.0
   kuryr-libnetwork: 9.0.0
@@ -2900,34 +2921,49 @@ yoga:
   murano-dashboard: 13.0.0
   murano-tempest-plugin: 2.4.0
   networking-bagpipe: 16.0.0
+  networking-bagpipe-yoga: eom
   networking-baremetal: 5.1.1
   networking-bgpvpn: 16.0.0
+  networking-bgpvpn-yoga: eom
   networking-generic-switch: 6.1.0
   networking-hyperv: 12.0.0
   networking-odl: 20.0.0
+  networking-odl-yoga: eom
   networking-sfc: 14.0.0
+  networking-sfc-yoga: eom
   neutron: 20.5.0
   neutron-dynamic-routing: 20.0.1
+  neutron-dynamic-routing-yoga: eom
   neutron-lib: 2.20.2
+  neutron-lib-yoga: eom
   neutron-tempest-plugin: 1.9.0
   neutron-vpnaas: 20.0.1
   neutron-vpnaas-dashboard: 6.0.0
+  neutron-vpnaas-dashboard-yoga: eom
+  neutron-vpnaas-yoga: eom
+  neutron-yoga: eom
   nova: 25.3.0
   octavia: 10.1.0
   octavia-dashboard: 9.0.1
   octavia-lib: 2.5.0
   octavia-tempest-plugin: 1.9.0
   openstack-cyborg: 8.0.1
+  openstack-cyborg-yoga: eom
   openstack-heat: 18.0.1
+  openstack-heat-yoga: eom
   openstack-placement: 7.0.0
   openstack-release-test: 3.8.0
   openstack-release-test-yoga: eom
   openstacksdk: 0.62.0
+  openstacksdk-yoga: eom
   os-brick: 5.2.4
+  os-brick-yoga: eom
   os-ken: 2.3.1
+  os-ken-yoga: eom
   os-win: 5.6.0
   os_vif: 2.7.2
   osc-lib: 2.5.0
+  osc-lib-yoga: eom
   osc-placement: 3.2.0
   oslo.cache: 2.10.1
   oslo.config: 8.8.1
@@ -2947,7 +2983,9 @@ yoga:
   oslo.vmware: 3.10.0
   oswin-tempest-plugin: 1.4.0
   ovn-octavia-provider: 2.2.0
+  ovn-octavia-provider-yoga: eom
   ovsdbapp: 1.15.3
+  ovsdbapp-yoga: eom
   patrole: 0.14.0
   puppet-aodh: 20.3.1
   puppet-barbican: 20.3.1
@@ -2986,18 +3024,27 @@ yoga:
   puppet-watcher: 20.3.2
   puppet-zaqar: 20.3.1
   python-adjutant: 4.0.0
+  python-adjutant-yoga: eom
   python-adjutantclient: 0.10.0
+  python-adjutantclient-yoga: eom
   python-barbicanclient: 5.3.0
   python-barbicanclient-yoga: eom
   python-blazarclient: 3.4.1
+  python-blazarclient-yoga: eom
   python-brick-cinderclient-ext: 1.5.0
+  python-brick-cinderclient-ext-yoga: eom
   python-cinderclient: 8.3.0
+  python-cinderclient-yoga: eom
   python-cloudkittyclient: 4.5.0
+  python-cloudkittyclient-yoga: eom
   python-cyborgclient: 1.7.0
+  python-cyborgclient-yoga: eom
   python-designateclient: 4.5.1
+  python-designateclient-yoga: eom
   python-freezerclient: 4.4.0
   python-glanceclient: 3.6.0
   python-heatclient: 2.5.1
+  python-heatclient-yoga: eom
   python-ironic-inspector-client: 4.7.1
   python-ironicclient: 4.11.0
   python-keystoneclient: 4.4.0
@@ -3008,20 +3055,27 @@ yoga:
   python-monascaclient: 2.5.0
   python-muranoclient: 2.4.1
   python-neutronclient: 7.8.0
+  python-neutronclient-yoga: eom
   python-novaclient: 17.7.0
   python-octaviaclient: 2.6.0
   python-openstackclient: 5.8.1
+  python-openstackclient-yoga: eom
   python-saharaclient: 3.5.0
   python-senlinclient: 2.4.0
   python-solumclient: 3.5.1
   python-swiftclient: 3.13.1
   python-tackerclient: 1.10.1
+  python-tackerclient-yoga: eom
   python-troveclient: 7.2.0
   python-vitrageclient: 4.5.0
   python-watcher: 8.0.0
+  python-watcher-yoga: eom
   python-watcherclient: 3.4.0
+  python-watcherclient-yoga: eom
   python-zaqarclient: 2.3.0
+  python-zaqarclient-yoga: eom
   python-zunclient: 4.4.0
+  python-zunclient-yoga: eom
   sahara: 16.0.0
   sahara-dashboard: 16.0.0
   sahara-extra: 15.0.0
@@ -3041,14 +3095,19 @@ yoga:
   solum-tempest-plugin: 2.4.0
   stevedore: 3.5.2
   storlets: 9.0.0
+  storlets-yoga: eom
   sushy: 4.1.7
   swift: 2.29.2
   tacker: 7.1.0
   tacker-horizon: 5.0.0
+  tacker-horizon-yoga: eom
+  tacker-yoga: eom
   tap-as-a-service: 9.0.0
+  tap-as-a-service-yoga: eom
   telemetry_tempest_plugin: 1.6.0
   tempest: 30.1.0
   tosca-parser: 2.5.1
+  tosca-parser-yoga: eom
   trove: 17.0.1
   trove-dashboard: 18.0.1
   trove_tempest_plugin: 1.4.0
@@ -3056,13 +3115,18 @@ yoga:
   vitrage-dashboard: 3.5.0
   vitrage-tempest-plugin: 5.5.0
   watcher-dashboard: 7.0.0
+  watcher-dashboard-yoga: eom
   watcher-tempest-plugin: 2.4.0
   zaqar: 14.0.0
   zaqar-ui: 12.0.0
+  zaqar-ui-yoga: eom
+  zaqar-yoga: eom
   zaqar_tempest_plugin: 1.4.0
   zun: 9.1.0
   zun-tempest-plugin: 4.5.0
   zun-ui: 9.0.0
+  zun-ui-yoga: eom
+  zun-yoga: eom
 zed:
   adjutant-ui: 5.0.0
   ansible-collection-kolla: 2.2.0
