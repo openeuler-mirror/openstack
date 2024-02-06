@@ -99,7 +99,8 @@ oos dependence compare train_cached_file
     指定需要分析的软件包名，不包含后缀，自动添加.json后缀
 -a, --append
     追加模式写入文件，默认不追加
-
+-t, --token
+    访问gitee的token，不使用为匿名用户，访问API次数会被限制。
 ```
 
 命令举例：
