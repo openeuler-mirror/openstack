@@ -12,8 +12,12 @@ def get_gitee_project_tree(owner, project, branch, access_token=None):
     url = 'https://gitee.com/api/v5/repos/%s/%s/git/trees/%s' % (owner, project, branch)
     if access_token:
         url = url + '?access_token=%s' % access_token
-    response = requests.get(url, headers=headers)
-    return json.loads(response.content.decode())
+    try:
+        response = requests.get(url, headers=headers)
+        return json.loads(response.content.decode())
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching data for: {e}")
+        return None
 
 
 def get_gitee_project_version(owner, project, branch, access_token=None):
