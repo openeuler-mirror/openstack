@@ -65,7 +65,7 @@
   kuryr-lib: 2.7.0
   kuryr-libnetwork: 11.0.0
   kuryr-tempest-plugin: 0.14.1
-  magnum: 16.0.1
+  magnum: 16.0.2
   magnum-ui: 12.0.0
   magnum_tempest_plugin: 2.0.0
   manila: 16.2.0
@@ -333,7 +333,7 @@
   kuryr-lib: 2.8.0
   kuryr-libnetwork: 12.0.0
   kuryr-tempest-plugin: 0.15.1
-  magnum: 17.0.1
+  magnum: 17.0.2
   magnum-ui: 13.0.0
   magnum_tempest_plugin: 2.1.0
   manila: 17.2.0
@@ -2801,12 +2801,20 @@ yoga:
   adjutant-ui-yoga: eom
   ansible-collection-kolla: 1.4.0
   ansible-collection-kolla-yoga: eom
+  ansible-hardening-yoga: eom
   ansible-role-atos-hsm: 3.0.0
   ansible-role-atos-hsm-yoga: eom
   ansible-role-lunasa-hsm: 3.0.0
   ansible-role-lunasa-hsm-yoga: eom
+  ansible-role-pki-yoga: eom
+  ansible-role-python_venv_build-yoga: eom
+  ansible-role-qdrouterd-yoga: eom
+  ansible-role-systemd_mount-yoga: eom
+  ansible-role-systemd_networkd-yoga: eom
+  ansible-role-systemd_service-yoga: eom
   ansible-role-thales-hsm: 3.0.0
   ansible-role-thales-hsm-yoga: eom
+  ansible-role-uwsgi-yoga: eom
   aodh: 14.1.0
   aodh-yoga: eom
   aodhclient: 2.4.1
@@ -2874,6 +2882,7 @@ yoga:
   heat-translator: 2.5.0
   heat-translator-yoga: eom
   horizon: 22.1.1
+  horizon-yoga: eom
   ironic: 20.1.3
   ironic-inspector: 10.11.0
   ironic-inspector-yoga: eom
@@ -2974,10 +2983,57 @@ yoga:
   neutron-yoga: eom
   nova: 25.3.0
   nova-yoga: eom
-  octavia: 10.1.0
+  octavia: 10.1.1
   octavia-dashboard: 9.0.1
   octavia-lib: 2.5.0
   octavia-tempest-plugin: 1.9.0
+  openstack-ansible-apt_package_pinning-yoga: eom
+  openstack-ansible-ceph_client-yoga: eom
+  openstack-ansible-galera_server-yoga: eom
+  openstack-ansible-haproxy_server-yoga: eom
+  openstack-ansible-lxc_container_create-yoga: eom
+  openstack-ansible-lxc_hosts-yoga: eom
+  openstack-ansible-memcached_server-yoga: eom
+  openstack-ansible-openstack_hosts-yoga: eom
+  openstack-ansible-openstack_openrc-yoga: eom
+  openstack-ansible-ops-yoga: eom
+  openstack-ansible-os_adjutant-yoga: eom
+  openstack-ansible-os_aodh-yoga: eom
+  openstack-ansible-os_barbican-yoga: eom
+  openstack-ansible-os_blazar-yoga: eom
+  openstack-ansible-os_ceilometer-yoga: eom
+  openstack-ansible-os_cinder-yoga: eom
+  openstack-ansible-os_cloudkitty-yoga: eom
+  openstack-ansible-os_designate-yoga: eom
+  openstack-ansible-os_glance-yoga: eom
+  openstack-ansible-os_gnocchi-yoga: eom
+  openstack-ansible-os_heat-yoga: eom
+  openstack-ansible-os_horizon-yoga: eom
+  openstack-ansible-os_ironic-yoga: eom
+  openstack-ansible-os_keystone-yoga: eom
+  openstack-ansible-os_magnum-yoga: eom
+  openstack-ansible-os_manila-yoga: eom
+  openstack-ansible-os_masakari-yoga: eom
+  openstack-ansible-os_mistral-yoga: eom
+  openstack-ansible-os_murano-yoga: eom
+  openstack-ansible-os_neutron-yoga: eom
+  openstack-ansible-os_nova-yoga: eom
+  openstack-ansible-os_octavia-yoga: eom
+  openstack-ansible-os_placement-yoga: eom
+  openstack-ansible-os_rally-yoga: eom
+  openstack-ansible-os_sahara-yoga: eom
+  openstack-ansible-os_senlin-yoga: eom
+  openstack-ansible-os_swift-yoga: eom
+  openstack-ansible-os_tacker-yoga: eom
+  openstack-ansible-os_tempest-yoga: eom
+  openstack-ansible-os_trove-yoga: eom
+  openstack-ansible-os_zun-yoga: eom
+  openstack-ansible-plugins-yoga: eom
+  openstack-ansible-rabbitmq_server-yoga: eom
+  openstack-ansible-repo_server-yoga: eom
+  openstack-ansible-rsyslog_client-yoga: eom
+  openstack-ansible-rsyslog_server-yoga: eom
+  openstack-ansible-tests-yoga: eom
   openstack-cyborg: 8.0.1
   openstack-cyborg-yoga: eom
   openstack-heat: 18.0.1
@@ -3124,6 +3180,7 @@ yoga:
   python-solumclient: 3.5.1
   python-solumclient-yoga: eom
   python-swiftclient: 3.13.1
+  python-swiftclient-yoga: eom
   python-tackerclient: 1.10.1
   python-tackerclient-yoga: eom
   python-troveclient: 7.2.0
@@ -3136,6 +3193,7 @@ yoga:
   python-zaqarclient-yoga: eom
   python-zunclient: 4.4.0
   python-zunclient-yoga: eom
+  requirements-yoga: eom
   sahara: 16.0.0
   sahara-dashboard: 16.0.0
   sahara-dashboard-yoga: eom
@@ -3174,6 +3232,7 @@ yoga:
   sushy: 4.1.7
   sushy-yoga: eom
   swift: 2.29.2
+  swift-yoga: eom
   tacker: 7.1.0
   tacker-horizon: 5.0.0
   tacker-horizon-yoga: eom
@@ -3226,7 +3285,7 @@ zed:
   cinder-tempest-plugin: 1.7.2
   cinderlib: 5.0.0
   cliff: 4.0.0
-  cloudkitty: 17.0.0
+  cloudkitty: 17.0.1
   cloudkitty-dashboard: 15.0.0
   cloudkitty_tempest_plugin: 2.6.0
   compute-hyperv: 15.0.0
@@ -3249,12 +3308,12 @@ zed:
   heat-tempest-plugin: 1.6.0
   heat-translator: 2.6.0
   horizon: 23.0.0
-  ironic: 21.1.0
-  ironic-inspector: 11.1.0
+  ironic: 21.1.1
+  ironic-inspector: 11.1.1
   ironic-lib: 5.3.0
   ironic-prometheus-exporter: 4.0.0
-  ironic-python-agent: 9.1.0
-  ironic-python-agent-builder: 5.0.0
+  ironic-python-agent: 9.1.1
+  ironic-python-agent-builder: 5.0.1
   ironic-tempest-plugin: 2.5.0
   ironic-ui: 6.0.0
   kayobe: 13.4.0
@@ -3262,8 +3321,8 @@ zed:
   kayobe-config-dev: 13.3.0
   keystone: 22.0.1
   keystone_tempest_plugin: 0.10.0
-  keystoneauth1: 5.0.0
-  keystonemiddleware: 10.1.0
+  keystoneauth1: 5.0.1
+  keystonemiddleware: 10.1.1
   kolla: 15.4.0
   kolla-ansible: 15.4.0
   kuryr-kubernetes: 7.0.0
@@ -3273,13 +3332,13 @@ zed:
   magnum: 15.0.1
   magnum-ui: 11.0.0
   magnum_tempest_plugin: 1.7.0
-  manila: 15.3.0
+  manila: 15.4.0
   manila-tempest-plugin: 1.10.0
   manila-ui: 8.0.0
   masakari: 14.0.2
   masakari-dashboard: 7.0.0
   masakari-monitors: 14.0.0
-  metalsmith: 1.8.0
+  metalsmith: 1.8.1
   mistral: 15.0.0
   mistral-dashboard: 15.0.0
   mistral-extra: 12.0.1
@@ -3301,19 +3360,19 @@ zed:
   networking-bagpipe: 17.0.0
   networking-baremetal: 6.0.0
   networking-bgpvpn: 17.0.0
-  networking-generic-switch: 7.0.0
+  networking-generic-switch: 7.0.1
   networking-hyperv: 13.0.0
   networking-odl: 21.0.0
   networking-sfc: 15.0.0
   neutron: 21.2.0
   neutron-dynamic-routing: 21.0.1
-  neutron-fwaas: 17.0.0
+  neutron-fwaas: 17.0.1
   neutron-fwaas-dashboard: 4.0.0
   neutron-lib: 3.1.2
   neutron-tempest-plugin: 2.0.0
   neutron-vpnaas: 21.0.0
   neutron-vpnaas-dashboard: 7.0.0
-  nova: 26.2.1
+  nova: 26.2.2
   octavia: 11.0.1
   octavia-dashboard: 10.0.0
   octavia-lib: 3.1.0
@@ -3327,7 +3386,7 @@ zed:
   os-brick: 6.1.2
   os-ken: 2.5.0
   os-win: 5.7.1
-  os_vif: 3.0.0
+  os_vif: 3.0.1
   osc-lib: 2.6.2
   osc-placement: 4.0.0
   oslo.cache: 3.2.0
@@ -3335,7 +3394,7 @@ zed:
   oslo.context: 5.0.0
   oslo.db: 12.1.1
   oslo.limit: 2.0.1
-  oslo.messaging: 14.0.2
+  oslo.messaging: 14.0.3
   oslo.metrics: 0.5.1
   oslo.middleware: 5.0.0
   oslo.policy: 4.0.0
@@ -3410,7 +3469,7 @@ zed:
   python-neutronclient: 8.1.0
   python-novaclient: 18.1.0
   python-octaviaclient: 3.1.0
-  python-openstackclient: 6.0.0
+  python-openstackclient: 6.0.1
   python-saharaclient: 4.0.2
   python-senlinclient: 2.5.0
   python-solumclient: 3.6.1
@@ -3444,7 +3503,7 @@ zed:
   solum-tempest-plugin: 2.5.0
   stevedore: 4.0.2
   storlets: 10.0.0
-  sushy: 4.3.3
+  sushy: 4.3.4
   swift: 2.30.1
   tacker: 8.0.0
   tacker-horizon: 6.0.0
@@ -3465,6 +3524,6 @@ zed:
   zaqar: 15.0.0
   zaqar-ui: 13.0.0
   zaqar_tempest_plugin: 1.5.0
-  zun: 10.0.0
+  zun: 10.0.1
   zun-tempest-plugin: 4.6.0
   zun-ui: 10.0.0
