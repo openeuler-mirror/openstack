@@ -318,8 +318,18 @@ oos env list
     [可选] 查看所有弹性云服务器，显式服务器IP、ID、Name、Status
 -i, --image
     [可选] 查看所有镜像，显式镜像ID、Name、Status
+-f, --flavor
+    [可选] 查看所有虚拟机规格，显式规格ID、Name、vcpus、ram
+-v, --vpc
+    [可选] 查看所有虚拟私有云
+-s, --subnet
+    [可选] 查看所有子网
+-sg, --security-group
+    [可选] 查看所有安全组
+-sr, --security-group-rule
+    [可选] 查看所有安全组规则
 -k, --keyword
-    [可选] 查看弹性云服务器或者镜像时，过滤Name中包含keyword关键字的条目
+    [可选] 查看弹性云服务器或者镜像或者虚拟机规格时，过滤Name中包含keyword关键字的条目
 -t, --image-type
     [可选] 查看镜像时指定镜像类型，公共、私有、共享、市场
 ```
@@ -362,6 +372,79 @@ oos env changeos
     [可选] 指定云服务器切换系统后的登陆密码，不指定为原密码
 -f, --file
     [可选] 支持以文件方式注入用户数据，需要镜像支持cloud-init，不支持不影响切换系统
+```
+
+- 创建弹性云服务器
+```
+oos env create-server
+```
+该命令所支持参数如下：
+```
+-f, --flavor
+    [必选] 指定服务器规格
+-i, --image-id
+    [必选] 指定镜像ID
+-v, --vpc-name
+    [必选] 指定所属私有云vpc名称
+-n, --name
+    [必选] 指定弹性云名称
+-p, --pwd
+    [必选] 指定云服务器登陆密码
+-r, --root-size
+    [必选] 指定启动卷的大小，单位GB
+-d, --data-size
+    [可选] 指定数据卷的大小，单位GB
+```
+
+- 删除弹性云服务器
+```
+oos env delete-server <ip> <id>
+```
+
+- 查看、绑定、解绑安全组和弹性云服务器
+```
+oos env sg-relation <server-ip>
+```
+该命令所支持参数如下：
+```
+-a, --associate
+    [可选] 绑定安全组
+-d, --disassociate
+    [可选] 解绑安全组
+```
+
+- 创建或删除安全组
+```
+oos env sg-operate <name>
+```
+该命令所支持参数如下：
+```
+-i, --is-delete
+    [可选] 标记创建或删除安全组，默认创建安全组
+```
+
+- 创建或删除安全组安全组规则
+```
+oos env sr-operate <name>
+```
+该命令所支持参数如下：
+```
+-i, --ip
+    [可选] 安全组规则ip，ip格式为CIDR
+-n, --name
+    [可选] 指定安全组名称
+-e, --egress
+    [可选] 指定出入方向，默认ingress
+-t, --ethertype
+    [可选] 指定IP地址协议类型
+-p, --protocol
+    [可选] 指定协议类型
+-pt, --port
+    [可选] 指定端口范围
+-d, --description
+    [可选] 安全组规则描述
+-r, --rule-id
+    [可选] 删除安全组规则，与其他参数同时使用时优先删除规则
 ```
 
 

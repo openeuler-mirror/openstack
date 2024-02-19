@@ -17,15 +17,25 @@ def group():
 
 @group.command(name='list', help='List environment')
 @click.option('-r', '--remote',
-              help='List remote all ECS servers or target ip')
+              help='List remote all ECS servers or target ip, the format should be all/1.1.1.1')
 @click.option('-i', '--image', is_flag=True, default=False,
               help='List all images')
+@click.option('-f', '--flavor', is_flag=True, default=False,
+              help='List all flavor')
+@click.option('-v', '--vpc', is_flag=True, default=False,
+              help='List all vpc')
+@click.option('-s', '--subnet',
+              help='List all subnet, this para need vpc-id')
+@click.option('-sg', '--security-group', is_flag=True, default=False,
+              help='List all security group')
+@click.option('-sr', '--security-group-rule', is_flag=True, default=False,
+              help='List all security group rule, the keyword parameter can be used to filter GroupID')
 @click.option('-k', '--keyword',
               help='List keyword in server/image name')
 @click.option('-t', '--image-type',
               type=click.Choice(['gold', 'private', 'shared', 'market']),
               help='Choice the type of image to list')
-def list(remote, image, keyword, image_type):
+def list(remote, image, flavor, vpc, subnet, security_group, security_group_rule, keyword, image_type):
     if remote:
         cloud_action = provider.HuaweiCloudProvider()
         cloud_action.list_servers(remote, keyword, True)
@@ -34,6 +44,31 @@ def list(remote, image, keyword, image_type):
     if image:
         cloud_action = provider.HuaweiCloudProvider()
         cloud_action.list_all_images(keyword, image_type, True)
+        return
+
+    if flavor:
+        cloud_action = provider.HuaweiCloudProvider()
+        cloud_action.list_flavors(keyword)
+        return
+    
+    if subnet:
+        cloud_action = provider.HuaweiCloudProvider()
+        cloud_action.list_subnet(subnet)
+        return
+
+    if security_group:
+        cloud_action = provider.HuaweiCloudProvider()
+        cloud_action.list_security_group()
+        return
+    
+    if security_group_rule:
+        cloud_action = provider.HuaweiCloudProvider()
+        cloud_action.list_security_group_rules(keyword)
+        return
+
+    if vpc:
+        cloud_action = provider.HuaweiCloudProvider()
+        cloud_action.list_all_vpc()
         return
 
     table = prettytable.PrettyTable(constants.TABLE_COLUMN)
@@ -258,3 +293,106 @@ def changeos(ip, server_id, image_id, keyword, pwd, file):
 
     cloud_action = provider.HuaweiCloudProvider()
     cloud_action.change_os(ip, server_id, image_id, keyword, pwd, user_data)
+
+
+@group.command(name='create-server', help='create one ECS server')
+@click.option('-i', '--image', required=True,
+              help='The image id you want to use')
+@click.option('-f', '--flavor', required=True,
+              help='The flavor id you want to use')
+@click.option('-v', '--vpc-name', required=True,
+              help='The vpc name you want to use')
+@click.option('-s', '--subnet', required=True,
+              help='The subnet name you want to use')
+@click.option('-n', '--name', required=True,
+              help='The name you want to use')
+@click.option('-p', '--pwd', required=True,
+              help='The passward you want to use')
+@click.option('-r', '--root-size', required=True,
+              help='The root volume size(GB), the size should be number')
+@click.option('-d', '--data-size',
+              help='The data volume size(GB), the size should be number')
+def create_server(image, flavor, vpc_name, subnet, name, pwd, root_size, data_size):
+    def check_size(sz):
+        if sz:
+            try:
+                return int(sz)
+            except:
+                raise click.ClickException('bad size value')
+        # data size可以不要返回None, root size不会走这里
+        return None
+    
+    cloud_action = provider.HuaweiCloudProvider()
+    cloud_action.create_ecs_server(image, flavor, vpc_name, subnet, name, pwd, 
+                                   check_size(root_size), 
+                                   check_size(data_size))
+
+@group.command(name='delete-server', help='delete ECS server')
+@click.argument('ip', type=str, required=True)
+@click.argument('id', type=str, required=True)
+def delete_server(ip, id):
+    cloud_action = provider.HuaweiCloudProvider()
+    if not cloud_action.check_info_befor_action(ip, id):
+        return
+    # 直接使用已有函数，适配入参即可
+    server_info = [[id]]
+    cloud_action.delete_servers(server_info)
+
+
+@group.command(name='sg-relation', help='list/associate/disassociate security-group of server')
+@click.argument('server-ip', type=str, required=True)
+@click.option('-a', '--associate',
+              help='The security group name you want to associate with specify server-ip')
+@click.option('-d', '--disassociate',
+              help='The security group name you want to disassociate with specify server-ip')
+def sg_relation(server_ip, associate, disassociate):
+    cloud_action = provider.HuaweiCloudProvider()
+
+    if associate:
+        cloud_action.associate_security_group_with_server(server_ip, associate)
+        return
+    
+    if disassociate:
+        cloud_action.disassociate_security_group_with_server(server_ip, disassociate)
+        return
+
+    cloud_action.security_group_of_specify_ip(server_ip)
+
+
+@group.command(name='sg-operate', help='Create or Delete the security-group')
+@click.argument('name', type=str, required=True)
+@click.option('-i', '--is-delete', is_flag=True, default=False, 
+              help='create security-group by default, or delete')
+def sg_operate(name, is_delete):
+    # TODO: v2版本API暂时不支持添加安全组描述 -d参数留给description
+    # TODO: v3版本已支持，但v2和v3无法无缝切换，整体改动较大
+    cloud_action = provider.HuaweiCloudProvider()
+
+    if is_delete:
+        cloud_action.delete_security_group(name)
+    else:
+        cloud_action.create_security_group(name)
+
+@group.command(name='sr-operate', help='Create or Delete the security-group-rule')
+@click.option('-i', '--ip', help='The security-group-rule ip, the format should be cidr')
+@click.option('-n', '--name', help='The security group name')
+@click.option('-e', '--egress', is_flag=True, default=False,
+              help='The direction of the rule, ingress by default, or egress')
+@click.option('-t', '--ethertype',
+              type=click.Choice(['IPv4', 'IPv6']), default='IPv4')
+@click.option('-p', '--protocol', help='The protocol of the rule')
+@click.option('-pt', '--port', help='The port of the rule, the format should be 22to23')
+@click.option('-d', '--description', help='The description of the rule')
+@click.option('-r', '--rule-id',
+              help='Use to delete security-group-rule with security-group-rule id, high priority')
+def sg_operate(ip, name, egress, ethertype, protocol, port, description, rule_id):
+    cloud_action = provider.HuaweiCloudProvider()
+
+    direction = 'egress' if egress else 'ingress'
+
+    if rule_id:
+        cloud_action.delete_security_group_rule(rule_id)
+        return
+
+    cloud_action.create_security_group_rule(name, direction, ethertype, 
+                                                protocol, port, ip, description)
