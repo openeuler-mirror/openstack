@@ -52,7 +52,7 @@
   ironic-python-agent-builder: 5.1.0
   ironic-tempest-plugin: 2.6.1
   ironic-ui: 6.1.0
-  kayobe: 14.3.0
+  kayobe: 14.4.0
   kayobe-config: 14.3.0
   kayobe-config-dev: 14.2.0
   keystone: 23.0.1
@@ -60,7 +60,7 @@
   keystoneauth1: 5.1.2
   keystonemiddleware: 10.2.0
   kolla: 16.3.0
-  kolla-ansible: 16.3.0
+  kolla-ansible: 16.4.0
   kuryr-kubernetes: 8.0.0
   kuryr-lib: 2.7.0
   kuryr-libnetwork: 11.0.0
@@ -320,15 +320,15 @@
   ironic-python-agent-builder: 5.2.0
   ironic-tempest-plugin: 2.7.0
   ironic-ui: 6.2.1
-  kayobe: 15.1.0
+  kayobe: 15.2.0
   kayobe-config: 15.1.0
   kayobe-config-dev: 15.1.0
   keystone: 24.0.0
   keystone_tempest_plugin: 0.13.0
   keystoneauth1: 5.3.0
   keystonemiddleware: 10.4.1
-  kolla: 17.1.0
-  kolla-ansible: 17.1.0
+  kolla: 17.2.0
+  kolla-ansible: 17.2.0
   kuryr-kubernetes: 9.0.0
   kuryr-lib: 2.8.0
   kuryr-libnetwork: 12.0.0
@@ -2873,7 +2873,9 @@ yoga:
   freezer_tempest_plugin: 1.4.0
   glance: 24.2.1
   glance-tempest-plugin: 0.3.0
+  glance-yoga: eom
   glance_store: 3.0.1
+  glance_store-yoga: eom
   heat-agents: 4.0.1
   heat-agents-yoga: eom
   heat-dashboard: 7.0.1
@@ -2919,10 +2921,10 @@ yoga:
   kuryr-lib: 2.5.0
   kuryr-libnetwork: 9.0.0
   kuryr-tempest-plugin: 0.12.0
-  magnum: 14.1.1
+  magnum: 14.1.2
   magnum-ui: 10.0.0
   magnum_tempest_plugin: 1.6.0
-  manila: 14.1.1
+  manila: 14.2.0
   manila-tempest-plugin: 1.7.0
   manila-ui: 7.0.1
   masakari: 13.0.3
@@ -3151,6 +3153,7 @@ yoga:
   python-freezerclient: 4.4.0
   python-freezerclient-yoga: eom
   python-glanceclient: 3.6.0
+  python-glanceclient-yoga: eom
   python-heatclient: 2.5.1
   python-heatclient-yoga: eom
   python-ironic-inspector-client: 4.7.1
@@ -3316,20 +3319,20 @@ zed:
   ironic-python-agent-builder: 5.0.1
   ironic-tempest-plugin: 2.5.0
   ironic-ui: 6.0.0
-  kayobe: 13.4.0
+  kayobe: 13.5.0
   kayobe-config: 13.4.0
   kayobe-config-dev: 13.3.0
   keystone: 22.0.1
   keystone_tempest_plugin: 0.10.0
   keystoneauth1: 5.0.1
   keystonemiddleware: 10.1.1
-  kolla: 15.4.0
-  kolla-ansible: 15.4.0
+  kolla: 15.5.0
+  kolla-ansible: 15.5.0
   kuryr-kubernetes: 7.0.0
   kuryr-lib: 2.6.0
   kuryr-libnetwork: 10.0.0
   kuryr-tempest-plugin: 0.13.0
-  magnum: 15.0.1
+  magnum: 15.0.2
   magnum-ui: 11.0.0
   magnum_tempest_plugin: 1.7.0
   manila: 15.4.0
@@ -3461,7 +3464,7 @@ zed:
   python-ironicclient: 5.0.1
   python-keystoneclient: 5.0.1
   python-magnumclient: 4.0.0
-  python-manilaclient: 4.1.2
+  python-manilaclient: 4.1.3
   python-masakariclient: 8.0.0
   python-mistralclient: 4.5.0
   python-monascaclient: 2.6.0
