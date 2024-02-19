@@ -12,6 +12,7 @@ openeuler:
   BIDK: sig-HPC
   BiSheng-Adoptium: Compiler
   BiShengCLanguage: Compiler
+  CCA: sig-confidential-computing
   CPM4OSSP-PROXY: sig-ops
   CPM4OSSP-SERVER: sig-ops
   CPM4OSSP-UI: sig-ops
@@ -68,6 +69,7 @@ openeuler:
   Replay-N: sig-high-performance-network
   RobotBrain: sig-embedded
   RobotStudio: sig-embedded
+  SBC-sig: sig-SBC
   TC: TC
   TCP_option_address: Kernel
   TSSE-driver: sig-Compatibility-Infra
@@ -79,7 +81,7 @@ openeuler:
   aarch32-rootfs-builder: sig-Yocto
   abichecker: dev-utils
   ai-tools: ai
-  allwinner-kernel: sig-RaspberryPi
+  allwinner-kernel: sig-SBC
   amqp-proxy: sig-message-middleware
   anbox: sig-recycle
   aops-apollo: sig-ops
@@ -415,15 +417,16 @@ openeuler:
   qt6: sig-QT
   quick-issue: sig-OpenDesign
   radiaTest: sig-QA
-  raspberrypi: sig-RaspberryPi
-  raspberrypi-build: sig-RaspberryPi
-  raspberrypi-kernel: sig-RaspberryPi
+  raspberrypi: sig-SBC
+  raspberrypi-build: sig-SBC
+  raspberrypi-kernel: sig-SBC
   re2-rust: Base-service
   release-management: sig-release-management
   release-tools: sig-EasyLife
   reproducible-builds: sig-reproducible-builds
-  rockchip: sig-RaspberryPi
-  rockchip-kernel: sig-RaspberryPi
+  riscv-kernel: sig-RISC-V
+  rockchip: sig-SBC
+  rockchip-kernel: sig-SBC
   rocketmq-operator: sig-message-middleware
   ros: sig-ROS
   ros-porting-tools: sig-ROS
@@ -742,6 +745,7 @@ src-openeuler:
   Xaw3d: Desktop
   Xen: sig-industrial-control
   Xenomai4: sig-industrial-control
+  Xline: sig-Rust
   XmlSchema: Application
   a52dec: sig-epol
   aalib: Others
@@ -1091,6 +1095,7 @@ src-openeuler:
   bsf: dev-utils
   bsfilter: sig-UKUI
   bsh: sig-Java
+  btop: dev-utils
   btrfs-progs: Storage
   bubblemail: GNOME
   bubblewrap: Base-service
@@ -1864,7 +1869,7 @@ src-openeuler:
   fwupd: System-tool
   fwupdate: Private
   fxload: Storage
-  g2clib: sig-recycle
+  g2clib: Base-service
   gajim: sig-mate-desktop
   gala-anteater: sig-ops
   gala-gopher: sig-ebpf
@@ -2472,6 +2477,7 @@ src-openeuler:
   gupnp-dlna: GNOME
   gupnp-igd: Programming-language
   gutenprint: System-tool
+  guvcview: Application
   gv: Desktop
   gvfs: Desktop
   gvisor: sig-CloudNative
@@ -2896,7 +2902,7 @@ src-openeuler:
   jansi-native: sig-Java
   jansson: Base-service
   jarjar: sig-Java
-  jasper: sig-recycle
+  jasper: Base-service
   jasperreports: sig-Java
   jastow: sig-Java
   jasypt: sig-Java
@@ -3358,6 +3364,7 @@ src-openeuler:
   kpatch: Base-service
   kpeoplevcard: sig-KDE
   kpublictransport: sig-KDE
+  kquickimageeditor: sig-KDE
   krb5: Base-service
   krecorder: sig-KDE
   kregexpeditor: sig-KDE
@@ -3803,6 +3810,7 @@ src-openeuler:
   libpgf: sig-KDE
   libpinyin: Others
   libpipeline: Base-service
+  libplacebo: Desktop
   libplist: Base-service
   libpng: Base-service
   libpng12: sig-recycle
@@ -6908,7 +6916,7 @@ src-openeuler:
   picketbox-xacml: sig-Java
   pidgin: Application
   pig: DB
-  pigpio: sig-RaspberryPi
+  pigpio: sig-SBC
   pigz: Base-service
   pim-data-exporter: sig-KDE
   pim-sieve-editor: sig-KDE
@@ -7250,6 +7258,7 @@ src-openeuler:
   python-abimap: sig-python-modules
   python-ablog: sig-python-modules
   python-absl-py: A-Tune
+  python-accessible-pygments: sig-python-modules
   python-actdiag: sig-python-modules
   python-adb-shell: sig-python-modules
   python-adodbapi: sig-python-modules
@@ -9143,6 +9152,7 @@ src-openeuler:
   python-types-enum34: sig-openstack
   python-types-ipaddress: sig-openstack
   python-types-paramiko: sig-openstack
+  python-types-python-dateutil: sig-python-modules
   python-typing: sig-python-modules
   python-typing-extensions: sig-openstack
   python-typing-inspect: sig-python-modules
@@ -9338,6 +9348,7 @@ src-openeuler:
   pyxdg: Programming-language
   qax-gm-certificates: sig-security-facility
   qca: sig-KDE
+  qcoro: sig-KDE
   qdox: Base-service
   qemu: Virt
   qfs: bigdata
@@ -9477,13 +9488,13 @@ src-openeuler:
   raptor2: Others
   rarian: Base-service
   rasdaemon: Base-service
-  raspberrypi-bluetooth: sig-RaspberryPi
-  raspberrypi-build: sig-RaspberryPi
-  raspberrypi-eeprom: sig-RaspberryPi
-  raspberrypi-firmware: sig-RaspberryPi
-  raspberrypi-kernel: sig-RaspberryPi
-  raspberrypi-userland: sig-RaspberryPi
-  raspi-config: sig-RaspberryPi
+  raspberrypi-bluetooth: sig-SBC
+  raspberrypi-build: sig-SBC
+  raspberrypi-eeprom: sig-SBC
+  raspberrypi-firmware: sig-SBC
+  raspberrypi-kernel: sig-SBC
+  raspberrypi-userland: sig-SBC
+  raspi-config: sig-SBC
   raspimouse2: sig-ROS
   raspimouse_description: sig-ROS
   rasqal: Application
@@ -10784,6 +10795,7 @@ src-openeuler:
   vpnc: Networking
   vpnc-script: Application
   vrpn: sig-ROS
+  vs2qt: sig-porting-platform-winapp
   vsftpd: Networking
   vte: Application
   vte291: GNOME
