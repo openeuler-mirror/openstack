@@ -8182,6 +8182,7 @@ src-openeuler:
   python-memcached: sig-python-modules
   python-memory-profiler: sig-openstack
   python-mergedeep: sig-python-modules
+  python-meson-python: sig-python-modules
   python-metaextract: sig-python-modules
   python-metar: sig-python-modules
   python-micawber: sig-python-modules
@@ -9157,6 +9158,7 @@ src-openeuler:
   python-typing-extensions: sig-openstack
   python-typing-inspect: sig-python-modules
   python-typogrify: sig-python-modules
+  python-tzdata: sig-python-modules
   python-tzlocal: sig-python-modules
   python-u-msgpack-python: Base-service
   python-uamqp: sig-openstack
