@@ -2926,10 +2926,14 @@ yoga:
   kuryr-tempest-plugin: 0.12.0
   magnum: 14.1.2
   magnum-ui: 10.0.0
+  magnum-ui-yoga: eom
+  magnum-yoga: eom
   magnum_tempest_plugin: 1.6.0
   manila: 14.2.0
   manila-tempest-plugin: 1.7.0
   manila-ui: 7.0.1
+  manila-ui-yoga: eom
+  manila-yoga: eom
   masakari: 13.0.3
   masakari-dashboard: 6.0.0
   masakari-dashboard-yoga: eom
@@ -3172,7 +3176,9 @@ yoga:
   python-keystoneclient: 4.4.0
   python-keystoneclient-yoga: eom
   python-magnumclient: 3.6.0
+  python-magnumclient-yoga: eom
   python-manilaclient: 3.3.2
+  python-manilaclient-yoga: eom
   python-masakariclient: 7.2.0
   python-masakariclient-yoga: eom
   python-mistralclient: 4.4.0
