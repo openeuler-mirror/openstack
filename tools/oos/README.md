@@ -127,6 +127,35 @@ oos dependence compare 2023.1_cached_file -b 'master openEuler-23.03' -o my_resu
 master分支3.7.2，高于上限要求，openEuler-23.03分支3.5.2，满足版本要求。  
 `openstack-cyborg`属于社区指定的软件包，要求版本为10.0.0。指定分支均不满足要求
 
+4. 调用oos命令，按行读取文件内容，生成list，并比较两个list的特定差异，
+默认生成comp_result.csv文件存放比较结果
+
+```
+oos dependence compare-list file1 file2
+```
+
+其他支持的参数有：
+```
+-o, --output
+    指定命令行生成的文件名，默认为comp_result.csv
+```
+
+file1中有ansible-lint、babel等软件仓名字，file2中有ansible-lint、
+avro-python3等软件仓名字，比较两个软件仓差异结果如下：
+
+|Right|Left|
+|---|---|
+|ansible-lint|ansible-lint|
+|***|avro-python3|
+|babel|***|
+|***|crudini|
+|***|dibbler|
+|diskimage-builder|diskimage-builder|
+|future|***|
+|gnocchi|gnocchi|
+|***|google-auth-httplib2|
+
+
 
 ## 获取OpenStack SIG PR列表
 

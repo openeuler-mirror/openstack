@@ -372,6 +372,35 @@ class Comp:
             csv_file.write(invalid_repo_name + '\n')
 
 
+def compare_sorted_list(right: list, left: list, sep=','):
+    '''
+    字母序比较两个个list 并对其 缺失填*** 分隔符默认tab
+    '''
+    i, j = 0, 0
+    mi, mj = len(right), len(left)
+    res = ''
+    while i < mi and j < mj:
+        if right[i] == left[j]:
+            res += right[i] + sep + right[i] + '\n'
+            i += 1
+            j += 1
+        elif right[i] > left[j]:
+            res += '***' + sep + left[j] + '\n'
+            j += 1
+        elif right[i] < left[j]:
+            res += right[i] + sep + '***' + '\n'
+            i += 1
+
+    if i > j:
+        for ele in right[i:]:
+            res += ele + sep + ele + '\n'
+    else:
+        for ele in left[j:]:
+            res += ele + sep + ele + '\n'
+    
+    return res
+
+
 @click.group(name='dependence', help='package dependence related commands')
 def group():
     pass
@@ -401,3 +430,22 @@ def generate(compare, compare_from, compare_branch, output, token, location):
 def compare(branches, output, release, packages, append, token, location):
     comp = Comp(branches, output, release, packages, append, token, location)
     comp.compare_dependence_with_branch_version()
+
+
+@group.command(name='compare-list', help='Compare two list in the file')
+@click.argument('right', type=str)
+@click.argument('left', type=str)
+@click.option('-o', '--output', default='comp_result', help='Output file name')
+def compare_list(right, left, output):
+    output = output + ".csv" if not output.endswith(".csv") else output
+    right = os.path.abspath(right)
+    left = os.path.abspath(left)
+    with open(right, 'r', encoding='utf-8') as f:
+        right_list = f.read().splitlines()
+    with open(left, 'r', encoding='utf-8') as f:
+        left_list = f.read().splitlines()
+    right_list.sort()
+    left_list.sort()
+
+    with open(output, 'w', encoding='utf-8') as f:
+        f.write(compare_sorted_list(right_list, left_list))
