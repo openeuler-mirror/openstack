@@ -2966,8 +2966,11 @@ yoga:
   monasca-ui-yoga: eom
   murano: 13.0.0
   murano-agent: 9.0.0
+  murano-agent-yoga: eom
   murano-dashboard: 13.0.0
+  murano-dashboard-yoga: eom
   murano-tempest-plugin: 2.4.0
+  murano-yoga: eom
   networking-bagpipe: 16.0.0
   networking-bagpipe-yoga: eom
   networking-baremetal: 5.1.1
@@ -3110,41 +3113,79 @@ yoga:
   ovsdbapp-yoga: eom
   patrole: 0.14.0
   puppet-aodh: 20.3.1
+  puppet-aodh-yoga: eom
   puppet-barbican: 20.3.1
+  puppet-barbican-yoga: eom
   puppet-ceilometer: 20.4.1
+  puppet-ceilometer-yoga: eom
   puppet-cinder: 20.4.1
+  puppet-cinder-yoga: eom
   puppet-cloudkitty: 9.3.1
+  puppet-cloudkitty-yoga: eom
   puppet-designate: 20.3.2
+  puppet-designate-yoga: eom
   puppet-ec2api: 20.3.0
+  puppet-ec2api-yoga: eom
   puppet-glance: 20.4.1
+  puppet-glance-yoga: eom
   puppet-gnocchi: 20.3.2
+  puppet-gnocchi-yoga: eom
   puppet-heat: 20.4.1
+  puppet-heat-yoga: eom
   puppet-horizon: 20.4.0
+  puppet-horizon-yoga: eom
   puppet-ironic: 20.4.2
+  puppet-ironic-yoga: eom
   puppet-keystone: 20.4.1
+  puppet-keystone-yoga: eom
   puppet-magnum: 20.3.1
+  puppet-magnum-yoga: eom
   puppet-manila: 20.3.2
+  puppet-manila-yoga: eom
   puppet-mistral: 20.3.1
+  puppet-mistral-yoga: eom
   puppet-murano: 20.3.1
+  puppet-murano-yoga: eom
   puppet-neutron: 20.4.0
+  puppet-neutron-yoga: eom
   puppet-nova: 20.4.2
+  puppet-nova-yoga: eom
   puppet-octavia: 20.4.1
+  puppet-octavia-yoga: eom
+  puppet-openstack-integration-yoga: eom
   puppet-openstack_extras: 20.3.1
+  puppet-openstack_extras-yoga: eom
+  puppet-openstack_spec_helper-yoga: eom
   puppet-openstacklib: 20.3.1
+  puppet-openstacklib-yoga: eom
   puppet-oslo: 20.4.0
+  puppet-oslo-yoga: eom
   puppet-ovn: 20.4.0
+  puppet-ovn-yoga: eom
   puppet-placement: 7.3.1
+  puppet-placement-yoga: eom
   puppet-qdr: 9.3.0
+  puppet-qdr-yoga: eom
   puppet-rally: 8.3.0
+  puppet-rally-yoga: eom
   puppet-sahara: 20.3.1
+  puppet-sahara-yoga: eom
   puppet-swift: 20.4.1
+  puppet-swift-yoga: eom
   puppet-tacker: 20.3.0
+  puppet-tacker-yoga: eom
   puppet-tempest: 20.4.0
+  puppet-tempest-yoga: eom
   puppet-trove: 20.4.1
+  puppet-trove-yoga: eom
   puppet-vitrage: 10.3.2
+  puppet-vitrage-yoga: eom
   puppet-vswitch: 16.3.1
+  puppet-vswitch-yoga: eom
   puppet-watcher: 20.3.2
+  puppet-watcher-yoga: eom
   puppet-zaqar: 20.3.1
+  puppet-zaqar-yoga: eom
   python-adjutant: 4.0.0
   python-adjutant-yoga: eom
   python-adjutantclient: 0.10.0
@@ -3185,6 +3226,7 @@ yoga:
   python-monascaclient: 2.5.0
   python-monascaclient-yoga: eom
   python-muranoclient: 2.4.1
+  python-muranoclient-yoga: eom
   python-neutronclient: 7.8.0
   python-neutronclient-yoga: eom
   python-novaclient: 17.7.0
