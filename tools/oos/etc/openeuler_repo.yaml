@@ -152,6 +152,7 @@ openeuler:
   dde: sig-DDE
   deepin-rpm-installer: sig-DDE
   deepin-upgrade-tool: sig-DDE
+  devkit-pipeline: sig-CICD
   digest-list-tools: sig-security-facility
   dim: sig-security-facility
   dim_tools: sig-security-facility
@@ -223,6 +224,10 @@ openeuler:
   hpcrunner: sig-HPC
   hsak: Storage
   hw-buaa-lab: sig-OSCourse
+  hygon-devkit: sig-Hygon
+  hygon-edk2: sig-Hygon
+  hygon-kernel: sig-Hygon
+  hygon-qemu: sig-Hygon
   iSulad: iSulad
   iSulad-img: sig-recycle
   ifm_nettle: sig-AccLib
@@ -5766,6 +5771,7 @@ src-openeuler:
   perl-File-Sync: sig-perl-modules
   perl-File-Temp: sig-perl-modules
   perl-File-Touch: sig-perl-modules
+  perl-File-TreeCreate: sig-perl-modules
   perl-File-Type: sig-perl-modules
   perl-File-Type-WebImages: sig-perl-modules
   perl-File-Which: sig-perl-modules
