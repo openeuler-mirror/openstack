@@ -3334,7 +3334,7 @@ zed:
   adjutant-ui: 5.0.0
   ansible-collection-kolla: 2.2.0
   ansible-role-atos-hsm: 4.0.0
-  ansible-role-lunasa-hsm: 4.0.0
+  ansible-role-lunasa-hsm: 4.0.1
   ansible-role-thales-hsm: 4.0.0
   aodh: 15.0.0
   aodhclient: 3.0.0
@@ -3403,7 +3403,7 @@ zed:
   manila: 15.4.0
   manila-tempest-plugin: 1.10.0
   manila-ui: 8.0.0
-  masakari: 14.0.2
+  masakari: 14.0.3
   masakari-dashboard: 7.0.0
   masakari-monitors: 14.0.0
   metalsmith: 1.8.1
