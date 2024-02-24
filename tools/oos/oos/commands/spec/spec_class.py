@@ -60,7 +60,7 @@ class RPMSpec(object):
                 with urllib.request.urlopen(url) as u:
                     self._pypi_json = json.loads(u.read().decode('utf-8'))
             except Exception:
-                raise click.ClickException(f"Fail to fetch info from pypi, package: {self.pypi_name}, version: {self.version}")
+                raise click.ClickException(f"Failed to fetch info from pypi, package: {self.pypi_name}, version: {self.version}")
         return self._pypi_json
 
     @property
@@ -276,7 +276,7 @@ class RPMSpecBuild(object):
         try:
             subprocess.call(["dnf", "install", "-y", "rpmdevtools", "dnf-plugins-core"])
         except Exception:
-            raise click.ClickException("Fail to install rpm tools, You must install them by hand first")
+            raise click.ClickException("Failed to install rpm tools, You must install them by hand first")
 
     def _init_build_root(self):
         try:
@@ -284,7 +284,7 @@ class RPMSpecBuild(object):
                 os.makedirs(f"rpmbuild/{subdir}", exist_ok=True)
             shutil.copyfile(self.spec, f"rpmbuild/SPECS/{self.spec}")
         except Exception as e:
-            raise click.ClickException(f"Fail to init the rpm build root folder, reason:{e}")
+            raise click.ClickException(f"Failed to init the rpm build root folder, reason:{e}")
 
     def _get_local_source(self):
         with open(self.spec) as f_spec:
@@ -301,7 +301,7 @@ class RPMSpecBuild(object):
         try:
             subprocess.call(["dnf", "builddep", '-y', self.spec])
         except Exception:
-            raise click.ClickException("Fail to install build dependencies.")
+            raise click.ClickException("Failed to install build dependencies.")
 
         try:
             pwd = os.getcwd()
@@ -383,7 +383,7 @@ class RPMCopy():
                     os.system('cp -f ' + org_file + ' ~/rpmbuild/SOURCES')
 
         except Exception as e:
-            print('copy failed: ', e)
+            print('Copy failed: ', e)
 
         if self.build:
             self._rpmbuild_with_spec()
