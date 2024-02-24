@@ -46,7 +46,7 @@ class Provider:
         else:
             cmds = clean_up_cmds + inject_cmds
         for cmd in cmds:
-            ret = subprocess.run(cmd, shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+            ret = subprocess.run(cmd, shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE, encoding='utf-8')
             if ret.returncode != 0:
                 print("Failed to inject ssh key for the target, please do it by hand.")
                 print("Failed command: %s" % cmd)
