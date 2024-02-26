@@ -119,7 +119,7 @@
   openstack-release-test: 4.0.0
   openstack-venus: 2.0.0
   openstacksdk: 1.0.1
-  os-brick: 6.2.2
+  os-brick: 6.2.3
   os-ken: 2.6.0
   os-win: 5.9.0
   os_vif: 3.1.1
@@ -286,7 +286,7 @@
   castellan: 4.3.0
   ceilometer: 21.0.0
   ceilometermiddleware: 3.2.0
-  cinder: 23.0.0
+  cinder: 23.1.0
   cinder-tempest-plugin: 1.10.0
   cinderlib: 5.2.0
   cliff: 4.3.0
@@ -385,7 +385,7 @@
   openstack-release-test: 5.0.0
   openstack-venus: 3.0.0
   openstacksdk: 1.5.0
-  os-brick: 6.4.0
+  os-brick: 6.4.1
   os-ken: 2.7.0
   os_vif: 3.2.0
   osc-lib: 2.8.1
@@ -2944,8 +2944,12 @@ yoga:
   metalsmith-yoga: eom
   mistral: 14.0.0
   mistral-dashboard: 14.0.1
+  mistral-dashboard-yoga: eom
   mistral-extra: 11.3.0
+  mistral-extra-yoga: eom
   mistral-lib: 2.6.0
+  mistral-lib-yoga: eom
+  mistral-yoga: eom
   mistral_tempest_tests: 1.4.0
   monasca-agent: 7.0.0
   monasca-agent-yoga: eom
@@ -3223,6 +3227,7 @@ yoga:
   python-masakariclient: 7.2.0
   python-masakariclient-yoga: eom
   python-mistralclient: 4.4.0
+  python-mistralclient-yoga: eom
   python-monascaclient: 2.5.0
   python-monascaclient-yoga: eom
   python-muranoclient: 2.4.1
