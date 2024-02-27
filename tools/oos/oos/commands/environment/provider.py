@@ -2,7 +2,7 @@ from pathlib import Path
 import subprocess
 import time
 
-import click
+import click, prettytable
 from huaweicloudsdkcore.auth.credentials import BasicCredentials
 from huaweicloudsdkcore.exceptions import exceptions
 from huaweicloudsdkecs.v2 import *
@@ -212,6 +212,22 @@ class HuaweiCloudProvider(Provider):
         nic = [PrePaidServerNic(subnet_id=subnet1_id),
                PrePaidServerNic(subnet_id=subnet2_id)]
         print("Found nic: %s,%s\n" % (self.subnet1_name, self.subnet2_name))
+        return nic
+
+    def _prepare_one_nic(self, vpc_id):
+        print("Checking nic")
+        request = ListSubnetsRequest()
+        request.vpc_id = vpc_id
+        response = self.vpc_client.list_subnets(request)
+        subnet1_id = None
+        for subnet in response.subnets:
+            if subnet.name == self.subnet1_name:
+                subnet1_id = subnet.id
+                continue
+        if not subnet1_id:
+            raise click.ClickException("No subnet named: %s\n" % self.subnet1_name)
+        nic = [PrePaidServerNic(subnet_id=subnet1_id)]
+        print("Found nic: %s\n" % self.subnet1_name)
         return nic
 
     def _prepare_image(self):
@@ -593,6 +609,348 @@ class HuaweiCloudProvider(Provider):
             print(e.error_code)
             print(e.error_msg)
 
+    def list_flavors(self, keyword):
+        try:
+            request = ListFlavorsRequest()
+            response = self.ecs_client.list_flavors(request)
+            table = prettytable.PrettyTable()
+            table.field_names = ['FlavorID', 'Name', 'vcpus', 'ram']
+            for f in response.flavors:
+                if keyword and f.name.find(keyword) == -1:
+                    continue
+
+                table.add_row([f.id, f.name, f.vcpus, f.ram])
+
+            print(table)
+        except exceptions.ClientRequestException as e:
+            print(e.status_code)
+            print(e.request_id)
+            print(e.error_code)
+            print(e.error_msg)
+
+    def list_all_vpc(self):
+        try:
+            request = ListVpcsRequest()
+            response = self.vpc_client.list_vpcs(request)
+            table = prettytable.PrettyTable()
+            table.field_names = ['VpcID', 'Name', 'cidr']
+            for v in response.vpcs:
+                table.add_row([v.id, v.name, v.cidr])
+
+            print(table)
+        except exceptions.ClientRequestException as e:
+            print(e.status_code)
+            print(e.request_id)
+            print(e.error_code)
+            print(e.error_msg)
+
+    def list_subnet(self, vpc_id):
+        try:
+            request = ListSubnetsRequest()
+            request.vpc_id = vpc_id
+            response = self.vpc_client.list_subnets(request)
+            table = prettytable.PrettyTable()
+            table.field_names = ['SubnetID', 'Name', 'cidr']
+            for s in response.subnets:
+                table.add_row([s.id, s.name, s.cidr])
+
+            print(table)
+        except exceptions.ClientRequestException as e:
+            print(e.status_code)
+            print(e.request_id)
+            print(e.error_code)
+            print(e.error_msg)
+
+    def list_security_group(self, name=None):
+        sg_id = None
+        try:
+            request = ListSecurityGroupsRequest()
+            response = self.vpc_client.list_security_groups(request)
+            table = prettytable.PrettyTable()
+            table.field_names = ['Name', 'description', 'ID']
+            for s in response.security_groups:
+                table.add_row([s.name, s.description, s.id])
+                if name and s.name == name:
+                    sg_id = s.id
+                    break
+
+            if name:  # 带参数不打印直接返回
+                return sg_id
+
+            print(table)
+        except exceptions.ClientRequestException as e:
+            print(e.status_code)
+            print(e.request_id)
+            print(e.error_code)
+            print(e.error_msg)
+
+    def create_ecs_server(self, image, flavor, vpc_name, subnet, name, pwd, root_size, data_size):
+        try:
+            request = CreateServersRequest()
+            root_volume = PrePaidServerRootVolume(
+                volumetype="SAS",
+                size=root_size
+            )
+            if data_size:
+                data_volumes = [
+                    PrePaidServerDataVolume(
+                        volumetype="SAS",
+                        size=data_size
+                    )
+                ]
+            else:
+                data_volumes = None
+
+            # 不改动原函数适配vpc_name参数
+            self.vpc_name = vpc_name
+            vpc_id = self._prapare_vpc()
+            self.subnet1_name = subnet
+            single_nics = self._prepare_one_nic(vpc_id)  # 只创建单网卡
+
+            serverPrePaidServer = PrePaidServer(
+                image_ref=image,
+                flavor_ref=flavor,
+                name=name,
+                admin_pass=pwd,
+                vpcid=vpc_id,
+                nics=single_nics,
+                publicip=self._prepare_eip(),
+                count=1,
+                is_auto_rename=False,
+                security_groups=self._prepare_security_group(),
+                root_volume=root_volume,
+                data_volumes=data_volumes
+            )
+            request.body = CreateServersRequestBody(server=serverPrePaidServer)
+            self.ecs_client.create_servers(request)
+            print('Create VM request is sent successfully.\n')
+            print('Check with: oos env list -r all -k %s\n' % name)
+
+        except exceptions.ClientRequestException as e:
+            print(e.status_code)
+            print(e.request_id)
+            print(e.error_code)
+            print(e.error_msg)
+
+    def check_info_befor_action(self, ip, id):
+        print('!!!Caution!!! you will delete/reinstall the server as follow: ')
+        check_info = self.list_servers(ip, None, True)
+        if not check_info:
+            print('No Target IP: ' + ip)
+            return False
+
+        if check_info[1] != id:
+            print('The ID and IP are inconsistent')
+            return False
+
+        answer = input('Do you want to contine?(y/n)')
+        if 'y' == answer or 'yes' == answer:
+            print('Continue...')
+            return True
+        else:
+            print('Cancel or Invalid input, please try again')
+            return False
+
+    def security_group_of_specify_ip(self, server_ip):
+        check_info = self.list_servers(server_ip, None)
+        if not check_info:
+            print('No Target IP: ' + server_ip)
+            return
+
+        try:
+            request = NovaListServerSecurityGroupsRequest()
+            request.server_id = check_info[1]
+            response = self.ecs_client.nova_list_server_security_groups(request)
+            print('Security Group of the server %s:' % check_info[2])
+            for s in response.security_groups:
+                print('%s' % s.name.strip())
+
+        except exceptions.ClientRequestException as e:
+            print(e.status_code)
+            print(e.request_id)
+            print(e.error_code)
+            print(e.error_msg)
+
+    def list_security_group_rules(self, keyword_in_group_id):
+        try:
+            request = ListSecurityGroupRulesRequest()
+            response = self.vpc_client.list_security_group_rules(request)
+            security_group_rules = response.security_group_rules
+            table_data = list()
+            table = prettytable.PrettyTable()
+            table.field_names = ['RuleID', 'EtherType',
+                    'Protocol', 'Port',
+                    'Direction', 'IPRange',
+                    'TenantID',
+                    'GroupID', 'Description']
+            for rule in security_group_rules:
+                port = str(rule.port_range_min) + '-' + str(rule.port_range_max)
+                security_group_id = str(rule.security_group_id)
+                if keyword_in_group_id and security_group_id.find(keyword_in_group_id) == -1:
+                    continue
+
+                # 防止个别例外导致非str没有len 都转str
+                table_data.append([str(rule.id), str(rule.ethertype),
+                            str(rule.protocol), port,
+                            str(rule.direction), str(rule.remote_ip_prefix),
+                            str(rule.tenant_id),
+                            security_group_id, str(rule.description)])
+
+            table_data.sort(key=lambda row:row[-2])  # 按GroupID排序在print
+            for row in table_data:
+                table.add_row(row)
+
+            print(table)
+        except exceptions.ClientRequestException as e:
+            print(e.status_code)
+            print(e.request_id)
+            print(e.error_code)
+            print(e.error_msg)
+
+    def associate_security_group_with_server(self, server_ip, security_name):
+        check_info = self.list_servers(server_ip, None)
+        if not check_info:
+            print('No Target IP: ' + server_ip)
+            return
+        try:
+            request = NovaAssociateSecurityGroupRequest()
+            request.server_id = check_info[1]
+            addSecurityGroupbody = NovaAddSecurityGroupOption(
+                name=security_name
+            )
+            request.body = NovaAssociateSecurityGroupRequestBody(
+                add_security_group=addSecurityGroupbody
+            )
+            self.ecs_client.nova_associate_security_group(request)
+            print('Associate success')
+        except exceptions.ClientRequestException as e:
+            print(e.status_code)
+            print(e.request_id)
+            print(e.error_code)
+            print(e.error_msg)
+
+    def disassociate_security_group_with_server(self, server_ip, security_name):
+        check_info = self.list_servers(server_ip, None)
+        if not check_info:
+            print('No Target IP: ' + server_ip)
+            return
+        try:
+            request = NovaDisassociateSecurityGroupRequest()
+            request.server_id = check_info[1]
+            removeSecurityGroupbody = NovaRemoveSecurityGroupOption(
+                name=security_name
+            )
+            request.body = NovaDisassociateSecurityGroupRequestBody(
+                remove_security_group=removeSecurityGroupbody
+            )
+            self.ecs_client.nova_disassociate_security_group(request)
+            print('Disassociate success')
+        except exceptions.ClientRequestException as e:
+            print(e.status_code)
+            print(e.request_id)
+            print(e.error_code)
+            print(e.error_msg)
+
+
+    def create_security_group(self, name):
+        try:
+            request = CreateSecurityGroupRequest()
+            securityGroupbody = CreateSecurityGroupOption(
+                name=name,
+            )
+            request.body = CreateSecurityGroupRequestBody(
+                security_group=securityGroupbody
+            )
+            self.vpc_client.create_security_group(request)
+            print('create security-group[%s] success' % name)
+        except exceptions.ClientRequestException as e:
+            print(e.status_code)
+            print(e.request_id)
+            print(e.error_code)
+            print(e.error_msg)
+
+
+    def delete_security_group(self, name):
+        sg_id = self.list_security_group(name)
+        if not sg_id:
+            print('no security %s' % name)
+            return
+
+        print('!!!Caution!!! You will delete the security-group %s', name)
+        print('its id: %s' % sg_id)
+        answer = input('Do you want to contine?(y/n)')
+        if 'y' == answer or 'yes' == answer:
+            pass
+        else:
+            print('Cancel or Invalid input, please try again')
+            return
+
+        try:
+            request = DeleteSecurityGroupRequest()
+            request.security_group_id = sg_id
+            self.vpc_client.delete_security_group(request)
+            print('delete security-group success')
+        except exceptions.ClientRequestException as e:
+            print(e.status_code)
+            print(e.request_id)
+            print(e.error_code)
+            print(e.error_msg)
+
+    def create_security_group_rule(self, name, direction, ethertype, protocol, 
+                                   port, ip, description):
+        sg_id = self.list_security_group(name)
+        if not sg_id:
+            print('no security %s' % name)
+            return
+        port_range_min, port_range_max = None, None
+        if port:
+            port_range_min = int(port.split('to')[0])
+            port_range_max = int(port.split('to')[1])
+        
+        try:
+            request = CreateSecurityGroupRuleRequest()
+            securityGroupRulebody = CreateSecurityGroupRuleOption(
+                security_group_id=sg_id,
+                description=description,
+                direction=direction,
+                ethertype=ethertype,
+                protocol=protocol,
+                port_range_min=port_range_min,
+                port_range_max=port_range_max,
+                remote_ip_prefix=ip
+            )
+            request.body = CreateSecurityGroupRuleRequestBody(
+                security_group_rule=securityGroupRulebody
+            )
+            self.vpc_client.create_security_group_rule(request)
+
+        except exceptions.ClientRequestException as e:
+            print(e.status_code)
+            print(e.request_id)
+            print(e.error_code)
+            print(e.error_msg)
+
+
+    def delete_security_group_rule(self, id):
+
+        print('!!!Caution!!! You will delete the security-group-rule')
+        answer = input('Do you want to contine?(y/n)')
+        if 'y' == answer or 'yes' == answer:
+            pass
+        else:
+            print('Cancel or Invalid input, please try again')
+            return
+
+        try:
+            request = DeleteSecurityGroupRuleRequest()
+            request.security_group_rule_id = id
+            self.vpc_client.delete_security_group_rule(request)
+            print('delete security-group-rule success')
+        except exceptions.ClientRequestException as e:
+            print(e.status_code)
+            print(e.request_id)
+            print(e.error_code)
+            print(e.error_msg)
 
 class ManagedProvider(Provider):
     def __init__(self, ip, password):
