@@ -561,6 +561,7 @@ src-openeuler:
   GeoIP: Networking
   GeoIP-GeoLite-data: Networking
   GraphicsMagick: Application
+  HMCL: sig-desktop-apps
   HdrHistogram: Application
   HikariCP: sig-Java
   ImageMagick: Others
@@ -1938,6 +1939,7 @@ src-openeuler:
   geoclue2: Desktop
   geocode-glib: Desktop
   geographic_info: sig-ROS
+  geographiclib: sig-ROS
   geolatte-geom: DB
   geolite2: sig-recycle
   geometric_shapes: sig-ROS
@@ -2847,6 +2849,7 @@ src-openeuler:
   ipython: Private
   iqtree: sig-bio
   irclib: sig-Java
+  irobot_create_msgs: sig-ROS
   ironjacamar: sig-Java
   irqbalance: Computing
   irrXML: Private
@@ -3660,6 +3663,7 @@ src-openeuler:
   libgovirt: Others
   libgpg-error: Base-service
   libgphoto2: System-tool
+  libgpiod: sig-ROS
   libgringotts: sig-desktop-apps
   libgsasl: Application
   libgsf: Base-service
@@ -4457,6 +4461,7 @@ src-openeuler:
   ncbi-blast: sig-bio
   nccl: ai
   ncdu: dev-utils
+  ncnn: dev-utils
   ncompress: Base-service
   ncurses: Base-service
   ndctl: Storage
@@ -10324,6 +10329,7 @@ src-openeuler:
   spirv-headers: sig-compat-winapp
   spirv-llvm-translator: Compiler
   spirv-tools: sig-compat-winapp
+  spnav: sig-ROS
   spock: Programming-language
   spring-ldap: sig-Java
   springframework: sig-Java
@@ -10828,6 +10834,7 @@ src-openeuler:
   webots_ros2: sig-ROS
   webp-pixbuf-loader: GNOME
   webrtc-audio-processing: Desktop
+  websocketpp: sig-ROS
   weechat: Application
   weld-api: sig-Java
   weld-core: sig-Java
