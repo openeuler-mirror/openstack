@@ -3412,7 +3412,7 @@ zed:
   masakari-dashboard: 7.0.0
   masakari-monitors: 14.0.0
   metalsmith: 1.8.1
-  mistral: 15.0.0
+  mistral: 15.0.1
   mistral-dashboard: 15.0.0
   mistral-extra: 12.0.1
   mistral-lib: 2.7.0
