@@ -2859,6 +2859,9 @@ yoga:
   designate-dashboard-yoga: eom
   designate-tempest-plugin: 0.13.0
   designate-yoga: eom
+  devstack-plugin-ceph-yoga: eom
+  devstack-plugin-container-yoga: eom
+  devstack-yoga: eom
   ec2-api: 14.0.2
   ec2-api-yoga: eom
   ec2api-tempest-plugin: 1.4.0
@@ -2876,6 +2879,7 @@ yoga:
   glance-yoga: eom
   glance_store: 3.0.1
   glance_store-yoga: eom
+  grenade-yoga: eom
   heat-agents: 4.0.1
   heat-agents-yoga: eom
   heat-dashboard: 7.0.1
