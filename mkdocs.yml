@@ -39,6 +39,6 @@ nav:
   - openEuler-22.09: 'test/openEuler-22.09.md'
 - 自研特性:
   - 虚拟机高低优先级: 'spec/priority_vm.md'
-  - 流量分散: 'spec/distribute-traffic.md'
-- 安全指南:
-  - security_guide: "security/security-guide.md"
+  - 流量分散: 'spec/distributed-traffic.md'
+- 操作及管理指导:
+  - 安全指南: 'security/security-guide.md'
