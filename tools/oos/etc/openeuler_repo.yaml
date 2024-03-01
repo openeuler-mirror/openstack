@@ -59,6 +59,7 @@ openeuler:
   PilotGo-plugin-observation: sig-ops
   PilotGo-plugin-prometheus: sig-ops
   PilotGo-plugin-redis: sig-ops
+  PilotGo-plugin-syscare: sig-ops
   PilotGo-plugin-topology: sig-ops
   PilotGo-plugins: sig-ops
   PilotGo-web: sig-ops
@@ -462,6 +463,7 @@ openeuler:
   summer2022: sig-OSCourse
   sw-committee: sig-sw-arch
   sync-bot: sig-EasyLife
+  sysSentry: Base-service
   sysboost: A-Tune
   syscare: sig-ops
   syscontainer-tools: iSulad
@@ -602,6 +604,7 @@ src-openeuler:
   PilotGo-plugin-a-tune: sig-ops
   PilotGo-plugin-grafana: sig-ops
   PilotGo-plugin-prometheus: sig-ops
+  PilotGo-plugin-syscare: sig-ops
   PilotGo-plugin-topology: sig-ops
   PlasmaMycroftApplet: sig-KDE
   PlotJuggler: sig-ROS
@@ -10408,6 +10411,7 @@ src-openeuler:
   swt-chart: sig-Java
   swtpm: sig-security-facility
   symlinks: Base-service
+  sysSentry: Base-service
   sysbench: dev-utils
   sysboost: A-Tune
   syscare: sig-ops
