@@ -5,7 +5,7 @@
   ansible-role-lunasa-hsm: 5.0.0
   ansible-role-thales-hsm: 5.0.0
   aodh: 16.0.0
-  aodhclient: 3.2.0
+  aodhclient: 3.2.1
   automaton: 3.1.0
   barbican: 16.0.0
   barbican_tempest_plugin: 2.0.0
@@ -3450,9 +3450,9 @@ zed:
   neutron-vpnaas: 21.0.0
   neutron-vpnaas-dashboard: 7.0.0
   nova: 26.2.2
-  octavia: 11.0.1
-  octavia-dashboard: 10.0.0
-  octavia-lib: 3.1.0
+  octavia: 11.0.2
+  octavia-dashboard: 10.0.1
+  octavia-lib: 3.1.1
   octavia-tempest-plugin: 2.0.0
   openstack-cyborg: 9.0.0
   openstack-heat: 19.0.2
@@ -3545,7 +3545,7 @@ zed:
   python-muranoclient: 2.5.0
   python-neutronclient: 8.1.0
   python-novaclient: 18.1.0
-  python-octaviaclient: 3.1.0
+  python-octaviaclient: 3.1.1
   python-openstackclient: 6.0.1
   python-saharaclient: 4.0.2
   python-senlinclient: 2.5.0
