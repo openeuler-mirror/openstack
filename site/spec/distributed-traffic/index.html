@@ -97,15 +97,33 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">自研特性</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../priority_vm/">虚拟机高低优先级</a>
                   </li>
-                  <li class="toctree-l1"><a class="" href="../distribute-traffic.md">流量分散</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">流量分散</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">概述</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">背景</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">需要解决的问题</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">实现方案</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#l3-agent">解决指定L3 agent的问题</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">解决路由问题</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#router-gateway">解决Router Gateway端口转发的问题</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">安全指南</span></p>
+              <p class="caption"><span class="caption-text">操作及管理指导</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../security/security-guide/">security_guide</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/security-guide/">安全指南</a>
                   </li>
               </ul>
       </div>
@@ -122,6 +140,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="文档"></a></li>
+          <li class="breadcrumb-item">自研特性</li>
       <li class="breadcrumb-item active">流量分散</li>
     <li class="wy-breadcrumbs-aside">
     </li>
@@ -370,6 +389,10 @@ Request Body
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="页脚导航">
+        <a href="../priority_vm/" class="btn btn-neutral float-left" title="虚拟机高低优先级"><span class="icon icon-circle-arrow-left"></span> 上一章</a>
+        <a href="../../security/security-guide/" class="btn btn-neutral float-right" title="安全指南">下一章 <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -391,6 +414,10 @@ Request Body
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../priority_vm/" style="color: #fcfcfc">&laquo; 上一章</a></span>
+    
+    
+      <span><a href="../../security/security-guide/" style="color: #fcfcfc">下一章 &raquo;</a></span>
     
   </span>
 </div>
