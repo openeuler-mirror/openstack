@@ -1622,6 +1622,7 @@ src-openeuler:
   ed25519-java: sig-Java
   edac-utils: sig-recycle
   edgex-go: sig-Edge
+  edid-decode: Desktop
   editorconfig: GNOME
   edk2: Virt
   efi-rpm-macros: sig-OS-Builder
@@ -5138,6 +5139,7 @@ src-openeuler:
   openstack-vitrage-ui: sig-openstack
   openstack-zaqar: sig-openstack
   opentest4j: Application
+  opentofu: sig-CloudNative
   openttd: sig-desktop-apps
   openvpn: Application
   openvswitch: Networking
