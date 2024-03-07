@@ -1,6 +1,6 @@
 '2023.1':
   adjutant-ui: 6.0.0
-  ansible-collection-kolla: 3.1.0
+  ansible-collection-kolla: 3.2.0
   ansible-role-atos-hsm: 5.0.0
   ansible-role-lunasa-hsm: 5.0.0
   ansible-role-thales-hsm: 5.0.0
@@ -52,15 +52,15 @@
   ironic-python-agent-builder: 5.1.0
   ironic-tempest-plugin: 2.6.1
   ironic-ui: 6.1.0
-  kayobe: 14.4.0
+  kayobe: 14.5.0
   kayobe-config: 14.3.0
   kayobe-config-dev: 14.2.0
   keystone: 23.0.1
   keystone_tempest_plugin: 0.12.0
   keystoneauth1: 5.1.2
   keystonemiddleware: 10.2.0
-  kolla: 16.3.0
-  kolla-ansible: 16.4.0
+  kolla: 16.4.0
+  kolla-ansible: 16.5.0
   kuryr-kubernetes: 8.0.0
   kuryr-lib: 2.7.0
   kuryr-libnetwork: 11.0.0
@@ -269,7 +269,7 @@
   zun-ui: 11.0.0
 '2023.2':
   adjutant-ui: 7.0.0
-  ansible-collection-kolla: 4.0.0
+  ansible-collection-kolla: 4.1.0
   ansible-role-atos-hsm: 6.0.0
   ansible-role-lunasa-hsm: 6.0.0
   ansible-role-thales-hsm: 6.0.1
@@ -320,15 +320,15 @@
   ironic-python-agent-builder: 5.2.0
   ironic-tempest-plugin: 2.7.0
   ironic-ui: 6.2.1
-  kayobe: 15.2.0
+  kayobe: 15.3.0
   kayobe-config: 15.1.0
   kayobe-config-dev: 15.1.0
   keystone: 24.0.0
   keystone_tempest_plugin: 0.13.0
   keystoneauth1: 5.3.0
   keystonemiddleware: 10.4.1
-  kolla: 17.2.0
-  kolla-ansible: 17.2.0
+  kolla: 17.3.0
+  kolla-ansible: 17.3.0
   kuryr-kubernetes: 9.0.0
   kuryr-lib: 2.8.0
   kuryr-libnetwork: 12.0.0
@@ -2006,6 +2006,7 @@ victoria:
   cloudkitty-victoria: eom
   cloudkitty_tempest_plugin: 2.1.0
   compute-hyperv: 11.0.0
+  compute-hyperv-victoria: eom
   cyborg-tempest-plugin: 1.1.0
   debtcollector: 2.2.0
   designate: 11.0.2
@@ -2025,7 +2026,9 @@ victoria:
   glance: 21.1.0
   glance_store: 2.3.1
   heat-agents: 2.1.1
+  heat-agents-victoria: eom
   heat-dashboard: 4.0.1
+  heat-dashboard-victoria: eom
   heat-tempest-plugin: 1.1.0
   heat-translator: 2.1.0
   heat-translator-victoria: eom
@@ -2058,6 +2061,8 @@ victoria:
   manila: 11.1.2
   manila-tempest-plugin: 1.2.0
   manila-ui: 4.1.0
+  manila-ui-victoria: eom
+  manila-victoria: eom
   masakari: 10.0.3
   masakari-dashboard: 3.0.1
   masakari-dashboard-victoria: eom
@@ -2084,19 +2089,30 @@ victoria:
   murano-dashboard: 10.0.0
   murano-tempest-plugin: 2.1.0
   networking-bagpipe: 13.0.0
+  networking-bagpipe-victoria: eom
   networking-baremetal: 3.0.0
   networking-bgpvpn: 13.0.0
+  networking-bgpvpn-victoria: eom
   networking-generic-switch: 4.0.1
   networking-hyperv: 9.0.0
+  networking-hyperv-victoria: eom
   networking-midonet: 11.0.0
+  networking-midonet-victoria: eom
   networking-odl: 17.0.0
+  networking-odl-victoria: eom
   networking-sfc: 11.0.0
+  networking-sfc-victoria: eom
   neutron: 17.4.1
   neutron-dynamic-routing: 17.0.0
+  neutron-dynamic-routing-victoria: eom
   neutron-lib: 2.6.2
+  neutron-lib-victoria: eom
   neutron-tempest-plugin: 1.2.0
+  neutron-victoria: eom
   neutron-vpnaas: 17.0.0
   neutron-vpnaas-dashboard: 3.0.0
+  neutron-vpnaas-dashboard-victoria: eom
+  neutron-vpnaas-victoria: eom
   nova: 22.4.0
   nova-victoria: eom
   octavia: 7.1.2
@@ -2108,6 +2124,7 @@ victoria:
   octavia-victoria: eom
   openstack-cyborg: 5.0.1
   openstack-heat: 15.1.0
+  openstack-heat-victoria: eom
   openstack-placement: 4.0.0
   openstack-placement-victoria: eom
   openstack-release-test: 3.3.1
@@ -2117,9 +2134,11 @@ victoria:
   os-brick-victoria: eom
   os-collect-config: 12.0.2
   os-ken: 1.2.1
+  os-ken-victoria: eom
   os-net-config: 13.3.0
   os-refresh-config: 12.0.1
   os-win: 5.2.0
+  os-win-victoria: eom
   os_vif: 2.2.1
   os_vif-victoria: eom
   osc-lib: 2.2.1
@@ -2149,7 +2168,9 @@ victoria:
   osprofiler: 3.4.0
   oswin-tempest-plugin: 1.1.0
   ovn-octavia-provider: 0.4.1
+  ovn-octavia-provider-victoria: eom
   ovsdbapp: 1.6.1
+  ovsdbapp-victoria: eom
   panko: 9.0.0
   pankoclient: 1.1.0
   patrole: 0.10.0
@@ -2213,18 +2234,21 @@ victoria:
   python-freezerclient: 4.0.0
   python-glanceclient: 3.2.2
   python-heatclient: 2.2.1
+  python-heatclient-victoria: eom
   python-ironic-inspector-client: 4.4.0
   python-ironicclient: 4.4.1
   python-karborclient: 2.1.0
   python-keystoneclient: 4.1.1
   python-magnumclient: 3.2.2
   python-manilaclient: 2.3.2
+  python-manilaclient-victoria: eom
   python-masakariclient: 6.1.1
   python-masakariclient-victoria: eom
   python-mistralclient: 4.1.1
   python-monascaclient: 2.2.1
   python-muranoclient: 2.1.1
   python-neutronclient: 7.2.1
+  python-neutronclient-victoria: eom
   python-novaclient: 17.2.1
   python-novaclient-victoria: eom
   python-octaviaclient: 2.2.1
@@ -2241,6 +2265,7 @@ victoria:
   python-tripleoclient: 14.3.0
   python-troveclient: 5.1.2
   python-vitrageclient: 4.1.1
+  python-vitrageclient-victoria: eom
   python-watcher: 5.0.0
   python-watcher-victoria: eom
   python-watcherclient: 3.1.1
@@ -2297,7 +2322,9 @@ victoria:
   trove_tempest_plugin: 1.1.0
   vitrage: 7.3.0
   vitrage-dashboard: 3.2.0
+  vitrage-dashboard-victoria: eom
   vitrage-tempest-plugin: 5.1.0
+  vitrage-victoria: eom
   watcher-dashboard: 4.0.1
   watcher-dashboard-victoria: eom
   watcher-tempest-plugin: 2.1.0
@@ -2342,6 +2369,7 @@ wallaby:
   cloudkitty-wallaby: eom
   cloudkitty_tempest_plugin: 2.3.0
   compute-hyperv: 12.0.0
+  compute-hyperv-wallaby: eom
   cyborg-tempest-plugin: 1.2.0
   designate: 12.1.0
   designate-dashboard: 12.0.0
@@ -2360,7 +2388,9 @@ wallaby:
   glance-tempest-plugin: 0.1.0
   glance_store: 2.5.1
   heat-agents: 2.2.0
+  heat-agents-wallaby: eom
   heat-dashboard: 5.0.1
+  heat-dashboard-wallaby: eom
   heat-tempest-plugin: 1.2.0
   heat-translator: 2.3.0
   heat-translator-wallaby: eom
@@ -2392,6 +2422,8 @@ wallaby:
   manila: 12.1.2
   manila-tempest-plugin: 1.4.0
   manila-ui: 5.1.0
+  manila-ui-wallaby: eom
+  manila-wallaby: eom
   masakari: 11.0.3
   masakari-dashboard: 4.0.1
   masakari-dashboard-wallaby: eom
@@ -2418,18 +2450,28 @@ wallaby:
   murano-dashboard: 11.0.0
   murano-tempest-plugin: 2.2.0
   networking-bagpipe: 14.0.0
+  networking-bagpipe-wallaby: eom
   networking-baremetal: 4.0.0
   networking-bgpvpn: 14.0.0
+  networking-bgpvpn-wallaby: eom
   networking-generic-switch: 5.0.1
   networking-hyperv: 10.0.0
+  networking-hyperv-wallaby: eom
   networking-odl: 18.0.0
+  networking-odl-wallaby: eom
   networking-sfc: 12.0.0
+  networking-sfc-wallaby: eom
   neutron: 18.6.0
   neutron-dynamic-routing: 18.1.1
+  neutron-dynamic-routing-wallaby: eom
   neutron-lib: 2.10.2
+  neutron-lib-wallaby: eom
   neutron-tempest-plugin: 1.4.0
   neutron-vpnaas: 18.0.1
   neutron-vpnaas-dashboard: 4.0.0
+  neutron-vpnaas-dashboard-wallaby: eom
+  neutron-vpnaas-wallaby: eom
+  neutron-wallaby: eom
   nova: 23.2.2
   nova-wallaby: eom
   octavia: 8.0.1
@@ -2441,14 +2483,17 @@ wallaby:
   octavia-wallaby: eom
   openstack-cyborg: 6.0.1
   openstack-heat: 16.1.0
+  openstack-heat-wallaby: eom
   openstack-placement: 5.0.1
   openstack-placement-wallaby: eom
   openstacksdk: 0.55.1
   os-brick: 4.3.4
   os-brick-wallaby: eom
   os-ken: 1.4.1
+  os-ken-wallaby: eom
   os-net-config: 14.2.0
   os-win: 5.4.0
+  os-win-wallaby: eom
   os_vif: 2.4.1
   os_vif-wallaby: eom
   osc-lib: 2.3.1
@@ -2472,7 +2517,9 @@ wallaby:
   oslo.vmware: 3.8.2
   oswin-tempest-plugin: 1.2.0
   ovn-octavia-provider: 1.0.2
+  ovn-octavia-provider-wallaby: eom
   ovsdbapp: 1.9.4
+  ovsdbapp-wallaby: eom
   panko: 10.0.0
   pankoclient: 1.2.0
   patrole: 0.12.0
@@ -2535,17 +2582,20 @@ wallaby:
   python-freezerclient: 4.2.0
   python-glanceclient: 3.3.0
   python-heatclient: 2.3.1
+  python-heatclient-wallaby: eom
   python-ironic-inspector-client: 4.5.0
   python-ironicclient: 4.6.4
   python-keystoneclient: 4.2.0
   python-magnumclient: 3.4.1
   python-manilaclient: 2.6.4
+  python-manilaclient-wallaby: eom
   python-masakariclient: 7.0.0
   python-masakariclient-wallaby: eom
   python-mistralclient: 4.2.0
   python-monascaclient: 2.3.0
   python-muranoclient: 2.2.0
   python-neutronclient: 7.3.1
+  python-neutronclient-wallaby: eom
   python-novaclient: 17.4.1
   python-novaclient-wallaby: eom
   python-octaviaclient: 2.3.1
@@ -2560,6 +2610,7 @@ wallaby:
   python-tripleoclient: 16.5.0
   python-troveclient: 7.0.0
   python-vitrageclient: 4.3.0
+  python-vitrageclient-wallaby: eom
   python-watcher: 6.0.1
   python-watcher-wallaby: eom
   python-watcherclient: 3.2.0
@@ -2609,7 +2660,9 @@ wallaby:
   trove_tempest_plugin: 1.2.0
   vitrage: 7.4.0
   vitrage-dashboard: 3.3.0
+  vitrage-dashboard-wallaby: eom
   vitrage-tempest-plugin: 5.3.0
+  vitrage-wallaby: eom
   watcher-dashboard: 5.0.1
   watcher-dashboard-wallaby: eom
   watcher-tempest-plugin: 2.2.0
@@ -2654,6 +2707,7 @@ xena:
   cloudkitty-xena: eom
   cloudkitty_tempest_plugin: 2.4.1
   compute-hyperv: 13.0.0
+  compute-hyperv-xena: eom
   cyborg-tempest-plugin: 1.3.0
   designate: 13.0.2
   designate-dashboard: 13.0.1
@@ -2672,7 +2726,9 @@ xena:
   glance-tempest-plugin: 0.2.0
   glance_store: 2.7.1
   heat-agents: 3.0.0
+  heat-agents-xena: eom
   heat-dashboard: 6.0.1
+  heat-dashboard-xena: eom
   heat-tempest-plugin: 1.4.0
   heat-translator: 2.4.1
   heat-translator-xena: eom
@@ -2704,6 +2760,8 @@ xena:
   manila: 13.2.0
   manila-tempest-plugin: 1.6.0
   manila-ui: 6.0.0
+  manila-ui-xena: eom
+  manila-xena: eom
   masakari: 12.0.3
   masakari-dashboard: 5.0.0
   masakari-dashboard-xena: eom
@@ -2730,18 +2788,28 @@ xena:
   murano-dashboard: 12.0.0
   murano-tempest-plugin: 2.3.1
   networking-bagpipe: 15.0.0
+  networking-bagpipe-xena: eom
   networking-baremetal: 5.0.0
   networking-bgpvpn: 15.0.0
+  networking-bgpvpn-xena: eom
   networking-generic-switch: 6.0.0
   networking-hyperv: 11.0.0
+  networking-hyperv-xena: eom
   networking-odl: 19.0.0
+  networking-odl-xena: eom
   networking-sfc: 13.0.0
+  networking-sfc-xena: eom
   neutron: 19.7.0
   neutron-dynamic-routing: 19.1.1
+  neutron-dynamic-routing-xena: eom
   neutron-lib: 2.15.4
+  neutron-lib-xena: eom
   neutron-tempest-plugin: 1.7.0
   neutron-vpnaas: 19.0.1
   neutron-vpnaas-dashboard: 5.0.0
+  neutron-vpnaas-dashboard-xena: eom
+  neutron-vpnaas-xena: eom
+  neutron-xena: eom
   nova: 24.2.1
   nova-xena: eom
   octavia: 9.1.0
@@ -2753,13 +2821,16 @@ xena:
   octavia-xena: eom
   openstack-cyborg: 7.0.1
   openstack-heat: 17.0.2
+  openstack-heat-xena: eom
   openstack-placement: 6.0.0
   openstack-placement-xena: eom
   openstacksdk: 0.59.0
   os-brick: 5.0.3
   os-brick-xena: eom
   os-ken: 2.1.1
+  os-ken-xena: eom
   os-win: 5.5.0
+  os-win-xena: eom
   os_vif: 2.6.1
   os_vif-xena: eom
   osc-lib: 2.4.2
@@ -2783,7 +2854,9 @@ xena:
   oslo.vmware: 3.9.3
   oswin-tempest-plugin: 1.3.0
   ovn-octavia-provider: 1.3.1
+  ovn-octavia-provider-xena: eom
   ovsdbapp: 1.12.3
+  ovsdbapp-xena: eom
   patrole: 0.13.0
   puppet-aodh: 19.4.0
   puppet-barbican: 19.4.1
@@ -2841,17 +2914,20 @@ xena:
   python-freezerclient: 4.3.0
   python-glanceclient: 3.5.0
   python-heatclient: 2.4.0
+  python-heatclient-xena: eom
   python-ironic-inspector-client: 4.6.0
   python-ironicclient: 4.8.2
   python-keystoneclient: 4.3.0
   python-magnumclient: 3.5.0
   python-manilaclient: 3.0.3
+  python-manilaclient-xena: eom
   python-masakariclient: 7.1.0
   python-masakariclient-xena: eom
   python-mistralclient: 4.3.0
   python-monascaclient: 2.4.0
   python-muranoclient: 2.3.0
   python-neutronclient: 7.6.0
+  python-neutronclient-xena: eom
   python-novaclient: 17.6.0
   python-novaclient-xena: eom
   python-octaviaclient: 2.4.0
@@ -2865,6 +2941,7 @@ xena:
   python-tackerclient-xena: eom
   python-troveclient: 7.1.1
   python-vitrageclient: 4.4.0
+  python-vitrageclient-xena: eom
   python-watcher: 7.0.0
   python-watcher-xena: eom
   python-watcherclient: 3.3.0
@@ -2907,7 +2984,9 @@ xena:
   trove_tempest_plugin: 1.3.0
   vitrage: 7.5.0
   vitrage-dashboard: 3.4.0
+  vitrage-dashboard-xena: eom
   vitrage-tempest-plugin: 5.4.0
+  vitrage-xena: eom
   watcher-dashboard: 6.0.0
   watcher-dashboard-xena: eom
   watcher-tempest-plugin: 2.3.0
@@ -3464,7 +3543,7 @@ yoga:
   zun-yoga: eom
 zed:
   adjutant-ui: 5.0.0
-  ansible-collection-kolla: 2.2.0
+  ansible-collection-kolla: 2.3.0
   ansible-role-atos-hsm: 4.0.0
   ansible-role-lunasa-hsm: 4.0.1
   ansible-role-thales-hsm: 4.0.0
@@ -3516,15 +3595,15 @@ zed:
   ironic-python-agent-builder: 5.0.1
   ironic-tempest-plugin: 2.5.0
   ironic-ui: 6.0.0
-  kayobe: 13.5.0
+  kayobe: 13.6.0
   kayobe-config: 13.4.0
   kayobe-config-dev: 13.3.0
   keystone: 22.0.1
   keystone_tempest_plugin: 0.10.0
   keystoneauth1: 5.0.1
   keystonemiddleware: 10.1.1
-  kolla: 15.5.0
-  kolla-ansible: 15.5.0
+  kolla: 15.6.0
+  kolla-ansible: 15.6.0
   kuryr-kubernetes: 7.0.0
   kuryr-lib: 2.6.0
   kuryr-libnetwork: 10.0.0
