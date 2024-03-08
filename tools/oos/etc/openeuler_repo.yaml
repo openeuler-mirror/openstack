@@ -406,6 +406,7 @@ openeuler:
   pkgporter: dev-utils
   pkgship: sig-EasyLife
   plymouth-theme-kiran: sig-KIRAN-DESKTOP
+  poissonsearch-oss: DB
   portal-application-license-monitor: sig-HPC
   portal-mulit-cluster-script: sig-HPC
   powerapi: sig-power-efficient
@@ -7024,6 +7025,7 @@ src-openeuler:
   podofo: Desktop
   point_cloud_msg_wrapper: sig-ROS
   pointcloud_to_laserscan: sig-ROS
+  poissonsearch-oss: DB
   policycoreutils: sig-security-facility
   polkit: Base-service
   polkit-gnome: Base-service
