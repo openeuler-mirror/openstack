@@ -15,6 +15,8 @@ from huaweicloudsdkvpc.v2.region.vpc_region import VpcRegion
 from oos.commands.environment import constants
 from oos.common import KEY_DIR, CONFIG
 
+from huaweicloudsdkvpc.v3.region.vpc_region import VpcRegion as VpcRegionV3
+import huaweicloudsdkvpc.v3 as VpcV3
 
 class Provider:
     def __init__(self):
@@ -97,6 +99,7 @@ class HuaweiCloudProvider(Provider):
         self.ecs_client = self._init_ecs_client()
         self.vpc_client = self._init_vpc_client()
         self.ims_client = self._init_ims_client()
+        self.vpc_client_v3 = self._init_vpc_client_v3()
 
     def _init_ecs_client(self):
         '''管理弹性云服务器ECS的客户端 包括创建 删除 启动等操作
@@ -113,6 +116,16 @@ class HuaweiCloudProvider(Provider):
         vpc_client = VpcClient.new_builder() \
             .with_credentials(self.credentials) \
             .with_region(VpcRegion.value_of(self.region)) \
+            .build()
+        return vpc_client
+
+    def _init_vpc_client_v3(self):
+        '''管理虚拟私有云VPC的客户端 包括创建 删除 查询VPC 子网 安全组等操作
+        '''
+        from huaweicloudsdkvpc.v2.region.vpc_region import VpcRegion
+        vpc_client = VpcV3.VpcClient.new_builder() \
+            .with_credentials(self.credentials) \
+            .with_region(VpcRegionV3.value_of(self.region)) \
             .build()
         return vpc_client
 
@@ -852,16 +865,17 @@ class HuaweiCloudProvider(Provider):
             print(e.error_msg)
 
 
-    def create_security_group(self, name):
+    def create_security_group(self, name, description):
         try:
-            request = CreateSecurityGroupRequest()
-            securityGroupbody = CreateSecurityGroupOption(
+            request = VpcV3.CreateSecurityGroupRequest()
+            securityGroupbody = VpcV3.CreateSecurityGroupOption(
                 name=name,
+                description=description
             )
-            request.body = CreateSecurityGroupRequestBody(
+            request.body = VpcV3.CreateSecurityGroupRequestBody(
                 security_group=securityGroupbody
             )
-            self.vpc_client.create_security_group(request)
+            self.vpc_client_v3.create_security_group(request)
             print('create security-group[%s] success' % name)
         except exceptions.ClientRequestException as e:
             print(e.status_code)

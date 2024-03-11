@@ -361,17 +361,18 @@ def sg_relation(server_ip, associate, disassociate):
 
 @group.command(name='sg-operate', help='Create or Delete the security-group')
 @click.argument('name', type=str, required=True)
+@click.option('-d', '--description', 
+              help='The description for creating a security group')
 @click.option('-i', '--is-delete', is_flag=True, default=False, 
-              help='create security-group by default, or delete')
-def sg_operate(name, is_delete):
-    # TODO: v2版本API暂时不支持添加安全组描述 -d参数留给description
-    # TODO: v3版本已支持，但v2和v3无法无缝切换，整体改动较大
+              help='Create security-group by default, or delete. ' \
+              'You can delete multi security group using a comma-separated format, eg: sg1,sg2,...')
+def sg_operate(name, description, is_delete):
     cloud_action = provider.HuaweiCloudProvider()
-
     if is_delete:
-        cloud_action.delete_security_group(name)
+        for one in name.split(','):
+            cloud_action.delete_security_group(one)
     else:
-        cloud_action.create_security_group(name)
+        cloud_action.create_security_group(name, description)
 
 @group.command(name='sr-operate', help='Create or Delete the security-group-rule')
 @click.option('-i', '--ip', help='The security-group-rule ip, the format should be cidr')
