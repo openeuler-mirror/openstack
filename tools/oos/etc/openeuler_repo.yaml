@@ -510,6 +510,7 @@ openeuler:
   yocto-embedded-tools: sig-Yocto
   yocto-meta-openembedded: sig-Yocto
   yocto-meta-openeuler: sig-Yocto
+  yocto-meta-phosphor: sig-Yocto
   yocto-meta-qt5: sig-Yocto
   yocto-meta-raspberrypi: sig-Yocto
   yocto-meta-rockchip: sig-Yocto
@@ -1229,6 +1230,7 @@ src-openeuler:
   clang: Compiler
   clang-15: Compiler
   class_loader: sig-ROS
+  classic-flang: Compiler
   classloader-leak-test-framework: sig-Java
   classmate: sig-Java
   claws-mail: sig-UKUI
@@ -3583,7 +3585,7 @@ src-openeuler:
   libcxxabi-15: Compiler
   libcyaml: Base-service
   libdaemon: Base-service
-  libdap: sig-recycle
+  libdap: Base-service
   libdatovka: sig-desktop-apps
   libdatrie: Base-service
   libdazzle: Desktop
