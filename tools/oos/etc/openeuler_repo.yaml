@@ -10,6 +10,7 @@ openeuler:
   AppAPIChecker: sig-OSRefTools
   AvxToNeon: sig-AccLib
   BIDK: sig-HPC
+  BSCCompiler: Compiler
   BiSheng-Adoptium: Compiler
   BiShengCLanguage: Compiler
   CCA: sig-confidential-computing
@@ -48,7 +49,6 @@ openeuler:
   OSCompatibility: sig-OSRefTools
   OSPerformance: sig-OSRefTools
   OSPerformanceTools: sig-OSRefTools
-  OpenArkCompiler: Compiler
   PRIP: Networking
   PilotGo: sig-ops
   PilotGo-plugin-a-tune: sig-ops
