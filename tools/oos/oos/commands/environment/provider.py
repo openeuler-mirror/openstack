@@ -507,7 +507,7 @@ class HuaweiCloudProvider(Provider):
         #     print(prompt)
         #     return
 
-        answer = input('!!!Caution!!! Do you want to contine?(y/n)')
+        answer = input('!!!Caution!!! Do you want to continue?(y/n)')
         if 'y' == answer or 'yes' == answer:
             print('reinstalling')
         else:
@@ -592,7 +592,7 @@ class HuaweiCloudProvider(Provider):
 
             image_id = key_image[1][0]
 
-        answer = input('!!!Caution!!! Do you want to contine?(y/n)')
+        answer = input('!!!Caution!!! Do you want to continue?(y/n)')
         if 'y' == answer or 'yes' == answer:
             print('reinstalling \nserverID: %s\nimageID: %s' % (server_id, image_id))
         else:
@@ -756,7 +756,7 @@ class HuaweiCloudProvider(Provider):
             print('The ID and IP are inconsistent')
             return False
 
-        answer = input('Do you want to contine?(y/n)')
+        answer = input('Do you want to continue?(y/n)')
         if 'y' == answer or 'yes' == answer:
             print('Continue...')
             return True
@@ -887,12 +887,12 @@ class HuaweiCloudProvider(Provider):
     def delete_security_group(self, name):
         sg_id = self.list_security_group(name)
         if not sg_id:
-            print('no security %s' % name)
+            print('No security %s' % name)
             return
 
         print('!!!Caution!!! You will delete the security-group %s', name)
-        print('its id: %s' % sg_id)
-        answer = input('Do you want to contine?(y/n)')
+        print('Its id: %s' % sg_id)
+        answer = input('Do you want to continue?(y/n)')
         if 'y' == answer or 'yes' == answer:
             pass
         else:
@@ -948,7 +948,7 @@ class HuaweiCloudProvider(Provider):
     def delete_security_group_rule(self, id):
 
         print('!!!Caution!!! You will delete the security-group-rule')
-        answer = input('Do you want to contine?(y/n)')
+        answer = input('Do you want to continue?(y/n)')
         if 'y' == answer or 'yes' == answer:
             pass
         else:
