@@ -38,7 +38,7 @@
   freezer_tempest_plugin: 3.0.1
   glance: 26.0.0
   glance-tempest-plugin: 0.6.0
-  glance_store: 4.3.2
+  glance_store: 4.3.3
   heat-agents: 6.0.0
   heat-dashboard: 9.0.0
   heat-tempest-plugin: 1.7.1
