@@ -170,6 +170,7 @@ openeuler:
   duoyibu-ai: sig-minzuchess
   eagle: sig-power-efficient
   easy-checker: sig-EasyLife
+  easy-software: sig-OpenDesign
   easybox: sig-memsafety
   eggo: sig-CloudNative
   elfin-parser: sig-HPC
@@ -1596,6 +1597,7 @@ src-openeuler:
   e2fsprogs: Storage
   eagle: sig-power-efficient
   easy-checker: sig-EasyLife
+  easybox: sig-memsafety
   easymock: sig-Java
   ebook-tools: sig-KDE
   ebtables: Networking
@@ -2788,6 +2790,7 @@ src-openeuler:
   idlj-maven-plugin: sig-Java
   idm-console-framework: Application
   ifm3d-release: sig-ROS
+  ifm_nettle: sig-AccLib
   iftop: dev-utils
   igh-ethercat-xenomai: sig-industrial-control
   ignite: bigdata
@@ -5761,7 +5764,6 @@ src-openeuler:
   perl-File-Map: sig-perl-modules
   perl-File-MimeInfo: sig-perl-modules
   perl-File-Modified: sig-perl-modules
-  perl-File-NCopy: sig-perl-modules
   perl-File-NFSLock: sig-perl-modules
   perl-File-Next: sig-perl-modules
   perl-File-Object: sig-perl-modules
@@ -6878,11 +6880,9 @@ src-openeuler:
   perl-constant: sig-perl-modules
   perl-constant-boolean: sig-perl-modules
   perl-constant-defer: sig-perl-modules
-  perl-constant-tiny: sig-perl-modules
   perl-curry: sig-perl-modules
   perl-enum: sig-perl-modules
   perl-experimental: sig-perl-modules
-  perl-failures: sig-perl-modules
   perl-generators: Programming-language
   perl-gettext: Programming-language
   perl-inc-latest: Programming-language
@@ -8875,7 +8875,6 @@ src-openeuler:
   python-ruff: sig-python-modules
   python-ruffus: sig-python-modules
   python-rustcfg: sig-python-modules
-  python-rxjson: sig-python-modules
   python-ryd: sig-python-modules
   python-ryu: sig-openstack
   python-s3transfer: sig-python-modules
@@ -10660,6 +10659,7 @@ src-openeuler:
   ubuntukylin-default-settings: sig-UKUI
   uchardet: Others
   ucs-miscfixed-fonts: Others
+  ucx: sig-HPC
   udisks2: Storage
   udisks2-qt5: Desktop
   udp_msgs: sig-ROS
