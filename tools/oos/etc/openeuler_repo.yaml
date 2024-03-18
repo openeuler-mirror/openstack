@@ -400,6 +400,7 @@ openeuler:
   paws: sig-CloudNative
   peking_university_2021: sig-recycle
   perlporter: dev-utils
+  phytium-kernel: sig-SBC
   pin-for-openEuler: Compiler
   pin-gcc-client: Compiler
   pin-llvm-client: Compiler
@@ -4626,6 +4627,7 @@ src-openeuler:
   nodejs-ejs: sig-nodejs
   nodejs-end-of-stream: sig-nodejs
   nodejs-entities: sig-nodejs
+  nodejs-env-paths: sig-nodejs
   nodejs-es-abstract: sig-nodejs
   nodejs-es-to-primitive: sig-nodejs
   nodejs-es5-ext: sig-nodejs
@@ -4748,6 +4750,7 @@ src-openeuler:
   nodejs-lolex: sig-nodejs
   nodejs-lru-queue: sig-nodejs
   nodejs-make-arrow-function: sig-nodejs
+  nodejs-make-fetch-happen: sig-nodejs
   nodejs-make-generator-function: sig-nodejs
   nodejs-maxmin: sig-nodejs
   nodejs-mdurl: sig-nodejs
@@ -5557,6 +5560,7 @@ src-openeuler:
   perl-DBIx-Class-IntrospectableM2M: sig-perl-modules
   perl-DBIx-Class-OptimisticLocking: sig-perl-modules
   perl-DBIx-Class-Schema-Config: sig-perl-modules
+  perl-DBIx-Class-Storage-Statistics: sig-perl-modules
   perl-DBIx-Connector: sig-perl-modules
   perl-DBIx-DBSchema: sig-perl-modules
   perl-DBIx-Introspector: sig-perl-modules
@@ -6386,6 +6390,7 @@ src-openeuler:
   perl-RDF-NS: sig-perl-modules
   perl-RDF-NS-Curated: sig-perl-modules
   perl-RDF-Prefixes: sig-perl-modules
+  perl-RDF-Trine: sig-perl-modules
   perl-REST-Client: sig-perl-modules
   perl-RPM2: sig-perl-modules
   perl-Readonly: sig-perl-modules
@@ -6552,7 +6557,7 @@ src-openeuler:
   perl-Test-Assert: sig-perl-modules
   perl-Test-Assertions: sig-perl-modules
   perl-Test-Base: sig-perl-modules
-  perl-Test-CPAN-Meta: Private
+  perl-Test-CPAN-Meta: sig-perl-modules
   perl-Test-CPAN-Meta-JSON: sig-perl-modules
   perl-Test-CPAN-Meta-YAML: sig-perl-modules
   perl-Test-CheckChanges: sig-perl-modules
