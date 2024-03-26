@@ -44,6 +44,7 @@ openeuler:
   KubeHawk: sig-CloudNative
   KubeHawkeyes: sig-CloudNative
   KubeOS: sig-CloudNative
+  LTF: sig-QA
   NestOS: sig-CloudNative
   OSAPIChecker: sig-OSRefTools
   OSCompatibility: sig-OSRefTools
@@ -349,6 +350,10 @@ openeuler:
   nvme-snsd: Storage
   nvwa: sig-ops
   oe-performance: sig-Compatibility-Infra
+  oeAware-collector: A-Tune
+  oeAware-manager: A-Tune
+  oeAware-scenario: A-Tune
+  oeAware-tune: A-Tune
   oebuild: sig-Yocto
   oec-application: sig-Compatibility-Infra
   oec-cloud: sig-Compatibility-Infra
@@ -849,6 +854,7 @@ src-openeuler:
   antlr3: sig-Java
   antlr32: Application
   antlr4: sig-Java
+  ao.space: sig-SBC
   aom: Desktop
   aopalliance: sig-Java
   aops-apollo: sig-ops
@@ -4985,6 +4991,10 @@ src-openeuler:
   octomap_ros: sig-ROS
   octomap_rviz_plugins: sig-ROS
   oddjob: Base-service
+  oeAware-collector: A-Tune
+  oeAware-manager: A-Tune
+  oeAware-scenario: A-Tune
+  oeAware-tune: A-Tune
   oec-application: sig-Compatibility-Infra
   oec-cloud: sig-Compatibility-Infra
   oec-hardware: sig-Compatibility-Infra
@@ -6419,6 +6429,7 @@ src-openeuler:
   perl-SGMLSpm: Programming-language
   perl-SNMP_Session: sig-perl-modules
   perl-SQL-Abstract: sig-perl-modules
+  perl-SQL-Abstract-Classic: sig-perl-modules
   perl-SQL-Interp: sig-perl-modules
   perl-SQL-Library: sig-perl-modules
   perl-SQL-ReservedWords: sig-perl-modules
