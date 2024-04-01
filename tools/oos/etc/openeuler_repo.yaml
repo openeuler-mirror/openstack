@@ -12,6 +12,7 @@ openeuler:
   BIDK: sig-HPC
   BSCCompiler: Compiler
   BiSheng-Adoptium: Compiler
+  BiSheng-Autotuner: Compiler
   BiShengCLanguage: Compiler
   CCA: sig-confidential-computing
   CPM4OSSP-PROXY: sig-ops
@@ -540,6 +541,8 @@ src-openeuler:
   BareBonesBrowserLaunch: sig-Java
   Bear: Compiler
   BehaviorTree.CPP: sig-ROS
+  BiSheng-Autotuner: Compiler
+  BiSheng-opentuner: Compiler
   Box2D: ecopkg
   CTinspector: sig-ebpf
   CUnit: Base-service
