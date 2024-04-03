@@ -50,19 +50,33 @@ def group():
 @click.option("-o", "--output", help="Specify output file of generated Spec")
 def create(name, version, arch, no_check, pyproject, output):
     spec = RPMSpec(name, version, arch, not no_check, pyproject=pyproject)
-    spec.generate_spec(output)
+    spec.generate_spec(None, output, False, False)
 
 
 @group.command(name='update', help='Update(upgrade or downgrade) RPM spec for the python library')
 @click.option("-n", "--name", required=True, help="Name of package to build")
 @click.option("-v", "--version", default='latest', help="Package version, deault is the newest version")
+@click.option("-i", "--input", help="Specify input file of generated Spec, replace Version, Release, changelog and append source url")
 @click.option("-o", "--output", help="Specify output file of generated Spec")
-def update(name, version, output):
+@click.option("-d", "--download", is_flag=True, default=False, help="Download the source file in the current directory")
+@click.option("-r", "--replace", is_flag=True, default=False, help="Replace the source url")
+def update(name, version, input, output, download, replace):
     old_changelog, old_version, arch, check = _get_old_spec_info(name)
     if version == old_version:
         raise click.ClickException(f"The version {version} can't be the same with origin one.")
     spec = RPMSpec(name, version, arch, check, old_changelog, old_version)
-    spec.generate_spec(output)
+
+    if not input:
+        # 获取下当前目录下的spec文件 正常只会有一个 找到即退出
+        for spec in os.listdir(os.getcwd()):
+            if spec.endswith('.spec'):
+                input = spec
+                break
+        if not input:
+            print('input file not exist')
+            return
+
+    spec.generate_spec(input, output, download, replace)
 
 
 @group.command(name='build', help='Build RPM using specified spec')

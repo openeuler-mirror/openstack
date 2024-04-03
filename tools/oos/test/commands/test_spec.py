@@ -34,6 +34,9 @@ def test_spec_cli_update():
     assert '--name' in result.output
     assert '--version' in result.output
     assert '--output' in result.output
+    assert '--input' in result.output
+    assert '--download' in result.output
+    assert '--replace' in result.output
 
 
 class TestCPCommands(unittest.TestCase):
