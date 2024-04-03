@@ -67,7 +67,7 @@ openeuler:
   PilotGo-web: sig-ops
   Preempt_RT: sig-industrial-control
   QA: sig-QA
-  QARobot: sig-QA
+  QARobot: sig-recycle
   RISC-V: sig-RISC-V
   Replay-N: sig-high-performance-network
   RobotBrain: sig-embedded
@@ -3871,6 +3871,7 @@ src-openeuler:
   librpcsecgss: dev-utils
   librsvg2: Desktop
   librsync: sig-epol
+  librtas: sig-POWER
   librttopo: sig-epol
   librx: sig-epol
   libsamplerate: Computing
@@ -3883,6 +3884,7 @@ src-openeuler:
   libsepol: sig-security-facility
   libserf: Networking
   libserverframe: Storage
+  libservicelog: sig-POWER
   libsexy: Desktop
   libshout: Runtime
   libshumate: GNOME
@@ -3964,6 +3966,7 @@ src-openeuler:
   libvncserver: GNOME
   libvoikko: Runtime
   libvorbis: Base-service
+  libvpd: sig-POWER
   libvpx: Application
   libwacom: Computing
   libwbxml: Application
