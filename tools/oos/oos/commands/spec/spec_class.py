@@ -225,7 +225,58 @@ class RPMSpec(object):
             else:
                 self._dev_requires.append(r_pkg)
 
-    def generate_spec(self, output_file):
+    def _replace_word_after_last_blank(self, line, aim_word):
+        return line.replace(line.split('')[-1], aim_word)
+
+    def _update_old_spec(self, input_file, replace):
+        new_spec: list = list()
+        with open(input_file, 'r', encoding='utf-8') as f:
+            for line in f.readlines():
+                if line.startswith('Version:'):
+                    new_spec.append(line.replace(line.strip().split()[-1], self.version))
+                    continue
+                if line.startswith('Release:'):
+                    new_spec.append(line.replace(line.strip().split()[-1], '1'))
+                    continue
+                if line.startswith('Source') and line.find(':') != -1:
+                    if replace:
+                        new_spec.append(
+                            line.replace(line.strip().split()[-1], self._source_url)
+                        )
+                    else:
+                        new_spec.append(line)
+                        new_spec.append(self._source_url + '\n')
+                    continue
+                if line.startswith('%changelog'):
+                    new_spec.append(line)
+                    change_info = '* %s OpenStack_SIG <openstack@openeuler.org> - %s-1\n' % (
+                                datetime.date.today().strftime("%a %b %d %Y"), self.version
+                            )
+                    new_spec.append(change_info)
+                    change_info = '- Upgrade package to version %s\n\n' % self.version
+                    new_spec.append(change_info)
+                    continue
+
+                new_spec.append(line)
+        return new_spec
+
+    def _update_old_tar(self):
+        cur_name = os.getcwd()
+        base_name = os.path.basename(cur_name)
+        flag = (base_name == self.pypi_name) or (base_name.replace('python-', '') == self.pypi_name)
+        if flag:
+            for old_tar in os.listdir(cur_name):
+                # 只删除old_version的压缩包
+                if re.search(r'\.(tar\.gz|tar\.bz2|zip|tgz)$', old_tar) and \
+                    old_tar.find(self.old_version) != -1:
+                    click.echo('find %s to rm' % old_tar)
+                    try:
+                        subprocess.call(['rm', '-f', old_tar])
+                    except Exception:
+                        raise click.ClickException("Failed to delete old tar file")
+                    break
+
+    def generate_spec(self, input_file, output_file, download, replace):
         self._init_source_info()
         self._parse_requires()
         spec_path = output_file if output_file else os.path.join(self.spec_name) + '.spec'
@@ -234,6 +285,22 @@ class RPMSpec(object):
                                      SPEC_TEMPLATE_DIR))
         template = env.get_template('package.spec.j2')
         up_down_grade = 'Upgrade' if self.is_upgrade() else "Downgrade"
+
+        # 不改变原有功能 指定input时直接修改指定文件 且高优先级 执行完直接返回
+        if input_file:
+            output = self._update_old_spec(input_file, replace)
+            if not output_file:
+                output_file = input_file
+            with open(output_file, 'w', encoding='utf-8') as f:
+                f.writelines(output)
+
+            if download:
+                self._update_old_tar()  # 默认下载新文件时直接删除旧文件
+                try:
+                    subprocess.call(['wget', self._source_url])
+                except Exception:
+                    raise click.ClickException('Failed to download source file')
+            return
 
         test_requires = self._test_requires if self.add_check else []
         template_vars = {'spec_name': self.spec_name,
