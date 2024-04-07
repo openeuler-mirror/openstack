@@ -56,7 +56,7 @@ def create(name, version, arch, no_check, pyproject, output):
 @group.command(name='update', help='Update(upgrade or downgrade) RPM spec for the python library')
 @click.option("-n", "--name", required=True, help="Name of package to build")
 @click.option("-v", "--version", default='latest', help="Package version, deault is the newest version")
-@click.option("-i", "--input", help="Specify input file of generated Spec, replace Version, Release, changelog and append source url")
+@click.option("-i", "--input", help="Specify input file of generated Spec, only replace Version, Release, changelog and append source url")
 @click.option("-o", "--output", help="Specify output file of generated Spec")
 @click.option("-d", "--download", is_flag=True, default=False, help="Download the source file in the current directory")
 @click.option("-r", "--replace", is_flag=True, default=False, help="Replace the source url")
@@ -68,9 +68,9 @@ def update(name, version, input, output, download, replace):
 
     if not input:
         # 获取下当前目录下的spec文件 正常只会有一个 找到即退出
-        for spec in os.listdir(os.getcwd()):
-            if spec.endswith('.spec'):
-                input = spec
+        for file in os.listdir(os.getcwd()):
+            if file.endswith('.spec'):
+                input = file
                 break
         if not input:
             print('input file not exist')
