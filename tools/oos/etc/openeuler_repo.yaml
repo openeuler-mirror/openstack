@@ -457,6 +457,7 @@ openeuler:
   secGear: sig-confidential-computing
   secpaver: sig-security-facility
   secscanner: sig-security-facility
+  secureguardian: sig-security-facility
   security-committee: security-committee
   security-facility: sig-security-facility
   security-tool: sig-security-facility
@@ -522,6 +523,7 @@ openeuler:
   yocto-meta-phosphor: sig-Yocto
   yocto-meta-qt5: sig-Yocto
   yocto-meta-raspberrypi: sig-Yocto
+  yocto-meta-renesas: sig-Yocto
   yocto-meta-rockchip: sig-Yocto
   yocto-meta-ros: sig-Yocto
   yocto-meta-virtualization: sig-Yocto
@@ -10223,6 +10225,7 @@ src-openeuler:
   secGear: sig-confidential-computing
   secpaver: sig-security-facility
   secscanner: sig-security-facility
+  secureguardian: sig-security-facility
   security-tool: sig-security-facility
   security_dataclassification: sig-distributed-middleware
   security_device_auth: sig-distributed-middleware
@@ -10238,6 +10241,7 @@ src-openeuler:
   sequence-library: sig-Java
   serd: sig-epol
   serp: sig-Java
+  servicelog: sig-POWER
   setools: Base-service
   setroubleshoot: sig-security-facility
   setroubleshoot-plugins: Base-service
