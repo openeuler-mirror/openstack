@@ -8,6 +8,7 @@ def test_repo_cli():
     assert 'branch-create' in result.output
     assert 'branch-delete' in result.output
     assert 'create' in result.output
+    assert 'create-pr' in result.output
     assert 'pr-comment' in result.output
     assert 'pr-fetch' in result.output
 
@@ -72,3 +73,13 @@ def test_repo_cli_pr_fetch():
     assert '--gitee-pat' in result.output
     assert '--repos' in result.output
     assert '--output' in result.output
+
+def test_repo_cli_create_pr():
+    runner = CliRunner()
+    result = runner.invoke(group, ['create-pr', '--help'])
+    assert result.exit_code == 0
+    assert '--gitee-pat' in result.output
+    assert '--gitee-org' in result.output
+    assert '--remote-branch' in result.output
+    assert '--add-commit' in result.output
+    assert '--comment' in result.output
