@@ -231,6 +231,7 @@ class RPMSpec(object):
     def _update_old_spec(self, input_file, replace):
         new_spec: list = list()
         with open(input_file, 'r', encoding='utf-8') as f:
+            not_change = True
             for line in f.readlines():
                 if line.startswith('Version:'):
                     new_spec.append(line.replace(line.strip().split()[-1], self.version))
@@ -238,7 +239,8 @@ class RPMSpec(object):
                 if line.startswith('Release:'):
                     new_spec.append(line.replace(line.strip().split()[-1], '1'))
                     continue
-                if line.startswith('Source') and line.find(':') != -1:
+                if not_change and line.startswith('Source') and line.find(':') != -1:
+                    not_change = False
                     if replace:
                         new_spec.append(
                             line.replace(line.strip().split()[-1], self._source_url)
