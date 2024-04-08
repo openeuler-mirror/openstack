@@ -37,19 +37,24 @@ def get_gitee_project_version(owner, project, branch, access_token=None):
 
 
 def has_branch(owner, project, branch, access_token=None):
-    """Check if the repo has specified branch"""
-    headers = {
-        'Content-Type': 'application/json;charset=UTF-8',
-    }
-    url = 'https://gitee.com/api/v5/repos/%s/%s/branches/%s' % (owner, project, branch)
-    if access_token:
-        url = url + '?access_token=%s' % access_token
-    response = requests.get(url, headers=headers)
-
-    if response.status_code != 200:
+    """Check if the repo has specified branch"""  
+    headers = {  
+        'Content-Type': 'application/json;charset=UTF-8',  
+    }  
+    url = f'https://gitee.com/api/v5/repos/{owner}/{project}/branches/{branch}'  
+    if access_token:  
+        url += f'?access_token={access_token}'  
+      
+    try:  
+        response = requests.get(url, headers=headers)  
+        if response.status_code == 200:  
+            return True  
+        else:  
+            return False  
+              
+    except requests.exceptions.RequestException as e:  
+        print(f"An error occurred: {e}")  
         return False
-    else:
-        return True
 
 
 def get_user_info(token):
