@@ -108,7 +108,7 @@ class PkgGitRepo(object):
         click.echo("CMD: %s" % commit_cmd)
         subprocess.call(commit_cmd, shell=True)
 
-    def create_pr(self, src_branch, remote_branch, tittle):
+    def create_pr(self, src_branch, remote_branch, tittle, pr_body=''):
         if not self.commit_pushed:
             click.secho("WARNING: Commit was not pushed of %s, exit!" %
                         self.repo_name, fg='red')
@@ -117,13 +117,19 @@ class PkgGitRepo(object):
         try:
             url = "https://gitee.com/api/v5/repos/%s/%s/pulls" % (
                 self.gitee_org, self.repo_name)
-            resp = requests.request(
-                "POST", url, data={"access_token": self.gitee_pat,
-                                   "title": tittle,
-                                   "head": self.gitee_user + ":" + src_branch,
-                                   "base": remote_branch})
+
+            data={"access_token": self.gitee_pat,
+                  "title": tittle,
+                  "head": self.gitee_user + ":" + src_branch,
+                  "base": remote_branch}
+            if pr_body:
+                data["body"] = pr_body
+
+            resp = requests.request("POST", url, data=data)
             if resp.status_code != 201:
                 click.echo("Create pull request failed, %s" % resp.text)
+            return resp.json()
+
         except requests.RequestException as e:
             click.echo("HTTP request to gitee failed: %s" % e, err=True)
 

@@ -1,10 +1,15 @@
 import os
+from pathlib import Path
+import subprocess
+import time
 
 import click
 
+from oos.commands.repo.repo_class import PkgGitRepo
 from oos.commands.spec.spec_class import RPMSpec
 from oos.commands.spec.spec_class import RPMSpecBuild
 from oos.commands.spec.spec_class import RPMCopy
+from oos.common import gitee
 
 
 def _get_old_spec_info(name):
@@ -98,3 +103,91 @@ def build(package_or_spec_name):
 def cp(path, clear, build):
     spec_copy = RPMCopy(path, clear, build)
     spec_copy.copy_file_for_rpm()
+
+
+@group.command(name='clone', help='clone src-repo')
+@click.option("-n", "--name", required=True, help="PypiName of package to build")
+@click.option("-t", "--gitee-pat", envvar='GITEE_PAT', required=True,
+              help="Gitee personal access token")
+@click.option("-o", "--gitee-org", envvar='GITEE_ORG',
+              default="src-openeuler", show_default=True,
+              help="Gitee organization name of openEuler")
+@click.option("-r", "--repos-dir", default=os.path.join(str(Path.home()), 'src-repos'), show_default=True,
+              help="Directory for storing source repo locally")
+@click.option("-d", "--dest-branch",
+              default='Multi-Version_OpenStack-Antelope_openEuler-24.03-LTS',
+              show_default=True,
+              help="Target remote branch to create PR, default as master")
+@click.option("-s", "--src-branch", default='openstack-antelope-support',
+              show_default=True,
+              help="Local source branch to create PR")
+def clone(name, gitee_pat, gitee_org, repos_dir, dest_branch, src_branch):
+    if gitee_pat:
+        gitee_user, gitee_email = gitee.get_user_info(gitee_pat)
+        if not gitee_email:
+            raise click.ClickException(
+                "Your email was not publicized in gitee, need to manually "
+                "specified by --gitee-email")
+
+    repo_obj = PkgGitRepo(gitee_pat, gitee_org,
+                          gitee_user, gitee_email,
+                          pypi_name=name)
+    repo_obj.fork_repo(repo_obj.repo_name)
+    if repo_obj.not_found:
+        raise click.ClickException(f'Repo_obj of {name} not found')
+
+    # Retry clone 3 times if clone failed
+    for i in range(3):
+        repo_obj.clone_repo(repos_dir)
+        if os.path.exists(repo_obj.repo_dir):
+            break
+        time.sleep(2)
+    else:
+        raise click.ClickException(f'Repo of {name} clone failed')
+
+    repo_obj.add_branch(src_branch, dest_branch)
+    if repo_obj.branch_not_found:
+        raise click.ClickException(f'Brach {dest_branch} not found in Repo_obj of {name}')
+
+    print(f'dir is: {repo_obj.repo_dir}')
+    subprocess.call(["cd", repo_obj.repo_dir])
+
+
+@group.command(name='push', help='push and create pr')
+@click.option("-n", "--name", required=True, help="PypiName of package to build")
+@click.option("-t", "--gitee-pat", envvar='GITEE_PAT', required=True,
+              help="Gitee personal access token")
+@click.option("-o", "--gitee-org", envvar='GITEE_ORG',
+              default="src-openeuler", show_default=True,
+              help="Gitee organization name of openEuler")
+@click.option("-r", "--repos-dir", default=os.path.join(str(Path.home()), 'src-repos'), show_default=True,
+              help="Directory for storing source repo locally")
+@click.option("-d", "--dest-branch",
+              default='Multi-Version_OpenStack-Antelope_openEuler-24.03-LTS',
+              show_default=True,
+              help="Target remote branch to create PR, default as master")
+@click.option("-s", "--src-branch", default='openstack-antelope-support',
+              show_default=True,
+              help="Local source branch to create PR")
+def push(name, gitee_pat, gitee_org, repos_dir, dest_branch, src_branch):
+    if gitee_pat:
+        gitee_user, gitee_email = gitee.get_user_info(gitee_pat)
+        if not gitee_email:
+            raise click.ClickException(
+                "Your email was not publicized in gitee, need to manually "
+                "specified by --gitee-email")
+
+    # The commit message is the same as the first line changelog
+    old_changelog, old_version, _, _ = _get_old_spec_info(name)
+    commit_msg = old_changelog[1].lstrip('- ')
+    repo_obj.commit(commit_msg, do_push=True)
+
+    pr_body = f'OpenStack Antelope need {repo_obj.repo_name} {old_version}'
+    resp = repo_obj.create_pr(src_branch, dest_branch, commit_msg, pr_body)
+    print(f'resp is {resp}')
+
+    pr_num = resp['number']
+    comment = '/sync Multi-Version_OpenStack-Antelope_openEuler-24.03-LTS-Next'
+    repo_obj.pr_add_comment(comment, pr_num)
+
+
