@@ -14,5 +14,5 @@ image_name=${image_ref#*:}
 
 cp Dockerfile Dockerfile-tmp
 sed -i "s/FROM.*/FROM $image_name/" Dockerfile-tmp
-docker build . -t openeuler-pkg-build -f Dockerfile-tmp
+docker build . -t openeuler-pkg-build -f Dockerfile-tmp --network host
 rm Dockerfile-tmp
