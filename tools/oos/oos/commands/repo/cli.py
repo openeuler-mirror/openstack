@@ -378,3 +378,20 @@ def fork_repos(token, names, gitee_org):
 def branch_version_list(repo, gitee_pat, gitee_org, suffix, keyword):
     repo_obj = PkgGitRepo(gitee_pat=gitee_pat, repo_name=repo, gitee_org=gitee_org)
     repo_obj.branch_version_list(suffix, keyword)
+
+
+@group.command(name='create-pr', help='Create PR for current directory')
+@click.option('-t', '--gitee-pat', envvar='GITEE_PAT', required=True,
+              help='Gitee personal access token')
+@click.option('-o', '--gitee-org', envvar='GITEE_ORG', required=True,
+              default='src-openeuler', show_default=True,
+              help='Gitee organization name of repos')
+@click.option('-b', '--remote-branch', help='Remote branch for your pull request')
+@click.option('-a', '--add-commit', is_flag=True,
+              help='Excute the "git add, commit and push" command in current directory')
+@click.option('-m', '--comment', help='Comment to this PR')
+def create_pr(gitee_pat, gitee_org, remote_branch, add_commit, comment):
+
+    # 这里不获取当前目录的信息 统一放到PkgGitRepo内部 repo_name在后续刷新
+    local_repo = PkgGitRepo(gitee_pat, gitee_org, repo_name='no_use')
+    local_repo.create_pr_for_rpm_in_current_dir(remote_branch, add_commit, comment)

@@ -124,6 +124,11 @@ class PkgGitRepo(object):
                                    "base": remote_branch})
             if resp.status_code != 201:
                 click.echo("Create pull request failed, %s" % resp.text)
+                return
+            try:
+                return resp.json()['number']
+            except Exception:
+                click.echo('please get pr number manual')
         except requests.RequestException as e:
             click.echo("HTTP request to gitee failed: %s" % e, err=True)
 
@@ -228,3 +233,57 @@ class PkgGitRepo(object):
             return
 
         click.echo(res)
+
+
+    def _add_file_and_commit_with_last_change(slef, title):
+        try:
+            subprocess.call(['git', 'add', '.'])
+            subprocess.call(['git', 'commit', '-m', title])
+            subprocess.call(['git', 'push'])
+            click.echo('******Finish the CMD: git add, commit and push******')
+
+        except Exception:
+            raise click.ClickException('git add or git commit fail')
+
+    def create_pr_for_rpm_in_current_dir(self, remote_branch, add_commit, comment):
+        cur_dir = os.getcwd()
+        self.repo_name = os.path.basename(cur_dir)
+        os.chdir(cur_dir)
+        try:
+            res = subprocess.check_output(['git', 'config', '--list']).decode()
+            p_start = res.find('user.name') + 10
+            p_end = res.find('\n', p_start)
+            self.gitee_user = res[p_start:p_end]
+
+            res = subprocess.check_output(['git', 'branch']).decode()
+            p_start = res.find('* ') + 2
+            p_end = res.find('\n', p_start)
+            src_branch = res[p_start:p_end]
+        except Exception:
+            raise click.ClickException('get user.name or branch failed')
+
+        if not remote_branch:  # 默认使用src_branch
+            remote_branch = src_branch
+
+        # title直接获取spec文件的 未获取到认为异常 更改必改spec文件
+        title = None
+        for file in os.listdir(cur_dir):
+            if file.endswith('.spec'):
+                with open(file, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    title = content[content.find('%changelog'):].split('\n')[2][2:]
+                    break
+
+        if title:
+            if add_commit:
+                self._add_file_and_commit_with_last_change(title)
+
+            self.commit_pushed = True
+            pr_num = self.create_pr(src_branch, remote_branch, title)
+
+            if pr_num and comment:
+                self.pr_add_comment(comment, pr_num)
+                pr_link = 'PR link:\nhttps://gitee.com/%s/%s/pulls/%s' % (
+                    self.gitee_org, self.repo_name, pr_num
+                )
+                click.echo(pr_link)

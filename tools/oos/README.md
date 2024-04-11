@@ -354,6 +354,32 @@ oos repo branch-version-list repo -t GITEE_PAT
     [可选] 查看包含指定关键字的分支，默认为查看所有分支
 ```
 
+## 提交特定PR
+
+可使用`oos repo create-pr -t <GITEE_PAT> -m <comment> -a`命令，
+将本地仓库当前分支的修改提交，并创建PR。该功能有一定限制，
+请仔细了解命令参数后再使用。
+
+- 该命令方便RPM构建使用，其他场景可能不适配
+- PR的标题为当前仓库SPEC文件最新的changelog，取changelog后第二行的内容，不填写PR内容
+- PR默认读取`git config --list`中user.name做为创建PR时的username，不支持修改
+
+该命令所支持的参数如下：
+```
+-t, --gitee-pat
+    [必选] 个人Gitee账户personal access token，可以使用GITEE_PAT环境变量指定
+-o, --gitee-org
+    [可选] repo所属的gitee组织名称，默认为src-openeuler
+-b, --remote-branch
+    [可选] PR提交目标分支的名称，默认使用本地当前分支名称
+-a, --add-commit
+    [可选] 执行"git add .", "git commit -m <changelog>", "git push"三个命令来
+    提交当前修改，不携带该参数不提交修改，且认为修改已提交
+-m, --comment
+    [可选] 在提交PR后添加评论，如"/sync branch1"
+```
+
+
 ## 华为弹性云服务器操作
 
 支持start、shutdown、reinstall、changeos操作
