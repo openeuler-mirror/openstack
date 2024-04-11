@@ -5325,6 +5325,9 @@ src-openeuler:
   pdoc: sig-python-modules
   pdsh: Application
   pegdown: sig-Java
+  penglai-enclave-demo: sig-RISC-V
+  penglai-enclave-driver: sig-RISC-V
+  penglai-enclave-sdk: sig-RISC-V
   peony: sig-UKUI
   peony-extensions: sig-UKUI
   perception_open3d: sig-ROS
