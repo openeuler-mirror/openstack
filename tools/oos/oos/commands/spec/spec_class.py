@@ -228,6 +228,25 @@ class RPMSpec(object):
     def _replace_word_after_last_blank(self, line, aim_word):
         return line.replace(line.split('')[-1], aim_word)
 
+    def _get_git_userinfo(self):
+        os.getcwd()  # 移动到当前目录
+        user_name = None
+        user_email =  None
+        try:
+            res = subprocess.check_output(['git', 'config', '--list']).decode()
+            p_start = res.find('user.name') + 10
+            p_end = res.find('\n', p_start)
+            user_name = res[p_start:p_end]
+
+            p_start = res.find('user.email') + 11
+            p_end = res.find('\n', p_start)
+            user_email = res[p_start:p_end]
+            if not user_name or not user_email:
+                raise click.ClickException('None user.name or user.email')
+            return user_name, user_email
+        except Exception:
+            raise click.ClickException('get user.name or user.email failed')
+
     def _update_old_spec(self, input_file, replace):
         new_spec: list = list()
         with open(input_file, 'r', encoding='utf-8') as f:
@@ -250,9 +269,13 @@ class RPMSpec(object):
                         new_spec.append(self._source_url + '\n')
                     continue
                 if line.startswith('%changelog'):
+                    user_name, user_email = self._get_git_userinfo()
                     new_spec.append(line)
-                    change_info = '* %s OpenStack_SIG <openstack@openeuler.org> - %s-1\n' % (
-                                datetime.date.today().strftime("%a %b %d %Y"), self.version
+                    change_info = '* %s %s <%s> - %s-1\n' % (
+                                datetime.date.today().strftime("%a %b %d %Y"), 
+                                user_name,
+                                user_email,
+                                self.version
                             )
                     new_spec.append(change_info)
                     change_info = '- Upgrade package to version %s\n\n' % self.version
