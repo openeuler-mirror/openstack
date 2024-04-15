@@ -314,6 +314,7 @@ openeuler:
   libgdbm-rust: Base-service
   libgmem: Computing
   libkae: sig-AccLib
+  libkperf: A-Tune
   libvirt: Virt
   libwd: sig-AccLib
   libxml2-rust: Base-service
@@ -538,6 +539,7 @@ src-openeuler:
   A-Tune-BPF-Collection: A-Tune
   A-Tune-Collector: A-Tune
   A-Tune-UI: A-Tune
+  AFLplusplus: sig-QA
   BSC-extrae: sig-HPC
   BSC-wxparaver: sig-HPC
   BareBonesBrowserLaunch: sig-Java
@@ -3744,6 +3746,7 @@ src-openeuler:
   libkml: sig-recycle
   libkolabxml: sig-KDE
   libkomparediff2: sig-KDE
+  libkperf: A-Tune
   libksba: Base-service
   libkscreen-qt5: sig-UKUI
   libksysguard: sig-KDE
