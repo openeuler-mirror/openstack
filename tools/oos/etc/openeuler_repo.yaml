@@ -498,6 +498,7 @@ openeuler:
   ub-lldpd: Networking
   ubackup: sig-Migration
   ukui: sig-UKUI
+  ukui-themes: sig-UKUI
   umdk: sig-high-performance-network
   unizip: Base-service
   user-committee: user-committee
@@ -3442,6 +3443,7 @@ src-openeuler:
   kylin-ipmsg: sig-UKUI
   kylin-music: sig-UKUI
   kylin-nm: sig-UKUI
+  kylin-nm-plugin: sig-UKUI
   kylin-photo-viewer: sig-UKUI
   kylin-printer: sig-UKUI
   kylin-recorder: sig-UKUI
@@ -3751,6 +3753,7 @@ src-openeuler:
   libkscreen-qt5: sig-UKUI
   libksysguard: sig-KDE
   libkylin-chkname: sig-UKUI
+  libkylin-nm-base: sig-UKUI
   libkysdk-applications: sig-UKUI
   libkysdk-base: sig-UKUI
   libkysdk-system: sig-UKUI
@@ -3855,6 +3858,7 @@ src-openeuler:
   libproxy: Networking
   libpsl: Base-service
   libpwquality: sig-security-facility
+  libqaccessibilityclient: sig-UKUI
   libqalculate: sig-KDE
   libqb: Computing
   libqmi: Networking
@@ -4480,6 +4484,7 @@ src-openeuler:
   native-platform: sig-Java
   native-turbo: A-Tune
   nautilus: GNOME
+  nautilus-python: sig-UKUI
   nautilus-sendto: Private
   nauty: sig-epol
   navigation: sig-ROS
@@ -5498,6 +5503,7 @@ src-openeuler:
   perl-Clone: sig-perl-modules
   perl-Clone-Choose: sig-perl-modules
   perl-Clone-PP: sig-perl-modules
+  perl-Code-TidyAll: sig-perl-modules
   perl-Color-Library: sig-perl-modules
   perl-Command-Runner: sig-perl-modules
   perl-Commandable: sig-perl-modules
@@ -5926,6 +5932,7 @@ src-openeuler:
   perl-Hash-Merge-Simple: sig-perl-modules
   perl-Hash-MoreUtils: sig-perl-modules
   perl-Hash-MultiValue: sig-perl-modules
+  perl-Hash-Ordered: sig-perl-modules
   perl-Hash-Util-FieldHash-Compat: sig-perl-modules
   perl-Hook-LexWrap: sig-perl-modules
   perl-IO: sig-perl-modules
@@ -7191,6 +7198,7 @@ src-openeuler:
   python-ConfigSpace: A-Tune
   python-CouchDB: sig-recycle
   python-Cython: sig-python-modules
+  python-DateTimeRange: sig-openstack
   python-ECPy: sig-python-modules
   python-EditorConfig: sig-python-modules
   python-Faker: sig-python-modules
@@ -8221,6 +8229,7 @@ src-openeuler:
   python-matplotlib: sig-python-modules
   python-matplotlib-inline: sig-python-modules
   python-maturin: sig-python-modules
+  python-mbstrdecoder: sig-openstack
   python-mccabe: sig-python-modules
   python-mdformat: sig-python-modules
   python-mdformat-gfm: sig-python-modules
@@ -8321,6 +8330,7 @@ src-openeuler:
   python-nbsphinx: sig-python-modules
   python-nbval: sig-python-modules
   python-nbxmpp: sig-mate-desktop
+  python-ncclient: sig-openstack
   python-ndg-httpsclient: sig-openstack
   python-ndjson-testrunner: sig-python-modules
   python-neomodel: sig-python-modules
@@ -9199,6 +9209,7 @@ src-openeuler:
   python-txaio: sig-openstack
   python-typed-ast: sig-openstack
   python-typeguard: sig-ROS
+  python-typepy: sig-openstack
   python-typer: sig-python-modules
   python-types-cryptography: sig-openstack
   python-types-enum34: sig-openstack
@@ -9399,6 +9410,7 @@ src-openeuler:
   pywbem: Programming-language
   pyxattr: Base-service
   pyxdg: Programming-language
+  qaccessibilityclient: sig-KDE
   qax-gm-certificates: sig-security-facility
   qca: sig-KDE
   qcoro: sig-KDE
@@ -10705,23 +10717,30 @@ src-openeuler:
   uima-addons: sig-Java
   uima-parent-pom: sig-Java
   uimaj: sig-Java
+  ukui-app-widget: sig-UKUI
   ukui-biometric-auth: sig-UKUI
   ukui-biometric-manager: sig-UKUI
   ukui-bluetooth: sig-UKUI
   ukui-clock: sig-UKUI
   ukui-control-center: sig-UKUI
   ukui-desktop-environment: sig-UKUI
+  ukui-globaltheme: sig-UKUI
   ukui-greeter: sig-UKUI
   ukui-indicators: sig-UKUI
+  ukui-input-gather: sig-UKUI
   ukui-interface: sig-UKUI
   ukui-kwin: sig-UKUI
+  ukui-kwin-effects: sig-UKUI
   ukui-media: sig-UKUI
   ukui-menu: sig-UKUI
+  ukui-menu-extensions: sig-UKUI
   ukui-notebook: sig-UKUI
+  ukui-notification: sig-UKUI
   ukui-notification-daemon: sig-UKUI
   ukui-panel: sig-UKUI
   ukui-paste: sig-UKUI
   ukui-power-manager: sig-UKUI
+  ukui-quick: sig-UKUI
   ukui-screensaver: sig-UKUI
   ukui-screenshot: sig-UKUI
   ukui-search: sig-UKUI
@@ -10729,10 +10748,13 @@ src-openeuler:
   ukui-session-manager: sig-UKUI
   ukui-settings-daemon: sig-UKUI
   ukui-sidebar: sig-UKUI
+  ukui-sni: sig-UKUI
   ukui-system-monitor: sig-UKUI
   ukui-themes: sig-UKUI
+  ukui-touch-settings-plugin: sig-UKUI
   ukui-user-guide: sig-UKUI
   ukui-wallpapers: sig-UKUI
+  ukui-wayland-panel: sig-UKUI
   ukui-window-switch: sig-UKUI
   ukwm: sig-UKUI
   ukylin-feedback-client: sig-UKUI
