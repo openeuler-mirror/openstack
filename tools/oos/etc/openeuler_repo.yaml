@@ -4997,6 +4997,7 @@ src-openeuler:
   ocaml-ocamlbuild: Programming-language
   ocaml-ounit: Application
   ocaml-xml-light: dev-utils
+  oceanbase-ce: sig-epol
   ocf: Storage
   oci-systemd-hook: sig-recycle
   ocl-icd: Base-service
