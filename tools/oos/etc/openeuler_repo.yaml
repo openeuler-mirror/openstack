@@ -400,6 +400,7 @@ openeuler:
   openstack-plugin: sig-openstack
   openstack-releases: sig-openstack
   operator-manager: sig-CloudNative
+  osinfor: sig-memsafety
   pacemaker-mgmt: sig-Ha
   package-reinforce-test: sig-QA
   passwd_group_generator: sig-security-facility
@@ -505,6 +506,8 @@ openeuler:
   utshell: sig-memsafety
   utsudo: sig-memsafety
   vectorBlas: bigdata
+  virtCCA_driver: sig-confidential-computing
+  virtCCA_sdk: sig-confidential-computing
   vmtop: Virt
   vs2qt: sig-porting-platform-winapp
   vtopia-agent: sig-security-facility
@@ -10750,7 +10753,9 @@ src-openeuler:
   ukui-settings-daemon: sig-UKUI
   ukui-sidebar: sig-UKUI
   ukui-sni: sig-UKUI
+  ukui-system-appwidget: sig-UKUI
   ukui-system-monitor: sig-UKUI
+  ukui-tablet-desktop: sig-UKUI
   ukui-themes: sig-UKUI
   ukui-touch-settings-plugin: sig-UKUI
   ukui-user-guide: sig-UKUI
@@ -10857,6 +10862,8 @@ src-openeuler:
   virt-top: Private
   virt-viewer: oVirt
   virt-what: sig-CloudNative
+  virtCCA_driver: sig-confidential-computing
+  virtCCA_sdk: sig-confidential-computing
   vision_msgs: sig-ROS
   vision_msgs_layers: sig-ROS
   vision_opencv: sig-ROS
