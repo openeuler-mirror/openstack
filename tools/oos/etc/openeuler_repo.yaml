@@ -470,6 +470,7 @@ openeuler:
   sig-OpenBoard: sig-recycle
   signatrust: Infrastructure
   skylark: Virt
+  ssh-utils: sig-memsafety
   sssnic-driver: sig-Compatibility-Infra
   stortrace: Storage
   stratovirt: Virt
