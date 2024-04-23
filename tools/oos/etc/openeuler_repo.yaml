@@ -5001,7 +5001,7 @@ src-openeuler:
   ocaml-ocamlbuild: Programming-language
   ocaml-ounit: Application
   ocaml-xml-light: dev-utils
-  oceanbase-ce: sig-epol
+  oceanbase-ce: sig-OceanBase
   ocf: Storage
   oci-systemd-hook: sig-recycle
   ocl-icd: Base-service
@@ -7778,7 +7778,7 @@ src-openeuler:
   python-elasticsearch7: sig-EasyLife
   python-elementpath: sig-openstack
   python-eli5: sig-python-modules
-  python-email-validator: ecopkg
+  python-email-validator: sig-python-modules
   python-email_reply_parser: sig-python-modules
   python-emcee: sig-python-modules
   python-emoji: sig-python-modules
@@ -10037,6 +10037,7 @@ src-openeuler:
   rubygem-msgpack: sig-ruby
   rubygem-multi_json: sig-ruby
   rubygem-multi_test: sig-ruby
+  rubygem-multi_xml: sig-ROS
   rubygem-multipart-post: sig-ruby
   rubygem-mustache: sig-ruby
   rubygem-mustermann: sig-ruby
@@ -10052,6 +10053,7 @@ src-openeuler:
   rubygem-oj: sig-ruby
   rubygem-open4: sig-ruby
   rubygem-ovirt-engine-sdk4: oVirt
+  rubygem-ox: sig-ROS
   rubygem-pathspec: sig-ruby
   rubygem-patternfly-sass: sig-ruby
   rubygem-pdf-core: sig-ruby
