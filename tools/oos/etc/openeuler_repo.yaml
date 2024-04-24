@@ -1824,6 +1824,7 @@ src-openeuler:
   fisher: ecopkg
   flac: Computing
   flamegraph: sig-ops
+  flameshot: sig-desktop-apps
   flang: Compiler
   flang-15: Compiler
   flann: sig-ROS
@@ -9440,6 +9441,7 @@ src-openeuler:
   qt: Runtime
   qt-assistant-adp: sig-QT
   qt-at-spi: sig-QT
+  qt-creator: sig-QT
   qt-gui: sig-ROS
   qt-mobility: sig-QT
   qt-settings: sig-QT
