@@ -445,7 +445,7 @@ class RPMCopy():
         except Exception:
             raise click.ClickException("rpm tools error, You must install them by hand first")
 
-    def _rpmbuild_with_spec(self):
+    def _rpmbuild_with_spec(self, install_requires: bool):
         '''run cmd "rpmbuild -ba /root/rpmbuild/SPECS/pkg.spec"
         '''
         if '' == self.spec_file or not os.path.exists(
@@ -454,10 +454,13 @@ class RPMCopy():
             return 
 
         click.echo('\nExec: rpmbuild -ba ' + self.spec_file + '\n')
-        # no check exception, just run command
+        if install_requires:
+            os.system('dnf builddep -y ' + self.spec_file)
+
         os.system('rpmbuild -ba ' + self.spec_file)
 
-    def copy_file_for_rpm(self):
+
+    def copy_file_for_rpm(self, install_requires: bool):
         self._rpmbuild_dir_check()
         try:
             self.spec_file = ''
@@ -478,4 +481,4 @@ class RPMCopy():
             print('Copy failed: ', e)
 
         if self.build:
-            self._rpmbuild_with_spec()
+            self._rpmbuild_with_spec(install_requires)

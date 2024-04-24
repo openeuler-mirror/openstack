@@ -95,6 +95,8 @@ def build(package_or_spec_name):
 @click.argument('path', type=str, default=os.getcwd())
 @click.option('--clear', '-c', is_flag=True, default=False, help='remove and make new dirs of rpmbuild')
 @click.option('--build', '-b', is_flag=True, default=False, help='build after copy')
-def cp(path, clear, build):
+@click.option('--install-requires', '-i', is_flag=True, default=False,
+              help='auto install-requires')
+def cp(path, clear, build, install_requires):
     spec_copy = RPMCopy(path, clear, build)
-    spec_copy.copy_file_for_rpm()
+    spec_copy.copy_file_for_rpm(install_requires)
