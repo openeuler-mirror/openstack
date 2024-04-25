@@ -62,6 +62,17 @@ oos spec build stevedore
 oos spec cp
 ```
 
+其他支持的参数有：
+
+```
+-c, --clear
+    删除rpmbuild目录
+-b, --build
+    复制文件后执行rpmbuild -ba pkg.spec命令
+-i, --install-requires
+    自动安装Spec文件中缺少的依赖包
+```
+
 ## 自动分析OpenStack软件包依赖
 
 以OpenStack train为例，
