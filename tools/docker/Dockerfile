@@ -1,6 +1,6 @@
 # NOTE: the following image name is the openEuler docker images name from dailybuild,
 # may need to modify
-FROM  openeuler-22.03-lts-next:latest
+FROM  openeuler-24.03-lts:latest
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -20,5 +20,5 @@ RUN rpmdev-setuptree
 WORKDIR /root/
 RUN git clone https://gitee.com/openeuler/openstack \
     && cd openstack/tools/oos \
-    && pip3 install -r requirement.txt \
+    && pip3 install -r requirements.txt \
     && python3 setup.py develop
