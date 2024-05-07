@@ -53,6 +53,7 @@ openeuler:
   OSPerformanceTools: sig-OSRefTools
   PRIP: Networking
   PilotGo: sig-ops
+  PilotGo-plugin-MFD: sig-ops
   PilotGo-plugin-a-tune: sig-ops
   PilotGo-plugin-container: sig-ops
   PilotGo-plugin-gala-ops: sig-ops
@@ -2368,6 +2369,7 @@ src-openeuler:
   gnupg: Application
   gnupg2: sig-security-facility
   gnuplot: Application
+  gnuradio: sig-embedded
   gnustep-base: sig-epol
   gnustep-make: sig-epol
   gnutls: sig-security-facility
@@ -9566,6 +9568,7 @@ src-openeuler:
   raspberrypi-firmware: sig-SBC
   raspberrypi-kernel: sig-SBC
   raspberrypi-userland: sig-SBC
+  raspberrypi-utils: sig-SBC
   raspi-config: sig-SBC
   raspimouse2: sig-ROS
   raspimouse_description: sig-ROS
