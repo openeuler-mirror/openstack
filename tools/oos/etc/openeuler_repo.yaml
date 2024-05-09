@@ -9635,7 +9635,6 @@ src-openeuler:
   rhythmbox: Application
   riemann-c-client: oVirt
   rinetd: Application
-  risc-v-kernel: sig-RISC-V
   ristretto: xfce
   rmf_api_msgs: sig-ROS
   rmf_battery: sig-ROS
@@ -10872,6 +10871,7 @@ src-openeuler:
   virt-what: sig-CloudNative
   virtCCA_driver: sig-confidential-computing
   virtCCA_sdk: sig-confidential-computing
+  virtiofsd: sig-CloudNative
   vision_msgs: sig-ROS
   vision_msgs_layers: sig-ROS
   vision_opencv: sig-ROS
