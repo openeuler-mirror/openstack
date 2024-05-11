@@ -130,6 +130,7 @@ SIG maintainer每半年也会例行审视当前maintainer列表，如果发现�
 |张迎|[zhangy1317](https://gitee.com/zhangy1317)|zhangy1317@foxmail.com|中国联通|
 |韩光宇|[han-guangyu](https://gitee.com/han-guangyu)|hanguangyu@uniontech.com|统信软件|
 |王东兴|[desert-sailor](https://gitee.com/desert-sailor)|dongxing.wang_a@thundersoft.com|创达奥思维|
+|郑挺|[tzing_t](https://gitee.com/tzing_t)|zhengting13@huawei.com|华为|
 
 ## 如何贡献
 
