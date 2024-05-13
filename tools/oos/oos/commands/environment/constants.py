@@ -8,6 +8,7 @@ OE_OS_RELEASE = {
     '22.03-lts-sp1': ['train', 'wallaby'],
     '22.03-lts-sp2': ['train', 'wallaby'],
     '22.03-lts-sp3': ['train', 'wallaby'],
+    '24.03-lts': ['wallaby', 'antelope'],
     '22.09': ['yoga']
 }
 
