@@ -3445,6 +3445,7 @@ src-openeuler:
   kxml: sig-Java
   kylin-burner: sig-UKUI
   kylin-calculator: sig-UKUI
+  kylin-device-daemon: sig-UKUI
   kylin-display-switch: sig-UKUI
   kylin-installer: sig-UKUI
   kylin-ipmsg: sig-UKUI
@@ -6942,6 +6943,7 @@ src-openeuler:
   perl-libwww-perl: Programming-language
   perl-libxml-perl: Programming-language
   perl-local-lib: sig-perl-modules
+  perl-match-simple: sig-perl-modules
   perl-mixin: sig-perl-modules
   perl-multidimensional: sig-perl-modules
   perl-namespace-autoclean: sig-perl-modules
