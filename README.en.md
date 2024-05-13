@@ -17,7 +17,7 @@ The openEuler OpenStack SIG is committed to combining diversified computing powe
 
 ## Organization Meetings
 
-Public meeting time: bi-weekly regular meeting, Wednesday afternoon 3:00-4:00(UTC +8)
+Public meeting time: bi-monthly regular meeting, Wednesday in the mid to latter part of the month, afternoon 3:00-4:00(UTC +8)
 
 Meeting agenda and summary: <https://etherpad.openeuler.org/p/sig-openstack-meetings>
 
@@ -31,6 +31,9 @@ Meeting agenda and summary: <https://etherpad.openeuler.org/p/sig-openstack-meet
 - Wang Xiyuan [@xiyuanwang](https://gitee.com/xiyuanwang) wangxiyuan1007@gmail.com
 - Zhang Fan [@zh-f](https://gitee.com/zh-f) zh.f@outlook.com
 - Zhang Ying [@zhangy1317](https://gitee.com/zhangy1317) zhangy1317@foxmail.com
+- Han Guangyu [han-guangyu](https://gitee.com/han-guangyu) hanguangyu@uniontech.com
+- Wang Donexing [desert-sailor](https://gitee.com/desert-sailor) dongxing.wang_a@thundersoft.com
+- Zheng Ting [tzing_t](https://gitee.com/tzing_t) zhengting13@huawei.com
 - Liu Sheng [@sean-lau](https://gitee.com/sean-lau) liusheng2048@gmail.com - Retired
 
 ### Contact details
@@ -44,43 +47,58 @@ The OpenStack SIG collects OpenStack version requirements through user feedback,
 
 ● - Released
 ○ - Planning
+▲ - Supported in Selected Versions
 
-|                         | Queens | Rocky | Train | Ussuri | Victoria | Wallaby | Xena | Yoga |
-|:-----------------------:|:------:|:-----:|:-----:|:------:|:--------:|:-------:|:----:|:----:|
-| openEuler 20.03 LTS SP2 |    ●   |   ●   |       |        |          |         |      |      |
-| openEuler 20.03 LTS SP3 |    ●   |   ●   |   ●   |        |          |         |      |      |
-| openEuler 20.03 LTS SP4 |        |       |   ●   |        |          |         |      |      |
-|     openEuler 21.03     |        |       |       |        |     ●    |         |      |      |
-|     openEuler 21.09     |        |       |       |        |          |    ●    |      |      |
-|   openEuler 22.03 LTS   |        |       |   ●   |        |          |    ●    |      |      |
-| openEuler 22.03 LTS SP1 |        |       |   ●   |        |          |    ●    |      |      |
-| openEuler 22.03 LTS SP2 |        |       |   ●   |        |          |    ●    |      |      |
-| openEuler 22.03 LTS SP3 |        |       |   ●   |        |          |    ●    |      |      |
-|   openEuler 22.09       |        |       |       |        |          |         |      |   ●  |
+|                         | Queens | Rocky | Train | Ussuri | Victoria | Wallaby | Xena | Yoga | Antelope |
+|:-----------------------:|:------:|:-----:|:-----:|:------:|:--------:|:-------:|:----:|:----:|:--------:|
+| openEuler 20.03 LTS SP2 |    ●   |   ●   |       |        |          |         |      |      |          |
+| openEuler 20.03 LTS SP3 |    ●   |   ●   |   ●   |        |          |         |      |      |          |
+| openEuler 20.03 LTS SP4 |        |       |   ●   |        |          |         |      |      |          |
+|     openEuler 21.03     |        |       |       |        |     ●    |         |      |      |          |
+|     openEuler 21.09     |        |       |       |        |          |    ●    |      |      |          |
+|   openEuler 22.03 LTS   |        |       |   ●   |        |          |    ●    |      |      |          |
+| openEuler 22.03 LTS SP1 |        |       |   ●   |        |          |    ●    |      |      |          |
+| openEuler 22.03 LTS SP2 |        |       |   ●   |        |          |    ●    |      |      |          |
+| openEuler 22.03 LTS SP3 |        |       |   ●   |        |          |    ●    |      |      |          |
+|   openEuler 22.09       |        |       |       |        |          |         |      |   ●  |          |
+|   openEuler 24.03 LTS   |        |       |       |        |          |    ○    |      |      |     ○    |
 
+|            | Queens | Rocky | Train | Victoria | Wallaby | Yoga | Antelope |
+|:---------: |:------:|:-----:|:-----:|:--------:|:-------:|:----:|:--------:|
+|  Keystone  |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ○     |
+|   Glance   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ○     |
+|    Nova    |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ○     |
+|   Cinder   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ○     |
+|  Neutron   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ○     |
+|  Tempest   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ○     |
+|  Horizon   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ○     |
+|   Ironic   |    ●   |   ●   |   ●   |     ●    |    ●    |   ●  |    ○     |
+| Placement  |        |       |   ●   |     ●    |    ●    |   ●  |    ○     |
+|   Trove    |    ●   |   ●   |   ●   |          |    ●    |   ●  |    ○     |
+|   Kolla    |    ●   |   ●   |   ●   |          |    ●    |   ●  |    ○     |
+|   Rally    |    ▲   |   ▲   |       |          |         |      |          |
+|   Swift    |        |       |   ●   |          |    ●    |   ●  |    ○     |
+|    Heat    |        |       |   ●   |          |    ▲   |   ●  |     ○     |
+| Ceilometer |        |       |   ●   |          |    ▲    |   ●  |    ○     |
+|    Aodh    |        |       |   ●   |          |    ▲    |   ●  |    ○     |
+|   Cyborg   |        |       |   ●   |          |    ▲    |   ●  |    ○     |
+|   Gnocchi  |        |       |   ●   |          |    ●    |   ●  |    ○     |
+| OpenStack-helm |    |       |       |          |         |   ●  |    ○     |
+|  Barbican  |        |       |       |          |    ▲    |      |    ○     |
+|  Octavia   |        |       |       |          |    ▲    |      |    ○     |
+|  Designate |        |       |       |          |    ▲    |      |    ○     |
+|  Manila    |        |       |       |          |    ▲    |      |    ○     |
+|  Masakari  |        |       |       |          |    ▲    |      |    ○     |
+|  Mistral   |        |       |       |          |    ▲    |      |    ○     |
+|  Senlin    |        |       |       |          |    ▲    |      |    ○     |
+|  Zaqar     |        |       |       |          |    ▲    |      |    ○     |
 
-|            | Queens | Rocky | Train | Victoria | Wallaby |
-|:---------: |:------:|:-----:|:-----:|:--------:|:-------:|
-|  Keystone  |    ●   |   ●   |   ●   |     ●    |    ●    |
-|   Glance   |    ●   |   ●   |   ●   |     ●    |    ●    |
-|    Nova    |    ●   |   ●   |   ●   |     ●    |    ●    |
-|   Cinder   |    ●   |   ●   |   ●   |     ●    |    ●    |
-|  Neutron   |    ●   |   ●   |   ●   |     ●    |    ●    |
-|  Tempest   |    ●   |   ●   |   ●   |     ●    |    ●    |
-|  Horizon   |    ●   |   ●   |   ●   |     ●    |    ●    |
-|   Ironic   |    ●   |   ●   |   ●   |     ●    |    ●    |
-| Placement  |        |       |   ●   |     ●    |    ●    |
-|   Trove    |    ●   |   ●   |   ●   |          |    ●    |
-|   Kolla    |    ●   |   ●   |   ●   |          |    ●    |
-|   Rally    |    ●   |   ●   |       |          |         |
-|   Swift    |        |       |   ●   |          |    ●    |
-|    Heat    |        |       |   ●   |          |         |
-| Ceilometer |        |       |   ●   |          |         |
-|    Aodh    |        |       |   ●   |          |         |
-|   Cyborg   |        |       |   ●   |          |         |
-|   Gnocchi  |        |       |   ●   |          |    ●    |
+Note:
 
-Note: openEuler 20.03 LTS SP2 doesn't support Rally
+1. openEuler 20.03 LTS SP2 doesn't support Rally
+2. Heat, Ceilometer, Swift, Aodh, and Cyborg are only supported in versions 22.03 LTS and above.
+3. Barbican, Octavia, Designate, Manila, Masakari, Mistral, Senlin, and Zaqar are only supported in versions 22.03 LTS SP2 and above.
+
 ### oepkg Repository List
 
 The packages of OpenStack Queens and Rocky are in the oepkg repository:
