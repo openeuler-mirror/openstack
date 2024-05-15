@@ -183,6 +183,11 @@ openeuler:
   env_check: sig-Compatibility-Infra
   etipc: sig-embedded
   etmem: Storage
+  euler-copilot-framework: sig-intelligence
+  euler-copilot-rag: sig-intelligence
+  euler-copilot-shell: sig-intelligence
+  euler-copilot-vectorize-agent: sig-intelligence
+  euler-copilot-web: sig-intelligence
   eulerfs: sig-recycle
   eulerfs-test: Kernel
   eulerlauncher: Infrastructure
@@ -1557,6 +1562,7 @@ src-openeuler:
   dnf: sig-OS-Builder
   dnf-plugin-ovl: sig-OS-Builder
   dnf-plugins-core: sig-OS-Builder
+  dnf5: sig-OS-Builder
   dnsjava: sig-Java
   dnsmasq: Networking
   dnssec-trigger: Application
