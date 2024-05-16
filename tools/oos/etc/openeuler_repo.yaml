@@ -257,6 +257,7 @@ openeuler:
   itrustee_tzdriver: sig-confidential-computing
   k8s-install: sig-CloudNative
   kae_driver: sig-AccLib
+  kail_dnn_adapter: sig-AccLib
   kata_integration: sig-CloudNative
   kbox: sig-ops
   kbuild-standalone: Kernel
@@ -444,6 +445,7 @@ openeuler:
   raspberrypi: sig-SBC
   raspberrypi-build: sig-SBC
   raspberrypi-kernel: sig-SBC
+  rat: sig-memsafety
   re2-rust: Base-service
   release-management: sig-release-management
   release-tools: sig-EasyLife
@@ -850,6 +852,7 @@ src-openeuler:
   ament_nodl: sig-ROS
   ament_package: sig-ROS
   ament_vitis: sig-ROS
+  amiri-fonts: sig-RISC-V
   amtk: Application
   amtterm: sig-Ha
   anaconda: sig-OS-Builder
@@ -1596,6 +1599,7 @@ src-openeuler:
   dpkg: sig-Edge
   dpu-utilities: sig-DPU
   dracut: Base-service
+  dragonbox: sig-RISC-V
   drbd: sig-Ha
   dropwatch: Networking
   drpm: Base-service
@@ -1888,6 +1892,7 @@ src-openeuler:
   frei0r-plugins: Base-service
   fribidi: Desktop
   fros: Desktop
+  frozen: sig-RISC-V
   frp: Networking
   fstools: dev-utils
   fstrm: sig-epol
@@ -2413,7 +2418,9 @@ src-openeuler:
   google-api-python-client: sig-openstack
   google-auth-httplib2: sig-openstack
   google-benchmark: ecopkg
+  google-carlito-fonts: sig-RISC-V
   google-croscore-fonts: Desktop
+  google-crosextra-caladea-fonts: sig-RISC-V
   google-crosextra-carlito-fonts: Application
   google-droid-fonts: Desktop
   google-gson: dev-utils
@@ -2424,6 +2431,7 @@ src-openeuler:
   google-noto-fonts: Desktop
   google-oauth-java-client: sig-Java
   google-roboto-slab-fonts: Application
+  google-rubik-fonts: sig-RISC-V
   google_benchmark: sig-ROS
   google_benchmark_vendor: sig-ROS
   googleapis-common-protos: sig-openstack
@@ -3653,6 +3661,7 @@ src-openeuler:
   libepubgen: ecopkg
   liberasurecode: sig-openstack
   liberation-fonts: System-tool
+  liberation-narrow-fonts: sig-RISC-V
   liberation-sans-fonts: sig-recycle
   libesmtp: Networking
   libestr: Base-service
@@ -3886,6 +3895,7 @@ src-openeuler:
   librdkafka: Programming-language
   librealsense: sig-ROS
   librelp: Programming-language
+  libreoffice: sig-RISC-V
   libreoffice-share-linker: ecopkg
   librepo: Base-service
   libreport: Base-service
@@ -11197,6 +11207,7 @@ src-openeuler:
   zssh: Desktop
   zstd: Base-service
   zvbi: Desktop
+  zxcvbn-c: sig-RISC-V
   zxing: sig-Java
   zxing-cpp: ecopkg
   zziplib: Base-service
