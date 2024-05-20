@@ -11166,6 +11166,7 @@ src-openeuler:
   yolov5: sig-ROS
   you-get: Application
   youker-assistant: sig-UKUI
+  youqu: sig-QA
   yp-tools: Desktop
   ypbind: Desktop
   ypserv: Desktop
