@@ -83,3 +83,15 @@ def test_repo_cli_create_pr():
     assert '--remote-branch' in result.output
     assert '--add-commit' in result.output
     assert '--comment' in result.output
+
+
+def test_repo_cli_pr_merge():
+    runner = CliRunner()
+    result = runner.invoke(group, ['pr-merge', '--help'])
+    assert result.exit_code == 0
+    assert '--gitee-pat' in result.output
+    assert '--gitee-org' in result.output
+    assert '--sig' in result.output
+    assert '--author' in result.output
+    assert '--comment' in result.output
+    assert '--number' in result.output

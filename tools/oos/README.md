@@ -390,6 +390,28 @@ oos repo branch-version-list repo -t GITEE_PAT
     [可选] 在提交PR后添加评论，如"/sync branch1"
 ```
 
+## 合并特定PR
+可使用`oos repo pr-merge -t <GITEE_PAT> -a <author> -n <num>`命令，
+批量合并PR，适用于LTS版本开发，向其他分支使用/sync命令同步的PR。
+合并方法为评论`/lgtm`和`/approve`
+
+建议执行命令后再查看下相关PR，相关链接会在打印输出。
+
+该命令所支持的参数如下：
+```
+-t, --gitee-pat
+    [必选] 个人Gitee账户personal access token，可以使用GITEE_PAT环境变量指定
+-o, --gitee-org
+    [可选] repo所属的gitee组织名称，默认为src-openeuler
+-s, --sig
+    [可选] PR所属sig，默认sig-openstack
+-a, --author
+    [可选] PR创建者，默认openeuler-sync-bot
+-c, --comment
+    [可选] PR下添加其他评论，仅支持单行评论，无法识别转义字符"\n"
+-n, --number
+    [可选] 合并PR的数量，不指定为全部
+```
 
 ## 华为弹性云服务器操作
 

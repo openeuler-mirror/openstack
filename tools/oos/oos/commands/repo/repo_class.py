@@ -27,6 +27,20 @@ class PkgGitRepo(object):
         else:
             self.repo_name = repo_name
 
+
+    @classmethod
+    def get_pr_list_of_sig(cls, sig) -> list:
+        quick_issue_url = "https://quickissue.openeuler.org/api-issues/pulls"
+        pr_dict = requests.get(
+            quick_issue_url,
+            params={
+                'state': 'open',
+                'sig': sig,
+                'per_page': '2000'
+            }
+        ).json()
+        return pr_dict['data']
+
     def fork_repo(self, repo_name):
         try:
             url = "https://gitee.com/api/v5/repos/%s/%s/forks" % (
