@@ -395,3 +395,45 @@ def create_pr(gitee_pat, gitee_org, remote_branch, add_commit, comment):
     # 这里不获取当前目录的信息 统一放到PkgGitRepo内部 repo_name在后续刷新
     local_repo = PkgGitRepo(gitee_pat, gitee_org, repo_name='no_use')
     local_repo.create_pr_for_rpm_in_current_dir(remote_branch, add_commit, comment)
+
+
+@group.command(name='pr-merge', help='merge pr')
+@click.option("-t", "--gitee-pat", envvar='GITEE_PAT', required=True,
+              help="Gitee personal access token")
+@click.option("-o", "--gitee-org", envvar='GITEE_ORG', required=True,
+              show_default=True, default="src-openeuler",
+              help="Gitee organization name of openEuler")
+@click.option('-s', '--sig', show_default=True, default='sig-openstack',
+              help='the pull requests of specify sig')
+@click.option('-a', '--author', show_default=True, default='openeuler-sync-bot',
+              help="Specify author of pull requests")
+@click.option('-c', '--comment', help='other comment you want to add, only a single line is supported')
+@click.option('-n', '--number', type=click.INT, help='the number of pull requests to merge')
+def pr_comment(gitee_pat, gitee_org, sig, author, comment, number):
+
+    repo_infos = PkgGitRepo.get_pr_list_of_sig(sig)  # 不想在该文件import request了
+    count = 0
+
+    for info in repo_infos:
+        if info['author'] != author:
+            continue
+        if not info['title'].startswith('[sync]'):
+            continue
+
+        if number and count >= number:
+            return
+
+        pr_link = info['link']
+        click.echo('processing pr: %s' % pr_link)
+        pos = pr_link.rfind('/') + 1
+        num = int(pr_link[pos:])
+        repo = PkgGitRepo(gitee_pat, gitee_org, repo_name=info['repo'][14:])
+
+        if comment:
+            repo.pr_add_comment(comment, num)
+
+        repo.pr_add_comment('/lgtm', num)
+        repo.pr_add_comment('/approve', num)
+        count += 1
+
+    click.echo('All Specified Pull Requests Finished')
