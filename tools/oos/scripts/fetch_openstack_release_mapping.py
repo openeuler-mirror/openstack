@@ -33,8 +33,19 @@ for release in releases:
         links = re.findall(r'https://.*\.tar\.gz', url_os_content)
         results = dict()
         for pkg_link in links:
-            if f"{release}-last" in pkg_link:
+            # TODO: Now, we directly filtered out {release}-eom versions.
+            # But, the `{release}-eom` versions may contain additional commits
+            # compared to the last release version on PyPI.
+            # For example, the latest git commit of Ceilometer in "Yoga".
+            # The last release version(18.1.0) on PyPI: 82feb96ed324dca8cbf4773bbdf91eb9e33d7b67
+            # The `yoga-eom` version: 53f31524ee9ea0082ad17b9ee2d0005b5f85df30
+            #
+            # Commits related to {release}-eom versions are not considered now.
+            # When SIG decide to incorporate commits which were only contained
+            # in eom version, adding the necessary mechanisms to oos.
+            if f"{release}-last" in pkg_link or f"{release}-eom" in pkg_link:
                 # tempest plugin version names like "stein-last" should be skipped.
+                # version names like "victoria-eom" should be skipped.
                 continue
             # get name and package informations from link
             tmp = pkg_link.split("/")
@@ -47,15 +58,14 @@ for release in releases:
             if pkg_name not in results:
                 results[pkg_name] = pkg_ver
             else:
-                # yoga have some link name yaga-eom
-                # and packaging-23.2 raise a exception for alpha in version.parse
+                # packaging-23.2 raise a exception for alpha in version.parse
                 try:
                     # if current versions < new version, then update it
                     if version.parse(results.get(pkg_name)) < version.parse(pkg_ver):
                         results[pkg_name] = pkg_ver
-                except:
+                except Exception as e:
                     print(release + ': ' + pkg_name)
-                    pass
+                    print(f"Error occurred: {e}\n")
         # Store the release information.
         # For releases after "Zed", use the release number:
         # "year.release count within the year" (e.g., "2023.1").
