@@ -249,6 +249,7 @@ openeuler:
   intel-ice: sig-Intel-Arch
   intel-kernel: sig-Intel-Arch
   intel-lkvs: sig-Intel-Arch
+  intel-oneapi: sig-Intel-Arch
   intel-qemu: sig-Intel-Arch
   isula-build: iSulad
   isula-transform: sig-recycle
@@ -450,6 +451,7 @@ openeuler:
   release-management: sig-release-management
   release-tools: sig-EasyLife
   reproducible-builds: sig-reproducible-builds
+  rhostname: sig-memsafety
   riscv-kernel: sig-RISC-V
   rockchip: sig-SBC
   rockchip-kernel: sig-SBC
@@ -2864,8 +2866,14 @@ src-openeuler:
   input-pad: sig-desktop-apps
   inst-source-utils: sig-perl-modules
   install-scripts: sig-OS-Builder
+  intel-cm-compiler: sig-Intel-Arch
   intel-cmt-cat: Programming-language
+  intel-compute-runtime: sig-Intel-Arch
   intel-device-plugins-for-kubernetes: sig-confidential-computing
+  intel-gmmlib: sig-Intel-Arch
+  intel-graphics-compiler: sig-Intel-Arch
+  intel-gsc: sig-Intel-Arch
+  intel-metee: sig-Intel-Arch
   intel-sgx-ssl: sig-confidential-computing
   interactive_markers: sig-ROS
   internal-issue: Private
@@ -3523,6 +3531,7 @@ src-openeuler:
   leptonica: Base-service
   less: Base-service
   lettuce: sig-Java
+  level-zero: sig-Intel-Arch
   leveldb: System-tool
   leveldb-java: sig-Java
   leveldbjni: sig-Java
