@@ -6629,6 +6629,7 @@ src-openeuler:
   perl-Test-CPAN-Meta-YAML: sig-perl-modules
   perl-Test-CheckChanges: sig-perl-modules
   perl-Test-CheckDeps: sig-perl-modules
+  perl-Test-CheckManifest: sig-perl-modules
   perl-Test-Class: sig-perl-modules
   perl-Test-Class-Most: sig-perl-modules
   perl-Test-CleanNamespaces: sig-perl-modules
@@ -6644,6 +6645,7 @@ src-openeuler:
   perl-Test-Dir: sig-perl-modules
   perl-Test-Directory: sig-perl-modules
   perl-Test-Dist-VersionSync: sig-perl-modules
+  perl-Test-DistManifest: sig-perl-modules
   perl-Test-Distribution: sig-perl-modules
   perl-Test-Dynamic: sig-perl-modules
   perl-Test-EOL: sig-perl-modules
@@ -6735,6 +6737,7 @@ src-openeuler:
   perl-Test-Unit-Lite: sig-perl-modules
   perl-Test-UseAllModules: sig-perl-modules
   perl-Test-Vars: sig-perl-modules
+  perl-Test-Version: sig-perl-modules
   perl-Test-WWW-Selenium: sig-perl-modules
   perl-Test-Warn: sig-perl-modules
   perl-Test-Warnings: Programming-language
@@ -6969,6 +6972,7 @@ src-openeuler:
   perl-libxml-perl: Programming-language
   perl-local-lib: sig-perl-modules
   perl-match-simple: sig-perl-modules
+  perl-match-simple-XS: sig-perl-modules
   perl-mixin: sig-perl-modules
   perl-multidimensional: sig-perl-modules
   perl-namespace-autoclean: sig-perl-modules
