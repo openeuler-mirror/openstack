@@ -6,6 +6,7 @@ openeuler:
   A-Tune-Collector: A-Tune
   A-Tune-UI: A-Tune
   A-guard: sig-Gatekeeper
+  AI4C: Compiler
   Agith: sig-ebpf
   AppAPIChecker: sig-OSRefTools
   AvxToNeon: sig-AccLib
@@ -534,6 +535,7 @@ openeuler:
   xenomai: sig-industrial-control
   xmlpull: sig-Java
   yocto-embedded-tools: sig-Yocto
+  yocto-meta-arm: sig-Yocto
   yocto-meta-openembedded: sig-Yocto
   yocto-meta-openeuler: sig-Yocto
   yocto-meta-phosphor: sig-Yocto
@@ -555,6 +557,7 @@ src-openeuler:
   A-Tune-Collector: A-Tune
   A-Tune-UI: A-Tune
   AFLplusplus: sig-QA
+  AI4C: Compiler
   BSC-extrae: sig-HPC
   BSC-wxparaver: sig-HPC
   BareBonesBrowserLaunch: sig-Java
