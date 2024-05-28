@@ -45,6 +45,7 @@ openeuler:
   Kmesh: sig-ebpf
   KubeHawk: sig-CloudNative
   KubeHawkeyes: sig-CloudNative
+  KubeMate: sig-CloudNative
   KubeOS: sig-CloudNative
   LTF: sig-QA
   NestOS: sig-CloudNative
