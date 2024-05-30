@@ -5057,6 +5057,7 @@ src-openeuler:
   ogdi: dev-utils
   ogre: sig-ROS
   ohc: sig-Java
+  ois: sig-ROS
   okhttp: ai
   okteta: sig-KDE
   okular: sig-KDE
