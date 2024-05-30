@@ -413,6 +413,24 @@ oos repo branch-version-list repo -t GITEE_PAT
     [可选] 合并PR的数量，不指定为全部
 ```
 
+## 版本平移批量创建分支
+
+对于继承上一个版本的新版本开发，
+可使用`oos repo community-create-pr -i -r <reference-branch> -a <aim-branch>`命令，
+自动修改community中软件包的yaml文件，该命令仅适用与版本继承。
+
+按照分支开发原则，新分支从Next分支拉取。
+
+该命令所支持的参数如下：
+```
+-i, --inherit
+    [可选] 标记是否为继承
+-r, --reference
+    [可选] 参考分支，如SP3平移SP2，输入SP2的分支名，对应yaml文件中创建过SP2分支，则创建SP3分支
+-a, --aim-branch
+    [可选] PR创建者，默认openeuler-sync-bot
+```
+
 ## 华为弹性云服务器操作
 
 支持start、shutdown、reinstall、changeos操作
