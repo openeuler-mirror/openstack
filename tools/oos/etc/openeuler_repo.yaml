@@ -1764,6 +1764,7 @@ src-openeuler:
   fakeroot: Programming-language
   fapolicyd: sig-security-facility
   farstream02: Others
+  fast-https: Networking
   fast_rsync: sig-memsafety
   fastdb: DB
   fastdfs: Storage
@@ -7815,6 +7816,7 @@ src-openeuler:
   python-editor: sig-python-modules
   python-elasticsearch2: sig-openstack
   python-elasticsearch7: sig-EasyLife
+  python-elasticsearch8: sig-python-modules
   python-elementpath: sig-openstack
   python-eli5: sig-python-modules
   python-email-validator: sig-python-modules
