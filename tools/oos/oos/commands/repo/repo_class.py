@@ -301,3 +301,43 @@ class PkgGitRepo(object):
                     self.gitee_org, self.repo_name, pr_num
                 )
                 click.echo(pr_link)
+
+    def _get_create_info(self, content: str, reference_branch: str, aim_branch: str):
+        prefix_name = '- name: '
+        prefix_end = 'type: public'
+        pos_bg = content.find(prefix_name + reference_branch)
+        if pos_bg != -1:
+            pos_replace = aim_branch.rfind('LTS') + 3
+            next_br = aim_branch[:pos_replace] + '-Next\n'
+            insert = prefix_name + aim_branch + \
+                '\n  type: protected\n  create_from: ' + \
+                next_br
+
+            pos_insert = content.rfind(prefix_end)
+            content = content[0:pos_insert] + insert + content[pos_insert:]
+
+        return content
+
+
+    def inherit_from_next_branch(self, reference_branch, aim_branch):
+        cur_path = os.getcwd()
+        if cur_path.find('community/sig') == -1:
+            click.echo('bad repo path')
+            return
+
+        for dirpath, dirnames, files in os.walk(cur_path):
+            for file in files:
+                abc_path = os.path.join(dirpath, file)
+                if abc_path.find(self.gitee_org) == -1 and \
+                    not abc_path.endswith('.yaml'):
+                    continue
+
+                with open(abc_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+
+                new_content = self._get_create_info(content, reference_branch, aim_branch)
+                if new_content == content:
+                    continue
+
+                with open(abc_path, 'w', encoding='utf-8') as f:
+                    f.write(new_content)

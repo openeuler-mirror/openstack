@@ -437,3 +437,14 @@ def pr_comment(gitee_pat, gitee_org, sig, author, comment, number):
         count += 1
 
     click.echo('All Specified Pull Requests Finished')
+
+
+@group.command(name='community-create-pr', help='create pr for OpenStack development')
+@click.option('-i', '--inherit', is_flag=True, help='inherit from next branch')
+@click.option('-r', '--reference', help='reference branch in yaml file')
+@click.option('-a', '--aim-branch', help='aim branch to create')
+def community_create_pr(inherit, reference, aim_branch):
+    
+    if inherit:
+        repo = PkgGitRepo(repo_name='no_use')
+        repo.inherit_from_next_branch(reference, aim_branch)

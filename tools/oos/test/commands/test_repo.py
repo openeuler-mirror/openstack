@@ -95,3 +95,12 @@ def test_repo_cli_pr_merge():
     assert '--author' in result.output
     assert '--comment' in result.output
     assert '--number' in result.output
+
+
+def test_repo_cli_community_create_pr():
+    runner = CliRunner()
+    result = runner.invoke(group, ['community-create-pr', '--help'])
+    assert result.exit_code == 0
+    assert '--inherit' in result.output
+    assert '--reference' in result.output
+    assert '--aim-branch' in result.output
