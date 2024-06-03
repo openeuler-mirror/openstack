@@ -466,6 +466,7 @@ openeuler:
   rust_shyper: Virt
   safeguard: sig-ebpf
   safeguard-web: sig-ebpf
+  sdma-dk: sig-WayCa
   sds_doc: sig-SDS
   secDetector: sig-security-facility
   secGear: sig-confidential-computing
@@ -10284,6 +10285,7 @@ src-openeuler:
   sddm-kcm: sig-KDE
   sdformat: sig-ROS
   sdformat_urdf: sig-ROS
+  sdma-dk: sig-WayCa
   sdparm: Storage
   seabios: Others
   seahorse: Desktop
