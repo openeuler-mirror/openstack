@@ -9,7 +9,7 @@
   automaton: 3.1.0
   barbican: 16.0.0
   barbican_tempest_plugin: 2.0.0
-  bifrost: 16.1.0
+  bifrost: 16.1.1
   blazar: 11.0.0
   blazar-dashboard: 9.0.0
   blazar-nova: 3.0.0
@@ -17,7 +17,7 @@
   castellan: 4.1.0
   ceilometer: 20.0.0
   ceilometermiddleware: 3.1.0
-  cinder: 22.1.1
+  cinder: 22.1.2
   cinder-tempest-plugin: 1.8.1
   cinderlib: 5.1.0
   cliff: 4.2.0
@@ -44,12 +44,12 @@
   heat-tempest-plugin: 1.7.1
   heat-translator: 2.7.0
   horizon: 23.1.0
-  ironic: 21.4.0
-  ironic-inspector: 11.4.0
+  ironic: 21.4.1
+  ironic-inspector: 11.4.1
   ironic-lib: 5.4.0
   ironic-prometheus-exporter: 4.1.0
-  ironic-python-agent: 9.4.0
-  ironic-python-agent-builder: 5.1.0
+  ironic-python-agent: 9.4.1
+  ironic-python-agent-builder: 5.1.1
   ironic-tempest-plugin: 2.6.1
   ironic-ui: 6.1.0
   kayobe: 14.5.0
@@ -94,9 +94,9 @@
   murano-dashboard: 15.0.0
   murano-tempest-plugin: 2.6.0
   networking-bagpipe: 18.0.0
-  networking-baremetal: 6.1.0
+  networking-baremetal: 6.1.1
   networking-bgpvpn: 18.0.0
-  networking-generic-switch: 7.1.0
+  networking-generic-switch: 7.1.1
   networking-hyperv: 14.0.0
   networking-odl: 22.0.0
   networking-sfc: 16.0.0
@@ -108,7 +108,7 @@
   neutron-tempest-plugin: 2.2.0
   neutron-vpnaas: 22.0.0
   neutron-vpnaas-dashboard: 8.0.0
-  nova: 27.2.0
+  nova: 27.3.0
   octavia: 12.0.0
   octavia-dashboard: 11.0.0
   octavia-lib: 3.2.0
@@ -148,7 +148,7 @@
   oslo.vmware: 4.1.1
   oswin-tempest-plugin: 2.1.0
   ovn-octavia-provider: 4.0.1
-  ovsdbapp: 2.2.1
+  ovsdbapp: 2.2.2
   patrole: 0.16.0
   puppet-aodh: 22.0.0
   puppet-barbican: 22.0.0
@@ -161,7 +161,7 @@
   puppet-gnocchi: 22.0.0
   puppet-heat: 22.0.0
   puppet-horizon: 22.0.0
-  puppet-ironic: 22.0.0
+  puppet-ironic: 22.1.0
   puppet-keystone: 22.0.0
   puppet-magnum: 22.0.0
   puppet-manila: 22.0.0
@@ -179,7 +179,7 @@
   puppet-rally: 10.0.0
   puppet-sahara: 22.0.0
   puppet-swift: 22.0.0
-  puppet-tempest: 22.0.0
+  puppet-tempest: 22.1.0
   puppet-trove: 22.0.0
   puppet-vitrage: 12.0.0
   puppet-vswitch: 18.0.0
@@ -195,7 +195,7 @@
   python-cyborgclient: 2.1.0
   python-designateclient: 5.2.0
   python-freezerclient: 5.1.0
-  python-glanceclient: 4.3.0
+  python-glanceclient: 4.3.1
   python-heatclient: 3.2.0
   python-ironic-inspector-client: 4.9.0
   python-ironicclient: 5.1.0
@@ -242,7 +242,7 @@
   solum-tempest-plugin: 2.6.0
   stevedore: 5.0.0
   storlets: 11.0.0
-  sushy: 4.4.2
+  sushy: 4.4.3
   swift: 2.31.1
   tacker: 9.0.0
   tacker-horizon: 7.0.0
@@ -312,12 +312,12 @@
   heat-tempest-plugin: 2.0.0
   heat-translator: 2.8.0
   horizon: 23.3.0
-  ironic: 23.0.0
+  ironic: 23.0.1
   ironic-inspector: 11.7.0
   ironic-lib: 5.5.0
   ironic-prometheus-exporter: 4.2.1
-  ironic-python-agent: 9.7.0
-  ironic-python-agent-builder: 5.2.0
+  ironic-python-agent: 9.7.1
+  ironic-python-agent-builder: 5.2.1
   ironic-tempest-plugin: 2.7.0
   ironic-ui: 6.2.1
   kayobe: 15.3.0
@@ -342,7 +342,7 @@
   masakari: 16.0.0
   masakari-dashboard: 9.0.0
   masakari-monitors: 16.0.0
-  metalsmith: 2.0.1
+  metalsmith: 2.0.2
   mistral: 17.0.0
   mistral-dashboard: 17.0.0
   mistral-extra: 13.1.0
@@ -362,9 +362,9 @@
   murano-dashboard: 16.0.0
   murano-tempest-plugin: 2.7.0
   networking-bagpipe: 19.0.0
-  networking-baremetal: 6.2.0
+  networking-baremetal: 6.2.1
   networking-bgpvpn: 19.0.0
-  networking-generic-switch: 7.2.0
+  networking-generic-switch: 7.2.1
   networking-sfc: 17.0.0
   neutron: 23.1.0
   neutron-dynamic-routing: 23.0.0
@@ -374,7 +374,7 @@
   neutron-tempest-plugin: 2.5.0
   neutron-vpnaas: 23.0.0
   neutron-vpnaas-dashboard: 9.0.0
-  nova: 28.0.1
+  nova: 28.1.0
   octavia: 13.0.0
   octavia-dashboard: 12.0.0
   octavia-lib: 3.3.0
@@ -397,7 +397,7 @@
   oslo.db: 14.1.0
   oslo.i18n: 6.1.0
   oslo.limit: 2.2.0
-  oslo.log: 5.3.0
+  oslo.log: 5.3.1
   oslo.messaging: 14.4.1
   oslo.metrics: 0.7.0
   oslo.middleware: 5.2.0
@@ -413,7 +413,7 @@
   oslo.vmware: 4.2.0
   ovn-bgp-agent: 1.0.0
   ovn-octavia-provider: 5.0.0
-  ovsdbapp: 2.4.1
+  ovsdbapp: 2.4.2
   puppet-aodh: 23.0.0
   puppet-barbican: 23.0.0
   puppet-ceilometer: 23.0.0
@@ -425,7 +425,7 @@
   puppet-gnocchi: 23.0.0
   puppet-heat: 23.0.0
   puppet-horizon: 23.0.0
-  puppet-ironic: 23.0.0
+  puppet-ironic: 23.1.0
   puppet-keystone: 23.0.0
   puppet-magnum: 23.0.0
   puppet-manila: 23.0.0
@@ -442,7 +442,7 @@
   puppet-qdr: 12.0.0
   puppet-sahara: 23.0.0
   puppet-swift: 23.0.0
-  puppet-tempest: 23.0.0
+  puppet-tempest: 23.1.0
   puppet-trove: 23.0.0
   puppet-vitrage: 13.0.0
   puppet-vswitch: 19.0.0
@@ -458,7 +458,7 @@
   python-cyborgclient: 2.2.1
   python-designateclient: 5.3.0
   python-freezerclient: 5.2.0
-  python-glanceclient: 4.4.0
+  python-glanceclient: 4.4.1
   python-heatclient: 3.3.0
   python-ironic-inspector-client: 5.0.0
   python-ironicclient: 5.4.0
@@ -506,7 +506,7 @@
   solum-tempest-plugin: 2.7.0
   stevedore: 5.1.0
   storlets: 12.0.0
-  sushy: 4.5.1
+  sushy: 4.5.2
   swift: 2.32.0
   tacker: 10.0.0
   tacker-horizon: 8.0.0
@@ -1977,50 +1977,34 @@ ussuri:
   zun-ui: 5.0.0
 victoria:
   adjutant-ui: 1.0.0
-  adjutant-ui-victoria: eom
   ansible-role-lunasa-hsm: 1.0.0
   aodh: 11.0.0
   aodhclient: 2.1.1
   automaton: 2.2.0
-  automaton-victoria: eom
   barbican: 11.0.0
   barbican_tempest_plugin: 1.1.0
   bifrost: 9.1.0
   blazar: 6.0.2
   blazar-dashboard: 4.0.0
-  blazar-dashboard-victoria: eom
   blazar-nova: 2.1.0
-  blazar-nova-victoria: eom
-  blazar-victoria: eom
   blazar_tempest_plugin: 0.5.0
   castellan: 3.6.1
-  castellan-victoria: eom
   ceilometer: 15.1.0
   ceilometermiddleware: 2.1.0
   cinder: 17.4.0
   cinder-tempest-plugin: 1.2.0
-  cinder-victoria: eom
   cinderlib: 3.1.0
-  cinderlib-victoria: eom
   cliff: 3.4.0
-  cliff-victoria: eom
   cloudkitty: 13.0.2
   cloudkitty-dashboard: 11.0.1
-  cloudkitty-dashboard-victoria: eom
-  cloudkitty-victoria: eom
   cloudkitty_tempest_plugin: 2.1.0
   compute-hyperv: 11.0.0
-  compute-hyperv-victoria: eom
   cyborg-tempest-plugin: 1.1.0
   debtcollector: 2.2.0
-  debtcollector-victoria: eom
   designate: 11.0.2
   designate-dashboard: 11.0.0
-  designate-dashboard-victoria: eom
   designate-tempest-plugin: 0.9.0
-  designate-victoria: eom
   ec2-api: 11.1.0
-  ec2-api-victoria: eom
   ec2api-tempest-plugin: 1.1.0
   freezer: 9.0.0
   freezer-api: 9.0.0
@@ -2028,20 +2012,13 @@ victoria:
   freezer-web-ui: 9.0.0
   freezer_tempest_plugin: 1.1.0
   futurist: 2.3.0
-  futurist-victoria: eom
   glance: 21.1.0
-  glance-victoria: eom
   glance_store: 2.3.1
-  glance_store-victoria: eom
   heat-agents: 2.1.1
-  heat-agents-victoria: eom
   heat-dashboard: 4.0.1
-  heat-dashboard-victoria: eom
   heat-tempest-plugin: 1.1.0
   heat-translator: 2.1.0
-  heat-translator-victoria: eom
   horizon: 18.6.4
-  horizon-victoria: eom
   ironic: 16.0.5
   ironic-inspector: 10.4.2
   ironic-lib: 4.4.2
@@ -2070,14 +2047,9 @@ victoria:
   manila: 11.1.2
   manila-tempest-plugin: 1.2.0
   manila-ui: 4.1.0
-  manila-ui-victoria: eom
-  manila-victoria: eom
   masakari: 10.0.3
   masakari-dashboard: 3.0.1
-  masakari-dashboard-victoria: eom
   masakari-monitors: 10.0.2
-  masakari-monitors-victoria: eom
-  masakari-victoria: eom
   metalsmith: 1.2.1
   mistral: 11.0.0
   mistral-dashboard: 11.0.1
@@ -2098,112 +2070,64 @@ victoria:
   murano-dashboard: 10.0.0
   murano-tempest-plugin: 2.1.0
   networking-bagpipe: 13.0.0
-  networking-bagpipe-victoria: eom
   networking-baremetal: 3.0.0
   networking-bgpvpn: 13.0.0
-  networking-bgpvpn-victoria: eom
   networking-generic-switch: 4.0.1
   networking-hyperv: 9.0.0
-  networking-hyperv-victoria: eom
   networking-midonet: 11.0.0
-  networking-midonet-victoria: eom
   networking-odl: 17.0.0
-  networking-odl-victoria: eom
   networking-sfc: 11.0.0
-  networking-sfc-victoria: eom
   neutron: 17.4.1
   neutron-dynamic-routing: 17.0.0
-  neutron-dynamic-routing-victoria: eom
   neutron-lib: 2.6.2
-  neutron-lib-victoria: eom
   neutron-tempest-plugin: 1.2.0
-  neutron-victoria: eom
   neutron-vpnaas: 17.0.0
   neutron-vpnaas-dashboard: 3.0.0
-  neutron-vpnaas-dashboard-victoria: eom
-  neutron-vpnaas-victoria: eom
   nova: 22.4.0
-  nova-victoria: eom
   octavia: 7.1.2
   octavia-dashboard: 6.0.1
-  octavia-dashboard-victoria: eom
   octavia-lib: 2.2.0
-  octavia-lib-victoria: eom
   octavia-tempest-plugin: 1.5.0
-  octavia-victoria: eom
   openstack-cyborg: 5.0.1
   openstack-heat: 15.1.0
-  openstack-heat-victoria: eom
   openstack-placement: 4.0.0
-  openstack-placement-victoria: eom
   openstack-release-test: 3.3.1
   openstacksdk: 0.50.0
-  openstacksdk-victoria: eom
   os-apply-config: 12.0.1
   os-brick: 4.0.5
-  os-brick-victoria: eom
   os-collect-config: 12.0.2
   os-ken: 1.2.1
-  os-ken-victoria: eom
   os-net-config: 13.3.0
   os-refresh-config: 12.0.1
   os-win: 5.2.0
-  os-win-victoria: eom
   os_vif: 2.2.1
-  os_vif-victoria: eom
   osc-lib: 2.2.1
-  osc-lib-victoria: eom
   osc-placement: 2.1.0
-  osc-placement-victoria: eom
   oslo.cache: 2.6.3
-  oslo.cache-victoria: eom
   oslo.concurrency: 4.3.1
-  oslo.concurrency-victoria: eom
   oslo.config: 8.3.4
-  oslo.config-victoria: eom
   oslo.context: 3.1.2
-  oslo.context-victoria: eom
   oslo.db: 8.4.1
-  oslo.db-victoria: eom
   oslo.i18n: 5.0.1
-  oslo.i18n-victoria: eom
   oslo.limit: 1.2.1
-  oslo.limit-victoria: eom
   oslo.log: 4.4.0
-  oslo.log-victoria: eom
   oslo.messaging: 12.5.2
-  oslo.messaging-victoria: eom
   oslo.middleware: 4.1.1
-  oslo.middleware-victoria: eom
   oslo.policy: 3.5.0
-  oslo.policy-victoria: eom
   oslo.privsep: 2.4.0
-  oslo.privsep-victoria: eom
   oslo.reports: 2.2.0
-  oslo.reports-victoria: eom
   oslo.rootwrap: 6.2.0
-  oslo.rootwrap-victoria: eom
   oslo.serialization: 4.0.2
-  oslo.serialization-victoria: eom
   oslo.service: 2.4.1
-  oslo.service-victoria: eom
   oslo.upgradecheck: 1.1.1
-  oslo.upgradecheck-victoria: eom
   oslo.utils: 4.6.1
-  oslo.utils-victoria: eom
   oslo.versionedobjects: 2.3.0
-  oslo.versionedobjects-victoria: eom
   oslo.vmware: 3.7.0
-  oslo.vmware-victoria: eom
   oslotest: 4.4.1
-  oslotest-victoria: eom
   osprofiler: 3.4.0
-  osprofiler-victoria: eom
   oswin-tempest-plugin: 1.1.0
   ovn-octavia-provider: 0.4.1
-  ovn-octavia-provider-victoria: eom
   ovsdbapp: 1.6.1
-  ovsdbapp-victoria: eom
   panko: 9.0.0
   pankoclient: 1.1.0
   patrole: 0.10.0
@@ -2251,70 +2175,47 @@ victoria:
   puppet-zaqar: 17.5.0
   pycadf: 3.1.1
   python-adjutant: 1.0.0
-  python-adjutant-victoria: eom
   python-adjutantclient: 0.7.0
-  python-adjutantclient-victoria: eom
   python-barbicanclient: 5.0.1
   python-blazarclient: 3.1.1
-  python-blazarclient-victoria: eom
   python-brick-cinderclient-ext: 1.2.0
-  python-brick-cinderclient-ext-victoria: eom
   python-cinderclient: 7.2.2
-  python-cinderclient-victoria: eom
   python-cloudkittyclient: 4.1.0
-  python-cloudkittyclient-victoria: eom
   python-cyborgclient: 1.2.1
   python-designateclient: 4.1.0
-  python-designateclient-victoria: eom
   python-freezerclient: 4.0.0
   python-glanceclient: 3.2.2
-  python-glanceclient-victoria: eom
   python-heatclient: 2.2.1
-  python-heatclient-victoria: eom
   python-ironic-inspector-client: 4.4.0
   python-ironicclient: 4.4.1
   python-karborclient: 2.1.0
   python-keystoneclient: 4.1.1
   python-magnumclient: 3.2.2
   python-manilaclient: 2.3.2
-  python-manilaclient-victoria: eom
   python-masakariclient: 6.1.1
-  python-masakariclient-victoria: eom
   python-mistralclient: 4.1.1
   python-monascaclient: 2.2.1
   python-muranoclient: 2.1.1
   python-neutronclient: 7.2.1
-  python-neutronclient-victoria: eom
   python-novaclient: 17.2.1
-  python-novaclient-victoria: eom
   python-octaviaclient: 2.2.1
-  python-octaviaclient-victoria: eom
   python-openstackclient: 5.4.0
-  python-openstackclient-victoria: eom
   python-qinlingclient: 5.1.1
   python-saharaclient: 3.2.1
   python-searchlightclient: 2.1.1
   python-senlinclient: 2.1.1
   python-solumclient: 3.2.0
   python-swiftclient: 3.10.1
-  python-swiftclient-victoria: eom
   python-tackerclient: 1.3.0
-  python-tackerclient-victoria: eom
   python-tripleoclient: 14.3.0
   python-troveclient: 5.1.2
-  python-troveclient-victoria: eom
   python-vitrageclient: 4.1.1
-  python-vitrageclient-victoria: eom
   python-watcher: 5.0.0
-  python-watcher-victoria: eom
   python-watcherclient: 3.1.1
-  python-watcherclient-victoria: eom
   python-zaqarclient: 2.0.1
-  python-zaqarclient-victoria: eom
   python-zunclient: 4.1.1
   qinling: 5.0.0
   qinling-dashboard: 4.0.0
-  requirements-victoria: eom
   sahara: 13.0.0
   sahara-dashboard: 13.0.0
   sahara-extra: 12.0.0
@@ -2335,25 +2236,18 @@ victoria:
   solum-dashboard: 5.0.0
   solum-tempest-plugin: 2.1.0
   stevedore: 3.2.2
-  stevedore-victoria: eom
   storlets: 6.0.0
   sushy: 3.4.6
   sushy-cli: 0.3.1
   swift: 2.26.0
-  swift-victoria: eom
   tacker: 4.1.0
   tacker-horizon: 2.0.0
-  tacker-horizon-victoria: eom
-  tacker-victoria: eom
   taskflow: 4.5.0
-  taskflow-victoria: eom
   telemetry_tempest_plugin: 1.1.0
   tempest: 25.0.1
   tempest-horizon: 1.1.0
   tooz: 2.7.2
-  tooz-victoria: eom
   tosca-parser: 2.1.1
-  tosca-parser-victoria: eom
   tripleo-common: 13.3.0
   tripleo-heat-templates: 13.6.0
   tripleo-image-elements: 12.2.3
@@ -2362,71 +2256,49 @@ victoria:
   tripleo-validations: 13.5.0
   trove: 14.1.0
   trove-dashboard: 15.0.1
-  trove-dashboard-victoria: eom
-  trove-victoria: eom
   trove_tempest_plugin: 1.1.0
   vitrage: 7.3.0
   vitrage-dashboard: 3.2.0
-  vitrage-dashboard-victoria: eom
   vitrage-tempest-plugin: 5.1.0
-  vitrage-victoria: eom
   watcher-dashboard: 4.0.1
-  watcher-dashboard-victoria: eom
   watcher-tempest-plugin: 2.1.0
   zaqar: 11.0.0
   zaqar-ui: 9.0.0
-  zaqar-ui-victoria: eom
-  zaqar-victoria: eom
   zaqar_tempest_plugin: 1.1.0
   zun: 6.0.0
   zun-tempest-plugin: 4.1.0
   zun-ui: 6.0.0
 wallaby:
   adjutant-ui: 2.0.0
-  adjutant-ui-wallaby: eom
   ansible-role-atos-hsm: 1.0.0
   ansible-role-lunasa-hsm: 1.1.0
   ansible-role-thales-hsm: 1.0.0
   aodh: 12.0.0
   aodhclient: 2.2.0
   automaton: 2.3.1
-  automaton-wallaby: eom
   barbican: 12.0.2
   barbican_tempest_plugin: 1.3.0
   bifrost: 10.2.1
   blazar: 7.0.1
   blazar-dashboard: 5.0.0
-  blazar-dashboard-wallaby: eom
   blazar-nova: 2.2.0
-  blazar-nova-wallaby: eom
-  blazar-wallaby: eom
   blazar_tempest_plugin: 0.6.1
   castellan: 3.7.2
-  castellan-wallaby: eom
   ceilometer: 16.0.1
   ceilometermiddleware: 2.2.0
   cinder: 18.2.1
   cinder-tempest-plugin: 1.4.0
-  cinder-wallaby: eom
   cinderlib: 4.0.0
-  cinderlib-wallaby: eom
   cliff: 3.7.0
-  cliff-wallaby: eom
   cloudkitty: 14.0.2
   cloudkitty-dashboard: 12.0.0
-  cloudkitty-dashboard-wallaby: eom
-  cloudkitty-wallaby: eom
   cloudkitty_tempest_plugin: 2.3.0
   compute-hyperv: 12.0.0
-  compute-hyperv-wallaby: eom
   cyborg-tempest-plugin: 1.2.0
   designate: 12.1.0
   designate-dashboard: 12.0.0
-  designate-dashboard-wallaby: eom
   designate-tempest-plugin: 0.11.0
-  designate-wallaby: eom
   ec2-api: 12.1.0
-  ec2-api-wallaby: eom
   ec2api-tempest-plugin: 1.2.1
   freezer: 10.0.0
   freezer-api: 10.0.0
@@ -2435,18 +2307,12 @@ wallaby:
   freezer_tempest_plugin: 1.2.0
   glance: 22.1.1
   glance-tempest-plugin: 0.1.0
-  glance-wallaby: eom
   glance_store: 2.5.1
-  glance_store-wallaby: eom
   heat-agents: 2.2.0
-  heat-agents-wallaby: eom
   heat-dashboard: 5.0.1
-  heat-dashboard-wallaby: eom
   heat-tempest-plugin: 1.2.0
   heat-translator: 2.3.0
-  heat-translator-wallaby: eom
   horizon: 19.4.0
-  horizon-wallaby: eom
   ironic: 17.1.0
   ironic-inspector: 10.6.2
   ironic-lib: 4.6.4
@@ -2474,14 +2340,9 @@ wallaby:
   manila: 12.1.2
   manila-tempest-plugin: 1.4.0
   manila-ui: 5.1.0
-  manila-ui-wallaby: eom
-  manila-wallaby: eom
   masakari: 11.0.3
   masakari-dashboard: 4.0.1
-  masakari-dashboard-wallaby: eom
   masakari-monitors: 11.1.1
-  masakari-monitors-wallaby: eom
-  masakari-wallaby: eom
   metalsmith: 1.4.4
   mistral: 12.0.0
   mistral-dashboard: 12.0.1
@@ -2502,94 +2363,53 @@ wallaby:
   murano-dashboard: 11.0.0
   murano-tempest-plugin: 2.2.0
   networking-bagpipe: 14.0.0
-  networking-bagpipe-wallaby: eom
   networking-baremetal: 4.0.0
   networking-bgpvpn: 14.0.0
-  networking-bgpvpn-wallaby: eom
   networking-generic-switch: 5.0.1
   networking-hyperv: 10.0.0
-  networking-hyperv-wallaby: eom
   networking-odl: 18.0.0
-  networking-odl-wallaby: eom
   networking-sfc: 12.0.0
-  networking-sfc-wallaby: eom
   neutron: 18.6.0
   neutron-dynamic-routing: 18.1.1
-  neutron-dynamic-routing-wallaby: eom
   neutron-lib: 2.10.2
-  neutron-lib-wallaby: eom
   neutron-tempest-plugin: 1.4.0
   neutron-vpnaas: 18.0.1
   neutron-vpnaas-dashboard: 4.0.0
-  neutron-vpnaas-dashboard-wallaby: eom
-  neutron-vpnaas-wallaby: eom
-  neutron-wallaby: eom
   nova: 23.2.2
-  nova-wallaby: eom
   octavia: 8.0.1
   octavia-dashboard: 7.0.1
-  octavia-dashboard-wallaby: eom
   octavia-lib: 2.3.1
-  octavia-lib-wallaby: eom
   octavia-tempest-plugin: 1.7.0
-  octavia-wallaby: eom
   openstack-cyborg: 6.0.1
   openstack-heat: 16.1.0
-  openstack-heat-wallaby: eom
   openstack-placement: 5.0.1
-  openstack-placement-wallaby: eom
   openstacksdk: 0.55.1
-  openstacksdk-wallaby: eom
   os-brick: 4.3.4
-  os-brick-wallaby: eom
   os-ken: 1.4.1
-  os-ken-wallaby: eom
   os-net-config: 14.2.0
   os-win: 5.4.0
-  os-win-wallaby: eom
   os_vif: 2.4.1
-  os_vif-wallaby: eom
   osc-lib: 2.3.1
-  osc-lib-wallaby: eom
   osc-placement: 2.2.0
-  osc-placement-wallaby: eom
   oslo.cache: 2.7.1
-  oslo.cache-wallaby: eom
   oslo.config: 8.5.1
-  oslo.config-wallaby: eom
   oslo.context: 3.2.1
-  oslo.context-wallaby: eom
   oslo.db: 8.5.2
-  oslo.db-wallaby: eom
   oslo.limit: 1.3.1
-  oslo.limit-wallaby: eom
   oslo.messaging: 12.7.3
-  oslo.messaging-wallaby: eom
   oslo.metrics: 0.2.2
-  oslo.metrics-wallaby: eom
   oslo.middleware: 4.2.1
-  oslo.middleware-wallaby: eom
   oslo.policy: 3.7.1
-  oslo.policy-wallaby: eom
   oslo.privsep: 2.5.1
-  oslo.privsep-wallaby: eom
   oslo.serialization: 4.1.1
-  oslo.serialization-wallaby: eom
   oslo.service: 2.5.1
-  oslo.service-wallaby: eom
   oslo.upgradecheck: 1.3.1
-  oslo.upgradecheck-wallaby: eom
   oslo.utils: 4.8.2
-  oslo.utils-wallaby: eom
   oslo.versionedobjects: 2.4.1
-  oslo.versionedobjects-wallaby: eom
   oslo.vmware: 3.8.2
-  oslo.vmware-wallaby: eom
   oswin-tempest-plugin: 1.2.0
   ovn-octavia-provider: 1.0.2
-  ovn-octavia-provider-wallaby: eom
   ovsdbapp: 1.9.4
-  ovsdbapp-wallaby: eom
   panko: 10.0.0
   pankoclient: 1.2.0
   patrole: 0.12.0
@@ -2636,65 +2456,42 @@ wallaby:
   puppet-watcher: 18.4.0
   puppet-zaqar: 18.4.0
   python-adjutant: 2.0.0
-  python-adjutant-wallaby: eom
   python-adjutantclient: 0.8.0
-  python-adjutantclient-wallaby: eom
   python-barbicanclient: 5.1.0
   python-blazarclient: 3.2.1
-  python-blazarclient-wallaby: eom
   python-brick-cinderclient-ext: 1.3.0
-  python-brick-cinderclient-ext-wallaby: eom
   python-cinderclient: 7.4.1
-  python-cinderclient-wallaby: eom
   python-cloudkittyclient: 4.2.0
-  python-cloudkittyclient-wallaby: eom
   python-cyborgclient: 1.3.0
   python-designateclient: 4.2.1
-  python-designateclient-wallaby: eom
   python-freezerclient: 4.2.0
   python-glanceclient: 3.3.0
-  python-glanceclient-wallaby: eom
   python-heatclient: 2.3.1
-  python-heatclient-wallaby: eom
   python-ironic-inspector-client: 4.5.0
   python-ironicclient: 4.6.4
   python-keystoneclient: 4.2.0
   python-magnumclient: 3.4.1
   python-manilaclient: 2.6.4
-  python-manilaclient-wallaby: eom
   python-masakariclient: 7.0.0
-  python-masakariclient-wallaby: eom
   python-mistralclient: 4.2.0
   python-monascaclient: 2.3.0
   python-muranoclient: 2.2.0
   python-neutronclient: 7.3.1
-  python-neutronclient-wallaby: eom
   python-novaclient: 17.4.1
-  python-novaclient-wallaby: eom
   python-octaviaclient: 2.3.1
-  python-octaviaclient-wallaby: eom
   python-openstackclient: 5.5.1
-  python-openstackclient-wallaby: eom
   python-saharaclient: 3.3.0
   python-senlinclient: 2.2.1
   python-solumclient: 3.3.0
   python-swiftclient: 3.11.1
-  python-swiftclient-wallaby: eom
   python-tackerclient: 1.6.0
-  python-tackerclient-wallaby: eom
   python-tripleoclient: 16.5.0
   python-troveclient: 7.0.0
-  python-troveclient-wallaby: eom
   python-vitrageclient: 4.3.0
-  python-vitrageclient-wallaby: eom
   python-watcher: 6.0.1
-  python-watcher-wallaby: eom
   python-watcherclient: 3.2.0
-  python-watcherclient-wallaby: eom
   python-zaqarclient: 2.1.0
-  python-zaqarclient-wallaby: eom
   python-zunclient: 4.2.0
-  requirements-wallaby: eom
   sahara: 14.0.0
   sahara-dashboard: 14.0.0
   sahara-extra: 13.0.0
@@ -2713,23 +2510,16 @@ wallaby:
   solum-dashboard: 6.0.0
   solum-tempest-plugin: 2.2.0
   stevedore: 3.3.3
-  stevedore-wallaby: eom
   storlets: 7.0.0
-  storlets-wallaby: eom
   sushy: 3.7.6
   sushy-cli: 0.4.0
   swift: 2.27.0
-  swift-wallaby: eom
   tacker: 5.0.0
   tacker-horizon: 3.0.0
-  tacker-horizon-wallaby: eom
-  tacker-wallaby: eom
   telemetry_tempest_plugin: 1.3.0
   tempest: 27.0.0
   tooz: 2.8.3
-  tooz-wallaby: eom
   tosca-parser: 2.3.0
-  tosca-parser-wallaby: eom
   tripleo-common: 15.4.0
   tripleo-heat-templates: 14.3.0
   tripleo-image-elements: 13.1.2
@@ -2737,71 +2527,49 @@ wallaby:
   tripleo-validations: 14.3.1
   trove: 15.0.0
   trove-dashboard: 16.0.1
-  trove-dashboard-wallaby: eom
-  trove-wallaby: eom
   trove_tempest_plugin: 1.2.0
   vitrage: 7.4.0
   vitrage-dashboard: 3.3.0
-  vitrage-dashboard-wallaby: eom
   vitrage-tempest-plugin: 5.3.0
-  vitrage-wallaby: eom
   watcher-dashboard: 5.0.1
-  watcher-dashboard-wallaby: eom
   watcher-tempest-plugin: 2.2.0
   zaqar: 12.0.0
   zaqar-ui: 10.0.0
-  zaqar-ui-wallaby: eom
-  zaqar-wallaby: eom
   zaqar_tempest_plugin: 1.2.1
   zun: 7.0.0
   zun-tempest-plugin: 4.3.0
   zun-ui: 7.0.0
 xena:
   adjutant-ui: 3.0.0
-  adjutant-ui-xena: eom
   ansible-role-atos-hsm: 2.0.0
   ansible-role-lunasa-hsm: 2.0.0
   ansible-role-thales-hsm: 2.0.0
   aodh: 13.1.0
   aodhclient: 2.3.1
   automaton: 2.4.0
-  automaton-xena: eom
   barbican: 13.0.2
   barbican_tempest_plugin: 1.5.0
   bifrost: 11.2.2
   blazar: 8.0.1
   blazar-dashboard: 6.0.0
-  blazar-dashboard-xena: eom
   blazar-nova: 2.3.0
-  blazar-nova-xena: eom
-  blazar-xena: eom
   blazar_tempest_plugin: 0.7.0
   castellan: 3.9.1
-  castellan-xena: eom
   ceilometer: 17.0.2
   ceilometermiddleware: 2.3.0
   cinder: 19.3.0
   cinder-tempest-plugin: 1.5.0
-  cinder-xena: eom
   cinderlib: 4.1.0
-  cinderlib-xena: eom
   cliff: 3.9.0
-  cliff-xena: eom
   cloudkitty: 15.0.1
   cloudkitty-dashboard: 13.0.0
-  cloudkitty-dashboard-xena: eom
-  cloudkitty-xena: eom
   cloudkitty_tempest_plugin: 2.4.1
   compute-hyperv: 13.0.0
-  compute-hyperv-xena: eom
   cyborg-tempest-plugin: 1.3.0
   designate: 13.0.2
   designate-dashboard: 13.0.1
-  designate-dashboard-xena: eom
   designate-tempest-plugin: 0.12.0
-  designate-xena: eom
   ec2-api: 13.0.1
-  ec2-api-xena: eom
   ec2api-tempest-plugin: 1.3.0
   freezer: 11.0.0
   freezer-api: 11.0.0
@@ -2810,18 +2578,12 @@ xena:
   freezer_tempest_plugin: 1.3.1
   glance: 23.1.0
   glance-tempest-plugin: 0.2.0
-  glance-xena: eom
   glance_store: 2.7.1
-  glance_store-xena: eom
   heat-agents: 3.0.0
-  heat-agents-xena: eom
   heat-dashboard: 6.0.1
-  heat-dashboard-xena: eom
   heat-tempest-plugin: 1.4.0
   heat-translator: 2.4.1
-  heat-translator-xena: eom
   horizon: 20.1.4
-  horizon-xena: eom
   ironic: 18.3.0
   ironic-inspector: 10.8.1
   ironic-lib: 5.0.1
@@ -2849,14 +2611,9 @@ xena:
   manila: 13.2.0
   manila-tempest-plugin: 1.6.0
   manila-ui: 6.0.0
-  manila-ui-xena: eom
-  manila-xena: eom
   masakari: 12.0.3
   masakari-dashboard: 5.0.0
-  masakari-dashboard-xena: eom
   masakari-monitors: 12.1.0
-  masakari-monitors-xena: eom
-  masakari-xena: eom
   metalsmith: 1.5.3
   mistral: 13.0.0
   mistral-dashboard: 13.0.0
@@ -2877,93 +2634,52 @@ xena:
   murano-dashboard: 12.0.0
   murano-tempest-plugin: 2.3.1
   networking-bagpipe: 15.0.0
-  networking-bagpipe-xena: eom
   networking-baremetal: 5.0.0
   networking-bgpvpn: 15.0.0
-  networking-bgpvpn-xena: eom
   networking-generic-switch: 6.0.0
   networking-hyperv: 11.0.0
-  networking-hyperv-xena: eom
   networking-odl: 19.0.0
-  networking-odl-xena: eom
   networking-sfc: 13.0.0
-  networking-sfc-xena: eom
   neutron: 19.7.0
   neutron-dynamic-routing: 19.1.1
-  neutron-dynamic-routing-xena: eom
   neutron-lib: 2.15.4
-  neutron-lib-xena: eom
   neutron-tempest-plugin: 1.7.0
   neutron-vpnaas: 19.0.1
   neutron-vpnaas-dashboard: 5.0.0
-  neutron-vpnaas-dashboard-xena: eom
-  neutron-vpnaas-xena: eom
-  neutron-xena: eom
   nova: 24.2.1
-  nova-xena: eom
   octavia: 9.1.0
   octavia-dashboard: 8.0.1
-  octavia-dashboard-xena: eom
   octavia-lib: 2.4.1
-  octavia-lib-xena: eom
   octavia-tempest-plugin: 1.8.1
-  octavia-xena: eom
   openstack-cyborg: 7.0.1
   openstack-heat: 17.0.2
-  openstack-heat-xena: eom
   openstack-placement: 6.0.0
-  openstack-placement-xena: eom
   openstacksdk: 0.59.0
-  openstacksdk-xena: eom
   os-brick: 5.0.3
-  os-brick-xena: eom
   os-ken: 2.1.1
-  os-ken-xena: eom
   os-win: 5.5.0
-  os-win-xena: eom
   os_vif: 2.6.1
-  os_vif-xena: eom
   osc-lib: 2.4.2
-  osc-lib-xena: eom
   osc-placement: 3.1.1
-  osc-placement-xena: eom
   oslo.cache: 2.8.2
-  oslo.cache-xena: eom
   oslo.config: 8.7.1
-  oslo.config-xena: eom
   oslo.context: 3.3.2
-  oslo.context-xena: eom
   oslo.db: 11.0.0
-  oslo.db-xena: eom
   oslo.limit: 1.4.0
-  oslo.limit-xena: eom
   oslo.messaging: 12.9.4
-  oslo.messaging-xena: eom
   oslo.metrics: 0.3.1
-  oslo.metrics-xena: eom
   oslo.middleware: 4.4.0
-  oslo.middleware-xena: eom
   oslo.policy: 3.8.3
-  oslo.policy-xena: eom
   oslo.privsep: 2.6.2
-  oslo.privsep-xena: eom
   oslo.serialization: 4.2.0
-  oslo.serialization-xena: eom
   oslo.service: 2.6.2
-  oslo.service-xena: eom
   oslo.upgradecheck: 1.4.0
-  oslo.upgradecheck-xena: eom
   oslo.utils: 4.10.2
-  oslo.utils-xena: eom
   oslo.versionedobjects: 2.5.0
-  oslo.versionedobjects-xena: eom
   oslo.vmware: 3.9.3
-  oslo.vmware-xena: eom
   oswin-tempest-plugin: 1.3.0
   ovn-octavia-provider: 1.3.1
-  ovn-octavia-provider-xena: eom
   ovsdbapp: 1.12.3
-  ovsdbapp-xena: eom
   patrole: 0.13.0
   puppet-aodh: 19.4.0
   puppet-barbican: 19.4.1
@@ -3005,64 +2721,41 @@ xena:
   puppet-watcher: 19.4.0
   puppet-zaqar: 19.4.0
   python-adjutant: 3.0.1
-  python-adjutant-xena: eom
   python-adjutantclient: 0.9.0
-  python-adjutantclient-xena: eom
   python-barbicanclient: 5.2.0
   python-blazarclient: 3.3.2
-  python-blazarclient-xena: eom
   python-brick-cinderclient-ext: 1.4.0
-  python-brick-cinderclient-ext-xena: eom
   python-cinderclient: 8.1.0
-  python-cinderclient-xena: eom
   python-cloudkittyclient: 4.3.0
-  python-cloudkittyclient-xena: eom
   python-cyborgclient: 1.5.0
   python-designateclient: 4.3.1
-  python-designateclient-xena: eom
   python-freezerclient: 4.3.0
   python-glanceclient: 3.5.0
-  python-glanceclient-xena: eom
   python-heatclient: 2.4.0
-  python-heatclient-xena: eom
   python-ironic-inspector-client: 4.6.0
   python-ironicclient: 4.8.2
   python-keystoneclient: 4.3.0
   python-magnumclient: 3.5.0
   python-manilaclient: 3.0.3
-  python-manilaclient-xena: eom
   python-masakariclient: 7.1.0
-  python-masakariclient-xena: eom
   python-mistralclient: 4.3.0
   python-monascaclient: 2.4.0
   python-muranoclient: 2.3.0
   python-neutronclient: 7.6.0
-  python-neutronclient-xena: eom
   python-novaclient: 17.6.0
-  python-novaclient-xena: eom
   python-octaviaclient: 2.4.0
-  python-octaviaclient-xena: eom
   python-openstackclient: 5.6.2
-  python-openstackclient-xena: eom
   python-saharaclient: 3.4.0
   python-senlinclient: 2.3.0
   python-solumclient: 3.4.0
   python-swiftclient: 3.12.0
-  python-swiftclient-xena: eom
   python-tackerclient: 1.8.0
-  python-tackerclient-xena: eom
   python-troveclient: 7.1.1
-  python-troveclient-xena: eom
   python-vitrageclient: 4.4.0
-  python-vitrageclient-xena: eom
   python-watcher: 7.0.0
-  python-watcher-xena: eom
   python-watcherclient: 3.3.0
-  python-watcherclient-xena: eom
   python-zaqarclient: 2.2.0
-  python-zaqarclient-xena: eom
   python-zunclient: 4.3.0
-  requirements-xena: eom
   sahara: 15.0.0
   sahara-dashboard: 15.0.0
   sahara-extra: 14.0.0
@@ -3081,584 +2774,285 @@ xena:
   solum-dashboard: 7.0.0
   solum-tempest-plugin: 2.3.0
   stevedore: 3.4.2
-  stevedore-xena: eom
   storlets: 8.0.0
-  storlets-xena: eom
   sushy: 3.12.6
   swift: 2.28.1
-  swift-xena: eom
   tacker: 6.0.0
   tacker-horizon: 4.0.0
-  tacker-horizon-xena: eom
-  tacker-xena: eom
   telemetry_tempest_plugin: 1.5.0
   tempest: 29.0.0
   tosca-parser: 2.4.1
-  tosca-parser-xena: eom
   trove: 16.0.1
   trove-dashboard: 17.0.0
-  trove-dashboard-xena: eom
-  trove-xena: eom
   trove_tempest_plugin: 1.3.0
   vitrage: 7.5.0
   vitrage-dashboard: 3.4.0
-  vitrage-dashboard-xena: eom
   vitrage-tempest-plugin: 5.4.0
-  vitrage-xena: eom
   watcher-dashboard: 6.0.0
-  watcher-dashboard-xena: eom
   watcher-tempest-plugin: 2.3.0
   zaqar: 13.0.0
   zaqar-ui: 11.0.0
-  zaqar-ui-xena: eom
-  zaqar-xena: eom
   zaqar_tempest_plugin: 1.3.1
   zun: 8.0.0
   zun-tempest-plugin: 4.4.1
   zun-ui: 8.0.0
 yoga:
   adjutant-ui: 4.0.0
-  adjutant-ui-yoga: eom
   ansible-collection-kolla: 1.4.0
-  ansible-collection-kolla-yoga: eom
-  ansible-hardening-yoga: eom
   ansible-role-atos-hsm: 3.0.0
-  ansible-role-atos-hsm-yoga: eom
   ansible-role-lunasa-hsm: 3.0.0
-  ansible-role-lunasa-hsm-yoga: eom
-  ansible-role-pki-yoga: eom
-  ansible-role-python_venv_build-yoga: eom
-  ansible-role-qdrouterd-yoga: eom
-  ansible-role-systemd_mount-yoga: eom
-  ansible-role-systemd_networkd-yoga: eom
-  ansible-role-systemd_service-yoga: eom
   ansible-role-thales-hsm: 3.0.0
-  ansible-role-thales-hsm-yoga: eom
-  ansible-role-uwsgi-yoga: eom
   aodh: 14.1.0
-  aodh-yoga: eom
   aodhclient: 2.4.1
-  aodhclient-yoga: eom
   automaton: 2.5.0
-  automaton-yoga: eom
   barbican: 14.0.2
-  barbican-yoga: eom
   barbican_tempest_plugin: 1.6.0
   bifrost: 14.1.0
-  bifrost-yoga: eom
   blazar: 9.0.0
   blazar-dashboard: 7.0.0
-  blazar-dashboard-yoga: eom
   blazar-nova: 2.5.0
-  blazar-nova-yoga: eom
-  blazar-yoga: eom
   blazar_tempest_plugin: 0.8.0
   castellan: 3.10.2
-  castellan-yoga: eom
   ceilometer: 18.1.0
-  ceilometer-yoga: eom
   ceilometermiddleware: 2.4.1
-  ceilometermiddleware-yoga: eom
   cinder: 20.3.2
   cinder-tempest-plugin: 1.6.0
-  cinder-yoga: eom
   cinderlib: 4.2.0
-  cinderlib-yoga: eom
   cliff: 3.10.1
-  cliff-yoga: eom
   cloudkitty: 16.0.1
   cloudkitty-dashboard: 14.0.1
-  cloudkitty-dashboard-yoga: eom
-  cloudkitty-yoga: eom
   cloudkitty_tempest_plugin: 2.5.0
   compute-hyperv: 14.0.0
-  compute-hyperv-yoga: eom
   cyborg-tempest-plugin: 1.4.0
   designate: 14.0.4
   designate-dashboard: 14.0.1
-  designate-dashboard-yoga: eom
   designate-tempest-plugin: 0.13.0
-  designate-yoga: eom
-  devstack-plugin-ceph-yoga: eom
-  devstack-plugin-container-yoga: eom
-  devstack-yoga: eom
   ec2-api: 14.0.2
-  ec2-api-yoga: eom
   ec2api-tempest-plugin: 1.4.0
   freezer: 12.0.0
   freezer-api: 12.0.0
-  freezer-api-yoga: eom
   freezer-dr: 12.0.0
-  freezer-dr-yoga: eom
   freezer-web-ui: 12.0.0
-  freezer-web-ui-yoga: eom
-  freezer-yoga: eom
   freezer_tempest_plugin: 1.4.0
   glance: 24.2.1
   glance-tempest-plugin: 0.3.0
-  glance-yoga: eom
   glance_store: 3.0.1
-  glance_store-yoga: eom
-  grenade-yoga: eom
   heat-agents: 4.0.1
-  heat-agents-yoga: eom
   heat-dashboard: 7.0.1
-  heat-dashboard-yoga: eom
   heat-tempest-plugin: 1.5.0
   heat-translator: 2.5.0
-  heat-translator-yoga: eom
   horizon: 22.1.1
-  horizon-yoga: eom
   ironic: 20.1.3
   ironic-inspector: 10.11.0
-  ironic-inspector-yoga: eom
   ironic-lib: 5.2.0
-  ironic-lib-yoga: eom
   ironic-prometheus-exporter: 3.1.0
-  ironic-prometheus-exporter-yoga: eom
   ironic-python-agent: 8.5.3
   ironic-python-agent-builder: 4.1.0
-  ironic-python-agent-builder-yoga: eom
-  ironic-python-agent-yoga: eom
   ironic-tempest-plugin: 2.4.0
   ironic-ui: 5.1.0
-  ironic-ui-yoga: eom
-  ironic-yoga: eom
   kayobe: 12.10.0
   kayobe-config: 12.10.0
   kayobe-config-dev: 12.4.0
-  kayobe-config-dev-yoga: eom
-  kayobe-config-yoga: eom
-  kayobe-yoga: eom
   keystone: 21.0.1
-  keystone-yoga: eom
   keystone_tempest_plugin: 0.9.0
   keystoneauth1: 4.5.0
-  keystoneauth1-yoga: eom
   keystonemiddleware: 9.4.0
-  keystonemiddleware-yoga: eom
   kolla: 14.12.0
   kolla-ansible: 14.11.0
-  kolla-ansible-yoga: eom
-  kolla-yoga: eom
   kuryr-kubernetes: 6.0.1
-  kuryr-kubernetes-yoga: eom
   kuryr-lib: 2.5.0
-  kuryr-lib-yoga: eom
   kuryr-libnetwork: 9.0.0
-  kuryr-libnetwork-yoga: eom
   kuryr-tempest-plugin: 0.12.0
   magnum: 14.1.2
   magnum-ui: 10.0.0
-  magnum-ui-yoga: eom
-  magnum-yoga: eom
   magnum_tempest_plugin: 1.6.0
   manila: 14.2.0
   manila-tempest-plugin: 1.7.0
   manila-ui: 7.0.1
-  manila-ui-yoga: eom
-  manila-yoga: eom
   masakari: 13.0.3
   masakari-dashboard: 6.0.0
-  masakari-dashboard-yoga: eom
   masakari-monitors: 13.1.0
-  masakari-monitors-yoga: eom
-  masakari-yoga: eom
   metalsmith: 1.6.4
-  metalsmith-yoga: eom
   mistral: 14.0.0
   mistral-dashboard: 14.0.1
-  mistral-dashboard-yoga: eom
   mistral-extra: 11.3.0
-  mistral-extra-yoga: eom
   mistral-lib: 2.6.0
-  mistral-lib-yoga: eom
-  mistral-yoga: eom
   mistral_tempest_tests: 1.4.0
   monasca-agent: 7.0.0
-  monasca-agent-yoga: eom
   monasca-api: 8.0.0
-  monasca-api-yoga: eom
   monasca-common: 3.5.0
-  monasca-common-yoga: eom
   monasca-events-api: 5.0.0
-  monasca-events-api-yoga: eom
   monasca-notification: 6.0.0
-  monasca-notification-yoga: eom
   monasca-persister: 6.0.0
-  monasca-persister-yoga: eom
   monasca-statsd: 2.4.0
-  monasca-statsd-yoga: eom
   monasca-tempest-plugin: 2.4.0
   monasca-ui: 6.0.0
-  monasca-ui-yoga: eom
   murano: 13.0.0
   murano-agent: 9.0.0
-  murano-agent-yoga: eom
   murano-dashboard: 13.0.0
-  murano-dashboard-yoga: eom
   murano-tempest-plugin: 2.4.0
-  murano-yoga: eom
   networking-bagpipe: 16.0.0
-  networking-bagpipe-yoga: eom
   networking-baremetal: 5.1.1
-  networking-baremetal-yoga: eom
   networking-bgpvpn: 16.0.0
-  networking-bgpvpn-yoga: eom
   networking-generic-switch: 6.1.0
-  networking-generic-switch-yoga: eom
   networking-hyperv: 12.0.0
-  networking-hyperv-yoga: eom
   networking-odl: 20.0.0
-  networking-odl-yoga: eom
   networking-sfc: 14.0.0
-  networking-sfc-yoga: eom
   neutron: 20.5.0
   neutron-dynamic-routing: 20.0.1
-  neutron-dynamic-routing-yoga: eom
   neutron-lib: 2.20.2
-  neutron-lib-yoga: eom
   neutron-tempest-plugin: 1.9.0
   neutron-vpnaas: 20.0.1
   neutron-vpnaas-dashboard: 6.0.0
-  neutron-vpnaas-dashboard-yoga: eom
-  neutron-vpnaas-yoga: eom
-  neutron-yoga: eom
   nova: 25.3.0
-  nova-yoga: eom
   octavia: 10.1.1
   octavia-dashboard: 9.0.1
-  octavia-dashboard-yoga: eom
   octavia-lib: 2.5.0
-  octavia-lib-yoga: eom
   octavia-tempest-plugin: 1.9.0
-  octavia-yoga: eom
-  openstack-ansible-apt_package_pinning-yoga: eom
-  openstack-ansible-ceph_client-yoga: eom
-  openstack-ansible-galera_server-yoga: eom
-  openstack-ansible-haproxy_server-yoga: eom
-  openstack-ansible-lxc_container_create-yoga: eom
-  openstack-ansible-lxc_hosts-yoga: eom
-  openstack-ansible-memcached_server-yoga: eom
-  openstack-ansible-openstack_hosts-yoga: eom
-  openstack-ansible-openstack_openrc-yoga: eom
-  openstack-ansible-ops-yoga: eom
-  openstack-ansible-os_adjutant-yoga: eom
-  openstack-ansible-os_aodh-yoga: eom
-  openstack-ansible-os_barbican-yoga: eom
-  openstack-ansible-os_blazar-yoga: eom
-  openstack-ansible-os_ceilometer-yoga: eom
-  openstack-ansible-os_cinder-yoga: eom
-  openstack-ansible-os_cloudkitty-yoga: eom
-  openstack-ansible-os_designate-yoga: eom
-  openstack-ansible-os_glance-yoga: eom
-  openstack-ansible-os_gnocchi-yoga: eom
-  openstack-ansible-os_heat-yoga: eom
-  openstack-ansible-os_horizon-yoga: eom
-  openstack-ansible-os_ironic-yoga: eom
-  openstack-ansible-os_keystone-yoga: eom
-  openstack-ansible-os_magnum-yoga: eom
-  openstack-ansible-os_manila-yoga: eom
-  openstack-ansible-os_masakari-yoga: eom
-  openstack-ansible-os_mistral-yoga: eom
-  openstack-ansible-os_murano-yoga: eom
-  openstack-ansible-os_neutron-yoga: eom
-  openstack-ansible-os_nova-yoga: eom
-  openstack-ansible-os_octavia-yoga: eom
-  openstack-ansible-os_placement-yoga: eom
-  openstack-ansible-os_rally-yoga: eom
-  openstack-ansible-os_sahara-yoga: eom
-  openstack-ansible-os_senlin-yoga: eom
-  openstack-ansible-os_swift-yoga: eom
-  openstack-ansible-os_tacker-yoga: eom
-  openstack-ansible-os_tempest-yoga: eom
-  openstack-ansible-os_trove-yoga: eom
-  openstack-ansible-os_zun-yoga: eom
-  openstack-ansible-plugins-yoga: eom
-  openstack-ansible-rabbitmq_server-yoga: eom
-  openstack-ansible-repo_server-yoga: eom
-  openstack-ansible-rsyslog_client-yoga: eom
-  openstack-ansible-rsyslog_server-yoga: eom
-  openstack-ansible-tests-yoga: eom
   openstack-cyborg: 8.0.1
-  openstack-cyborg-yoga: eom
   openstack-heat: 18.0.1
-  openstack-heat-yoga: eom
   openstack-placement: 7.0.0
-  openstack-placement-yoga: eom
   openstack-release-test: 3.8.0
-  openstack-release-test-yoga: eom
   openstacksdk: 0.62.0
-  openstacksdk-yoga: eom
   os-brick: 5.2.4
-  os-brick-yoga: eom
   os-ken: 2.3.1
-  os-ken-yoga: eom
   os-win: 5.6.0
-  os-win-yoga: eom
   os_vif: 2.7.2
-  os_vif-yoga: eom
   osc-lib: 2.5.0
-  osc-lib-yoga: eom
   osc-placement: 3.2.0
-  osc-placement-yoga: eom
   oslo.cache: 2.10.1
-  oslo.cache-yoga: eom
   oslo.config: 8.8.1
-  oslo.config-yoga: eom
   oslo.context: 4.1.0
-  oslo.context-yoga: eom
   oslo.db: 11.2.0
-  oslo.db-yoga: eom
   oslo.limit: 1.5.1
-  oslo.limit-yoga: eom
   oslo.messaging: 12.13.3
-  oslo.messaging-yoga: eom
   oslo.metrics: 0.4.0
-  oslo.metrics-yoga: eom
   oslo.middleware: 4.5.1
-  oslo.middleware-yoga: eom
   oslo.policy: 3.11.0
-  oslo.policy-yoga: eom
   oslo.privsep: 2.7.0
-  oslo.privsep-yoga: eom
   oslo.serialization: 4.3.0
-  oslo.serialization-yoga: eom
   oslo.service: 2.8.0
-  oslo.service-yoga: eom
   oslo.upgradecheck: 1.5.0
-  oslo.upgradecheck-yoga: eom
   oslo.utils: 4.12.4
-  oslo.utils-yoga: eom
   oslo.versionedobjects: 2.6.0
-  oslo.versionedobjects-yoga: eom
   oslo.vmware: 3.10.0
-  oslo.vmware-yoga: eom
   oswin-tempest-plugin: 1.4.0
   ovn-octavia-provider: 2.2.0
-  ovn-octavia-provider-yoga: eom
   ovsdbapp: 1.15.3
-  ovsdbapp-yoga: eom
   patrole: 0.14.0
   puppet-aodh: 20.3.1
-  puppet-aodh-yoga: eom
   puppet-barbican: 20.3.1
-  puppet-barbican-yoga: eom
   puppet-ceilometer: 20.4.1
-  puppet-ceilometer-yoga: eom
   puppet-cinder: 20.4.1
-  puppet-cinder-yoga: eom
   puppet-cloudkitty: 9.3.1
-  puppet-cloudkitty-yoga: eom
   puppet-designate: 20.3.2
-  puppet-designate-yoga: eom
   puppet-ec2api: 20.3.0
-  puppet-ec2api-yoga: eom
   puppet-glance: 20.4.1
-  puppet-glance-yoga: eom
   puppet-gnocchi: 20.3.2
-  puppet-gnocchi-yoga: eom
   puppet-heat: 20.4.1
-  puppet-heat-yoga: eom
   puppet-horizon: 20.4.0
-  puppet-horizon-yoga: eom
   puppet-ironic: 20.4.2
-  puppet-ironic-yoga: eom
   puppet-keystone: 20.4.1
-  puppet-keystone-yoga: eom
   puppet-magnum: 20.3.1
-  puppet-magnum-yoga: eom
   puppet-manila: 20.3.2
-  puppet-manila-yoga: eom
   puppet-mistral: 20.3.1
-  puppet-mistral-yoga: eom
   puppet-murano: 20.3.1
-  puppet-murano-yoga: eom
   puppet-neutron: 20.4.0
-  puppet-neutron-yoga: eom
   puppet-nova: 20.4.2
-  puppet-nova-yoga: eom
   puppet-octavia: 20.4.1
-  puppet-octavia-yoga: eom
-  puppet-openstack-integration-yoga: eom
   puppet-openstack_extras: 20.3.1
-  puppet-openstack_extras-yoga: eom
-  puppet-openstack_spec_helper-yoga: eom
   puppet-openstacklib: 20.3.1
-  puppet-openstacklib-yoga: eom
   puppet-oslo: 20.4.0
-  puppet-oslo-yoga: eom
   puppet-ovn: 20.4.0
-  puppet-ovn-yoga: eom
   puppet-placement: 7.3.1
-  puppet-placement-yoga: eom
   puppet-qdr: 9.3.0
-  puppet-qdr-yoga: eom
   puppet-rally: 8.3.0
-  puppet-rally-yoga: eom
   puppet-sahara: 20.3.1
-  puppet-sahara-yoga: eom
   puppet-swift: 20.4.1
-  puppet-swift-yoga: eom
   puppet-tacker: 20.3.0
-  puppet-tacker-yoga: eom
   puppet-tempest: 20.4.0
-  puppet-tempest-yoga: eom
   puppet-trove: 20.4.1
-  puppet-trove-yoga: eom
   puppet-vitrage: 10.3.2
-  puppet-vitrage-yoga: eom
   puppet-vswitch: 16.3.1
-  puppet-vswitch-yoga: eom
   puppet-watcher: 20.3.2
-  puppet-watcher-yoga: eom
   puppet-zaqar: 20.3.1
-  puppet-zaqar-yoga: eom
   python-adjutant: 4.0.0
-  python-adjutant-yoga: eom
   python-adjutantclient: 0.10.0
-  python-adjutantclient-yoga: eom
   python-barbicanclient: 5.3.0
-  python-barbicanclient-yoga: eom
   python-blazarclient: 3.4.1
-  python-blazarclient-yoga: eom
   python-brick-cinderclient-ext: 1.5.0
-  python-brick-cinderclient-ext-yoga: eom
   python-cinderclient: 8.3.0
-  python-cinderclient-yoga: eom
   python-cloudkittyclient: 4.5.0
-  python-cloudkittyclient-yoga: eom
   python-cyborgclient: 1.7.0
-  python-cyborgclient-yoga: eom
   python-designateclient: 4.5.1
-  python-designateclient-yoga: eom
   python-freezerclient: 4.4.0
-  python-freezerclient-yoga: eom
   python-glanceclient: 3.6.0
-  python-glanceclient-yoga: eom
   python-heatclient: 2.5.1
-  python-heatclient-yoga: eom
   python-ironic-inspector-client: 4.7.1
-  python-ironic-inspector-client-yoga: eom
   python-ironicclient: 4.11.0
-  python-ironicclient-yoga: eom
   python-keystoneclient: 4.4.0
-  python-keystoneclient-yoga: eom
   python-magnumclient: 3.6.0
-  python-magnumclient-yoga: eom
   python-manilaclient: 3.3.2
-  python-manilaclient-yoga: eom
   python-masakariclient: 7.2.0
-  python-masakariclient-yoga: eom
   python-mistralclient: 4.4.0
-  python-mistralclient-yoga: eom
   python-monascaclient: 2.5.0
-  python-monascaclient-yoga: eom
   python-muranoclient: 2.4.1
-  python-muranoclient-yoga: eom
   python-neutronclient: 7.8.0
-  python-neutronclient-yoga: eom
   python-novaclient: 17.7.0
-  python-novaclient-yoga: eom
   python-octaviaclient: 2.6.0
-  python-octaviaclient-yoga: eom
   python-openstackclient: 5.8.1
-  python-openstackclient-yoga: eom
   python-saharaclient: 3.5.0
-  python-saharaclient-yoga: eom
   python-senlinclient: 2.4.0
-  python-senlinclient-yoga: eom
   python-solumclient: 3.5.1
-  python-solumclient-yoga: eom
   python-swiftclient: 3.13.1
-  python-swiftclient-yoga: eom
   python-tackerclient: 1.10.1
-  python-tackerclient-yoga: eom
   python-troveclient: 7.2.0
-  python-troveclient-yoga: eom
   python-vitrageclient: 4.5.0
-  python-vitrageclient-yoga: eom
   python-watcher: 8.0.0
-  python-watcher-yoga: eom
   python-watcherclient: 3.4.0
-  python-watcherclient-yoga: eom
   python-zaqarclient: 2.3.0
-  python-zaqarclient-yoga: eom
   python-zunclient: 4.4.0
-  python-zunclient-yoga: eom
-  requirements-yoga: eom
   sahara: 16.0.0
   sahara-dashboard: 16.0.0
-  sahara-dashboard-yoga: eom
   sahara-extra: 15.0.0
-  sahara-extra-yoga: eom
   sahara-image-elements: 16.0.0
-  sahara-image-elements-yoga: eom
   sahara-plugin-ambari: 7.0.0
-  sahara-plugin-ambari-yoga: eom
   sahara-plugin-cdh: 7.0.0
-  sahara-plugin-cdh-yoga: eom
   sahara-plugin-mapr: 7.0.0
-  sahara-plugin-mapr-yoga: eom
   sahara-plugin-spark: 7.0.0
-  sahara-plugin-spark-yoga: eom
   sahara-plugin-storm: 7.0.0
-  sahara-plugin-storm-yoga: eom
   sahara-plugin-vanilla: 7.0.0
-  sahara-plugin-vanilla-yoga: eom
   sahara-tests: 0.15.0
-  sahara-yoga: eom
   senlin: 13.0.0
   senlin-dashboard: 5.0.0
-  senlin-dashboard-yoga: eom
   senlin-tempest-plugin: 1.5.0
-  senlin-yoga: eom
   solum: 12.0.1
   solum-dashboard: 8.0.0
-  solum-dashboard-yoga: eom
   solum-tempest-plugin: 2.4.0
-  solum-yoga: eom
   stevedore: 3.5.2
-  stevedore-yoga: eom
   storlets: 9.0.0
-  storlets-yoga: eom
   sushy: 4.1.7
-  sushy-yoga: eom
   swift: 2.29.2
-  swift-yoga: eom
   tacker: 7.1.0
   tacker-horizon: 5.0.0
-  tacker-horizon-yoga: eom
-  tacker-yoga: eom
   tap-as-a-service: 9.0.0
-  tap-as-a-service-yoga: eom
   telemetry_tempest_plugin: 1.6.0
   tempest: 30.1.0
   tosca-parser: 2.5.1
-  tosca-parser-yoga: eom
   trove: 17.0.1
   trove-dashboard: 18.0.1
-  trove-dashboard-yoga: eom
-  trove-yoga: eom
   trove_tempest_plugin: 1.4.0
   vitrage: 8.0.1
   vitrage-dashboard: 3.5.0
-  vitrage-dashboard-yoga: eom
   vitrage-tempest-plugin: 5.5.0
-  vitrage-yoga: eom
   watcher-dashboard: 7.0.0
-  watcher-dashboard-yoga: eom
   watcher-tempest-plugin: 2.4.0
   zaqar: 14.0.0
   zaqar-ui: 12.0.0
-  zaqar-ui-yoga: eom
-  zaqar-yoga: eom
   zaqar_tempest_plugin: 1.4.0
   zun: 9.1.0
   zun-tempest-plugin: 4.5.0
   zun-ui: 9.0.0
-  zun-ui-yoga: eom
-  zun-yoga: eom
 zed:
   adjutant-ui: 5.0.0
   ansible-collection-kolla: 2.3.0
@@ -3670,7 +3064,7 @@ zed:
   automaton: 3.0.1
   barbican: 15.0.1
   barbican_tempest_plugin: 1.7.0
-  bifrost: 15.0.0
+  bifrost: 15.0.1
   blazar: 10.0.0
   blazar-dashboard: 8.0.0
   blazar-nova: 2.6.1
@@ -3678,7 +3072,7 @@ zed:
   castellan: 4.0.0
   ceilometer: 19.1.0
   ceilometermiddleware: 3.0.0
-  cinder: 21.3.1
+  cinder: 21.3.2
   cinder-tempest-plugin: 1.7.2
   cinderlib: 5.0.0
   cliff: 4.0.0
@@ -3704,9 +3098,9 @@ zed:
   heat-dashboard: 8.0.0
   heat-tempest-plugin: 1.6.0
   heat-translator: 2.6.0
-  horizon: 23.0.1
-  ironic: 21.1.1
-  ironic-inspector: 11.1.1
+  horizon: 23.0.2
+  ironic: 21.1.2
+  ironic-inspector: 11.1.2
   ironic-lib: 5.3.0
   ironic-prometheus-exporter: 4.0.0
   ironic-python-agent: 9.1.1
@@ -3716,7 +3110,7 @@ zed:
   kayobe: 13.6.0
   kayobe-config: 13.4.0
   kayobe-config-dev: 13.3.0
-  keystone: 22.0.1
+  keystone: 22.0.2
   keystone_tempest_plugin: 0.10.0
   keystoneauth1: 5.0.1
   keystonemiddleware: 10.1.1
@@ -3729,7 +3123,7 @@ zed:
   magnum: 15.0.2
   magnum-ui: 11.0.0
   magnum_tempest_plugin: 1.7.0
-  manila: 15.4.0
+  manila: 15.4.1
   manila-tempest-plugin: 1.10.0
   manila-ui: 8.0.0
   masakari: 14.0.3
@@ -3761,7 +3155,7 @@ zed:
   networking-hyperv: 13.0.0
   networking-odl: 21.0.0
   networking-sfc: 15.0.0
-  neutron: 21.2.0
+  neutron: 21.2.1
   neutron-dynamic-routing: 21.0.1
   neutron-fwaas: 17.0.1
   neutron-fwaas-dashboard: 4.0.0
@@ -3769,8 +3163,8 @@ zed:
   neutron-tempest-plugin: 2.0.0
   neutron-vpnaas: 21.0.0
   neutron-vpnaas-dashboard: 7.0.0
-  nova: 26.2.2
-  octavia: 11.0.2
+  nova: 26.3.0
+  octavia: 11.0.3
   octavia-dashboard: 10.0.1
   octavia-lib: 3.1.1
   octavia-tempest-plugin: 2.0.0
@@ -3789,7 +3183,7 @@ zed:
   oslo.cache: 3.2.0
   oslo.config: 9.0.0
   oslo.context: 5.0.0
-  oslo.db: 12.1.1
+  oslo.db: 12.1.2
   oslo.limit: 2.0.1
   oslo.messaging: 14.0.3
   oslo.metrics: 0.5.1
@@ -3806,42 +3200,42 @@ zed:
   ovn-octavia-provider: 3.1.2
   ovsdbapp: 2.1.1
   patrole: 0.15.0
-  puppet-aodh: 21.0.0
-  puppet-barbican: 21.0.0
-  puppet-ceilometer: 21.0.0
-  puppet-cinder: 21.0.0
-  puppet-cloudkitty: 10.0.0
-  puppet-designate: 21.0.0
+  puppet-aodh: 21.0.1
+  puppet-barbican: 21.0.1
+  puppet-ceilometer: 21.0.1
+  puppet-cinder: 21.1.0
+  puppet-cloudkitty: 10.0.1
+  puppet-designate: 21.0.1
   puppet-ec2api: 21.0.0
-  puppet-glance: 21.0.0
-  puppet-gnocchi: 21.0.0
-  puppet-heat: 21.0.0
-  puppet-horizon: 21.0.0
-  puppet-ironic: 21.0.0
-  puppet-keystone: 21.0.0
-  puppet-magnum: 21.0.0
-  puppet-manila: 21.0.0
-  puppet-mistral: 21.0.0
+  puppet-glance: 21.0.1
+  puppet-gnocchi: 21.0.1
+  puppet-heat: 21.1.0
+  puppet-horizon: 21.0.1
+  puppet-ironic: 21.0.1
+  puppet-keystone: 21.0.1
+  puppet-magnum: 21.0.1
+  puppet-manila: 21.0.1
+  puppet-mistral: 21.0.1
   puppet-murano: 21.0.0
-  puppet-neutron: 21.0.0
-  puppet-nova: 21.2.0
-  puppet-octavia: 21.0.0
-  puppet-openstack_extras: 21.0.1
+  puppet-neutron: 21.0.1
+  puppet-nova: 21.3.0
+  puppet-octavia: 21.0.1
+  puppet-openstack_extras: 21.0.2
   puppet-openstacklib: 21.0.0
-  puppet-oslo: 21.0.0
+  puppet-oslo: 21.0.1
   puppet-ovn: 21.0.0
-  puppet-placement: 8.0.0
+  puppet-placement: 8.0.1
   puppet-qdr: 10.0.0
   puppet-rally: 9.0.0
   puppet-sahara: 21.0.0
-  puppet-swift: 21.0.0
+  puppet-swift: 21.0.1
   puppet-tacker: 21.0.0
   puppet-tempest: 21.0.0
-  puppet-trove: 21.0.0
-  puppet-vitrage: 11.0.0
-  puppet-vswitch: 17.0.0
-  puppet-watcher: 21.0.0
-  puppet-zaqar: 21.0.0
+  puppet-trove: 21.0.1
+  puppet-vitrage: 11.0.1
+  puppet-vswitch: 17.0.1
+  puppet-watcher: 21.0.1
+  puppet-zaqar: 21.0.1
   python-adjutant: 5.0.0
   python-adjutantclient: 0.11.0
   python-barbicanclient: 5.4.0
@@ -3908,7 +3302,7 @@ zed:
   telemetry_tempest_plugin: 1.7.0
   tempest: 33.0.0
   tosca-parser: 2.6.0
-  trove: 18.0.0
+  trove: 18.0.1
   trove-dashboard: 19.0.0
   trove_tempest_plugin: 1.5.0
   venus-dashboard: 1.0.0
