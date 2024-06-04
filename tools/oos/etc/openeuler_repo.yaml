@@ -474,6 +474,7 @@ openeuler:
   secscanner: sig-security-facility
   secureguardian: sig-security-facility
   security-committee: security-committee
+  security-committee-private: security-committee
   security-facility: sig-security-facility
   security-tool: sig-security-facility
   service_capability: sig-Talent-and-Service
@@ -9605,7 +9606,7 @@ src-openeuler:
   raspberrypi-build: sig-SBC
   raspberrypi-eeprom: sig-SBC
   raspberrypi-firmware: sig-SBC
-  raspberrypi-kernel: sig-SBC
+  raspberrypi-kernel-legacy: sig-recycle
   raspberrypi-userland: sig-SBC
   raspberrypi-utils: sig-SBC
   raspi-config: sig-SBC
