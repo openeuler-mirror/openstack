@@ -136,6 +136,7 @@ openeuler:
   ci-bot: sig-Gatekeeper
   clibcni: iSulad
   cloudnative: sig-CloudNative
+  cloudphone_kernel: Kernel
   community: TC
   community-issue: TC
   compass-ci: sig-CICD
@@ -226,6 +227,7 @@ openeuler:
   ha-monitor: sig-Ha
   ha-web: sig-Ha
   hands-on: sig-OSCourse
+  hi-mpu: sig-embedded
   hikptool: sig-WayCa
   hinic3: sig-Compatibility-Infra
   hmir: sig-ops
@@ -466,6 +468,10 @@ openeuler:
   rust_shyper: Virt
   safeguard: sig-ebpf
   safeguard-web: sig-ebpf
+  sbom-files: sig-sbom
+  sbom-service: sig-sbom
+  sbom-tools: sig-sbom
+  sbom-website: sig-sbom
   sdma-dk: sig-WayCa
   sds_doc: sig-SDS
   secDetector: sig-security-facility
@@ -4363,6 +4369,7 @@ src-openeuler:
   message_runtime: sig-ROS
   metacity: Desktop
   metadata-extractor2: Application
+  metagpt: sig-intelligence
   metainf-services: sig-Java
   metis: Application
   metrics: sig-Java
