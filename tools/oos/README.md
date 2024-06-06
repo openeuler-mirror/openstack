@@ -416,8 +416,8 @@ oos repo branch-version-list repo -t GITEE_PAT
 ## 版本平移批量创建分支
 
 对于继承上一个版本的新版本开发，
-可使用`oos repo community-create-pr -i -r <reference-branch> -a <aim-branch>`命令，
-自动修改community中软件包的yaml文件，该命令仅适用与版本继承。
+可使用`oos repo community-create-pr -i -r <reference-branch> -a <aim-branch> -s <file-path>`命令，
+自动修改community中软件包的yaml文件，该命令仅适用与版本继承，需要在community仓库sig目录下执行，判断每个sig中src-openeuler路径下软件包是否存在某个分支，如存在从Next创建分支。
 
 按照分支开发原则，新分支从Next分支拉取。
 
@@ -428,8 +428,32 @@ oos repo branch-version-list repo -t GITEE_PAT
 -r, --reference
     [可选] 参考分支，如SP3平移SP2，输入SP2的分支名，对应yaml文件中创建过SP2分支，则创建SP3分支
 -a, --aim-branch
-    [可选] PR创建者，默认openeuler-sync-bot
+    [可选] 需要创建的分支名称
+'-s', '--save-path'
+    [可选] 保存当前创建分支的仓库列表到此路径，列表格式为首行分支名称，其余行为仓库名称
 ```
+
+## 为Multi-version分支初始化EBS工程
+
+初始化EBS工程
+对于继承上一个版本的新版本开发，
+可使用`oos repo ebs-init -p <path>`命令，自动编写EBS工程初始化的内容，该命令仅适用与版本继承，
+需要在release-management仓库multi_version目录下执行，根据输入文件添加EBS工程初始化内容。
+
+文件格式为首行分支名称，其他行为仓库名称，举例如下
+```txt
+Multi-Version_OpenStack-Wallaby_openEuler-22.03-LTS-SP4
+PyYAML
+ansible-lint
+...
+```
+
+该命令所支持的参数如下：
+```
+-p, --path
+    [必选] 标仓库名列表文件，格式为首行分支名称，其他行为仓库名称
+```
+
 
 ## 华为弹性云服务器操作
 

@@ -439,12 +439,28 @@ def pr_comment(gitee_pat, gitee_org, sig, author, comment, number):
     click.echo('All Specified Pull Requests Finished')
 
 
-@group.command(name='community-create-pr', help='create pr for OpenStack development')
+@group.command(name='community-create-pr', help='Help to create branch for OpenStack development')
 @click.option('-i', '--inherit', is_flag=True, help='inherit from next branch')
 @click.option('-r', '--reference', help='reference branch in yaml file')
 @click.option('-a', '--aim-branch', help='aim branch to create')
-def community_create_pr(inherit, reference, aim_branch):
-    
+@click.option('-s', '--save-path', help='save the repository name list')
+def community_create_pr(inherit, reference, aim_branch, save_path):
+
     if inherit:
         repo = PkgGitRepo(repo_name='no_use')
-        repo.inherit_from_next_branch(reference, aim_branch)
+        all_repo_names = repo.inherit_from_next_branch(reference, aim_branch)
+
+    if save_path:
+        with open(save_path, 'w', encoding='utf-8') as file:
+            file.writelines([aim_branch + '\n'] + all_repo_names)
+
+
+@group.command(name='ebs-init', help='Help to init ebs project')
+@click.option('-p', '--path', required=True, help='Repository name list to init, '
+                'the first line must be branch name')
+def ebs_init(path):
+    with open(path, 'r', encoding='utf-8') as file:
+        all_lines = file.readlines()
+
+    repo = PkgGitRepo(repo_name='no_use')
+    repo.ebs_init(all_lines[0].strip(), all_lines[1:])

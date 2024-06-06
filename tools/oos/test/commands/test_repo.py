@@ -104,3 +104,9 @@ def test_repo_cli_community_create_pr():
     assert '--inherit' in result.output
     assert '--reference' in result.output
     assert '--aim-branch' in result.output
+
+def test_repo_cli_community_create_pr():
+    runner = CliRunner()
+    result = runner.invoke(group, ['ebs-init', '--help'])
+    assert result.exit_code == 0
+    assert '--path' in result.output
