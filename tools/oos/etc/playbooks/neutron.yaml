@@ -106,6 +106,15 @@
         lock_path = /var/lib/neutron/tmp
         EOF
 
+    - name: Update neutron config for Antelopte
+      shell: |
+        cat << EOF >> /etc/neutron/neutron.conf
+                
+        [experimental]
+        linuxbridge = true
+        EOF
+      when: openstack_release == "antelope"
+
     - name: Initialize ml2 config file
       shell: |
         cat << EOF > /etc/neutron/plugins/ml2/ml2_conf.ini

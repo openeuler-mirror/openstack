@@ -134,6 +134,8 @@
         compute_driver=libvirt.LibvirtDriver
         instances_path = /var/lib/nova/instances/
         lock_path = /var/lib/nova/tmp
+        log_dir = /var/log/nova
+        state_path = /var/lib/nova
 
         [api_database]
         connection = mysql+pymysql://nova:{{ mysql_project_password }}@{{ hostvars['controller']['ansible_default_ipv4']['address'] }}/nova_api

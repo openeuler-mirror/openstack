@@ -973,6 +973,7 @@ Nova是OpenStack的计算服务，负责虚拟机的创建、发放等功能。
             transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
             my_ip = 192.168.0.2
             log_dir = /var/log/nova
+            state_path = /var/lib/nova
             ```
         
             替换`RABBIT_PASS`为RabbitMQ中openstack账户的密码。
@@ -1422,6 +1423,9 @@ Neutron是OpenStack的网络服务，提供虚拟交换机、IP路由、DHCP等�
 
         [oslo_concurrency]
         lock_path = /var/lib/neutron/tmp
+
+        [experimental]
+        linuxbridge = true
         ```
 
     - 配置ML2，ML2具体配置可以根据用户需求自行修改，本文使用的是provider network + linuxbridge**
