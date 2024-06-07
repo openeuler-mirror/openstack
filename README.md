@@ -54,7 +54,7 @@ openEuler OpenStack SIG致力于结合多样性算力为openstack社区贡献更
 
 SIG官方文档包括了安装指导、测试说明、特性说明等内容，访问如下链接获取更多信息.
 
-[https://openeuler.gitee.io/openstack](https://openeuler.gitee.io/openstack)
+[https://openstack-sig.readthedocs.io](https://openstack-sig.readthedocs.io)
 
 ## 本项目目录结构
 
