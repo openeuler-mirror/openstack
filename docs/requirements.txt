@@ -1,1 +1,1 @@
-pymdownx
+pymdown-extensions
