@@ -10,7 +10,4 @@ mkdocs:
 
 python:
   install:
-    - method: pip
-      path: .
-      extra_requirements:
-        - pymdownx
+    - requirements: docs/requirements.txt
