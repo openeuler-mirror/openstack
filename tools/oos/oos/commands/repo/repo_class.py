@@ -3,6 +3,7 @@ import subprocess
 
 import click
 import requests
+import datetime
 
 from oos.common import CONSTANTS
 from oos.common import utils
@@ -302,7 +303,7 @@ class PkgGitRepo(object):
                 )
                 click.echo(pr_link)
 
-    def _get_create_info(self, content: str, reference_branch: str, aim_branch: str):
+    def _get_create_info_for_pr_inherit(self, content: str, reference_branch: str, aim_branch: str):
         prefix_name = '- name: '
         prefix_end = 'type: public'
         pos_bg = content.find(prefix_name + reference_branch)
@@ -321,23 +322,105 @@ class PkgGitRepo(object):
 
     def inherit_from_next_branch(self, reference_branch, aim_branch):
         cur_path = os.getcwd()
-        if cur_path.find('community/sig') == -1:
-            click.echo('bad repo path')
+        if cur_path.endswith('community/sig') == -1:
+            click.echo('bad repo path, you should go to "community/sig" directory')
             return
+
+        all_repo_names: list = list()
 
         for dirpath, dirnames, files in os.walk(cur_path):
             for file in files:
-                abc_path = os.path.join(dirpath, file)
-                if abc_path.find(self.gitee_org) == -1 and \
-                    not abc_path.endswith('.yaml'):
+                abspath = os.path.join(dirpath, file)
+                if abspath.find(self.gitee_org) == -1 and \
+                    not abspath.endswith('.yaml'):
                     continue
 
-                with open(abc_path, 'r', encoding='utf-8') as f:
+                with open(abspath, 'r', encoding='utf-8') as f:
                     content = f.read()
 
-                new_content = self._get_create_info(content, reference_branch, aim_branch)
+                new_content = self._get_create_info_for_pr_inherit(content, reference_branch, aim_branch)
                 if new_content == content:
                     continue
 
-                with open(abc_path, 'w', encoding='utf-8') as f:
+                with open(abspath, 'w', encoding='utf-8') as f:
                     f.write(new_content)
+
+                # 走到上面创建分支完成 记录软件仓名称在release-management中初始化
+                all_repo_names.append(file.removesuffix('.yaml') + '\n')
+        
+        all_repo_names.sort()  # 方便比较
+        return all_repo_names
+
+
+    def _generate_dirname_from_branch(self, branch_name):
+        '''
+        该函数不判断branch_name的准确性 需要最外部输入保证
+        :param branch_name: format Must be
+                            Multi-Version_OpenStack-Train_openEuler-22.03-LTS-SP4
+        :type branch_name: str
+        :return: dirname 
+                    eg: openEuler_22.03_LTS_SP4_Epol_Multi-Version_OpenStack_Train
+        :rtype: str
+        '''
+        pos = branch_name.find('openEuler')
+        openEuler_version = branch_name[pos:].replace('-', '_')
+        openstack_version = branch_name[:pos - 1]
+        pos = openstack_version.rfind('-')
+        openstack_version = openstack_version[:pos] + '_' + openstack_version[pos + 1:]
+        return openEuler_version + '_Epol_' + openstack_version
+
+    def _generate_file_with_content(self, path, content):
+        '''
+        对于不存在的文件创建并写入内容
+        '''
+        if not os.path.exists(path):
+            with open(path, 'w', encoding='utf-8') as f:
+                f.write(content)
+
+    def _append_repo_name_for_ebs_init(self, pckg_path, repo_list, branch_name):
+        '''
+        向pckg-mgmt.yaml中追加初始化信息
+        '''
+        all_content: list = list()
+        today_time = datetime.date.today().strftime("%Y-%m-%d")
+
+        pos_source = branch_name.find('LTS') + 3  # 不带LTS是有问题的 不考虑该场景
+        source_dir = branch_name[:pos_source] + '-Next'
+        destination_dir = self._generate_dirname_from_branch(branch_name)
+        obs_from = self._generate_dirname_from_branch(source_dir).replace('_', ':')
+        obs_to = destination_dir.replace('_', ':')
+
+        for repo in repo_list:
+            all_content.append('- name: %s' % repo)
+            all_content.append('  source_dir: %s\n' % source_dir)
+            all_content.append('  destination_dir: %s\n' % branch_name)
+            all_content.append('  obs_from: %s\n' % obs_from)
+            all_content.append('  obs_to: %s\n' % obs_to)
+            all_content.append('  date: \'%s\'\n' % today_time)
+
+        with open(pckg_path, 'a', encoding='utf-8') as file:
+            file.write('\n')  # 粗暴点直接换行 不多判断
+            file.writelines(all_content)
+
+
+    def ebs_init(self, branch_name, repo_list):
+        cur_path = os.getcwd()
+        if cur_path.endswith('release-management/multi_version') == -1:
+            click.echo('bad repo path, you should go to "release-management/multi_version" directory')
+            return
+
+        dir_name = self._generate_dirname_from_branch(branch_name)
+
+        if dir_name not in os.listdir(cur_path):
+            os.mkdir(dir_name)
+
+        # 创建release-change.yaml文件
+        release_path = os.path.join(cur_path, dir_name + '/release-change.yaml')
+        self._generate_file_with_content(release_path, 'release-change: []')
+
+        # 创建pckg-mgmt.yaml文件
+        pckg_path = os.path.join(cur_path, dir_name + '/pckg-mgmt.yaml')
+        self._generate_file_with_content(pckg_path, 'packages:')
+        
+        self._append_repo_name_for_ebs_init(pckg_path, repo_list, branch_name)
+
