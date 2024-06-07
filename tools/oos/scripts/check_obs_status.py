@@ -32,6 +32,10 @@ EBS_BRANCHS = [
     'openEuler_22.03_LTS_SP3_Epol_Multi-Version_OpenStack_Wallaby',
     'openEuler_22.03_LTS_SP3_Epol_Multi-Version_OpenStack_Train',
     'openEuler-20.03-LTS-SP4:epol',
+    'openEuler_24.03_LTS_Epol_Multi-Version_OpenStack_Antelope',
+    'openEuler_24.03_LTS_Epol_Multi-Version_OpenStack_Wallaby',
+    'openEuler_22.03_LTS_SP4_Epol_Multi-Version_OpenStack_Wallaby',
+    'openEuler_22.03_LTS_SP4_Epol_Multi-Version_OpenStack_Train',
 ]
 
 
