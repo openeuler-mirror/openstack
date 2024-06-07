@@ -1021,7 +1021,8 @@ openstack endpoint create --region RegionOne \
 enabled_apis = osapi_compute,metadata
 transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
 my_ip = 192.168.0.2
-log_dir = /var/log/nova</code></pre>
+log_dir = /var/log/nova
+state_path = /var/lib/nova</code></pre>
 <p>替换<code>RABBIT_PASS</code>为RabbitMQ中openstack账户的密码。</p>
 </li>
 <li>
@@ -1388,7 +1389,10 @@ username = nova
 password = NOVA_PASS
 
 [oslo_concurrency]
-lock_path = /var/lib/neutron/tmp</code></pre></p>
+lock_path = /var/lib/neutron/tmp
+
+[experimental]
+linuxbridge = true</code></pre></p>
 </li>
 <li>
 <p>配置ML2，ML2具体配置可以根据用户需求自行修改，本文使用的是provider network + linuxbridge**</p>
