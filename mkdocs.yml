@@ -32,11 +32,17 @@ nav:
   - openEuler-22.03-LTS-SP3_Train: 'install/openEuler-22.03-LTS-SP3/OpenStack-train.md'
   - openEuler-22.03-LTS-SP3_Wallaby: 'install/openEuler-22.03-LTS-SP3/OpenStack-wallaby.md'
   - openEuler-22.09_Yoga: 'install/openEuler-22.09/OpenStack-yoga.md'
+  - openEuler-24.03-LTS_Wallaby: 'install/openEuler-24.03-LTS/OpenStack-wallaby.md'
+  - openEuler-24.03-LTS_Antelope: 'install/openEuler-24.03-LTS/OpenStack-antelope.md'
 - 测试报告:
   - openEuler-20.03-LTS-SP2: 'test/openEuler-20.03-LTS-SP2.md'
   - openEuler-20.03-LTS-SP3: 'test/openEuler-20.03-LTS-SP3.md'
   - openEuler-22.03-LTS: 'test/openEuler-22.03-LTS.md'
+  - openEuler-22.03-LTS-SP1: 'test/openEuler-22.03-LTS-SP1.md'
+  - openEuler-22.03-LTS-SP2: 'test/openEuler-22.03-LTS-SP2.md'
+  - openEuler-22.03-LTS-SP3: 'test/openEuler-22.03-LTS-SP3.md'
   - openEuler-22.09: 'test/openEuler-22.09.md'
+  - openEuler-24.03-LTS: 'test/openEuler-24.03-LTS.md'
 - 自研特性:
   - 虚拟机高低优先级: 'spec/priority_vm.md'
   - 流量分散: 'spec/distributed-traffic.md'
