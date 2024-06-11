@@ -43,35 +43,24 @@ OpenStack 支持多种形态部署，此文档支持`ALL in One`以及`Distribut
 
 1. 配置 24.03 LTS 官方 yum 源，需要启用 EPOL 软件仓以支持 OpenStack
 
-    编辑 `/etc/yum.repos.d/openEuler.repo` 文件，清除原有内容，添加如下 3 个源。
+    ```shell
+    yum update
+    yum install openstack-release-wallaby
+    yum clean all && yum makecache
+    ```
 
-    **注**：当前 openEuler-24.03-LTS 尚未发布，暂时使用开发源，系统正式发布后，文档将更新。
+    **注意**：如果你的环境的YUM源没有启用EPOL，需要同时配置EPOL，确保EPOL已配置，如下所示。
 
     ```shell
     vi /etc/yum.repos.d/openEuler.repo
-    
-    [everything]
-    name=everything
-    baseurl=https://eulermaker.compass-ci.openeuler.openatom.cn/api/ems2/repositories/openEuler-24.03-LTS:everything/openEuler%3A24.03-LTS/x86_64/
-    enabled=1
-    gpgcheck=0
 
     [EPOL]
-    name=epol
-    baseurl=https://eulermaker.compass-ci.openeuler.openatom.cn/api/ems2/repositories/openEuler-24.03-LTS:epol/openEuler%3A24.03-LTS/x86_64/
+    name=EPOL
+    baseurl=http://repo.openeuler.org/openEuler-24.03-LTS/EPOL/main/$basearch/
     enabled=1
-    gpgcheck=0
-
-    [openstack_wallaby]
-    name=openstack_wallaby
-    baseurl=https://eulermaker.compass-ci.openeuler.openatom.cn/api/ems2/repositories/openEuler_24.03_LTS_Epol_Multi-Version_OpenStack_Wallaby/openEuler%3A24.03-LTS/x86_64/
-    enabled=1
-    gpgcheck=0
-    priority=1
-    ```
-
-    ```shell
-    yum update
+    gpgcheck=1
+    gpgkey=http://repo.openeuler.org/openEuler-24.03-LTS/OS/$basearch/RPM-GPG-KEY-openEuler
+    EOF
     ```
 
 2. 修改主机名以及映射
@@ -3094,9 +3083,9 @@ systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openst
 
 1. 安装`oos`工具
 
-    oos工具在不断演进，兼容性、可用性不能时刻保证，建议使用已验证的本版，这里选择`1.0.6`
+    oos工具在不断演进，兼容性、可用性不能时刻保证，建议使用已验证的本版，这里选择`1.3.1`
     ```shell
-    pip install openstack-sig-tool==1.0.6
+    pip install openstack-sig-tool==1.3.1
     ```
 
 2. 配置对接华为云provider的信息

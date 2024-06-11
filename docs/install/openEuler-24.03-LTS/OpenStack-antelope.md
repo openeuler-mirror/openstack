@@ -42,7 +42,7 @@ OpenStack SIG 提供了多种基于 openEuler 部署 OpenStack 的方法，以�
 
 本文档基于OpenStack经典的三节点环境进行部署，三个节点分别是控制节点(Controller)、计算节点(Compute)、存储节点(Storage)，其中存储节点一般只部署存储服务，在资源有限的情况下，可以不单独部署该节点，把存储节点上的服务部署到计算节点即可。
 
-首先准备三个openEuler 24.03 LTS环境，根据您的环境，下载对应的镜像并安装即可：[ISO镜像](http://121.36.84.172/dailybuild/EBS-openEuler-24.03-LTS/EBS-openEuler-24.03-LTS/)、[qcow2镜像](http://121.36.84.172/dailybuild/EBS-openEuler-24.03-LTS/EBS-openEuler-24.03-LTS/virtual_machine_img/)。
+首先准备三个openEuler 24.03 LTS环境，根据您的环境，下载对应的镜像并安装即可：[ISO镜像](https://repo.openeuler.org/openEuler-24.03-LTS/ISO/)、[qcow2镜像](https://repo.openeuler.org/openEuler-24.03-LTS/virtual_machine_img/)。
 
 下面的安装按照如下拓扑进行：
 ```
@@ -62,35 +62,24 @@ storage：   192.168.0.4
 
 1. 配置 openEuler 24.03 LTS 官方 yum 源，需要启用 EPOL 软件仓以支持 OpenStack
 
-    编辑 `/etc/yum.repos.d/openEuler.repo` 文件，清除原有内容，添加如下 3 个源。
+    ```shell
+    yum update
+    yum install openstack-release-antelope
+    yum clean all && yum makecache
+    ```
 
-    **注**：当前 openEuler-24.03-LTS 尚未发布，暂时使用开发源，系统正式发布后，文档将更新。
+    **注意**：如果你的环境的YUM源没有启用EPOL，需要同时配置EPOL，确保EPOL已配置，如下所示。
 
     ```shell
     vi /etc/yum.repos.d/openEuler.repo
-    
-    [everything]
-    name=everything
-    baseurl=https://eulermaker.compass-ci.openeuler.openatom.cn/api/ems2/repositories/openEuler-24.03-LTS:everything/openEuler%3A24.03-LTS/x86_64/
-    enabled=1
-    gpgcheck=0
 
     [EPOL]
-    name=epol
-    baseurl=https://eulermaker.compass-ci.openeuler.openatom.cn/api/ems2/repositories/openEuler-24.03-LTS:epol/openEuler%3A24.03-LTS/x86_64/
+    name=EPOL
+    baseurl=http://repo.openeuler.org/openEuler-24.03-LTS/EPOL/main/$basearch/
     enabled=1
-    gpgcheck=0
-
-    [openstack_antelope]
-    name=openstack_antelope
-    baseurl=https://eulermaker.compass-ci.openeuler.openatom.cn/api/ems2/repositories/openEuler_24.03_LTS_Epol_Multi-Version_OpenStack_Antelope/openEuler%3A24.03-LTS/x86_64/
-    enabled=0
-    gpgcheck=0
-    priority=1
-    ```
-
-    ```shell
-    yum update
+    gpgcheck=1
+    gpgkey=http://repo.openeuler.org/openEuler-24.03-LTS/OS/$basearch/RPM-GPG-KEY-openEuler
+    EOF
     ```
 
 2. 修改主机名以及映射
@@ -3494,9 +3483,9 @@ Tempest是OpenStack的集成测试服务，如果用户需要全面自动化测�
 
 1. 安装`oos`工具
 
-    oos工具在不断演进，兼容性、可用性不能时刻保证，建议使用已验证的本版，这里选择`1.0.6`
+    oos工具在不断演进，兼容性、可用性不能时刻保证，建议使用已验证的本版，这里选择`1.3.1`
     ```shell
-    pip install openstack-sig-tool==1.0.6
+    pip install openstack-sig-tool==1.3.1
     ```
 
 2. 配置对接华为云provider的信息
