@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../../img/favicon.ico" />
-    <title>OpenStack-Wallaby 部署指南 - OpenStack SIG Doc</title>
+    <title>openEuler-24.03-LTS_Wallaby - OpenStack SIG Doc</title>
     <link rel="stylesheet" href="../../../css/theme.css" />
     <link rel="stylesheet" href="../../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "OpenStack-Wallaby \u90e8\u7f72\u6307\u5357";
+        var mkdocs_page_name = "openEuler-24.03-LTS_Wallaby";
         var mkdocs_page_input_path = "install/openEuler-24.03-LTS/OpenStack-wallaby.md";
         var mkdocs_page_url = null;
       </script>
@@ -49,7 +49,7 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">安装指导</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../../devstack/">devstack</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../openEuler-20.03-LTS-SP2/OpenStack-queens/">openEuler-20.03-LTS-SP2_Queens</a>
@@ -84,6 +84,68 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.09/OpenStack-yoga/">openEuler-22.09_Yoga</a>
                   </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">openEuler-24.03-LTS_Wallaby</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#openstack">OpenStack 简介</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">约定</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">准备环境</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">环境配置</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sql-database">安装 SQL DataBase</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rabbitmq">安装 RabbitMQ</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#memcached">安装 Memcached</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#openstack_1">安装 OpenStack</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#keystone">Keystone 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#glance">Glance 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#placement">Placement安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#nova">Nova 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#neutron">Neutron 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cinder">Cinder 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#horizon">horizon 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tempest">Tempest 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ironic">Ironic 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#kolla">Kolla 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#trove">Trove 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#swift">Swift 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cyborg">Cyborg 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#aodh">Aodh 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gnocchi">Gnocchi 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ceilometer">Ceilometer 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#heat">Heat 安装</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#openstack-sigoos">基于OpenStack SIG开发工具oos快速部署</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../OpenStack-antelope/">openEuler-24.03-LTS_Antelope</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">测试报告</span></p>
               <ul>
@@ -93,7 +155,15 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../test/openEuler-22.03-LTS/">openEuler-22.03-LTS</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../test/openEuler-22.03-LTS-SP1/">openEuler-22.03-LTS-SP1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../test/openEuler-22.03-LTS-SP2/">openEuler-22.03-LTS-SP2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../test/openEuler-22.03-LTS-SP3/">openEuler-22.03-LTS-SP3</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../test/openEuler-22.09/">openEuler-22.09</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../test/openEuler-24.03-LTS/">openEuler-24.03-LTS</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">自研特性</span></p>
@@ -122,7 +192,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="文档"></a></li>
-      <li class="breadcrumb-item active">OpenStack-Wallaby 部署指南</li>
+          <li class="breadcrumb-item">安装指导</li>
+      <li class="breadcrumb-item active">openEuler-24.03-LTS_Wallaby</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -194,29 +265,19 @@
 <ol>
 <li>
 <p>配置 24.03 LTS 官方 yum 源，需要启用 EPOL 软件仓以支持 OpenStack</p>
-<p>编辑 <code>/etc/yum.repos.d/openEuler.repo</code> 文件，清除原有内容，添加如下 3 个源。</p>
-<p><strong>注</strong>：当前 openEuler-24.03-LTS 尚未发布，暂时使用开发源，系统正式发布后，文档将更新。</p>
+<pre class="highlight"><code class="language-shell">yum update
+yum install openstack-release-wallaby
+yum clean all &amp;&amp; yum makecache</code></pre>
+<p><strong>注意</strong>：如果你的环境的YUM源没有启用EPOL，需要同时配置EPOL，确保EPOL已配置，如下所示。</p>
 <pre class="highlight"><code class="language-shell">vi /etc/yum.repos.d/openEuler.repo
 
-[everything]
-name=everything
-baseurl=https://eulermaker.compass-ci.openeuler.openatom.cn/api/ems2/repositories/openEuler-24.03-LTS:everything/openEuler%3A24.03-LTS/x86_64/
-enabled=1
-gpgcheck=0
-
 [EPOL]
-name=epol
-baseurl=https://eulermaker.compass-ci.openeuler.openatom.cn/api/ems2/repositories/openEuler-24.03-LTS:epol/openEuler%3A24.03-LTS/x86_64/
+name=EPOL
+baseurl=http://repo.openeuler.org/openEuler-24.03-LTS/EPOL/main/$basearch/
 enabled=1
-gpgcheck=0
-
-[openstack_wallaby]
-name=openstack_wallaby
-baseurl=https://eulermaker.compass-ci.openeuler.openatom.cn/api/ems2/repositories/openEuler_24.03_LTS_Epol_Multi-Version_OpenStack_Wallaby/openEuler%3A24.03-LTS/x86_64/
-enabled=1
-gpgcheck=0
-priority=1</code></pre>
-<pre class="highlight"><code class="language-shell">yum update</code></pre>
+gpgcheck=1
+gpgkey=http://repo.openeuler.org/openEuler-24.03-LTS/OS/$basearch/RPM-GPG-KEY-openEuler
+EOF</code></pre>
 </li>
 <li>
 <p>修改主机名以及映射</p>
@@ -2435,8 +2496,8 @@ systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openst
 <ol>
 <li>
 <p>安装<code>oos</code>工具</p>
-<p>oos工具在不断演进，兼容性、可用性不能时刻保证，建议使用已验证的本版，这里选择<code>1.0.6</code>
-<pre class="highlight"><code class="language-shell">pip install openstack-sig-tool==1.0.6</code></pre></p>
+<p>oos工具在不断演进，兼容性、可用性不能时刻保证，建议使用已验证的本版，这里选择<code>1.3.1</code>
+<pre class="highlight"><code class="language-shell">pip install openstack-sig-tool==1.3.1</code></pre></p>
 </li>
 <li>
 <p>配置对接华为云provider的信息</p>
@@ -2550,6 +2611,10 @@ oos env manage -r 24.03-lts -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n tes
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="页脚导航">
+        <a href="../../openEuler-22.09/OpenStack-yoga/" class="btn btn-neutral float-left" title="openEuler-22.09_Yoga"><span class="icon icon-circle-arrow-left"></span> 上一章</a>
+        <a href="../OpenStack-antelope/" class="btn btn-neutral float-right" title="openEuler-24.03-LTS_Antelope">下一章 <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -2571,6 +2636,10 @@ oos env manage -r 24.03-lts -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n tes
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../../openEuler-22.09/OpenStack-yoga/" style="color: #fcfcfc">&laquo; 上一章</a></span>
+    
+    
+      <span><a href="../OpenStack-antelope/" style="color: #fcfcfc">下一章 &raquo;</a></span>
     
   </span>
 </div>
