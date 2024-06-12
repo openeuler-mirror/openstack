@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>openEuler-24.03-LTS - OpenStack SIG Doc</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "openEuler-24.03-LTS";
+        var mkdocs_page_input_path = "test/openEuler-24.03-LTS.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> OpenStack SIG Doc
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" title="在此输入需要搜索的内容" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航栏">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">OpenStack SIG</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">贡献指导</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../contribute/rpm-packaging-reference/">RPM开发流程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">安装指导</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/devstack/">devstack</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-20.03-LTS-SP2/OpenStack-queens/">openEuler-20.03-LTS-SP2_Queens</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-20.03-LTS-SP2/OpenStack-rocky/">openEuler-20.03-LTS-SP2_Rocky</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-20.03-LTS-SP3/OpenStack-queens/">openEuler-20.03-LTS-SP3_Queens</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-20.03-LTS-SP3/OpenStack-rocky/">openEuler-20.03-LTS-SP3_Rocky</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-20.03-LTS-SP3/OpenStack-train/">openEuler-20.03-LTS-SP3_Train</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-20.03-LTS-SP4/OpenStack-train/">openEuler-20.03-LTS-SP4_Train</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-21.09/OpenStack-wallaby/">openEuler-21.09_Wallaby</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-22.03-LTS/OpenStack-train/">openEuler-22.03-LTS_Train</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-22.03-LTS/OpenStack-wallaby/">openEuler-22.03-LTS_Wallaby</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-22.03-LTS-SP1/OpenStack-train/">openEuler-22.03-LTS-SP1_Train</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-22.03-LTS-SP1/OpenStack-wallaby/">openEuler-22.03-LTS-SP1_Wallaby</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-22.03-LTS-SP2/OpenStack-train/">openEuler-22.03-LTS-SP2_Train</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-22.03-LTS-SP2/OpenStack-wallaby/">openEuler-22.03-LTS-SP2_Wallaby</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-22.03-LTS-SP3/OpenStack-train/">openEuler-22.03-LTS-SP3_Train</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-22.03-LTS-SP3/OpenStack-wallaby/">openEuler-22.03-LTS-SP3_Wallaby</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-22.09/OpenStack-yoga/">openEuler-22.09_Yoga</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-24.03-LTS/OpenStack-wallaby/">openEuler-24.03-LTS_Wallaby</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../install/openEuler-24.03-LTS/OpenStack-antelope/">openEuler-24.03-LTS_Antelope</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">测试报告</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../openEuler-20.03-LTS-SP2/">openEuler-20.03-LTS-SP2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../openEuler-20.03-LTS-SP3/">openEuler-20.03-LTS-SP3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../openEuler-22.03-LTS/">openEuler-22.03-LTS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../openEuler-22.03-LTS-SP1/">openEuler-22.03-LTS-SP1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../openEuler-22.03-LTS-SP2/">openEuler-22.03-LTS-SP2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../openEuler-22.03-LTS-SP3/">openEuler-22.03-LTS-SP3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../openEuler-22.09/">openEuler-22.09</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">openEuler-24.03-LTS</a>
+    <ul class="current">
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">自研特性</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../spec/priority_vm/">虚拟机高低优先级</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../spec/distributed-traffic/">流量分散</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">操作及管理指导</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/security-guide/">安全指南</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="移动导航栏">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">OpenStack SIG Doc</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="文档"></a></li>
+          <li class="breadcrumb-item">测试报告</li>
+      <li class="breadcrumb-item active">openEuler-24.03-LTS</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p><img alt="avatar" src="../../images/openEuler.png" /></p>
+<p>版权所有 © 2024  openEuler社区
+ 您对“本文档”的复制、使用、修改及分发受知识共享(Creative Commons)署名—相同方式共享4.0国际公共许可协议(以下简称“CC BY-SA 4.0”)的约束。为了方便用户理解，您可以通过访问https://creativecommons.org/licenses/by-sa/4.0/ 了解CC BY-SA 4.0的概要 (但不是替代)。CC BY-SA 4.0的完整协议内容您可以访问如下网址获取：https://creativecommons.org/licenses/by-sa/4.0/legalcode。</p>
+<p>修订记录</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">日期</th>
+<th style="text-align: left;">修订版本</th>
+<th style="text-align: left;">修改描述</th>
+<th style="text-align: left;">作者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">2024-06-03</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">初稿</td>
+<td style="text-align: left;">郑挺</td>
+</tr>
+</tbody>
+</table>
+<p>关键词：</p>
+<p>OpenStack</p>
+<p>摘要：</p>
+<p>在 <code>openEuler 24.03 LTS</code> 版本中提供 <code>OpenStack Wallaby</code>、<code>OpenStack Antelope</code> 版本的 <code>RPM</code> 安装包，方便用户快速部署 <code>OpenStack</code>。</p>
+<p>缩略语清单：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">缩略语</th>
+<th style="text-align: left;">英文全名</th>
+<th style="text-align: left;">中文解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">CLI</td>
+<td style="text-align: left;">Command Line Interface</td>
+<td style="text-align: left;">命令行工具</td>
+</tr>
+<tr>
+<td style="text-align: left;">ECS</td>
+<td style="text-align: left;">Elastic Cloud Server</td>
+<td style="text-align: left;">弹性云服务器</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1">1 特性概述<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>在 <code>openEuler 24.03 LTS</code> 版本中提供 <code>OpenStack Wallaby</code>、<code>OpenStack Antelope</code> 版本的<code>RPM</code>安装包，包括以下项目以及每个项目配套的 <code>CLI</code>。</p>
+<ul>
+<li>
+<p>Keystone</p>
+</li>
+<li>
+<p>Neutron</p>
+</li>
+<li>
+<p>Cinder</p>
+</li>
+<li>
+<p>Nova</p>
+</li>
+<li>
+<p>Placement</p>
+</li>
+<li>
+<p>Glance</p>
+</li>
+<li>
+<p>Horizon</p>
+</li>
+<li>
+<p>Aodh</p>
+</li>
+<li>
+<p>Ceilometer</p>
+</li>
+<li>
+<p>Cyborg</p>
+</li>
+<li>
+<p>Gnocchi</p>
+</li>
+<li>
+<p>Heat</p>
+</li>
+<li>
+<p>Swift</p>
+</li>
+<li>
+<p>Ironic</p>
+</li>
+<li>
+<p>Kolla</p>
+</li>
+<li>
+<p>Trove</p>
+</li>
+<li>
+<p>Tempest</p>
+</li>
+<li>
+<p>Barbican</p>
+</li>
+<li>
+<p>Octavia</p>
+</li>
+<li>
+<p>designate</p>
+</li>
+<li>
+<p>Manila</p>
+</li>
+<li>
+<p>Masakari</p>
+</li>
+<li>
+<p>Mistral</p>
+</li>
+<li>
+<p>Senlin</p>
+</li>
+<li>
+<p>Zaqar</p>
+</li>
+</ul>
+<h2 id="2">2 特性测试信息<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>本节描述被测对象的版本信息和测试的时间及测试轮次，包括依赖的硬件。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">版本名称</th>
+<th style="text-align: left;">测试起始时间</th>
+<th style="text-align: left;">测试结束时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">openEuler 24.03 LTS RC1<br>(OpenStack Antelope版本各组件的安装部署测试)</td>
+<td style="text-align: left;">2024.03.31</td>
+<td style="text-align: left;">2024.04.03</td>
+</tr>
+<tr>
+<td style="text-align: left;">openEuler 24.03 LTS RC1<br>(OpenStack Antelope版本基本功能测试，包括虚拟机，卷，网络相关资源的增删改查)</td>
+<td style="text-align: left;">2024.04.04</td>
+<td style="text-align: left;">2024.04.09</td>
+</tr>
+<tr>
+<td style="text-align: left;">openEuler 24.03 LTS RC2<br>(OpenStack Antelope版本tempest集成测试)</td>
+<td style="text-align: left;">2024.04.10</td>
+<td style="text-align: left;">2024.04.19</td>
+</tr>
+<tr>
+<td style="text-align: left;">openEuler 24.03 LTS RC3<br>(OpenStack Antelope版本问题回归测试)</td>
+<td style="text-align: left;">2024.04.20</td>
+<td style="text-align: left;">2024.05.09</td>
+</tr>
+<tr>
+<td style="text-align: left;">openEuler 24.03 LTS RC4<br>(OpenStack Wallaby版本各组件的安装部署测试)</td>
+<td style="text-align: left;">2024.05.10</td>
+<td style="text-align: left;">2024.05.14</td>
+</tr>
+<tr>
+<td style="text-align: left;">openEuler 24.03 LTS RC4<br>(OpenStack Wallaby基版本本功能测试，包括虚拟机，卷，网络相关资源的增删改查)</td>
+<td style="text-align: left;">2024.05.15</td>
+<td style="text-align: left;">2024.05.21</td>
+</tr>
+<tr>
+<td style="text-align: left;">openEuler 24.03 LTS RC5<br>(OpenStack Wallaby版本tempest集成测试)</td>
+<td style="text-align: left;">2024.05.22</td>
+<td style="text-align: left;">2024.05.28</td>
+</tr>
+<tr>
+<td style="text-align: left;">openEuler 24.03 LTS RC5<br>(OpenStack Wallaby版本问题回归测试)</td>
+<td style="text-align: left;">2024.05.29</td>
+<td style="text-align: left;">2024.06.03</td>
+</tr>
+</tbody>
+</table>
+<p>描述特性测试的硬件环境信息</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">硬件型号</th>
+<th style="text-align: left;">硬件配置信息</th>
+<th style="text-align: left;">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">华为云ECS</td>
+<td style="text-align: left;">Intel Cascade Lake 3.0GHz 8U16G</td>
+<td style="text-align: left;">华为云x86虚拟机</td>
+</tr>
+<tr>
+<td style="text-align: left;">华为云ECS</td>
+<td style="text-align: left;">Huawei Kunpeng 920 2.6GHz 8U16G</td>
+<td style="text-align: left;">华为云arm64虚拟机</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3 测试结论概述<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<h3 id="31">3.1 测试整体结论<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<p><code>OpenStack Antelope</code> 版本，共计执行 <code>Tempest</code> 用例 <code>1483</code> 个，主要覆盖了 <code>API</code> 测试和功能测试，通过 <code>7*24</code> 的长稳测试，<code>Skip</code> 用例 <code>100</code> 个（全是 <code>OpenStack Antelope</code> 版中已废弃的功能或接口，如Keystone V1、Cinder V1等），失败用例 <code>0</code> 个，其他 <code>1383</code> 个用例全部通过，发现问题已解决，回归通过，无遗留风险，整体质量良好。</p>
+<p><code>OpenStack Wallaby</code> 版本，共计执行 <code>Tempest</code> 用例 <code>1434</code> 个，主要覆盖了 <code>API</code> 测试和功能测试，通过 <code>7*24</code> 的长稳测试，<code>Skip</code> 用例 <code>95</code> 个（全是 <code>OpenStack Wallaby</code> 版中已废弃的功能或接口，如KeystoneV1、Cinder V1等，和不支持的barbican项目），失败用例 <code>0</code> 个，其他 <code>1339</code> 个用例全部通过，发现问题已解决，回归通过，无遗留风险，整体质量良好。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">测试活动</th>
+<th style="text-align: left;">tempest集成测试</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">接口测试</td>
+<td style="text-align: left;">API全覆盖</td>
+</tr>
+<tr>
+<td style="text-align: left;">功能测试</td>
+<td style="text-align: left;">Antelope版本覆盖Tempest所有相关测试用例1483个，其中Skip 100个，Fail 0个，其他全通过。</td>
+</tr>
+<tr>
+<td style="text-align: left;">功能测试</td>
+<td style="text-align: left;">Wallaby版本覆盖Tempest所有相关测试用例1434个，其中Skip 95个，Fail 0个, 其他全通过。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">测试活动</th>
+<th style="text-align: left;">功能测试</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">功能测试</td>
+<td style="text-align: left;">虚拟机（KVM、Qemu)、存储（lvm、NFS、Ceph后端）、网络资源（linuxbridge、openvswitch）管理操作正常</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32">3.2   约束说明<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<p>本次测试没有覆盖 <code>OpenStack Antelope</code>、<code>OpenStack Wallaby</code> 版中明确废弃的功能和接口，因此不能保证已废弃的功能和接口（前文提到的Skip的用例）在 <code>openEuler 24.03 LTS</code> 上能正常使用。</p>
+<h3 id="33">3.3   遗留问题分析<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
+<h4 id="331">3.3.1 遗留问题影响以及规避措施<a class="headerlink" href="#331" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">问题单号</th>
+<th style="text-align: left;">问题描述</th>
+<th style="text-align: left;">问题级别</th>
+<th style="text-align: left;">问题影响和规避措施</th>
+<th style="text-align: left;">当前状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">N/A</td>
+</tr>
+</tbody>
+</table>
+<h4 id="332">3.3.2 问题统计<a class="headerlink" href="#332" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">问题总数</th>
+<th style="text-align: left;">严重</th>
+<th style="text-align: left;">主要</th>
+<th style="text-align: left;">次要</th>
+<th style="text-align: left;">不重要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">数目</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">百分比</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ISSUE Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">https://gitee.com/openeuler/openstack/issues/I9RUHD?from=project-issue</td>
+</tr>
+<tr>
+<td style="text-align: left;">https://gitee.com/openeuler/openstack/issues/I9RKHC?from=project-issue</td>
+</tr>
+<tr>
+<td style="text-align: left;">https://gitee.com/openeuler/openstack/issues/I9S2L0?from=project-issue</td>
+</tr>
+<tr>
+<td style="text-align: left;">https://gitee.com/openeuler/openstack/issues/I9S2LT?from=project-issue</td>
+</tr>
+<tr>
+<td style="text-align: left;">https://gitee.com/openeuler/openstack/issues/I9UF6L?from=project-issue</td>
+</tr>
+<tr>
+<td style="text-align: left;">https://gitee.com/openeuler/openstack/issues/I9UFAZ?from=project-issue</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4 测试执行<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<h3 id="41">4.1 测试执行统计数据<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<p><em>本节内容根据测试用例及实际执行情况进行特性整体测试的统计，可根据第二章的测试轮次分开进行统计说明。</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">版本名称</th>
+<th style="text-align: left;">测试用例数</th>
+<th style="text-align: left;">用例执行结果</th>
+<th style="text-align: left;">发现问题单数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">openEuler 24.03 LTS OpenStack Antelope</td>
+<td style="text-align: left;">1483</td>
+<td style="text-align: left;">通过1383个，skip 100个，Fail 0个</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">openEuler 24.03 LTS OpenStack Wallaby</td>
+<td style="text-align: left;">1434</td>
+<td style="text-align: left;">通过1339个，skip 95个，Fail 0个</td>
+<td style="text-align: left;">5</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42">4.2 后续测试建议<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
+<ol>
+<li>涵盖主要的性能测试。</li>
+<li>覆盖更多的driver/plugin测试。</li>
+<li>重点测试Anteloe和Wallaby版本对python3.11版本的适配情况。</li>
+</ol>
+<h2 id="5">5 附件<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<p><em>N/A</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="页脚导航">
+        <a href="../openEuler-22.09/" class="btn btn-neutral float-left" title="openEuler-22.09"><span class="icon icon-circle-arrow-left"></span> 上一章</a>
+        <a href="../../spec/priority_vm/" class="btn btn-neutral float-right" title="虚拟机高低优先级">下一章 <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  用<a href="https://www.mkdocs.org/">MkDocs</a>构建，使用<a href="https://readthedocs.org">Read the Docs</a>提供的<a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>。
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="版本">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../openEuler-22.09/" style="color: #fcfcfc">&laquo; 上一章</a></span>
+    
+    
+      <span><a href="../../spec/priority_vm/" style="color: #fcfcfc">下一章 &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
