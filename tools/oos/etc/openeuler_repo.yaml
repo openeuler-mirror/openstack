@@ -1696,7 +1696,6 @@ src-openeuler:
   elixir: Application
   emacs: Desktop
   emacs-auctex: Others
-  embedded-kernel: sig-embedded
   emma: dev-utils
   enca: dev-utils
   enchant: Desktop
