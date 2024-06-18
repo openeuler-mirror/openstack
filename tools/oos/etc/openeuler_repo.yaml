@@ -5940,7 +5940,6 @@ src-openeuler:
   perl-HTML-Table: sig-perl-modules
   perl-HTML-TagCloud: sig-perl-modules
   perl-HTML-Tagset: Programming-language
-  perl-HTML-Template: sig-perl-modules
   perl-HTML-Template-Pro: sig-perl-modules
   perl-HTML-Tiny: sig-perl-modules
   perl-HTML-TokeParser-Simple: sig-perl-modules
