@@ -55,6 +55,7 @@ openeuler:
   OSPerformanceTools: sig-OSRefTools
   PRIP: Networking
   PilotGo: sig-ops
+  PilotGo-plugin-ELK: sig-ops
   PilotGo-plugin-MFD: sig-ops
   PilotGo-plugin-a-tune: sig-ops
   PilotGo-plugin-container: sig-ops
@@ -9604,6 +9605,7 @@ src-openeuler:
   range-v3: sig-ROS
   ranger: dev-utils
   rapidjson: Base-service
+  rapidyaml: dev-utils
   raptor2: Others
   rarian: Base-service
   rasdaemon: Base-service
