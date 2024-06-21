@@ -5072,6 +5072,7 @@ src-openeuler:
   okteta: sig-KDE
   okular: sig-KDE
   oldstandard-sfd-fonts: Application
+  ollama: sig-CloudNative
   ompi: ai
   ompl: sig-ROS
   onboard: Others
