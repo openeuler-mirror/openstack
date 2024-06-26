@@ -121,7 +121,8 @@ class RPMSpec(object):
     def _get_license(self):
         if CONSTANTS['pypi_license'].get(self.module_name):
             return CONSTANTS['pypi_license'][self.module_name]
-        if (self.pypi_json["info"]["license"] != "" and
+        if (self.pypi_json["info"]["license"] and 
+                self.pypi_json["info"]["license"] != "" and
                 self.pypi_json["info"]["license"] != "UNKNOWN"):
             org_license = self.pypi_json["info"]["license"]
         else:

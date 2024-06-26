@@ -1,5 +1,6 @@
 ansible==2.9.27
-bs4
+beautifulsoup4
+simplejson
 click
 huaweicloudsdkecs
 huaweicloudsdkims
