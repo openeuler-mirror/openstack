@@ -41,6 +41,7 @@ nav:
   - openEuler-22.03-LTS-SP1: 'test/openEuler-22.03-LTS-SP1.md'
   - openEuler-22.03-LTS-SP2: 'test/openEuler-22.03-LTS-SP2.md'
   - openEuler-22.03-LTS-SP3: 'test/openEuler-22.03-LTS-SP3.md'
+  - openEuler-22.03-LTS-SP4: 'test/openEuler-22.03-LTS-SP4.md'
   - openEuler-22.09: 'test/openEuler-22.09.md'
   - openEuler-24.03-LTS: 'test/openEuler-24.03-LTS.md'
 - 自研特性:

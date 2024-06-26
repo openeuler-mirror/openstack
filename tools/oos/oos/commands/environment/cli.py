@@ -7,6 +7,7 @@ import prettytable
 from oos.commands.environment import constants
 from oos.commands.environment import provider
 from oos.commands.environment import sqlite_ops
+from oos.commands.environment.provider import huaweicloud_flag
 from oos.common import ANSIBLE_PLAYBOOK_DIR, ANSIBLE_INVENTORY_DIR, KEY_DIR, CONFIG
 
 
@@ -36,39 +37,43 @@ def group():
               type=click.Choice(['gold', 'private', 'shared', 'market']),
               help='Choice the type of image to list')
 def list(remote, image, flavor, vpc, subnet, security_group, security_group_rule, keyword, image_type):
-    if remote:
-        cloud_action = provider.HuaweiCloudProvider()
-        cloud_action.list_servers(remote, keyword, True)
-        return
 
-    if image:
-        cloud_action = provider.HuaweiCloudProvider()
-        cloud_action.list_all_images(keyword, image_type, True)
-        return
+    cloud_action_flag = remote or image or flavor or vpc or subnet or \
+                security_group or security_group_rule or keyword or image_type
+    if cloud_action_flag:
+        if not huaweicloud_flag:
+            raise click.ClickException('need to install huaweicloudsdk for cloud action')
 
-    if flavor:
         cloud_action = provider.HuaweiCloudProvider()
-        cloud_action.list_flavors(keyword)
-        return
-    
-    if subnet:
-        cloud_action = provider.HuaweiCloudProvider()
-        cloud_action.list_subnet(subnet)
-        return
+        if remote:
+            cloud_action.list_servers(remote, keyword, True)
+            return
 
-    if security_group:
-        cloud_action = provider.HuaweiCloudProvider()
-        cloud_action.list_security_group()
-        return
-    
-    if security_group_rule:
-        cloud_action = provider.HuaweiCloudProvider()
-        cloud_action.list_security_group_rules(keyword)
-        return
+        if image:
+            cloud_action.list_all_images(keyword, image_type, True)
+            return
 
-    if vpc:
-        cloud_action = provider.HuaweiCloudProvider()
-        cloud_action.list_all_vpc()
+        if flavor:
+            cloud_action.list_flavors(keyword)
+            return
+
+        if subnet:
+            cloud_action.list_subnet(subnet)
+            return
+
+        if security_group:
+            cloud_action.list_security_group()
+            return
+
+        if security_group_rule:
+            cloud_action.list_security_group_rules(keyword)
+            return
+
+        if vpc:
+            cloud_action.list_all_vpc()
+            return
+
+        # cloud action must return
         return
 
     table = prettytable.PrettyTable(constants.TABLE_COLUMN)
@@ -96,6 +101,9 @@ def create(release, flavor, arch, name, target):
     if provider_name not in constants.SUPPORT_PROVIDER:
         raise click.ClickException("The provider %s is not supported." % provider_name)
 
+    if not huaweicloud_flag:
+        raise click.ClickException('need to install huaweicloudsdk for cloud action')
+
     if provider_name == 'huaweicloud':
         provider_object = provider.HuaweiCloudProvider(release, flavor, arch, name, target)
 
@@ -120,6 +128,10 @@ def delete(name):
     provider_name = sqlite_ops.get_target_column(name, 'provider')[0][0]
     server_info = sqlite_ops.get_target_column(name, 'uuid')
     provider_object = None
+
+    if not huaweicloud_flag:
+        raise click.ClickException('need to install huaweicloudsdk for cloud action')
+
     if provider_name == 'huaweicloud':
         provider_object = provider.HuaweiCloudProvider()
     if provider_object:
@@ -236,6 +248,9 @@ def inject(name):
 @group.command(name='stop', help='Stop the servers with target ip')
 @click.argument('ip', type=str, required=True)
 def stop(ip):
+    if not huaweicloud_flag:
+        raise click.ClickException('need to install huaweicloudsdk for cloud action')
+
     cloud_action = provider.HuaweiCloudProvider()
     cloud_action.stop_server(ip)
 
@@ -243,6 +258,9 @@ def stop(ip):
 @group.command(name='start', help='Start the server with target ip')
 @click.argument('ip', type=str, required=True)
 def start(ip):
+    if not huaweicloud_flag:
+        raise click.ClickException('need to install huaweicloudsdk for cloud action')
+
     cloud_action = provider.HuaweiCloudProvider()
     cloud_action.start_server(ip)
 
@@ -261,6 +279,9 @@ def reinstall(ip, pwd, file):
                 user_data = base64.b64encode(f.read().encode('utf-8')).decode('utf-8')
         except:
             pass  # 异常继续
+
+    if not huaweicloud_flag:
+        raise click.ClickException('need to install huaweicloudsdk for cloud action')
 
     cloud_action = provider.HuaweiCloudProvider()
     cloud_action.reinstall(ip, pwd, user_data)
@@ -290,6 +311,9 @@ def changeos(ip, server_id, image_id, keyword, pwd, file):
                 user_data = base64.b64encode(f.read().encode('utf-8')).decode('utf-8')
         except:
             pass  # 异常继续
+
+    if not huaweicloud_flag:
+        raise click.ClickException('need to install huaweicloudsdk for cloud action')
 
     cloud_action = provider.HuaweiCloudProvider()
     cloud_action.change_os(ip, server_id, image_id, keyword, pwd, user_data)
@@ -321,7 +345,10 @@ def create_server(image, flavor, vpc_name, subnet, name, pwd, root_size, data_si
                 raise click.ClickException('bad size value')
         # data size可以不要返回None, root size不会走这里
         return None
-    
+
+    if not huaweicloud_flag:
+        raise click.ClickException('need to install huaweicloudsdk for cloud action')
+
     cloud_action = provider.HuaweiCloudProvider()
     cloud_action.create_ecs_server(image, flavor, vpc_name, subnet, name, pwd, 
                                    check_size(root_size), 
@@ -331,6 +358,9 @@ def create_server(image, flavor, vpc_name, subnet, name, pwd, root_size, data_si
 @click.argument('ip', type=str, required=True)
 @click.argument('id', type=str, required=True)
 def delete_server(ip, id):
+    if not huaweicloud_flag:
+        raise click.ClickException('need to install huaweicloudsdk for cloud action')
+
     cloud_action = provider.HuaweiCloudProvider()
     if not cloud_action.check_info_befor_action(ip, id):
         return
@@ -346,6 +376,9 @@ def delete_server(ip, id):
 @click.option('-d', '--disassociate',
               help='The security group name you want to disassociate with specify server-ip')
 def sg_relation(server_ip, associate, disassociate):
+    if not huaweicloud_flag:
+        raise click.ClickException('need to install huaweicloudsdk for cloud action')
+
     cloud_action = provider.HuaweiCloudProvider()
 
     if associate:
@@ -367,6 +400,9 @@ def sg_relation(server_ip, associate, disassociate):
               help='Create security-group by default, or delete. ' \
               'You can delete multi security group using a comma-separated format, eg: sg1,sg2,...')
 def sg_operate(name, description, is_delete):
+    if not huaweicloud_flag:
+        raise click.ClickException('need to install huaweicloudsdk for cloud action')
+
     cloud_action = provider.HuaweiCloudProvider()
     if is_delete:
         for one in name.split(','):
@@ -387,6 +423,9 @@ def sg_operate(name, description, is_delete):
 @click.option('-r', '--rule-id',
               help='Use to delete security-group-rule with security-group-rule id, high priority')
 def sg_operate(ip, name, egress, ethertype, protocol, port, description, rule_id):
+    if not huaweicloud_flag:
+        raise click.ClickException('need to install huaweicloudsdk for cloud action')
+
     cloud_action = provider.HuaweiCloudProvider()
 
     direction = 'egress' if egress else 'ingress'

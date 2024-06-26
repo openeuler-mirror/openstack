@@ -1,4 +1,6 @@
-![avatar](../../images/openEuler.png)
+# openEuler 22.03 LTS SP2测试报告
+
+![openEuler ico](../img/openEuler.png)
 
 
 版权所有 © 2023  openEuler社区

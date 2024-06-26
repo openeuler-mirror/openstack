@@ -3,20 +3,24 @@ import subprocess
 import time
 
 import click, prettytable
-from huaweicloudsdkcore.auth.credentials import BasicCredentials
-from huaweicloudsdkcore.exceptions import exceptions
-from huaweicloudsdkecs.v2 import *
-from huaweicloudsdkecs.v2.region.ecs_region import EcsRegion
-from huaweicloudsdkims.v2 import *
-from huaweicloudsdkims.v2.region.ims_region import ImsRegion
-from huaweicloudsdkvpc.v2 import *
-from huaweicloudsdkvpc.v2.region.vpc_region import VpcRegion
-
 from oos.commands.environment import constants
 from oos.common import KEY_DIR, CONFIG
 
-from huaweicloudsdkvpc.v3.region.vpc_region import VpcRegion as VpcRegionV3
-import huaweicloudsdkvpc.v3 as VpcV3
+huaweicloud_flag = False
+try:
+    from huaweicloudsdkcore.auth.credentials import BasicCredentials
+    from huaweicloudsdkcore.exceptions import exceptions
+    from huaweicloudsdkecs.v2 import *
+    from huaweicloudsdkecs.v2.region.ecs_region import EcsRegion
+    from huaweicloudsdkims.v2 import *
+    from huaweicloudsdkims.v2.region.ims_region import ImsRegion
+    from huaweicloudsdkvpc.v2 import *
+    from huaweicloudsdkvpc.v2.region.vpc_region import VpcRegion
+    from huaweicloudsdkvpc.v3.region.vpc_region import VpcRegion as VpcRegionV3
+    import huaweicloudsdkvpc.v3 as VpcV3
+    huaweicloud_flag = True
+except:
+    pass
 
 class Provider:
     def __init__(self):
