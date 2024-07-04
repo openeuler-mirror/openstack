@@ -129,13 +129,14 @@ def delete(name):
     server_info = sqlite_ops.get_target_column(name, 'uuid')
     provider_object = None
 
-    if not huaweicloud_flag:
-        raise click.ClickException('need to install huaweicloudsdk for cloud action')
-
     if provider_name == 'huaweicloud':
+        if not huaweicloud_flag:
+            raise click.ClickException('need to install huaweicloudsdk for cloud action')
         provider_object = provider.HuaweiCloudProvider()
-    if provider_object:
-        provider_object.delete_servers(server_info)
+
+        if provider_object:
+            provider_object.delete_servers(server_info)
+
     sqlite_ops.delete_target(name)
 
 
