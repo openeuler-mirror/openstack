@@ -2531,6 +2531,7 @@ src-openeuler:
   gtkspell: sig-recycle
   gtkspell3: dev-utils
   gtkspellmm30: dev-utils
+  gtkwave: sig-OSCourse
   gts: sig-ROS
   guacamole: Networking
   guava: dev-utils
@@ -2613,6 +2614,7 @@ src-openeuler:
   hiviewdfx_hisysevent: sig-distributed-middleware
   hls_lfcd_lds_driver: sig-ROS
   hmdfs: sig-distributed-middleware
+  hmpi: sig-OSCourse
   hostname: Networking
   hpctoolkit: sig-HPC
   hping: dev-utils
@@ -2936,6 +2938,7 @@ src-openeuler:
   itext: sig-Java
   itrustee_sdk: sig-confidential-computing
   itstool: Programming-language
+  iverilog: sig-OSCourse
   ivtv-firmware: Base-service
   iw: Networking
   ixgbevf: sig-Compatibility-Infra
