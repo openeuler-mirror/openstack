@@ -32,6 +32,9 @@ if __name__ == '__main__':
         output_body += f'## {job}\n\n'
         output_body += 'Recent five job results:\n\n'
         res = get_ci_result(job)
+        if res is None:  
+            output_body += 'Failed to fetch data for this job.\n'  
+            continue  # Skip the rest of the loop for this job 
         output_body += '| Number | Result | Time | Log |\n'
         output_body += '| ------ | ------ | ---- | --- |\n'
         
