@@ -8719,6 +8719,7 @@ src-openeuler:
   python-pygments: Programming-language
   python-pygments-ansi-color: sig-python-modules
   python-pygments-style-solarized: sig-python-modules
+  python-pygraphviz: sig-ROS
   python-pyhcl: sig-python-modules
   python-pyi2cflash: sig-python-modules
   python-pyinstaller: sig-python-modules
