@@ -302,7 +302,7 @@ class RPMSpec(object):
                         raise click.ClickException("Failed to delete old tar file")
                     break
 
-    def generate_spec(self, input_file, output_file, download, replace):
+    def generate_spec(self, spec_file, output_file, download, replace):
         self._init_source_info()
         self._parse_requires()
         spec_path = output_file if output_file else os.path.join(self.spec_name) + '.spec'
@@ -313,10 +313,10 @@ class RPMSpec(object):
         up_down_grade = 'Upgrade' if self.is_upgrade() else "Downgrade"
 
         # 不改变原有功能 指定input时直接修改指定文件 且高优先级 执行完直接返回
-        if input_file:
-            output = self._update_old_spec(input_file, replace)
+        if spec_file:
+            output = self._update_old_spec(spec_file, replace)
             if not output_file:
-                output_file = input_file
+                output_file = spec_file
             with open(output_file, 'w', encoding='utf-8') as f:
                 f.writelines(output)
 

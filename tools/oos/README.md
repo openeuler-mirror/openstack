@@ -28,12 +28,6 @@ oos spec create --name stevedore --version 1.28.0
 oos spec update --name stevedore --version 2.0.0
 ```
 
-- 更新指定的RPM Spec
-
-```
-oos spec update -n python-openstackclient -v 6.2.0 -i python-openstackclient.spec
-```
-
 其他支持的参数有：
 
 ```
@@ -41,9 +35,8 @@ oos spec update -n python-openstackclient -v 6.2.0 -i python-openstackclient.spe
     指定软件包的名字
 -v, --version
     指定软件包的版本
--i, --input
-    指定需要更新的Spec文件，使用该参数时替换就Spec文件中Version/Release/changelog，
-    在Source后追加source url
+-s, --special
+    使用该参数时,寻找当前文件夹下Spec文件并替换就Spec文件中Version/Release/changelog，
 -o, --output
     指定生成的Spec文件名
 -d, --download
