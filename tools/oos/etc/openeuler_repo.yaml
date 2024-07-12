@@ -257,6 +257,7 @@ openeuler:
   intel-oneapi: sig-Intel-Arch
   intel-qemu: sig-Intel-Arch
   isula-build: iSulad
+  isula-rust-extensions: iSulad
   isula-transform: sig-recycle
   itrustee_client: sig-confidential-computing
   itrustee_sdk: sig-confidential-computing
@@ -412,6 +413,7 @@ openeuler:
   openstack-kolla-plugin: sig-openstack
   openstack-plugin: sig-openstack
   openstack-releases: sig-openstack
+  openstack-sig-tool: sig-openstack
   operator-manager: sig-CloudNative
   osinfor: sig-memsafety
   pacemaker-mgmt: sig-Ha
@@ -1274,6 +1276,7 @@ src-openeuler:
   clamav-unofficial-sigs: Private
   clang: Compiler
   clang-15: Compiler
+  clang-latest: Compiler
   class_loader: sig-ROS
   classic-flang: Compiler
   classloader-leak-test-framework: sig-Java
@@ -1341,6 +1344,7 @@ src-openeuler:
   compface: Application
   compiler-rt: Compiler
   compiler-rt-15: Compiler
+  compiler-rt-latest: Compiler
   compress-lzf: Application
   comps-extras: Desktop
   concurrent-trees: dev-utils
@@ -1434,6 +1438,7 @@ src-openeuler:
   d-spy: GNOME
   daala: sig-epol
   dain-snappy: sig-Java
+  damo: Storage
   daos: sig-SDS
   dareader: sig-DDE
   darshan: sig-HPC
@@ -1853,6 +1858,7 @@ src-openeuler:
   flameshot: sig-desktop-apps
   flang: Compiler
   flang-15: Compiler
+  flang-latest: Compiler
   flann: sig-ROS
   flatbuffers: dev-utils
   flatpak: Programming-language
@@ -2934,6 +2940,7 @@ src-openeuler:
   isosm3sum: Base-service
   istack-commons: Base-service
   isula-build: iSulad
+  isula-rust-extensions: iSulad
   isula-transform: sig-recycle
   itext: sig-Java
   itrustee_sdk: sig-confidential-computing
@@ -3427,6 +3434,7 @@ src-openeuler:
   kmail-account-wizard: sig-KDE
   kmenuedit: sig-KDE
   kmod: Computing
+  kmod-dinghai: sig-Compatibility-Infra
   kmod-drbd90: sig-Ha
   kmod-kvdo: Runtime
   kmodtool: dev-utils
@@ -3648,6 +3656,7 @@ src-openeuler:
   libcutl: sig-KIRAN-DESKTOP
   libcxx: Compiler
   libcxx-15: Compiler
+  libcxx-latest: Compiler
   libcxxabi: Compiler
   libcxxabi-15: Compiler
   libcyaml: Base-service
@@ -4095,12 +4104,16 @@ src-openeuler:
   llama.cpp: A-Tune
   lld: Compiler
   lld-15: Compiler
+  lld-latest: Compiler
   lldb: Compiler
+  lldb-latest: Compiler
   lldpad: Networking
   llvm: Compiler
   llvm-15: Compiler
   llvm-bolt: Compiler
   llvm-bolt-15: Compiler
+  llvm-bolt-latest: Compiler
+  llvm-latest: Compiler
   llvm-libunwind: Compiler
   llvm-libunwind-15: Compiler
   llvm-mlir: Compiler
@@ -5146,6 +5159,7 @@ src-openeuler:
   openmotif: Private
   openmp: Compiler
   openmp-15: Compiler
+  openmp-latest: Compiler
   openmpi: Application
   openni: sig-ROS
   opennjet: sig-epol
@@ -5222,6 +5236,7 @@ src-openeuler:
   openstack-releases: sig-openstack
   openstack-sahara-ui: sig-openstack
   openstack-senlin: sig-openstack
+  openstack-sig-tool: sig-openstack
   openstack-swift: sig-openstack
   openstack-tempest: sig-openstack
   openstack-trove: sig-openstack
