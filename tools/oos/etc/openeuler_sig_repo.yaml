@@ -7,6 +7,7 @@ openeuler:
   openstack-kolla-plugin: sig-openstack
   openstack-plugin: sig-openstack
   openstack-releases: sig-openstack
+  openstack-sig-tool: sig-openstack
   pyisula: sig-openstack
 src-openeuler:
   ansible-lint: sig-openstack
@@ -72,6 +73,7 @@ src-openeuler:
   openstack-releases: sig-openstack
   openstack-sahara-ui: sig-openstack
   openstack-senlin: sig-openstack
+  openstack-sig-tool: sig-openstack
   openstack-swift: sig-openstack
   openstack-tempest: sig-openstack
   openstack-trove: sig-openstack
