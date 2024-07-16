@@ -31,6 +31,8 @@ nav:
   - openEuler-22.03-LTS-SP2_Wallaby: 'install/openEuler-22.03-LTS-SP2/OpenStack-wallaby.md'
   - openEuler-22.03-LTS-SP3_Train: 'install/openEuler-22.03-LTS-SP3/OpenStack-train.md'
   - openEuler-22.03-LTS-SP3_Wallaby: 'install/openEuler-22.03-LTS-SP3/OpenStack-wallaby.md'
+  - openEuler-22.03-LTS-SP4_Train: 'install/openEuler-22.03-LTS-SP4/OpenStack-train.md'
+  - openEuler-22.03-LTS-SP4_Wallaby: 'install/openEuler-22.03-LTS-SP4/OpenStack-wallaby.md'
   - openEuler-22.09_Yoga: 'install/openEuler-22.09/OpenStack-yoga.md'
   - openEuler-24.03-LTS_Wallaby: 'install/openEuler-24.03-LTS/OpenStack-wallaby.md'
   - openEuler-24.03-LTS_Antelope: 'install/openEuler-24.03-LTS/OpenStack-antelope.md'
