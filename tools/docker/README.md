@@ -1,6 +1,6 @@
 ## Dockerfile for basic environment for running tools
 
-This Dockerfile is for quickly building a environment for running the tools.
+This Dockerfile is for quickly building an environment for running the tools.
 
 0. Check the `openEuler.repo`, replace the content with suitable URLs.
 
