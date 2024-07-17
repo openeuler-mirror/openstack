@@ -1611,7 +1611,7 @@ src-openeuler:
   dos2unix: Base-service
   dosfstools: Storage
   dotconf: Programming-language
-  dotnet-6: sig-porting-platform-winapp
+  dotnet: sig-porting-platform-winapp
   double-conversion: Computing
   dovecot: Application
   doxygen: Application
@@ -3815,6 +3815,7 @@ src-openeuler:
   libkysdk-base: sig-UKUI
   libkysdk-system: sig-UKUI
   liblangtag: ecopkg
+  liblc3: Desktop
   libldac: GNOME
   libldb: Desktop
   libldm: Storage
@@ -10530,6 +10531,7 @@ src-openeuler:
   supermin: System-tool
   sushi: Base-service
   svnkit: sig-Java
+  svt-av1: Desktop
   swagger-codegen: sig-recycle
   swagger-core: sig-Java
   swagger-spec-validator: sig-python-modules
