@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../../img/favicon.ico" />
-    <title>OpenStack-Train 部署指南 - OpenStack SIG Doc</title>
+    <title>openEuler-22.03-LTS-SP4_Train - OpenStack SIG Doc</title>
     <link rel="stylesheet" href="../../../css/theme.css" />
     <link rel="stylesheet" href="../../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "OpenStack-Train \u90e8\u7f72\u6307\u5357";
+        var mkdocs_page_name = "openEuler-22.03-LTS-SP4_Train";
         var mkdocs_page_input_path = "install/openEuler-22.03-LTS-SP4/OpenStack-train.md";
         var mkdocs_page_url = null;
       </script>
@@ -49,7 +49,7 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">安装指导</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../../devstack/">devstack</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../openEuler-20.03-LTS-SP2/OpenStack-queens/">openEuler-20.03-LTS-SP2_Queens</a>
@@ -81,6 +81,140 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS-SP3/OpenStack-train/">openEuler-22.03-LTS-SP3_Train</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.03-LTS-SP3/OpenStack-wallaby/">openEuler-22.03-LTS-SP3_Wallaby</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">openEuler-22.03-LTS-SP4_Train</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#openstack">OpenStack 简介</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">约定</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">准备环境</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">环境配置</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sql-database">安装 SQL DataBase</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rabbitmq">安装 RabbitMQ</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#memcached">安装 Memcached</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#openstack_1">安装 OpenStack</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#keystone">Keystone 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#glance">Glance 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#placement">Placement安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#nova">Nova 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#neutron">Neutron 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cinder">Cinder 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#horizon">horizon 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tempest">Tempest 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ironic">Ironic 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#kolla">Kolla 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#trove">Trove 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#swift">Swift 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cyborg">Cyborg 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#aodh">Aodh 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gnocchi">Gnocchi 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ceilometer">Ceilometer 安装</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#heat">Heat 安装</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#openstack-sigoos">基于OpenStack SIG开发工具oos快速部署</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#openstack-sigopensd">基于OpenStack SIG部署工具opensd部署</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">部署步骤</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#1">1. 部署前需要确认的信息</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-ceph-pool">2. ceph pool与认证创建（可选）</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#21-pool">2.1 创建pool:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#22-pool">2.2 初始化pool</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#23">2.3 创建用户认证</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-lvm">3. 配置lvm（可选）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-yum-repo">4. 配置yum repo</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#41-yum">4.1 备份yum源</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#42-yum-repo">4.2 配置yum repo</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#43-yum">4.3 更新yum缓存</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-opensd">5. 安装opensd</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#51-opensd">5.1 克隆opensd源码并安装</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#6-ssh">6. 做ssh互信</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#61">6.1 生成密钥对</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#62-ip">6.2 生成主机IP地址文件</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#63">6.3 更改密码并执行脚本</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#64-ceph-monitor">6.4 部署节点与ceph monitor做互信（可选）</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#7-opensd">7. 配置opensd</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#71">7.1 生成随机密码</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#72-inventory">7.2 配置inventory文件</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#73">7.3 配置全局变量</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#74-ssh">7.4 检查所有节点ssh连接状态</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#8">8. 执行部署</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#81-bootstrap">8.1 执行bootstrap</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#82">8.2 重启服务器</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#83">8.3 执行部署前检查</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#84">8.4 执行部署</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../OpenStack-wallaby/">openEuler-22.03-LTS-SP4_Wallaby</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.09/OpenStack-yoga/">openEuler-22.09_Yoga</a>
                   </li>
@@ -136,7 +270,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="文档"></a></li>
-      <li class="breadcrumb-item active">OpenStack-Train 部署指南</li>
+          <li class="breadcrumb-item">安装指导</li>
+      <li class="breadcrumb-item active">openEuler-22.03-LTS-SP4_Train</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -2651,6 +2786,10 @@ opensd -i /usr/local/share/opensd/ansible/inventory/multinode deploy --forks 50 
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="页脚导航">
+        <a href="../../openEuler-22.03-LTS-SP3/OpenStack-wallaby/" class="btn btn-neutral float-left" title="openEuler-22.03-LTS-SP3_Wallaby"><span class="icon icon-circle-arrow-left"></span> 上一章</a>
+        <a href="../OpenStack-wallaby/" class="btn btn-neutral float-right" title="openEuler-22.03-LTS-SP4_Wallaby">下一章 <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -2672,6 +2811,10 @@ opensd -i /usr/local/share/opensd/ansible/inventory/multinode deploy --forks 50 
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../../openEuler-22.03-LTS-SP3/OpenStack-wallaby/" style="color: #fcfcfc">&laquo; 上一章</a></span>
+    
+    
+      <span><a href="../OpenStack-wallaby/" style="color: #fcfcfc">下一章 &raquo;</a></span>
     
   </span>
 </div>
