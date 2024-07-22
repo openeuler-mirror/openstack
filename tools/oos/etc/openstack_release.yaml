@@ -133,7 +133,7 @@
   oslo.i18n: 6.0.0
   oslo.limit: 2.1.0
   oslo.log: 5.2.0
-  oslo.messaging: 14.2.4
+  oslo.messaging: 14.2.5
   oslo.metrics: 0.6.0
   oslo.middleware: 5.1.1
   oslo.policy: 4.1.1
@@ -398,7 +398,7 @@
   oslo.i18n: 6.1.0
   oslo.limit: 2.2.0
   oslo.log: 5.3.1
-  oslo.messaging: 14.4.1
+  oslo.messaging: 14.4.2
   oslo.metrics: 0.7.0
   oslo.middleware: 5.2.0
   oslo.policy: 4.2.1
