@@ -5260,6 +5260,7 @@ src-openeuler:
   orage: sig-recycle
   orc: Base-service
   orca: Desktop
+  orientdb: DB
   origin: sig-K8sDistro
   orocos_kdl: sig-ROS
   orocos_kdl_vendor: sig-ROS
@@ -9209,6 +9210,7 @@ src-openeuler:
   python-tbgrep: sig-python-modules
   python-tblib: sig-python-modules
   python-tbtrim: sig-python-modules
+  python-tcolorpy: sig-openstack
   python-tempdir: sig-python-modules
   python-tempest-lib: sig-openstack
   python-tempita: Base-service
@@ -10963,6 +10965,7 @@ src-openeuler:
   vpnc-script: Application
   vrpn: sig-ROS
   vs2qt: sig-porting-platform-winapp
+  vscodium: sig-RISC-V
   vsftpd: Networking
   vte: Application
   vte291: GNOME
@@ -11204,6 +11207,7 @@ src-openeuler:
   yaml-cpp03: Base-service
   yaml_cpp_vendor: sig-ROS
   yapet: System-tool
+  yarnpkg: sig-RISC-V
   yasm: Base-service
   ycsb: bigdata
   ydlidar-sdk: sig-ROS
