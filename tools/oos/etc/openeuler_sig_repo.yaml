@@ -407,6 +407,7 @@ src-openeuler:
   python-sysv-ipc: sig-openstack
   python-tablib: sig-openstack
   python-taskflow: sig-openstack
+  python-tcolorpy: sig-openstack
   python-tempest-lib: sig-openstack
   python-testfixtures: sig-openstack
   python-textfsm: sig-openstack
