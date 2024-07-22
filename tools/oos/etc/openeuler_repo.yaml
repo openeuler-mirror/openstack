@@ -379,6 +379,7 @@ openeuler:
   oemaker: sig-OS-Builder
   omnidata-hive-connector: bigdata
   oncn-bwm: sig-high-performance-network
+  open-eBackup: sig-Backup
   open-source-summer: sig-OSCourse
   openEuler-Advisor: sig-EasyLife
   openEuler-bootstrap: dev-utils
