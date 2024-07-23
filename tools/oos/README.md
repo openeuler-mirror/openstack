@@ -36,7 +36,7 @@ oos spec update --name stevedore --version 2.0.0
 -v, --version
     指定软件包的版本
 -s, --special
-    使用该参数时,寻找当前文件夹下Spec文件并替换就Spec文件中Version/Release/changelog，
+    使用该参数时,寻找当前文件夹下Spec文件并替换旧Spec文件中Version/Release/changelog，
 -o, --output
     指定生成的Spec文件名
 -d, --download
