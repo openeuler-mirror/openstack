@@ -34,6 +34,7 @@ EBS_BRANCHS = [
     'openEuler-20.03-LTS-SP4:epol',
     'openEuler_24.03_LTS_Epol_Multi-Version_OpenStack_Antelope',
     'openEuler_24.03_LTS_Epol_Multi-Version_OpenStack_Wallaby',
+    # 'openEuler-24.03-LTS-Next:epol',  # 测试工程
     'openEuler_22.03_LTS_SP4_Epol_Multi-Version_OpenStack_Wallaby',
     'openEuler_22.03_LTS_SP4_Epol_Multi-Version_OpenStack_Train',
 ]
@@ -89,23 +90,18 @@ EBS_JSON = {
     }
 }
 
-def pkgs_result_update(result_br, name, arch, details):
-    if not result_br.get(name):
-        result_br[name] = {}
-        result_br[name][arch] = details
-    else:
-        result_br[name][arch] = details
 
-
-def check_ebs_pkgs(pkg_results, branch, white_list, result, arch):
+def check_ebs_pkgs(pkg_results, branch, result, fail_link):
     is_suc = True
     for name, info in pkg_results.items():
-        if info['build']['status'] != EBS_PKG_BUILD_SUC and name in white_list:
+        if info['build']['status'] != EBS_PKG_BUILD_SUC:
             is_suc = False
-            pkgs_result_update(result[branch], name, arch, info['build']['details'][0])
+            result[branch][fail_link].append(name)
 
     if is_suc:
-        result[branch] = 'Success'
+        return True
+
+    return False
 
 
 def check_ebs_status():
@@ -114,8 +110,6 @@ def check_ebs_status():
     新的构建会继承上一次失败的包
     检查下ebs_result[0/1] 不符合默认提示下
     '''
-    white_list = list(OPENEULER_SIG_REPO['src-openeuler'].keys())
-    
     result = {}
     prompt = ''
     for branch in EBS_BRANCHS:
@@ -140,75 +134,37 @@ def check_ebs_status():
         # 与obs差异 ebs所有构建失败只能去看同一个buildID 这里添加并保证链接在前面
         result[branch] = {}
         url = EBS_BUILD_URL % {'branch': branch, 'buildid': ebs_result[0]['_source']['build_id']}
-        fail_link = PROJECT_MARKDOWN_FORMAT % {'project': 'x86_64', 'url': url}
-        result[branch][fail_link] = {}  # 保持格式 value赋值为字典
+        fail_link_x86 = PROJECT_MARKDOWN_FORMAT % {'project': 'x86_64', 'url': url}
+        result[branch][fail_link_x86] = []  # 保持格式 value赋值为字典
 
         url = EBS_BUILD_URL % {'branch': branch, 'buildid': ebs_result[1]['_source']['build_id']}
-        fail_link = PROJECT_MARKDOWN_FORMAT % {'project': 'aarch64', 'url': url}
-        result[branch][fail_link] = {}  # 保持格式 value赋值为字典
+        fail_link_aarch64 = PROJECT_MARKDOWN_FORMAT % {'project': 'aarch64', 'url': url}
+        result[branch][fail_link_aarch64] = []  # 保持格式 value赋值为字典
 
+        fail_link = {'x86_64': fail_link_x86,
+                     'aarch64': fail_link_aarch64}
+
+        # flag for x86/aarch architecture
+        # refersh the value in func 'check_ebs_pkgs'
+        suc_check = [False, False]
         for i in range(2):
             # 这里简单的try一下，防止ebs构建异常导致字典取值失败等报错
             try:
                 source = ebs_result[i]['_source']
-                check_ebs_pkgs(
+                arch = source['build_target']['architecture']
+                suc_check[i] = check_ebs_pkgs(
                     source['build_packages'],
-                    branch, white_list,
+                    branch,
                     result,
-                    source['build_target']['architecture']
+                    fail_link[arch]
                 )
             except:
-                pass
+                print('bad key for func "check_ebs_pkgs"')
+
+        if suc_check[0] and suc_check[1]:
+            result[branch] = 'Success'
 
     return result, prompt
-
-
-# The result dict format will be like:
-# {
-#     'branch_name': {
-#         'package_name': {
-#             'x86_64': 'fail reason',
-#             'aarch64': 'fail reason'
-#         }
-#     },
-#     'branch_name': 'Success',
-#     'branch_name': 'Unknown',
-# }
-def check_status():
-    white_list = list(OPENEULER_SIG_REPO['src-openeuler'].keys())
-    branch_session = requests.session()
-    branch_session.auth = (OBS_USER_NAME, OBS_USER_PASSWORD)
-    result = {}
-    for branch in BRANCHS:
-        sub_res = {}
-        res = branch_session.get(OBS_PACKAGE_BUILD_RESULT_URL % {'branch': branch}, verify=False)
-        try:
-            obs_result = xmltodict.parse(res.content.decode())['resultlist']['result']
-        except (KeyError, xmltodict.expat.ExpatError):
-            result[branch] = 'Parsing Error'
-        for each_arch in obs_result:
-            if each_arch['@state'] == 'unknown':
-                result[branch] = 'Unknown'
-                break
-            arch = each_arch['@arch']
-            if not each_arch.get('status'):
-                result[branch] = 'No Content'
-                break
-            arch_result = each_arch['status']
-            for package in arch_result:
-                package_name = package['@package']
-                package_status = package['@code']
-                if ('oepkg' in branch or 'Multi' in branch or package_name in white_list) and package_status in ['unresolvable', 'failed', 'broken']:
-                    project_key = PROJECT_MARKDOWN_FORMAT % {'project': package_name, 'url': OBS_PROJECT_URL % {'branch': branch, 'project': package_name}}
-                    if not sub_res.get(project_key):
-                        sub_res[project_key] = {}
-                    sub_res[project_key][arch] = package.get('details', 'build failed')
-        else:
-            if sub_res:
-                result[branch] = sub_res
-            else:
-                result[branch] = 'Success'
-    return result
 
 
 def get_obs_issue():
@@ -265,34 +221,31 @@ def create_or_update_issue(result_str):
 def format_content_for_markdown(input_dict):
     output = ""
     today = datetime.datetime.now()
-    output += '## check date: %s-%s-%s\n' % (today.year, today.month, today.day)
+    output += '# check date: %s-%s-%s\n' % (today.year, today.month, today.day)
     if input_dict:
         for branch, project_info in input_dict.items():
-            output += '## %s\n' % branch
-            output += '    \n'
+            output += '## %s\n\n' % branch
+            # output += '    \n'
             if isinstance(project_info, str):
-                output += '%s\n' % project_info
+                output += '%s\n\n' % project_info
                 continue
-            for project_name, status in project_info.items():
-                output += '    %s:\n' % project_name
-                if status.get('x86_64'):
-                    output += '        x86_64: %s\n' % status['x86_64']
-                if status.get('aarch64'):
-                    output += '        aarch64: %s\n' % status['aarch64']
+            for project_name, pkg_list in project_info.items():
+                output += '%s:  \n' % project_name
+                output += '%s\n\n' % ', '.join(pkg_list)
     else:
         output += 'All package build success.'
-
     return output
 
 
-def format_content_for_html(input_dict, is_ebs=False, prompt=''):
+def format_content_for_html(input_dict, prompt=''):
     output_attach = ''
     output_body = ''
     today = datetime.datetime.now()
     # 直接用html语法 表格好看点 源文件格式vscode复制粘贴可纠正
-    output_body += '<h1>EBS ' if is_ebs else '<h1>OBS '
+    output_body += '<h1>EBS '
     output_body += 'check date: %s-%s-%s</h1>\n' % (today.year, today.month, today.day)
     output_body += '<p>' + prompt + '</p>\n' if prompt != '' else ''
+    output_body += '<p>请忽略openEuler-20.03-LTS-SP4:epol工程错误</p>\n'
     output_body += '<p>See the attached file for the failed branch</p>\n'
     output_body += '<html>\n<table style="width: 80%;border: 1px solid #ddd;">\n<tr>\n'
     output_body += '<th style="background-color: #f2f2f2;text-align: left;">branch</th>\n'
@@ -312,12 +265,9 @@ def format_content_for_html(input_dict, is_ebs=False, prompt=''):
 
             output_attach += '## %s\n\n' % branch
             output_attach += '??? note "Detail"\n'
-            for project_name, status in project_info.items():
-                output_attach += '    %s:\n\n' % project_name
-                if status.get('x86_64'):
-                    output_attach += '        x86_64: %s\n' % status['x86_64']
-                if status.get('aarch64'):
-                    output_attach += '        aarch64: %s\n' % status['aarch64']
+            for project_name, pkg_list in project_info.items():
+                output_attach += '    %s: ' % project_name
+                output_attach += '%s\n\n' % ', '.join(pkg_list)
             output_attach += '\n'
     else:
         output_body += '<tr>\n' + td_style + 'all_branch</td>\n'
@@ -380,34 +330,22 @@ def main():
     try:
         output_type = sys.argv[1]
     except IndexError:
-        print("Please specify the output type: markdown, html or gitee")
+        print("Please specify the output type: markdown, html")
         exit(1)
-    result = check_status()
     ebs_result, prompt = check_ebs_status()
     if output_type == 'markdown':
-        output = format_content_for_markdown(result)
-        with open('result.md', 'w') as f:
-            f.write(markdown.markdown(output))
+        output = format_content_for_markdown(ebs_result)
+        with open('ebs_result.md', 'w') as f:
+            f.write(output)
     elif output_type == 'html':
-        # 处理OBS结果
-        result_str_attach, result_str_body= format_content_for_html(result)
+        result_str_attach, result_str_body= format_content_for_html(ebs_result, prompt)
         with open('result_attach.html', 'w') as f:
-            html = markdown.markdown(result_str_attach, extensions=['pymdownx.details'])
-            f.write(html)
-        with open('result_body.html', 'w') as f:
-            f.write(result_str_body)
-
-        # 处理EBS结果
-        result_str_attach, result_str_body= format_content_for_html(ebs_result, True, prompt)
-        with open('result_attach.html', 'a') as f:
             html = markdown.markdown(result_str_attach, 
                                      extensions=['pymdownx.details'],
                                      safe_mode=True)
             f.write(html)
-        with open('result_body.html', 'a') as f:
+        with open('result_body.html', 'w') as f:
             f.write(result_str_body)
-    elif output_type == 'gitee':
-        create_or_update_issue(result)
 
 
 if __name__ == '__main__':
