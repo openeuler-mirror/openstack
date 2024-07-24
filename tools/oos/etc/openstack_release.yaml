@@ -100,7 +100,7 @@
   networking-hyperv: 14.0.0
   networking-odl: 22.0.0
   networking-sfc: 16.0.0
-  neutron: 22.1.0
+  neutron: 22.2.0
   neutron-dynamic-routing: 22.0.0
   neutron-fwaas: 18.0.0
   neutron-fwaas-dashboard: 5.0.0
@@ -366,7 +366,7 @@
   networking-bgpvpn: 19.0.0
   networking-generic-switch: 7.2.1
   networking-sfc: 17.0.0
-  neutron: 23.1.0
+  neutron: 23.2.0
   neutron-dynamic-routing: 23.0.0
   neutron-fwaas: 19.0.0
   neutron-fwaas-dashboard: 6.0.0
