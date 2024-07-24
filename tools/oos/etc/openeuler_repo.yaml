@@ -2470,6 +2470,7 @@ src-openeuler:
   gpm: Desktop
   gps_umd: sig-ROS
   gpsd: sig-KDE
+  gradio: sig-CloudNative
   gradle: sig-Java
   grafana: Application
   granite: sig-desktop-apps
