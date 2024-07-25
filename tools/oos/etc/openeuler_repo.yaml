@@ -1112,6 +1112,7 @@ src-openeuler:
   bind: Networking
   bind-dyndb-ldap: Networking
   binutils: Compiler
+  binutils-2.42: Compiler
   biobambam2: sig-bio
   biometric-authentication: sig-UKUI
   biosdevname: Others
@@ -1965,6 +1966,7 @@ src-openeuler:
   gcc: Compiler
   gcc-10: Compiler
   gcc-12: Compiler
+  gcc-14: Compiler
   gcc-7: Compiler
   gcc-cross: Compiler
   gcc-for-openEuler: Compiler
