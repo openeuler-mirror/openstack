@@ -35,9 +35,6 @@ openeuler:
   G11N: G11N
   GNFC: sig-high-performance-network
   GearOS: sig-industrial-control
-  Intel-Arch-doc: sig-Intel-Arch
-  Intel-gcc: sig-Intel-Arch
-  Intel-glibc: sig-Intel-Arch
   Jailhouse-gui: sig-industrial-control
   Java-Packages: sig-Java
   KPL-gmssl: sig-WayCa
@@ -250,6 +247,7 @@ openeuler:
   infrastructure: Infrastructure
   install-scripts: sig-OS-Builder
   integration-test: sig-QA
+  intel-docs: sig-Intel-Arch
   intel-iavf: sig-Intel-Arch
   intel-ice: sig-Intel-Arch
   intel-kernel: sig-Intel-Arch
@@ -7315,7 +7313,6 @@ src-openeuler:
   python-Keras_Preprocessing: A-Tune
   python-Lasagne: sig-python-modules
   python-Logbook: sig-python-modules
-  python-ModestMaps: sig-python-modules
   python-Naked: sig-python-modules
   python-OWSLib: sig-python-modules
   python-Parsley: sig-python-modules
@@ -7716,7 +7713,6 @@ src-openeuler:
   python-cypy: sig-python-modules
   python-d2to1: sig-python-modules
   python-daemon: oVirt
-  python-daemonize: sig-python-modules
   python-daiquiri: sig-python-modules
   python-darglint: sig-python-modules
   python-dasbus: sig-OS-Builder
@@ -8117,7 +8113,6 @@ src-openeuler:
   python-intervaltree: sig-python-modules
   python-into-dbus-python: sig-python-modules
   python-invoke: sig-python-modules
-  python-iowait: sig-python-modules
   python-ipaddress: Networking
   python-ipdb: sig-python-modules
   python-ipgetter2: sig-python-modules
