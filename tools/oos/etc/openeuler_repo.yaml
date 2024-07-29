@@ -492,6 +492,9 @@ openeuler:
   sig-OpenBoard: sig-recycle
   signatrust: Infrastructure
   skylark: Virt
+  sra_scann_adapter: sig-AccLib
+  sra_tensorflow_adapter: sig-AccLib
+  sra_test: sig-AccLib
   ssh-utils: sig-memsafety
   sssnic-driver: sig-Compatibility-Infra
   stortrace: Storage
