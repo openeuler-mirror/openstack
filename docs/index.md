@@ -168,3 +168,8 @@ SIG同时联合各大厂商、开发者，创建了一系列自研项目：
 - <https://gitee.com/openeuler/openstack-plugin>
 - <https://gitee.com/openeuler/hostha>
 - <https://gitee.com/openeuler/opensd>
+
+## 交流群
+
+添加小助手回复"加群"进入openEuler sig-OpenStack交流群  
+![assistant](img/install/wechat_group_assistant.jpg)
