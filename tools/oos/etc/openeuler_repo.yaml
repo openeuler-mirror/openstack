@@ -2900,6 +2900,7 @@ src-openeuler:
   intel-graphics-compiler: sig-Intel-Arch
   intel-gsc: sig-Intel-Arch
   intel-metee: sig-Intel-Arch
+  intel-qatlib: sig-Intel-Arch
   intel-sgx-ssl: sig-confidential-computing
   interactive_markers: sig-ROS
   internal-issue: Private
