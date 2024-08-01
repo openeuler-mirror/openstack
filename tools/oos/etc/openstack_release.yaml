@@ -1,6 +1,6 @@
 '2023.1':
   adjutant-ui: 6.0.0
-  ansible-collection-kolla: 3.2.0
+  ansible-collection-kolla: 3.3.0
   ansible-role-atos-hsm: 5.0.0
   ansible-role-lunasa-hsm: 5.0.0
   ansible-role-thales-hsm: 5.0.0
@@ -52,15 +52,15 @@
   ironic-python-agent-builder: 5.1.1
   ironic-tempest-plugin: 2.6.1
   ironic-ui: 6.1.0
-  kayobe: 14.5.0
+  kayobe: 14.6.0
   kayobe-config: 14.3.0
-  kayobe-config-dev: 14.2.0
+  kayobe-config-dev: 14.6.0
   keystone: 23.0.1
   keystone_tempest_plugin: 0.12.0
   keystoneauth1: 5.1.2
   keystonemiddleware: 10.2.0
-  kolla: 16.4.0
-  kolla-ansible: 16.5.0
+  kolla: 16.5.0
+  kolla-ansible: 16.6.0
   kuryr-kubernetes: 8.0.0
   kuryr-lib: 2.7.0
   kuryr-libnetwork: 11.0.0
@@ -269,7 +269,7 @@
   zun-ui: 11.0.0
 '2023.2':
   adjutant-ui: 7.0.0
-  ansible-collection-kolla: 4.1.0
+  ansible-collection-kolla: 4.2.0
   ansible-role-atos-hsm: 6.0.0
   ansible-role-lunasa-hsm: 6.0.0
   ansible-role-thales-hsm: 6.0.1
@@ -320,15 +320,15 @@
   ironic-python-agent-builder: 5.2.1
   ironic-tempest-plugin: 2.7.0
   ironic-ui: 6.2.1
-  kayobe: 15.3.0
+  kayobe: 15.4.0
   kayobe-config: 15.1.0
-  kayobe-config-dev: 15.1.0
+  kayobe-config-dev: 15.4.0
   keystone: 24.0.0
   keystone_tempest_plugin: 0.13.0
   keystoneauth1: 5.3.0
   keystonemiddleware: 10.4.1
-  kolla: 17.3.0
-  kolla-ansible: 17.3.0
+  kolla: 17.4.0
+  kolla-ansible: 17.4.0
   kuryr-kubernetes: 9.0.0
   kuryr-lib: 2.8.0
   kuryr-libnetwork: 12.0.0
