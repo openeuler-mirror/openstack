@@ -4102,6 +4102,7 @@ src-openeuler:
   linuxdoc-tools: Application
   linuxptp: Application
   lirc: sig-epol
+  litehtml: Application
   live555: sig-epol
   livy: DB
   lizardfs: sig-SDS
@@ -7820,6 +7821,7 @@ src-openeuler:
   python-dockerfile-parse: sig-python-modules
   python-dockerpty: sig-python-modules
   python-docopt: Base-service
+  python-docopt-ng: Base-service
   python-docstring-parser: sig-python-modules
   python-docutils: Programming-language
   python-docx: sig-python-modules
