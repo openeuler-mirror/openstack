@@ -309,6 +309,7 @@ openeuler:
   ktib: sig-CloudNative
   kunpeng-competition: sig-OSCourse
   kunpengsecl: sig-security-facility
+  kyclassifier: sig-Compatibility-Infra
   kylin-installer: sig-UKUI
   kylin-user-guide: sig-UKUI
   kytuning-client: sig-ops
@@ -1703,6 +1704,7 @@ src-openeuler:
   eli5: ai
   elinks: Application
   elixir: Application
+  elvish: Base-service
   emacs: Desktop
   emacs-auctex: Others
   emma: dev-utils
@@ -3495,6 +3497,7 @@ src-openeuler:
   kwin: sig-KDE
   kwrited: sig-KDE
   kxml: sig-Java
+  kyclassifier: sig-Compatibility-Infra
   kylin-burner: sig-UKUI
   kylin-calculator: sig-UKUI
   kylin-device-daemon: sig-UKUI
