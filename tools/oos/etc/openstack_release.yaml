@@ -11,7 +11,7 @@
   barbican_tempest_plugin: 2.0.0
   bifrost: 16.1.1
   blazar: 11.0.0
-  blazar-dashboard: 9.0.0
+  blazar-dashboard: 9.0.1
   blazar-nova: 3.0.0
   blazar_tempest_plugin: 0.10.1
   castellan: 4.1.0
@@ -43,7 +43,7 @@
   heat-dashboard: 9.0.0
   heat-tempest-plugin: 1.7.1
   heat-translator: 2.7.0
-  horizon: 23.1.0
+  horizon: 23.1.1
   ironic: 21.4.1
   ironic-inspector: 11.4.1
   ironic-lib: 5.4.0
@@ -68,13 +68,13 @@
   magnum: 16.0.2
   magnum-ui: 12.0.0
   magnum_tempest_plugin: 2.0.0
-  manila: 16.2.0
+  manila: 16.2.1
   manila-tempest-plugin: 1.13.0
-  manila-ui: 9.0.0
+  manila-ui: 9.0.1
   masakari: 15.0.0
   masakari-dashboard: 8.0.0
   masakari-monitors: 15.0.0
-  metalsmith: 1.10.0
+  metalsmith: 1.10.1
   mistral: 16.0.0
   mistral-dashboard: 16.0.0
   mistral-extra: 13.0.0
@@ -104,7 +104,7 @@
   neutron-dynamic-routing: 22.0.0
   neutron-fwaas: 18.0.0
   neutron-fwaas-dashboard: 5.0.0
-  neutron-lib: 3.4.2
+  neutron-lib: 3.4.3
   neutron-tempest-plugin: 2.2.0
   neutron-vpnaas: 22.0.0
   neutron-vpnaas-dashboard: 8.0.0
@@ -113,14 +113,14 @@
   octavia-dashboard: 11.0.0
   octavia-lib: 3.2.0
   octavia-tempest-plugin: 2.3.0
-  openstack-cyborg: 10.0.0
+  openstack-cyborg: 10.1.0
   openstack-heat: 20.0.1
   openstack-placement: 9.0.0
   openstack-release-test: 4.0.0
   openstack-venus: 2.0.0
   openstacksdk: 1.0.1
   os-brick: 6.2.3
-  os-ken: 2.6.0
+  os-ken: 2.6.1
   os-win: 5.9.0
   os_vif: 3.1.1
   osc-lib: 2.7.0
@@ -129,10 +129,10 @@
   oslo.concurrency: 5.1.1
   oslo.config: 9.1.1
   oslo.context: 5.1.1
-  oslo.db: 12.3.2
+  oslo.db: 12.3.3
   oslo.i18n: 6.0.0
   oslo.limit: 2.1.0
-  oslo.log: 5.2.0
+  oslo.log: 5.2.1
   oslo.messaging: 14.2.5
   oslo.metrics: 0.6.0
   oslo.middleware: 5.1.1
@@ -147,7 +147,7 @@
   oslo.versionedobjects: 3.1.0
   oslo.vmware: 4.1.1
   oswin-tempest-plugin: 2.1.0
-  ovn-octavia-provider: 4.0.1
+  ovn-octavia-provider: 4.0.2
   ovsdbapp: 2.2.2
   patrole: 0.16.0
   puppet-aodh: 22.0.0
@@ -191,17 +191,17 @@
   python-blazarclient: 3.6.0
   python-brick-cinderclient-ext: 2.1.0
   python-cinderclient: 9.3.0
-  python-cloudkittyclient: 4.7.0
+  python-cloudkittyclient: 4.7.1
   python-cyborgclient: 2.1.0
   python-designateclient: 5.2.0
   python-freezerclient: 5.1.0
-  python-glanceclient: 4.3.1
+  python-glanceclient: 4.3.2
   python-heatclient: 3.2.0
   python-ironic-inspector-client: 4.9.0
   python-ironicclient: 5.1.0
   python-keystoneclient: 5.1.0
   python-magnumclient: 4.1.0
-  python-manilaclient: 4.4.1
+  python-manilaclient: 4.4.2
   python-masakariclient: 8.1.0
   python-mistralclient: 5.0.0
   python-monascaclient: 2.7.0
@@ -235,7 +235,7 @@
   senlin: 15.0.0
   senlin-dashboard: 7.0.0
   senlin-tempest-plugin: 1.7.1
-  skyline-apiserver: 2.0.0
+  skyline-apiserver: 2.0.1
   skyline-console: 2.0.0
   solum: 14.0.0
   solum-dashboard: 10.0.0
@@ -247,7 +247,7 @@
   tacker: 9.0.0
   tacker-horizon: 7.0.0
   tap-as-a-service: 11.0.0
-  taskflow: 5.1.0
+  taskflow: 5.1.1
   telemetry_tempest_plugin: 1.9.0
   tempest: 34.1.0
   tosca-parser: 2.8.0
