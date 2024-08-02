@@ -123,7 +123,7 @@ class PkgGitRepo(object):
         click.echo("CMD: %s" % commit_cmd)
         subprocess.call(commit_cmd, shell=True)
 
-    def create_pr(self, src_branch, remote_branch, tittle):
+    def create_pr(self, src_branch, remote_branch, title):
         if not self.commit_pushed:
             click.secho("WARNING: Commit was not pushed of %s, exit!" %
                         self.repo_name, fg='red')
@@ -134,7 +134,7 @@ class PkgGitRepo(object):
                 self.gitee_org, self.repo_name)
             resp = requests.request(
                 "POST", url, data={"access_token": self.gitee_pat,
-                                   "title": tittle,
+                                   "title": title,
                                    "head": self.gitee_user + ":" + src_branch,
                                    "base": remote_branch})
             if resp.status_code != 201:
