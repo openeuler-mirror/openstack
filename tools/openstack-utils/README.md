@@ -7,17 +7,17 @@ Helper utilities for OpenStack services on Fedora/RHEL distros
 * openstack-status        - Give an overview of the status of installed services
 * openstack-service       - Control enabled openstack services
 
-openstack-utils¹¤¾ß£¬openEuler-20.03-LTS-SP2ÉÏQueens°æ±¾¿ÉÓÃ£¨ÆäËû°æ±¾´ıÆÀ²â£¬Í¨³£Ò²¿ÉÓÃ£©¡£
+openstack-utilså·¥å…·ï¼ŒopenEuler-20.03-LTS-SP2ä¸ŠQueensç‰ˆæœ¬å¯ç”¨ï¼ˆå…¶ä»–ç‰ˆæœ¬å¾…è¯„æµ‹ï¼Œé€šå¸¸ä¹Ÿå¯ç”¨ï¼‰ã€‚
 
-±¾Èí¼şfork×Ôhttps://github.com/redhat-openstack/openstack-utils
+æœ¬è½¯ä»¶forkè‡ªhttps://github.com/redhat-openstack/openstack-utils
 
-openstack-utils¹¤¾ß¿ÉÓÃÓÚopenstack×Ô¶¯»¯½Å±¾µÄ±àĞ´£¬°üº¬utilsÄ¿Â¼ÏÂµÄÈı¸öÃüÁî£º  
-openstack-config ÓÃÓÚ»ñÈ¡ºÍÉèÖÃopenstack¸÷×é¼şµÄÅäÖÃÎÄ¼şÄÚÈİ    
-openstack-status »ñÈ¡ºÍ²é¿´openstack·şÎñ×´Ì¬£¬¼ì²é¸÷·şÎñºÍ¼ì²éµÄÔËĞĞ×´Ì¬£¬²¿·ÖÃüÁî²»¼æÈİ   
-openstack-service ¿ØÖÆopenstack¸÷×é¼ş·şÎñÆ÷   
+openstack-utilså·¥å…·å¯ç”¨äºopenstackè‡ªåŠ¨åŒ–è„šæœ¬çš„ç¼–å†™ï¼ŒåŒ…å«utilsç›®å½•ä¸‹çš„ä¸‰ä¸ªå‘½ä»¤ï¼š  
+openstack-config ç”¨äºè·å–å’Œè®¾ç½®openstackå„ç»„ä»¶çš„é…ç½®æ–‡ä»¶å†…å®¹    
+openstack-status è·å–å’ŒæŸ¥çœ‹openstackæœåŠ¡çŠ¶æ€ï¼Œæ£€æŸ¥å„æœåŠ¡å’Œæ£€æŸ¥çš„è¿è¡ŒçŠ¶æ€ï¼Œéƒ¨åˆ†å‘½ä»¤ä¸å…¼å®¹   
+openstack-service æ§åˆ¶openstackå„ç»„ä»¶æœåŠ¡å™¨   
 
-Ê¹ÓÃ·½·¨£º   
+ä½¿ç”¨æ–¹æ³•ï¼š   
 git clone https://github.com/pixelb/crudini.git -b 0.9   
-cp crudini/curdini /usr/bin   
+cp crudini/crudini /usr/bin   
 cp openstack-utils/utils/* /usr/bin
  
