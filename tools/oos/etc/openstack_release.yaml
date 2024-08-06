@@ -44,7 +44,7 @@
   heat-tempest-plugin: 1.7.1
   heat-translator: 2.7.0
   horizon: 23.1.1
-  ironic: 21.4.1
+  ironic: 21.4.2
   ironic-inspector: 11.4.1
   ironic-lib: 5.4.0
   ironic-prometheus-exporter: 4.1.0
