@@ -155,6 +155,7 @@ openeuler:
   cve-manager: Infrastructure
   dcs: sig-power-efficient
   dde: sig-DDE
+  dde_autotest_euler: sig-QA
   deepin-rpm-installer: sig-DDE
   deepin-upgrade-tool: sig-DDE
   devkit-pipeline: sig-CICD
