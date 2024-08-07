@@ -370,7 +370,7 @@
   neutron-dynamic-routing: 23.0.0
   neutron-fwaas: 19.0.0
   neutron-fwaas-dashboard: 6.0.0
-  neutron-lib: 3.8.1
+  neutron-lib: 3.8.2
   neutron-tempest-plugin: 2.5.0
   neutron-vpnaas: 23.0.0
   neutron-vpnaas-dashboard: 9.0.0
