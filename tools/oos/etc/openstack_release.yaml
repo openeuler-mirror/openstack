@@ -10,7 +10,7 @@
   barbican: 16.0.0
   barbican_tempest_plugin: 2.0.0
   bifrost: 16.1.1
-  blazar: 11.0.0
+  blazar: 11.0.1
   blazar-dashboard: 9.0.1
   blazar-nova: 3.0.0
   blazar_tempest_plugin: 0.10.1
@@ -118,7 +118,7 @@
   openstack-placement: 9.0.0
   openstack-release-test: 4.0.0
   openstack-venus: 2.0.0
-  openstacksdk: 1.0.1
+  openstacksdk: 1.0.2
   os-brick: 6.2.3
   os-ken: 2.6.1
   os-win: 5.9.0
@@ -209,7 +209,7 @@
   python-neutronclient: 9.0.0
   python-novaclient: 18.3.0
   python-octaviaclient: 3.4.0
-  python-openstackclient: 6.2.0
+  python-openstackclient: 6.2.1
   python-saharaclient: 4.1.0
   python-senlinclient: 3.0.0
   python-solumclient: 3.7.0
