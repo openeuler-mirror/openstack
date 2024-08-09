@@ -167,7 +167,7 @@
   puppet-manila: 22.0.0
   puppet-mistral: 22.0.0
   puppet-murano: 22.0.0
-  puppet-neutron: 22.0.0
+  puppet-neutron: 22.0.1
   puppet-nova: 22.1.0
   puppet-octavia: 22.0.0
   puppet-openstack_extras: 22.0.0
@@ -431,7 +431,7 @@
   puppet-manila: 23.0.0
   puppet-mistral: 23.0.0
   puppet-murano: 23.0.0
-  puppet-neutron: 23.0.0
+  puppet-neutron: 23.0.1
   puppet-nova: 23.0.0
   puppet-octavia: 23.0.0
   puppet-openstack_extras: 23.0.0
