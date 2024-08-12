@@ -100,7 +100,7 @@
   networking-hyperv: 14.0.0
   networking-odl: 22.0.0
   networking-sfc: 16.0.0
-  neutron: 22.2.0
+  neutron: 22.2.1
   neutron-dynamic-routing: 22.0.0
   neutron-fwaas: 18.0.0
   neutron-fwaas-dashboard: 5.0.0
@@ -108,7 +108,7 @@
   neutron-tempest-plugin: 2.2.0
   neutron-vpnaas: 22.0.0
   neutron-vpnaas-dashboard: 8.0.0
-  nova: 27.4.0
+  nova: 27.5.0
   octavia: 12.0.0
   octavia-dashboard: 11.0.0
   octavia-lib: 3.2.0
@@ -251,7 +251,7 @@
   telemetry_tempest_plugin: 1.9.0
   tempest: 34.1.0
   tosca-parser: 2.8.0
-  trove: 19.0.0
+  trove: 19.0.1
   trove-dashboard: 20.0.0
   trove_tempest_plugin: 2.0.1
   venus-dashboard: 2.0.0
@@ -374,7 +374,7 @@
   neutron-tempest-plugin: 2.5.0
   neutron-vpnaas: 23.0.0
   neutron-vpnaas-dashboard: 9.0.0
-  nova: 28.2.0
+  nova: 28.3.0
   octavia: 13.0.0
   octavia-dashboard: 12.0.0
   octavia-lib: 3.3.0
