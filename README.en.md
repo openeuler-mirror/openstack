@@ -107,7 +107,7 @@ The packages of OpenStack Queens and Rocky are in the oepkg repository:
 
 20.03-LTS-SP2 Queens: https://repo.oepkgs.net/openEuler/rpm/openEuler-20.03-LTS-SP2/budding-openeuler/openstack/queens/
 
-## How to Contribue
+## How to Contribute
 
 The OpenStack SIG adheres to the four open principles of the OpenStack community: open source, open design, open development, open community. Developers, users, and vendors are welcome to participate in SIG contributions in various open source modes, including but not limited to:
 
@@ -142,7 +142,7 @@ There are many other things you can do in the SIG. Just ensure that the work you
 
 OpenStack contains many projects. To facilitate management, a unified entry project has been set up. Users and developers can submit issues in the project if they have any questions about the OpenStack SIG and OpenStack sub-projects.
 
-### SIG developped projects (in alphabetical order)
+### SIG developed projects (in alphabetical order)
 
 - <https://gitee.com/openeuler/openstack-kolla-ansible-plugin>
 - <https://gitee.com/openeuler/openstack-kolla-plugin>
