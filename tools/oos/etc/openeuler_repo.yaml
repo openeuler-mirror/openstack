@@ -254,6 +254,7 @@ openeuler:
   intel-kernel: sig-Intel-Arch
   intel-lkvs: sig-Intel-Arch
   intel-oneapi: sig-Intel-Arch
+  intel-openvino: sig-Intel-Arch
   intel-qemu: sig-Intel-Arch
   isula-build: iSulad
   isula-rust-extensions: iSulad
@@ -1292,6 +1293,7 @@ src-openeuler:
   cli-parser: Application
   cli11: dev-utils
   clibcni: iSulad
+  clickhouse: DB
   cliquer: sig-epol
   clitest: Application
   cln: sig-KDE
