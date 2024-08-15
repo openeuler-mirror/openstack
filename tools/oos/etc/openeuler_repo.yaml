@@ -661,7 +661,7 @@ src-openeuler:
   PlasmaMycroftApplet: sig-KDE
   PlotJuggler: sig-ROS
   PyDrive: sig-UKUI
-  PyPAM: Others
+  PyPAM: sig-security-facility
   PyQt4: sig-python-modules
   PyYAML: sig-python-modules
   QingShuang: dev-utils
