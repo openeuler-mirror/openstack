@@ -7,7 +7,7 @@
 #
 #
 # Spec命令示例：
-#   # 在当前目录生成olso.service 2.6.0 的spec文件
+#   # 在当前目录生成oslo.service 2.6.0 的spec文件
 #   oos spec build --name oslo.service --version 2.6.0 -o python-oslo-service.spec
 #   # 生成最新版本oslo.service spec文件、下载对应源码包，并在自动执行rpmbuild命令
 #   oos spec build -n oslo.service -b

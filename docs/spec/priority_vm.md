@@ -79,9 +79,9 @@ POST v2/servers (v2.1默认版本)
 
 假设一个compute节点拥有14个core，设置cpu_dedicated_set=0-11，一共12个核，cpu_shared_set=12-13，一共2个核心，cpu_allocation_ratio=8 则：
 
-1. 高优VM在schdeduler视角可用core为12，compute视角可绑核core也是12，与Nova原有逻辑一致。
-2. 低优VM在schdeduler视角可用core为2 \* 8 = 16，compute视角可绑核core为2(当cpu_priority_mix_enable=False)，与Nova原有逻辑一致。
-3. 低优VM在schdeduler视角可用core为2 \* 8 = 16，compute视角可绑核core为2+12(当cpu_priority_mix_enable=True)，与Nova原有逻辑有差异。
+1. 高优VM在scheduler视角可用core为12，compute视角可绑核core也是12，与Nova原有逻辑一致。
+2. 低优VM在scheduler视角可用core为2 \* 8 = 16，compute视角可绑核core为2(当cpu_priority_mix_enable=False)，与Nova原有逻辑一致。
+3. 低优VM在scheduler视角可用core为2 \* 8 = 16，compute视角可绑核core为2+12(当cpu_priority_mix_enable=True)，与Nova原有逻辑有差异。
 
 ### 参数配置建议
 
