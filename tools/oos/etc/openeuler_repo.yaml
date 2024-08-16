@@ -388,7 +388,7 @@ openeuler:
   openEuler-menus: sig-KDE
   openEuler-pkginfo: dev-utils
   openEuler-portal: sig-OpenDesign
-  openEuler-rpm-config: Base-service
+  openEuler-rpm-config: TC
   openEuler_chroot: sig-Gatekeeper
   openRSO: Kernel
   opendesign: sig-OpenDesign
@@ -3482,6 +3482,7 @@ src-openeuler:
   ksystemstats: sig-KDE
   kteatime: sig-KDE
   ktextaddons: sig-KDE
+  ktib: sig-CloudNative
   ktimer: sig-KDE
   ktrip: sig-KDE
   kuasar: sig-CloudNative
@@ -5133,7 +5134,7 @@ src-openeuler:
   openEuler-release-nestos-for-container: sig-K8sDistro
   openEuler-release-nestos-for-virt: sig-K8sDistro
   openEuler-repos: Base-service
-  openEuler-rpm-config: Base-service
+  openEuler-rpm-config: TC
   openEuler_chroot: sig-Gatekeeper
   openGemini: DB
   openInula: dev-utils
