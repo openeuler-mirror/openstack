@@ -236,9 +236,9 @@
 <h3 id="_7">举例<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>假设一个compute节点拥有14个core，设置cpu_dedicated_set=0-11，一共12个核，cpu_shared_set=12-13，一共2个核心，cpu_allocation_ratio=8 则：</p>
 <ol>
-<li>高优VM在schdeduler视角可用core为12，compute视角可绑核core也是12，与Nova原有逻辑一致。</li>
-<li>低优VM在schdeduler视角可用core为2 * 8 = 16，compute视角可绑核core为2(当cpu_priority_mix_enable=False)，与Nova原有逻辑一致。</li>
-<li>低优VM在schdeduler视角可用core为2 * 8 = 16，compute视角可绑核core为2+12(当cpu_priority_mix_enable=True)，与Nova原有逻辑有差异。</li>
+<li>高优VM在scheduler视角可用core为12，compute视角可绑核core也是12，与Nova原有逻辑一致。</li>
+<li>低优VM在scheduler视角可用core为2 * 8 = 16，compute视角可绑核core为2(当cpu_priority_mix_enable=False)，与Nova原有逻辑一致。</li>
+<li>低优VM在scheduler视角可用core为2 * 8 = 16，compute视角可绑核core为2+12(当cpu_priority_mix_enable=True)，与Nova原有逻辑有差异。</li>
 </ol>
 <h3 id="_8">参数配置建议<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <p>先确定全局超分比和极端超分比。</p>
