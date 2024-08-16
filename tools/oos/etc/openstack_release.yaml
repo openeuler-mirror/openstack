@@ -119,7 +119,7 @@
   openstack-release-test: 4.0.0
   openstack-venus: 2.0.0
   openstacksdk: 1.0.2
-  os-brick: 6.2.3
+  os-brick: 6.2.4
   os-ken: 2.6.1
   os-win: 5.9.0
   os_vif: 3.1.1
