@@ -648,6 +648,7 @@ src-openeuler:
   OpenCSD: dev-utils
   OpenEXR: Runtime
   OpenIPMI: Networking
+  OpenSceneGraph: sig-HPC
   PEGTL: dev-utils
   PackageKit: Desktop
   PackageKit-Qt: Desktop
@@ -1332,6 +1333,7 @@ src-openeuler:
   coin-or-osi: sig-epol
   coin-or-sample: sig-epol
   coin-or-vol: sig-epol
+  collada-dom: sig-HPC
   collectd: oVirt
   colm: dev-utils
   color-filesystem: Desktop
@@ -2538,6 +2540,7 @@ src-openeuler:
   gtk2-engines: sig-mate-desktop
   gtk3: Desktop
   gtk4: Others
+  gtkglext: sig-HPC
   gtkmm24: dev-utils
   gtkmm30: Others
   gtksourceview2: sig-desktop-apps
@@ -3542,6 +3545,7 @@ src-openeuler:
   laser_proc: sig-ROS
   lasso: Base-service
   lastpass-cli: Application
+  laszip: sig-HPC
   latex2html: Others
   latexmk: sig-perl-modules
   lato-fonts: Desktop
@@ -3828,6 +3832,7 @@ src-openeuler:
   libkysdk-base: sig-UKUI
   libkysdk-system: sig-UKUI
   liblangtag: ecopkg
+  liblas: sig-HPC
   liblc3: Desktop
   libldac: GNOME
   libldb: Desktop
