@@ -1805,6 +1805,12 @@ src-openeuler:
   fcitx-libpinyin: Desktop
   fcitx-qt5: Desktop
   fcitx-sunpinyin: Desktop
+  fcitx5: sig-UKUI
+  fcitx5-chinese-addons: sig-UKUI
+  fcitx5-configtool: sig-UKUI
+  fcitx5-gtk: sig-UKUI
+  fcitx5-lua: sig-UKUI
+  fcitx5-qt: sig-UKUI
   fcl: sig-ROS
   fcoe-utils: System-tool
   fdupes: Application
@@ -3523,6 +3529,7 @@ src-openeuler:
   kylin-usb-creator: sig-UKUI
   kylin-user-guide: sig-UKUI
   kylin-video: sig-UKUI
+  kylin-virtual-keyboard: sig-UKUI
   kylin-weather: sig-UKUI
   kyotocabinet: Others
   kytuning-client: sig-ops
@@ -3797,6 +3804,7 @@ src-openeuler:
   libieee1284: Runtime
   libijs: Computing
   libimagequant: Programming-language
+  libime: sig-UKUI
   libimobiledevice: Desktop
   libindicator: Programming-language
   libinput: Computing
@@ -11062,6 +11070,7 @@ src-openeuler:
   xarchiver: xfce
   xbanish: Application
   xbean: sig-Java
+  xcb-imdkit: sig-UKUI
   xcb-proto: Programming-language
   xcb-util: Desktop
   xcb-util-cursor: Programming-language
