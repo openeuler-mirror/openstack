@@ -405,6 +405,7 @@ openeuler:
   openeuler-jenkins: sig-Gatekeeper
   openeuler-obs: sig-Gatekeeper
   openeuler-os-build: sig-Gatekeeper
+  openeuler-upgrader: sig-Migration
   openeuler-wiki-bot: bigdata
   openjfx8: Compiler
   opensd: sig-openstack
@@ -10431,6 +10432,7 @@ src-openeuler:
   slider_publisher: sig-ROS
   slirp4netns: sig-CloudNative
   slurm: sig-HPC
+  sly: Base-service
   smartdenovo: sig-bio
   smartmontools: Storage
   smc-fonts: System-tool
