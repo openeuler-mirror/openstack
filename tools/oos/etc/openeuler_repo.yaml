@@ -101,6 +101,7 @@ openeuler:
   astream: Kernel
   async-libfuse: iSulad
   attest-tools: sig-security-facility
+  authHub: sig-ops
   authz: sig-recycle
   auto_py2to3: dev-utils
   avocado-vt: sig-QA
@@ -1039,6 +1040,7 @@ src-openeuler:
   audit: sig-security-facility
   augeas: Desktop
   auter: Application
+  authHub: sig-ops
   authd: Base-service
   authselect: Base-service
   authz: sig-recycle
