@@ -405,7 +405,7 @@
   oslo.privsep: 3.2.0
   oslo.reports: 3.1.0
   oslo.rootwrap: 7.1.0
-  oslo.serialization: 5.2.0
+  oslo.serialization: 5.2.1
   oslo.service: 3.2.1
   oslo.upgradecheck: 2.2.0
   oslo.utils: 6.2.1
