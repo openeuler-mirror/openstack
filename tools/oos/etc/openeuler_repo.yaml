@@ -2488,6 +2488,7 @@ src-openeuler:
   gphoto2: Base-service
   gpm: Desktop
   gps_umd: sig-ROS
+  gpsbabel: Application
   gpsd: sig-KDE
   gradio: sig-CloudNative
   gradle: sig-Java
