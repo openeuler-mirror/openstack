@@ -4216,6 +4216,7 @@ src-openeuler:
   lv2: sig-epol
   lvm2: Storage
   lwip: sig-high-performance-network
+  lwjgl3: sig-Java
   lxappearance: xfce
   lxc: iSulad
   lxcfs: iSulad
