@@ -33,7 +33,7 @@ def get_pr_list():
         params={
             'state': 'open',
             'sig': 'sig-openstack',
-            'per_page': '2000'
+            'per_page': '100'
         }
     ).json()
     return pr_dict['data']
