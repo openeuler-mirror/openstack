@@ -10995,6 +10995,7 @@ src-openeuler:
   vpnc-script: Application
   vrpn: sig-ROS
   vs2qt: sig-porting-platform-winapp
+  vscode: Desktop
   vscodium: sig-RISC-V
   vsftpd: Networking
   vte: Application
