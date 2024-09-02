@@ -96,7 +96,7 @@ oos spec push --name python-pyrsistent --version 0.18.1 -dp -rs
 
 注1：升级时要通过 `oos spec push` 命令生成 spec 文件，不要使用 `oos spec build` 命令，push 命令会保留仓库中 现有 spec 的 changelog，build 命令则直接生成新的 changelog。
 
-注2：处理错误时，可以参考仓库中现有的 spec 文件；当前 spec 除了 changlog 部分，其余为 oos 工具重新生成，前人遇到的错误，此处仍可能遇到，可参考前人操作结果问题。
+注2：处理错误时，可以参考仓库中现有的 spec 文件；当前 spec 除了 changelog 部分，其余为 oos 工具重新生成，前人遇到的错误，此处仍可能遇到，可参考前人操作结果问题。
 
 注3：oos 命令还支持批量处理，可以参考 oos 的 [README](https://gitee.com/openeuler/openstack/blob/master/tools/oos/README.md) 自行尝试。
 
