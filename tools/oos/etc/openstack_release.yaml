@@ -55,9 +55,9 @@
   kayobe: 14.6.0
   kayobe-config: 14.3.0
   kayobe-config-dev: 14.6.0
-  keystone: 23.0.1
+  keystone: 23.0.2
   keystone_tempest_plugin: 0.12.0
-  keystoneauth1: 5.1.2
+  keystoneauth1: 5.1.3
   keystonemiddleware: 10.2.0
   kolla: 16.5.0
   kolla-ansible: 16.6.0
@@ -109,9 +109,9 @@
   neutron-vpnaas: 22.0.0
   neutron-vpnaas-dashboard: 8.0.0
   nova: 27.5.0
-  octavia: 12.0.0
-  octavia-dashboard: 11.0.0
-  octavia-lib: 3.2.0
+  octavia: 12.0.1
+  octavia-dashboard: 11.0.1
+  octavia-lib: 3.2.1
   octavia-tempest-plugin: 2.3.0
   openstack-cyborg: 10.1.0
   openstack-heat: 20.0.1
