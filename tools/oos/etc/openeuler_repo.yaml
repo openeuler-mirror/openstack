@@ -1,6 +1,7 @@
 openeuler:
   A-FOT: Compiler
   A-Ops: sig-ops
+  A-SysArmor: sig-security-facility
   A-Tune: A-Tune
   A-Tune-BPF-Collection: A-Tune
   A-Tune-Collector: A-Tune
@@ -433,6 +434,7 @@ openeuler:
   pin-llvm-client: Compiler
   pin-server: Compiler
   pkgporter: dev-utils
+  pkgs-categorizer: sig-Compatibility-Infra
   pkgship: sig-EasyLife
   plymouth-theme-kiran: sig-KIRAN-DESKTOP
   poissonsearch-oss: DB
@@ -571,6 +573,7 @@ openeuler:
 src-openeuler:
   A-FOT: Compiler
   A-Ops: sig-ops
+  A-SysArmor: sig-security-facility
   A-Tune: A-Tune
   A-Tune-BPF-Collection: A-Tune
   A-Tune-Collector: A-Tune
@@ -7102,6 +7105,7 @@ src-openeuler:
   pkgconfig: Private
   pkgdiff: sig-EasyLife
   pkgporter: dev-utils
+  pkgs-categorizer: sig-Compatibility-Infra
   pkgship: sig-EasyLife
   pki-core: Application
   plasma-breeze: sig-KDE
