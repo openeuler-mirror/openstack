@@ -131,7 +131,7 @@ oos spec push --name python-pyrsistent --version 0.18.1 -dp -rs
 
 ## 注意事项
 
-这里对一些可能遇到的的特殊问题进行记录。
+这里对一些可能遇到的特殊问题进行记录。
 
 ### 测试未执行问题
 
