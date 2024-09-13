@@ -1149,6 +1149,10 @@ src-openeuler:
   bootstrap: sig-nodejs
   bootupd: sig-K8sDistro
   botan2: sig-KDE
+  botron-hard-realtime-plugin: sig-IDE
+  botron-hybrid-deployment-plugin: sig-IDE
+  botron-platform: sig-IDE
+  botron-soft-reattime-plugin: sig-IDE
   bouncycastle: dev-utils
   bowtie2: sig-bio
   box86: sig-compat-winapp
@@ -9015,6 +9019,7 @@ src-openeuler:
   python-rply: sig-python-modules
   python-rpm-generators: Base-service
   python-rpmautospec: ecopkg
+  python-rpmautospec-core: dev-utils
   python-rpmfluff: Private
   python-rsa: sig-python-modules
   python-rsd-lib: sig-openstack
