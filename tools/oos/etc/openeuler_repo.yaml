@@ -1760,6 +1760,7 @@ src-openeuler:
   etckeeper: Application
   ethercat-igh: sig-industrial-control
   ethtool: Networking
+  etipc: sig-embedded
   etmem: Storage
   eunomia-bpf: sig-ebpf
   eventmesh: sig-message-middleware
