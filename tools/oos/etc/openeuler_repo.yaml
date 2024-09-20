@@ -1924,6 +1924,7 @@ src-openeuler:
   foros: sig-ROS
   four_wheel_steering_msgs: sig-ROS
   fpaste: Base-service
+  fpchecker: sig-HPC
   fping: dev-utils
   fprintd: System-tool
   freeglut: Runtime
