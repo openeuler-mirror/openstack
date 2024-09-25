@@ -86,7 +86,7 @@ master_agent用于指定Master角色的网络节点，slave_agents用于指定Sl
 
 ![L3 Scheduler](../img/spec/l3_scheduler.png)
 
-最后需要修改neutron-l3-agent的Router更新的逻辑代码，由于neutron-l3-agent启动时会初始化一个资源队列用于更新资源状态，同时开启一个守护线程用于读取资源队列，每次有网络资源状态有变化（创建、删除或者更新），就会添加到改队列中，最后根据资源的类型和状态确定将要执行的动作。
+最后需要修改neutron-l3-agent的Router更新的逻辑代码，由于neutron-l3-agent启动时会初始化一个资源队列用于更新资源状态，同时开启一个守护线程用于读取资源队列，每次网络资源状态有变化（创建、删除或者更新）时，就会添加到该队列中，最后根据资源的类型和状态确定将要执行的动作。
 这里Router创建完后，neutron-l3-agent最后会执行_process_added_router方法，先调用RouterInfo的initialize方法，再调用process方法。
 initialize方法主要涉及到Router信息的一些初始化，包括网络命名空间的创建、port的创建、keepalived进程的初始化等等。
 process方法中会做下面几个操作。
