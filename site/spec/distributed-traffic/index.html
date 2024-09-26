@@ -227,7 +227,7 @@ DVR只是作用于同一Router下不同计算节点的虚拟机实例之间的�
 <p>master_agent用于指定Master角色的网络节点，slave_agents用于指定Slave角色的网络节点数组。</p>
 <p>然后要修改Router的创建逻辑，需要为Router新增一个调度方法。Neutron中router_scheduler_driver默认是LeastRoutersScheduler（最少Router个数的网络节点），继承该类新增调度方法，可以根据Router的configurations字段选择指定的网络节点。</p>
 <p><img alt="L3 Scheduler" src="../../img/spec/l3_scheduler.png" /></p>
-<p>最后需要修改neutron-l3-agent的Router更新的逻辑代码，由于neutron-l3-agent启动时会初始化一个资源队列用于更新资源状态，同时开启一个守护线程用于读取资源队列，每次有网络资源状态有变化（创建、删除或者更新），就会添加到改队列中，最后根据资源的类型和状态确定将要执行的动作。
+<p>最后需要修改neutron-l3-agent的Router更新的逻辑代码，由于neutron-l3-agent启动时会初始化一个资源队列用于更新资源状态，同时开启一个守护线程用于读取资源队列，每次网络资源状态有变化（创建、删除或者更新）时，就会添加到该队列中，最后根据资源的类型和状态确定将要执行的动作。
 这里Router创建完后，neutron-l3-agent最后会执行_process_added_router方法，先调用RouterInfo的initialize方法，再调用process方法。
 initialize方法主要涉及到Router信息的一些初始化，包括网络命名空间的创建、port的创建、keepalived进程的初始化等等。
 process方法中会做下面几个操作。</p>

@@ -289,7 +289,7 @@ oos spec push --name python-pyrsistent --version 0.18.1 -dp
     [可选] 复用已存在的spec文件，不再重新生成。</code></pre>
 <p>如此循环，直至上传成功。</p>
 <p>注1：升级时要通过 <code>oos spec push</code> 命令生成 spec 文件，不要使用 <code>oos spec build</code> 命令，push 命令会保留仓库中 现有 spec 的 changelog，build 命令则直接生成新的 changelog。</p>
-<p>注2：处理错误时，可以参考仓库中现有的 spec 文件；当前 spec 除了 changlog 部分，其余为 oos 工具重新生成，前人遇到的错误，此处仍可能遇到，可参考前人操作结果问题。</p>
+<p>注2：处理错误时，可以参考仓库中现有的 spec 文件；当前 spec 除了 changelog 部分，其余为 oos 工具重新生成，前人遇到的错误，此处仍可能遇到，可参考前人操作结果问题。</p>
 <p>注3：oos 命令还支持批量处理，可以参考 oos 的 <a href="https://gitee.com/openeuler/openstack/blob/master/tools/oos/README.md">README</a> 自行尝试。</p>
 <h3 id="pr">PR 门禁检查<a class="headerlink" href="#pr" title="Permanent link">&para;</a></h3>
 <p>此时在自己的 gitee 帐户中可以看到 fork 过来的仓库。进入自己帐号中的仓库，可通过点击如下框起位置，可进入原仓库。</p>
@@ -305,7 +305,7 @@ oos spec push --name python-pyrsistent --version 0.18.1 -dp
 <p>当一个 pr 通过门禁检查后，需要由软件仓库所属 SIG 的 maintainer 进行 review。为了加速进程，门禁通过后，可以手动 @ 对应的 maintainer，请求帮忙检视。在 pr 提交后，openeuler-ci-bot 会有如下图所示评论，其中被 @ 的人即为当前仓库所属 SIG 的 maintainer。</p>
 <p><img alt="maintainer" src="../../img/contribute/rpm-packaging-reference/maintainer.png" /></p>
 <h2 id="_2">注意事项<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>这里对一些可能遇到的的特殊问题进行记录。</p>
+<p>这里对一些可能遇到的特殊问题进行记录。</p>
 <h3 id="_3">测试未执行问题<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>oos 自动生成的 spec 文件中，%check 部分默认为 <code>%{__python3} setup.py test</code>。但是在有些包中，这样并不会真正执行测试，但门禁结果也显示通过。需要开发者人工辨别。参考方法如下：</p>
 <ol>
