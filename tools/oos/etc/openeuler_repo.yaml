@@ -24,6 +24,7 @@ openeuler:
   CTinspector: sig-ebpf
   Cpds: sig-CloudNative
   CreateImage: sig-Gatekeeper
+  CronTick: sig-Java
   CuckooSQL: bigdata
   CyclOne: sig-ops
   DDE-GoCode: sig-DDE
@@ -151,6 +152,7 @@ openeuler:
   cpds-analyzer: sig-CloudNative
   cpds-dashboard: sig-CloudNative
   cpds-detector: sig-CloudNative
+  ct-oval: sig-security-facility
   curl-rust: Networking
   custom_build_tool: Application
   cve-ease: Infrastructure
@@ -384,6 +386,7 @@ openeuler:
   oncn-bwm: sig-high-performance-network
   open-eBackup: sig-Backup
   open-source-summer: sig-OSCourse
+  openAMDC: bigdata
   openEuler-Advisor: sig-EasyLife
   openEuler-bootstrap: dev-utils
   openEuler-lsb: sig-release-management
@@ -596,6 +599,7 @@ src-openeuler:
   Control-FREEC: sig-bio
   Cpds: sig-CloudNative
   CreateImage: sig-Gatekeeper
+  CronTick: sig-Java
   CyclOne: sig-ops
   Cython: Programming-language
   DCache: Storage
@@ -3474,6 +3478,7 @@ src-openeuler:
   kmod-dinghai: sig-Compatibility-Infra
   kmod-drbd90: sig-Ha
   kmod-kvdo: Runtime
+  kmod-v4l2loopback: dev-utils
   kmodtool: dev-utils
   knox: bigdata
   kobuki_ros_interfaces: sig-ROS
@@ -10308,6 +10313,7 @@ src-openeuler:
   rust-bindgen: sig-Rust
   rust-cbindgen: sig-Rust
   rust-packaging: sig-Rust
+  rust-ripgrep: sig-Rust
   rust-srpm-macros: sig-epol
   rustup: sig-Rust
   rviz: sig-ROS
@@ -10954,6 +10960,7 @@ src-openeuler:
   uwsgi: Application
   v2v-conversion-host: oVirt
   v4l-utils: System-tool
+  v4l2loopback: dev-utils
   vagrant: Virt
   vagrant-hostmanager: Virt
   vagrant-libvirt: Virt
