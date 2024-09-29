@@ -259,6 +259,7 @@ openeuler:
   intel-lkvs: sig-Intel-Arch
   intel-oneapi: sig-Intel-Arch
   intel-openvino: sig-Intel-Arch
+  intel-qat: sig-Intel-Arch
   intel-qemu: sig-Intel-Arch
   isula-build: iSulad
   isula-rust-extensions: iSulad
