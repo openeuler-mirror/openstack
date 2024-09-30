@@ -47,6 +47,7 @@ openeuler:
   KubeMate: sig-CloudNative
   KubeOS: sig-CloudNative
   LTF: sig-QA
+  LiveUI: sig-Backup
   NestOS: sig-CloudNative
   OSAPIChecker: sig-OSRefTools
   OSCompatibility: sig-OSRefTools
@@ -163,6 +164,7 @@ openeuler:
   deepin-rpm-installer: sig-DDE
   deepin-upgrade-tool: sig-DDE
   devkit-pipeline: sig-CICD
+  devstation-config: Desktop
   digest-list-tools: sig-security-facility
   dim: sig-security-facility
   dim_tools: sig-security-facility
@@ -422,6 +424,7 @@ openeuler:
   openstack-kolla-plugin: sig-openstack
   openstack-plugin: sig-openstack
   openstack-releases: sig-openstack
+  openstack-releases-adaptation: sig-openstack
   openstack-sig-tool: sig-openstack
   operator-manager: sig-CloudNative
   osinfor: sig-memsafety
@@ -492,12 +495,14 @@ openeuler:
   secpaver: sig-security-facility
   secscanner: sig-security-facility
   secureguardian: sig-security-facility
+  security-baseline: sig-security-facility
   security-committee: security-committee
   security-committee-private: security-committee
   security-facility: sig-security-facility
   security-tool: sig-security-facility
   service_capability: sig-Talent-and-Service
   service_trainning: sig-Talent-and-Service
+  shim-review: sig-security-facility
   sig-Edge: sig-Edge
   sig-OSCourse: sig-OSCourse
   sig-OpenBoard: sig-recycle
@@ -1115,6 +1120,7 @@ src-openeuler:
   bcftools: sig-bio
   bcm283x-firmware: Private
   bcrypt: dev-utils
+  bdftopcf: Desktop
   bea-stax: dev-utils
   beakerlib: Base-service
   bean-validation-api: sig-Java
@@ -1211,6 +1217,7 @@ src-openeuler:
   caja-actions: sig-mate-desktop
   caja-extensions: sig-mate-desktop
   cal10n: dev-utils
+  calamares: Desktop
   calc: Application
   calcite: bigdata
   calico: sig-CloudNative
@@ -1330,6 +1337,7 @@ src-openeuler:
   cmockery: sig-recycle
   cobbler: sig-OS-Builder
   cockpit: Desktop
+  cockpit-machines: Desktop
   cockpit-ovirt: oVirt
   codegen: Application
   codehaus-parent: sig-Java
@@ -1567,6 +1575,7 @@ src-openeuler:
   derby: DB
   desktop-file-utils: Desktop
   devhelp: GNOME
+  devstation-config: Desktop
   dh-autoreconf: sig-Edge
   dhcp: Networking
   diagnostics: sig-ROS
@@ -1915,6 +1924,7 @@ src-openeuler:
   fontpackages: sig-recycle
   fonts-rpm-macros: Others
   fonts-tweak-tool: Application
+  fonttosfnt: Desktop
   foomatic: DB
   foomatic-db: DB
   foonathan_memory_vendor: sig-ROS
@@ -3493,6 +3503,7 @@ src-openeuler:
   korganizer: sig-KDE
   kpatch: Base-service
   kpeoplevcard: sig-KDE
+  kpmcore: sig-KDE
   kpublictransport: sig-KDE
   kquickimageeditor: sig-KDE
   krb5: Base-service
@@ -4475,6 +4486,7 @@ src-openeuler:
   mint-y-icons: sig-cinnamon
   mintlocale: sig-cinnamon
   mkeuleros: Private
+  mkfontscale: Desktop
   mksh: System-tool
   mlir-15: Compiler
   mlocate: Base-service
@@ -8002,6 +8014,7 @@ src-openeuler:
   python-fqdn: sig-python-modules
   python-freezegun: Programming-language
   python-friendlyloris: sig-python-modules
+  python-frontmatter: sig-python-modules
   python-frozendict: sig-python-modules
   python-frozenlist: sig-python-modules
   python-fsmonitor: sig-python-modules
@@ -11247,6 +11260,7 @@ src-openeuler:
   xsane: Application
   xscreensaver: sig-DDE
   xsd: sig-KIRAN-DESKTOP
+  xsel: Application
   xsom: sig-Java
   xstream: sig-Java
   xterm: Desktop
