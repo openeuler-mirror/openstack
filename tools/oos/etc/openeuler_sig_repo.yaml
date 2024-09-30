@@ -7,6 +7,7 @@ openeuler:
   openstack-kolla-plugin: sig-openstack
   openstack-plugin: sig-openstack
   openstack-releases: sig-openstack
+  openstack-releases-adaptation: sig-openstack
   openstack-sig-tool: sig-openstack
   pyisula: sig-openstack
 src-openeuler:
