@@ -4176,6 +4176,7 @@ src-openeuler:
   llvm-bolt-15: Compiler
   llvm-bolt-latest: Compiler
   llvm-latest: Compiler
+  llvm-libc: Compiler
   llvm-libunwind: Compiler
   llvm-libunwind-15: Compiler
   llvm-mlir: Compiler
@@ -11000,6 +11001,7 @@ src-openeuler:
   viewnior: Desktop
   vim: Base-service
   vim-airline: Application
+  vim-ale: Application
   vim-ansible: Application
   vinagre: Application
   vino: Desktop
