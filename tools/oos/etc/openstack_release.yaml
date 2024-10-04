@@ -312,7 +312,7 @@
   heat-tempest-plugin: 2.0.0
   heat-translator: 2.8.0
   horizon: 23.3.0
-  ironic: 23.0.2
+  ironic: 23.0.3
   ironic-inspector: 11.7.0
   ironic-lib: 5.5.0
   ironic-prometheus-exporter: 4.2.1
