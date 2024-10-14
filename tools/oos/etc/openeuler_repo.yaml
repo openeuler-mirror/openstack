@@ -796,6 +796,7 @@ src-openeuler:
   RSL: sig-ROS
   SDL: Programming-language
   SDL2: Others
+  SDL2_mixer: dev-utils
   SDL_sound: dev-utils
   SMACC2: sig-ROS
   ShellCheck: sig-CloudNative
@@ -1978,6 +1979,7 @@ src-openeuler:
   fuse3: Storage
   fusesource-pom: Base-service
   future: Base-service
+  fwts: dev-utils
   fwupd: System-tool
   fwupdate: Private
   fxload: Storage
@@ -4324,6 +4326,7 @@ src-openeuler:
   mate-desktop: sig-mate-desktop
   mate-icon-theme: sig-mate-desktop
   mate-media: sig-mate-desktop
+  mate-menu: sig-mate-desktop
   mate-menus: sig-mate-desktop
   mate-notification-daemon: sig-mate-desktop
   mate-panel: sig-mate-desktop
@@ -4336,6 +4339,7 @@ src-openeuler:
   mate-system-monitor: sig-mate-desktop
   mate-terminal: sig-mate-desktop
   mate-themes: sig-mate-desktop
+  mate-user-admin: sig-mate-desktop
   mate-user-guide: sig-mate-desktop
   mate-utils: sig-mate-desktop
   mathjax: sig-UKUI
@@ -7595,6 +7599,7 @@ src-openeuler:
   python-binstruct: sig-python-modules
   python-bintrees: sig-python-modules
   python-binwalk: sig-python-modules
+  python-bitarray: sig-python-modules
   python-bitcoinlib: sig-python-modules
   python-bitmath: sig-python-modules
   python-bitstring: sig-python-modules
@@ -9040,7 +9045,7 @@ src-openeuler:
   python-rpkg: sig-python-modules
   python-rply: sig-python-modules
   python-rpm-generators: Base-service
-  python-rpmautospec: ecopkg
+  python-rpmautospec: dev-utils
   python-rpmautospec-core: dev-utils
   python-rpmfluff: Private
   python-rsa: sig-python-modules
@@ -9278,7 +9283,7 @@ src-openeuler:
   python-tempdir: sig-python-modules
   python-tempest-lib: sig-openstack
   python-tempita: Base-service
-  python-templated-dictionary: ecopkg
+  python-templated-dictionary: dev-utils
   python-tempora: sig-python-modules
   python-tenacity: sig-python-modules
   python-tensorboard: A-Tune
