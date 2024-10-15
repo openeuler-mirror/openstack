@@ -374,9 +374,9 @@ class HuaweiCloudProvider(Provider):
         float_ip = '1.1.1.1'
         check_info = []
         try:
-            reponse = self.ecs_client.list_servers_details(request)
-            # print(len(reponse.servers))
-            for server in reponse.servers:
+            response = self.ecs_client.list_servers_details(request)
+            # print(len(response.servers))
+            for server in response.servers:
                 tmp_info = []
                 for ele in list(server.addresses.values())[0]:
                     if 'floating' == ele.os_ext_ip_stype:
