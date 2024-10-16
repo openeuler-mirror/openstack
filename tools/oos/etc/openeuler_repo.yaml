@@ -341,6 +341,7 @@ openeuler:
   libwd: sig-AccLib
   libxml2-rust: Base-service
   linux-operation: sig-OSCourse
+  liteview: Desktop
   llvm-project: Compiler
   lxcfs-tools: iSulad
   lzu-icc-nsg: sig-OSCourse
@@ -4159,6 +4160,7 @@ src-openeuler:
   linuxptp: Application
   lirc: sig-epol
   litehtml: Application
+  liteview: Desktop
   live555: sig-epol
   livy: DB
   lizardfs: sig-SDS
