@@ -1233,6 +1233,7 @@ src-openeuler:
   cantian: DB
   capstone: Base-service
   capsule: Virt
+  cargo2rpm: ecopkg
   caribou: sig-cinnamon
   cartographer: sig-ROS
   cartographer_ros: sig-ROS
