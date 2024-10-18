@@ -61,7 +61,7 @@ enabled_services() {
 
 # This filters the results of enabled_services() for those services
 # related to openstack, and optionally restricts those to ones
-# that start with a specifc prefix (e.g., "cinder" or "glance").
+# that start with a specific prefix (e.g., "cinder" or "glance").
 enabled_openstack_services() {
   local svcprefix=$1
 

@@ -448,7 +448,7 @@ class InitDependence(object):
 
 @click.command()
 @click.option('-p', '--projects', default=None, help='Specify the projects to be generated. Format should be like project1,project2')
-@click.option('-c', '--core', is_flag=True, help='Only fetch core depencence.')
+@click.option('-c', '--core', is_flag=True, help='Only fetch core dependence.')
 @click.option('-r', '--runtime', default='3.11', help='Target python runtime version')
 @click.argument('release', type=click.Choice(SUPPORT_RELEASE.keys()))
 def run(projects, core, runtime, release):
