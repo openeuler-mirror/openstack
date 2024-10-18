@@ -232,6 +232,7 @@ openeuler:
   ha-monitor: sig-Ha
   ha-web: sig-Ha
   hands-on: sig-OSCourse
+  hbm-predictor: Storage
   hi-mpu: sig-embedded
   hikptool: sig-WayCa
   hinic3: sig-Compatibility-Infra
@@ -824,7 +825,7 @@ src-openeuler:
   Xaw3d: Desktop
   Xen: sig-industrial-control
   Xenomai4: sig-industrial-control
-  Xline: sig-Rust
+  Xline: Compiler
   XmlSchema: Application
   a52dec: sig-epol
   aalib: Others
@@ -5317,6 +5318,7 @@ src-openeuler:
   opentest4j: Application
   opentofu: sig-CloudNative
   openttd: sig-desktop-apps
+  openvino: sig-Intel-Arch
   openvpn: Application
   openvswitch: Networking
   openvswitch-kmod: sig-recycle
@@ -10332,13 +10334,13 @@ src-openeuler:
   rubyporter: dev-utils
   ruckig: sig-ROS
   runc: sig-CloudNative
-  rust: sig-Rust
-  rust-bindgen: sig-Rust
-  rust-cbindgen: sig-Rust
-  rust-packaging: sig-Rust
-  rust-ripgrep: sig-Rust
+  rust: Compiler
+  rust-bindgen: Compiler
+  rust-cbindgen: Compiler
+  rust-packaging: Compiler
+  rust-ripgrep: Compiler
   rust-srpm-macros: sig-epol
-  rustup: sig-Rust
+  rustup: Compiler
   rviz: sig-ROS
   rviz_2d_overlay_plugins: sig-ROS
   rviz_satellite: sig-ROS
@@ -11146,9 +11148,11 @@ src-openeuler:
   xdotool: sig-cinnamon
   xdp-cpumap-tc: Networking
   xdp-tools: sig-ebpf
+  xdpyinfo: Desktop
   xenomai: sig-industrial-control
   xerces-c: Application
   xerces-j2: Base-service
+  xev: Desktop
   xfburn: xfce
   xfce-polkit: xfce
   xfce-theme-manager: xfce
@@ -11208,6 +11212,9 @@ src-openeuler:
   xinetd: Networking
   xkeyboard-config: Desktop
   xl2tpd: Networking
+  xlsatoms: Desktop
+  xlsclients: Desktop
+  xlsfonts: Desktop
   xml-commons-apis: Application
   xml-commons-resolver: Base-service
   xml-maven-plugin: sig-Java
@@ -11266,6 +11273,7 @@ src-openeuler:
   xorg-x11-xkb-utils: Desktop
   xorg-x11-xtrans-devel: Runtime
   xpp3: sig-Java
+  xprop: Desktop
   xrestop: Desktop
   xsane: Application
   xscreensaver: sig-DDE
@@ -11276,6 +11284,8 @@ src-openeuler:
   xterm: Desktop
   xvattr: Desktop
   xvidcore: Desktop
+  xvinfo: Desktop
+  xwininfo: Desktop
   xxhash: dev-utils
   xz: Base-service
   xz-java: Application
