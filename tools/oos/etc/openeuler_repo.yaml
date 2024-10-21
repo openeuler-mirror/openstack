@@ -515,6 +515,7 @@ openeuler:
   sra_test: sig-AccLib
   ssh-utils: sig-memsafety
   sssnic-driver: sig-Compatibility-Infra
+  storprototrace: Storage
   stortrace: Storage
   stratovirt: Virt
   summer2022: sig-OSCourse
@@ -11031,6 +11032,7 @@ src-openeuler:
   vitis_common: sig-ROS
   vkd3d: sig-compat-winapp
   vlc: sig-epol
+  vllm: ai
   vmaf: sig-epol
   vmtop: Virt
   vnpy: sig-desktop-apps
