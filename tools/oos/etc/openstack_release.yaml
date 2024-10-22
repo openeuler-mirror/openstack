@@ -44,11 +44,11 @@
   heat-tempest-plugin: 1.7.1
   heat-translator: 2.7.0
   horizon: 23.1.1
-  ironic: 21.4.3
+  ironic: 21.4.4
   ironic-inspector: 11.4.1
-  ironic-lib: 5.4.0
+  ironic-lib: 5.4.1
   ironic-prometheus-exporter: 4.1.0
-  ironic-python-agent: 9.4.2
+  ironic-python-agent: 9.4.3
   ironic-python-agent-builder: 5.1.1
   ironic-tempest-plugin: 2.6.1
   ironic-ui: 6.1.0
