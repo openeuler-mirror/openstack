@@ -590,6 +590,7 @@ src-openeuler:
   A-Tune-BPF-Collection: A-Tune
   A-Tune-Collector: A-Tune
   A-Tune-UI: A-Tune
+  ACPO: Compiler
   AFLplusplus: sig-QA
   AI4C: Compiler
   BSC-extrae: sig-HPC
