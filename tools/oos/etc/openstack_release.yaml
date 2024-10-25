@@ -21,7 +21,7 @@
   cinder-tempest-plugin: 1.8.1
   cinderlib: 5.1.0
   cliff: 4.2.0
-  cloudkitty: 18.0.0
+  cloudkitty: 18.1.0
   cloudkitty-dashboard: 16.0.0
   cloudkitty_tempest_plugin: 2.7.1
   compute-hyperv: 16.0.0
@@ -108,7 +108,7 @@
   neutron-tempest-plugin: 2.2.0
   neutron-vpnaas: 22.0.0
   neutron-vpnaas-dashboard: 8.0.0
-  nova: 27.5.0
+  nova: 27.5.1
   octavia: 12.0.1
   octavia-dashboard: 11.0.1
   octavia-lib: 3.2.1
