@@ -43,7 +43,7 @@ def group():
 
 @group.command(name='create', help='Create RPM spec for common python library')
 @click.option("-n", "--name", required=True, help="Name of package to build")
-@click.option("-v", "--version", default='latest', help="Package version, deault is the newest version")
+@click.option("-v", "--version", default='latest', help="Package version, default is the newest version")
 @click.option("-a", "--arch", is_flag=True, help="Build module with arch, noarch by default.")
 @click.option("-nc", "--no-check", is_flag=True, help="Do not add %check step in spec")
 @click.option("-pp", "--pyproject", is_flag=True, help="Generate the spec for pyproject project")
@@ -55,7 +55,7 @@ def create(name, version, arch, no_check, pyproject, output):
 
 @group.command(name='update', help='Update(upgrade or downgrade) RPM spec for the python library')
 @click.option("-n", "--name", required=True, help="Name of package to build")
-@click.option("-v", "--version", default='latest', help="Package version, deault is the newest version")
+@click.option("-v", "--version", default='latest', help="Package version, default is the newest version")
 @click.option("-s", "--special", is_flag=True, default=False, help="Only replace Version, Release, changelog and append source url")
 @click.option("-o", "--output", help="Specify output file of generated Spec")
 @click.option("-d", "--download", is_flag=True, default=False, help="Download the source file in the current directory")
