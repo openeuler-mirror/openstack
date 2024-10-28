@@ -374,7 +374,7 @@ class Comp:
 
 def compare_sorted_list(right: list, left: list, sep=','):
     '''
-    字母序比较两个个list 并对其 缺失填*** 分隔符默认tab
+    字母序比较两个list 并对其 缺失填*** 分隔符默认tab
     '''
     i, j = 0, 0
     mi, mj = len(right), len(left)
@@ -423,7 +423,7 @@ def generate(compare, compare_from, compare_branch, output, token, location):
 @click.option('-b', '--branches', default='master', help='Specify branches')
 @click.option('-o', '--output', default='compare_result', help='Output file name, default: compare_result')
 @click.option('-r', '--release', help='Openstack release name')
-@click.option('-p', '--packages', help='Specfigy file list range')
+@click.option('-p', '--packages', help='Specify file list range')
 @click.option('-a', '--append', is_flag=True, default=False, help='Append to the \'compare_result\' file')
 @click.option('-t', '--token', help='Personal gitee access token used for fetching info from gitee')
 @click.argument('location', type=click.Path(dir_okay=True))
