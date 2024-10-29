@@ -510,6 +510,7 @@ openeuler:
   sig-OpenBoard: sig-recycle
   signatrust: Infrastructure
   skylark: Virt
+  smart-shell: sig-intelligence
   sra_scann_adapter: sig-AccLib
   sra_tensorflow_adapter: sig-AccLib
   sra_test: sig-AccLib
