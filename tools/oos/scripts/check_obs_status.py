@@ -145,7 +145,7 @@ def check_ebs_status():
                      'aarch64': fail_link_aarch64}
 
         # flag for x86/aarch architecture
-        # refersh the value in func 'check_ebs_pkgs'
+        # refresh the value in func 'check_ebs_pkgs'
         suc_check = [False, False]
         for i in range(2):
             # 这里简单的try一下，防止ebs构建异常导致字典取值失败等报错
@@ -190,7 +190,7 @@ def update_issue(issue_number, result_str):
     }
     response = requests.patch(GITEE_ISSUE_UPDATE_URL % issue_number, headers=headers, params=body)
     if response.status_code != 200:
-        raise Exception("Failed update gitee issue")
+        raise Exception("Failed to update gitee issue")
 
 def create_issue(result_str):
     headers = {
@@ -207,7 +207,7 @@ def create_issue(result_str):
     }
     response = requests.post(GITEE_ISSUE_CREATE_URL, headers=headers, params=body)
     if response.status_code != 201:
-        raise Exception("Failed create gitee issue")
+        raise Exception("Failed to create gitee issue")
 
 
 def create_or_update_issue(result_str):
@@ -233,7 +233,7 @@ def format_content_for_markdown(input_dict):
                 output += '%s:  \n' % project_name
                 output += '%s\n\n' % ', '.join(pkg_list)
     else:
-        output += 'All package build success.'
+        output += 'All packages build success.'
     return output
 
 
