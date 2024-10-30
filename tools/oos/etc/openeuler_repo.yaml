@@ -22,6 +22,7 @@ openeuler:
   CPM4OSSP-UI: sig-ops
   CPython: Compiler
   CTinspector: sig-ebpf
+  ConfigOrchestrator: System-tool
   Cpds: sig-CloudNative
   CreateImage: sig-Gatekeeper
   CronTick: sig-Java
