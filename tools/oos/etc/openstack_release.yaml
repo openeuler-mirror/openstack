@@ -17,7 +17,7 @@
   castellan: 4.1.0
   ceilometer: 20.0.0
   ceilometermiddleware: 3.1.0
-  cinder: 22.2.0
+  cinder: 22.3.0
   cinder-tempest-plugin: 1.8.1
   cinderlib: 5.1.0
   cliff: 4.2.0
@@ -119,7 +119,7 @@
   openstack-release-test: 4.0.0
   openstack-venus: 2.0.0
   openstacksdk: 1.0.2
-  os-brick: 6.2.4
+  os-brick: 6.2.5
   os-ken: 2.6.1
   os-win: 5.9.0
   os_vif: 3.1.1
@@ -286,7 +286,7 @@
   castellan: 4.3.0
   ceilometer: 21.0.0
   ceilometermiddleware: 3.2.0
-  cinder: 23.2.0
+  cinder: 23.3.0
   cinder-tempest-plugin: 1.10.0
   cinderlib: 5.2.0
   cliff: 4.3.0
@@ -385,7 +385,7 @@
   openstack-release-test: 5.0.0
   openstack-venus: 3.0.0
   openstacksdk: 1.5.0
-  os-brick: 6.4.1
+  os-brick: 6.4.2
   os-ken: 2.7.0
   os_vif: 3.2.0
   osc-lib: 2.8.1
