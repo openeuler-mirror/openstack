@@ -606,7 +606,7 @@ Glance是OpenStack提供的镜像服务，负责虚拟机、裸机镜像的上�
 
     - 导入环境变量
       ```shell
-      sorce ~/.admin-openrcu
+      source ~/.admin-openrcu
       ```
 
     - 下载镜像
