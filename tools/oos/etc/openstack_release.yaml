@@ -117,6 +117,7 @@
   openstack-heat: 20.0.1
   openstack-placement: 9.0.0
   openstack-release-test: 4.0.0
+  openstack-release-test-2023.1: eom
   openstack-venus: 2.0.0
   openstacksdk: 1.0.2
   os-brick: 6.2.5
@@ -336,7 +337,7 @@
   magnum: 17.0.2
   magnum-ui: 13.0.0
   magnum_tempest_plugin: 2.1.0
-  manila: 17.2.0
+  manila: 17.3.0
   manila-tempest-plugin: 2.0.0
   manila-ui: 10.0.0
   masakari: 16.0.0
