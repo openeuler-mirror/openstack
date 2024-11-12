@@ -4683,7 +4683,7 @@ src-openeuler:
   nfs4-acl-tools: Storage
   nftables: Networking
   nghttp2: Networking
-  nginx: Packaging
+  nginx: Networking
   nilfs-utils: Others
   nim: Programming-language
   ninja-build: Programming-language
