@@ -190,6 +190,7 @@ openeuler:
   embedded-ci: sig-Yocto
   embedded-ipc: sig-embedded
   env_check: sig-Compatibility-Infra
+  epkg: sig-CICD
   etipc: sig-embedded
   etmem: Storage
   euler-copilot-framework: sig-intelligence
@@ -3529,6 +3530,7 @@ src-openeuler:
   ks-vaudit: sig-KIRAN-DESKTOP
   ksanecore: sig-KDE
   ksc-defender: sig-security-facility
+  kscreen: sig-KDE
   kscreenlocker: sig-KDE
   ksh: Base-service
   ksystemstats: sig-KDE
@@ -5199,6 +5201,7 @@ src-openeuler:
   openEuler-rpm-config: TC
   openEuler_chroot: sig-Gatekeeper
   openGemini: DB
+  openHiTLS: sig-security-facility
   openInula: dev-utils
   openRSO: Kernel
   openal-soft: Application
@@ -7245,6 +7248,7 @@ src-openeuler:
   postgresql-odbc: DB
   potrace: Application
   powerapi: sig-power-efficient
+  powerdevil: sig-KDE
   powermock: sig-Java
   powerpc-utils: sig-POWER
   powertop: Base-service
