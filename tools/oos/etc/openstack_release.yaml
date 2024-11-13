@@ -1,5 +1,6 @@
 '2023.1':
   adjutant-ui: 6.0.0
+  adjutant-ui-2023.1: eom
   ansible-collection-kolla: 3.3.0
   ansible-role-atos-hsm: 5.0.0
   ansible-role-lunasa-hsm: 5.0.0
@@ -29,6 +30,9 @@
   designate: 16.0.2
   designate-dashboard: 16.0.0
   designate-tempest-plugin: 0.17.0
+  devstack-2023.1: eom
+  devstack-plugin-ceph-2023.1: eom
+  devstack-plugin-container-2023.1: eom
   ec2-api: 16.0.0
   ec2api-tempest-plugin: 1.6.1
   freezer: 14.0.0
@@ -39,6 +43,7 @@
   glance: 26.1.0
   glance-tempest-plugin: 0.6.0
   glance_store: 4.3.3
+  grenade-2023.1: eom
   heat-agents: 6.0.0
   heat-dashboard: 9.0.0
   heat-tempest-plugin: 1.7.1
@@ -66,7 +71,9 @@
   kuryr-libnetwork: 11.0.0
   kuryr-tempest-plugin: 0.14.1
   magnum: 16.0.3
+  magnum-2023.1: eom
   magnum-ui: 12.0.0
+  magnum-ui-2023.1: eom
   magnum_tempest_plugin: 2.0.0
   manila: 16.2.1
   manila-tempest-plugin: 1.13.0
@@ -110,10 +117,14 @@
   neutron-vpnaas-dashboard: 8.0.0
   nova: 27.5.1
   octavia: 12.0.1
+  octavia-2023.1: eom
   octavia-dashboard: 11.0.1
+  octavia-dashboard-2023.1: eom
   octavia-lib: 3.2.1
+  octavia-lib-2023.1: eom
   octavia-tempest-plugin: 2.3.0
   openstack-cyborg: 10.1.0
+  openstack-cyborg-2023.1: eom
   openstack-heat: 20.0.1
   openstack-placement: 9.0.0
   openstack-release-test: 4.0.0
@@ -187,13 +198,16 @@
   puppet-watcher: 22.0.0
   puppet-zaqar: 22.0.0
   python-adjutant: 6.0.0
+  python-adjutant-2023.1: eom
   python-adjutantclient: 0.12.1
+  python-adjutantclient-2023.1: eom
   python-barbicanclient: 5.5.0
   python-blazarclient: 3.6.0
   python-brick-cinderclient-ext: 2.1.0
   python-cinderclient: 9.3.0
   python-cloudkittyclient: 4.7.1
   python-cyborgclient: 2.1.0
+  python-cyborgclient-2023.1: eom
   python-designateclient: 5.2.0
   python-freezerclient: 5.1.0
   python-glanceclient: 4.3.2
@@ -202,6 +216,7 @@
   python-ironicclient: 5.1.0
   python-keystoneclient: 5.1.0
   python-magnumclient: 4.1.0
+  python-magnumclient-2023.1: eom
   python-manilaclient: 4.4.2
   python-masakariclient: 8.1.0
   python-mistralclient: 5.0.0
@@ -210,6 +225,7 @@
   python-neutronclient: 9.0.0
   python-novaclient: 18.3.0
   python-octaviaclient: 3.4.0
+  python-octaviaclient-2023.1: eom
   python-openstackclient: 6.2.1
   python-saharaclient: 4.1.0
   python-senlinclient: 3.0.0
@@ -217,12 +233,16 @@
   python-swiftclient: 4.2.0
   python-tackerclient: 1.13.0
   python-troveclient: 8.1.0
+  python-troveclient-2023.1: eom
   python-venusclient: 2.0.1
   python-vitrageclient: 4.7.0
   python-watcher: 10.0.0
+  python-watcher-2023.1: eom
   python-watcherclient: 4.1.0
+  python-watcherclient-2023.1: eom
   python-zaqarclient: 2.5.1
   python-zunclient: 4.6.0
+  requirements-2023.1: eom
   sahara: 18.0.0
   sahara-dashboard: 18.0.0
   sahara-extra: 17.0.0
@@ -243,6 +263,7 @@
   solum-tempest-plugin: 2.6.0
   stevedore: 5.0.0
   storlets: 11.0.0
+  storlets-2023.1: eom
   sushy: 4.4.3
   swift: 2.31.1
   tacker: 9.0.0
@@ -253,7 +274,9 @@
   tempest: 34.1.0
   tosca-parser: 2.8.0
   trove: 19.0.1
+  trove-2023.1: eom
   trove-dashboard: 20.0.0
+  trove-dashboard-2023.1: eom
   trove_tempest_plugin: 2.0.1
   venus-dashboard: 2.0.0
   venus-tempest-plugin: 3.0.0
@@ -261,6 +284,7 @@
   vitrage-dashboard: 4.0.0
   vitrage-tempest-plugin: 6.1.1
   watcher-dashboard: 9.0.0
+  watcher-dashboard-2023.1: eom
   watcher-tempest-plugin: 2.6.0
   zaqar: 16.0.0
   zaqar-ui: 14.0.0
@@ -337,7 +361,7 @@
   magnum: 17.0.2
   magnum-ui: 13.0.0
   magnum_tempest_plugin: 2.1.0
-  manila: 17.3.0
+  manila: 17.3.1
   manila-tempest-plugin: 2.0.0
   manila-ui: 10.0.0
   masakari: 16.0.0
