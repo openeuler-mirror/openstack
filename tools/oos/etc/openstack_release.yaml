@@ -8,12 +8,15 @@
   aodh: 16.0.0
   aodhclient: 3.2.1
   automaton: 3.1.0
-  barbican: 16.0.1
+  barbican: 16.0.2
   barbican_tempest_plugin: 2.0.0
   bifrost: 16.1.1
   blazar: 11.0.1
+  blazar-2023.1: eom
   blazar-dashboard: 9.0.1
+  blazar-dashboard-2023.1: eom
   blazar-nova: 3.0.0
+  blazar-nova-2023.1: eom
   blazar_tempest_plugin: 0.10.1
   castellan: 4.1.0
   ceilometer: 20.0.0
@@ -28,7 +31,9 @@
   compute-hyperv: 16.0.0
   cyborg-tempest-plugin: 2.1.0
   designate: 16.0.2
+  designate-2023.1: eom
   designate-dashboard: 16.0.0
+  designate-dashboard-2023.1: eom
   designate-tempest-plugin: 0.17.0
   devstack-2023.1: eom
   devstack-plugin-ceph-2023.1: eom
@@ -203,12 +208,14 @@
   python-adjutantclient-2023.1: eom
   python-barbicanclient: 5.5.0
   python-blazarclient: 3.6.0
+  python-blazarclient-2023.1: eom
   python-brick-cinderclient-ext: 2.1.0
   python-cinderclient: 9.3.0
   python-cloudkittyclient: 4.7.1
   python-cyborgclient: 2.1.0
   python-cyborgclient-2023.1: eom
   python-designateclient: 5.2.0
+  python-designateclient-2023.1: eom
   python-freezerclient: 5.1.0
   python-glanceclient: 4.3.2
   python-heatclient: 3.2.0
@@ -241,7 +248,9 @@
   python-watcherclient: 4.1.0
   python-watcherclient-2023.1: eom
   python-zaqarclient: 2.5.1
+  python-zaqarclient-2023.1: eom
   python-zunclient: 4.6.0
+  python-zunclient-2023.1: eom
   requirements-2023.1: eom
   sahara: 18.0.0
   sahara-dashboard: 18.0.0
@@ -287,11 +296,15 @@
   watcher-dashboard-2023.1: eom
   watcher-tempest-plugin: 2.6.0
   zaqar: 16.0.0
+  zaqar-2023.1: eom
   zaqar-ui: 14.0.0
+  zaqar-ui-2023.1: eom
   zaqar_tempest_plugin: 1.6.0
   zun: 11.0.0
+  zun-2023.1: eom
   zun-tempest-plugin: 4.7.1
   zun-ui: 11.0.0
+  zun-ui-2023.1: eom
 '2023.2':
   adjutant-ui: 7.0.0
   ansible-collection-kolla: 4.2.0
