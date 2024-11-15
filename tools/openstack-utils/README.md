@@ -14,7 +14,7 @@ openstack-utils工具，openEuler-20.03-LTS-SP2上Queens版本可用（其他版
 openstack-utils工具可用于openstack自动化脚本的编写，包含utils目录下的三个命令：  
 openstack-config 用于获取和设置openstack各组件的配置文件内容    
 openstack-status 获取和查看openstack服务状态，检查各服务和检查的运行状态，部分命令不兼容   
-openstack-service 控制openstack各组件服务器   
+openstack-service 控制openstack各组件的服务。   
 
 使用方法：   
 git clone https://github.com/pixelb/crudini.git -b 0.9   

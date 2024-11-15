@@ -7,7 +7,7 @@ import requests
 
 
 # Call gitee api to get the PR list. For network problem, github always raise
-# timeout error. It's not suggest to ust this func in github action.
+# timeout error. It's not suggested to use this function in GitHub Actions.
 #
 # import os
 # def get_pr_list(gitee_org, repo_name, count):
