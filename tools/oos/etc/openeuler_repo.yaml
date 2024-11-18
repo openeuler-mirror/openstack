@@ -86,6 +86,7 @@ openeuler:
   WasmEngine: sig-CloudNative
   WayCa: sig-WayCa
   X-diagnosis: sig-ops
+  aa-ui: sig-intelligence
   aarch32-rootfs-builder: sig-Yocto
   abichecker: dev-utils
   ai-tools: ai
@@ -136,6 +137,7 @@ openeuler:
   chaosArsenal: sig-ops
   chaosArsenal-OS: sig-ops
   chaosArsenal-hardware: sig-ops
+  chatig: sig-intelligence
   ci-bot: sig-Gatekeeper
   clibcni: iSulad
   cloudnative: sig-CloudNative
@@ -518,7 +520,6 @@ openeuler:
   sra_test: sig-AccLib
   ssh-utils: sig-memsafety
   sssnic-driver: sig-Compatibility-Infra
-  storprototrace: Storage
   stortrace: Storage
   stratovirt: Virt
   summer2022: sig-OSCourse
