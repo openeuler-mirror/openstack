@@ -25,8 +25,11 @@
   cinder-tempest-plugin: 1.8.1
   cinderlib: 5.1.0
   cliff: 4.2.0
+  cliff-2023.1: eom
   cloudkitty: 18.1.0
+  cloudkitty-2023.1: eom
   cloudkitty-dashboard: 16.0.0
+  cloudkitty-dashboard-2023.1: eom
   cloudkitty_tempest_plugin: 2.7.1
   compute-hyperv: 16.0.0
   cyborg-tempest-plugin: 2.1.0
@@ -41,9 +44,13 @@
   ec2-api: 16.0.0
   ec2api-tempest-plugin: 1.6.1
   freezer: 14.0.0
+  freezer-2023.1: eom
   freezer-api: 14.0.0
+  freezer-api-2023.1: eom
   freezer-dr: 14.0.0
+  freezer-dr-2023.1: eom
   freezer-web-ui: 14.0.0
+  freezer-web-ui-2023.1: eom
   freezer_tempest_plugin: 3.0.1
   glance: 26.1.0
   glance-tempest-plugin: 0.6.0
@@ -53,6 +60,7 @@
   heat-dashboard: 9.0.0
   heat-tempest-plugin: 1.7.1
   heat-translator: 2.7.0
+  heat-translator-2023.1: eom
   horizon: 23.1.1
   ironic: 21.4.4
   ironic-inspector: 11.4.1
@@ -106,21 +114,33 @@
   murano-dashboard: 15.0.0
   murano-tempest-plugin: 2.6.0
   networking-bagpipe: 18.0.0
+  networking-bagpipe-2023.1: eom
   networking-baremetal: 6.1.1
   networking-bgpvpn: 18.0.0
+  networking-bgpvpn-2023.1: eom
   networking-generic-switch: 7.1.1
   networking-hyperv: 14.0.0
   networking-odl: 22.0.0
+  networking-odl-2023.1: eom
   networking-sfc: 16.0.0
+  networking-sfc-2023.1: eom
   neutron: 22.2.1
+  neutron-2023.1: eom
   neutron-dynamic-routing: 22.0.0
+  neutron-dynamic-routing-2023.1: eom
   neutron-fwaas: 18.0.0
+  neutron-fwaas-2023.1: eom
   neutron-fwaas-dashboard: 5.0.0
+  neutron-fwaas-dashboard-2023.1: eom
   neutron-lib: 3.4.3
+  neutron-lib-2023.1: eom
   neutron-tempest-plugin: 2.2.0
   neutron-vpnaas: 22.0.0
+  neutron-vpnaas-2023.1: eom
   neutron-vpnaas-dashboard: 8.0.0
+  neutron-vpnaas-dashboard-2023.1: eom
   nova: 27.5.1
+  nova-2023.1: eom
   octavia: 12.0.1
   octavia-2023.1: eom
   octavia-dashboard: 11.0.1
@@ -132,16 +152,22 @@
   openstack-cyborg-2023.1: eom
   openstack-heat: 20.0.1
   openstack-placement: 9.0.0
+  openstack-placement-2023.1: eom
   openstack-release-test: 4.0.0
   openstack-release-test-2023.1: eom
   openstack-venus: 2.0.0
   openstacksdk: 1.0.2
+  openstacksdk-2023.1: eom
   os-brick: 6.2.5
   os-ken: 2.6.1
+  os-ken-2023.1: eom
   os-win: 5.9.0
   os_vif: 3.1.1
+  os_vif-2023.1: eom
   osc-lib: 2.7.0
+  osc-lib-2023.1: eom
   osc-placement: 4.1.0
+  osc-placement-2023.1: eom
   oslo.cache: 3.3.1
   oslo.concurrency: 5.1.1
   oslo.config: 9.1.1
@@ -165,7 +191,9 @@
   oslo.vmware: 4.1.1
   oswin-tempest-plugin: 2.1.0
   ovn-octavia-provider: 4.0.2
+  ovn-octavia-provider-2023.1: eom
   ovsdbapp: 2.2.2
+  ovsdbapp-2023.1: eom
   patrole: 0.16.0
   puppet-aodh: 22.0.0
   puppet-barbican: 22.0.0
@@ -212,11 +240,13 @@
   python-brick-cinderclient-ext: 2.1.0
   python-cinderclient: 9.3.0
   python-cloudkittyclient: 4.7.1
+  python-cloudkittyclient-2023.1: eom
   python-cyborgclient: 2.1.0
   python-cyborgclient-2023.1: eom
   python-designateclient: 5.2.0
   python-designateclient-2023.1: eom
   python-freezerclient: 5.1.0
+  python-freezerclient-2023.1: eom
   python-glanceclient: 4.3.2
   python-heatclient: 3.2.0
   python-ironic-inspector-client: 4.9.0
@@ -230,19 +260,24 @@
   python-monascaclient: 2.7.0
   python-muranoclient: 2.6.0
   python-neutronclient: 9.0.0
+  python-neutronclient-2023.1: eom
   python-novaclient: 18.3.0
+  python-novaclient-2023.1: eom
   python-octaviaclient: 3.4.0
   python-octaviaclient-2023.1: eom
   python-openstackclient: 6.2.1
+  python-openstackclient-2023.1: eom
   python-saharaclient: 4.1.0
   python-senlinclient: 3.0.0
   python-solumclient: 3.7.0
   python-swiftclient: 4.2.0
   python-tackerclient: 1.13.0
+  python-tackerclient-2023.1: eom
   python-troveclient: 8.1.0
   python-troveclient-2023.1: eom
   python-venusclient: 2.0.1
   python-vitrageclient: 4.7.0
+  python-vitrageclient-2023.1: eom
   python-watcher: 10.0.0
   python-watcher-2023.1: eom
   python-watcherclient: 4.1.0
@@ -276,12 +311,16 @@
   sushy: 4.4.3
   swift: 2.31.1
   tacker: 9.0.0
+  tacker-2023.1: eom
   tacker-horizon: 7.0.0
+  tacker-horizon-2023.1: eom
   tap-as-a-service: 11.0.0
+  tap-as-a-service-2023.1: eom
   taskflow: 5.1.1
   telemetry_tempest_plugin: 1.9.0
   tempest: 34.1.0
   tosca-parser: 2.8.0
+  tosca-parser-2023.1: eom
   trove: 19.0.1
   trove-2023.1: eom
   trove-dashboard: 20.0.0
@@ -290,7 +329,9 @@
   venus-dashboard: 2.0.0
   venus-tempest-plugin: 3.0.0
   vitrage: 10.0.0
+  vitrage-2023.1: eom
   vitrage-dashboard: 4.0.0
+  vitrage-dashboard-2023.1: eom
   vitrage-tempest-plugin: 6.1.1
   watcher-dashboard: 9.0.0
   watcher-dashboard-2023.1: eom
