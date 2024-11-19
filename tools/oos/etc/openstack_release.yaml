@@ -22,8 +22,10 @@
   ceilometer: 20.0.0
   ceilometermiddleware: 3.1.0
   cinder: 22.3.0
+  cinder-2023.1: eom
   cinder-tempest-plugin: 1.8.1
   cinderlib: 5.1.0
+  cinderlib-2023.1: eom
   cliff: 4.2.0
   cliff-2023.1: eom
   cloudkitty: 18.1.0
@@ -159,6 +161,7 @@
   openstacksdk: 1.0.2
   openstacksdk-2023.1: eom
   os-brick: 6.2.5
+  os-brick-2023.1: eom
   os-ken: 2.6.1
   os-ken-2023.1: eom
   os-win: 5.9.0
@@ -238,7 +241,9 @@
   python-blazarclient: 3.6.0
   python-blazarclient-2023.1: eom
   python-brick-cinderclient-ext: 2.1.0
+  python-brick-cinderclient-ext-2023.1: eom
   python-cinderclient: 9.3.0
+  python-cinderclient-2023.1: eom
   python-cloudkittyclient: 4.7.1
   python-cloudkittyclient-2023.1: eom
   python-cyborgclient: 2.1.0
