@@ -5124,6 +5124,7 @@ src-openeuler:
   obs-service-set_version: Others
   obs_meta: sig-release-management
   ocaml: Programming-language
+  ocaml-augeas: dev-utils
   ocaml-calendar: dev-utils
   ocaml-camlp4: dev-utils
   ocaml-camomile: dev-utils
