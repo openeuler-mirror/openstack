@@ -28,6 +28,7 @@ openeuler:
   CronTick: sig-Java
   CuckooSQL: bigdata
   CyclOne: sig-ops
+  D-FOT: Compiler
   DDE-GoCode: sig-DDE
   DyscheOS-kernel: sig-recycle
   DyscheOS-meta: sig-recycle
@@ -477,6 +478,7 @@ openeuler:
   release-management: sig-release-management
   release-tools: sig-EasyLife
   reproducible-builds: sig-reproducible-builds
+  resaware_nri_plugins: sig-CloudNative
   rhostname: sig-memsafety
   riscv-kernel: sig-RISC-V
   rockchip: sig-SBC
@@ -616,6 +618,7 @@ src-openeuler:
   CronTick: sig-Java
   CyclOne: sig-ops
   Cython: Programming-language
+  D-FOT: Compiler
   DCache: Storage
   DDE-GoCode: sig-DDE
   DDE-go-dbus-factory: sig-DDE
@@ -1088,6 +1091,7 @@ src-openeuler:
   avro-python3: sig-openstack
   avt_vimba_camera: sig-ROS
   aws-robomaker-small-warehouse-world: sig-ROS
+  aws-sdk-cpp: DB
   aws-sdk-java: sig-Java
   awscli: sig-CloudNative
   axel: sig-epol
@@ -9777,6 +9781,7 @@ src-openeuler:
   replacer: Base-service
   repo: Private
   resalloc: ecopkg
+  resaware_nri_plugins: sig-CloudNative
   resource-agents: sig-Ha
   resource_retriever: sig-ROS
   rest: Desktop
@@ -10362,6 +10367,7 @@ src-openeuler:
   s3fs-fuse: Storage
   saab-fonts: Desktop
   sac: sig-Java
+  safeguard: sig-ebpf
   safelease: oVirt
   samba: Networking
   samtools: sig-bio
