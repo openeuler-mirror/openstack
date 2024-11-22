@@ -6,8 +6,11 @@
   ansible-role-lunasa-hsm: 5.0.0
   ansible-role-thales-hsm: 5.0.0
   aodh: 16.0.0
+  aodh-2023.1: eom
   aodhclient: 3.2.1
+  aodhclient-2023.1: eom
   automaton: 3.1.0
+  automaton-2023.1: eom
   barbican: 16.0.2
   barbican_tempest_plugin: 2.0.0
   bifrost: 16.1.1
@@ -19,8 +22,11 @@
   blazar-nova-2023.1: eom
   blazar_tempest_plugin: 0.10.1
   castellan: 4.1.0
+  castellan-2023.1: eom
   ceilometer: 20.0.0
+  ceilometer-2023.1: eom
   ceilometermiddleware: 3.1.0
+  ceilometermiddleware-2023.1: eom
   cinder: 22.3.0
   cinder-2023.1: eom
   cinder-tempest-plugin: 1.8.1
@@ -78,9 +84,12 @@
   kayobe-config: 14.3.0
   kayobe-config-dev: 14.6.0
   keystone: 23.0.2
+  keystone-2023.1: eom
   keystone_tempest_plugin: 0.12.0
   keystoneauth1: 5.1.3
+  keystoneauth1-2023.1: eom
   keystonemiddleware: 10.2.0
+  keystonemiddleware-2023.1: eom
   kolla: 16.6.0
   kolla-ansible: 16.7.0
   kuryr-kubernetes: 8.0.0
@@ -175,26 +184,47 @@
   osc-placement: 4.1.0
   osc-placement-2023.1: eom
   oslo.cache: 3.3.1
+  oslo.cache-2023.1: eom
   oslo.concurrency: 5.1.1
+  oslo.concurrency-2023.1: eom
   oslo.config: 9.1.1
+  oslo.config-2023.1: eom
   oslo.context: 5.1.1
+  oslo.context-2023.1: eom
   oslo.db: 12.3.3
+  oslo.db-2023.1: eom
   oslo.i18n: 6.0.0
+  oslo.i18n-2023.1: eom
   oslo.limit: 2.1.0
+  oslo.limit-2023.1: eom
   oslo.log: 5.2.1
+  oslo.log-2023.1: eom
   oslo.messaging: 14.2.5
+  oslo.messaging-2023.1: eom
   oslo.metrics: 0.6.0
+  oslo.metrics-2023.1: eom
   oslo.middleware: 5.1.1
+  oslo.middleware-2023.1: eom
   oslo.policy: 4.1.1
+  oslo.policy-2023.1: eom
   oslo.privsep: 3.1.0
+  oslo.privsep-2023.1: eom
   oslo.reports: 3.0.0
+  oslo.reports-2023.1: eom
   oslo.rootwrap: 7.0.1
+  oslo.rootwrap-2023.1: eom
   oslo.serialization: 5.1.2
+  oslo.serialization-2023.1: eom
   oslo.service: 3.1.2
+  oslo.service-2023.1: eom
   oslo.upgradecheck: 2.1.1
+  oslo.upgradecheck-2023.1: eom
   oslo.utils: 6.1.0
+  oslo.utils-2023.1: eom
   oslo.versionedobjects: 3.1.0
+  oslo.versionedobjects-2023.1: eom
   oslo.vmware: 4.1.1
+  oslo.vmware-2023.1: eom
   oswin-tempest-plugin: 2.1.0
   ovn-octavia-provider: 4.0.2
   ovn-octavia-provider-2023.1: eom
@@ -261,6 +291,7 @@
   python-ironic-inspector-client: 4.9.0
   python-ironicclient: 5.1.0
   python-keystoneclient: 5.1.0
+  python-keystoneclient-2023.1: eom
   python-magnumclient: 4.1.0
   python-magnumclient-2023.1: eom
   python-manilaclient: 4.4.2
@@ -315,6 +346,7 @@
   solum-dashboard: 10.0.0
   solum-tempest-plugin: 2.6.0
   stevedore: 5.0.0
+  stevedore-2023.1: eom
   storlets: 11.0.0
   storlets-2023.1: eom
   sushy: 4.4.3
@@ -326,6 +358,7 @@
   tap-as-a-service: 11.0.0
   tap-as-a-service-2023.1: eom
   taskflow: 5.1.1
+  taskflow-2023.1: eom
   telemetry_tempest_plugin: 1.9.0
   tempest: 34.1.0
   tosca-parser: 2.8.0
