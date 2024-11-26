@@ -522,6 +522,7 @@ openeuler:
   sra_test: sig-AccLib
   ssh-utils: sig-memsafety
   sssnic-driver: sig-Compatibility-Infra
+  storprototrace: Storage
   stortrace: Storage
   stratovirt: Virt
   summer2022: sig-OSCourse
