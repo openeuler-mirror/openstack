@@ -61,8 +61,10 @@
   freezer-web-ui-2023.1: eom
   freezer_tempest_plugin: 3.0.1
   glance: 26.1.0
+  glance-2023.1: eom
   glance-tempest-plugin: 0.6.0
   glance_store: 4.3.3
+  glance_store-2023.1: eom
   grenade-2023.1: eom
   heat-agents: 6.0.0
   heat-agents-2023.1: eom
@@ -72,6 +74,7 @@
   heat-translator: 2.7.0
   heat-translator-2023.1: eom
   horizon: 23.1.1
+  horizon-2023.1: eom
   ironic: 21.4.4
   ironic-inspector: 11.4.1
   ironic-lib: 5.4.1
@@ -286,6 +289,7 @@
   python-freezerclient: 5.1.0
   python-freezerclient-2023.1: eom
   python-glanceclient: 4.3.2
+  python-glanceclient-2023.1: eom
   python-heatclient: 3.2.0
   python-heatclient-2023.1: eom
   python-ironic-inspector-client: 4.9.0
@@ -311,6 +315,7 @@
   python-senlinclient: 3.0.0
   python-solumclient: 3.7.0
   python-swiftclient: 4.2.0
+  python-swiftclient-2023.1: eom
   python-tackerclient: 1.13.0
   python-tackerclient-2023.1: eom
   python-troveclient: 8.1.0
@@ -351,6 +356,7 @@
   storlets-2023.1: eom
   sushy: 4.4.3
   swift: 2.31.1
+  swift-2023.1: eom
   tacker: 9.0.0
   tacker-2023.1: eom
   tacker-horizon: 7.0.0
