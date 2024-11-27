@@ -187,6 +187,7 @@ openeuler:
   easy-checker: sig-EasyLife
   easy-software: sig-OpenDesign
   easybox: sig-memsafety
+  easysoftware-command: Infrastructure
   eggo: sig-CloudNative
   elfin-parser: sig-HPC
   embedded: sig-embedded
@@ -5208,7 +5209,6 @@ src-openeuler:
   openEuler-rpm-config: TC
   openEuler_chroot: sig-Gatekeeper
   openGemini: DB
-  openHiTLS: sig-security-facility
   openInula: dev-utils
   openRSO: Kernel
   openal-soft: Application
@@ -5230,6 +5230,7 @@ src-openeuler:
   openfortivpn: Networking
   opengauss-dcf: DB
   opengauss-server: DB
+  openhitls: sig-security-facility
   openhpi: System-tool
   openjade: Application
   openjdk-1.8.0: Compiler
