@@ -2,9 +2,13 @@
   adjutant-ui: 6.0.0
   adjutant-ui-2023.1: eom
   ansible-collection-kolla: 3.3.0
+  ansible-collection-kolla-2023.1: eom
   ansible-role-atos-hsm: 5.0.0
+  ansible-role-atos-hsm-2023.1: eom
   ansible-role-lunasa-hsm: 5.0.0
+  ansible-role-lunasa-hsm-2023.1: eom
   ansible-role-thales-hsm: 5.0.0
+  ansible-role-thales-hsm-2023.1: eom
   aodh: 16.0.0
   aodh-2023.1: eom
   aodhclient: 3.2.1
@@ -12,8 +16,10 @@
   automaton: 3.1.0
   automaton-2023.1: eom
   barbican: 16.0.2
+  barbican-2023.1: eom
   barbican_tempest_plugin: 2.0.0
   bifrost: 16.1.1
+  bifrost-2023.1: eom
   blazar: 11.0.1
   blazar-2023.1: eom
   blazar-dashboard: 9.0.1
@@ -76,16 +82,26 @@
   horizon: 23.1.1
   horizon-2023.1: eom
   ironic: 21.4.4
+  ironic-2023.1: eom
   ironic-inspector: 11.4.1
+  ironic-inspector-2023.1: eom
   ironic-lib: 5.4.1
+  ironic-lib-2023.1: eom
   ironic-prometheus-exporter: 4.1.0
+  ironic-prometheus-exporter-2023.1: eom
   ironic-python-agent: 9.4.3
+  ironic-python-agent-2023.1: eom
   ironic-python-agent-builder: 5.1.1
+  ironic-python-agent-builder-2023.1: eom
   ironic-tempest-plugin: 2.6.1
   ironic-ui: 6.1.0
+  ironic-ui-2023.1: eom
   kayobe: 14.7.0
+  kayobe-2023.1: eom
   kayobe-config: 14.3.0
+  kayobe-config-2023.1: eom
   kayobe-config-dev: 14.6.0
+  kayobe-config-dev-2023.1: eom
   keystone: 23.0.2
   keystone-2023.1: eom
   keystone_tempest_plugin: 0.12.0
@@ -94,7 +110,9 @@
   keystonemiddleware: 10.2.0
   keystonemiddleware-2023.1: eom
   kolla: 16.6.0
+  kolla-2023.1: eom
   kolla-ansible: 16.7.0
+  kolla-ansible-2023.1: eom
   kuryr-kubernetes: 8.0.0
   kuryr-lib: 2.7.0
   kuryr-libnetwork: 11.0.0
@@ -111,6 +129,7 @@
   masakari-dashboard: 8.0.0
   masakari-monitors: 15.0.0
   metalsmith: 1.10.1
+  metalsmith-2023.1: eom
   mistral: 16.0.0
   mistral-dashboard: 16.0.0
   mistral-extra: 13.0.0
@@ -132,9 +151,11 @@
   networking-bagpipe: 18.0.0
   networking-bagpipe-2023.1: eom
   networking-baremetal: 6.1.1
+  networking-baremetal-2023.1: eom
   networking-bgpvpn: 18.0.0
   networking-bgpvpn-2023.1: eom
   networking-generic-switch: 7.1.1
+  networking-generic-switch-2023.1: eom
   networking-hyperv: 14.0.0
   networking-odl: 22.0.0
   networking-odl-2023.1: eom
@@ -274,6 +295,7 @@
   python-adjutantclient: 0.12.1
   python-adjutantclient-2023.1: eom
   python-barbicanclient: 5.5.0
+  python-barbicanclient-2023.1: eom
   python-blazarclient: 3.6.0
   python-blazarclient-2023.1: eom
   python-brick-cinderclient-ext: 2.1.0
@@ -293,7 +315,9 @@
   python-heatclient: 3.2.0
   python-heatclient-2023.1: eom
   python-ironic-inspector-client: 4.9.0
+  python-ironic-inspector-client-2023.1: eom
   python-ironicclient: 5.1.0
+  python-ironicclient-2023.1: eom
   python-keystoneclient: 5.1.0
   python-keystoneclient-2023.1: eom
   python-magnumclient: 4.1.0
@@ -355,6 +379,7 @@
   storlets: 11.0.0
   storlets-2023.1: eom
   sushy: 4.4.3
+  sushy-2023.1: eom
   swift: 2.31.1
   swift-2023.1: eom
   tacker: 9.0.0
