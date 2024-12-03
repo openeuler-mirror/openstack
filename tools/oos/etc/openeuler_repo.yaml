@@ -518,6 +518,7 @@ openeuler:
   signatrust: Infrastructure
   skylark: Virt
   smart-shell: sig-intelligence
+  sra_benchmark: sig-AccLib
   sra_scann_adapter: sig-AccLib
   sra_tensorflow_adapter: sig-AccLib
   sra_test: sig-AccLib
