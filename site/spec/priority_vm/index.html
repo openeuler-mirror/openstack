@@ -231,7 +231,7 @@
 <h4 id="xml">虚拟机xml<a class="headerlink" href="#xml" title="Permanent link">&para;</a></h4>
 <p>高低优先级机器创建按照priority标志，对虚拟机进行标识。</p>
 <ul>
-<li>Libirt XML中新增属性<code>&lt;resource&gt;</code>片段，包括 <code>/high_prio_machine</code>、<code>/low_prio_machine</code>两种值，分别表示高低优先级虚拟机。该片段本身在Nova中没有任何作用，只是为<code>Skylark</code>QoS服务指明VM的高低优先级属性。</li>
+<li>Libvirt XML中新增属性<code>&lt;resource&gt;</code>片段，包括 <code>/high_prio_machine</code>、<code>/low_prio_machine</code>两种值，分别表示高低优先级虚拟机。该片段本身在Nova中没有任何作用，只是为<code>Skylark</code>QoS服务指明VM的高低优先级属性。</li>
 </ul>
 <h3 id="_7">举例<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>假设一个compute节点拥有14个core，设置cpu_dedicated_set=0-11，一共12个核，cpu_shared_set=12-13，一共2个核心，cpu_allocation_ratio=8 则：</p>
