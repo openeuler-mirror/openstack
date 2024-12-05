@@ -166,7 +166,7 @@ OpenStack
 
 1. 涵盖主要的性能测试。
 2. 覆盖更多的driver/plugin测试。
-3. 重点测试Anteloe和Wallaby版本对python3.11版本的适配情况。
+3. 重点测试Antelope和Wallaby版本对python3.11版本的适配情况。
 ## 5 附件
 
 *N/A*

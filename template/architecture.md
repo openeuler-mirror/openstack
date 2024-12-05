@@ -48,7 +48,7 @@ Level | Package                                                                 
 * openstack-nova
 * openstack-cinder
 * openstack-glance
-* openstack-placment
+* openstack-placement
 * openstack-ironic
 
 ### 特殊情况

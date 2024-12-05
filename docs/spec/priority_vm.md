@@ -72,7 +72,7 @@ POST v2/servers (v2.1默认版本)
 
 高低优先级机器创建按照priority标志，对虚拟机进行标识。
 
-* Libirt XML中新增属性`<resource>`片段，包括 `/high_prio_machine`、`/low_prio_machine`两种值，分别表示高低优先级虚拟机。该片段本身在Nova中没有任何作用，只是为`Skylark`QoS服务指明VM的高低优先级属性。
+* Libvirt XML中新增属性`<resource>`片段，包括 `/high_prio_machine`、`/low_prio_machine`两种值，分别表示高低优先级虚拟机。该片段本身在Nova中没有任何作用，只是为`Skylark`QoS服务指明VM的高低优先级属性。
 
 
 ### 举例
