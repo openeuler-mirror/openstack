@@ -126,14 +126,21 @@
   manila-tempest-plugin: 1.13.0
   manila-ui: 9.0.1
   masakari: 15.0.0
+  masakari-2023.1: eom
   masakari-dashboard: 8.0.0
+  masakari-dashboard-2023.1: eom
   masakari-monitors: 15.0.0
+  masakari-monitors-2023.1: eom
   metalsmith: 1.10.1
   metalsmith-2023.1: eom
   mistral: 16.0.0
+  mistral-2023.1: eom
   mistral-dashboard: 16.0.0
+  mistral-dashboard-2023.1: eom
   mistral-extra: 13.0.0
+  mistral-extra-2023.1: eom
   mistral-lib: 2.8.0
+  mistral-lib-2023.1: eom
   mistral_tempest_tests: 2.1.1
   monasca-agent: 9.0.0
   monasca-api: 10.0.0
@@ -194,6 +201,7 @@
   openstack-release-test: 4.0.0
   openstack-release-test-2023.1: eom
   openstack-venus: 2.0.0
+  openstack-venus-2023.1: eom
   openstacksdk: 1.0.2
   openstacksdk-2023.1: eom
   os-brick: 6.2.5
@@ -324,7 +332,9 @@
   python-magnumclient-2023.1: eom
   python-manilaclient: 4.4.2
   python-masakariclient: 8.1.0
+  python-masakariclient-2023.1: eom
   python-mistralclient: 5.0.0
+  python-mistralclient-2023.1: eom
   python-monascaclient: 2.7.0
   python-muranoclient: 2.6.0
   python-neutronclient: 9.0.0
@@ -345,6 +355,7 @@
   python-troveclient: 8.1.0
   python-troveclient-2023.1: eom
   python-venusclient: 2.0.1
+  python-venusclient-2023.1: eom
   python-vitrageclient: 4.7.0
   python-vitrageclient-2023.1: eom
   python-watcher: 10.0.0
@@ -400,6 +411,7 @@
   trove-dashboard-2023.1: eom
   trove_tempest_plugin: 2.0.1
   venus-dashboard: 2.0.0
+  venus-dashboard-2023.1: eom
   venus-tempest-plugin: 3.0.0
   vitrage: 10.0.0
   vitrage-2023.1: eom
@@ -421,7 +433,7 @@
   zun-ui-2023.1: eom
 '2023.2':
   adjutant-ui: 7.0.0
-  ansible-collection-kolla: 4.2.0
+  ansible-collection-kolla: 4.3.0
   ansible-role-atos-hsm: 6.0.0
   ansible-role-lunasa-hsm: 6.0.0
   ansible-role-thales-hsm: 6.0.1
@@ -472,15 +484,15 @@
   ironic-python-agent-builder: 5.2.1
   ironic-tempest-plugin: 2.7.0
   ironic-ui: 6.2.1
-  kayobe: 15.5.0
-  kayobe-config: 15.1.0
-  kayobe-config-dev: 15.4.0
+  kayobe: 15.6.0
+  kayobe-config: 15.6.0
+  kayobe-config-dev: 15.6.0
   keystone: 24.0.0
   keystone_tempest_plugin: 0.13.0
   keystoneauth1: 5.3.0
   keystonemiddleware: 10.4.1
-  kolla: 17.5.0
-  kolla-ansible: 17.5.0
+  kolla: 17.6.0
+  kolla-ansible: 17.6.0
   kuryr-kubernetes: 9.0.0
   kuryr-lib: 2.8.0
   kuryr-libnetwork: 12.0.0
