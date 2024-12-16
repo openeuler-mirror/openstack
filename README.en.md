@@ -23,7 +23,13 @@ Meeting agenda and summary: <https://etherpad.openeuler.org/p/sig-openstack-meet
 
 ## Members
 
-### Maintainer list
+### Active maintainer
+
+- Zheng Ting [tzing_t](https://gitee.com/tzing_t) zhengting13@huawei.com
+- Wang Dongxing [desert-sailor](https://gitee.com/desert-sailor) dongxing.wang_a@thundersoft.com
+- Han Guangyu [han-guangyu](https://gitee.com/han-guangyu) hanguangyu@uniontech.com
+
+### Maintainer/Committer list
 
 - Chen Shuo [@joec88](https://gitee.com/joec88) joseph.chn1988@gmail.com
 - Li Kunshan [@liksh](https://gitee.com/liksh) li_kunshan@163.com
@@ -32,8 +38,9 @@ Meeting agenda and summary: <https://etherpad.openeuler.org/p/sig-openstack-meet
 - Zhang Fan [@zh-f](https://gitee.com/zh-f) zh.f@outlook.com
 - Zhang Ying [@zhangy1317](https://gitee.com/zhangy1317) zhangy1317@foxmail.com
 - Han Guangyu [han-guangyu](https://gitee.com/han-guangyu) hanguangyu@uniontech.com
-- Wang Donexing [desert-sailor](https://gitee.com/desert-sailor) dongxing.wang_a@thundersoft.com
+- Wang Dongxing [desert-sailor](https://gitee.com/desert-sailor) dongxing.wang_a@thundersoft.com
 - Zheng Ting [tzing_t](https://gitee.com/tzing_t) zhengting13@huawei.com
+- Wang Jing [Accessac](https://gitee.com/Accessac) wangjing@uniontech.com
 - Liu Sheng [@sean-lau](https://gitee.com/sean-lau) liusheng2048@gmail.com - Retired
 
 ### Contact details

@@ -98,7 +98,7 @@ Queens、Rocky、Train版本的支持放在SIG官方认证的第三方软件平�
 
 ## Maintainer的加入和退出
 
-秉承开源开放的理念，OpenStack SIG在maintainer成员的加入和退出方面也有一定的规范和要求。
+秉承开源开放的理念，OpenStack SIG在maintainer成员的管理方面也有一定的规范和要求。
 
 ### 如何成为maintainer
 
@@ -115,13 +115,36 @@ maintainer作为SIG的直接负责人，拥有代码合入、路标规划、提�
 
 SIG maintainer每个季度会组织闭门会议，审视当前贡献数据，根据贡献者满足相关要求，经讨论达成一致后并且贡献者愿意担任maintainer一职时，SIG会向openEuler TC提出相关申请
 
+### 活跃maintainer
+
+参考[Apache基金会](https://infra.apache.org/committers.html#committer-set-term)等社区，结合SIG具体情况，引入活跃maintainer机制。
+
+对于无法保持长期高活跃，但愿意继续承担SIG责任的maintainer，maintainer角色保留。
+
+非高活跃maintainer责任与权限：
+
+- 保持SIG动态跟进，参与SIG重大事务。
+- 参与SIG决策。活跃maintainer对SIG事务决策具备更高权重，意见相左时以活跃者为准。
+- 不具备提名权限。
+
+活跃maintainer在SIG主页列表中被列出。
+
+当SIG maintainer因为自身原因，无法保持长期高活跃时，可主动申请退出高活跃状态。SIG maintainer每半年例行审视当前maintainer列表，更新活跃列表。
+
 ### maintainer的退出
 
 当SIG maintainer因为自身原因（工作变动、业务调整等原因），无法再担任maintainer一职时，可主动申请退出。
+SIG maintainer每年也会例行审视当前maintainer列表，如果发现有不再适合担任maintainer的贡献者（无法保障参与等原因），经讨论达成一致后，会向openEuler TC提出相关申请。
 
-SIG maintainer每半年也会例行审视当前maintainer列表，如果发现有不再适合担任maintainer的贡献者（贡献不足、不再活跃等原因），经讨论达成一致后，会向openEuler TC提出相关申请。
+### 活跃Maintainer
 
-### Maintainer列表
+|姓名|Gitee ID|邮箱|公司|
+|---|---|---|---|
+|郑挺|[tzing_t](https://gitee.com/tzing_t)|zhengting13@huawei.com|华为|
+|王东兴|[desert-sailor](https://gitee.com/desert-sailor)|dongxing.wang_a@thundersoft.com|创达奥思维|
+|韩光宇|[han-guangyu](https://gitee.com/han-guangyu)|hanguangyu@uniontech.com|统信软件|
+
+### Maintainer/Committer列表
 
 |姓名|Gitee ID|邮箱|公司|
 |---|---|---|---|
@@ -134,6 +157,7 @@ SIG maintainer每半年也会例行审视当前maintainer列表，如果发现�
 |韩光宇|[han-guangyu](https://gitee.com/han-guangyu)|hanguangyu@uniontech.com|统信软件|
 |王东兴|[desert-sailor](https://gitee.com/desert-sailor)|dongxing.wang_a@thundersoft.com|创达奥思维|
 |郑挺|[tzing_t](https://gitee.com/tzing_t)|zhengting13@huawei.com|华为|
+|王静|[Accessac](https://gitee.com/Accessac)|wangjing@uniontech.com|统信软件|
 
 ## 如何贡献
 

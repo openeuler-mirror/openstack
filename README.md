@@ -25,9 +25,15 @@ openEuler OpenStack SIG致力于结合多样性算力为openstack社区贡献更
 
 ## 成员
 
-### Maintainer列表
+### 活跃Maintainer
 
-#### 现任
+|姓名|Gitee ID|邮箱|公司|
+|---|---|---|---|
+|郑挺|[tzing_t](https://gitee.com/tzing_t)|zhengting13@huawei.com|华为|
+|王东兴|[desert-sailor](https://gitee.com/desert-sailor)|dongxing.wang_a@thundersoft.com|创达奥思维|
+|韩光宇|[han-guangyu](https://gitee.com/han-guangyu)|hanguangyu@uniontech.com|统信软件|
+
+### Maintainer/Committer列表
 
 |姓名|Gitee ID|邮箱|公司|
 |---|---|---|---|
@@ -40,6 +46,7 @@ openEuler OpenStack SIG致力于结合多样性算力为openstack社区贡献更
 |韩光宇|[han-guangyu](https://gitee.com/han-guangyu)|hanguangyu@uniontech.com|统信软件|
 |王东兴|[desert-sailor](https://gitee.com/desert-sailor)|dongxing.wang_a@thundersoft.com|创达奥思维|
 |郑挺|[tzing_t](https://gitee.com/tzing_t)|zhengting13@huawei.com|华为|
+|王静|[Accessac](https://gitee.com/Accessac)|wangjing@uniontech.com|统信软件|
 
 #### 已退休
 
@@ -66,3 +73,8 @@ SIG官方文档包括了安装指导、测试说明、特性说明等内容，�
     └── oos                                       "OpenStack SIG开发工具"
     └── docker                                    "OpenStack SIG开发基础容器环境"
 ```
+## 交流群
+
+添加小助手回复"加群"进入openEuler sig-OpenStack交流群
+
+![images](./docs/img/install/wechat_group_assistant.jpg)
