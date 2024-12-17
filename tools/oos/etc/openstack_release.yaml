@@ -122,9 +122,11 @@
   magnum-ui: 12.0.0
   magnum-ui-2023.1: eom
   magnum_tempest_plugin: 2.0.0
-  manila: 16.2.1
+  manila: 16.3.0
+  manila-2023.1: eom
   manila-tempest-plugin: 1.13.0
   manila-ui: 9.0.1
+  manila-ui-2023.1: eom
   masakari: 15.0.0
   masakari-2023.1: eom
   masakari-dashboard: 8.0.0
@@ -143,14 +145,22 @@
   mistral-lib-2023.1: eom
   mistral_tempest_tests: 2.1.1
   monasca-agent: 9.0.0
+  monasca-agent-2023.1: eom
   monasca-api: 10.0.0
+  monasca-api-2023.1: eom
   monasca-common: 3.7.0
+  monasca-common-2023.1: eom
   monasca-events-api: 7.0.0
+  monasca-events-api-2023.1: eom
   monasca-notification: 8.0.0
+  monasca-notification-2023.1: eom
   monasca-persister: 8.0.0
+  monasca-persister-2023.1: eom
   monasca-statsd: 2.6.0
+  monasca-statsd-2023.1: eom
   monasca-tempest-plugin: 2.6.0
   monasca-ui: 8.0.0
+  monasca-ui-2023.1: eom
   murano: 15.0.0
   murano-agent: 11.0.0
   murano-dashboard: 15.0.0
@@ -263,41 +273,41 @@
   ovsdbapp: 2.2.2
   ovsdbapp-2023.1: eom
   patrole: 0.16.0
-  puppet-aodh: 22.0.0
-  puppet-barbican: 22.0.0
-  puppet-ceilometer: 22.0.0
-  puppet-cinder: 22.0.0
-  puppet-cloudkitty: 11.0.0
-  puppet-designate: 22.0.0
+  puppet-aodh: 22.0.1
+  puppet-barbican: 22.0.1
+  puppet-ceilometer: 22.0.1
+  puppet-cinder: 22.0.1
+  puppet-cloudkitty: 11.0.1
+  puppet-designate: 22.0.1
   puppet-ec2api: 22.0.0
-  puppet-glance: 22.0.0
-  puppet-gnocchi: 22.0.0
-  puppet-heat: 22.0.0
-  puppet-horizon: 22.0.0
+  puppet-glance: 22.0.1
+  puppet-gnocchi: 22.0.1
+  puppet-heat: 22.0.1
+  puppet-horizon: 22.1.0
   puppet-ironic: 22.1.0
-  puppet-keystone: 22.0.0
-  puppet-magnum: 22.0.0
-  puppet-manila: 22.0.0
-  puppet-mistral: 22.0.0
+  puppet-keystone: 22.1.0
+  puppet-magnum: 22.0.1
+  puppet-manila: 22.0.1
+  puppet-mistral: 22.0.1
   puppet-murano: 22.0.0
   puppet-neutron: 22.0.1
-  puppet-nova: 22.1.0
-  puppet-octavia: 22.0.0
-  puppet-openstack_extras: 22.0.0
+  puppet-nova: 22.2.0
+  puppet-octavia: 22.0.1
+  puppet-openstack_extras: 22.0.1
   puppet-openstacklib: 22.0.0
-  puppet-oslo: 22.0.0
-  puppet-ovn: 22.0.0
-  puppet-placement: 9.0.0
+  puppet-oslo: 22.0.1
+  puppet-ovn: 22.0.1
+  puppet-placement: 9.0.1
   puppet-qdr: 11.0.0
   puppet-rally: 10.0.0
   puppet-sahara: 22.0.0
-  puppet-swift: 22.0.0
+  puppet-swift: 22.0.1
   puppet-tempest: 22.1.0
-  puppet-trove: 22.0.0
-  puppet-vitrage: 12.0.0
-  puppet-vswitch: 18.0.0
-  puppet-watcher: 22.0.0
-  puppet-zaqar: 22.0.0
+  puppet-trove: 22.0.1
+  puppet-vitrage: 12.0.1
+  puppet-vswitch: 18.0.1
+  puppet-watcher: 22.0.1
+  puppet-zaqar: 22.0.1
   python-adjutant: 6.0.0
   python-adjutant-2023.1: eom
   python-adjutantclient: 0.12.1
@@ -331,11 +341,13 @@
   python-magnumclient: 4.1.0
   python-magnumclient-2023.1: eom
   python-manilaclient: 4.4.2
+  python-manilaclient-2023.1: eom
   python-masakariclient: 8.1.0
   python-masakariclient-2023.1: eom
   python-mistralclient: 5.0.0
   python-mistralclient-2023.1: eom
   python-monascaclient: 2.7.0
+  python-monascaclient-2023.1: eom
   python-muranoclient: 2.6.0
   python-neutronclient: 9.0.0
   python-neutronclient-2023.1: eom
@@ -381,7 +393,9 @@
   senlin-dashboard: 7.0.0
   senlin-tempest-plugin: 1.7.1
   skyline-apiserver: 2.0.1
+  skyline-apiserver-2023.1: eom
   skyline-console: 2.0.0
+  skyline-console-2023.1: eom
   solum: 14.0.0
   solum-dashboard: 10.0.0
   solum-tempest-plugin: 2.6.0
@@ -403,6 +417,7 @@
   taskflow-2023.1: eom
   telemetry_tempest_plugin: 1.9.0
   tempest: 34.1.0
+  tempest-2023.1: last
   tosca-parser: 2.8.0
   tosca-parser-2023.1: eom
   trove: 19.0.1
@@ -530,7 +545,7 @@
   networking-bgpvpn: 19.0.0
   networking-generic-switch: 7.2.1
   networking-sfc: 17.0.0
-  neutron: 23.2.0
+  neutron: 23.3.0
   neutron-dynamic-routing: 23.0.0
   neutron-fwaas: 19.0.0
   neutron-fwaas-dashboard: 6.0.0
