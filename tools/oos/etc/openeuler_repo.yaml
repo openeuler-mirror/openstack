@@ -50,6 +50,7 @@ openeuler:
   KubeOS: sig-CloudNative
   LTF: sig-QA
   LiveUI: sig-Backup
+  MetaBMC: sig-BMC
   NestOS: sig-CloudNative
   OSAPIChecker: sig-OSRefTools
   OSCompatibility: sig-OSRefTools
@@ -816,6 +817,7 @@ src-openeuler:
   ShellCheck: sig-CloudNative
   Skanpage: sig-KDE
   SmartHBA-2100-8i-driver: sig-Compatibility-Infra
+  SoapySDR: ecopkg
   SuperLU: dev-utils
   SuperLUMT: ai
   Sweeper: sig-KDE
@@ -8068,6 +8070,7 @@ src-openeuler:
   python-gabbi: sig-python-modules
   python-gast: sig-python-modules
   python-gatspy: sig-python-modules
+  python-gatt: ecopkg
   python-gccinvocation: sig-python-modules
   python-gearbox: sig-python-modules
   python-genshi: Programming-language
@@ -10593,6 +10596,7 @@ src-openeuler:
   springframework-plugin: sig-Java
   springframework-retry: sig-Java
   spymemcached: sig-Java
+  sqlcipher: ecopkg
   sqlite: DB
   sqlite-jdbc: dev-utils
   sqljet: sig-Java
