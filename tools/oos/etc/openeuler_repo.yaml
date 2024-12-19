@@ -291,7 +291,7 @@ openeuler:
   ketones: sig-ebpf
   kiran-authentication-devices: sig-KIRAN-DESKTOP
   kiran-authentication-service: sig-KIRAN-DESKTOP
-  kiran-biometrics: sig-KIRAN-DESKTOP
+  kiran-biometrics: sig-recycle
   kiran-calculator: sig-KIRAN-DESKTOP
   kiran-calendar: sig-KIRAN-DESKTOP
   kiran-cc-daemon: sig-KIRAN-DESKTOP
@@ -3467,21 +3467,21 @@ src-openeuler:
   kio-extras: sig-KDE
   kiran-authentication-devices: sig-KIRAN-DESKTOP
   kiran-authentication-service: sig-KIRAN-DESKTOP
-  kiran-avatar-editor: sig-KIRAN-DESKTOP
-  kiran-biometrics: sig-KIRAN-DESKTOP
+  kiran-avatar-editor: sig-recycle
+  kiran-biometrics: sig-recycle
   kiran-calculator: sig-KIRAN-DESKTOP
   kiran-calendar: sig-KIRAN-DESKTOP
   kiran-cc-daemon: sig-KIRAN-DESKTOP
   kiran-control-panel: sig-KIRAN-DESKTOP
-  kiran-cpanel-account: sig-KIRAN-DESKTOP
-  kiran-cpanel-appearance: sig-KIRAN-DESKTOP
-  kiran-cpanel-display: sig-KIRAN-DESKTOP
-  kiran-cpanel-keybinding: sig-KIRAN-DESKTOP
-  kiran-cpanel-keyboard: sig-KIRAN-DESKTOP
-  kiran-cpanel-menu: sig-KIRAN-DESKTOP
-  kiran-cpanel-mouse: sig-KIRAN-DESKTOP
-  kiran-cpanel-power: sig-KIRAN-DESKTOP
-  kiran-cpanel-timedate: sig-KIRAN-DESKTOP
+  kiran-cpanel-account: sig-recycle
+  kiran-cpanel-appearance: sig-recycle
+  kiran-cpanel-display: sig-recycle
+  kiran-cpanel-keybinding: sig-recycle
+  kiran-cpanel-keyboard: sig-recycle
+  kiran-cpanel-menu: sig-recycle
+  kiran-cpanel-mouse: sig-recycle
+  kiran-cpanel-power: sig-recycle
+  kiran-cpanel-timedate: sig-recycle
   kiran-desktop: sig-KIRAN-DESKTOP
   kiran-flameshot: sig-KIRAN-DESKTOP
   kiran-gtk-theme: sig-KIRAN-DESKTOP
@@ -3493,12 +3493,12 @@ src-openeuler:
   kiran-qdbusxml2cpp: sig-KIRAN-DESKTOP
   kiran-qt5-integration: sig-KIRAN-DESKTOP
   kiran-screensaver: sig-KIRAN-DESKTOP
-  kiran-screensaver-dialog: sig-KIRAN-DESKTOP
+  kiran-screensaver-dialog: sig-recycle
   kiran-session-guard: sig-KIRAN-DESKTOP
   kiran-session-manager: sig-KIRAN-DESKTOP
   kiran-shell: sig-KIRAN-DESKTOP
   kiran-tests: sig-KIRAN-DESKTOP
-  kiran-themes: sig-KIRAN-DESKTOP
+  kiran-themes: sig-recycle
   kiran-wallpapers: sig-KIRAN-DESKTOP
   kiran-widgets-qt5: sig-KIRAN-DESKTOP
   kirigami-addons: sig-KDE
@@ -4166,7 +4166,7 @@ src-openeuler:
   lightdm: Desktop
   lightdm-gtk: Desktop
   lightdm-gtk-greeter: sig-recycle
-  lightdm-kiran-greeter: sig-KIRAN-DESKTOP
+  lightdm-kiran-greeter: sig-recycle
   lightgbm: ai
   lighttpd: Networking
   lilv: sig-epol
