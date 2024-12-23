@@ -11173,6 +11173,7 @@ src-openeuler:
   xcb-proto: Programming-language
   xcb-util: Desktop
   xcb-util-cursor: Programming-language
+  xcb-util-errors: ecopkg
   xcb-util-image: Programming-language
   xcb-util-keysyms: Programming-language
   xcb-util-renderutil: Programming-language
