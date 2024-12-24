@@ -82,6 +82,7 @@ openeuler:
   SBC-sig: sig-SBC
   TC: TC
   TCP_option_address: Kernel
+  TSB-agent: sig-security-facility
   TSSE-driver: sig-Compatibility-Infra
   UniProton: sig-embedded
   VMAnalyzer: sig-ops
@@ -247,6 +248,8 @@ openeuler:
   hostha: sig-openstack
   hotpatch_meta: sig-ops
   hpc: sig-HPC
+  hpc-openpmix: sig-HPC
+  hpc-prrte: sig-HPC
   hpcpilot: sig-HPC
   hpcrunner: sig-HPC
   hsak: Storage
@@ -314,6 +317,7 @@ openeuler:
   kiran-wallpapers: sig-KIRAN-DESKTOP
   kiran-widgets-qt5: sig-KIRAN-DESKTOP
   kml_adapter: sig-AccLib
+  kmpi: sig-HPC
   ks-scmc: sig-KIRAN-DESKTOP
   ks-scmc-gui: sig-KIRAN-DESKTOP
   ks-ssr: sig-KIRAN-DESKTOP
@@ -324,6 +328,8 @@ openeuler:
   kspack-java: Computing
   kspack-rust: Computing
   ktib: sig-CloudNative
+  kucg: sig-HPC
+  kucx: sig-HPC
   kunpeng-competition: sig-OSCourse
   kunpengsecl: sig-security-facility
   kyclassifier: sig-Compatibility-Infra
@@ -382,11 +388,14 @@ openeuler:
   numafast: sig-WayCa
   nvme-snsd: Storage
   nvwa: sig-ops
+  oac: sig-HPC
   oe-performance: sig-Compatibility-Infra
   oeAware-collector: A-Tune
   oeAware-manager: A-Tune
   oeAware-scenario: A-Tune
   oeAware-tune: A-Tune
+  oeDeploy: sig-ops
+  oeDevPlugin: sig-IDE
   oebuild: sig-Yocto
   oec-application: sig-Compatibility-Infra
   oec-cloud: sig-Compatibility-Infra
@@ -5170,6 +5179,7 @@ src-openeuler:
   oeAware-manager: A-Tune
   oeAware-scenario: A-Tune
   oeAware-tune: A-Tune
+  oeDevPlugin: sig-IDE
   oec-application: sig-Compatibility-Infra
   oec-cloud: sig-Compatibility-Infra
   oec-hardware: sig-Compatibility-Infra
@@ -7525,6 +7535,7 @@ src-openeuler:
   python-androguard: sig-python-modules
   python-animatplot: sig-python-modules
   python-aniso8601: sig-python-modules
+  python-annotated-types: ecopkg
   python-ansi2html: sig-python-modules
   python-ansible-inventory-grapher: sig-python-modules
   python-ansible-review: sig-python-modules
