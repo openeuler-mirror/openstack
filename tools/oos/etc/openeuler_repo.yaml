@@ -317,7 +317,6 @@ openeuler:
   kiran-wallpapers: sig-KIRAN-DESKTOP
   kiran-widgets-qt5: sig-KIRAN-DESKTOP
   kml_adapter: sig-AccLib
-  kmpi: sig-HPC
   ks-scmc: sig-KIRAN-DESKTOP
   ks-scmc-gui: sig-KIRAN-DESKTOP
   ks-ssr: sig-KIRAN-DESKTOP
@@ -2070,6 +2069,7 @@ src-openeuler:
   gendesk: sig-desktop-apps
   generate_parameter_library: sig-ROS
   geneus: sig-ROS
+  gengetopt: dev-utils
   genlisp: sig-ROS
   genmsg: sig-ROS
   gennodejs: sig-ROS
@@ -3332,7 +3332,7 @@ src-openeuler:
   kdepim-runtime: sig-KDE
   kdevelop: sig-KDE
   kdevelop-pg-qt: sig-KDE
-  kdevelopkdevelop-pg-qt: sig-KDE
+  kdevelopkdevelop-pg-qt: sig-recycle
   kdf: sig-KDE
   kdiagram: sig-KDE
   kdialog: sig-KDE
