@@ -584,6 +584,7 @@ openeuler:
   wuhan_uni_tech_2021: sig-recycle
   x2nestos: sig-K8sDistro
   xenomai: sig-industrial-control
+  xlin-sbom: sig-sbom
   xmlpull: sig-Java
   yocto-embedded-tools: sig-Yocto
   yocto-meta-arm: sig-Yocto
@@ -2516,6 +2517,7 @@ src-openeuler:
   google-auth-httplib2: sig-openstack
   google-benchmark: ecopkg
   google-carlito-fonts: sig-RISC-V
+  google-cpu_features: ecopkg
   google-crc32c: sig-epol
   google-croscore-fonts: Desktop
   google-crosextra-caladea-fonts: sig-RISC-V
@@ -4580,6 +4582,7 @@ src-openeuler:
   mozjs60: sig-recycle
   mozjs68: sig-recycle
   mozjs78: Desktop
+  mozo: ecopkg
   mp: sig-epol
   mpfr: Computing
   mpg123: sig-UKUI
@@ -5166,6 +5169,7 @@ src-openeuler:
   ocaml-xml-light: dev-utils
   oceanbase-ce: sig-OceanBase
   ocf: Storage
+  ocfs2-tools: ecopkg
   oci-systemd-hook: sig-recycle
   ocl-icd: Base-service
   octave: ai
@@ -5362,7 +5366,7 @@ src-openeuler:
   optipng: Application
   opus: Computing
   opusfile: Others
-  orage: sig-recycle
+  orage: xfce
   orc: Base-service
   orca: Desktop
   orientdb: DB
@@ -5533,6 +5537,7 @@ src-openeuler:
   perl-Algorithm-Loops: sig-perl-modules
   perl-Algorithm-NaiveBayes: sig-perl-modules
   perl-Alien-Build: sig-perl-modules
+  perl-Alien-Build-Plugin-Download-GitLab: ecopkg
   perl-Alien-Libxml2: sig-perl-modules
   perl-Alien-Packages: sig-perl-modules
   perl-Any-Moose: sig-perl-modules
