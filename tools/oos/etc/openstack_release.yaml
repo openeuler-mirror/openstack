@@ -27,6 +27,7 @@
   blazar-nova: 3.0.0
   blazar-nova-2023.1: eom
   blazar_tempest_plugin: 0.10.1
+  blazar_tempest_plugin-2023.1: last
   castellan: 4.1.0
   castellan-2023.1: eom
   ceilometer: 20.0.0
