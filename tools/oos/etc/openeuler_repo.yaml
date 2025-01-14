@@ -1847,6 +1847,7 @@ src-openeuler:
   fastdb: DB
   fastdfs: Storage
   fasterxml-oss-parent: sig-Java
+  fastfetch: ecopkg
   fastp: sig-bio
   fastqc: sig-bio
   fastutil: sig-Java
@@ -11380,6 +11381,7 @@ src-openeuler:
   ypserv: Desktop
   yum-metadata-parser: sig-recycle
   yunyi: sig-CloudNative
+  yyjson: ecopkg
   zabbix: Base-service
   zathura: sig-desktop-apps
   zathura-cb: sig-desktop-apps
