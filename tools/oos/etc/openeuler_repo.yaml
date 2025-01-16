@@ -90,7 +90,7 @@ openeuler:
   WayCa: sig-WayCa
   X-diagnosis: sig-ops
   aa-ui: sig-intelligence
-  aarch32-rootfs-builder: sig-Yocto
+  aarch32-rootfs-builder: sig-embedded
   abichecker: dev-utils
   ai-tools: ai
   allwinner-kernel: sig-SBC
@@ -193,7 +193,7 @@ openeuler:
   eggo: sig-CloudNative
   elfin-parser: sig-HPC
   embedded: sig-embedded
-  embedded-ci: sig-Yocto
+  embedded-ci: sig-embedded
   embedded-ipc: sig-embedded
   env_check: sig-Compatibility-Infra
   epkg: sig-CICD
@@ -317,6 +317,7 @@ openeuler:
   kiran-wallpapers: sig-KIRAN-DESKTOP
   kiran-widgets-qt5: sig-KIRAN-DESKTOP
   kml_adapter: sig-AccLib
+  kmpi: sig-HPC
   ks-scmc: sig-KIRAN-DESKTOP
   ks-scmc-gui: sig-KIRAN-DESKTOP
   ks-ssr: sig-KIRAN-DESKTOP
@@ -395,12 +396,12 @@ openeuler:
   oeAware-tune: A-Tune
   oeDeploy: sig-ops
   oeDevPlugin: sig-IDE
-  oebuild: sig-Yocto
+  oebuild: sig-embedded
   oec-application: sig-Compatibility-Infra
   oec-cloud: sig-Compatibility-Infra
   oec-hardware: sig-Compatibility-Infra
   oecp: sig-Compatibility-Infra
-  oee_archive: sig-Yocto
+  oee_archive: sig-embedded
   oemaker: sig-OS-Builder
   omnidata-hive-connector: bigdata
   oncn-bwm: sig-high-performance-network
@@ -586,18 +587,18 @@ openeuler:
   xenomai: sig-industrial-control
   xlin-sbom: sig-sbom
   xmlpull: sig-Java
-  yocto-embedded-tools: sig-Yocto
-  yocto-meta-arm: sig-Yocto
-  yocto-meta-openembedded: sig-Yocto
-  yocto-meta-openeuler: sig-Yocto
-  yocto-meta-phosphor: sig-Yocto
-  yocto-meta-qt5: sig-Yocto
-  yocto-meta-raspberrypi: sig-Yocto
-  yocto-meta-renesas: sig-Yocto
-  yocto-meta-rockchip: sig-Yocto
-  yocto-meta-ros: sig-Yocto
-  yocto-meta-virtualization: sig-Yocto
-  yocto-poky: sig-Yocto
+  yocto-embedded-tools: sig-embedded
+  yocto-meta-arm: sig-embedded
+  yocto-meta-openembedded: sig-embedded
+  yocto-meta-openeuler: sig-embedded
+  yocto-meta-phosphor: sig-embedded
+  yocto-meta-qt5: sig-embedded
+  yocto-meta-raspberrypi: sig-embedded
+  yocto-meta-renesas: sig-embedded
+  yocto-meta-rockchip: sig-embedded
+  yocto-meta-ros: sig-embedded
+  yocto-meta-virtualization: sig-embedded
+  yocto-poky: sig-embedded
   yunyi: sig-CloudNative
   zephyr-cn: sig-Zephyr
   zvm: sig-Zephyr
@@ -8281,7 +8282,7 @@ src-openeuler:
   python-josepy: sig-python-modules
   python-journal-brief: sig-python-modules
   python-jsmin: sig-python-modules
-  python-json-logger: sig-python-modules
+  python-json-logger: sig-recycle
   python-json-tricks: A-Tune
   python-json2table: sig-python-modules
   python-json5: sig-python-modules
@@ -8679,7 +8680,7 @@ src-openeuler:
   python-parameterized: sig-python-modules
   python-paramiko: Programming-language
   python-parse: sig-python-modules
-  python-parse-type: sig-python-modules
+  python-parse-type: sig-recycle
   python-parse_type: sig-python-modules
   python-parsedatetime: sig-python-modules
   python-parso: sig-python-modules
@@ -11368,9 +11369,9 @@ src-openeuler:
   yelp-tools: GNOME
   yelp-xsl: Desktop
   ykpers: dev-utils
-  yocto-opkg-utils: sig-Yocto
-  yocto-poky: sig-Yocto
-  yocto-pseudo: sig-Yocto
+  yocto-opkg-utils: sig-embedded
+  yocto-poky: sig-embedded
+  yocto-pseudo: sig-embedded
   yokadi: sig-desktop-apps
   yolov5: sig-ROS
   you-get: Application
