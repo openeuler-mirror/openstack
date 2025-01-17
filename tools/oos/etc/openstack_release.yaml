@@ -195,6 +195,7 @@
   neutron-lib: 3.4.3
   neutron-lib-2023.1: eom
   neutron-tempest-plugin: 2.2.0
+  neutron-tempest-plugin-2023.1: last
   neutron-vpnaas: 22.0.0
   neutron-vpnaas-2023.1: eom
   neutron-vpnaas-dashboard: 8.0.0
@@ -449,6 +450,7 @@
   zaqar-ui: 14.0.0
   zaqar-ui-2023.1: eom
   zaqar_tempest_plugin: 1.6.0
+  zaqar_tempest_plugin-2023.1: last
   zun: 11.0.0
   zun-2023.1: eom
   zun-tempest-plugin: 4.7.1
