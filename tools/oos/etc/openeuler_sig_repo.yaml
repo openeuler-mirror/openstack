@@ -3,6 +3,7 @@ openeuler:
   hostha: sig-openstack
   opensd: sig-openstack
   openstack: sig-openstack
+  openstack-docs: sig-openstack
   openstack-kolla-ansible-plugin: sig-openstack
   openstack-kolla-plugin: sig-openstack
   openstack-plugin: sig-openstack
