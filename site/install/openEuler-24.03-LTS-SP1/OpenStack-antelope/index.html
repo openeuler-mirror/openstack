@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../../img/favicon.ico" />
-    <title>openEuler-24.03-LTS_Antelope - OpenStack SIG Doc</title>
+    <title>openEuler-24.03-LTS-SP1_Antelope - OpenStack SIG Doc</title>
     <link rel="stylesheet" href="../../../css/theme.css" />
     <link rel="stylesheet" href="../../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "openEuler-24.03-LTS_Antelope";
-        var mkdocs_page_input_path = "install/openEuler-24.03-LTS/OpenStack-antelope.md";
+        var mkdocs_page_name = "openEuler-24.03-LTS-SP1_Antelope";
+        var mkdocs_page_input_path = "install/openEuler-24.03-LTS-SP1/OpenStack-antelope.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -88,9 +88,13 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../openEuler-22.09/OpenStack-yoga/">openEuler-22.09_Yoga</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../OpenStack-wallaby/">openEuler-24.03-LTS_Wallaby</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-24.03-LTS/OpenStack-wallaby/">openEuler-24.03-LTS_Wallaby</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">openEuler-24.03-LTS_Antelope</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-24.03-LTS/OpenStack-antelope/">openEuler-24.03-LTS_Antelope</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../OpenStack-wallaby/">openEuler-24.03-LTS-SP1_Wallaby</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">openEuler-24.03-LTS-SP1_Antelope</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#rpm">基于RPM部署</a>
         <ul>
@@ -148,10 +152,6 @@
     </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-24.03-LTS-SP1/OpenStack-wallaby/">openEuler-24.03-LTS-SP1_Wallaby</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-24.03-LTS-SP1/OpenStack-antelope/">openEuler-24.03-LTS-SP1_Antelope</a>
-                  </li>
               </ul>
               <p class="caption"><span class="caption-text">测试报告</span></p>
               <ul>
@@ -201,7 +201,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="文档"></a></li>
           <li class="breadcrumb-item">安装指导</li>
-      <li class="breadcrumb-item active">openEuler-24.03-LTS_Antelope</li>
+      <li class="breadcrumb-item active">openEuler-24.03-LTS-SP1_Antelope</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -248,7 +248,7 @@
 </li>
 </ul>
 </div>
-<p>本文档是 openEuler OpenStack SIG 编写的基于 openEuler 24.03 LTS 的 OpenStack 部署指南，内容由 SIG 贡献者提供。在阅读过程中，如果您有任何疑问或者发现任何问题，请<a href="https://gitee.com/openeuler/openstack#%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F">联系</a>SIG维护人员，或者直接<a href="https://gitee.com/openeuler/openstack/issues">提交issue</a></p>
+<p>本文档是 openEuler OpenStack SIG 编写的基于 |openEuler 24.03 LTS SP1 的 OpenStack 部署指南，内容由 SIG 贡献者提供。在阅读过程中，如果您有任何疑问或者发现任何问题，请<a href="https://gitee.com/openeuler/openstack#%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F">联系</a>SIG维护人员，或者直接<a href="https://gitee.com/openeuler/openstack/issues">提交issue</a></p>
 <p><strong>约定</strong></p>
 <p>本章节描述文档中的一些通用约定。</p>
 <table>
@@ -357,7 +357,7 @@
 <h2 id="rpm">基于RPM部署<a class="headerlink" href="#rpm" title="Permanent link">&para;</a></h2>
 <h3 id="_1">环境准备<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>本文档基于OpenStack经典的三节点环境进行部署，三个节点分别是控制节点(Controller)、计算节点(Compute)、存储节点(Storage)，其中存储节点一般只部署存储服务，在资源有限的情况下，可以不单独部署该节点，把存储节点上的服务部署到计算节点即可。</p>
-<p>首先准备三个openEuler 24.03 LTS环境，根据您的环境，下载对应的镜像并安装即可：<a href="https://repo.openeuler.org/openEuler-24.03-LTS/ISO/">ISO镜像</a>、<a href="https://repo.openeuler.org/openEuler-24.03-LTS/virtual_machine_img/">qcow2镜像</a>。</p>
+<p>首先准备三个|openEuler 24.03 LTS SP1环境，根据您的环境，下载对应的镜像并安装即可：<a href="https://repo.openeuler.org/openEuler-24.03-LTS-SP1/ISO/">ISO镜像</a>、<a href="https://repo.openeuler.org/openEuler-24.03-LTS-SP1/virtual_machine_img/">qcow2镜像</a>。</p>
 <p>下面的安装按照如下拓扑进行：
 <pre class="highlight"><code>controller：192.168.0.2
 compute：   192.168.0.3
@@ -370,7 +370,7 @@ storage：   192.168.0.4</code></pre>
 <p>在正式部署之前，需要对每个节点做如下配置和检查：</p>
 <ol>
 <li>
-<p>配置 openEuler 24.03 LTS 官方 yum 源，需要启用 EPOL 软件仓以支持 OpenStack</p>
+<p>配置 |openEuler 24.03 LTS SP1 官方 yum 源，需要启用 EPOL 软件仓以支持 OpenStack</p>
 <pre class="highlight"><code class="language-shell">yum update
 yum install openstack-release-antelope
 yum clean all &amp;&amp; yum makecache</code></pre>
@@ -379,10 +379,10 @@ yum clean all &amp;&amp; yum makecache</code></pre>
 
 [EPOL]
 name=EPOL
-baseurl=http://repo.openeuler.org/openEuler-24.03-LTS/EPOL/main/$basearch/
+baseurl=http://repo.openeuler.org/openEuler-24.03-LTS-SP1/EPOL/main/$basearch/
 enabled=1
 gpgcheck=1
-gpgkey=http://repo.openeuler.org/openEuler-24.03-LTS/OS/$basearch/RPM-GPG-KEY-openEuler
+gpgkey=http://repo.openeuler.org/openEuler-24.03-LTS-SP1/OS/$basearch/RPM-GPG-KEY-openEuler
 EOF</code></pre>
 </li>
 <li>
@@ -3181,15 +3181,14 @@ vi etc/tempest.conf</code></pre>
 <ol>
 <li>
 <p>安装<code>oos</code>工具</p>
-<p>oos工具在不断演进，兼容性、可用性不能时刻保证，建议使用已验证的本版，这里选择<code>1.3.1</code>
-<pre class="highlight"><code class="language-shell">pip install openstack-sig-tool==1.3.1</code></pre></p>
+<pre class="highlight"><code class="language-shell">yum install openstack-sig-tool</code></pre>
 </li>
 <li>
 <p>配置对接华为云provider的信息</p>
 <p>打开<code>/usr/local/etc/oos/oos.conf</code>文件，修改配置为您拥有的华为云资源信息，AK/SK是用户的华为云登录密钥，其他配置保持默认即可（默认使用新加坡region），需要提前在云上创建对应的资源，包括：</p>
 <ul>
 <li>一个安全组，名字默认是<code>oos</code></li>
-<li>一个openEuler镜像，名称格式是openEuler-%(release)s-%(arch)s，例如<code>openEuler-24.03-arm64</code></li>
+<li>一个openEuler镜像，名称格式是openEuler-%(release)s-%(arch)s，例如<code>openEuler-24.03-sp1-arm64</code></li>
 <li>一个VPC，名称是<code>oos_vpc</code></li>
 <li>该VPC下面两个子网，名称是<code>oos_subnet1</code>、<code>oos_subnet2</code></li>
 </ul>
@@ -3276,10 +3275,10 @@ kolla_openeuler_plugin = false</code></pre>
 </table>
 </li>
 <li>
-<p>华为云上面创建一台openEuler 24.03 LTS的x86_64虚拟机，用于部署<code>all in one</code> 的 OpenStack</p>
+<p>华为云上面创建一台|openEuler 24.03 LTS SP1的x86_64虚拟机，用于部署<code>all in one</code> 的 OpenStack</p>
 <pre class="highlight"><code class="language-shell"># sshpass在`oos env create`过程中被使用，用于配置对目标虚拟机的免密访问
 dnf install sshpass
-oos env create -r 24.03-lts -f small -a x86 -n test-oos all_in_one</code></pre>
+oos env create -r 24.03-lts-sp1 -f small -a x86 -n test-oos all_in_one</code></pre>
 <p>具体的参数可以使用<code>oos env create --help</code>命令查看</p>
 </li>
 <li>
@@ -3308,14 +3307,14 @@ oos env create -r 24.03-lts -f small -a x86 -n test-oos all_in_one</code></pre>
 </ul>
 <pre class="highlight"><code class="language-shell"># sshpass在`oos env create`过程中被使用，用于配置对目标主机的免密访问
 dnf install sshpass
-oos env manage -r 24.03-lts -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n test-oos</code></pre>
+oos env manage -r 24.03-lts-sp1 -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n test-oos</code></pre>
 <p>替换<code>TARGET_MACHINE_IP</code>为目标机ip、<code>TARGET_MACHINE_PASSWD</code>为目标机密码。具体的参数可以使用<code>oos env manage --help</code>命令查看。</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="页脚导航">
-        <a href="../OpenStack-wallaby/" class="btn btn-neutral float-left" title="openEuler-24.03-LTS_Wallaby"><span class="icon icon-circle-arrow-left"></span> 上一章</a>
-        <a href="../../openEuler-24.03-LTS-SP1/OpenStack-wallaby/" class="btn btn-neutral float-right" title="openEuler-24.03-LTS-SP1_Wallaby">下一章 <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../OpenStack-wallaby/" class="btn btn-neutral float-left" title="openEuler-24.03-LTS-SP1_Wallaby"><span class="icon icon-circle-arrow-left"></span> 上一章</a>
+        <a href="../../../test/openEuler-20.03-LTS-SP2/" class="btn btn-neutral float-right" title="openEuler-20.03-LTS-SP2">下一章 <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -3341,7 +3340,7 @@ oos env manage -r 24.03-lts -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n tes
       <span><a href="../OpenStack-wallaby/" style="color: #fcfcfc">&laquo; 上一章</a></span>
     
     
-      <span><a href="../../openEuler-24.03-LTS-SP1/OpenStack-wallaby/" style="color: #fcfcfc">下一章 &raquo;</a></span>
+      <span><a href="../../../test/openEuler-20.03-LTS-SP2/" style="color: #fcfcfc">下一章 &raquo;</a></span>
     
   </span>
 </div>
