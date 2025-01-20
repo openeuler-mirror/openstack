@@ -8,6 +8,7 @@ openeuler:
   A-Tune-UI: A-Tune
   A-guard: sig-Gatekeeper
   AI4C: Compiler
+  ANNC: Compiler
   Agith: sig-ebpf
   AppAPIChecker: sig-OSRefTools
   AvxToNeon: sig-AccLib
@@ -199,11 +200,13 @@ openeuler:
   epkg: sig-CICD
   etipc: sig-embedded
   etmem: Storage
+  euler-copilot-desktop: sig-intelligence
   euler-copilot-framework: sig-intelligence
   euler-copilot-rag: sig-intelligence
   euler-copilot-shell: sig-intelligence
   euler-copilot-vectorize-agent: sig-intelligence
   euler-copilot-web: sig-intelligence
+  euler-copilot-witchaind-web: sig-intelligence
   eulerfs: sig-recycle
   eulerfs-test: Kernel
   eulerlauncher: Infrastructure
@@ -438,6 +441,7 @@ openeuler:
   opensource-intern: sig-OSCourse
   openssl: sig-security-facility
   openstack: sig-openstack
+  openstack-docs: sig-openstack
   openstack-kolla-ansible-plugin: sig-openstack
   openstack-kolla-plugin: sig-openstack
   openstack-plugin: sig-openstack
@@ -613,6 +617,7 @@ src-openeuler:
   ACPO: Compiler
   AFLplusplus: sig-QA
   AI4C: Compiler
+  ANNC: Compiler
   BSC-extrae: sig-HPC
   BSC-wxparaver: sig-HPC
   BareBonesBrowserLaunch: sig-Java
@@ -2677,6 +2682,7 @@ src-openeuler:
   hdf: Application
   hdf5: Runtime
   hdparm: Storage
+  he3fs: DB
   hello: dev-utils
   help2man: Programming-language
   hesiod: sig-recycle
