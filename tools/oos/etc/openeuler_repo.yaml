@@ -4256,6 +4256,7 @@ src-openeuler:
   lohit-telugu-fonts: Application
   lorax: sig-OS-Builder
   low-memory-monitor: Desktop
+  lpcnetfreedv: ecopkg
   lpg: Application
   lpsolve: ecopkg
   lrzsz: Application
