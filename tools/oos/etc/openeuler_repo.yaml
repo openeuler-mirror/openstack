@@ -545,6 +545,7 @@ openeuler:
   summer2022: sig-OSCourse
   sw-committee: sig-sw-arch
   sync-bot: sig-EasyLife
+  sysHAX: sig-intelligence
   sysSentry: Base-service
   sysboost: A-Tune
   syscare: sig-ops
@@ -560,6 +561,7 @@ openeuler:
   tool-collections: Infrastructure
   tp-libvirt: sig-QA
   tp-qemu: sig-QA
+  trivy: sig-security-facility
   trucker: dev-utils
   uadk: sig-AccLib
   uadk-bigdata: bigdata
@@ -7108,7 +7110,7 @@ src-openeuler:
   perl-curry: sig-perl-modules
   perl-enum: sig-perl-modules
   perl-experimental: sig-perl-modules
-  perl-generators: Programming-language
+  perl-generators: sig-perl-modules
   perl-gettext: Programming-language
   perl-inc-latest: Programming-language
   perl-indirect: sig-perl-modules
@@ -10684,6 +10686,7 @@ src-openeuler:
   swt-chart: sig-Java
   swtpm: sig-security-facility
   symlinks: Base-service
+  sysHAX: sig-intelligence
   sysSentry: Base-service
   sysbench: dev-utils
   sysboost: A-Tune
