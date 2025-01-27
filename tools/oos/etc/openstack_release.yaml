@@ -128,7 +128,9 @@
   kolla-ansible-2023.1: eom
   kuryr-kubernetes: 8.0.0
   kuryr-lib: 2.7.0
+  kuryr-lib-2023.1: eom
   kuryr-libnetwork: 11.0.0
+  kuryr-libnetwork-2023.1: eom
   kuryr-tempest-plugin: 0.14.1
   magnum: 16.0.3
   magnum-2023.1: eom
