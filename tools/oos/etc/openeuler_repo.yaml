@@ -5190,6 +5190,7 @@ src-openeuler:
   oeAware-manager: A-Tune
   oeAware-scenario: A-Tune
   oeAware-tune: A-Tune
+  oeDeploy: sig-ops
   oeDevPlugin: sig-IDE
   oec-application: sig-Compatibility-Infra
   oec-cloud: sig-Compatibility-Infra
@@ -7872,6 +7873,7 @@ src-openeuler:
   python-dill: sig-python-modules
   python-dingz: sig-python-modules
   python-dirq: sig-python-modules
+  python-dirty-equals: ecopkg
   python-discover: sig-openstack
   python-diskcache: sig-python-modules
   python-distlib: sig-python-modules
