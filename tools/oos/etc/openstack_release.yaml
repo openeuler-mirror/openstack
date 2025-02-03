@@ -27,6 +27,7 @@
   barbican: 16.0.2
   barbican-2023.1: eom
   barbican_tempest_plugin: 2.0.0
+  barbican_tempest_plugin-2023.1: last
   bifrost: 16.1.1
   bifrost-2023.1: eom
   blazar: 11.0.1
@@ -56,6 +57,7 @@
   cloudkitty-dashboard: 16.0.0
   cloudkitty-dashboard-2023.1: eom
   cloudkitty_tempest_plugin: 2.7.1
+  cloudkitty_tempest_plugin-2023.1: last
   compute-hyperv: 16.0.0
   cyborg-tempest-plugin: 2.1.0
   designate: 16.0.2
@@ -63,6 +65,7 @@
   designate-dashboard: 16.0.0
   designate-dashboard-2023.1: eom
   designate-tempest-plugin: 0.17.0
+  designate-tempest-plugin-2023.1: last
   devstack-2023.1: eom
   devstack-plugin-ceph-2023.1: eom
   devstack-plugin-container-2023.1: eom
@@ -80,6 +83,7 @@
   glance: 26.1.0
   glance-2023.1: eom
   glance-tempest-plugin: 0.6.0
+  glance-tempest-plugin-2023.1: last
   glance_store: 4.3.3
   glance_store-2023.1: eom
   grenade-2023.1: eom
@@ -88,6 +92,7 @@
   heat-dashboard: 9.0.0
   heat-dashboard-2023.1: eom
   heat-tempest-plugin: 1.7.1
+  heat-tempest-plugin-2023.1: last
   heat-translator: 2.7.0
   heat-translator-2023.1: eom
   horizon: 23.1.1
@@ -141,6 +146,7 @@
   manila: 16.3.0
   manila-2023.1: eom
   manila-tempest-plugin: 1.13.0
+  manila-tempest-plugin-2023.1: last
   manila-ui: 9.0.1
   manila-ui-2023.1: eom
   masakari: 15.0.0
@@ -220,6 +226,7 @@
   octavia-lib: 3.2.1
   octavia-lib-2023.1: eom
   octavia-tempest-plugin: 2.3.0
+  octavia-tempest-plugin-2023.1: last
   openstack-ansible-apt_package_pinning-2023.1: eom
   openstack-ansible-ceph_client-2023.1: eom
   openstack-ansible-galera_server-2023.1: eom
@@ -511,6 +518,7 @@
   taskflow: 5.1.1
   taskflow-2023.1: eom
   telemetry_tempest_plugin: 1.9.0
+  telemetry_tempest_plugin-2023.1: last
   tempest: 34.1.0
   tempest-2023.1: last
   tosca-parser: 2.8.0
@@ -533,6 +541,7 @@
   watcher-dashboard: 9.0.0
   watcher-dashboard-2023.1: eom
   watcher-tempest-plugin: 2.6.0
+  watcher-tempest-plugin-2023.1: last
   zaqar: 16.0.0
   zaqar-2023.1: eom
   zaqar-ui: 14.0.0
@@ -542,6 +551,7 @@
   zun: 11.0.0
   zun-2023.1: eom
   zun-tempest-plugin: 4.7.1
+  zun-tempest-plugin-2023.1: last
   zun-ui: 11.0.0
   zun-ui-2023.1: eom
 '2023.2':
