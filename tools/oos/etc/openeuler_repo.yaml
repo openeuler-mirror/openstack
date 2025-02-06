@@ -399,6 +399,7 @@ openeuler:
   oeAware-tune: A-Tune
   oeDeploy: sig-ops
   oeDevPlugin: sig-IDE
+  oeGitExt: sig-ops
   oebuild: sig-embedded
   oec-application: sig-Compatibility-Infra
   oec-cloud: sig-Compatibility-Infra
@@ -5192,6 +5193,7 @@ src-openeuler:
   oeAware-tune: A-Tune
   oeDeploy: sig-ops
   oeDevPlugin: sig-IDE
+  oeGitExt: sig-ops
   oec-application: sig-Compatibility-Infra
   oec-cloud: sig-Compatibility-Infra
   oec-hardware: sig-Compatibility-Infra
