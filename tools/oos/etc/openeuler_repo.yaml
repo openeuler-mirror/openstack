@@ -6262,7 +6262,7 @@ src-openeuler:
   perl-Mail-Box-Parser-C: sig-perl-modules
   perl-Mail-DKIM: Programming-language
   perl-Mail-IMAPTalk: sig-perl-modules
-  perl-Mail-JMAPTalk: sig-perl-modules
+  perl-Mail-JMAPTalk: sig-recycle
   perl-Mail-Message: sig-perl-modules
   perl-Mail-SPF: sig-perl-modules
   perl-Mail-Sender: sig-perl-modules
@@ -11000,6 +11000,7 @@ src-openeuler:
   unicode-emoji: Base-service
   unicode-ucd: System-tool
   uniconvertor: Application
+  unifdef: dev-utils
   unique: Base-service
   unique3: sig-mate-desktop
   unique_identifier_msgs: sig-ROS
