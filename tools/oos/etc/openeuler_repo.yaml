@@ -9172,6 +9172,7 @@ src-openeuler:
   python-setproctitle: sig-python-modules
   python-setuptools: Base-service
   python-setuptools-declarative-requirements: sig-python-modules
+  python-setuptools-git-versioning: sig-python-modules
   python-setuptools-rust: sig-openstack
   python-setuptools_git: sig-python-modules
   python-setuptools_hg: sig-python-modules
