@@ -145,6 +145,7 @@ openeuler:
   ci-bot: sig-Gatekeeper
   clibcni: iSulad
   cloudnative: sig-CloudNative
+  cloudnative-docs: sig-CloudNative
   cloudphone_kernel: Kernel
   community: TC
   community-issue: TC
@@ -605,6 +606,7 @@ openeuler:
   yocto-meta-renesas: sig-embedded
   yocto-meta-rockchip: sig-embedded
   yocto-meta-ros: sig-embedded
+  yocto-meta-st: sig-embedded
   yocto-meta-virtualization: sig-embedded
   yocto-poky: sig-embedded
   yunyi: sig-CloudNative
@@ -7052,7 +7054,7 @@ src-openeuler:
   perl-XML-Catalog: sig-perl-modules
   perl-XML-CommonNS: sig-perl-modules
   perl-XML-DOM: sig-perl-modules
-  perl-XML-Dumper: sig-cinnamon
+  perl-XML-Dumper: sig-perl-modules
   perl-XML-Fast: sig-perl-modules
   perl-XML-FeedPP: sig-perl-modules
   perl-XML-Flow: sig-perl-modules
