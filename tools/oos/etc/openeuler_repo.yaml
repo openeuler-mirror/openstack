@@ -335,6 +335,7 @@ openeuler:
   kucg: sig-HPC
   kucx: sig-HPC
   kunpeng-competition: sig-OSCourse
+  kunpeng-devkit: sig-ops
   kunpengsecl: sig-security-facility
   kyclassifier: sig-Compatibility-Infra
   kylin-installer: sig-UKUI
@@ -3582,6 +3583,7 @@ src-openeuler:
   kubernetes: sig-CloudNative
   kubevirt: sig-CloudNative
   kudu: bigdata
+  kunpeng-devkit: sig-ops
   kunpengsecl: sig-security-facility
   kurdit-unikurd-web-fonts: Desktop
   kuserfeedback: sig-KDE
