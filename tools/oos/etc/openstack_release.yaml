@@ -565,15 +565,15 @@
   automaton: 3.2.0
   barbican: 17.0.0
   barbican_tempest_plugin: 3.0.0
-  bifrost: 17.1.0
-  blazar: 12.0.0
-  blazar-dashboard: 10.0.0
+  bifrost: 17.1.1
+  blazar: 12.0.1
+  blazar-dashboard: 10.0.1
   blazar-nova: 4.0.0
   blazar_tempest_plugin: 0.11.0
   castellan: 4.3.0
   ceilometer: 21.0.0
   ceilometermiddleware: 3.2.0
-  cinder: 23.3.0
+  cinder: 23.4.0
   cinder-tempest-plugin: 1.10.0
   cinderlib: 5.2.0
   cliff: 4.3.0
@@ -599,23 +599,23 @@
   heat-tempest-plugin: 2.0.0
   heat-translator: 2.8.0
   horizon: 23.3.0
-  ironic: 23.0.3
-  ironic-inspector: 11.7.0
-  ironic-lib: 5.5.0
+  ironic: 23.0.4
+  ironic-inspector: 11.7.1
+  ironic-lib: 5.5.1
   ironic-prometheus-exporter: 4.2.1
-  ironic-python-agent: 9.7.2
+  ironic-python-agent: 9.7.3
   ironic-python-agent-builder: 5.2.1
   ironic-tempest-plugin: 2.7.0
   ironic-ui: 6.2.1
-  kayobe: 15.6.0
+  kayobe: 15.7.0
   kayobe-config: 15.6.0
   kayobe-config-dev: 15.6.0
-  keystone: 24.0.0
+  keystone: 24.1.0
   keystone_tempest_plugin: 0.13.0
-  keystoneauth1: 5.3.0
+  keystoneauth1: 5.3.1
   keystonemiddleware: 10.4.1
-  kolla: 17.7.0
-  kolla-ansible: 17.7.0
+  kolla: 17.8.0
+  kolla-ansible: 17.8.0
   kuryr-kubernetes: 9.0.0
   kuryr-lib: 2.8.0
   kuryr-libnetwork: 12.0.0
@@ -625,8 +625,8 @@
   magnum_tempest_plugin: 2.1.0
   manila: 17.3.1
   manila-tempest-plugin: 2.0.0
-  manila-ui: 10.0.0
-  masakari: 16.0.0
+  manila-ui: 10.0.1
+  masakari: 16.0.1
   masakari-dashboard: 9.0.0
   masakari-monitors: 16.0.0
   metalsmith: 2.0.2
@@ -649,13 +649,13 @@
   murano-dashboard: 16.0.0
   murano-tempest-plugin: 2.7.0
   networking-bagpipe: 19.0.0
-  networking-baremetal: 6.2.1
+  networking-baremetal: 6.2.2
   networking-bgpvpn: 19.0.0
-  networking-generic-switch: 7.2.1
+  networking-generic-switch: 7.2.2
   networking-sfc: 17.0.0
-  neutron: 23.3.0
+  neutron: 23.4.0
   neutron-dynamic-routing: 23.0.0
-  neutron-fwaas: 19.0.0
+  neutron-fwaas: 19.0.1
   neutron-fwaas-dashboard: 6.0.0
   neutron-lib: 3.8.2
   neutron-tempest-plugin: 2.5.0
@@ -671,9 +671,9 @@
   openstack-placement: 10.0.0
   openstack-release-test: 5.0.0
   openstack-venus: 3.0.0
-  openstacksdk: 1.5.0
+  openstacksdk: 1.5.1
   os-brick: 6.4.2
-  os-ken: 2.7.0
+  os-ken: 2.7.1
   os_vif: 3.2.0
   osc-lib: 2.8.1
   osc-placement: 4.2.0
@@ -681,10 +681,10 @@
   oslo.concurrency: 5.2.0
   oslo.config: 9.2.0
   oslo.context: 5.2.0
-  oslo.db: 14.1.0
-  oslo.i18n: 6.1.0
+  oslo.db: 14.1.1
+  oslo.i18n: 6.1.1
   oslo.limit: 2.2.0
-  oslo.log: 5.3.1
+  oslo.log: 5.3.2
   oslo.messaging: 14.4.2
   oslo.metrics: 0.7.0
   oslo.middleware: 5.2.0
@@ -698,8 +698,8 @@
   oslo.utils: 6.2.1
   oslo.versionedobjects: 3.2.0
   oslo.vmware: 4.2.0
-  ovn-bgp-agent: 1.0.0
-  ovn-octavia-provider: 5.0.0
+  ovn-bgp-agent: 1.1.0
+  ovn-octavia-provider: 5.1.0
   ovsdbapp: 2.4.2
   puppet-aodh: 23.0.0
   puppet-barbican: 23.0.0
@@ -751,7 +751,7 @@
   python-ironicclient: 5.4.0
   python-keystoneclient: 5.2.0
   python-magnumclient: 4.2.0
-  python-manilaclient: 4.6.1
+  python-manilaclient: 4.6.2
   python-masakariclient: 8.2.0
   python-mistralclient: 5.1.0
   python-monascaclient: 2.8.0
@@ -768,7 +768,7 @@
   python-troveclient: 8.2.1
   python-venusclient: 2.1.0
   python-vitrageclient: 4.8.0
-  python-watcher: 11.0.0
+  python-watcher: 11.0.1
   python-watcherclient: 4.2.0
   python-zaqarclient: 2.6.0
   python-zunclient: 4.7.0
@@ -794,7 +794,7 @@
   stevedore: 5.1.0
   storlets: 12.0.0
   sushy: 4.5.2
-  swift: 2.32.0
+  swift: 2.32.1
   tacker: 10.0.0
   tacker-horizon: 8.0.0
   tap-as-a-service: 12.0.0
@@ -815,7 +815,7 @@
   zaqar: 17.0.0
   zaqar-ui: 15.0.0
   zaqar_tempest_plugin: 1.7.0
-  zun: 12.0.0
+  zun: 12.0.1
   zun-tempest-plugin: 4.8.0
   zun-ui: 12.0.0
 queens:
