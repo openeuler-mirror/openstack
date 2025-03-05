@@ -81,6 +81,7 @@ openeuler:
   RobotBrain: sig-embedded
   RobotStudio: sig-embedded
   SBC-sig: sig-SBC
+  SoftBR: Compiler
   TC: TC
   TCP_option_address: Kernel
   TSB-agent: sig-security-facility
@@ -377,6 +378,7 @@ openeuler:
   micro-certification: sig-OSCourse
   migration-assistant: sig-Migration
   migration-tools: sig-Migration
+  modelengine: sig-intelligence
   mqtt-operator: sig-message-middleware
   mqtt-proxy: sig-message-middleware
   mugen: sig-QA
@@ -840,6 +842,7 @@ src-openeuler:
   Skanpage: sig-KDE
   SmartHBA-2100-8i-driver: sig-Compatibility-Infra
   SoapySDR: ecopkg
+  SoftBR: Compiler
   SuperLU: dev-utils
   SuperLUMT: ai
   Sweeper: sig-KDE
@@ -1327,7 +1330,6 @@ src-openeuler:
   cinnamon-control-center: sig-cinnamon
   cinnamon-desktop: sig-cinnamon
   cinnamon-menu: sig-cinnamon
-  cinnamon-mozjs78: sig-cinnamon
   cinnamon-screensaver: sig-cinnamon
   cinnamon-session: sig-cinnamon
   cinnamon-settings-daemon: sig-cinnamon
@@ -1381,6 +1383,7 @@ src-openeuler:
   cockpit: Desktop
   cockpit-machines: Desktop
   cockpit-ovirt: oVirt
+  codec2: ecopkg
   codegen: Application
   codehaus-parent: sig-Java
   codelite: sig-UKUI
@@ -1766,7 +1769,6 @@ src-openeuler:
   ehcache-parent: sig-Java
   ehcache-sizeof-agent: sig-Java
   eigen: ai
-  eigen3: sig-epol
   eigen3_cmake_module: sig-ROS
   eigen_stl_containers: sig-ROS
   eigenpy: sig-ROS
@@ -1791,6 +1793,7 @@ src-openeuler:
   eom: sig-mate-desktop
   ephemeral-port-reserve: sig-python-modules
   epiphany: Desktop
+  epkg: sig-CICD
   epstool: bigdata
   epydoc: Base-service
   erlang: Programming-language
@@ -1817,6 +1820,7 @@ src-openeuler:
   ethtool: Networking
   etipc: sig-embedded
   etmem: Storage
+  euler-copilot-shell: sig-intelligence
   eunomia-bpf: sig-ebpf
   eventmesh: sig-message-middleware
   evince: GNOME
@@ -2667,7 +2671,7 @@ src-openeuler:
   hadoop-3.1: bigdata
   hamcrest: dev-utils
   happy: sig-haskell
-  haproxy: System-tool
+  haproxy: Networking
   haproxy_exporter: sig-CloudNative
   harbor: sig-CloudNative
   hardinfo: dev-utils
@@ -2933,6 +2937,7 @@ src-openeuler:
   ibus-theme-tools: Desktop
   ibus-typing-booster: Desktop
   icc-profiles-openicc: Application
+  iceauth: Desktop
   iceberg: bigdata
   icedtea-web: Compiler
   iceoryx: sig-ROS
@@ -3311,6 +3316,7 @@ src-openeuler:
   k3s-containerd: sig-K8sDistro
   k3s-plugins: sig-K8sDistro
   k3s-selinux: sig-K8sDistro
+  k8s-install: sig-CloudNative
   kabi-dw: Kernel
   kaccounts-integration: sig-KDE
   kacst-fonts: Desktop
@@ -3322,6 +3328,7 @@ src-openeuler:
   kairo: sig-KDE
   kalk: sig-KDE
   kata-containers: sig-CloudNative
+  kata-containers-rs: sig-CloudNative
   kata-micro-kernel: sig-recycle
   kata_integration: sig-CloudNative
   kate: sig-KDE
@@ -3761,6 +3768,7 @@ src-openeuler:
   libcroco: sig-recycle
   libcrystalhd: sig-UKUI
   libcue: Desktop
+  libcupsfilters: System-tool
   libcutl: sig-KIRAN-DESKTOP
   libcxx: Compiler
   libcxx-15: Compiler
@@ -4021,6 +4029,7 @@ src-openeuler:
   libpng12: sig-recycle
   libpointmatcher: sig-ROS
   libportal: GNOME
+  libppd: System-tool
   libpq: DB
   libproxy: Networking
   libpsl: Base-service
@@ -4187,8 +4196,7 @@ src-openeuler:
   libzmq: sig-ROS
   lightcouch: sig-Java
   lightdm: Desktop
-  lightdm-gtk: Desktop
-  lightdm-gtk-greeter: sig-recycle
+  lightdm-gtk-greeter: xfce
   lightdm-kiran-greeter: sig-recycle
   lightgbm: ai
   lighttpd: Networking
@@ -4288,6 +4296,7 @@ src-openeuler:
   lucene3: sig-Java
   lucene4: sig-Java
   lucenepp: Desktop
+  luit: Desktop
   luksmeta: Storage
   lunar-date: sig-KIRAN-DESKTOP
   lusb: sig-ROS
@@ -4594,6 +4603,7 @@ src-openeuler:
   mozjs60: sig-recycle
   mozjs68: sig-recycle
   mozjs78: Desktop
+  mozjs91: Desktop
   mozo: ecopkg
   mp: sig-epol
   mpfr: Computing
@@ -5160,7 +5170,7 @@ src-openeuler:
   obs-service-extract_file: Others
   obs-service-rust2rpm: Others
   obs-service-set_version: Others
-  obs_meta: sig-release-management
+  obs_meta: sig-recycle
   ocaml: Programming-language
   ocaml-augeas: dev-utils
   ocaml-calendar: dev-utils
@@ -5184,6 +5194,7 @@ src-openeuler:
   ocfs2-tools: ecopkg
   oci-systemd-hook: sig-recycle
   ocl-icd: Base-service
+  oclock: Desktop
   octave: ai
   octomap: sig-ROS
   octomap_mapping: sig-ROS
@@ -5212,7 +5223,6 @@ src-openeuler:
   okular: sig-KDE
   oldstandard-sfd-fonts: Application
   ollama: sig-CloudNative
-  ompi: ai
   ompl: sig-ROS
   onboard: Others
   oncn-bwm: sig-high-performance-network
@@ -5291,7 +5301,6 @@ src-openeuler:
   openoffice-lv: Application
   openoffice.org-dict-cs_CZ: Application
   openpgm: dev-utils
-  openpmix: ai
   openresty: sig-OpenResty
   openresty-openssl: sig-OpenResty
   openresty-openssl111: sig-OpenResty
@@ -7325,7 +7334,6 @@ src-openeuler:
   proxool: sig-Java
   proxychains-ng: Application
   proxytoys: sig-Java
-  prrte: ai
   ps_mem: Computing
   psacct: Application
   psiconv: sig-desktop-apps
@@ -8628,6 +8636,7 @@ src-openeuler:
   python-ordered-set: Base-service
   python-orderedmultidict: sig-python-modules
   python-orderedset: Private
+  python-orderly-set: ecopkg
   python-orjson: sig-python-modules
   python-os-api-ref: sig-openstack
   python-os-apply-config: sig-openstack
@@ -9297,6 +9306,7 @@ src-openeuler:
   python-sphinxext-opengraph: sig-python-modules
   python-sphinxext-rediraffe: sig-python-modules
   python-sphinxtesters: sig-python-modules
+  python-sphinxygen: sig-epol
   python-sphobjinv: sig-python-modules
   python-spur: sig-python-modules
   python-sqlalchemy: Programming-language
@@ -9654,7 +9664,7 @@ src-openeuler:
   qrupdate: bigdata
   qscintilla: bigdata
   qstardict: sig-desktop-apps
-  qt: Runtime
+  qt: sig-QT
   qt-assistant-adp: sig-QT
   qt-at-spi: sig-QT
   qt-creator: sig-QT
@@ -9663,43 +9673,43 @@ src-openeuler:
   qt-settings: sig-QT
   qt5: sig-QT
   qt5-doc: sig-QT
-  qt5-qt3d: Programming-language
-  qt5-qtbase: Programming-language
-  qt5-qtcanvas3d: Programming-language
+  qt5-qt3d: sig-QT
+  qt5-qtbase: sig-QT
+  qt5-qtcanvas3d: sig-QT
   qt5-qtcharts: sig-UKUI
-  qt5-qtconnectivity: Programming-language
-  qt5-qtdatavis3d: Programming-language
-  qt5-qtdeclarative: Programming-language
-  qt5-qtdoc: Programming-language
+  qt5-qtconnectivity: sig-QT
+  qt5-qtdatavis3d: sig-QT
+  qt5-qtdeclarative: sig-QT
+  qt5-qtdoc: sig-QT
   qt5-qtenginio: sig-QT
   qt5-qtfeedback: sig-KDE
-  qt5-qtgamepad: Programming-language
-  qt5-qtgraphicaleffects: Programming-language
-  qt5-qtimageformats: Programming-language
-  qt5-qtlocation: Programming-language
-  qt5-qtmultimedia: Programming-language
+  qt5-qtgamepad: sig-QT
+  qt5-qtgraphicaleffects: sig-QT
+  qt5-qtimageformats: sig-QT
+  qt5-qtlocation: sig-QT
+  qt5-qtmultimedia: sig-QT
   qt5-qtnetworkauth: sig-QT
-  qt5-qtquickcontrols: Programming-language
-  qt5-qtquickcontrols2: Programming-language
-  qt5-qtremoteobjects: Programming-language
-  qt5-qtscript: Programming-language
-  qt5-qtscxml: Programming-language
-  qt5-qtsensors: Programming-language
-  qt5-qtserialbus: Programming-language
-  qt5-qtserialport: Programming-language
-  qt5-qtspeech: Programming-language
-  qt5-qtsvg: Programming-language
-  qt5-qttools: Programming-language
-  qt5-qttranslations: Programming-language
-  qt5-qtvirtualkeyboard: Programming-language
-  qt5-qtwayland: Programming-language
-  qt5-qtwebchannel: Programming-language
+  qt5-qtquickcontrols: sig-QT
+  qt5-qtquickcontrols2: sig-QT
+  qt5-qtremoteobjects: sig-QT
+  qt5-qtscript: sig-QT
+  qt5-qtscxml: sig-QT
+  qt5-qtsensors: sig-QT
+  qt5-qtserialbus: sig-QT
+  qt5-qtserialport: sig-QT
+  qt5-qtspeech: sig-QT
+  qt5-qtsvg: sig-QT
+  qt5-qttools: sig-QT
+  qt5-qttranslations: sig-QT
+  qt5-qtvirtualkeyboard: sig-QT
+  qt5-qtwayland: sig-QT
+  qt5-qtwebchannel: sig-QT
   qt5-qtwebengine: sig-UKUI
   qt5-qtwebkit: sig-QT
-  qt5-qtwebsockets: Programming-language
-  qt5-qtwebview: Programming-language
-  qt5-qtx11extras: Programming-language
-  qt5-qtxmlpatterns: Programming-language
+  qt5-qtwebsockets: sig-QT
+  qt5-qtwebview: sig-QT
+  qt5-qtx11extras: sig-QT
+  qt5-qtxmlpatterns: sig-QT
   qt5-ukui-platformtheme: sig-UKUI
   qt5dxcb-plugin: sig-DDE
   qt5integration: sig-DDE
@@ -9789,6 +9799,7 @@ src-openeuler:
   raspimouse_description: sig-ROS
   rasqal: Application
   raxml-ng: sig-bio
+  ray: sig-Long
   rc_common_msgs_ros2: sig-ROS
   rc_dynamics_api: sig-ROS
   rc_genicam_api: sig-ROS
@@ -9844,6 +9855,7 @@ src-openeuler:
   resteasy: sig-Java
   restic: sig-Migration
   rfkill: System-tool
+  rgb: Desktop
   rhash: Runtime
   rhino: sig-Java
   rhnlib: Programming-language
@@ -10450,6 +10462,7 @@ src-openeuler:
   scannotation: sig-Java
   scap-security-guide: sig-security-facility
   scap-workbench: sig-security-facility
+  scdoc: ecopkg
   schemas: sig-ROS
   schroedinger: sig-epol
   scim: sig-KDE
@@ -10490,6 +10503,7 @@ src-openeuler:
   serd: sig-epol
   serp: sig-Java
   servicelog: sig-POWER
+  sessreg: Desktop
   setools: Base-service
   setroubleshoot: sig-security-facility
   setroubleshoot-plugins: Base-service
@@ -10551,6 +10565,7 @@ src-openeuler:
   sleuthkit: Others
   slf4j: sig-Java
   slf4j-jboss-logmanager: sig-Java
+  slick-greeter: sig-cinnamon
   slider_publisher: sig-ROS
   slirp4netns: sig-CloudNative
   slurm: sig-HPC
@@ -11191,6 +11206,7 @@ src-openeuler:
   wtdbg2: sig-bio
   wxGTK3: Desktop
   wxPython: sig-python-modules
+  x11perf: Desktop
   x264: Desktop
   x265: Desktop
   x2nestos: sig-K8sDistro
@@ -11203,6 +11219,7 @@ src-openeuler:
   xarchiver: xfce
   xbanish: Application
   xbean: sig-Java
+  xbiff: Desktop
   xcb-imdkit: sig-UKUI
   xcb-proto: Programming-language
   xcb-util: Desktop
@@ -11215,7 +11232,11 @@ src-openeuler:
   xcb-util-xrm: Desktop
   xchm: sig-desktop-apps
   xclip: Application
+  xclipboard: Desktop
+  xclock: Desktop
   xcompmgr: sig-epol
+  xconsole: Desktop
+  xcursorgen: Desktop
   xdelta: Programming-language
   xdg-dbus-proxy: Application
   xdg-desktop-portal: Desktop
@@ -11232,6 +11253,7 @@ src-openeuler:
   xerces-c: Application
   xerces-j2: Base-service
   xev: Desktop
+  xeyes: Desktop
   xfburn: xfce
   xfce-polkit: xfce
   xfce-theme-manager: xfce
@@ -11281,19 +11303,29 @@ src-openeuler:
   xfce4-whiskermenu-plugin: xfce
   xfce4-xkb-plugin: xfce
   xfconf: xfce
+  xfd: Desktop
   xfdashboard: xfce
   xfdesktop: xfce
+  xfontsel: Desktop
   xfsdump: Storage
   xfsprogs: Storage
   xfwm4: xfce
+  xgamma: Desktop
+  xhost: Desktop
   xhtml1-dtds: Others
   xhtml2fo-style-xsl: Private
   xinetd: Networking
+  xinput: Desktop
   xkeyboard-config: Desktop
+  xkill: Desktop
   xl2tpd: Networking
+  xload: Desktop
+  xlogo: Desktop
   xlsatoms: Desktop
   xlsclients: Desktop
   xlsfonts: Desktop
+  xmag: Desktop
+  xmessage: Desktop
   xml-commons-apis: Application
   xml-commons-resolver: Base-service
   xml-maven-plugin: sig-Java
@@ -11313,6 +11345,7 @@ src-openeuler:
   xmltool: Application
   xmlunit: sig-Java
   xmms: Application
+  xmodmap: Desktop
   xmpcore: sig-Java
   xmvn: sig-Java
   xmvn-connector-gradle: Private
@@ -11352,19 +11385,29 @@ src-openeuler:
   xorg-x11-xkb-utils: Desktop
   xorg-x11-xtrans-devel: Runtime
   xpp3: sig-Java
+  xpr: Desktop
   xprop: Desktop
+  xrandr: Desktop
+  xrdb: Desktop
+  xrefresh: Desktop
   xrestop: Desktop
   xsane: Application
   xscreensaver: sig-DDE
   xsd: sig-KIRAN-DESKTOP
   xsel: Application
+  xset: Desktop
+  xsetroot: Desktop
   xsom: sig-Java
+  xstdcmap: Desktop
   xstream: sig-Java
   xterm: Desktop
   xvattr: Desktop
   xvidcore: Desktop
+  xvidtune: Desktop
   xvinfo: Desktop
+  xwd: Desktop
   xwininfo: Desktop
+  xwud: Desktop
   xxhash: dev-utils
   xz: Base-service
   xz-java: Application
@@ -11422,6 +11465,7 @@ src-openeuler:
   zincati: sig-CloudNative
   zip: Base-service
   zipkin: sig-epol
+  zix: sig-epol
   zlib: Base-service
   zlib-ng: sig-AccLib
   zlog: sig-KIRAN-DESKTOP
