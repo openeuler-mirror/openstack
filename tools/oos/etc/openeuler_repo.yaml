@@ -65,6 +65,7 @@ openeuler:
   PilotGo-plugin-container: sig-ops
   PilotGo-plugin-gala-ops: sig-ops
   PilotGo-plugin-grafana: sig-ops
+  PilotGo-plugin-logs: sig-ops
   PilotGo-plugin-mysql: sig-ops
   PilotGo-plugin-observation: sig-ops
   PilotGo-plugin-prometheus: sig-ops
@@ -710,6 +711,7 @@ src-openeuler:
   PilotGo: sig-ops
   PilotGo-plugin-a-tune: sig-ops
   PilotGo-plugin-grafana: sig-ops
+  PilotGo-plugin-logs: sig-ops
   PilotGo-plugin-prometheus: sig-ops
   PilotGo-plugin-syscare: sig-ops
   PilotGo-plugin-topology: sig-ops
@@ -1360,6 +1362,7 @@ src-openeuler:
   cli11: dev-utils
   clibcni: iSulad
   clickhouse: DB
+  cline: sig-intelligence
   cliquer: sig-epol
   clitest: Application
   cln: sig-KDE
@@ -7160,7 +7163,7 @@ src-openeuler:
   perl-version: sig-perl-modules
   perlporter: dev-utils
   pesign: Application
-  pesign-obs-integration: sig-security-facility
+  pesign-obs-integration: sig-recycle
   pgadmin4-server: DB
   pgpool2: DB
   phantomjs: bigdata
@@ -8211,6 +8214,7 @@ src-openeuler:
   python-husl: sig-python-modules
   python-hvac: sig-python-modules
   python-hwdata: sig-python-modules
+  python-hypercorn: sig-python-modules
   python-hyperframe: sig-python-modules
   python-hyperlink: sig-openstack
   python-hyperopt: A-Tune
@@ -9048,6 +9052,8 @@ src-openeuler:
   python-qrcodegen: sig-python-modules
   python-qt5: sig-python-modules
   python-quantities: sig-python-modules
+  python-quart: sig-python-modules
+  python-quart-trio: sig-python-modules
   python-queuelib: sig-python-modules
   python-random2: sig-python-modules
   python-randomize: sig-python-modules
