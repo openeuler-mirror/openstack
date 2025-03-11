@@ -4196,6 +4196,7 @@ src-openeuler:
   libyang1: sig-industrial-control
   libytnef: sig-UKUI
   libyubikey: dev-utils
+  libyuv: ecopkg
   libzapojit: Others
   libzen: Desktop
   libzip: Programming-language
@@ -10520,7 +10521,7 @@ src-openeuler:
   setserial: Desktop
   setup: Base-service
   setuptool: Private
-  setxkbmap: ecopkg
+  setxkbmap: Desktop
   sezpoz: sig-Java
   sg3_utils: Storage
   sgabios: Base-service
@@ -11326,6 +11327,7 @@ src-openeuler:
   xhtml2fo-style-xsl: Private
   xinetd: Networking
   xinput: Desktop
+  xkbcomp: Desktop
   xkeyboard-config: Desktop
   xkill: Desktop
   xl2tpd: Networking
