@@ -365,6 +365,7 @@ openeuler:
   libxml2-rust: Base-service
   linux-operation: sig-OSCourse
   liteview: Desktop
+  llm_solution: sig-Long
   llvm-project: Compiler
   lxcfs-tools: iSulad
   lzu-icc-nsg: sig-OSCourse
@@ -1093,7 +1094,7 @@ src-openeuler:
   atop: dev-utils
   atril: sig-UKUI
   attest-tools: sig-security-facility
-  attica: sig-UKUI
+  attica: sig-KDE
   attr: Storage
   audiofile: Base-service
   audit: sig-security-facility
@@ -2601,7 +2602,7 @@ src-openeuler:
   gsbase: sig-Java
   gscam: sig-ROS
   gsettings-desktop-schemas: Desktop
-  gsettings-qt: sig-UKUI
+  gsettings-qt: sig-QT
   gshhg-gmt-nc4: Application
   gsl: Runtime
   gsm: Desktop
@@ -3930,7 +3931,7 @@ src-openeuler:
   libkomparediff2: sig-KDE
   libkperf: A-Tune
   libksba: Base-service
-  libkscreen-qt5: sig-UKUI
+  libkscreen-qt5: sig-KDE
   libksysguard: sig-KDE
   libkylin-chkname: sig-UKUI
   libkylin-nm-base: sig-UKUI
@@ -4041,7 +4042,7 @@ src-openeuler:
   libproxy: Networking
   libpsl: Base-service
   libpwquality: sig-security-facility
-  libqaccessibilityclient: sig-UKUI
+  libqaccessibilityclient: sig-KDE
   libqalculate: sig-KDE
   libqb: Computing
   libqmi: Networking
@@ -7288,7 +7289,7 @@ src-openeuler:
   polkit-gnome: Base-service
   polkit-kde: sig-KDE
   polkit-pkla-compat: Base-service
-  polkit-qt-1: sig-UKUI
+  polkit-qt-1: sig-KDE
   polly-15: Compiler
   poly2tri: Others
   polycube: sig-high-performance-network
@@ -9687,7 +9688,7 @@ src-openeuler:
   qt5-qt3d: sig-QT
   qt5-qtbase: sig-QT
   qt5-qtcanvas3d: sig-QT
-  qt5-qtcharts: sig-UKUI
+  qt5-qtcharts: sig-QT
   qt5-qtconnectivity: sig-QT
   qt5-qtdatavis3d: sig-QT
   qt5-qtdeclarative: sig-QT
@@ -9715,7 +9716,7 @@ src-openeuler:
   qt5-qtvirtualkeyboard: sig-QT
   qt5-qtwayland: sig-QT
   qt5-qtwebchannel: sig-QT
-  qt5-qtwebengine: sig-UKUI
+  qt5-qtwebengine: sig-QT
   qt5-qtwebkit: sig-QT
   qt5-qtwebsockets: sig-QT
   qt5-qtwebview: sig-QT
@@ -9769,7 +9770,7 @@ src-openeuler:
   qt6-qtwebview: sig-QT
   qt_gui_core: sig-ROS
   qtav: sig-UKUI
-  qtchooser: sig-UKUI
+  qtchooser: sig-QT
   qtkeychain-qt5: sig-KDE
   qtwebkit: sig-recycle
   quartz: sig-Java
@@ -11401,6 +11402,7 @@ src-openeuler:
   xprop: Desktop
   xrandr: Desktop
   xrdb: Desktop
+  xrdp: ecopkg
   xrefresh: Desktop
   xrestop: Desktop
   xsane: Application
