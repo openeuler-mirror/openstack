@@ -87,6 +87,7 @@ openeuler:
   TCP_option_address: Kernel
   TSB-agent: sig-security-facility
   TSSE-driver: sig-Compatibility-Infra
+  UNT: Compiler
   UniProton: sig-embedded
   VMAnalyzer: sig-ops
   WasmEngine: sig-CloudNative
@@ -341,6 +342,7 @@ openeuler:
   kunpeng-competition: sig-OSCourse
   kunpeng-devkit: sig-ops
   kunpengsecl: sig-security-facility
+  kupl-sample: sig-HPC
   kyclassifier: sig-Compatibility-Infra
   kylin-installer: sig-UKUI
   kylin-user-guide: sig-UKUI
@@ -857,6 +859,7 @@ src-openeuler:
   TeXamator: Base-service
   TellySkout: sig-KDE
   Thunar: xfce
+  UNT: Compiler
   Universal_Robots_Client_Library: sig-ROS
   Universal_Robots_ROS2_Description: sig-ROS
   Universal_Robots_ROS2_Driver: sig-ROS
@@ -1524,7 +1527,7 @@ src-openeuler:
   daos: sig-SDS
   dareader: sig-DDE
   darshan: sig-HPC
-  dash: Application
+  dash: Base-service
   datafu: bigdata
   datanucleus-api-jdo: sig-Java
   datanucleus-core: sig-Java
@@ -7182,6 +7185,7 @@ src-openeuler:
   php: Base-service
   php-pear: sig-epol
   php-pecl-zip: sig-epol
+  phpy: ecopkg
   physfs: dev-utils
   pick_ik: sig-ROS
   picketbox: sig-Java
@@ -8231,6 +8235,7 @@ src-openeuler:
   python-ibmcclient: sig-openstack
   python-icalendar: sig-python-modules
   python-icdiff: sig-python-modules
+  python-id: ecopkg
   python-identify: sig-python-modules
   python-idna: Networking
   python-idstools: sig-python-modules
