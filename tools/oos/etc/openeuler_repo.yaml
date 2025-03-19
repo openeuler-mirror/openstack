@@ -558,6 +558,7 @@ openeuler:
   sync-bot: sig-EasyLife
   sysHAX: sig-intelligence
   sysSentry: Base-service
+  sysTrace: sig-ops
   sysboost: A-Tune
   syscare: sig-ops
   syscontainer-tools: iSulad
@@ -588,6 +589,7 @@ openeuler:
   utshell: sig-memsafety
   utsudo: sig-memsafety
   vectorBlas: bigdata
+  velox: bigdata
   virtCCA_driver: sig-confidential-computing
   virtCCA_sdk: sig-confidential-computing
   vmtop: Virt
@@ -1430,6 +1432,7 @@ src-openeuler:
   compface: Application
   compiler-rt: Compiler
   compiler-rt-15: Compiler
+  composer: Programming-language
   compress-lzf: Application
   comps-extras: Desktop
   concurrent-trees: dev-utils
@@ -10729,6 +10732,7 @@ src-openeuler:
   symlinks: Base-service
   sysHAX: sig-intelligence
   sysSentry: Base-service
+  sysTrace: sig-ops
   sysbench: dev-utils
   sysboost: A-Tune
   syscare: sig-ops
