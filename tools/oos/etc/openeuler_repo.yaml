@@ -573,7 +573,6 @@ openeuler:
   tool-collections: Infrastructure
   tp-libvirt: sig-QA
   tp-qemu: sig-QA
-  trivy: sig-security-facility
   trucker: dev-utils
   uadk: sig-AccLib
   uadk-bigdata: bigdata
@@ -10936,6 +10935,7 @@ src-openeuler:
   trimal: sig-bio
   trimmomatic: sig-bio
   trinity: sig-QA
+  trivy: sig-security-facility
   trousers: Base-service
   tslib: sig-compat-winapp
   tss2: sig-security-facility
