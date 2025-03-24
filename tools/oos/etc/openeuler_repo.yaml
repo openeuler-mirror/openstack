@@ -35,6 +35,8 @@ openeuler:
   DyscheOS-meta: sig-recycle
   DyscheOS-utils: sig-recycle
   EulerCopilot: A-Tune
+  EulerMaker: sig-CICD
+  EulerMaker-Web: sig-CICD
   EulerMonitor: sig-ops
   EulerRobot: sig-QA
   G11N: G11N
@@ -1096,7 +1098,7 @@ src-openeuler:
   atmel-firmware: Networking
   atomic: sig-Ostree-Assembly
   atop: dev-utils
-  atril: sig-UKUI
+  atril: sig-mate-desktop
   attest-tools: sig-security-facility
   attica: sig-KDE
   attr: Storage
@@ -1795,7 +1797,7 @@ src-openeuler:
   enchant: Desktop
   enchant2: Programming-language
   engine-db-query: oVirt
-  engrampa: sig-UKUI
+  engrampa: sig-mate-desktop
   enscript: Application
   ensmallen: ai
   entr: System-tool
@@ -2408,7 +2410,7 @@ src-openeuler:
   glassfish-transaction-api: sig-Java
   glassfish-websocket-api: Base-service
   glew: Runtime
-  glib: Programming-language
+  glib: sig-recycle
   glib-networking: GNOME
   glib2: Base-service
   glibc: Computing
@@ -2627,7 +2629,7 @@ src-openeuler:
   gstreamer1-plugins-base: Desktop
   gstreamer1-plugins-good: Others
   gtest: Programming-language
-  gtk: Others
+  gtk: sig-recycle
   gtk-doc: GNOME
   gtk-layer-shell: sig-mate-desktop
   gtk-murrine-engine: sig-mate-desktop
@@ -7271,7 +7273,7 @@ src-openeuler:
   plotjuggler_msgs: sig-ROS
   plotutils: Application
   pluginlib: sig-ROS
-  pluma: sig-UKUI
+  pluma: sig-mate-desktop
   plymouth: Desktop
   plymouth-theme-kiran: sig-KIRAN-DESKTOP
   pmb2_navigation: sig-ROS
@@ -11366,7 +11368,7 @@ src-openeuler:
   xmltoman: Application
   xmltool: Application
   xmlunit: sig-Java
-  xmms: Application
+  xmms: sig-recycle
   xmodmap: Desktop
   xmpcore: sig-Java
   xmvn: sig-Java
