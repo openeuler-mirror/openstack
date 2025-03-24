@@ -27,7 +27,6 @@ Meeting agenda and summary: <https://etherpad.openeuler.org/p/sig-openstack-meet
 
 - Zheng Ting [tzing_t](https://gitee.com/tzing_t) zhengting13@huawei.com
 - Wang Dongxing [desert-sailor](https://gitee.com/desert-sailor) dongxing.wang_a@thundersoft.com
-- Han Guangyu [han-guangyu](https://gitee.com/han-guangyu) hanguangyu@uniontech.com
 
 ### Maintainer/Committer list
 
