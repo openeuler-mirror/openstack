@@ -607,15 +607,15 @@
   ironic-python-agent-builder: 5.2.1
   ironic-tempest-plugin: 2.7.0
   ironic-ui: 6.2.1
-  kayobe: 15.7.0
+  kayobe: 15.8.0
   kayobe-config: 15.6.0
   kayobe-config-dev: 15.6.0
   keystone: 24.1.0
   keystone_tempest_plugin: 0.13.0
   keystoneauth1: 5.3.1
   keystonemiddleware: 10.4.1
-  kolla: 17.8.0
-  kolla-ansible: 17.8.0
+  kolla: 17.9.0
+  kolla-ansible: 17.9.0
   kuryr-kubernetes: 9.0.0
   kuryr-lib: 2.8.0
   kuryr-libnetwork: 12.0.0
@@ -767,7 +767,7 @@
   python-tackerclient: 1.14.0
   python-troveclient: 8.2.1
   python-venusclient: 2.1.0
-  python-vitrageclient: 4.8.0
+  python-vitrageclient: 4.8.1
   python-watcher: 11.0.1
   python-watcherclient: 4.2.0
   python-zaqarclient: 2.6.0
