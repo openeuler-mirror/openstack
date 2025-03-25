@@ -7316,6 +7316,8 @@ src-openeuler:
   postgresql-13: DB
   postgresql-jdbc: sig-Java
   postgresql-odbc: DB
+  postgresql15: DB
+  postgresql17: DB
   potrace: Application
   powerapi: sig-power-efficient
   powerdevil: sig-KDE
