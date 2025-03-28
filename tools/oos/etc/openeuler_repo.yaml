@@ -544,7 +544,9 @@ openeuler:
   sig-OpenBoard: sig-recycle
   signatrust: Infrastructure
   skylark: Virt
+  slice-releases: sig-CloudNative
   smart-shell: sig-intelligence
+  splitter: sig-CloudNative
   sra_benchmark: sig-AccLib
   sra_scann_adapter: sig-AccLib
   sra_tensorflow_adapter: sig-AccLib
@@ -8468,6 +8470,7 @@ src-openeuler:
   python-maturin: sig-python-modules
   python-mbstrdecoder: sig-openstack
   python-mccabe: sig-python-modules
+  python-mcp: sig-intelligence
   python-mdformat: sig-python-modules
   python-mdformat-gfm: sig-python-modules
   python-mdformat-tables: sig-python-modules
@@ -9921,6 +9924,7 @@ src-openeuler:
   rocketmq: sig-message-middleware
   rocksdb: System-tool
   rome: sig-Java
+  roo-code: sig-intelligence
   rootfiles: Base-service
   rootsh: Others
   ros: sig-ROS
@@ -11097,6 +11101,7 @@ src-openeuler:
   utshell: sig-memsafety
   utsudo: sig-memsafety
   uuid: Programming-language
+  uv: sig-intelligence
   uwsgi: Application
   v2v-conversion-host: oVirt
   v4l-utils: System-tool
