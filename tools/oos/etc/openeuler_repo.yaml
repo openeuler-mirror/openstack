@@ -202,6 +202,7 @@ openeuler:
   embedded: sig-embedded
   embedded-ci: sig-embedded
   embedded-ipc: sig-embedded
+  enclave-device-plugins: sig-CloudNative
   env_check: sig-Compatibility-Infra
   epkg: sig-CICD
   etipc: sig-embedded
@@ -379,6 +380,7 @@ openeuler:
   mate-desktop: sig-mate-desktop
   mcp: sig-CloudNative
   mcp-self-service-vue: sig-CloudNative
+  mcp-servers: sig-intelligence
   mcp-vue: sig-CloudNative
   mcs: sig-embedded
   memory-scan: Storage
@@ -4674,7 +4676,7 @@ src-openeuler:
   mysql: Others
   mysql-connector-java: dev-utils
   mysql-selinux: sig-security-facility
-  mysql5: DB
+  mysql5: sig-recycle
   mysqld_exporter: sig-CloudNative
   mysqltuner: DB
   mythes: Application
