@@ -38,6 +38,7 @@ nav:
   - openEuler-24.03-LTS_Antelope: 'install/openEuler-24.03-LTS/OpenStack-antelope.md'
   - openEuler-24.03-LTS-SP1_Wallaby: 'install/openEuler-24.03-LTS-SP1/OpenStack-wallaby.md'
   - openEuler-24.03-LTS-SP1_Antelope: 'install/openEuler-24.03-LTS-SP1/OpenStack-antelope.md'
+  - openEuler-25.03_Antelope: 'install/openEuler-25.03/OpenStack-antelope.md'
 - 测试报告:
   - openEuler-20.03-LTS-SP2: 'test/openEuler-20.03-LTS-SP2.md'
   - openEuler-20.03-LTS-SP3: 'test/openEuler-20.03-LTS-SP3.md'
