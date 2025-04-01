@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../../img/favicon.ico" />
-    <title>openEuler-24.03-LTS-SP1_Antelope - OpenStack SIG Doc</title>
+    <title>openEuler-25.03_Antelope - OpenStack SIG Doc</title>
     <link rel="stylesheet" href="../../../css/theme.css" />
     <link rel="stylesheet" href="../../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "openEuler-24.03-LTS-SP1_Antelope";
-        var mkdocs_page_input_path = "install/openEuler-24.03-LTS-SP1/OpenStack-antelope.md";
+        var mkdocs_page_name = "openEuler-25.03_Antelope";
+        var mkdocs_page_input_path = "install/openEuler-25.03/OpenStack-antelope.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -92,9 +92,11 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../openEuler-24.03-LTS/OpenStack-antelope/">openEuler-24.03-LTS_Antelope</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../OpenStack-wallaby/">openEuler-24.03-LTS-SP1_Wallaby</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-24.03-LTS-SP1/OpenStack-wallaby/">openEuler-24.03-LTS-SP1_Wallaby</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">openEuler-24.03-LTS-SP1_Antelope</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-24.03-LTS-SP1/OpenStack-antelope/">openEuler-24.03-LTS-SP1_Antelope</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">openEuler-25.03_Antelope</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#rpm">基于RPM部署</a>
         <ul>
@@ -152,8 +154,6 @@
     </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../openEuler-25.03/OpenStack-antelope/">openEuler-25.03_Antelope</a>
-                  </li>
               </ul>
               <p class="caption"><span class="caption-text">测试报告</span></p>
               <ul>
@@ -203,7 +203,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="文档"></a></li>
           <li class="breadcrumb-item">安装指导</li>
-      <li class="breadcrumb-item active">openEuler-24.03-LTS-SP1_Antelope</li>
+      <li class="breadcrumb-item active">openEuler-25.03_Antelope</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -250,7 +250,7 @@
 </li>
 </ul>
 </div>
-<p>本文档是 openEuler OpenStack SIG 编写的基于 |openEuler 24.03 LTS SP1 的 OpenStack 部署指南，内容由 SIG 贡献者提供。在阅读过程中，如果您有任何疑问或者发现任何问题，请<a href="https://gitee.com/openeuler/openstack#%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F">联系</a>SIG维护人员，或者直接<a href="https://gitee.com/openeuler/openstack/issues">提交issue</a></p>
+<p>本文档是 openEuler OpenStack SIG 编写的基于 |openEuler 25.03 的 OpenStack 部署指南，内容由 SIG 贡献者提供。在阅读过程中，如果您有任何疑问或者发现任何问题，请<a href="https://gitee.com/openeuler/openstack#%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F">联系</a>SIG维护人员，或者直接<a href="https://gitee.com/openeuler/openstack/issues">提交issue</a></p>
 <p><strong>约定</strong></p>
 <p>本章节描述文档中的一些通用约定。</p>
 <table>
@@ -359,12 +359,12 @@
 <h2 id="rpm">基于RPM部署<a class="headerlink" href="#rpm" title="Permanent link">&para;</a></h2>
 <h3 id="_1">环境准备<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>本文档基于OpenStack经典的三节点环境进行部署，三个节点分别是控制节点(Controller)、计算节点(Compute)、存储节点(Storage)，其中存储节点一般只部署存储服务，在资源有限的情况下，可以不单独部署该节点，把存储节点上的服务部署到计算节点即可。</p>
-<p>首先准备三个|openEuler 24.03 LTS SP1环境，根据您的环境，下载对应的镜像并安装即可：<a href="https://repo.openeuler.org/openEuler-24.03-LTS-SP1/ISO/">ISO镜像</a>、<a href="https://repo.openeuler.org/openEuler-24.03-LTS-SP1/virtual_machine_img/">qcow2镜像</a>。</p>
-<p>下面的安装按照如下拓扑进行：
-<pre class="highlight"><code>controller：192.168.0.2
+<p>首先准备三个|openEuler 25.03环境，根据您的环境，下载对应的镜像并安装即可：[ISO镜像]<a href="https://repo.openeuler.org/openEuler-24.03-LTS-SP1/ISO/">https://repo.openeuler.org/openEuler-24.03-LTS-SP1/ISO/</a>、[qcow2镜像]<a href="https://repo.openeuler.org/openEuler-24.03-LTS-SP1/virtual_machine_img/">https://repo.openeuler.org/openEuler-24.03-LTS-SP1/virtual_machine_img/</a>。</p>
+<p>下面的安装按照如下拓扑进行：</p>
+<pre class="highlight"><code class="language-shell">controller：192.168.0.2
 compute：   192.168.0.3
 storage：   192.168.0.4</code></pre>
-如果您的环境IP不同，请按照您的环境IP修改相应的配置文件。</p>
+<p>如果您的环境IP不同，请按照您的环境IP修改相应的配置文件。</p>
 <p>本文档的三节点服务拓扑如下图所示(只包含Keystone、Glance、Nova、Cinder、Neutron这几个核心服务，其他服务请参考具体部署章节)：</p>
 <p><img alt="topology1" src="../../../img/install/topology1.PNG" />
 <img alt="topology2" src="../../../img/install/topology2.PNG" />
@@ -372,7 +372,7 @@ storage：   192.168.0.4</code></pre>
 <p>在正式部署之前，需要对每个节点做如下配置和检查：</p>
 <ol>
 <li>
-<p>配置 |openEuler 24.03 LTS SP1 官方 yum 源，需要启用 EPOL 软件仓以支持 OpenStack</p>
+<p>配置 |openEuler 25.03 官方 yum 源，需要启用 EPOL 软件仓以支持 OpenStack</p>
 <pre class="highlight"><code class="language-shell">yum update
 yum install openstack-release-antelope
 yum clean all &amp;&amp; yum makecache</code></pre>
@@ -390,12 +390,12 @@ EOF</code></pre>
 <li>
 <p>修改主机名以及映射</p>
 <p>每个节点分别修改主机名，以controller为例：</p>
-<pre class="highlight"><code>hostnamectl set-hostname controller
+<pre class="highlight"><code class="language-shell">hostnamectl set-hostname controller
 
 vi /etc/hostname
 内容修改为controller</code></pre>
 <p>然后修改每个节点的<code>/etc/hosts</code>文件，新增如下内容:</p>
-<pre class="highlight"><code>192.168.0.2   controller
+<pre class="highlight"><code class="language-shell">192.168.0.2   controller
 192.168.0.3   compute
 192.168.0.4   storage</code></pre>
 </li>
@@ -404,33 +404,39 @@ vi /etc/hostname
 <p>集群环境时刻要求每个节点的时间一致，一般由时钟同步软件保证。本文使用<code>chrony</code>软件。步骤如下：</p>
 <p><strong>Controller节点</strong>：</p>
 <ol>
-<li>安装服务
-    <pre class="highlight"><code>dnf install chrony</code></pre></li>
-<li>修改<code>/etc/chrony.conf</code>配置文件，新增一行
-    <pre class="highlight"><code># 表示允许哪些IP从本节点同步时钟
-allow 192.168.0.0/24</code></pre></li>
-<li>重启服务
-    <pre class="highlight"><code>systemctl restart chronyd</code></pre></li>
+<li>
+<p>安装服务</p>
+<pre class="highlight"><code class="language-shell">dnf install chrony</code></pre>
+</li>
+<li>
+<p>修改<code>/etc/chrony.conf</code>配置文件，新增一行</p>
+<pre class="highlight"><code class="language-shell"># 表示允许哪些IP从本节点同步时钟
+allow 192.168.0.0/24</code></pre>
+</li>
+<li>
+<p>重启服务</p>
+<pre class="highlight"><code class="language-shell">systemctl restart chronyd</code></pre>
+</li>
 </ol>
 <p><strong>其他节点</strong></p>
 <ol>
 <li>
-<p>安装服务
-    <pre class="highlight"><code>dnf install chrony</code></pre></p>
+<p>安装服务</p>
+<pre class="highlight"><code class="language-shell">dnf install chrony</code></pre>
 </li>
 <li>
 <p>修改<code>/etc/chrony.conf</code>配置文件，新增一行</p>
-<pre class="highlight"><code># NTP_SERVER是controller IP，表示从这个机器获取时间，这里我们填192.168.0.2，或者在`/etc/hosts`里配置好的controller名字即可。
+<pre class="highlight"><code class="language-shell"># NTP_SERVER是controller IP，表示从这个机器获取时间，这里我们填192.168.0.2，或者在`/etc/hosts`里配置好的controller名字即可。
 server NTP_SERVER iburst</code></pre>
 <p>同时，要把<code>pool pool.ntp.org iburst</code>这一行注释掉，表示不从公网同步时钟。</p>
 </li>
 <li>
 <p>重启服务</p>
-<pre class="highlight"><code>systemctl restart chronyd</code></pre>
+<pre class="highlight"><code class="language-shell">systemctl restart chronyd</code></pre>
 </li>
 </ol>
 <p>配置完成后，检查一下结果，在其他非controller节点执行<code>chronyc sources</code>，返回结果类似如下内容，表示成功从controller同步时钟。</p>
-<pre class="highlight"><code>MS Name/IP address         Stratum Poll Reach LastRx Last sample
+<pre class="highlight"><code class="language-ini">MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ===============================================================================
 ^* 192.168.0.2                 4   6     7     0  -1406ns[  +55us] +/-   16ms</code></pre>
 <h4 id="_3">安装数据库<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
@@ -438,11 +444,11 @@ server NTP_SERVER iburst</code></pre>
 <ol>
 <li>
 <p>安装软件包</p>
-<pre class="highlight"><code>dnf install mysql-config mariadb mariadb-server python3-PyMySQL</code></pre>
+<pre class="highlight"><code class="language-shell">dnf install mysql-config mariadb mariadb-server python3-PyMySQL</code></pre>
 </li>
 <li>
 <p>新增配置文件<code>/etc/my.cnf.d/openstack.cnf</code>，内容如下</p>
-<pre class="highlight"><code>[mysqld]
+<pre class="highlight"><code class="language-shell">[mysqld]
 bind-address = 192.168.0.2
 default-storage-engine = innodb
 innodb_file_per_table = on
@@ -452,11 +458,11 @@ character-set-server = utf8</code></pre>
 </li>
 <li>
 <p>启动服务器</p>
-<pre class="highlight"><code>systemctl start mariadb</code></pre>
+<pre class="highlight"><code class="language-shell">systemctl start mariadb</code></pre>
 </li>
 <li>
 <p>初始化数据库，根据提示进行即可</p>
-<pre class="highlight"><code>mysql_secure_installation</code></pre>
+<pre class="highlight"><code class="language-shell">mysql_secure_installation</code></pre>
 <p>示例如下：</p>
 <pre class="highlight"><code class="language-shell">NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
     SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
@@ -544,29 +550,41 @@ installation should now be secure.</code></pre>
 </li>
 <li>
 <p>验证，根据第四步设置的密码，检查是否能登录mariadb</p>
-<pre class="highlight"><code>mysql -uroot -p</code></pre>
+<pre class="highlight"><code class="language-shell">mysql -uroot -p</code></pre>
 </li>
 </ol>
 <h4 id="_4">安装消息队列<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
 <p>消息队列安装在控制节点，这里推荐使用rabbitmq。</p>
 <ol>
-<li>安装软件包
-    <pre class="highlight"><code>dnf install rabbitmq-server</code></pre></li>
-<li>启动服务
-    <pre class="highlight"><code>systemctl start rabbitmq-server</code></pre></li>
-<li>配置openstack用户，<code>RABBIT_PASS</code>是openstack服务登录消息队里的密码，需要和后面各个服务的配置保持一致。
-    <pre class="highlight"><code>rabbitmqctl add_user openstack RABBIT_PASS
-rabbitmqctl set_permissions openstack ".*" ".*" ".*"</code></pre></li>
+<li>
+<p>安装软件包</p>
+<pre class="highlight"><code class="language-shell">dnf install rabbitmq-server</code></pre>
+</li>
+<li>
+<p>启动服务</p>
+<pre class="highlight"><code class="language-shell">systemctl start rabbitmq-server</code></pre>
+</li>
+<li>
+<p>配置openstack用户，<code>RABBIT_PASS</code>是openstack服务登录消息队里的密码，需要和后面各个服务的配置保持一致。</p>
+<pre class="highlight"><code class="language-shell">rabbitmqctl add_user openstack RABBIT_PASS
+rabbitmqctl set_permissions openstack ".*" ".*" ".*"</code></pre>
+</li>
 </ol>
 <h4 id="_5">安装缓存服务<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
-<p>消息队列安装在控制节点，这里推荐使用Memcached。</p>
+<p>缓存服务安装在控制节点，这里推荐使用Memcached。</p>
 <ol>
-<li>安装软件包
-    <pre class="highlight"><code>dnf install memcached python3-memcached</code></pre></li>
-<li>修改配置文件<code>/etc/sysconfig/memcached</code>
-    <pre class="highlight"><code>OPTIONS="-l 127.0.0.1,::1,controller"</code></pre></li>
-<li>启动服务
-    <pre class="highlight"><code>systemctl start memcached</code></pre></li>
+<li>
+<p>安装软件包</p>
+<pre class="highlight"><code class="language-shell">dnf install memcached python3-memcached</code></pre>
+</li>
+<li>
+<p>修改配置文件<code>/etc/sysconfig/memcached</code></p>
+<pre class="highlight"><code class="language-shell">OPTIONS="-l 127.0.0.1,::1,controller"</code></pre>
+</li>
+<li>
+<p>启动服务</p>
+<pre class="highlight"><code class="language-shell">systemctl start memcached</code></pre>
+</li>
 </ol>
 <h3 id="_6">部署服务<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <h4 id="keystone">Keystone<a class="headerlink" href="#keystone" title="Permanent link">&para;</a></h4>
@@ -623,22 +641,22 @@ keystone-manage credential_setup --keystone-user keystone --keystone-group keyst
 </li>
 <li>
 <p>配置Apache HTTP server</p>
-</li>
-<li>
-<p>打开httpd.conf并配置</p>
+<ul>
+<li>打开httpd.conf并配置</li>
+</ul>
 <pre class="highlight"><code class="language-shell">#需要修改的配置文件路径
 vim /etc/httpd/conf/httpd.conf
 
 #修改以下项，如果没有则新添加
 ServerName controller</code></pre>
-</li>
-<li>
-<p>创建软链接</p>
+<ul>
+<li>创建软链接</li>
+</ul>
 <pre class="highlight"><code class="language-shell">ln -s /usr/share/keystone/wsgi-keystone.conf /etc/httpd/conf.d/</code></pre>
 <p><strong><em>解释</em></strong></p>
 <p>配置 <code>ServerName</code> 项引用控制节点</p>
 <p><strong><em>注意</em></strong>
- <strong>如果 <code>ServerName</code> 项不存在则需要创建</strong></p>
+<strong>如果 <code>ServerName</code> 项不存在则需要创建</strong></p>
 </li>
 <li>
 <p>启动Apache HTTP服务</p>
@@ -663,49 +681,45 @@ EOF</code></pre>
 <li>
 <p>依次创建domain, projects, users, roles</p>
 <ul>
-<li>
-<p>需要先安装python3-openstackclient</p>
+<li>需要先安装python3-openstackclient</li>
+</ul>
 <pre class="highlight"><code class="language-shell">dnf install python3-openstackclient</code></pre>
-</li>
-<li>
-<p>导入环境变量</p>
+<ul>
+<li>导入环境变量</li>
+</ul>
 <pre class="highlight"><code class="language-shell">source ~/.admin-openrc</code></pre>
-</li>
-<li>
-<p>创建project <code>service</code>，其中 domain <code>default</code> 在 keystone-manage bootstrap 时已创建</p>
+<ul>
+<li>创建project <code>service</code>，其中 domain <code>default</code> 在 keystone-manage bootstrap 时已创建</li>
+</ul>
 <pre class="highlight"><code class="language-shell">openstack domain create --description "An Example Domain" example</code></pre>
 <pre class="highlight"><code class="language-shell">openstack project create --domain default --description "Service Project" service</code></pre>
-</li>
-<li>
-<p>创建（non-admin）project <code>myproject</code>，user <code>myuser</code> 和 role <code>myrole</code>，为 <code>myproject</code> 和 <code>myuser</code> 添加角色<code>myrole</code></p>
+<ul>
+<li>创建（non-admin）project <code>myproject</code>，user <code>myuser</code> 和 role <code>myrole</code>，为 <code>myproject</code> 和 <code>myuser</code> 添加角色<code>myrole</code></li>
+</ul>
 <pre class="highlight"><code class="language-shell">openstack project create --domain default --description "Demo Project" myproject
 openstack user create --domain default --password-prompt myuser
 openstack role create myrole
 openstack role add --project myproject --user myuser myrole</code></pre>
 </li>
-</ul>
-</li>
 <li>
 <p>验证</p>
 <ul>
-<li>
-<p>取消临时环境变量OS_AUTH_URL和OS_PASSWORD：</p>
+<li>取消临时环境变量OS_AUTH_URL和OS_PASSWORD：</li>
+</ul>
 <pre class="highlight"><code class="language-shell">source ~/.admin-openrc
 unset OS_AUTH_URL OS_PASSWORD</code></pre>
-</li>
-<li>
-<p>为admin用户请求token：</p>
+<ul>
+<li>为admin用户请求token：</li>
+</ul>
 <pre class="highlight"><code class="language-shell">openstack --os-auth-url http://controller:5000/v3 \
 --os-project-domain-name Default --os-user-domain-name Default \
 --os-project-name admin --os-username admin token issue</code></pre>
-</li>
-<li>
-<p>为myuser用户请求token：</p>
+<ul>
+<li>为myuser用户请求token：</li>
+</ul>
 <pre class="highlight"><code class="language-shell">openstack --os-auth-url http://controller:5000/v3 \
 --os-project-domain-name Default --os-user-domain-name Default \
 --os-project-name myproject --os-username myuser token issue</code></pre>
-</li>
-</ul>
 </li>
 </ol>
 <h4 id="glance">Glance<a class="headerlink" href="#glance" title="Permanent link">&para;</a></h4>
@@ -727,27 +741,27 @@ MariaDB [(none)]&gt; exit</code></pre>
 </li>
 <li>
 <p>初始化 glance 资源对象</p>
-</li>
-<li>
-<p>导入环境变量</p>
+<ul>
+<li>导入环境变量</li>
+</ul>
 <pre class="highlight"><code class="language-shell">source ~/.admin-openrc</code></pre>
-</li>
-<li>
-<p>创建用户时，命令行会提示输入密码，请输入自定义的密码，下文涉及到<code>GLANCE_PASS</code>的地方替换成该密码即可。</p>
+<ul>
+<li>创建用户时，命令行会提示输入密码，请输入自定义的密码，下文涉及到<code>GLANCE_PASS</code>的地方替换成该密码即可。</li>
+</ul>
 <pre class="highlight"><code class="language-shell">openstack user create --domain default --password-prompt glance
 User Password:
 Repeat User Password:</code></pre>
-</li>
-<li>
-<p>添加glance用户到service project并指定admin角色：</p>
+<ul>
+<li>添加glance用户到service project并指定admin角色：</li>
+</ul>
 <pre class="highlight"><code class="language-shell">openstack role add --project service --user glance admin</code></pre>
-</li>
-<li>
-<p>创建glance服务实体：</p>
+<ul>
+<li>创建glance服务实体：</li>
+</ul>
 <pre class="highlight"><code class="language-shell">openstack service create --name glance --description "OpenStack Image" image</code></pre>
-</li>
-<li>
-<p>创建glance API服务：</p>
+<ul>
+<li>创建glance API服务：</li>
+</ul>
 <pre class="highlight"><code class="language-shell">openstack endpoint create --region RegionOne image public http://controller:9292
 openstack endpoint create --region RegionOne image internal http://controller:9292
 openstack endpoint create --region RegionOne image admin http://controller:9292</code></pre>
@@ -798,12 +812,12 @@ systemctl start openstack-glance-api.service</code></pre>
 <li>
 <p>验证</p>
 <ul>
-<li>
-<p>导入环境变量
-  <pre class="highlight"><code class="language-shell">sorce ~/.admin-openrcu</code></pre></p>
-</li>
-<li>
-<p>下载镜像</p>
+<li>导入环境变量</li>
+</ul>
+<pre class="highlight"><code class="language-shell">source ~/.admin-openrcu</code></pre>
+<ul>
+<li>下载镜像</li>
+</ul>
 <pre class="highlight"><code class="language-shell">x86镜像下载：
 wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img
 
@@ -811,17 +825,15 @@ arm镜像下载：
 wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-aarch64-disk.img</code></pre>
 <p><strong><em>注意</em></strong></p>
 <p><strong>如果您使用的环境是鲲鹏架构，请下载aarch64版本的镜像；已对镜像cirros-0.5.2-aarch64-disk.img进行测试。</strong></p>
-</li>
-<li>
-<p>向Image服务上传镜像：</p>
+<ul>
+<li>向Image服务上传镜像：</li>
+</ul>
 <pre class="highlight"><code class="language-shell">openstack image create --disk-format qcow2 --container-format bare \
                     --file cirros-0.4.0-x86_64-disk.img --public cirros</code></pre>
-</li>
-<li>
-<p>确认镜像上传并验证属性：</p>
-<pre class="highlight"><code class="language-shell">openstack image list</code></pre>
-</li>
+<ul>
+<li>确认镜像上传并验证属性：</li>
 </ul>
+<pre class="highlight"><code class="language-shell">openstack image list</code></pre>
 </li>
 </ol>
 <h4 id="placement">Placement<a class="headerlink" href="#placement" title="Permanent link">&para;</a></h4>
@@ -831,80 +843,76 @@ wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-aarch64-disk.img</code>
 <li>
 <p>创建数据库</p>
 <ul>
-<li>
-<p>使用root用户访问数据库服务：</p>
-<pre class="highlight"><code class="language-shell">mysql -u root -p</code></pre>
-</li>
-<li>
-<p>创建placement数据库：</p>
-<pre class="highlight"><code class="language-sql">MariaDB [(none)]&gt; CREATE DATABASE placement;</code></pre>
-</li>
-<li>
-<p>授权数据库访问：</p>
-<pre class="highlight"><code class="language-sql">MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'localhost' \
-  IDENTIFIED BY 'PLACEMENT_DBPASS';
-MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'%' \
-  IDENTIFIED BY 'PLACEMENT_DBPASS';</code></pre>
-<p>替换<code>PLACEMENT_DBPASS</code>为placement数据库访问密码。</p>
-</li>
-<li>
-<p>退出数据库访问客户端：</p>
-<pre class="highlight"><code class="language-shell">exit</code></pre>
-</li>
+<li>使用root用户访问数据库服务：</li>
 </ul>
+<pre class="highlight"><code class="language-shell">mysql -u root -p</code></pre>
+<ul>
+<li>创建placement数据库：</li>
+</ul>
+<pre class="highlight"><code class="language-sql">MariaDB [(none)]&gt; CREATE DATABASE placement;</code></pre>
+<ul>
+<li>授权数据库访问：</li>
+</ul>
+<pre class="highlight"><code class="language-sql">MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'localhost' \
+    IDENTIFIED BY 'PLACEMENT_DBPASS';
+MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'%' \
+    IDENTIFIED BY 'PLACEMENT_DBPASS';</code></pre>
+<p>替换<code>PLACEMENT_DBPASS</code>为placement数据库访问密码。</p>
+<ul>
+<li>退出数据库访问客户端：</li>
+</ul>
+<pre class="highlight"><code class="language-shell">exit</code></pre>
 </li>
 <li>
 <p>配置用户和Endpoints</p>
 <ul>
-<li>
-<p>source admin凭证，以获取admin命令行权限：</p>
+<li>source admin凭证，以获取admin命令行权限：</li>
+</ul>
 <pre class="highlight"><code class="language-shell">source ~/.admin-openrc</code></pre>
-</li>
-<li>
-<p>创建placement用户并设置用户密码：</p>
+<ul>
+<li>创建placement用户并设置用户密码：</li>
+</ul>
 <pre class="highlight"><code class="language-shell">openstack user create --domain default --password-prompt placement
 
 User Password:
 Repeat User Password:</code></pre>
-</li>
-<li>
-<p>添加placement用户到service project并指定admin角色：</p>
-<pre class="highlight"><code class="language-shell">openstack role add --project service --user placement admin</code></pre>
-</li>
-<li>
-<p>创建placement服务实体：</p>
-<pre class="highlight"><code class="language-shell">openstack service create --name placement \
-  --description "Placement API" placement</code></pre>
-</li>
-<li>
-<p>创建Placement API服务endpoints：</p>
-<pre class="highlight"><code class="language-shell">openstack endpoint create --region RegionOne \
-  placement public http://controller:8778
-openstack endpoint create --region RegionOne \
-  placement internal http://controller:8778
-openstack endpoint create --region RegionOne \
-  placement admin http://controller:8778</code></pre>
-</li>
+<ul>
+<li>添加placement用户到service project并指定admin角色：</li>
 </ul>
+<pre class="highlight"><code class="language-shell">openstack role add --project service --user placement admin</code></pre>
+<ul>
+<li>创建placement服务实体：</li>
+</ul>
+<pre class="highlight"><code class="language-shell">openstack service create --name placement \
+    --description "Placement API" placement</code></pre>
+<ul>
+<li>创建Placement API服务endpoints：</li>
+</ul>
+<pre class="highlight"><code class="language-shell">openstack endpoint create --region RegionOne \
+    placement public http://controller:8778
+openstack endpoint create --region RegionOne \
+    placement internal http://controller:8778
+openstack endpoint create --region RegionOne \
+    placement admin http://controller:8778</code></pre>
 </li>
 <li>
 <p>安装及配置组件</p>
 <ul>
-<li>
-<p>安装软件包：</p>
+<li>安装软件包：</li>
+</ul>
 <pre class="highlight"><code class="language-shell">dnf install openstack-placement-api</code></pre>
-</li>
+<ul>
 <li>
 <p>编辑<code>/etc/placement/placement.conf</code>配置文件，完成如下操作：</p>
 <ul>
-<li>
-<p>在<code>[placement_database]</code>部分，配置数据库入口：</p>
+<li>在<code>[placement_database]</code>部分，配置数据库入口：</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[placement_database]
 connection = mysql+pymysql://placement:PLACEMENT_DBPASS@controller/placement</code></pre>
 <p>替换<code>PLACEMENT_DBPASS</code>为placement数据库的密码。</p>
-</li>
-<li>
-<p>在<code>[api]</code>和<code>[keystone_authtoken]</code>部分，配置身份认证服务入口：</p>
+<ul>
+<li>在<code>[api]</code>和<code>[keystone_authtoken]</code>部分，配置身份认证服务入口：</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[api]
 auth_strategy = keystone
 
@@ -919,13 +927,11 @@ username = placement
 password = PLACEMENT_PASS</code></pre>
 <p>替换<code>PLACEMENT_PASS</code>为placement用户的密码。</p>
 </li>
-</ul>
-</li>
 <li>
 <p>数据库同步，填充Placement数据库：</p>
-<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "placement-manage db sync" placement</code></pre>
 </li>
 </ul>
+<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "placement-manage db sync" placement</code></pre>
 </li>
 <li>
 <p>启动服务</p>
@@ -935,14 +941,14 @@ password = PLACEMENT_PASS</code></pre>
 <li>
 <p>验证</p>
 <ul>
-<li>
-<p>source admin凭证，以获取admin命令行权限</p>
+<li>source admin凭证，以获取admin命令行权限</li>
+</ul>
 <pre class="highlight"><code class="language-shell">source ~/.admin-openrc</code></pre>
-</li>
-<li>
-<p>执行状态检查：</p>
+<ul>
+<li>执行状态检查：</li>
+</ul>
 <pre class="highlight"><code class="language-shell">placement-status upgrade check</code></pre>
-<pre class="highlight"><code>+----------------------------------------------------------------------+
+<pre class="highlight"><code class="language-ini">+----------------------------------------------------------------------+
 | Upgrade Check Results                                                |
 +----------------------------------------------------------------------+
 | Check: Missing Root Provider IDs                                     |
@@ -964,20 +970,20 @@ password = PLACEMENT_PASS</code></pre>
 +----------------------------------------------------------------------+</code></pre>
 <p>这里可以看到<code>Policy File JSON to YAML Migration</code>的结果为Failure。这是因为在Placement中，JSON格式的policy文件从Wallaby版本开始已处于<code>deprecated</code>状态。可以参考提示，使用<a href="https://docs.openstack.org/oslo.policy/latest/cli/oslopolicy-convert-json-to-yaml.html">oslopolicy-convert-json-to-yaml</a>工具  将现有的JSON格式policy文件转化为YAML格式。</p>
 <pre class="highlight"><code class="language-shell">oslopolicy-convert-json-to-yaml  --namespace placement \
-  --policy-file /etc/placement/policy.json \
-  --output-file /etc/placement/policy.yaml
+    --policy-file /etc/placement/policy.json \
+    --output-file /etc/placement/policy.yaml
 mv /etc/placement/policy.json{,.bak}</code></pre>
 <p>注：当前环境中此问题可忽略，不影响运行。</p>
-</li>
+<ul>
 <li>
 <p>针对placement API运行命令：</p>
 <ul>
-<li>
-<p>安装osc-placement插件：</p>
+<li>安装osc-placement插件：</li>
+</ul>
 <pre class="highlight"><code class="language-shell">dnf install python3-osc-placement</code></pre>
-</li>
-<li>
-<p>列出可用的资源类别及特性：</p>
+<ul>
+<li>列出可用的资源类别及特性：</li>
+</ul>
 <pre class="highlight"><code class="language-shell">openstack --os-placement-api-version 1.2 resource class list --sort-column name
 +----------------------------+
 | name                       |
@@ -996,8 +1002,6 @@ openstack --os-placement-api-version 1.6 trait list --sort-column name
 </li>
 </ul>
 </li>
-</ul>
-</li>
 </ol>
 <h4 id="nova">Nova<a class="headerlink" href="#nova" title="Permanent link">&para;</a></h4>
 <p>Nova是OpenStack的计算服务，负责虚拟机的创建、发放等功能。</p>
@@ -1007,87 +1011,83 @@ openstack --os-placement-api-version 1.6 trait list --sort-column name
 <li>
 <p>创建数据库</p>
 <ul>
-<li>
-<p>使用root用户访问数据库服务：</p>
+<li>使用root用户访问数据库服务：</li>
+</ul>
 <pre class="highlight"><code class="language-shell">mysql -u root -p</code></pre>
-</li>
-<li>
-<p>创建<code>nova_api</code>、<code>nova</code>和<code>nova_cell0</code>数据库：</p>
+<ul>
+<li>创建<code>nova_api</code>、<code>nova</code>和<code>nova_cell0</code>数据库：</li>
+</ul>
 <pre class="highlight"><code class="language-sql">MariaDB [(none)]&gt; CREATE DATABASE nova_api;
 MariaDB [(none)]&gt; CREATE DATABASE nova;
 MariaDB [(none)]&gt; CREATE DATABASE nova_cell0;</code></pre>
-</li>
-<li>
-<p>授权数据库访问：</p>
+<ul>
+<li>授权数据库访问：</li>
+</ul>
 <pre class="highlight"><code class="language-sql">MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'localhost' \
-  IDENTIFIED BY 'NOVA_DBPASS';
+    IDENTIFIED BY 'NOVA_DBPASS';
 MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'%' \
-  IDENTIFIED BY 'NOVA_DBPASS';
+    IDENTIFIED BY 'NOVA_DBPASS';
 
 MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'localhost' \
-  IDENTIFIED BY 'NOVA_DBPASS';
+    IDENTIFIED BY 'NOVA_DBPASS';
 MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' \
-  IDENTIFIED BY 'NOVA_DBPASS';
+    IDENTIFIED BY 'NOVA_DBPASS';
 
 MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON nova_cell0.* TO 'nova'@'localhost' \
-  IDENTIFIED BY 'NOVA_DBPASS';
+    IDENTIFIED BY 'NOVA_DBPASS';
 MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON nova_cell0.* TO 'nova'@'%' \
-  IDENTIFIED BY 'NOVA_DBPASS';</code></pre>
+    IDENTIFIED BY 'NOVA_DBPASS';</code></pre>
 <p>替换<code>NOVA_DBPASS</code>为nova相关数据库访问密码。</p>
-</li>
-<li>
-<p>退出数据库访问客户端：</p>
-<pre class="highlight"><code class="language-sql">exit</code></pre>
-</li>
+<ul>
+<li>退出数据库访问客户端：</li>
 </ul>
+<pre class="highlight"><code class="language-sql">exit</code></pre>
 </li>
 <li>
 <p>配置用户和Endpoints</p>
 <ul>
-<li>
-<p>source admin凭证，以获取admin命令行权限：</p>
+<li>source admin凭证，以获取admin命令行权限：</li>
+</ul>
 <pre class="highlight"><code class="language-shell">source ~/.admin-openrc</code></pre>
-</li>
-<li>
-<p>创建nova用户并设置用户密码：</p>
+<ul>
+<li>创建nova用户并设置用户密码：</li>
+</ul>
 <pre class="highlight"><code class="language-shell">openstack user create --domain default --password-prompt nova
 
 User Password:
 Repeat User Password:</code></pre>
-</li>
-<li>
-<p>添加nova用户到service project并指定admin角色：</p>
-<pre class="highlight"><code class="language-shell">openstack role add --project service --user nova admin</code></pre>
-</li>
-<li>
-<p>创建nova服务实体：</p>
-<pre class="highlight"><code class="language-shell">openstack service create --name nova \
-  --description "OpenStack Compute" compute</code></pre>
-</li>
-<li>
-<p>创建Nova API服务endpoints：</p>
-<pre class="highlight"><code class="language-shell">openstack endpoint create --region RegionOne \
-  compute public http://controller:8774/v2.1
-openstack endpoint create --region RegionOne \
-  compute internal http://controller:8774/v2.1
-openstack endpoint create --region RegionOne \
-  compute admin http://controller:8774/v2.1</code></pre>
-</li>
+<ul>
+<li>添加nova用户到service project并指定admin角色：</li>
 </ul>
+<pre class="highlight"><code class="language-shell">openstack role add --project service --user nova admin</code></pre>
+<ul>
+<li>创建nova服务实体：</li>
+</ul>
+<pre class="highlight"><code class="language-shell">openstack service create --name nova \
+    --description "OpenStack Compute" compute</code></pre>
+<ul>
+<li>创建Nova API服务endpoints：</li>
+</ul>
+<pre class="highlight"><code class="language-shell">openstack endpoint create --region RegionOne \
+    compute public http://controller:8774/v2.1
+openstack endpoint create --region RegionOne \
+    compute internal http://controller:8774/v2.1
+openstack endpoint create --region RegionOne \
+    compute admin http://controller:8774/v2.1</code></pre>
 </li>
 <li>
 <p>安装及配置组件</p>
 <ul>
-<li>
-<p>安装软件包：</p>
+<li>安装软件包：</li>
+</ul>
 <pre class="highlight"><code class="language-shell">dnf install openstack-nova-api openstack-nova-conductor \
-  openstack-nova-novncproxy openstack-nova-scheduler</code></pre>
-</li>
+    openstack-nova-novncproxy openstack-nova-scheduler</code></pre>
+<ul>
 <li>
 <p>编辑<code>/etc/nova/nova.conf</code>配置文件，完成如下操作：</p>
 <ul>
-<li>
-<p>在<code>[default]</code>部分，启用计算和元数据的API，配置RabbitMQ消息队列入口，使用controller节点管理IP配置my_ip，显式定义log_dir：</p>
+<li>在<code>[default]</code>部分，启用计算和元数据的API，配置RabbitMQ消息队列入口，使用controller节点管理IP配置my_ip，显式定义log_dir：</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[DEFAULT]
 enabled_apis = osapi_compute,metadata
 transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
@@ -1095,18 +1095,18 @@ my_ip = 192.168.0.2
 log_dir = /var/log/nova
 state_path = /var/lib/nova</code></pre>
 <p>替换<code>RABBIT_PASS</code>为RabbitMQ中openstack账户的密码。</p>
-</li>
-<li>
-<p>在<code>[api_database]</code>和<code>[database]</code>部分，配置数据库入口：</p>
+<ul>
+<li>在<code>[api_database]</code>和<code>[database]</code>部分，配置数据库入口：</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[api_database]
 connection = mysql+pymysql://nova:NOVA_DBPASS@controller/nova_api
 
 [database]
 connection = mysql+pymysql://nova:NOVA_DBPASS@controller/nova</code></pre>
 <p>替换<code>NOVA_DBPASS</code>为nova相关数据库的密码。</p>
-</li>
-<li>
-<p>在<code>[api]</code>和<code>[keystone_authtoken]</code>部分，配置身份认证服务入口：</p>
+<ul>
+<li>在<code>[api]</code>和<code>[keystone_authtoken]</code>部分，配置身份认证服务入口：</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[api]
 auth_strategy = keystone
 
@@ -1120,26 +1120,26 @@ project_name = service
 username = nova
 password = NOVA_PASS</code></pre>
 <p>替换<code>NOVA_PASS</code>为nova用户的密码。</p>
-</li>
-<li>
-<p>在<code>[vnc]</code>部分，启用并配置远程控制台入口：</p>
+<ul>
+<li>在<code>[vnc]</code>部分，启用并配置远程控制台入口：</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[vnc]
 enabled = true
 server_listen = $my_ip
 server_proxyclient_address = $my_ip</code></pre>
-</li>
-<li>
-<p>在<code>[glance]</code>部分，配置镜像服务API的地址：</p>
+<ul>
+<li>在<code>[glance]</code>部分，配置镜像服务API的地址：</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[glance]
 api_servers = http://controller:9292</code></pre>
-</li>
-<li>
-<p>在<code>[oslo_concurrency]</code>部分，配置lock path：</p>
+<ul>
+<li>在<code>[oslo_concurrency]</code>部分，配置lock path：</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[oslo_concurrency]
 lock_path = /var/lib/nova/tmp</code></pre>
-</li>
-<li>
-<p>[placement]部分，配置placement服务的入口：</p>
+<ul>
+<li>[placement]部分，配置placement服务的入口：</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[placement]
 region_name = RegionOne
 project_domain_name = Default
@@ -1151,32 +1151,28 @@ username = placement
 password = PLACEMENT_PASS</code></pre>
 <p>替换<code>PLACEMENT_PASS</code>为placement用户的密码。</p>
 </li>
-</ul>
-</li>
 <li>
 <p>数据库同步：</p>
 <ul>
-<li>
-<p>同步nova-api数据库：</p>
-<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "nova-manage api_db sync" nova</code></pre>
-</li>
-<li>
-<p>注册cell0数据库：</p>
-<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "nova-manage cell_v2 map_cell0" nova</code></pre>
-</li>
-<li>
-<p>创建cell1 cell：</p>
-<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "nova-manage cell_v2 create_cell --name=cell1 --verbose" nova</code></pre>
-</li>
-<li>
-<p>同步nova数据库：</p>
-<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "nova-manage db sync" nova</code></pre>
-</li>
-<li>
-<p>验证cell0和cell1注册正确：</p>
-<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "nova-manage cell_v2 list_cells" nova</code></pre>
-</li>
+<li>同步nova-api数据库：</li>
 </ul>
+<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "nova-manage api_db sync" nova</code></pre>
+<ul>
+<li>注册cell0数据库：</li>
+</ul>
+<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "nova-manage cell_v2 map_cell0" nova</code></pre>
+<ul>
+<li>创建cell1 cell：</li>
+</ul>
+<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "nova-manage cell_v2 create_cell --name=cell1 --verbose" nova</code></pre>
+<ul>
+<li>同步nova数据库：</li>
+</ul>
+<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "nova-manage db sync" nova</code></pre>
+<ul>
+<li>验证cell0和cell1注册正确：</li>
+</ul>
+<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "nova-manage cell_v2 list_cells" nova</code></pre>
 </li>
 </ul>
 </li>
@@ -1205,8 +1201,8 @@ systemctl start \
 <li>
 <p>编辑<code>/etc/nova/nova.conf</code>配置文件</p>
 <ul>
-<li>
-<p>在<code>[default]</code>部分，启用计算和元数据的API，配置RabbitMQ消息队列入口，使用Compute节点管理IP配置my_ip，显式定义compute_driver、instances_path、log_dir：</p>
+<li>在<code>[default]</code>部分，启用计算和元数据的API，配置RabbitMQ消息队列入口，使用Compute节点管理IP配置my_ip，显式定义compute_driver、instances_path、log_dir：</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[DEFAULT]
 enabled_apis = osapi_compute,metadata
 transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
@@ -1215,9 +1211,9 @@ compute_driver = libvirt.LibvirtDriver
 instances_path = /var/lib/nova/instances
 log_dir = /var/log/nova</code></pre>
 <p>替换<code>RABBIT_PASS</code>为RabbitMQ中openstack账户的密码。</p>
-</li>
-<li>
-<p>在<code>[api]</code>和<code>[keystone_authtoken]</code>部分，配置身份认证服务入口：</p>
+<ul>
+<li>在<code>[api]</code>和<code>[keystone_authtoken]</code>部分，配置身份认证服务入口：</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[api]
 auth_strategy = keystone
 
@@ -1231,27 +1227,27 @@ project_name = service
 username = nova
 password = NOVA_PASS</code></pre>
 <p>替换<code>NOVA_PASS</code>为nova用户的密码。</p>
-</li>
-<li>
-<p>在<code>[vnc]</code>部分，启用并配置远程控制台入口：</p>
+<ul>
+<li>在<code>[vnc]</code>部分，启用并配置远程控制台入口：</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[vnc]
 enabled = true
 server_listen = $my_ip
 server_proxyclient_address = $my_ip
 novncproxy_base_url = http://controller:6080/vnc_auto.html</code></pre>
-</li>
-<li>
-<p>在<code>[glance]</code>部分，配置镜像服务API的地址：</p>
+<ul>
+<li>在<code>[glance]</code>部分，配置镜像服务API的地址：</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[glance]
 api_servers = http://controller:9292</code></pre>
-</li>
-<li>
-<p>在<code>[oslo_concurrency]</code>部分，配置lock path：</p>
+<ul>
+<li>在<code>[oslo_concurrency]</code>部分，配置lock path：</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[oslo_concurrency]
 lock_path = /var/lib/nova/tmp</code></pre>
-</li>
-<li>
-<p>[placement]部分，配置placement服务的入口：</p>
+<ul>
+<li>[placement]部分，配置placement服务的入口：</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[placement]
 region_name = RegionOne
 project_domain_name = Default
@@ -1262,8 +1258,6 @@ auth_url = http://controller:5000/v3
 username = placement
 password = PLACEMENT_PASS</code></pre>
 <p>替换<code>PLACEMENT_PASS</code>为placement用户的密码。</p>
-</li>
-</ul>
 </li>
 <li>
 <p>确认计算节点是否支持虚拟机硬件加速（x86_64）</p>
@@ -1280,26 +1274,26 @@ virt_type = qemu</code></pre>
 <pre class="highlight"><code class="language-shell">virt-host-validate
 # 该命令由libvirt提供，此时libvirt应已作为openstack-nova-compute依赖被安装，环境中已有此命令</code></pre>
 <p>显示FAIL时，表示不支持硬件加速，需要配置libvirt使用QEMU而不是默认的KVM。</p>
-<pre class="highlight"><code>QEMU: Checking if device /dev/kvm exists: FAIL (Check that CPU and firmware supports virtualization and kvm module is loaded)</code></pre>
+<pre class="highlight"><code class="language-shell">QEMU: Checking if device /dev/kvm exists: FAIL (Check that CPU and firmware supports virtualization and kvm module is loaded)</code></pre>
 <p>编辑<code>/etc/nova/nova.conf</code>的<code>[libvirt]</code>部分：</p>
 <pre class="highlight"><code class="language-ini">[libvirt]
 virt_type = qemu</code></pre>
 <p>显示PASS时，表示支持硬件加速，不需要进行额外的配置。</p>
-<pre class="highlight"><code>QEMU: Checking if device /dev/kvm exists: PASS</code></pre>
+<pre class="highlight"><code class="language-shell">QEMU: Checking if device /dev/kvm exists: PASS</code></pre>
 </li>
 <li>
 <p>配置qemu（仅arm64）</p>
 <p>仅当处理器为arm64架构时需要执行此操作。</p>
 <ul>
-<li>
-<p>编辑<code>/etc/libvirt/qemu.conf</code>:</p>
+<li>编辑<code>/etc/libvirt/qemu.conf</code>:</li>
+</ul>
 <pre class="highlight"><code class="language-ini">nvram = ["/usr/share/AAVMF/AAVMF_CODE.fd: \
-         /usr/share/AAVMF/AAVMF_VARS.fd", \
-         "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw: \
-         /usr/share/edk2/aarch64/vars-template-pflash.raw"]</code></pre>
-</li>
-<li>
-<p>编辑<code>/etc/qemu/firmware/edk2-aarch64.json</code></p>
+            /usr/share/AAVMF/AAVMF_VARS.fd", \
+            "/usr/share/edk2/aarch64/QEMU_EFI-pflash.raw: \
+            /usr/share/edk2/aarch64/vars-template-pflash.raw"]</code></pre>
+<ul>
+<li>编辑<code>/etc/qemu/firmware/edk2-aarch64.json</code></li>
+</ul>
 <pre class="highlight"><code class="language-json">{
     "description": "UEFI firmware for ARM64 virtual machines",
     "interface-types": [
@@ -1332,8 +1326,6 @@ virt_type = qemu</code></pre>
     ]
 }</code></pre>
 </li>
-</ul>
-</li>
 <li>
 <p>启动服务</p>
 <pre class="highlight"><code class="language-shell">systemctl enable libvirtd.service openstack-nova-compute.service
@@ -1346,27 +1338,25 @@ systemctl start libvirtd.service openstack-nova-compute.service</code></pre>
 <li>
 <p>添加计算节点到openstack集群</p>
 <ul>
-<li>
-<p>source admin凭证，以获取admin命令行权限：</p>
+<li>source admin凭证，以获取admin命令行权限：</li>
+</ul>
 <pre class="highlight"><code class="language-shell">source ~/.admin-openrc</code></pre>
-</li>
-<li>
-<p>确认nova-compute服务已识别到数据库中：</p>
+<ul>
+<li>确认nova-compute服务已识别到数据库中：</li>
+</ul>
 <pre class="highlight"><code class="language-shell">openstack compute service list --service nova-compute</code></pre>
-</li>
-<li>
-<p>发现计算节点，将计算节点添加到cell数据库：</p>
-<p><pre class="highlight"><code class="language-shell">su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova</code></pre>
-结果如下：</p>
-<pre class="highlight"><code>Modules with known eventlet monkey patching issues were imported prior to eventlet monkey patching: urllib3. This warning can usually be    ignored if the caller is only importing and not executing nova code.
+<ul>
+<li>发现计算节点，将计算节点添加到cell数据库：</li>
+</ul>
+<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova</code></pre>
+<p>结果如下：</p>
+<pre class="highlight"><code class="language-ini">Modules with known eventlet monkey patching issues were imported prior to eventlet monkey patching: urllib3. This warning can usually be    ignored if the caller is only importing and not executing nova code.
 Found 2 cell mappings.
 Skipping cell0 since it does not contain hosts.
 Getting computes from cell 'cell1': 6dae034e-b2d9-4a6c-b6f0-60ada6a6ddc2
 Checking host mapping for compute host 'compute': 6286a86f-09d7-4786-9137-1185654c9e2e
 Creating host mapping for compute host 'compute': 6286a86f-09d7-4786-9137-1185654c9e2e
 Found 1 unmapped computes in cell: 6dae034e-b2d9-4a6c-b6f0-60ada6a6ddc2</code></pre>
-</li>
-</ul>
 </li>
 <li>
 <p>验证</p>
@@ -1395,38 +1385,38 @@ Found 1 unmapped computes in cell: 6dae034e-b2d9-4a6c-b6f0-60ada6a6ddc2</code></
 <li>
 <p>创建数据库、服务凭证和 API 服务端点</p>
 <ul>
-<li>
-<p>创建数据库：</p>
-<pre class="highlight"><code>mysql -u root -p
+<li>创建数据库：</li>
+</ul>
+<pre class="highlight"><code class="language-sql">mysql -u root -p
 
 MariaDB [(none)]&gt; CREATE DATABASE neutron;
 MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'localhost' IDENTIFIED BY 'NEUTRON_DBPASS';
 MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'%' IDENTIFIED BY 'NEUTRON_DBPASS';
 MariaDB [(none)]&gt; exit;</code></pre>
-</li>
-<li>
-<p>创建用户和服务，并记住创建neutron用户时输入的密码，用于配置NEUTRON_PASS：</p>
+<ul>
+<li>创建用户和服务，并记住创建neutron用户时输入的密码，用于配置NEUTRON_PASS：</li>
+</ul>
 <pre class="highlight"><code class="language-shell">source ~/.admin-openrc
 openstack user create --domain default --password-prompt neutron
 openstack role add --project service --user neutron admin
 openstack service create --name neutron --description "OpenStack Networking" network</code></pre>
-</li>
-<li>
-<p>部署 Neutron API 服务：</p>
+<ul>
+<li>部署 Neutron API 服务：</li>
+</ul>
 <pre class="highlight"><code class="language-shell">openstack endpoint create --region RegionOne network public http://controller:9696
 openstack endpoint create --region RegionOne network internal http://controller:9696
 openstack endpoint create --region RegionOne network admin http://controller:9696</code></pre>
 </li>
-</ul>
-</li>
 <li>
 <p>安装软件包</p>
-<p><pre class="highlight"><code class="language-shell">dnf install -y openstack-neutron openstack-neutron-linuxbridge ebtables ipset openstack-neutron-ml2</code></pre>
-3. 配置Neutron</p>
-<ul>
+<pre class="highlight"><code class="language-shell">dnf install -y openstack-neutron openstack-neutron-linuxbridge ebtables ipset openstack-neutron-ml2</code></pre>
+</li>
 <li>
-<p>修改/etc/neutron/neutron.conf
-    <pre class="highlight"><code>[database]
+<p>配置Neutron</p>
+<ul>
+<li>修改/etc/neutron/neutron.conf</li>
+</ul>
+<pre class="highlight"><code class="language-ini">[database]
 connection = mysql+pymysql://neutron:NEUTRON_DBPASS@controller/neutron
 
 [DEFAULT]
@@ -1463,14 +1453,16 @@ password = NOVA_PASS
 lock_path = /var/lib/neutron/tmp
 
 [experimental]
-linuxbridge = true</code></pre></p>
-</li>
+linuxbridge = true</code></pre>
+<ul>
 <li>
 <p>配置ML2，ML2具体配置可以根据用户需求自行修改，本文使用的是provider network + linuxbridge**</p>
 </li>
 <li>
-<p>修改/etc/neutron/plugins/ml2/ml2_conf.ini
-    <pre class="highlight"><code class="language-shell">[ml2]
+<p>修改/etc/neutron/plugins/ml2/ml2_conf.ini</p>
+</li>
+</ul>
+<pre class="highlight"><code class="language-shell">[ml2]
 type_drivers = flat,vlan,vxlan
 tenant_network_types = vxlan
 mechanism_drivers = linuxbridge,l2population
@@ -1483,11 +1475,11 @@ flat_networks = provider
 vni_ranges = 1:1000
 
 [securitygroup]
-enable_ipset = true</code></pre></p>
-</li>
-<li>
-<p>修改/etc/neutron/plugins/ml2/linuxbridge_agent.ini
-    <pre class="highlight"><code>[linux_bridge]
+enable_ipset = true</code></pre>
+<ul>
+<li>修改/etc/neutron/plugins/ml2/linuxbridge_agent.ini</li>
+</ul>
+<pre class="highlight"><code class="language-ini">[linux_bridge]
 physical_interface_mappings = provider:PROVIDER_INTERFACE_NAME
 
 [vxlan]
@@ -1497,33 +1489,38 @@ l2_population = true
 
 [securitygroup]
 enable_security_group = true
-firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver</code></pre></p>
-</li>
+firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver</code></pre>
+<ul>
 <li>
 <p>配置Layer-3代理</p>
 </li>
 <li>
 <p>修改/etc/neutron/l3_agent.ini</p>
+</li>
+</ul>
 <pre class="highlight"><code class="language-shell">[DEFAULT]
 interface_driver = linuxbridge</code></pre>
 <p>配置DHCP代理
-修改/etc/neutron/dhcp_agent.ini
-<pre class="highlight"><code>[DEFAULT]
+修改/etc/neutron/dhcp_agent.ini</p>
+<pre class="highlight"><code class="language-ini">[DEFAULT]
 interface_driver = linuxbridge
 dhcp_driver = neutron.agent.linux.dhcp.Dnsmasq
-enable_isolated_metadata = true</code></pre></p>
-</li>
+enable_isolated_metadata = true</code></pre>
+<ul>
 <li>
 <p>配置metadata代理</p>
 </li>
 <li>
-<p>修改/etc/neutron/metadata_agent.ini
-    <pre class="highlight"><code class="language-shell">[DEFAULT]
-nova_metadata_host = controller
-metadata_proxy_shared_secret = METADATA_SECRET</code></pre></p>
+<p>修改/etc/neutron/metadata_agent.ini</p>
 </li>
-<li>配置nova服务使用neutron，修改/etc/nova/nova.conf
-<pre class="highlight"><code>[neutron]
+</ul>
+<pre class="highlight"><code class="language-shell">[DEFAULT]
+nova_metadata_host = controller
+metadata_proxy_shared_secret = METADATA_SECRET</code></pre>
+</li>
+<li>
+<p>配置nova服务使用neutron，修改/etc/nova/nova.conf</p>
+<pre class="highlight"><code class="language-ini">[neutron]
 auth_url = http://controller:5000
 auth_type = password
 project_domain_name = default
@@ -1533,19 +1530,20 @@ project_name = service
 username = neutron
 password = NEUTRON_PASS
 service_metadata_proxy = true
-metadata_proxy_shared_secret = METADATA_SECRET</code></pre></li>
-</ul>
+metadata_proxy_shared_secret = METADATA_SECRET</code></pre>
 </li>
 <li>
 <p>创建/etc/neutron/plugin.ini的符号链接</p>
 <pre class="highlight"><code class="language-shell">ln -s /etc/neutron/plugins/ml2/ml2_conf.ini /etc/neutron/plugin.ini</code></pre>
 </li>
 <li>
-<p>同步数据库
-    <pre class="highlight"><code>su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron</code></pre></p>
+<p>同步数据库</p>
+<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron</code></pre>
 </li>
-<li>重启nova api服务
-    <pre class="highlight"><code>systemctl restart openstack-nova-api</code></pre></li>
+<li>
+<p>重启nova api服务</p>
+<pre class="highlight"><code class="language-shell">systemctl restart openstack-nova-api</code></pre>
+</li>
 <li>
 <p>启动网络服务</p>
 <pre class="highlight"><code class="language-shell">systemctl enable neutron-server.service neutron-linuxbridge-agent.service \
@@ -1556,14 +1554,16 @@ neutron-dhcp-agent.service neutron-metadata-agent.service neutron-l3-agent.servi
 </ol>
 <p><strong>Compute节点</strong></p>
 <ol>
-<li>安装软件包
-    <pre class="highlight"><code>dnf install openstack-neutron-linuxbridge ebtables ipset -y</code></pre></li>
+<li>
+<p>安装软件包</p>
+<pre class="highlight"><code class="language-shell">dnf install openstack-neutron-linuxbridge ebtables ipset -y</code></pre>
+</li>
 <li>
 <p>配置Neutron</p>
 <ul>
-<li>
-<p>修改/etc/neutron/neutron.conf
-    <pre class="highlight"><code>[DEFAULT]
+<li>修改/etc/neutron/neutron.conf</li>
+</ul>
+<pre class="highlight"><code class="language-ini">[DEFAULT]
 transport_url = rabbit://openstack:RABBIT_PASS@controller
 auth_strategy = keystone
 
@@ -1579,11 +1579,11 @@ username = neutron
 password = NEUTRON_PASS
 
 [oslo_concurrency]
-lock_path = /var/lib/neutron/tmp</code></pre></p>
-</li>
-<li>
-<p>修改/etc/neutron/plugins/ml2/linuxbridge_agent.ini
-    <pre class="highlight"><code>[linux_bridge]
+lock_path = /var/lib/neutron/tmp</code></pre>
+<ul>
+<li>修改/etc/neutron/plugins/ml2/linuxbridge_agent.ini</li>
+</ul>
+<pre class="highlight"><code class="language-ini">[linux_bridge]
 physical_interface_mappings = provider:PROVIDER_INTERFACE_NAME
 
 [vxlan]
@@ -1593,11 +1593,11 @@ l2_population = true
 
 [securitygroup]
 enable_security_group = true
-firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver</code></pre></p>
-</li>
-<li>
-<p>配置nova compute服务使用neutron，修改/etc/nova/nova.conf
-    <pre class="highlight"><code>[neutron]
+firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver</code></pre>
+<ul>
+<li>配置nova compute服务使用neutron，修改/etc/nova/nova.conf</li>
+</ul>
+<pre class="highlight"><code class="language-ini">[neutron]
 auth_url = http://controller:5000
 auth_type = password
 project_domain_name = default
@@ -1605,13 +1605,15 @@ user_domain_name = default
 region_name = RegionOne
 project_name = service
 username = neutron
-password = NEUTRON_PASS</code></pre></p>
+password = NEUTRON_PASS</code></pre>
 </li>
-<li>重启nova-compute服务
-<pre class="highlight"><code>systemctl restart openstack-nova-compute.service</code></pre></li>
-<li>启动Neutron linuxbridge agent服务</li>
-</ul>
-<pre class="highlight"><code>systemctl enable neutron-linuxbridge-agent
+<li>
+<p>重启nova-compute服务</p>
+<pre class="highlight"><code class="language-shell">systemctl restart openstack-nova-compute.service</code></pre>
+</li>
+<li>
+<p>启动Neutron linuxbridge agent服务</p>
+<pre class="highlight"><code class="language-shell">systemctl enable neutron-linuxbridge-agent
 systemctl start neutron-linuxbridge-agent</code></pre>
 </li>
 </ol>
@@ -1621,17 +1623,17 @@ systemctl start neutron-linuxbridge-agent</code></pre>
 <ol>
 <li>
 <p>初始化数据库</p>
-<p><code>CINDER_DBPASS</code>是用户自定义的cinder数据库密码。
-<pre class="highlight"><code>mysql -u root -p
+<p><code>CINDER_DBPASS</code>是用户自定义的cinder数据库密码。</p>
+<pre class="highlight"><code class="language-sql">mysql -u root -p
 
 MariaDB [(none)]&gt; CREATE DATABASE cinder;
 MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON cinder.* TO 'cinder'@'localhost' IDENTIFIED BY 'CINDER_DBPASS';
 MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON cinder.* TO 'cinder'@'%' IDENTIFIED BY 'CINDER_DBPASS';
-MariaDB [(none)]&gt; exit</code></pre></p>
+MariaDB [(none)]&gt; exit</code></pre>
 </li>
 <li>
 <p>初始化Keystone资源对象</p>
-<p><pre class="highlight"><code>source ~/.admin-openrc
+<pre class="highlight"><code class="language-shell">source ~/.admin-openrc
 
 #创建用户时，命令行会提示输入密码，请输入自定义的密码，下文涉及到`CINDER_PASS`的地方替换成该密码即可。
 openstack user create --domain default --password-prompt cinder
@@ -1642,12 +1644,14 @@ openstack service create --name cinderv3 --description "OpenStack Block Storage"
 openstack endpoint create --region RegionOne volumev3 public http://controller:8776/v3/%\(project_id\)s
 openstack endpoint create --region RegionOne volumev3 internal http://controller:8776/v3/%\(project_id\)s
 openstack endpoint create --region RegionOne volumev3 admin http://controller:8776/v3/%\(project_id\)s</code></pre>
-3. 安装软件包</p>
-<pre class="highlight"><code>dnf install openstack-cinder-api openstack-cinder-scheduler</code></pre>
+</li>
+<li>
+<p>安装软件包</p>
+<pre class="highlight"><code class="language-shell">dnf install openstack-cinder-api openstack-cinder-scheduler</code></pre>
 </li>
 <li>
 <p>修改cinder配置文件<code>/etc/cinder/cinder.conf</code></p>
-<pre class="highlight"><code>[DEFAULT]
+<pre class="highlight"><code class="language-ini">[DEFAULT]
 transport_url = rabbit://openstack:RABBIT_PASS@controller
 auth_strategy = keystone
 my_ip = 192.168.0.2
@@ -1671,16 +1675,16 @@ lock_path = /var/lib/cinder/tmp</code></pre>
 </li>
 <li>
 <p>数据库同步</p>
-<pre class="highlight"><code>su -s /bin/sh -c "cinder-manage db sync" cinder</code></pre>
+<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "cinder-manage db sync" cinder</code></pre>
 </li>
 <li>
 <p>修改nova配置<code>/etc/nova/nova.conf</code></p>
-<pre class="highlight"><code>[cinder]
+<pre class="highlight"><code class="language-ini">[cinder]
 os_region_name = RegionOne</code></pre>
 </li>
 <li>
 <p>启动服务</p>
-<pre class="highlight"><code>systemctl restart openstack-nova-api
+<pre class="highlight"><code class="language-shell">systemctl restart openstack-nova-api
 systemctl start openstack-cinder-api openstack-cinder-scheduler</code></pre>
 </li>
 </ol>
@@ -1690,16 +1694,16 @@ systemctl start openstack-cinder-api openstack-cinder-scheduler</code></pre>
 <ol>
 <li>
 <p>安装软件包</p>
-<pre class="highlight"><code>dnf install lvm2 device-mapper-persistent-data scsi-target-utils rpcbind nfs-utils openstack-cinder-volume openstack-cinder-backup</code></pre>
+<pre class="highlight"><code class="language-shell">dnf install lvm2 device-mapper-persistent-data scsi-target-utils rpcbind nfs-utils openstack-cinder-volume openstack-cinder-backup</code></pre>
 </li>
 <li>
 <p>配置lvm卷组</p>
-<pre class="highlight"><code>pvcreate /dev/sdb
+<pre class="highlight"><code class="language-shell">pvcreate /dev/sdb
 vgcreate cinder-volumes /dev/sdb</code></pre>
 </li>
 <li>
 <p>修改cinder配置<code>/etc/cinder/cinder.conf</code></p>
-<pre class="highlight"><code>[DEFAULT]
+<pre class="highlight"><code class="language-ini">[DEFAULT]
 transport_url = rabbit://openstack:RABBIT_PASS@controller
 auth_strategy = keystone
 my_ip = 192.168.0.4
@@ -1732,20 +1736,20 @@ lock_path = /var/lib/cinder/tmp</code></pre>
 <li>
 <p>配置cinder backup （可选）</p>
 <p>cinder-backup是可选的备份服务，cinder同样支持很多种备份后端，本文使用swift存储，如果您想使用如NFS等后端，请自行配置，例如可以参考<a href="https://docs.openstack.org/cinder/2023.1/admin/nfs-backend.html">OpenStack官方文档</a>对NFS的配置说明。</p>
-<p>修改<code>/etc/cinder/cinder.conf</code>，在<code>[DEFAULT]</code>中新增
-<pre class="highlight"><code>[DEFAULT]
+<p>修改<code>/etc/cinder/cinder.conf</code>，在<code>[DEFAULT]</code>中新增</p>
+<pre class="highlight"><code class="language-ini">[DEFAULT]
 backup_driver = cinder.backup.drivers.swift.SwiftBackupDriver
-backup_swift_url = SWIFT_URL</code></pre></p>
+backup_swift_url = SWIFT_URL</code></pre>
 <p>这里的<code>SWIFT_URL</code>是指环境中swift服务的URL，在部署完swift服务后，执行<code>openstack catalog show object-store</code>命令获取。</p>
 </li>
 <li>
 <p>启动服务</p>
-<pre class="highlight"><code>systemctl start openstack-cinder-volume target
+<pre class="highlight"><code class="language-shell">systemctl start openstack-cinder-volume target
 systemctl start openstack-cinder-backup (可选)</code></pre>
 </li>
 </ol>
 <p>至此，Cinder服务的部署已全部完成，可以在controller通过以下命令进行简单的验证</p>
-<pre class="highlight"><code>source ~/.admin-openrc
+<pre class="highlight"><code class="language-shell">source ~/.admin-openrc
 openstack storage service list
 openstack volume list</code></pre>
 <h4 id="horizon">Horizon<a class="headerlink" href="#horizon" title="Permanent link">&para;</a></h4>
@@ -1753,11 +1757,11 @@ openstack volume list</code></pre>
 <ol>
 <li>
 <p>安装软件包</p>
-<pre class="highlight"><code>dnf install openstack-dashboard</code></pre>
+<pre class="highlight"><code class="language-shell">dnf install openstack-dashboard</code></pre>
 </li>
 <li>
 <p>修改配置文件<code>/etc/openstack-dashboard/local_settings</code></p>
-<pre class="highlight"><code>OPENSTACK_HOST = "controller"
+<pre class="highlight"><code class="language-ini">OPENSTACK_HOST = "controller"
 ALLOWED_HOSTS = ['*', ]
 OPENSTACK_KEYSTONE_URL =  "http://controller:5000/v3"
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
@@ -1781,7 +1785,7 @@ OPENSTACK_API_VERSIONS = {
 </li>
 <li>
 <p>重启服务</p>
-<pre class="highlight"><code>systemctl restart httpd</code></pre>
+<pre class="highlight"><code class="language-shell">systemctl restart httpd</code></pre>
 </li>
 </ol>
 <p>至此，horizon服务的部署已全部完成，打开浏览器，输入<code>http://192.168.0.2/dashboard</code>，打开horizon登录页面。</p>
@@ -1805,29 +1809,27 @@ Bye</code></pre>
 <li>
 <p>创建服务用户认证</p>
 <ul>
-<li>
-<p>创建Bare Metal服务用户</p>
+<li>创建Bare Metal服务用户</li>
+</ul>
 <p>替换<code>IRONIC_PASS</code>为ironic用户密码，<code>IRONIC_INSPECTOR_PASS</code>为ironic_inspector用户密码。</p>
 <pre class="highlight"><code class="language-shell">openstack user create --password IRONIC_PASS \
-  --email ironic@example.com ironic
+    --email ironic@example.com ironic
 openstack role add --project service --user ironic admin
 openstack service create --name ironic \
-  --description "Ironic baremetal provisioning service" baremetal
+    --description "Ironic baremetal provisioning service" baremetal
 
 openstack service create --name ironic-inspector --description     "Ironic inspector baremetal provisioning service" baremetal-introspection
 openstack user create --password IRONIC_INSPECTOR_PASS --email ironic_inspector@example.com ironic-inspector
 openstack role add --project service --user ironic-inspector admin</code></pre>
-</li>
-<li>
-<p>创建Bare Metal服务访问入口</p>
+<ul>
+<li>创建Bare Metal服务访问入口</li>
+</ul>
 <pre class="highlight"><code class="language-shell">openstack endpoint create --region RegionOne baremetal admin http://192.168.0.2:6385
 openstack endpoint create --region RegionOne baremetal public http://192.168.0.2:6385
 openstack endpoint create --region RegionOne baremetal internal http://192.168.0.2:6385
 openstack endpoint create --region RegionOne baremetal-introspection internal http://192.168.0.2:5050/v1
 openstack endpoint create --region RegionOne baremetal-introspection public http://192.168.0.2:5050/v1
 openstack endpoint create --region RegionOne baremetal-introspection admin http://192.168.0.2:5050/v1</code></pre>
-</li>
-</ul>
 </li>
 <li>
 <p>安装组件</p>
@@ -1837,17 +1839,17 @@ openstack endpoint create --region RegionOne baremetal-introspection admin http:
 <p>配置ironic-api服务</p>
 <p>配置文件路径/etc/ironic/ironic.conf</p>
 <ul>
-<li>
-<p>通过<strong>connection</strong>选项配置数据库的位置，如下所示，替换<strong>IRONIC_DBPASS</strong>为<strong>ironic</strong>用户的密码，替换<strong>DB_IP</strong>为DB服务器所在的IP地址：</p>
+<li>通过<strong>connection</strong>选项配置数据库的位置，如下所示，替换<strong>IRONIC_DBPASS</strong>为<strong>ironic</strong>用户的密码，替换<strong>DB_IP</strong>为DB服务器所在的IP地址：</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[database]
 
 # The SQ LAlchemy connection string used to connect to the
 # database (string value)
 # connection = mysql+pymysql://ironic:IRONIC_DBPASS@DB_IP/ironic
 connection = mysql+pymysql://ironic:IRONIC_DBPASS@controller/ironic</code></pre>
-</li>
-<li>
-<p>通过以下选项配置ironic-api服务使用RabbitMQ消息代理，替换<strong>RPC_*</strong>为RabbitMQ的详细地址和凭证</p>
+<ul>
+<li>通过以下选项配置ironic-api服务使用RabbitMQ消息代理，替换<strong>RPC_*</strong>为RabbitMQ的详细地址和凭证</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[DEFAULT]
 
 # A URL representing the messaging driver to use and its full
@@ -1855,9 +1857,9 @@ connection = mysql+pymysql://ironic:IRONIC_DBPASS@controller/ironic</code></pre>
 # transport_url = rabbit://RPC_USER:RPC_PASSWORD@RPC_HOST:RPC_PORT/
 transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/</code></pre>
 <p>用户也可自行使用json-rpc方式替换rabbitmq</p>
-</li>
-<li>
-<p>配置ironic-api服务使用身份认证服务的凭证，替换<strong>PUBLIC_IDENTITY_IP</strong>为身份认证服务器的公共IP，替换<strong>PRIVATE_IDENTITY_IP</strong>为身份认证服务器的私有IP，替换     <strong>IRONIC_PASS</strong>为身份认证服务中<strong>ironic</strong>用户的密码，替换<strong>RABBIT_PASS</strong>为RabbitMQ中openstack账户的密码。：</p>
+<ul>
+<li>配置ironic-api服务使用身份认证服务的凭证，替换<strong>PUBLIC_IDENTITY_IP</strong>为身份认证服务器的公共IP，替换<strong>PRIVATE_IDENTITY_IP</strong>为身份认证服务器的私有IP，替换     <strong>IRONIC_PASS</strong>为身份认证服务中<strong>ironic</strong>用户的密码，替换<strong>RABBIT_PASS</strong>为RabbitMQ中openstack账户的密码。：</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[DEFAULT]
 
 # Authentication strategy used by ironic-api: one of
@@ -1930,23 +1932,21 @@ tftp_master_path=/var/lib/tftpboot/cephfs/master_images
 
 [dhcp]
 dhcp_provider = none</code></pre>
-</li>
-<li>
-<p>创建裸金属服务数据库表</p>
-<pre class="highlight"><code class="language-shell">ironic-dbsync --config-file /etc/ironic/ironic.conf create_schema</code></pre>
-</li>
-<li>
-<p>重启ironic-api服务</p>
-<pre class="highlight"><code class="language-shell">sudo systemctl restart openstack-ironic-api</code></pre>
-</li>
+<ul>
+<li>创建裸金属服务数据库表</li>
 </ul>
+<pre class="highlight"><code class="language-shell">ironic-dbsync --config-file /etc/ironic/ironic.conf create_schema</code></pre>
+<ul>
+<li>重启ironic-api服务</li>
+</ul>
+<pre class="highlight"><code class="language-shell">sudo systemctl restart openstack-ironic-api</code></pre>
 </li>
 <li>
 <p>配置ironic-conductor服务</p>
 <p>如下为ironic-conductor服务自身的标准配置，ironic-conductor服务可以与ironic-api服务分布于不同节点，本指南中均部署与控制节点，所以重复的配置项可跳过。</p>
 <ul>
-<li>
-<p>替换使用conductor服务所在host的IP配置my_ip：</p>
+<li>替换使用conductor服务所在host的IP配置my_ip：</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[DEFAULT]
 
 # IP address of this host. If unset, will determine the IP
@@ -1954,26 +1954,26 @@ dhcp_provider = none</code></pre>
 # (string value)
 # my_ip=HOST_IP
 my_ip = 192.168.0.2</code></pre>
-</li>
-<li>
-<p>配置数据库的位置，ironic-conductor应该使用和ironic-api相同的配置。替换<strong>IRONIC_DBPASS</strong>为<strong>ironic</strong>用户的密码：</p>
+<ul>
+<li>配置数据库的位置，ironic-conductor应该使用和ironic-api相同的配置。替换<strong>IRONIC_DBPASS</strong>为<strong>ironic</strong>用户的密码：</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[database]
 
 # The SQLAlchemy connection string to use to connect to the
 # database. (string value)
 connection = mysql+pymysql://ironic:IRONIC_DBPASS@controller/ironic</code></pre>
-</li>
-<li>
-<p>通过以下选项配置ironic-api服务使用RabbitMQ消息代理，ironic-conductor应该使用和ironic-api相同的配置，替换<strong>RABBIT_PASS</strong>为RabbitMQ中openstack账户的密码：</p>
+<ul>
+<li>通过以下选项配置ironic-api服务使用RabbitMQ消息代理，ironic-conductor应该使用和ironic-api相同的配置，替换<strong>RABBIT_PASS</strong>为RabbitMQ中openstack账户的密码：</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[DEFAULT]
 
 # A URL representing the messaging driver to use and its full
 # configuration. (string value)
 transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/</code></pre>
 <p>用户也可自行使用json-rpc方式替换rabbitmq</p>
-</li>
-<li>
-<p>配置凭证访问其他OpenStack服务</p>
+<ul>
+<li>配置凭证访问其他OpenStack服务</li>
+</ul>
 <p>为了与其他OpenStack服务进行通信，裸金属服务在请求其他服务时需要使用服务用户与OpenStack Identity服务进行认证。这些用户的凭据必须在与相应服务相关的每个配置文件中进行配置。</p>
 <pre class="highlight"><code class="language-shell">[neutron] - 访问OpenStack网络服务
 [glance] - 访问OpenStack镜像服务
@@ -1983,7 +1983,7 @@ transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/</code></pre>
 [service_catalog] - 一个特殊项用于保存裸金属服务使用的凭证，该凭证用于发现注册在OpenStack身份认证服务目录中的自己的API URL端点</code></pre>
 <p>简单起见，可以对所有服务使用同一个服务用户。为了向后兼容，该用户应该和ironic-api服务的[keystone_authtoken]所配置的为同一个用户。但这不是必须的，也可以为每个服务创建并配置不同的服务用户。</p>
 <p>在下面的示例中，用户访问OpenStack网络服务的身份验证信息配置为：</p>
-<pre class="highlight"><code>网络服务部署在名为RegionOne的身份认证服务域中，仅在服务目录中注册公共端点接口
+<pre class="highlight"><code class="language-ini">网络服务部署在名为RegionOne的身份认证服务域中，仅在服务目录中注册公共端点接口
 
 请求时使用特定的CA SSL证书进行HTTPS连接
 
@@ -2042,9 +2042,9 @@ auth_type = password</code></pre>
 <p>默认情况下，为了与其他服务进行通信，裸金属服务会尝试通过身份认证服务的服务目录发现该服务合适的端点。如果希望对一个特定服务使用一个不同的端点，则在裸金属服务的配置文件中通过endpoint_override选项进行指定：</p>
 <pre class="highlight"><code class="language-ini">[neutron]
 endpoint_override = &lt;NEUTRON_API_ADDRESS&gt;</code></pre>
-</li>
-<li>
-<p>配置允许的驱动程序和硬件类型</p>
+<ul>
+<li>配置允许的驱动程序和硬件类型</li>
+</ul>
 <p>通过设置enabled_hardware_types设置ironic-conductor服务允许使用的硬件类型：</p>
 <pre class="highlight"><code class="language-ini">[DEFAULT]
 enabled_hardware_types = ipmi</code></pre>
@@ -2059,22 +2059,20 @@ enabled_power_interfaces = ipmitool</code></pre>
 default_deploy_interface = direct
 default_network_interface = neutron</code></pre>
 <p>如果启用了任何使用Direct deploy的驱动，必须安装和配置镜像服务的Swift后端。Ceph对象网关(RADOS网关)也支持作为镜像服务的后端。</p>
-</li>
-<li>
-<p>重启ironic-conductor服务</p>
-<pre class="highlight"><code class="language-shell">sudo systemctl restart openstack-ironic-conductor</code></pre>
-</li>
+<ul>
+<li>重启ironic-conductor服务</li>
 </ul>
+<pre class="highlight"><code class="language-shell">sudo systemctl restart openstack-ironic-conductor</code></pre>
 </li>
 <li>
 <p>配置ironic-inspector服务</p>
 <ul>
-<li>
-<p>安装组件</p>
+<li>安装组件</li>
+</ul>
 <pre class="highlight"><code class="language-shell">dnf install openstack-ironic-inspector</code></pre>
-</li>
-<li>
-<p>创建数据库</p>
+<ul>
+<li>创建数据库</li>
+</ul>
 <pre class="highlight"><code class="language-sql"># mysql -u root -p
 
 MariaDB [(none)]&gt; CREATE DATABASE ironic_inspector CHARACTER SET utf8;
@@ -2085,9 +2083,9 @@ MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON ironic_inspector.* TO 'ironic_inspe
 IDENTIFIED BY 'IRONIC_INSPECTOR_DBPASS';
 MariaDB [(none)]&gt; exit
 Bye</code></pre>
-</li>
-<li>
-<p>配置<code>/etc/ironic-inspector/inspector.conf</code></p>
+<ul>
+<li>配置<code>/etc/ironic-inspector/inspector.conf</code></li>
+</ul>
 <p>通过<strong>connection</strong>选项配置数据库的位置，如下所示，替换<strong>IRONIC_INSPECTOR_DBPASS</strong>为<strong>ironic_inspector</strong>用户的密码</p>
 <pre class="highlight"><code class="language-ini">[database]
 backend = sqlalchemy
@@ -2101,14 +2099,14 @@ db_retry_interval = 2
 db_inc_retry_interval = True
 db_max_retry_interval = 2
 db_max_retries = 5</code></pre>
-</li>
-<li>
-<p>配置消息队列通信地址</p>
+<ul>
+<li>配置消息队列通信地址</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[DEFAULT] 
 transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/</code></pre>
-</li>
-<li>
-<p>设置keystone认证</p>
+<ul>
+<li>设置keystone认证</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[DEFAULT]
 
 auth_strategy = keystone
@@ -2158,9 +2156,9 @@ driver = iptables
 
 [capabilities]
 boot_mode=True</code></pre>
-</li>
-<li>
-<p>配置ironic inspector dnsmasq服务</p>
+<ul>
+<li>配置ironic inspector dnsmasq服务</li>
+</ul>
 <pre class="highlight"><code class="language-ini"># 配置文件地址：/etc/ironic-inspector/dnsmasq.conf
 port=0
 interface=enp3s0                         #替换为实际监听网络接口
@@ -2177,40 +2175,38 @@ dhcp-boot=tag:!aarch64,tag:!efi,pxelinux.0
 
 tftp-root=/tftpboot                       #替换为实际tftpboot目录
 log-facility=/var/log/dnsmasq.log</code></pre>
-</li>
-<li>
-<p>关闭ironic provision网络子网的dhcp</p>
+<ul>
+<li>关闭ironic provision网络子网的dhcp</li>
+</ul>
 <pre class="highlight"><code class="language-shell">openstack subnet set --no-dhcp 72426e89-f552-4dc4-9ac7-c4e131ce7f3c</code></pre>
-</li>
-<li>
-<p>初始化ironic-inspector服务的数据库</p>
+<ul>
+<li>初始化ironic-inspector服务的数据库</li>
+</ul>
 <pre class="highlight"><code class="language-shell">ironic-inspector-dbsync --config-file /etc/ironic-inspector/inspector.conf upgrade</code></pre>
-</li>
-<li>
-<p>启动服务</p>
+<ul>
+<li>启动服务</li>
+</ul>
 <pre class="highlight"><code class="language-shell">systemctl enable --now openstack-ironic-inspector.service
 systemctl enable --now openstack-ironic-inspector-dnsmasq.service</code></pre>
-</li>
-</ul>
 </li>
 <li>
 <p>配置httpd服务</p>
 <ul>
-<li>
-<p>创建ironic要使用的httpd的root目录并设置属主属组，目录路径要和/etc/ironic/ironic.conf中[deploy]组中http_root 配置项指定的路径要一致。</p>
+<li>创建ironic要使用的httpd的root目录并设置属主属组，目录路径要和/etc/ironic/ironic.conf中[deploy]组中http_root 配置项指定的路径要一致。</li>
+</ul>
 <pre class="highlight"><code class="language-shell">mkdir -p /var/lib/ironic/httproot
 chown ironic.ironic /var/lib/ironic/httproot</code></pre>
-</li>
+<ul>
 <li>
 <p>安装和配置httpd服务</p>
 <ul>
-<li>
-<p>安装httpd服务，已有请忽略</p>
+<li>安装httpd服务，已有请忽略</li>
+</ul>
 <pre class="highlight"><code class="language-shell">dnf install httpd -y</code></pre>
-</li>
-<li>
-<p>创建/etc/httpd/conf.d/openstack-ironic-httpd.conf文件，内容如下：</p>
-<pre class="highlight"><code>Listen 8080
+<ul>
+<li>创建/etc/httpd/conf.d/openstack-ironic-httpd.conf文件，内容如下：</li>
+</ul>
+<pre class="highlight"><code class="language-ini">Listen 8080
 
 &lt;VirtualHost *:8080&gt;
     ServerName ironic.openeuler.com
@@ -2228,12 +2224,10 @@ chown ironic.ironic /var/lib/ironic/httproot</code></pre>
     EnableSendfile on
 &lt;/VirtualHost&gt;</code></pre>
 <p>注意监听的端口要和/etc/ironic/ironic.conf里[deploy]选项中http_url配置项中指定的端口一致。</p>
-</li>
-<li>
-<p>重启httpd服务。</p>
-<pre class="highlight"><code class="language-shell">systemctl restart httpd</code></pre>
-</li>
+<ul>
+<li>重启httpd服务。</li>
 </ul>
+<pre class="highlight"><code class="language-shell">systemctl restart httpd</code></pre>
 </li>
 </ul>
 </li>
@@ -2244,41 +2238,41 @@ chown ironic.ironic /var/lib/ironic/httproot</code></pre>
 <p>具体的使用方法可以参考<a href="https://docs.openstack.org/ironic/2023.1/install/deploy-ramdisk.html">官方文档</a>，同时官方也有提供制作好的deploy镜像，可尝试下载。</p>
 <p>下文介绍通过ironic-python-agent-builder构建ironic使用的deploy镜像的完整过程。</p>
 <ul>
-<li>
-<p>安装 ironic-python-agent-builder</p>
+<li>安装 ironic-python-agent-builder</li>
+</ul>
 <pre class="highlight"><code class="language-shell">dnf install python3-ironic-python-agent-builder
 
 或
 pip3 install ironic-python-agent-builder
 dnf install qemu-img git</code></pre>
-</li>
-<li>
-<p>制作镜像</p>
+<ul>
+<li>制作镜像</li>
+</ul>
 <p>基本用法：</p>
 <pre class="highlight"><code class="language-shell">usage: ironic-python-agent-builder [-h] [-r RELEASE] [-o OUTPUT] [-e ELEMENT] [-b BRANCH]
-                           [-v] [--lzma] [--extra-args EXTRA_ARGS]
-                           [--elements-path ELEMENTS_PATH]
-                           distribution
+                            [-v] [--lzma] [--extra-args EXTRA_ARGS]
+                            [--elements-path ELEMENTS_PATH]
+                            distribution
 
 positional arguments:
-  distribution          Distribution to use
+    distribution          Distribution to use
 
 options:
-  -h, --help            show this help message and exit
-  -r RELEASE, --release RELEASE
+    -h, --help            show this help message and exit
+    -r RELEASE, --release RELEASE
                         Distribution release to use
-  -o OUTPUT, --output OUTPUT
+    -o OUTPUT, --output OUTPUT
                         Output base file name
-  -e ELEMENT, --element ELEMENT
+    -e ELEMENT, --element ELEMENT
                         Additional DIB element to use
-  -b BRANCH, --branch BRANCH
+    -b BRANCH, --branch BRANCH
                         If set, override the branch that is used for         ironic-python-agent
                         and requirements
-  -v, --verbose         Enable verbose logging in diskimage-builder
-  --lzma                Use lzma compression for smaller images
-  --extra-args EXTRA_ARGS
+    -v, --verbose         Enable verbose logging in diskimage-builder
+    --lzma                Use lzma compression for smaller images
+    --extra-args EXTRA_ARGS
                         Extra arguments to pass to diskimage-builder
-  --elements-path ELEMENTS_PATH
+    --elements-path ELEMENTS_PATH
                         Path(s) to custom DIB elements separated by a colon</code></pre>
 <p>操作实例：</p>
 <pre class="highlight"><code class="language-shell"># -o选项指定生成的镜像名
@@ -2286,17 +2280,17 @@ options:
 ironic-python-agent-builder -o my-ubuntu-ipa ubuntu</code></pre>
 <p>可通过设置<code>ARCH</code>环境变量（默认为amd64）指定所构建镜像的架构。如果是<code>arm</code>架构，需要添加：</p>
 <pre class="highlight"><code class="language-shell">export ARCH=aarch64</code></pre>
-</li>
-<li>
-<p>允许ssh登录</p>
+<ul>
+<li>允许ssh登录</li>
+</ul>
 <p>初始化环境变量,设置用户名、密码，启用<code>sodo</code>权限；并添加<code>-e</code>选项使用相应的DIB元素。制作镜像操作如下：</p>
 <pre class="highlight"><code class="language-shell">export DIB_DEV_USER_USERNAME=ipa \
 export DIB_DEV_USER_PWDLESS_SUDO=yes \
 export DIB_DEV_USER_PASSWORD='123'
 ironic-python-agent-builder -o my-ssh-ubuntu-ipa -e selinux-permissive -e devuser ubuntu</code></pre>
-</li>
-<li>
-<p>指定代码仓库</p>
+<ul>
+<li>指定代码仓库</li>
+</ul>
 <p>初始化对应的环境变量，然后制作镜像：</p>
 <pre class="highlight"><code class="language-shell"># 直接从gerrit上clone代码
 DIB_REPOLOCATION_ironic_python_agent=https://opendev.org/openstack/ironic-python-agent
@@ -2309,8 +2303,6 @@ DIB_REPOREF_ironic_python_agent=my-test-branch
 ironic-python-agent-builder ubuntu</code></pre>
 <p>参考：<a href="https://docs.openstack.org/diskimage-builder/latest/elements/source-repositories/README.html">source-repositories</a>。</p>
 </li>
-</ul>
-</li>
 <li>
 <p>注意</p>
 <p>原生的openstack里的pxe配置文件的模版不支持arm64架构，需要自己对原生openstack代码进行修改：
@@ -2322,23 +2314,23 @@ ironic-python-agent-builder ubuntu</code></pre>
 <p>ironic向ipa发送查询命令执行状态请求的tls报错：</p>
 <p>当前版本的ipa和ironic默认都会开启tls认证的方式向对方发送请求，跟据官网的说明进行关闭即可。</p>
 <ul>
-<li>
-<p>修改ironic配置文件(/etc/ironic/ironic.conf)下面的配置中添加ipa-insecure=1：</p>
+<li>修改ironic配置文件(/etc/ironic/ironic.conf)下面的配置中添加ipa-insecure=1：</li>
+</ul>
 <pre class="highlight"><code class="language-ini">[agent]
 verify_ca = False
 [pxe]
 pxe_append_params = nofb nomodeset vga=normal coreos.autologin ipa-insecure=1</code></pre>
-</li>
-<li>
-<p>ramdisk镜像中添加ipa配置文件/etc/ironic_python_agent/ironic_python_agent.conf并配置tls的配置如下：</p>
+<ul>
+<li>ramdisk镜像中添加ipa配置文件/etc/ironic_python_agent/ironic_python_agent.conf并配置tls的配置如下：</li>
+</ul>
 <p>/etc/ironic_python_agent/ironic_python_agent.conf (需要提前创建/etc/    ironic_python_agent目录）</p>
 <pre class="highlight"><code class="language-ini">[DEFAULT]
 enable_auto_tls = False</code></pre>
 <p>设置权限：</p>
 <pre class="highlight"><code class="language-shell">chown -R ipa.ipa /etc/ironic_python_agent/</code></pre>
-</li>
-<li>
-<p>ramdisk镜像中修改ipa服务的服务启动文件，添加配置文件选项</p>
+<ul>
+<li>ramdisk镜像中修改ipa服务的服务启动文件，添加配置文件选项</li>
+</ul>
 <p>编辑/usr/lib/systemd/system/ironic-python-agent.service文件</p>
 <pre class="highlight"><code class="language-ini">[Unit]
 Description=Ironic Python Agent
@@ -2351,8 +2343,6 @@ RestartSec=30s
 [Install]
 WantedBy=multi-user.target</code></pre>
 </li>
-</ul>
-</li>
 </ol>
 <h4 id="trove">Trove<a class="headerlink" href="#trove" title="Permanent link">&para;</a></h4>
 <p>Trove是OpenStack的数据库服务，如果用户使用OpenStack提供的数据库服务则推荐使用该组件。否则，可以不用安装。</p>
@@ -2360,32 +2350,32 @@ WantedBy=multi-user.target</code></pre>
 <ol>
 <li>
 <p>创建数据库。</p>
-<p>数据库服务在数据库中存储信息，创建一个trove用户可以访问的trove数据库，替换TROVE_DBPASS为合适的密码。
+<p>数据库服务在数据库中存储信息，创建一个trove用户可以访问的trove数据库，替换TROVE_DBPASS为合适的密码。</p>
 <pre class="highlight"><code class="language-sql">CREATE DATABASE trove CHARACTER SET utf8;
 GRANT ALL PRIVILEGES ON trove.* TO 'trove'@'localhost' IDENTIFIED BY 'TROVE_DBPASS';
-GRANT ALL PRIVILEGES ON trove.* TO 'trove'@'%' IDENTIFIED BY 'TROVE_DBPASS';</code></pre></p>
+GRANT ALL PRIVILEGES ON trove.* TO 'trove'@'%' IDENTIFIED BY 'TROVE_DBPASS';</code></pre>
 </li>
 <li>
 <p>创建服务凭证以及API端点。</p>
-<p>创建服务凭证。
-<pre class="highlight"><code class="language-bash"># 创建trove用户
+<p>创建服务凭证。</p>
+<pre class="highlight"><code class="language-shell"># 创建trove用户
 openstack user create --domain default --password-prompt trove
 # 添加admin角色
 openstack role add --project service --user trove admin
 # 创建database服务
-openstack service create --name trove --description "Database service" database</code></pre></p>
-<p>创建API端点。
-<pre class="highlight"><code class="language-bash">openstack endpoint create --region RegionOne database public http://controller:8779/v1.0/%\(tenant_id\)s
+openstack service create --name trove --description "Database service" database</code></pre>
+<p>创建API端点。</p>
+<pre class="highlight"><code class="language-shell">openstack endpoint create --region RegionOne database public http://controller:8779/v1.0/%\(tenant_id\)s
 openstack endpoint create --region RegionOne database internal http://controller:8779/v1.0/%\(tenant_id\)s
-openstack endpoint create --region RegionOne database admin http://controller:8779/v1.0/%\(tenant_id\)s</code></pre></p>
+openstack endpoint create --region RegionOne database admin http://controller:8779/v1.0/%\(tenant_id\)s</code></pre>
 </li>
 <li>
-<p>安装Trove。
-    <pre class="highlight"><code class="language-bash">dnf install openstack-trove python-troveclient</code></pre></p>
+<p>安装Trove。</p>
+<pre class="highlight"><code class="language-shell">dnf install openstack-trove python-troveclient</code></pre>
 </li>
 <li>
 <p>修改配置文件。</p>
-<p>编辑/etc/trove/trove.conf。
+<p>编辑/etc/trove/trove.conf。</p>
 <pre class="highlight"><code class="language-ini">[DEFAULT]
 bind_host=192.168.0.2
 log_dir = /var/log/trove
@@ -2431,7 +2421,7 @@ tcp_ports = 3306,4444,4567,4568
 tcp_ports = 3306
 
 [postgresql]
-tcp_ports = 5432</code></pre></p>
+tcp_ports = 5432</code></pre>
 <p><strong>解释：</strong></p>
 <blockquote>
 <p><code>[Default]</code>分组中<code>bind_host</code>配置为Trove控制节点的IP。\
@@ -2439,7 +2429,7 @@ tcp_ports = 5432</code></pre></p>
 <code>[database]</code>分组中的<code>connection</code> 为前面在mysql中为Trove创建的数据库信息。\
 Trove的用户信息中<code>TROVE_PASSWORD</code>替换为实际trove用户的密码。</p>
 </blockquote>
-<p>编辑/etc/trove/trove-guestagent.conf。
+<p>编辑/etc/trove/trove-guestagent.conf。</p>
 <pre class="highlight"><code class="language-ini">[DEFAULT]
 log_file = trove-guestagent.log
 log_dir = /var/log/trove/
@@ -2462,7 +2452,7 @@ username = trove
 
 [mysql]
 docker_image = your-registry/your-repo/mysql
-backup_docker_image = your-registry/your-repo/db-backup-mysql:1.1.0</code></pre></p>
+backup_docker_image = your-registry/your-repo/db-backup-mysql:1.1.0</code></pre>
 <p><strong>解释：</strong> </p>
 <blockquote>
 <p><code>guestagent</code>是trove中一个独立组件，需要预先内置到Trove通过Nova创建的虚拟机镜像中，在创建好数据库实例后，会起guestagent进程，负责通过消息队列（RabbitMQ）向Trove上报心跳，因此需要配置RabbitMQ的用户和密码信息。\
@@ -2472,18 +2462,18 @@ Trove的用户信息中<code>TROVE_PASSWORD</code>替换为实际trove用户的�
 </blockquote>
 </li>
 <li>
-<p>数据库同步。
-    <pre class="highlight"><code class="language-bash">su -s /bin/sh -c "trove-manage db_sync" trove</code></pre></p>
+<p>数据库同步。</p>
+<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "trove-manage db_sync" trove</code></pre>
 </li>
 <li>
-<p>完成安装。
-    <pre class="highlight"><code class="language-bash"># 配置服务自启
+<p>完成安装。</p>
+<pre class="highlight"><code class="language-shell"># 配置服务自启
 systemctl enable openstack-trove-api.service openstack-trove-taskmanager.service \ 
 openstack-trove-conductor.service
 
 # 启动服务
 systemctl start openstack-trove-api.service openstack-trove-taskmanager.service \ 
-openstack-trove-conductor.service</code></pre></p>
+openstack-trove-conductor.service</code></pre>
 </li>
 </ol>
 <h4 id="swift">Swift<a class="headerlink" href="#swift" title="Permanent link">&para;</a></h4>
@@ -2492,26 +2482,26 @@ openstack-trove-conductor.service</code></pre></p>
 <ol>
 <li>
 <p>创建服务凭证以及API端点。</p>
-<p>创建服务凭证。
-<pre class="highlight"><code class="language-bash"># 创建swift用户
+<p>创建服务凭证。</p>
+<pre class="highlight"><code class="language-shell"># 创建swift用户
 openstack user create --domain default --password-prompt swift
 # 添加admin角色
 openstack role add --project service --user swift admin
 # 创建对象存储服务
-openstack service create --name swift --description "OpenStack Object Storage" object-store</code></pre></p>
-<p>创建API端点。
-<pre class="highlight"><code class="language-bash">openstack endpoint create --region RegionOne object-store public http://controller:8080/v1/AUTH_%\(project_id\)s
+openstack service create --name swift --description "OpenStack Object Storage" object-store</code></pre>
+<p>创建API端点。</p>
+<pre class="highlight"><code class="language-shell">openstack endpoint create --region RegionOne object-store public http://controller:8080/v1/AUTH_%\(project_id\)s
 openstack endpoint create --region RegionOne object-store internal http://controller:8080/v1/AUTH_%\(project_id\)s
-openstack endpoint create --region RegionOne object-store admin http://controller:8080/v1 </code></pre></p>
+openstack endpoint create --region RegionOne object-store admin http://controller:8080/v1 </code></pre>
 </li>
 <li>
-<p>安装Swift。
-    <pre class="highlight"><code class="language-bash">dnf install openstack-swift-proxy python3-swiftclient python3-keystoneclient \ 
-python3-keystonemiddleware memcached</code></pre></p>
+<p>安装Swift。</p>
+<pre class="highlight"><code class="language-shell">dnf install openstack-swift-proxy python3-swiftclient python3-keystoneclient \ 
+python3-keystonemiddleware memcached</code></pre>
 </li>
 <li>
 <p>配置proxy-server。</p>
-<p>Swift RPM包里已经包含了一个基本可用的proxy-server.conf，只需要手动修改其中的ip和SWIFT_PASS即可。
+<p>Swift RPM包里已经包含了一个基本可用的proxy-server.conf，只需要手动修改其中的ip和SWIFT_PASS即可。</p>
 <pre class="highlight"><code class="language-ini">vim /etc/swift/proxy-server.conf
 
 [filter:authtoken]
@@ -2526,45 +2516,45 @@ project_name = service
 username = swift
 password = SWIFT_PASS
 delay_auth_decision = True
-service_token_roles_required = True</code></pre></p>
+service_token_roles_required = True</code></pre>
 </li>
 </ol>
 <p><strong>Storage节点</strong></p>
 <ol>
 <li>
-<p>安装支持的程序包。
-    <pre class="highlight"><code class="language-bash">dnf install openstack-swift-account openstack-swift-container openstack-swift-object
-dnf install xfsprogs rsync</code></pre></p>
+<p>安装支持的程序包。</p>
+<pre class="highlight"><code class="language-shell">dnf install openstack-swift-account openstack-swift-container openstack-swift-object
+dnf install xfsprogs rsync</code></pre>
 </li>
 <li>
-<p>将设备/dev/sdb和/dev/sdc格式化为XFS。
-    <pre class="highlight"><code class="language-bash">mkfs.xfs /dev/sdb
-mkfs.xfs /dev/sdc</code></pre></p>
+<p>将设备/dev/sdb和/dev/sdc格式化为XFS。</p>
+<pre class="highlight"><code class="language-shell">mkfs.xfs /dev/sdb
+mkfs.xfs /dev/sdc</code></pre>
 </li>
 <li>
-<p>创建挂载点目录结构。
-    <pre class="highlight"><code class="language-bash">mkdir -p /srv/node/sdb
-mkdir -p /srv/node/sdc</code></pre></p>
+<p>创建挂载点目录结构。</p>
+<pre class="highlight"><code class="language-shell">mkdir -p /srv/node/sdb
+mkdir -p /srv/node/sdc</code></pre>
 </li>
 <li>
-<p>找到新分区的UUID。
-    <pre class="highlight"><code class="language-bash">blkid</code></pre></p>
+<p>找到新分区的UUID。</p>
+<pre class="highlight"><code class="language-shell">blkid</code></pre>
 </li>
 <li>
-<p>编辑/etc/fstab文件并将以下内容添加到其中。
-    <pre class="highlight"><code class="language-bash">UUID="&lt;UUID-from-output-above&gt;" /srv/node/sdb xfs noatime 0 2
-UUID="&lt;UUID-from-output-above&gt;" /srv/node/sdc xfs noatime 0 2</code></pre></p>
+<p>编辑/etc/fstab文件并将以下内容添加到其中。</p>
+<pre class="highlight"><code class="language-shell">UUID="&lt;UUID-from-output-above&gt;" /srv/node/sdb xfs noatime 0 2
+UUID="&lt;UUID-from-output-above&gt;" /srv/node/sdc xfs noatime 0 2</code></pre>
 </li>
 <li>
-<p>挂载设备。
-    <pre class="highlight"><code class="language-bash">mount /srv/node/sdb
-mount /srv/node/sdc</code></pre></p>
+<p>挂载设备。</p>
+<pre class="highlight"><code class="language-shell">mount /srv/node/sdb
+mount /srv/node/sdc</code></pre>
 <p><strong><em>注意</em></strong></p>
 <p><strong>如果用户不需要容灾功能，以上步骤只需要创建一个设备即可，同时可以跳过下面的rsync配置。</strong></p>
 </li>
 <li>
-<p>（可选）创建或编辑/etc/rsyncd.conf文件以包含以下内容:
-    <pre class="highlight"><code class="language-ini">[DEFAULT]
+<p>（可选）创建或编辑/etc/rsyncd.conf文件以包含以下内容:</p>
+<pre class="highlight"><code class="language-ini">[DEFAULT]
 uid = swift
 gid = swift
 log file = /var/log/rsyncd.log
@@ -2587,118 +2577,116 @@ lock file = /var/lock/container.lock
 max connections = 2
 path = /srv/node/
 read only = False
-lock file = /var/lock/object.lock</code></pre></p>
+lock file = /var/lock/object.lock</code></pre>
 <p><strong>替换MANAGEMENT_INTERFACE_IP_ADDRESS为存储节点上管理网络的IP地址</strong></p>
-<p>启动rsyncd服务并配置它在系统启动时启动:
+<p>启动rsyncd服务并配置它在系统启动时启动:</p>
 <pre class="highlight"><code class="language-shell">systemctl enable rsyncd.service
-systemctl start rsyncd.service</code></pre></p>
+systemctl start rsyncd.service</code></pre>
 </li>
 <li>
 <p>配置存储节点。</p>
-<p>编辑/etc/swift目录的account-server.conf、container-server.conf和object-server.conf文件，替换bind_ip为存储节点上管理网络的IP地址。
+<p>编辑/etc/swift目录的account-server.conf、container-server.conf和object-server.conf文件，替换bind_ip为存储节点上管理网络的IP地址。</p>
 <pre class="highlight"><code class="language-ini">[DEFAULT]
-bind_ip = 192.168.0.4</code></pre></p>
-<p>确保挂载点目录结构的正确所有权。
-<pre class="highlight"><code class="language-bash">chown -R swift:swift /srv/node</code></pre></p>
-<p>创建recon目录并确保其拥有正确的所有权。
-<pre class="highlight"><code class="language-bash">mkdir -p /var/cache/swift
+bind_ip = 192.168.0.4</code></pre>
+<p>确保挂载点目录结构的正确所有权。</p>
+<pre class="highlight"><code class="language-shell">chown -R swift:swift /srv/node</code></pre>
+<p>创建recon目录并确保其拥有正确的所有权。</p>
+<pre class="highlight"><code class="language-shell">mkdir -p /var/cache/swift
 chown -R root:swift /var/cache/swift
-chmod -R 775 /var/cache/swift</code></pre></p>
+chmod -R 775 /var/cache/swift</code></pre>
 </li>
 </ol>
 <p><strong>Controller节点创建并分发环</strong></p>
 <ol>
 <li>
 <p>创建账号环。</p>
-<p>切换到<code>/etc/swift</code>目录。
-<pre class="highlight"><code class="language-bash">cd /etc/swift</code></pre></p>
-<p>创建基础<code>account.builder</code>文件。
-<pre class="highlight"><code class="language-bash">swift-ring-builder account.builder create 10 1 1</code></pre></p>
-<p>将每个存储节点添加到环中。
-<pre class="highlight"><code class="language-bash">swift-ring-builder account.builder add --region 1 --zone 1 \
+<p>切换到<code>/etc/swift</code>目录。</p>
+<pre class="highlight"><code class="language-shell">cd /etc/swift</code></pre>
+<p>创建基础<code>account.builder</code>文件。</p>
+<pre class="highlight"><code class="language-shell">swift-ring-builder account.builder create 10 1 1</code></pre>
+<p>将每个存储节点添加到环中。</p>
+<pre class="highlight"><code class="language-shell">swift-ring-builder account.builder add --region 1 --zone 1 \
 --ip STORAGE_NODE_MANAGEMENT_INTERFACE_IP_ADDRESS \ 
 --port 6202  --device DEVICE_NAME \ 
---weight 100</code></pre></p>
+--weight 100</code></pre>
 <blockquote>
 <p>替换STORAGE_NODE_MANAGEMENT_INTERFACE_IP_ADDRESS为存储节点上管理网络的IP地址。\
 替换DEVICE_NAME为同一存储节点上的存储设备名称。</p>
 </blockquote>
 <p><strong><em>注意</em></strong></p>
 <p><strong>对每个存储节点上的每个存储设备重复此命令</strong></p>
-<p>验证账号环内容。
-<pre class="highlight"><code class="language-shell">swift-ring-builder account.builder</code></pre></p>
-<p>重新平衡账号环。
-<pre class="highlight"><code class="language-shell">swift-ring-builder account.builder rebalance</code></pre></p>
+<p>验证账号环内容。</p>
+<pre class="highlight"><code class="language-shell">swift-ring-builder account.builder</code></pre>
+<p>重新平衡账号环。</p>
+<pre class="highlight"><code class="language-shell">swift-ring-builder account.builder rebalance</code></pre>
 </li>
 <li>
 <p>创建容器环。</p>
 <p>切换到<code>/etc/swift</code>目录。</p>
-<p>创建基础<code>container.builder</code>文件。
-<pre class="highlight"><code class="language-shell">swift-ring-builder container.builder create 10 1 1</code></pre></p>
-<p>将每个存储节点添加到环中。
+<p>创建基础<code>container.builder</code>文件。</p>
+<pre class="highlight"><code class="language-shell">swift-ring-builder container.builder create 10 1 1</code></pre>
+<p>将每个存储节点添加到环中。</p>
 <pre class="highlight"><code class="language-shell">swift-ring-builder container.builder add --region 1 --zone 1 \
 --ip STORAGE_NODE_MANAGEMENT_INTERFACE_IP_ADDRESS 
 --port 6201 --device DEVICE_NAME \
---weight 100</code></pre></p>
+--weight 100</code></pre>
 <blockquote>
 <p>替换STORAGE_NODE_MANAGEMENT_INTERFACE_IP_ADDRESS为存储节点上管理网络的IP地址。\
 替换DEVICE_NAME为同一存储节点上的存储设备名称。</p>
 </blockquote>
 <p><strong><em>注意</em></strong></p>
 <p><strong>对每个存储节点上的每个存储设备重复此命令</strong></p>
-<p>验证容器环内容。
-<pre class="highlight"><code class="language-shell">swift-ring-builder container.builder</code></pre></p>
-<p>重新平衡容器环。
-<pre class="highlight"><code class="language-shell">swift-ring-builder container.builder rebalance</code></pre></p>
+<p>验证容器环内容。</p>
+<pre class="highlight"><code class="language-shell">swift-ring-builder container.builder</code></pre>
+<p>重新平衡容器环。</p>
+<pre class="highlight"><code class="language-shell">swift-ring-builder container.builder rebalance</code></pre>
 </li>
 <li>
 <p>创建对象环。</p>
 <p>切换到<code>/etc/swift</code>目录。</p>
-<p>创建基础<code>object.builder</code>文件。
-<pre class="highlight"><code class="language-shell">swift-ring-builder object.builder create 10 1 1</code></pre></p>
-<p>将每个存储节点添加到环中。
+<p>创建基础<code>object.builder</code>文件。</p>
+<pre class="highlight"><code class="language-shell">swift-ring-builder object.builder create 10 1 1</code></pre>
+<p>将每个存储节点添加到环中。</p>
 <pre class="highlight"><code class="language-shell"> swift-ring-builder object.builder add --region 1 --zone 1 \
  --ip STORAGE_NODE_MANAGEMENT_INTERFACE_IP_ADDRESS \
  --port 6200 --device DEVICE_NAME \
- --weight 100</code></pre></p>
+ --weight 100</code></pre>
 <blockquote>
 <p>替换STORAGE_NODE_MANAGEMENT_INTERFACE_IP_ADDRESS为存储节点上管理网络的IP地址。\
 替换DEVICE_NAME为同一存储节点上的存储设备名称。</p>
 </blockquote>
 <p><strong><em>注意</em></strong></p>
 <p><strong>对每个存储节点上的每个存储设备重复此命令</strong></p>
-<p>验证对象环内容。
-<pre class="highlight"><code class="language-shell">swift-ring-builder object.builder</code></pre></p>
-<p>重新平衡对象环。
-<pre class="highlight"><code class="language-shell">swift-ring-builder object.builder rebalance</code></pre></p>
+<p>验证对象环内容。</p>
+<pre class="highlight"><code class="language-shell">swift-ring-builder object.builder</code></pre>
+<p>重新平衡对象环。</p>
+<pre class="highlight"><code class="language-shell">swift-ring-builder object.builder rebalance</code></pre>
 </li>
 <li>
 <p>分发环配置文件。</p>
 <p>将<code>account.ring.gz</code>，<code>container.ring.gz</code>以及 <code>object.ring.gz</code>文件复制到每个存储节点和运行代理服务的任何其他节点上的<code>/etc/swift</code>目录。</p>
 </li>
 <li>
-<p>编辑配置文件/etc/swift/swift.conf。
-    <pre class="highlight"><code class="language-ini">[swift-hash]
+<p>编辑配置文件/etc/swift/swift.conf。</p>
+<pre class="highlight"><code class="language-ini">[swift-hash]
 swift_hash_path_suffix = test-hash
 swift_hash_path_prefix = test-hash
 
 [storage-policy:0]
 name = Policy-0
-default = yes</code></pre></p>
+default = yes</code></pre>
 <p><strong>用唯一值替换 test-hash</strong></p>
 <p>将swift.conf文件复制到/etc/swift每个存储节点和运行代理服务的任何其他节点上的目录。</p>
-<p>在所有节点上，确保配置目录的正确所有权。
-<pre class="highlight"><code class="language-shell">chown -R root:swift /etc/swift</code></pre></p>
+<p>在所有节点上，确保配置目录的正确所有权。</p>
+<pre class="highlight"><code class="language-shell">chown -R root:swift /etc/swift</code></pre>
 </li>
 <li>
 <p>完成安装</p>
-</li>
-</ol>
-<p>在控制节点和运行代理服务的任何其他节点上，启动对象存储代理服务及其依赖项，并将它们配置为在系统启动时启动。
-  <pre class="highlight"><code class="language-bash">systemctl enable openstack-swift-proxy.service memcached.service
-systemctl start openstack-swift-proxy.service memcached.service</code></pre></p>
-<p>在存储节点上，启动对象存储服务并将它们配置为在系统启动时启动。
-  <pre class="highlight"><code class="language-bash">systemctl enable openstack-swift-account.service \
+<p>在控制节点和运行代理服务的任何其他节点上，启动对象存储代理服务及其依赖项，并将它们配置为在系统启动时启动。</p>
+<pre class="highlight"><code class="language-shell">systemctl enable openstack-swift-proxy.service memcached.service
+systemctl start openstack-swift-proxy.service memcached.service</code></pre>
+<p>在存储节点上，启动对象存储服务并将它们配置为在系统启动时启动。</p>
+<pre class="highlight"><code class="language-shell">systemctl enable openstack-swift-account.service \
 openstack-swift-account-auditor.service \
 openstack-swift-account-reaper.service \
 openstack-swift-account-replicator.service \
@@ -2722,14 +2710,16 @@ openstack-swift-container-updater.service \
 openstack-swift-object.service \
 openstack-swift-object-auditor.service \
 openstack-swift-object-replicator.service \
-openstack-swift-object-updater.service</code></pre></p>
+openstack-swift-object-updater.service</code></pre>
+</li>
+</ol>
 <h4 id="cyborg">Cyborg<a class="headerlink" href="#cyborg" title="Permanent link">&para;</a></h4>
 <p>Cyborg为OpenStack提供加速器设备的支持，包括 GPU, FPGA, ASIC, NP, SoCs, NVMe/NOF SSDs, ODP, DPDK/SPDK等等。</p>
 <p><strong>Controller节点</strong></p>
 <ol>
 <li>
 <p>初始化对应数据库</p>
-<pre class="highlight"><code>mysql -u root -p
+<pre class="highlight"><code class="language-sql">mysql -u root -p
 
 MariaDB [(none)]&gt; CREATE DATABASE cyborg;
 MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON cyborg.* TO 'cyborg'@'localhost' IDENTIFIED BY 'CYBORG_DBPASS';
@@ -2738,25 +2728,25 @@ MariaDB [(none)]&gt; exit;</code></pre>
 </li>
 <li>
 <p>创建用户和服务，并记住创建cybory用户时输入的密码，用于配置CYBORG_PASS</p>
-<pre class="highlight"><code>source ~/.admin-openrc
+<pre class="highlight"><code class="language-shell">source ~/.admin-openrc
 openstack user create --domain default --password-prompt cyborg
 openstack role add --project service --user cyborg admin
 openstack service create --name cyborg --description "Acceleration Service" accelerator</code></pre>
 </li>
 <li>
 <p>使用uwsgi部署Cyborg api服务</p>
-<pre class="highlight"><code>openstack endpoint create --region RegionOne accelerator public http://controller/accelerator/v2
+<pre class="highlight"><code class="language-shell">openstack endpoint create --region RegionOne accelerator public http://controller/accelerator/v2
 openstack endpoint create --region RegionOne accelerator internal http://controller/accelerator/v2
 openstack endpoint create --region RegionOne accelerator admin http://controller/accelerator/v2</code></pre>
 </li>
 <li>
 <p>安装Cyborg</p>
-<pre class="highlight"><code>dnf install openstack-cyborg</code></pre>
+<pre class="highlight"><code class="language-shell">dnf install openstack-cyborg</code></pre>
 </li>
 <li>
 <p>配置Cyborg</p>
 <p>修改<code>/etc/cyborg/cyborg.conf</code></p>
-<pre class="highlight"><code>[DEFAULT]
+<pre class="highlight"><code class="language-ini">[DEFAULT]
 transport_url = rabbit://openstack:RABBIT_PASS@controller:5672/
 use_syslog = False
 state_path = /var/lib/cyborg
@@ -2812,11 +2802,11 @@ auth_type = password</code></pre>
 </li>
 <li>
 <p>同步数据库表格</p>
-<pre class="highlight"><code>cyborg-dbsync --config-file /etc/cyborg/cyborg.conf upgrade</code></pre>
+<pre class="highlight"><code class="language-shell">cyborg-dbsync --config-file /etc/cyborg/cyborg.conf upgrade</code></pre>
 </li>
 <li>
 <p>启动Cyborg服务</p>
-<pre class="highlight"><code>systemctl enable openstack-cyborg-api openstack-cyborg-conductor openstack-cyborg-agent
+<pre class="highlight"><code class="language-shell">systemctl enable openstack-cyborg-api openstack-cyborg-conductor openstack-cyborg-agent
 systemctl start openstack-cyborg-api openstack-cyborg-conductor openstack-cyborg-agent</code></pre>
 </li>
 </ol>
@@ -2832,24 +2822,24 @@ GRANT ALL PRIVILEGES ON aodh.* TO 'aodh'@'%' IDENTIFIED BY 'AODH_DBPASS';</code>
 </li>
 <li>
 <p>创建服务凭证以及API端点。</p>
-<p>创建服务凭证。
-<pre class="highlight"><code class="language-bash">openstack user create --domain default --password-prompt aodh
+<p>创建服务凭证。</p>
+<pre class="highlight"><code class="language-shell">openstack user create --domain default --password-prompt aodh
 openstack role add --project service --user aodh admin
-openstack service create --name aodh --description "Telemetry" alarming</code></pre></p>
-<p>创建API端点。
-<pre class="highlight"><code class="language-bash">openstack endpoint create --region RegionOne alarming public http://controller:8042
+openstack service create --name aodh --description "Telemetry" alarming</code></pre>
+<p>创建API端点。</p>
+<pre class="highlight"><code class="language-shell">openstack endpoint create --region RegionOne alarming public http://controller:8042
 openstack endpoint create --region RegionOne alarming internal http://controller:8042
-openstack endpoint create --region RegionOne alarming admin http://controller:8042</code></pre></p>
+openstack endpoint create --region RegionOne alarming admin http://controller:8042</code></pre>
 </li>
 <li>
-<p>安装Aodh。
-    <pre class="highlight"><code class="language-bash">dnf install openstack-aodh-api openstack-aodh-evaluator \
+<p>安装Aodh。</p>
+<pre class="highlight"><code class="language-shell">dnf install openstack-aodh-api openstack-aodh-evaluator \
 openstack-aodh-notifier openstack-aodh-listener \
-openstack-aodh-expirer python3-aodhclient</code></pre></p>
+openstack-aodh-expirer python3-aodhclient</code></pre>
 </li>
 <li>
-<p>修改配置文件。
-    <pre class="highlight"><code class="language-ini">vim /etc/aodh/aodh.conf
+<p>修改配置文件。</p>
+<pre class="highlight"><code class="language-ini">vim /etc/aodh/aodh.conf
 
 [database]
 connection = mysql+pymysql://aodh:AODH_DBPASS@controller/aodh
@@ -2878,21 +2868,21 @@ project_name = service
 username = aodh
 password = AODH_PASS
 interface = internalURL
-region_name = RegionOne</code></pre></p>
+region_name = RegionOne</code></pre>
 </li>
 <li>
-<p>同步数据库。
-    <pre class="highlight"><code class="language-bash">aodh-dbsync</code></pre></p>
+<p>同步数据库。</p>
+<pre class="highlight"><code class="language-shell">aodh-dbsync</code></pre>
 </li>
 <li>
-<p>完成安装。
-    <pre class="highlight"><code class="language-bash"># 配置服务自启
+<p>完成安装。</p>
+<pre class="highlight"><code class="language-shell"># 配置服务自启
 systemctl enable openstack-aodh-api.service openstack-aodh-evaluator.service \
 openstack-aodh-notifier.service openstack-aodh-listener.service
 
 # 启动服务
 systemctl start openstack-aodh-api.service openstack-aodh-evaluator.service \
-openstack-aodh-notifier.service openstack-aodh-listener.service</code></pre></p>
+openstack-aodh-notifier.service openstack-aodh-listener.service</code></pre>
 </li>
 </ol>
 <h4 id="gnocchi">Gnocchi<a class="headerlink" href="#gnocchi" title="Permanent link">&para;</a></h4>
@@ -2900,29 +2890,29 @@ openstack-aodh-notifier.service openstack-aodh-listener.service</code></pre></p>
 <p><strong>Controller节点</strong></p>
 <ol>
 <li>
-<p>创建数据库。
-    <pre class="highlight"><code class="language-sql">CREATE DATABASE gnocchi;
+<p>创建数据库。</p>
+<pre class="highlight"><code class="language-sql">CREATE DATABASE gnocchi;
 GRANT ALL PRIVILEGES ON gnocchi.* TO 'gnocchi'@'localhost' IDENTIFIED BY 'GNOCCHI_DBPASS';
-GRANT ALL PRIVILEGES ON gnocchi.* TO 'gnocchi'@'%' IDENTIFIED BY 'GNOCCHI_DBPASS';</code></pre></p>
+GRANT ALL PRIVILEGES ON gnocchi.* TO 'gnocchi'@'%' IDENTIFIED BY 'GNOCCHI_DBPASS';</code></pre>
 </li>
 <li>
 <p>创建服务凭证以及API端点。</p>
-<p>创建服务凭证。
-<pre class="highlight"><code class="language-bash">openstack user create --domain default --password-prompt gnocchi
+<p>创建服务凭证。</p>
+<pre class="highlight"><code class="language-shell">openstack user create --domain default --password-prompt gnocchi
 openstack role add --project service --user gnocchi admin
-openstack service create --name gnocchi --description "Metric Service" metric</code></pre></p>
-<p>创建API端点。
-<pre class="highlight"><code class="language-bash">openstack endpoint create --region RegionOne metric public http://controller:8041
+openstack service create --name gnocchi --description "Metric Service" metric</code></pre>
+<p>创建API端点。</p>
+<pre class="highlight"><code class="language-shell">openstack endpoint create --region RegionOne metric public http://controller:8041
 openstack endpoint create --region RegionOne metric internal http://controller:8041
-openstack endpoint create --region RegionOne metric admin http://controller:8041</code></pre></p>
+openstack endpoint create --region RegionOne metric admin http://controller:8041</code></pre>
 </li>
 <li>
-<p>安装Gnocchi。
-    <pre class="highlight"><code class="language-bash">dnf install openstack-gnocchi-api openstack-gnocchi-metricd python3-gnocchiclient</code></pre></p>
+<p>安装Gnocchi。</p>
+<pre class="highlight"><code class="language-shell">dnf install openstack-gnocchi-api openstack-gnocchi-metricd python3-gnocchiclient</code></pre>
 </li>
 <li>
-<p>修改配置文件。
-    <pre class="highlight"><code class="language-ini">vim /etc/gnocchi/gnocchi.conf
+<p>修改配置文件。</p>
+<pre class="highlight"><code class="language-ini">vim /etc/gnocchi/gnocchi.conf
 [api]
 auth_mode = keystone
 port = 8041
@@ -2947,19 +2937,19 @@ url = mysql+pymysql://gnocchi:GNOCCHI_DBPASS@controller/gnocchi
 # performance with better workload division across workers.
 # coordination_url = redis://controller:6379
 file_basepath = /var/lib/gnocchi
-driver = file</code></pre></p>
+driver = file</code></pre>
 </li>
 <li>
-<p>同步数据库。
-    <pre class="highlight"><code class="language-bash">gnocchi-upgrade</code></pre></p>
+<p>同步数据库。</p>
+<pre class="highlight"><code class="language-shell">gnocchi-upgrade</code></pre>
 </li>
 <li>
-<p>完成安装。
-    <pre class="highlight"><code class="language-bash"># 配置服务自启
+<p>完成安装。</p>
+<pre class="highlight"><code class="language-shell"># 配置服务自启
 systemctl enable openstack-gnocchi-api.service openstack-gnocchi-metricd.service
 
 # 启动服务
-systemctl start openstack-gnocchi-api.service openstack-gnocchi-metricd.service</code></pre></p>
+systemctl start openstack-gnocchi-api.service openstack-gnocchi-metricd.service</code></pre>
 </li>
 </ol>
 <h4 id="ceilometer">Ceilometer<a class="headerlink" href="#ceilometer" title="Permanent link">&para;</a></h4>
@@ -2967,26 +2957,26 @@ systemctl start openstack-gnocchi-api.service openstack-gnocchi-metricd.service<
 <p><strong>Controller节点</strong></p>
 <ol>
 <li>
-<p>创建服务凭证。
-    <pre class="highlight"><code class="language-bash">openstack user create --domain default --password-prompt ceilometer
+<p>创建服务凭证。</p>
+<pre class="highlight"><code class="language-shell">openstack user create --domain default --password-prompt ceilometer
 openstack role add --project service --user ceilometer admin
-openstack service create --name ceilometer --description "Telemetry" metering</code></pre></p>
+openstack service create --name ceilometer --description "Telemetry" metering</code></pre>
 </li>
 <li>
-<p>安装Ceilometer软件包。
-    <pre class="highlight"><code class="language-bash">dnf install openstack-ceilometer-notification openstack-ceilometer-central</code></pre></p>
+<p>安装Ceilometer软件包。</p>
+<pre class="highlight"><code class="language-shell">dnf install openstack-ceilometer-notification openstack-ceilometer-central</code></pre>
 </li>
 <li>
-<p>编辑配置文件/etc/ceilometer/pipeline.yaml。 
-    <pre class="highlight"><code class="language-yaml">publishers:
+<p>编辑配置文件/etc/ceilometer/pipeline.yaml。 </p>
+<pre class="highlight"><code class="language-yaml">publishers:
     # set address of Gnocchi
     # + filter out Gnocchi-related activity meters (Swift driver)
     # + set default archive policy
-    - gnocchi://?filter_project=service&amp;archive_policy=low</code></pre></p>
+    - gnocchi://?filter_project=service&amp;archive_policy=low</code></pre>
 </li>
 <li>
-<p>编辑配置文件/etc/ceilometer/ceilometer.conf。
-    <pre class="highlight"><code class="language-ini">[DEFAULT]
+<p>编辑配置文件/etc/ceilometer/ceilometer.conf。</p>
+<pre class="highlight"><code class="language-ini">[DEFAULT]
 transport_url = rabbit://openstack:RABBIT_PASS@controller
 
 [service_credentials]
@@ -2998,30 +2988,30 @@ project_name = service
 username = ceilometer
 password = CEILOMETER_PASS
 interface = internalURL
-region_name = RegionOne</code></pre></p>
+region_name = RegionOne</code></pre>
 </li>
 <li>
-<p>数据库同步。
-    <pre class="highlight"><code class="language-bash">ceilometer-upgrade</code></pre></p>
+<p>数据库同步。</p>
+<pre class="highlight"><code class="language-shell">ceilometer-upgrade</code></pre>
 </li>
 <li>
-<p>完成控制节点Ceilometer安装。
-    <pre class="highlight"><code class="language-bash"># 配置服务自启
+<p>完成控制节点Ceilometer安装。</p>
+<pre class="highlight"><code class="language-shell"># 配置服务自启
 systemctl enable openstack-ceilometer-notification.service openstack-ceilometer-central.service
 # 启动服务
-systemctl start openstack-ceilometer-notification.service openstack-ceilometer-central.service</code></pre></p>
+systemctl start openstack-ceilometer-notification.service openstack-ceilometer-central.service</code></pre>
 </li>
 </ol>
 <p><strong>Compute节点</strong></p>
 <ol>
 <li>
-<p>安装Ceilometer软件包。
-    <pre class="highlight"><code class="language-bash">dnf install openstack-ceilometer-compute
-dnf install openstack-ceilometer-ipmi       # 可选</code></pre></p>
+<p>安装Ceilometer软件包。</p>
+<pre class="highlight"><code class="language-shell">dnf install openstack-ceilometer-compute
+dnf install openstack-ceilometer-ipmi       # 可选</code></pre>
 </li>
 <li>
-<p>编辑配置文件/etc/ceilometer/ceilometer.conf。
-    <pre class="highlight"><code class="language-ini">[DEFAULT]
+<p>编辑配置文件/etc/ceilometer/ceilometer.conf。</p>
+<pre class="highlight"><code class="language-ini">[DEFAULT]
 transport_url = rabbit://openstack:RABBIT_PASS@controller
 
 [service_credentials]
@@ -3033,11 +3023,11 @@ username = ceilometer
 project_name = service
 password = CEILOMETER_PASS
 interface = internalURL
-region_name = RegionOne</code></pre></p>
+region_name = RegionOne</code></pre>
 </li>
 <li>
-<p>编辑配置文件/etc/nova/nova.conf。
-    <pre class="highlight"><code class="language-ini">[DEFAULT]
+<p>编辑配置文件/etc/nova/nova.conf。</p>
+<pre class="highlight"><code class="language-ini">[DEFAULT]
 instance_usage_audit = True
 instance_usage_audit_period = hour
 
@@ -3045,17 +3035,17 @@ instance_usage_audit_period = hour
 notify_on_state_change = vm_and_task_state
 
 [oslo_messaging_notifications]
-driver = messagingv2</code></pre></p>
+driver = messagingv2</code></pre>
 </li>
 <li>
-<p>完成安装。
-    <pre class="highlight"><code class="language-bash">systemctl enable openstack-ceilometer-compute.service
+<p>完成安装。</p>
+<pre class="highlight"><code class="language-shell">systemctl enable openstack-ceilometer-compute.service
 systemctl start openstack-ceilometer-compute.service
 systemctl enable openstack-ceilometer-ipmi.service         # 可选
 systemctl start openstack-ceilometer-ipmi.service          # 可选
 
 # 重启nova-compute服务
-systemctl restart openstack-nova-compute.service</code></pre></p>
+systemctl restart openstack-nova-compute.service</code></pre>
 </li>
 </ol>
 <h4 id="heat">Heat<a class="headerlink" href="#heat" title="Permanent link">&para;</a></h4>
@@ -3064,7 +3054,7 @@ systemctl restart openstack-nova-compute.service</code></pre></p>
 <ol>
 <li>
 <p>创建<strong>heat</strong>数据库，并授予<strong>heat</strong>数据库正确的访问权限，替换<strong>HEAT_DBPASS</strong>为合适的密码</p>
-<pre class="highlight"><code>mysql -u root -p
+<pre class="highlight"><code class="language-sql">mysql -u root -p
 
 MariaDB [(none)]&gt; CREATE DATABASE heat;
 MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'localhost' IDENTIFIED BY 'HEAT_DBPASS';
@@ -3073,14 +3063,14 @@ MariaDB [(none)]&gt; exit;</code></pre>
 </li>
 <li>
 <p>创建服务凭证，创建<strong>heat</strong>用户，并为其增加<strong>admin</strong>角色</p>
-<pre class="highlight"><code>source ~/.admin-openrc
+<pre class="highlight"><code class="language-shell">source ~/.admin-openrc
 
 openstack user create --domain default --password-prompt heat
 openstack role add --project service --user heat admin</code></pre>
 </li>
 <li>
 <p>创建<strong>heat</strong>和<strong>heat-cfn</strong>服务及其对应的API端点</p>
-<pre class="highlight"><code>openstack service create --name heat --description "Orchestration" orchestration
+<pre class="highlight"><code class="language-shell">openstack service create --name heat --description "Orchestration" orchestration
 openstack service create --name heat-cfn --description "Orchestration"  cloudformation
 openstack endpoint create --region RegionOne orchestration public http://controller:8004/v1/%\(tenant_id\)s
 openstack endpoint create --region RegionOne orchestration internal http://controller:8004/v1/%\(tenant_id\)s
@@ -3091,24 +3081,24 @@ openstack endpoint create --region RegionOne cloudformation admin http://control
 </li>
 <li>
 <p>创建stack管理的额外信息</p>
-<p>创建 <strong>heat</strong> domain
-<pre class="highlight"><code>openstack domain create --description "Stack projects and users" heat</code></pre>
-在 <strong>heat</strong> domain下创建 <strong>heat_domain_admin</strong> 用户，并记下输入的密码，用于配置下面的<code>HEAT_DOMAIN_PASS</code>
-<pre class="highlight"><code>openstack user create --domain heat --password-prompt heat_domain_admin</code></pre>
-为 <strong>heat_domain_admin</strong> 用户增加 <strong>admin</strong> 角色
-<pre class="highlight"><code>openstack role add --domain heat --user-domain heat --user heat_domain_admin admin</code></pre>
-创建 <strong>heat_stack_owner</strong> 角色
-<pre class="highlight"><code>openstack role create heat_stack_owner</code></pre>
-创建 <strong>heat_stack_user</strong> 角色
-<pre class="highlight"><code>openstack role create heat_stack_user</code></pre></p>
+<p>创建 <strong>heat</strong> domain</p>
+<pre class="highlight"><code class="language-shell">openstack domain create --description "Stack projects and users" heat</code></pre>
+<p>在 <strong>heat</strong> domain下创建 <strong>heat_domain_admin</strong> 用户，并记下输入的密码，用于配置下面的<code>HEAT_DOMAIN_PASS</code></p>
+<pre class="highlight"><code class="language-shell">openstack user create --domain heat --password-prompt heat_domain_admin</code></pre>
+<p>为 <strong>heat_domain_admin</strong> 用户增加 <strong>admin</strong> 角色</p>
+<pre class="highlight"><code class="language-shell">openstack role add --domain heat --user-domain heat --user heat_domain_admin admin</code></pre>
+<p>创建 <strong>heat_stack_owner</strong> 角色</p>
+<pre class="highlight"><code class="language-shell">openstack role create heat_stack_owner</code></pre>
+<p>创建 <strong>heat_stack_user</strong> 角色</p>
+<pre class="highlight"><code class="language-shell">openstack role create heat_stack_user</code></pre>
 </li>
 <li>
 <p>安装软件包</p>
-<pre class="highlight"><code>dnf install openstack-heat-api openstack-heat-api-cfn openstack-heat-engine</code></pre>
+<pre class="highlight"><code class="language-shell">dnf install openstack-heat-api openstack-heat-api-cfn openstack-heat-engine</code></pre>
 </li>
 <li>
 <p>修改配置文件<code>/etc/heat/heat.conf</code></p>
-<pre class="highlight"><code>[DEFAULT]
+<pre class="highlight"><code class="language-ini">[DEFAULT]
 transport_url = rabbit://openstack:RABBIT_PASS@controller
 heat_metadata_server_url = http://controller:8000
 heat_waitcondition_server_url = http://controller:8000/v1/waitcondition
@@ -3142,11 +3132,11 @@ auth_uri = http://controller:5000</code></pre>
 </li>
 <li>
 <p>初始化<strong>heat</strong>数据库表</p>
-<pre class="highlight"><code>su -s /bin/sh -c "heat-manage db_sync" heat</code></pre>
+<pre class="highlight"><code class="language-shell">su -s /bin/sh -c "heat-manage db_sync" heat</code></pre>
 </li>
 <li>
 <p>启动服务</p>
-<pre class="highlight"><code>systemctl enable openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service
+<pre class="highlight"><code class="language-shell">systemctl enable openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service
 systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service</code></pre>
 </li>
 </ol>
@@ -3174,10 +3164,10 @@ vi etc/tempest.conf</code></pre>
 </li>
 <li>
 <p>安装tempest扩展（可选）
-   OpenStack各个服务本身也提供了一些tempest测试包，用户可以安装这些包来丰富tempest的测试内容。在Antelope中，我们提供了Cinder、Glance、Keystone、Ironic、Trove的扩展测试，用户可以执行如下命令进行安装使用：
-   <pre class="highlight"><code>dnf install python3-cinder-tempest-plugin python3-glance-tempest-plugin python3-ironic-tempest-plugin python3-keystone-tempest-plugin python3-trove-tempest-plugin</code></pre></p>
+   OpenStack各个服务本身也提供了一些tempest测试包，用户可以安装这些包来丰富tempest的测试内容。在Antelope中，我们提供了Cinder、Glance、Keystone、Ironic、Trove的扩展测试，用户可以执行如下命令进行安装使用：</p>
 </li>
 </ol>
+<pre class="highlight"><code class="language-shell">dnf install python3-cinder-tempest-plugin python3-glance-tempest-plugin python3-ironic-tempest-plugin python3-keystone-tempest-plugin python3-trove-tempest-plugin</code></pre>
 <h2 id="openstack-sigoos">基于OpenStack SIG开发工具oos部署<a class="headerlink" href="#openstack-sigoos" title="Permanent link">&para;</a></h2>
 <p><code>oos</code>(openEuler OpenStack SIG)是OpenStack SIG提供的命令行工具。其中<code>oos env</code>系列命令提供了一键部署OpenStack （<code>all in one</code>或三节点<code>cluster</code>）的ansible脚本，用户可以使用该脚本快速部署一套基于 openEuler RPM 的 OpenStack 环境。<code>oos</code>工具支持对接云provider（目前仅支持华为云provider）和主机纳管两种方式来部署 OpenStack 环境，下面以对接华为云部署一套<code>all in one</code>的OpenStack环境为例说明<code>oos</code>工具的使用方法。</p>
 <ol>
@@ -3190,11 +3180,11 @@ vi etc/tempest.conf</code></pre>
 <p>打开<code>/usr/local/etc/oos/oos.conf</code>文件，修改配置为您拥有的华为云资源信息，AK/SK是用户的华为云登录密钥，其他配置保持默认即可（默认使用新加坡region），需要提前在云上创建对应的资源，包括：</p>
 <ul>
 <li>一个安全组，名字默认是<code>oos</code></li>
-<li>一个openEuler镜像，名称格式是openEuler-%(release)s-%(arch)s，例如<code>openEuler-24.03-sp1-arm64</code></li>
+<li>一个openEuler镜像，名称格式是openEuler-%(release)s-%(arch)s，例如<code>openEuler-25.03-arm64</code></li>
 <li>一个VPC，名称是<code>oos_vpc</code></li>
 <li>该VPC下面两个子网，名称是<code>oos_subnet1</code>、<code>oos_subnet2</code></li>
 </ul>
-<pre class="highlight"><code>[huaweicloud]
+<pre class="highlight"><code class="language-ini">[huaweicloud]
 ak = 
 sk = 
 region = ap-southeast-3
@@ -3277,10 +3267,10 @@ kolla_openeuler_plugin = false</code></pre>
 </table>
 </li>
 <li>
-<p>华为云上面创建一台|openEuler 24.03 LTS SP1的x86_64虚拟机，用于部署<code>all in one</code> 的 OpenStack</p>
+<p>华为云上面创建一台|openEuler 25.03的x86_64虚拟机，用于部署<code>all in one</code> 的 OpenStack</p>
 <pre class="highlight"><code class="language-shell"># sshpass在`oos env create`过程中被使用，用于配置对目标虚拟机的免密访问
 dnf install sshpass
-oos env create -r 24.03-lts-sp1 -f small -a x86 -n test-oos all_in_one</code></pre>
+oos env create -r 25.03 -f small -a x86 -n test-oos all_in_one</code></pre>
 <p>具体的参数可以使用<code>oos env create --help</code>命令查看</p>
 </li>
 <li>
@@ -3309,14 +3299,14 @@ oos env create -r 24.03-lts-sp1 -f small -a x86 -n test-oos all_in_one</code></p
 </ul>
 <pre class="highlight"><code class="language-shell"># sshpass在`oos env create`过程中被使用，用于配置对目标主机的免密访问
 dnf install sshpass
-oos env manage -r 24.03-lts-sp1 -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n test-oos</code></pre>
+oos env manage -r 25.03 -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n test-oos</code></pre>
 <p>替换<code>TARGET_MACHINE_IP</code>为目标机ip、<code>TARGET_MACHINE_PASSWD</code>为目标机密码。具体的参数可以使用<code>oos env manage --help</code>命令查看。</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="页脚导航">
-        <a href="../OpenStack-wallaby/" class="btn btn-neutral float-left" title="openEuler-24.03-LTS-SP1_Wallaby"><span class="icon icon-circle-arrow-left"></span> 上一章</a>
-        <a href="../../openEuler-25.03/OpenStack-antelope/" class="btn btn-neutral float-right" title="openEuler-25.03_Antelope">下一章 <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../openEuler-24.03-LTS-SP1/OpenStack-antelope/" class="btn btn-neutral float-left" title="openEuler-24.03-LTS-SP1_Antelope"><span class="icon icon-circle-arrow-left"></span> 上一章</a>
+        <a href="../../../test/openEuler-20.03-LTS-SP2/" class="btn btn-neutral float-right" title="openEuler-20.03-LTS-SP2">下一章 <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -3339,10 +3329,10 @@ oos env manage -r 24.03-lts-sp1 -i TARGET_MACHINE_IP -p TARGET_MACHINE_PASSWD -n
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../OpenStack-wallaby/" style="color: #fcfcfc">&laquo; 上一章</a></span>
+      <span><a href="../../openEuler-24.03-LTS-SP1/OpenStack-antelope/" style="color: #fcfcfc">&laquo; 上一章</a></span>
     
     
-      <span><a href="../../openEuler-25.03/OpenStack-antelope/" style="color: #fcfcfc">下一章 &raquo;</a></span>
+      <span><a href="../../../test/openEuler-20.03-LTS-SP2/" style="color: #fcfcfc">下一章 &raquo;</a></span>
     
   </span>
 </div>
