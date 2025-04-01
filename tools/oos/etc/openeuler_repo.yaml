@@ -4673,7 +4673,7 @@ src-openeuler:
   mybatis-parent: sig-Java
   mypaint-brushes: Others
   mysema-commons-lang: Base-service
-  mysql: Others
+  mysql: DB
   mysql-connector-java: dev-utils
   mysql-selinux: sig-security-facility
   mysql5: sig-recycle
@@ -7190,10 +7190,10 @@ src-openeuler:
   phonon: sig-KDE
   phonon-backend-gstreamer: Private
   phonon-qt4: sig-KDE
-  php: Base-service
-  php-pear: sig-epol
-  php-pecl-zip: sig-epol
-  phpy: ecopkg
+  php: Programming-language
+  php-pear: Programming-language
+  php-pecl-zip: Programming-language
+  phpy: Programming-language
   physfs: dev-utils
   pick_ik: sig-ROS
   picketbox: sig-Java
@@ -10734,7 +10734,7 @@ src-openeuler:
   swagger-ui-bundle: sig-python-modules
   swig: Programming-language
   switcheroo-control: Desktop
-  swoole: ecopkg
+  swoole: Programming-language
   swri_console: sig-ROS
   swt-chart: sig-Java
   swtpm: sig-security-facility
