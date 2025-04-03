@@ -684,6 +684,7 @@ src-openeuler:
   GraphicsMagick: Application
   HMCL: sig-desktop-apps
   HdrHistogram: Application
+  HdrHistogram_C: ecopkg
   HikariCP: sig-Java
   ImageMagick: Others
   Imath: Runtime
@@ -3820,6 +3821,7 @@ src-openeuler:
   libe-book: ecopkg
   libeasyfc: Application
   libebml: sig-epol
+  libebur128: ecopkg
   libecap: Base-service
   libecb: dev-utils
   libedit: Base-service
@@ -4246,6 +4248,7 @@ src-openeuler:
   lld-15: Compiler
   lldb: Compiler
   lldpad: Networking
+  llhttp: ecopkg
   llvm: Compiler
   llvm-15: Compiler
   llvm-bolt: Compiler
@@ -7376,6 +7379,7 @@ src-openeuler:
   pushgateway: sig-CloudNative
   pv: Base-service
   pwgen: sig-recycle
+  pxeuler: ecopkg
   py3c: sig-python-modules
   pyArango: sig-ops
   pyOpenSSL: sig-security-facility
