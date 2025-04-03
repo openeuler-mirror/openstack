@@ -1509,6 +1509,7 @@ src-openeuler:
   cufflinks: sig-bio
   culmus-fonts: Application
   cups: Desktop
+  cups-browsed: System-tool
   cups-filters: System-tool
   cups-pk-helper: Desktop
   curator: dev-utils
@@ -4603,7 +4604,7 @@ src-openeuler:
   mokutil: sig-security-facility
   mold: sig-RISC-V
   mom: oVirt
-  mongo-c-driver: Others
+  mongo-c-driver: DB
   mongo-java-driver: sig-Java
   mongo-java-driver2: Base-service
   mongo-tools: DB
@@ -9863,7 +9864,7 @@ src-openeuler:
   rear: Others
   recode: Base-service
   redhat-menus: sig-recycle
-  redis: Others
+  redis: DB
   redis-protocol: Application
   redis5: bigdata
   redis6: bigdata
