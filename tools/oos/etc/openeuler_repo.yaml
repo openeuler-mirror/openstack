@@ -1729,6 +1729,7 @@ src-openeuler:
   dtkwidget: sig-DDE
   dtkwidget2: sig-DDE
   dtkwm: sig-DDE
+  duckdb: DB
   duktape: Base-service
   dumb-init: sig-CloudNative
   dump: Storage
@@ -11192,10 +11193,8 @@ src-openeuler:
   wdiff: Application
   web-assets: Application
   webbench: dev-utils
-  webkit2gtk3: Desktop
-  webkit2gtk4: Desktop
-  webkit2gtk5: Desktop
   webkit_dependency: sig-ROS
+  webkitgtk: Desktop
   webots_ros2: sig-ROS
   webp-pixbuf-loader: GNOME
   webrtc-audio-processing: Desktop
