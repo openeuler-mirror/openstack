@@ -1172,6 +1172,24 @@ src-openeuler:
   batik: sig-Java
   bats: sig-CloudNative
   bazel: ai
+  bazel-common: ai
+  bazel-compile-commands-extractor: ai
+  bazel-gazelle: ai
+  bazel-platforms: ai
+  bazel-rules-boost: ai
+  bazel-rules-cc: ai
+  bazel-rules-foreign-cc: ai
+  bazel-rules-go: ai
+  bazel-rules-java: ai
+  bazel-rules-jvm-external: ai
+  bazel-rules-perl: ai
+  bazel-rules-pkg: ai
+  bazel-rules-proto: ai
+  bazel-rules-proto-grpc: ai
+  bazel-rules-python: ai
+  bazel-rules-ruby: ai
+  bazel-skylib: ai
+  bazel_jar_jar: ai
   bc: Base-service
   bcache-tools: Storage
   bcc: sig-ebpf
@@ -1218,6 +1236,7 @@ src-openeuler:
   booth: sig-Ha
   bootstrap: sig-nodejs
   bootupd: sig-K8sDistro
+  boringssl: sig-security-facility
   botan2: sig-KDE
   botron-hard-realtime-plugin: sig-IDE
   botron-hybrid-deployment-plugin: sig-IDE
@@ -1275,6 +1294,7 @@ src-openeuler:
   cairomm: Desktop
   caja: sig-mate-desktop
   caja-actions: sig-mate-desktop
+  caja-dropbox: sig-mate-desktop
   caja-extensions: sig-mate-desktop
   cal10n: dev-utils
   calamares: Desktop
@@ -1355,6 +1375,7 @@ src-openeuler:
   cinnamon-spices-themes: sig-cinnamon
   cinnamon-themes: sig-cinnamon
   cinnamon-translations: sig-cinnamon
+  civetweb: Networking
   cjkuni-ukai-fonts: Desktop
   cjkuni-uming-fonts: sig-mate-desktop
   cjose: Application
@@ -1396,6 +1417,7 @@ src-openeuler:
   cmark: GNOME
   cmocka: Programming-language
   cmockery: sig-recycle
+  cncf-xds: ai
   cobbler: sig-OS-Builder
   cockpit: Desktop
   cockpit-machines: Desktop
@@ -1538,6 +1560,7 @@ src-openeuler:
   dareader: sig-DDE
   darshan: sig-HPC
   dash: Base-service
+  data-plane-api: ai
   datafu: bigdata
   datanucleus-api-jdo: sig-Java
   datanucleus-core: sig-Java
@@ -2553,6 +2576,7 @@ src-openeuler:
   google-auth-httplib2: sig-openstack
   google-benchmark: ecopkg
   google-carlito-fonts: sig-RISC-V
+  google-cloud-cpp: ai
   google-cpu_features: ecopkg
   google-crc32c: sig-epol
   google-croscore-fonts: Desktop
@@ -2570,6 +2594,7 @@ src-openeuler:
   google-rubik-fonts: sig-RISC-V
   google_benchmark: sig-ROS
   google_benchmark_vendor: sig-ROS
+  googleapis: ai
   googleapis-common-protos: sig-openstack
   googletest: sig-ROS
   goversioninfo: sig-K8sDistro
@@ -4423,7 +4448,9 @@ src-openeuler:
   mate-themes: sig-mate-desktop
   mate-user-admin: sig-mate-desktop
   mate-user-guide: sig-mate-desktop
+  mate-user-share: sig-mate-desktop
   mate-utils: sig-mate-desktop
+  mate-wayland-session: sig-mate-desktop
   mathjax: sig-UKUI
   maven: sig-Java
   maven-antrun-plugin: sig-Java
@@ -5288,6 +5315,8 @@ src-openeuler:
   openblas: Programming-language
   openbox: Desktop
   opencc: Others
+  opencensus-cpp: ai
+  opencensus-proto: ai
   opencl: ai
   opencl-clhpp: ai
   opencl-filesystem: ai
@@ -5594,6 +5623,7 @@ src-openeuler:
   perl-Apache-LogFormat-Compiler: sig-perl-modules
   perl-Apache-Session: sig-perl-modules
   perl-Apache-Session-Wrapper: sig-perl-modules
+  perl-App-ChangeShebang: sig-perl-modules
   perl-App-Cmd: sig-perl-modules
   perl-App-FatPacker: sig-perl-modules
   perl-AppConfig: sig-perl-modules
@@ -5896,6 +5926,7 @@ src-openeuler:
   perl-Devel-OverrideGlobalRequire: sig-perl-modules
   perl-Devel-PPPort: sig-perl-modules
   perl-Devel-PartialDump: sig-perl-modules
+  perl-Devel-PatchPerl: sig-perl-modules
   perl-Devel-Pragma: sig-perl-modules
   perl-Devel-Refcount: sig-perl-modules
   perl-Devel-SelfStubber: sig-perl-modules
@@ -7350,6 +7381,7 @@ src-openeuler:
   proguard: sig-Java
   proj: Others
   prometheus: sig-CloudNative
+  prometheus-cpp: ai
   prometheus-ha_cluster_exporter: sig-Ha
   promu: sig-CloudNative
   properties-maven-plugin: sig-Java
@@ -7357,6 +7389,8 @@ src-openeuler:
   protobuf: sig-CloudNative
   protobuf-c: Computing
   protobuf2: bigdata
+  protoc-gen-validate: ai
+  protocolbuffers-upb: ai
   protoparser: sig-Java
   protostream: sig-Java
   proxool: sig-Java
@@ -7729,6 +7763,7 @@ src-openeuler:
   python-bucky: sig-python-modules
   python-bugzilla: sig-python-modules
   python-build: sig-python-modules
+  python-build-standalone: ai
   python-bump2version: sig-python-modules
   python-bumpversion: sig-python-modules
   python-bunch: sig-openstack
@@ -7851,6 +7886,7 @@ src-openeuler:
   python-crashtest: sig-python-modules
   python-crayons: sig-python-modules
   python-crcelk: sig-python-modules
+  python-create-python-server: sig-intelligence
   python-croniter: sig-openstack
   python-crypto: sig-recycle
   python-cryptography: Base-service
@@ -8231,6 +8267,7 @@ src-openeuler:
   python-httpsig_cffi: sig-python-modules
   python-httptools: sig-python-modules
   python-httpx: sig-python-modules
+  python-httpx-sse: sig-intelligence
   python-hug: sig-python-modules
   python-humanfriendly: sig-python-modules
   python-humanize: sig-python-modules
@@ -8889,6 +8926,7 @@ src-openeuler:
   python-pycurl: Base-service
   python-pydantic: sig-python-modules
   python-pydantic-core: sig-python-modules
+  python-pydantic-settings: sig-intelligence
   python-pydata-sphinx-theme: sig-openstack
   python-pydbus: Base-service
   python-pydenticon: sig-python-modules
@@ -9132,6 +9170,7 @@ src-openeuler:
   python-retry2: dev-utils
   python-retrying: sig-python-modules
   python-retryz: sig-python-modules
+  python-returns: sig-intelligence
   python-rfc3339-validator: sig-python-modules
   python-rfc3986: sig-python-modules
   python-rfc3986-validator: sig-python-modules
@@ -9348,6 +9387,7 @@ src-openeuler:
   python-sqlalchemy-migrate: sig-openstack
   python-sqlalchemy_schemadisplay: sig-python-modules
   python-sqlparse: sig-python-modules
+  python-sse-starlette: sig-intelligence
   python-sseclient: sig-python-modules
   python-sshpubkeys: sig-openstack
   python-stack-data: ecopkg
@@ -9512,6 +9552,7 @@ src-openeuler:
   python-userpath: sig-python-modules
   python-utils: sig-python-modules
   python-utmp: sig-python-modules
+  python-uv-dynamic-versioning: sig-intelligence
   python-uvicorn: sig-python-modules
   python-uvloop: sig-python-modules
   python-uwsgidecorators: sig-recycle
@@ -9878,6 +9919,7 @@ src-openeuler:
   reiserfs-utils: Others
   relaxngDatatype: dev-utils
   relaxngcc: dev-utils
+  relocatable-perl: Base-service
   remotetea: sig-Java
   replacer: Base-service
   repo: Private
@@ -11102,6 +11144,7 @@ src-openeuler:
   usermode: Base-service
   userspace-rcu: Computing
   ustr: Base-service
+  utf8_range: Base-service
   utf8cpp: dev-utils
   utf8proc: Base-service
   uthash: Base-service
