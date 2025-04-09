@@ -198,13 +198,18 @@ openeuler:
   easybox: sig-memsafety
   easysoftware-command: Infrastructure
   eggo: sig-CloudNative
+  elf-loader: sig-epkg
   elfin-parser: sig-HPC
   embedded: sig-embedded
   embedded-ci: sig-embedded
   embedded-ipc: sig-embedded
   enclave-device-plugins: sig-CloudNative
   env_check: sig-Compatibility-Infra
-  epkg: sig-CICD
+  epkg: sig-epkg
+  epkg-autopkg: sig-epkg
+  epkg-factory: sig-epkg
+  epkg-merge: sig-epkg
+  epkg-spec2yaml: sig-epkg
   etipc: sig-embedded
   etmem: Storage
   euler-copilot-desktop: sig-intelligence
@@ -385,6 +390,7 @@ openeuler:
   mcs: sig-embedded
   memory-scan: Storage
   memwatch: dev-utils
+  meta-openeuler: sig-epkg
   micro-certification: sig-OSCourse
   migration-assistant: sig-Migration
   migration-tools: sig-Migration
@@ -1836,7 +1842,7 @@ src-openeuler:
   eom: sig-mate-desktop
   ephemeral-port-reserve: sig-python-modules
   epiphany: Desktop
-  epkg: sig-CICD
+  epkg: sig-epkg
   epstool: bigdata
   epydoc: Base-service
   erlang: Programming-language
