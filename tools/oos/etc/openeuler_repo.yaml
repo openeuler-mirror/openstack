@@ -3053,6 +3053,7 @@ src-openeuler:
   intel-qatengine: sig-Intel-Arch
   intel-qatlib: sig-Intel-Arch
   intel-qatzip: sig-Intel-Arch
+  intel-qpl: sig-Intel-Arch
   intel-sgx-ssl: sig-confidential-computing
   interactive_markers: sig-ROS
   internal-issue: Private
@@ -7223,12 +7224,12 @@ src-openeuler:
   perlporter: dev-utils
   pesign: Application
   pesign-obs-integration: sig-recycle
-  pgadmin4-server: DB
-  pgpool2: DB
+  pgadmin4-server: sig-recycle
+  pgpool2: sig-recycle
   phantomjs: bigdata
   phidgets_drivers: sig-ROS
   phodav: GNOME
-  phoenix: DB
+  phoenix: sig-recycle
   phonon: sig-KDE
   phonon-backend-gstreamer: Private
   phonon-qt4: sig-KDE
@@ -7242,7 +7243,7 @@ src-openeuler:
   picketbox-commons: sig-Java
   picketbox-xacml: sig-Java
   pidgin: Application
-  pig: DB
+  pig: sig-recycle
   pigpio: sig-SBC
   pigz: Base-service
   pim-data-exporter: sig-KDE
@@ -11190,7 +11191,7 @@ src-openeuler:
   vim-airline: Application
   vim-ale: Application
   vim-ansible: Application
-  vinagre: Application
+  vinagre: sig-recycle
   vino: Desktop
   virglrenderer: Virt
   virt-manager: oVirt
