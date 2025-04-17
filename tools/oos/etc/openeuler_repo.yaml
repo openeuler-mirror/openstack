@@ -161,6 +161,7 @@ openeuler:
   compiler-test: sig-QA
   compliance: sig-compliance
   compliance-sbom: sig-compliance
+  conda-ecopkgs: ecopkg
   container-test: sig-QA
   cpds-agent: sig-CloudNative
   cpds-analyzer: sig-CloudNative
@@ -11170,6 +11171,7 @@ src-openeuler:
   vagrant-lxc: Virt
   vala: GNOME
   valgrind: Programming-language
+  valkey: DB
   vamp-plugin-sdk: Desktop
   vapoursynth: sig-epol
   variants: sig-ROS
