@@ -577,7 +577,7 @@
   cinder-tempest-plugin: 1.10.0
   cinderlib: 5.2.0
   cliff: 4.3.0
-  cloudkitty: 19.0.0
+  cloudkitty: 19.1.0
   cloudkitty-dashboard: 17.0.0
   cloudkitty_tempest_plugin: 2.8.0
   cyborg-tempest-plugin: 2.2.0
@@ -599,7 +599,7 @@
   heat-tempest-plugin: 2.0.0
   heat-translator: 2.8.0
   horizon: 23.3.0
-  ironic: 23.0.4
+  ironic: 23.0.5
   ironic-inspector: 11.7.1
   ironic-lib: 5.5.1
   ironic-prometheus-exporter: 4.2.1
@@ -662,13 +662,13 @@
   neutron-vpnaas: 23.0.0
   neutron-vpnaas-dashboard: 9.0.0
   nova: 28.3.0
-  octavia: 13.0.0
+  octavia: 13.0.1
   octavia-dashboard: 12.0.0
   octavia-lib: 3.3.0
   octavia-tempest-plugin: 2.4.1
   openstack-cyborg: 11.0.0
   openstack-heat: 21.0.0
-  openstack-placement: 10.0.0
+  openstack-placement: 10.0.1
   openstack-release-test: 5.0.0
   openstack-venus: 3.0.0
   openstacksdk: 1.5.1
@@ -741,7 +741,7 @@
   python-blazarclient: 3.7.0
   python-brick-cinderclient-ext: 2.2.0
   python-cinderclient: 9.4.0
-  python-cloudkittyclient: 4.8.0
+  python-cloudkittyclient: 4.8.1
   python-cyborgclient: 2.2.1
   python-designateclient: 5.3.0
   python-freezerclient: 5.2.0
