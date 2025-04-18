@@ -186,6 +186,7 @@ openeuler:
   distributed-codelabs: sig-distributed-middleware
   docs: doc
   docs-accompany-reading: sig-OpenDesign
+  donau-arv-gpu-extension: sig-HPC
   donau-pam-adopt: sig-HPC
   donau-slurm-wrappers: sig-HPC
   dpdk: sig-high-performance-network
@@ -2109,6 +2110,7 @@ src-openeuler:
   gcc-cross: Compiler
   gcc-for-openEuler: Compiler
   gcc_secure: Others
+  gccmakedep: Desktop
   gcolor2: sig-mate-desktop
   gcr: Desktop
   gcr4: GNOME
@@ -4299,6 +4301,7 @@ src-openeuler:
   lmbench: dev-utils
   lmdb: Base-service
   lmfit: Application
+  lndir: Desktop
   locator_ros_bridge: sig-ROS
   loci: sig-openstack
   lockdev: Computing
@@ -4407,6 +4410,7 @@ src-openeuler:
   mailx: Desktop
   mainline.list: Private
   make: Base-service
+  makedepend: Desktop
   makeself: oVirt
   malaga: Private
   malaga-suomi-voikko: Private
@@ -11441,6 +11445,7 @@ src-openeuler:
   xmvn-tools: Private
   xnio: sig-Java
   xom: dev-utils
+  xorg-cf-files: Desktop
   xorg-sgml-doctools: Private
   xorg-x11-apps: Desktop
   xorg-x11-docs: Desktop
