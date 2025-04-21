@@ -5236,10 +5236,17 @@ src-openeuler:
   obs-service-set_version: Others
   obs_meta: sig-recycle
   ocaml: Programming-language
+  ocaml-alcotest: Programming-language
+  ocaml-astring: Programming-language
   ocaml-augeas: dev-utils
+  ocaml-base: Programming-language
   ocaml-calendar: dev-utils
+  ocaml-camlp-streams: Programming-language
   ocaml-camlp4: dev-utils
   ocaml-camomile: dev-utils
+  ocaml-cinaps: Programming-language
+  ocaml-cmdliner: Programming-language
+  ocaml-compiler-libs-janestreet: Programming-language
   ocaml-cppo: dev-utils
   ocaml-csexp: sig-confidential-computing
   ocaml-csv: dev-utils
@@ -5248,10 +5255,24 @@ src-openeuler:
   ocaml-extlib: dev-utils
   ocaml-fileutils: dev-utils
   ocaml-findlib: dev-utils
+  ocaml-fmt: Programming-language
   ocaml-gettext: dev-utils
+  ocaml-intrinsics-kernel: Programming-language
   ocaml-libvirt: dev-utils
+  ocaml-lwt: Programming-language
   ocaml-ocamlbuild: Programming-language
+  ocaml-ocplib-endian: Programming-language
   ocaml-ounit: Application
+  ocaml-ppx-derivers: Programming-language
+  ocaml-ppx-here: Programming-language
+  ocaml-ppx-let: Programming-language
+  ocaml-ppxlib: Programming-language
+  ocaml-re: Programming-language
+  ocaml-react: Programming-language
+  ocaml-sexplib0: Programming-language
+  ocaml-stdlib-random: Programming-language
+  ocaml-topkg: Programming-language
+  ocaml-uutf: Programming-language
   ocaml-xml-light: dev-utils
   oceanbase-ce: sig-OceanBase
   ocf: Storage
