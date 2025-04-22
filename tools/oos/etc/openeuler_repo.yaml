@@ -337,6 +337,7 @@ openeuler:
   kiran-widgets-qt5: sig-KIRAN-DESKTOP
   kml_adapter: sig-AccLib
   kmpi: sig-HPC
+  kpex: ai
   ks-scmc: sig-KIRAN-DESKTOP
   ks-scmc-gui: sig-KIRAN-DESKTOP
   ks-ssr: sig-KIRAN-DESKTOP
@@ -857,7 +858,7 @@ src-openeuler:
   RSIBreak: sig-KDE
   RSL: sig-ROS
   SDL: Programming-language
-  SDL2: Others
+  SDL2: Programming-language
   SDL2_mixer: dev-utils
   SDL_sound: dev-utils
   SMACC2: sig-ROS
@@ -7387,10 +7388,10 @@ src-openeuler:
   postfix: Networking
   postgresql: DB
   postgresql-13: DB
+  postgresql-15: DB
+  postgresql-17: DB
   postgresql-jdbc: sig-Java
   postgresql-odbc: DB
-  postgresql15: DB
-  postgresql17: DB
   potrace: Application
   powerapi: sig-power-efficient
   powerdevil: sig-KDE
