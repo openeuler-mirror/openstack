@@ -140,6 +140,7 @@ openeuler:
   cantian: DB
   cantian-connector-mysql: DB
   capsule: Virt
+  ccb: sig-CICD
   ccps: sig-K8sDistro
   ceph_dev: sig-SDS
   certificate-center: sig-OpenDesign
@@ -1336,6 +1337,7 @@ src-openeuler:
   catkin: sig-ROS
   cbi-plugins: Base-service
   ccache: Compiler
+  ccb: sig-CICD
   ccid: Storage
   cdbs: sig-Edge
   cdi-api: sig-Java
