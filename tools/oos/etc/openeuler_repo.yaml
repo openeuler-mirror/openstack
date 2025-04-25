@@ -5251,10 +5251,10 @@ src-openeuler:
   ocaml-cmdliner: Programming-language
   ocaml-compiler-libs-janestreet: Programming-language
   ocaml-cppo: dev-utils
-  ocaml-csexp: sig-confidential-computing
+  ocaml-csexp: Programming-language
   ocaml-csv: dev-utils
   ocaml-curses: dev-utils
-  ocaml-dune: sig-confidential-computing
+  ocaml-dune: Programming-language
   ocaml-extlib: dev-utils
   ocaml-fileutils: dev-utils
   ocaml-findlib: dev-utils
