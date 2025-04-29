@@ -255,6 +255,7 @@ openeuler:
   glusterfs-dashboard: sig-SDS
   go-gitee: Infrastructure
   gostone: sig-openstack
+  guest-components: sig-confidential-computing
   ha-api: sig-Ha
   ha-monitor: sig-Ha
   ha-web: sig-Ha
@@ -775,6 +776,7 @@ src-openeuler:
   R-cachem: sig-RISC-V
   R-callr: sig-RISC-V
   R-car: sig-RISC-V
+  R-carData: sig-RISC-V
   R-cli: sig-RISC-V
   R-coda: sig-RISC-V
   R-commonmark: sig-RISC-V
@@ -791,6 +793,7 @@ src-openeuler:
   R-farver: sig-RISC-V
   R-fastmap: sig-RISC-V
   R-filehash: sig-RISC-V
+  R-fs: sig-RISC-V
   R-generics: sig-RISC-V
   R-ggplot2movies: sig-RISC-V
   R-glue: sig-RISC-V
@@ -2419,7 +2422,7 @@ src-openeuler:
   girara: sig-desktop-apps
   git: Base-service
   git-cola: dev-utils
-  git-lfs: dev-utils
+  git-lfs: Infrastructure
   git-review: dev-utils
   git-secret: dev-utils
   git-tools: dev-utils
@@ -6318,6 +6321,8 @@ src-openeuler:
   perl-Lingua-Translit: sig-perl-modules
   perl-Linux-Pid: sig-perl-modules
   perl-List-AllUtils: sig-perl-modules
+  perl-List-BinarySearch: sig-perl-modules
+  perl-List-BinarySearch-XS: sig-perl-modules
   perl-List-MoreUtils: sig-perl-modules
   perl-List-MoreUtils-XS: sig-perl-modules
   perl-List-Pairwise: sig-perl-modules
@@ -6391,6 +6396,7 @@ src-openeuler:
   perl-Math-Derivative: sig-perl-modules
   perl-Math-Expression-Evaluator: sig-perl-modules
   perl-Math-FFT: sig-perl-modules
+  perl-Math-Gradient: sig-perl-modules
   perl-Math-Int64: sig-perl-modules
   perl-Math-MatrixReal: sig-perl-modules
   perl-Math-Polygon: sig-perl-modules
