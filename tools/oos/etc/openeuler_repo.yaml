@@ -4544,6 +4544,7 @@ src-openeuler:
   mchange-commons: sig-Java
   mcp: sig-CloudNative
   mcp-self-service-vue: sig-CloudNative
+  mcp-servers: sig-intelligence
   mcp-vue: sig-CloudNative
   mcpp: Base-service
   mcstrans: sig-security-facility
