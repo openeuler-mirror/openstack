@@ -39,6 +39,7 @@ openeuler:
   EulerMaker-Web: sig-CICD
   EulerMonitor: sig-ops
   EulerRobot: sig-QA
+  FalconFS: sig-Long
   G11N: G11N
   GNFC: sig-high-performance-network
   GearOS: sig-industrial-control
@@ -340,6 +341,7 @@ openeuler:
   kml_adapter: sig-AccLib
   kmpi: sig-HPC
   kpex: ai
+  krun: sig-AccLib
   ks-scmc: sig-KIRAN-DESKTOP
   ks-scmc-gui: sig-KIRAN-DESKTOP
   ks-ssr: sig-KIRAN-DESKTOP
@@ -3630,6 +3632,7 @@ src-openeuler:
   krename: sig-KDE
   kronometer: sig-KDE
   kronosnet: Networking
+  krun: sig-AccLib
   krusader: sig-KDE
   kryo: sig-Java
   ks-scmc: sig-KIRAN-DESKTOP
