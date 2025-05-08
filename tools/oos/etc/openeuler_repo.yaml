@@ -592,6 +592,7 @@ openeuler:
   tool-collections: Infrastructure
   tp-libvirt: sig-QA
   tp-qemu: sig-QA
+  triton-cpu: Compiler
   trucker: dev-utils
   uadk: sig-AccLib
   uadk-bigdata: bigdata
@@ -11039,6 +11040,8 @@ src-openeuler:
   trimal: sig-bio
   trimmomatic: sig-bio
   trinity: sig-QA
+  triton: Compiler
+  triton-cpu: Compiler
   trivy: sig-security-facility
   trousers: Base-service
   tslib: sig-compat-winapp
