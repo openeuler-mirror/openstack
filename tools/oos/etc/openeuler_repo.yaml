@@ -42,6 +42,7 @@ openeuler:
   FalconFS: sig-Long
   G11N: G11N
   GNFC: sig-high-performance-network
+  GVirt: sig-Long
   GearOS: sig-industrial-control
   Jailhouse-gui: sig-industrial-control
   Java-Packages: sig-Java
@@ -228,6 +229,7 @@ openeuler:
   eulerlauncher: Infrastructure
   eulerpublisher: Infrastructure
   evs: sig-high-performance-network
+  expert-kit: sig-Long
   extfuse: Storage
   extuner: sig-ops
   fastblock: sig-SDS
@@ -867,6 +869,7 @@ src-openeuler:
   SDL: Programming-language
   SDL2: Programming-language
   SDL2_mixer: dev-utils
+  SDL3: Programming-language
   SDL_sound: dev-utils
   SMACC2: sig-ROS
   ShellCheck: sig-CloudNative
@@ -3853,6 +3856,7 @@ src-openeuler:
   libdbusmenu: Programming-language
   libdc1394: sig-epol
   libdca: sig-epol
+  libdecor: Programming-language
   libdeflate: sig-bio
   libdmapsharing: Application
   libdmtx: sig-KDE
@@ -4686,6 +4690,7 @@ src-openeuler:
   mpi4py: sig-epol
   mpiP: sig-HPC
   mpich: Programming-language
+  mptcpd: Networking
   mpv: Desktop
   mrbayes: sig-bio
   mrpt: sig-ROS
@@ -6392,7 +6397,7 @@ src-openeuler:
   perl-Math-BaseCnv: sig-perl-modules
   perl-Math-BigInt: sig-perl-modules
   perl-Math-BigInt-FastCalc: sig-perl-modules
-  perl-Math-BigRat: sig-perl-modules
+  perl-Math-BigRat: sig-recycle
   perl-Math-Calc-Units: sig-perl-modules
   perl-Math-Cartesian-Product: sig-perl-modules
   perl-Math-Complex: sig-perl-modules
@@ -9329,7 +9334,6 @@ src-openeuler:
   python-simplevisor: sig-python-modules
   python-simpy: sig-python-modules
   python-singledispatch: Programming-language
-  python-sip: sig-python-modules
   python-siphash: sig-python-modules
   python-six: Base-service
   python-slack-cleaner: sig-python-modules
@@ -10676,6 +10680,7 @@ src-openeuler:
   simple_actions: sig-ROS
   simple_launch: sig-ROS
   sip: Others
+  sip-6: sig-python-modules
   sisu: sig-Java
   sisu-mojos: sig-Java
   skkdic: Application
