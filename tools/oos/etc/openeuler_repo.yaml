@@ -3876,6 +3876,7 @@ src-openeuler:
   libecap: Base-service
   libecb: dev-utils
   libedit: Base-service
+  libei: Computing
   libell: Programming-language
   libeot: ecopkg
   libepoxy: Desktop
