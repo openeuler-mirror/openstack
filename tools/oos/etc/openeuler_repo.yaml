@@ -92,6 +92,7 @@ openeuler:
   TSB-agent: sig-security-facility
   TSSE-driver: sig-Compatibility-Infra
   UNT: Compiler
+  UTBotJava: sig-QA
   UniProton: sig-embedded
   VMAnalyzer: sig-ops
   WasmEngine: sig-CloudNative
@@ -887,6 +888,7 @@ src-openeuler:
   TellySkout: sig-KDE
   Thunar: xfce
   UNT: Compiler
+  UTBotJava: sig-QA
   Universal_Robots_Client_Library: sig-ROS
   Universal_Robots_ROS2_Description: sig-ROS
   Universal_Robots_ROS2_Driver: sig-ROS
