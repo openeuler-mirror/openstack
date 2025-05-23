@@ -7763,6 +7763,7 @@ src-openeuler:
   python-backports-ssl_match_hostname: Networking
   python-backports-unittest_mock: sig-python-modules
   python-backports_abc: Programming-language
+  python-backrefs: ecopkg
   python-baluhn: sig-python-modules
   python-bandit: sig-python-modules
   python-barbicanclient: sig-openstack
@@ -7991,6 +7992,7 @@ src-openeuler:
   python-deepmerge: sig-python-modules
   python-defusedxml: sig-python-modules
   python-demjson: sig-python-modules
+  python-dependency-groups: ecopkg
   python-deprecated: sig-python-modules
   python-deprecation: sig-python-modules
   python-descartes: sig-python-modules
@@ -9528,6 +9530,7 @@ src-openeuler:
   python-tinyrpc: sig-python-modules
   python-tlsh: sig-python-modules
   python-tokenize-rt: sig-python-modules
+  python-tomcli: ecopkg
   python-toml: sig-python-modules
   python-tomli: sig-python-modules
   python-tomli-w: sig-python-modules
@@ -9579,6 +9582,7 @@ src-openeuler:
   python-typing: sig-python-modules
   python-typing-extensions: sig-openstack
   python-typing-inspect: sig-python-modules
+  python-typing-inspection: ecopkg
   python-typogrify: sig-python-modules
   python-tzdata: sig-python-modules
   python-tzlocal: sig-python-modules
