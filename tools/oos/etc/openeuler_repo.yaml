@@ -95,6 +95,7 @@ openeuler:
   UTBotJava: sig-QA
   UniProton: sig-embedded
   VMAnalyzer: sig-ops
+  Virt-docs: Virt
   WasmEngine: sig-CloudNative
   WayCa: sig-WayCa
   X-diagnosis: sig-ops
