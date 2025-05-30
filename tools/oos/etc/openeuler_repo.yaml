@@ -44,6 +44,7 @@ openeuler:
   GNFC: sig-high-performance-network
   GVirt: sig-Long
   GearOS: sig-industrial-control
+  Hi-FHE: sig-security-facility
   Jailhouse-gui: sig-industrial-control
   Java-Packages: sig-Java
   KPL-gmssl: sig-WayCa
@@ -313,6 +314,7 @@ openeuler:
   kbox: sig-ops
   kbuild-standalone: Kernel
   kconfigDetector: Kernel
+  kdnn_torch_adapter: sig-AccLib
   kernel: Kernel
   kernel-ascend: Kernel
   kernel-cloudnative: Kernel
@@ -567,6 +569,7 @@ openeuler:
   smart-shell: sig-intelligence
   splitter: sig-CloudNative
   sra_benchmark: sig-AccLib
+  sra_onnxruntime_adapter: sig-AccLib
   sra_scann_adapter: sig-AccLib
   sra_tensorflow_adapter: sig-AccLib
   sra_test: sig-AccLib
@@ -1743,6 +1746,7 @@ src-openeuler:
   docker-client-java: sig-CloudNative
   docker-compose: sig-CloudNative
   docparser: sig-DDE
+  doctest: Base-service
   dogtail: Others
   dolly: sig-ROS
   dolphin: sig-KDE
@@ -1887,6 +1891,7 @@ src-openeuler:
   etipc: sig-embedded
   etmem: Storage
   euler-copilot-shell: sig-intelligence
+  euler-copilot-web: sig-intelligence
   eunomia-bpf: sig-ebpf
   eventmesh: sig-message-middleware
   evince: GNOME
@@ -3795,6 +3800,7 @@ src-openeuler:
   libappstream-glib: Programming-language
   libarchive: Base-service
   libarchive-rust: Base-service
+  libarrow: Base-service
   libart_lgpl: Desktop
   libass: Application
   libassuan: Networking
@@ -8666,6 +8672,7 @@ src-openeuler:
   python-mysqlclient: sig-python-modules
   python-myst-nb: sig-python-modules
   python-myst-parser: sig-python-modules
+  python-narwhals: sig-python-modules
   python-natsort: sig-openstack
   python-nb2plots: sig-python-modules
   python-nbclient: sig-python-modules
@@ -9246,6 +9253,7 @@ src-openeuler:
   python-robotframework: sig-ROS
   python-rocket: sig-python-modules
   python-roman: sig-python-modules
+  python-roman-numerals-py: ecopkg
   python-rope: sig-python-modules
   python-rosdistro: sig-ROS
   python-rosinstall: sig-python-modules
@@ -11542,6 +11550,7 @@ src-openeuler:
   xsel: Application
   xset: Desktop
   xsetroot: Desktop
+  xsimd: Base-service
   xsom: sig-Java
   xstdcmap: Desktop
   xstream: sig-Java
