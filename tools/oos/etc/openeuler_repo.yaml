@@ -1471,6 +1471,7 @@ src-openeuler:
   colm: dev-utils
   color-filesystem: Desktop
   color_names-release: sig-ROS
+  color_util: sig-ROS
   colord: Desktop
   colord-gtk: System-tool
   colordiff: dev-utils
