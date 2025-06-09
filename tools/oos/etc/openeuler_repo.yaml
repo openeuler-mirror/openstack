@@ -346,7 +346,6 @@ openeuler:
   kiran-widgets-qt5: sig-KIRAN-DESKTOP
   kml_adapter: sig-AccLib
   kmpi: sig-HPC
-  kpex: ai
   krun: sig-AccLib
   ks-scmc: sig-KIRAN-DESKTOP
   ks-scmc-gui: sig-KIRAN-DESKTOP
@@ -362,6 +361,7 @@ openeuler:
   kucx: sig-HPC
   kunpeng-competition: sig-OSCourse
   kunpeng-devkit: sig-ops
+  kunpeng-extension-for-pytorch: ai
   kunpengsecl: sig-security-facility
   kupl-sample: sig-HPC
   kyclassifier: sig-Compatibility-Infra
@@ -601,6 +601,7 @@ openeuler:
   tp-qemu: sig-QA
   triton-cpu: Compiler
   trucker: dev-utils
+  txgbe-driver: sig-Compatibility-Infra
   uadk: sig-AccLib
   uadk-bigdata: bigdata
   uadk_engine: sig-AccLib
@@ -1103,6 +1104,7 @@ src-openeuler:
   arptables: Networking
   arpwatch: Networking
   arquillian-core: sig-Java
+  arrow: sig-intelligence
   artemis: sig-Java
   aruco_ros: sig-ROS
   asciidoc: Base-service
@@ -1269,6 +1271,7 @@ src-openeuler:
   botron-soft-reattime-plugin: sig-IDE
   bouncycastle: dev-utils
   bowtie2: sig-bio
+  box64: sig-compat-winapp
   box86: sig-compat-winapp
   bpftool: sig-ebpf
   bpftrace: sig-ebpf
@@ -2637,6 +2640,7 @@ src-openeuler:
   gperf: Programming-language
   gperftools: Computing
   gpgme: Base-service
+  gpgmepp: Base-service
   gphoto2: Base-service
   gpm: Desktop
   gps_umd: sig-ROS
@@ -3358,6 +3362,7 @@ src-openeuler:
   js-underscore: Private
   jsch: Application
   jsch-agent-proxy: sig-Java
+  json: sig-intelligence
   json-c: Base-service
   json-glib: Desktop
   json-lib: dev-utils
@@ -8287,6 +8292,7 @@ src-openeuler:
   python-google-compute-engine: sig-python-modules
   python-google-pasta: A-Tune
   python-gossip: sig-openstack
+  python-gpgme: Base-service
   python-gpxpy: sig-python-modules
   python-grabbit: sig-python-modules
   python-grabserial: sig-python-modules
@@ -8782,6 +8788,7 @@ src-openeuler:
   python-oldest-supported-numpy: sig-python-modules
   python-olefile: sig-python-modules
   python-oletools: sig-python-modules
+  python-ollama: sig-intelligence
   python-openai: sig-intelligence
   python-openbox: A-Tune
   python-opencv-contrib-python: sig-intelligence
@@ -9076,6 +9083,7 @@ src-openeuler:
   python-pymod2pkg: sig-python-modules
   python-pymongo: Programming-language
   python-pymongocrypt: sig-openstack
+  python-pymupdf: sig-intelligence
   python-pynacl: sig-python-modules
   python-pynetdicom: sig-python-modules
   python-pyngus: sig-python-modules
@@ -9845,6 +9853,7 @@ src-openeuler:
   qemu: Virt
   qfs: bigdata
   qgnomeplatform: GNOME
+  qgpgme: Base-service
   qhull: Others
   qingzhou: dev-utils
   qjson: sig-UKUI
@@ -11138,6 +11147,7 @@ src-openeuler:
   twist_mux: sig-ROS
   twist_stamper: sig-ROS
   twolame: Others
+  txgbe-driver: sig-Compatibility-Infra
   txt2man: sig-epol
   txw2: sig-Java
   tycho: sig-Java
