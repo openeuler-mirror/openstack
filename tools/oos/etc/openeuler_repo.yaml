@@ -100,6 +100,7 @@ openeuler:
   WasmEngine: sig-CloudNative
   WayCa: sig-WayCa
   X-diagnosis: sig-ops
+  Xen: sig-industrial-control
   aa-ui: sig-intelligence
   aarch32-rootfs-builder: sig-embedded
   abichecker: dev-utils
@@ -2223,7 +2224,7 @@ src-openeuler:
   ghc-assoc: sig-haskell
   ghc-async: sig-haskell
   ghc-attoparsec: sig-haskell
-  ghc-attoparsec-iso8601: sig-haskell
+  ghc-attoparsec-iso8601: sig-recycle
   ghc-auto-update: sig-haskell
   ghc-base-compat: sig-haskell
   ghc-base-compat-batteries: sig-haskell
@@ -2247,7 +2248,9 @@ src-openeuler:
   ghc-call-stack: sig-haskell
   ghc-case-insensitive: sig-haskell
   ghc-cassava: sig-haskell
+  ghc-cborg: sig-haskell
   ghc-cereal: sig-haskell
+  ghc-character-ps: sig-haskell
   ghc-citeproc: sig-haskell
   ghc-colour: sig-haskell
   ghc-commonmark: sig-haskell
@@ -2268,14 +2271,15 @@ src-openeuler:
   ghc-crypton-x509-validation: sig-haskell
   ghc-data-default: sig-haskell
   ghc-data-default-class: sig-haskell
-  ghc-data-default-instances-containers: sig-haskell
-  ghc-data-default-instances-dlist: sig-haskell
-  ghc-data-default-instances-old-locale: sig-haskell
+  ghc-data-default-instances-containers: sig-recycle
+  ghc-data-default-instances-dlist: sig-recycle
+  ghc-data-default-instances-old-locale: sig-recycle
   ghc-data-fix: sig-haskell
   ghc-dec: sig-haskell
   ghc-digest: sig-haskell
   ghc-digits: sig-haskell
   ghc-distributive: sig-haskell
+  ghc-djot: sig-haskell
   ghc-dlist: sig-haskell
   ghc-doclayout: sig-haskell
   ghc-doctemplates: sig-haskell
@@ -2286,6 +2290,7 @@ src-openeuler:
   ghc-generically: sig-haskell
   ghc-gridtables: sig-haskell
   ghc-haddock-library: sig-haskell
+  ghc-half: sig-haskell
   ghc-hashable: sig-haskell
   ghc-haskell-lexer: sig-haskell
   ghc-hourglass: sig-haskell
@@ -2311,6 +2316,7 @@ src-openeuler:
   ghc-http-client-tls: sig-haskell
   ghc-http-date: sig-haskell
   ghc-http-media: sig-haskell
+  ghc-http-semantics: sig-haskell
   ghc-http-types: sig-haskell
   ghc-http2: sig-haskell
   ghc-indexed-traversable: sig-haskell
@@ -2331,6 +2337,7 @@ src-openeuler:
   ghc-mono-traversable: sig-haskell
   ghc-network: sig-haskell
   ghc-network-byte-order: sig-haskell
+  ghc-network-control: sig-haskell
   ghc-network-uri: sig-haskell
   ghc-old-locale: sig-haskell
   ghc-old-time: sig-haskell
@@ -2360,6 +2367,7 @@ src-openeuler:
   ghc-scientific: sig-haskell
   ghc-semialign: sig-haskell
   ghc-semigroupoids: sig-haskell
+  ghc-serialise: sig-haskell
   ghc-servant: sig-haskell
   ghc-servant-server: sig-haskell
   ghc-simple-sendfile: sig-haskell
@@ -2370,6 +2378,7 @@ src-openeuler:
   ghc-skylighting-format-blaze-html: sig-haskell
   ghc-skylighting-format-context: sig-haskell
   ghc-skylighting-format-latex: sig-haskell
+  ghc-skylighting-format-typst: sig-haskell
   ghc-socks: sig-haskell
   ghc-some: sig-haskell
   ghc-sop-core: sig-haskell
@@ -2386,6 +2395,7 @@ src-openeuler:
   ghc-tasty-quickcheck: sig-haskell
   ghc-temporary: sig-haskell
   ghc-text-conversions: sig-haskell
+  ghc-text-icu: sig-haskell
   ghc-text-iso8601: sig-haskell
   ghc-text-short: sig-haskell
   ghc-th-abstraction: sig-haskell
@@ -10685,7 +10695,7 @@ src-openeuler:
   sdformat_urdf: sig-ROS
   sdma-dk: sig-WayCa
   sdparm: Storage
-  seabios: Others
+  seabios: Virt
   seahorse: Desktop
   seastar: sig-high-performance-network
   secDetector: sig-security-facility
