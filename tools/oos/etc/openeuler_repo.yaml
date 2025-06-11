@@ -1899,6 +1899,7 @@ src-openeuler:
   euler-copilot-rag: sig-intelligence
   euler-copilot-shell: sig-intelligence
   euler-copilot-web: sig-intelligence
+  euler-copilot-witchaind-web: sig-intelligence
   eunomia-bpf: sig-ebpf
   eventmesh: sig-message-middleware
   evince: GNOME
@@ -9092,6 +9093,7 @@ src-openeuler:
   python-pymoc: sig-python-modules
   python-pymod2pkg: sig-python-modules
   python-pymongo: Programming-language
+  python-pymongo-4: sig-intelligence
   python-pymongocrypt: sig-openstack
   python-pymupdf: sig-intelligence
   python-pynacl: sig-python-modules
