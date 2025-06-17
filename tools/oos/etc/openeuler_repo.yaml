@@ -717,6 +717,7 @@ src-openeuler:
   Keras: Private
   Kmesh: sig-ebpf
   KubeOS: sig-CloudNative
+  LMCache: sig-Long
   LZMA-SDK: Base-service
   LibRaw: Programming-language
   Lmod: Application
@@ -935,6 +936,7 @@ src-openeuler:
   acpid: Computing
   actionlib: sig-ROS
   activemq: Application
+  actuator_msgs: sig-ROS
   adaptive_component: sig-ROS
   adb-enhanced: dev-utils
   adcli: Base-service
@@ -981,6 +983,7 @@ src-openeuler:
   amtterm: sig-Ha
   anaconda: sig-OS-Builder
   anaconda-user-help: sig-OS-Builder
+  andino: sig-ROS
   android-json-org-java: sig-Java
   angles: sig-ROS
   annobin: Others
@@ -1423,6 +1426,7 @@ src-openeuler:
   classmate: sig-Java
   claws-mail: sig-UKUI
   cldr-emoji-annotation: Others
+  clearpath_nav2_demos: sig-ROS
   clevis: Base-service
   cli-parser: Application
   cli11: dev-utils
@@ -1890,6 +1894,7 @@ src-openeuler:
   erlang-sd_notify: Programming-language
   esc: Application
   espeak-ng: Others
+  ess_imu_driver2: sig-ROS
   etcd: sig-CloudNative
   etckeeper: Application
   ethercat-igh: sig-industrial-control
@@ -1902,6 +1907,7 @@ src-openeuler:
   euler-copilot-web: sig-intelligence
   euler-copilot-witchaind-web: sig-intelligence
   eunomia-bpf: sig-ebpf
+  event_camera_msgs: sig-ROS
   eventmesh: sig-message-middleware
   evince: GNOME
   evo-inflector: sig-Java
@@ -2031,8 +2037,10 @@ src-openeuler:
   flatpak: Programming-language
   flatpak-builder: GNOME
   flex: Base-service
+  flex_sync: sig-ROS
   flexiblas: sig-epol
   flink: bigdata
+  flir_camera_driver: sig-ROS
   flite: Others
   fltk: Desktop
   fluid-soundfont: Private
@@ -4741,6 +4749,7 @@ src-openeuler:
   mujs: Desktop
   multilib-rpm-config: Packaging
   multipath-tools: Storage
+  multiple_topic_monitor: sig-ROS
   multitail: dev-utils
   multithreadedtc: Base-service
   multiverse: sig-Java
@@ -4832,6 +4841,7 @@ src-openeuler:
   netty-tcnative: sig-Java
   netty3: sig-Java
   network-manager-applet: Networking
+  network_interface: sig-ROS
   networking-baremetal: sig-openstack
   networking-generic-switch: sig-openstack
   new.list: Private
@@ -5333,6 +5343,7 @@ src-openeuler:
   octomap_ros: sig-ROS
   octomap_rviz_plugins: sig-ROS
   oddjob: Base-service
+  odom_to_tf_ros2: sig-ROS
   oeAware-collector: A-Tune
   oeAware-manager: A-Tune
   oeAware-scenario: A-Tune
@@ -5618,6 +5629,7 @@ src-openeuler:
   pal_gazebo_plugins: sig-ROS
   pal_gazebo_worlds: sig-ROS
   pal_gripper: sig-ROS
+  pal_maps: sig-ROS
   pal_statistics: sig-ROS
   pam: sig-security-facility
   pam_krb5: Application
@@ -10684,6 +10696,7 @@ src-openeuler:
   scdoc: ecopkg
   schemas: sig-ROS
   schroedinger: sig-epol
+  schunk_svh_library: sig-ROS
   scim: sig-KDE
   scipy: Computing
   scl-utils: Application
@@ -10753,6 +10766,7 @@ src-openeuler:
   sick_safetyscanners2: sig-ROS
   sick_safetyscanners2_interfaces: sig-ROS
   sick_safetyscanners_base: sig-ROS
+  sick_safevisionary_base: sig-ROS
   siege: sig-epol
   sigar: sig-Java
   sigil: sig-desktop-apps
@@ -10774,6 +10788,7 @@ src-openeuler:
   sip-6: sig-python-modules
   sisu: sig-Java
   sisu-mojos: sig-Java
+  situational_graphs_datasets: sig-ROS
   skkdic: Application
   skopeo: sig-CloudNative
   skylark: Virt
@@ -10930,6 +10945,7 @@ src-openeuler:
   swt-chart: sig-Java
   swtpm: sig-security-facility
   symlinks: Base-service
+  sync_parameter_server: sig-ROS
   sysHAX: sig-intelligence
   sysSentry: Base-service
   sysTrace: sig-ops
