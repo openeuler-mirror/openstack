@@ -3433,6 +3433,7 @@ src-openeuler:
   kairo: sig-KDE
   kalk: sig-KDE
   kata-containers: sig-CloudNative
+  kata-containers-go: sig-CloudNative
   kata-containers-rs: sig-CloudNative
   kata-micro-kernel: sig-recycle
   kata_integration: sig-CloudNative
