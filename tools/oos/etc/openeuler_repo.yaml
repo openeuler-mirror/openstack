@@ -262,6 +262,7 @@ openeuler:
   globalization: G11N
   glusterfs-dashboard: sig-SDS
   go-gitee: Infrastructure
+  golang: sig-golang
   gostone: sig-openstack
   guest-components: sig-confidential-computing
   ha-api: sig-Ha
@@ -457,8 +458,8 @@ openeuler:
   openEuler_chroot: sig-Gatekeeper
   openRSO: Kernel
   opendesign: sig-OpenDesign
+  opendesign-analysis: sig-OpenDesign
   opendesign-backend: sig-OpenDesign
-  opendesign-build: sig-OpenDesign
   opendesign-components: sig-OpenDesign
   opendesign-datastat: sig-OpenDesign
   opendesign-deployment: sig-OpenDesign
@@ -1855,7 +1856,7 @@ src-openeuler:
   elfutils: Base-service
   eli5: ai
   elinks: Application
-  elixir: Application
+  elixir: Programming-language
   elvish: Base-service
   emacs: Desktop
   emacs-auctex: Others
@@ -1888,8 +1889,9 @@ src-openeuler:
   erlang-mustache: Programming-language
   erlang-neotoma: Programming-language
   erlang-proper: Programming-language
-  erlang-protobuffs: Application
-  erlang-rebar: Application
+  erlang-protobuffs: Programming-language
+  erlang-rebar: Programming-language
+  erlang-rebar3: Programming-language
   erlang-rpm-macros: Programming-language
   erlang-sd_notify: Programming-language
   esc: Application
@@ -3105,6 +3107,7 @@ src-openeuler:
   intel-qatzip: sig-Intel-Arch
   intel-qpl: sig-Intel-Arch
   intel-sgx-ssl: sig-confidential-computing
+  interactive_marker_twist_server: sig-ROS
   interactive_markers: sig-ROS
   internal-issue: Private
   intltool: Programming-language
@@ -3857,11 +3860,13 @@ src-openeuler:
   libcareplus: Virt
   libcbor: Base-service
   libccd: sig-ROS
+  libcdata: Programming-language
   libcddb: sig-epol
   libcdio: Desktop
   libcdio-paranoia: Desktop
   libcdr: ecopkg
   libcec: sig-epol
+  libcerror: Programming-language
   libcgroup: sig-CloudNative
   libchamplain: GNOME
   libchardet: sig-DDE
@@ -3869,12 +3874,14 @@ src-openeuler:
   libclc: Compiler
   libcloudproviders: GNOME
   libcmis: ecopkg
+  libcnotify: Programming-language
   libcoap: sig-distributed-middleware
   libcomps: Base-service
   libconfig: Base-service
   libconfuse: Base-service
   libcroco: sig-recycle
   libcrystalhd: sig-UKUI
+  libcthreads: Programming-language
   libcue: Desktop
   libcupsfilters: System-tool
   libcutl: sig-KIRAN-DESKTOP
@@ -3938,6 +3945,8 @@ src-openeuler:
   libfakekey: sig-KDE
   libfastcommon: Storage
   libfastjson: Base-service
+  libfcache: Programming-language
+  libfdata: Programming-language
   libffado: sig-compat-winapp
   libffi: Base-service
   libfilezilla: sig-desktop-apps
@@ -4487,6 +4496,7 @@ src-openeuler:
   marisa: Others
   markdownpart: sig-KDE
   marked: sig-UKUI
+  marker_msgs: sig-ROS
   marti_common: sig-ROS
   marti_messages: sig-ROS
   masscan: sig-epol
@@ -4675,6 +4685,7 @@ src-openeuler:
   mm-common: GNOME
   mobile-broadband-provider-info: Networking
   moby: sig-CloudNative
+  mocap4r2_msgs: sig-ROS
   mocha: dev-utils
   mock: dev-utils
   mock-core-configs: dev-utils
@@ -5719,6 +5730,7 @@ src-openeuler:
   perl-App-ChangeShebang: sig-perl-modules
   perl-App-Cmd: sig-perl-modules
   perl-App-FatPacker: sig-perl-modules
+  perl-App-cpanminus: sig-perl-modules
   perl-AppConfig: sig-perl-modules
   perl-Archive-Any-Lite: sig-perl-modules
   perl-Archive-Tar: sig-perl-modules
@@ -11201,7 +11213,7 @@ src-openeuler:
   udisks2: Storage
   udisks2-qt5: Desktop
   udp_msgs: sig-ROS
-  uget: sig-desktop-apps
+  uget: sig-recycle
   uglify-js: sig-nodejs
   uglify-js1: sig-nodejs
   uhttpmock: GNOME
