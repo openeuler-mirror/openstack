@@ -606,6 +606,7 @@
   ironic_python_agent: 9.7.3
   ironic_python_agent_builder: 5.2.1
   ironic_tempest_plugin: 2.7.0
+  ironic_tempest_plugin-2023.2: last
   ironic_ui: 6.2.1
   kayobe: 15.8.0
   kayobe_config: 15.6.0
@@ -622,6 +623,7 @@
   kuryr_tempest_plugin: 0.15.1
   magnum: 17.0.2
   magnum_tempest_plugin: 2.1.0
+  magnum_tempest_plugin-2023.2: last
   magnum_ui: 13.0.0
   manila: 17.4.0
   manila_tempest_plugin: 2.0.0
@@ -659,6 +661,7 @@
   neutron_fwaas_dashboard: 6.0.0
   neutron_lib: 3.8.2
   neutron_tempest_plugin: 2.5.0
+  neutron_tempest_plugin-2023.2: last
   neutron_vpnaas: 23.0.0
   neutron_vpnaas_dashboard: 9.0.0
   nova: 28.3.1
@@ -801,6 +804,7 @@
   taskflow: 5.4.0
   telemetry_tempest_plugin: 1.10.0
   tempest: 36.0.0
+  tempest-2023.2: last
   tosca_parser: 2.9.1
   trove: 20.0.0
   trove_dashboard: 21.0.0
