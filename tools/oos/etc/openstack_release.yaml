@@ -570,6 +570,7 @@
   blazar_dashboard: 10.0.1
   blazar_nova: 4.0.0
   blazar_tempest_plugin: 0.11.0
+  blazar_tempest_plugin-2023.2: last
   castellan: 4.3.0
   ceilometer: 21.0.1
   ceilometermiddleware: 3.2.0
@@ -580,6 +581,7 @@
   cloudkitty: 19.1.0
   cloudkitty_dashboard: 17.0.0
   cloudkitty_tempest_plugin: 2.8.0
+  cloudkitty_tempest_plugin-2023.2: last
   cyborg_tempest_plugin: 2.2.0
   designate: 17.0.2
   designate_dashboard: 17.0.0
@@ -597,6 +599,7 @@
   heat_agents: 7.0.0
   heat_dashboard: 10.0.0
   heat_tempest_plugin: 2.0.0
+  heat_tempest_plugin-2023.2: last
   heat_translator: 2.8.0
   horizon: 23.3.1
   ironic: 23.0.5
@@ -613,6 +616,7 @@
   kayobe_config_dev: 15.6.0
   keystone: 24.1.0
   keystone_tempest_plugin: 0.13.0
+  keystone_tempest_plugin-2023.2: last
   keystoneauth1: 5.3.1
   keystonemiddleware: 10.4.1
   kolla: 17.9.0
@@ -707,35 +711,35 @@
   puppet_aodh: 23.0.0
   puppet_barbican: 23.0.0
   puppet_ceilometer: 23.0.0
-  puppet_cinder: 23.0.0
+  puppet_cinder: 23.0.1
   puppet_cloudkitty: 12.0.0
-  puppet_designate: 23.0.0
+  puppet_designate: 23.1.0
   puppet_ec2api: 23.0.0
-  puppet_glance: 23.0.0
+  puppet_glance: 23.0.1
   puppet_gnocchi: 23.0.0
   puppet_heat: 23.0.0
-  puppet_horizon: 23.0.0
+  puppet_horizon: 23.1.0
   puppet_ironic: 23.1.0
-  puppet_keystone: 23.0.0
+  puppet_keystone: 23.1.0
   puppet_magnum: 23.0.0
-  puppet_manila: 23.0.0
+  puppet_manila: 23.0.1
   puppet_mistral: 23.0.0
   puppet_murano: 23.0.0
   puppet_neutron: 23.0.1
-  puppet_nova: 23.0.0
-  puppet_octavia: 23.0.0
-  puppet_openstack_extras: 23.0.0
+  puppet_nova: 23.1.0
+  puppet_octavia: 23.0.1
+  puppet_openstack_extras: 23.0.1
   puppet_openstacklib: 23.0.0
-  puppet_oslo: 23.0.0
+  puppet_oslo: 23.0.1
   puppet_ovn: 23.0.0
   puppet_placement: 10.0.0
   puppet_qdr: 12.0.0
   puppet_sahara: 23.0.0
-  puppet_swift: 23.0.0
+  puppet_swift: 23.0.1
   puppet_tempest: 23.1.0
   puppet_trove: 23.0.0
   puppet_vitrage: 13.0.0
-  puppet_vswitch: 19.0.0
+  puppet_vswitch: 19.0.1
   puppet_watcher: 23.0.0
   puppet_zaqar: 23.0.0
   python_adjutant: 7.0.0
@@ -809,6 +813,7 @@
   trove: 20.0.0
   trove_dashboard: 21.0.0
   trove_tempest_plugin: 2.2.0
+  trove_tempest_plugin-2023.2: last
   venus_dashboard: 3.0.0
   venus_tempest_plugin: 3.1.0
   vitrage: 11.0.0
@@ -818,9 +823,11 @@
   watcher_tempest_plugin: 3.0.0
   zaqar: 17.0.0
   zaqar_tempest_plugin: 1.7.0
+  zaqar_tempest_plugin-2023.2: last
   zaqar_ui: 15.0.0
   zun: 12.0.1
   zun_tempest_plugin: 4.8.0
+  zun_tempest_plugin-2023.2: last
   zun_ui: 12.0.0
 queens:
   aodh: 6.0.1
