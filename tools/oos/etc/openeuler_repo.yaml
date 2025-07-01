@@ -182,6 +182,7 @@ openeuler:
   dcs: sig-power-efficient
   dde: sig-DDE
   dde_autotest_euler: sig-QA
+  deepInsight: sig-intelligence
   deepin-rpm-installer: sig-DDE
   deepin-upgrade-tool: sig-DDE
   devkit-pipeline: sig-CICD
@@ -194,6 +195,7 @@ openeuler:
   docs: doc
   docs-accompany-reading: sig-OpenDesign
   docs-centralized: doc
+  docs-website: sig-OpenDesign
   donau-arv-gpu-extension: sig-HPC
   donau-pam-adopt: sig-HPC
   donau-slurm-wrappers: sig-HPC
