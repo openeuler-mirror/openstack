@@ -87,6 +87,7 @@ openeuler:
   RobotBrain: sig-embedded
   RobotStudio: sig-embedded
   SBC-sig: sig-SBC
+  ServerlessLLM: sig-Long
   SoftBR: Compiler
   TC: TC
   TCP_option_address: Kernel
@@ -8536,6 +8537,7 @@ src-openeuler:
   python-jupyterlite-sphinx: sig-python-modules
   python-jupyterlite-xeus: sig-python-modules
   python-jupytext: sig-python-modules
+  python-justbases: sig-python-modules
   python-justbytes: sig-python-modules
   python-jwcrypto: sig-python-modules
   python-jwt: Base-service
