@@ -193,6 +193,7 @@ openeuler:
   dim_tools: sig-security-facility
   distributed-beget: sig-distributed-middleware
   distributed-codelabs: sig-distributed-middleware
+  docmate: Infrastructure
   docs: doc
   docs-accompany-reading: sig-OpenDesign
   docs-centralized: doc
