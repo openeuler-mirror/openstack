@@ -9146,6 +9146,7 @@ src-openeuler:
   python-pyppeteer: sig-python-modules
   python-pyprocdev: sig-python-modules
   python-pyproj: sig-python-modules
+  python-pyqtgraph: ecopkg
   python-pyquery: sig-python-modules
   python-pyrad: sig-python-modules
   python-pyramid_fas_openid: sig-python-modules
