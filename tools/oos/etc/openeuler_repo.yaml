@@ -5468,6 +5468,7 @@ src-openeuler:
   ongres-scram: dev-utils
   ongres-stringprep: sig-Java
   oniguruma: Base-service
+  onnx: ai
   oozie: bigdata
   opa-psm2: dev-utils
   opal-prd: sig-recycle
@@ -9629,7 +9630,7 @@ src-openeuler:
   python-sqlalchemy: Programming-language
   python-sqlalchemy-collectd: sig-python-modules
   python-sqlalchemy-migrate: sig-openstack
-  python-sqlalchemy2: sig-intelligence
+  python-sqlalchemy2: sig-recycle
   python-sqlalchemy_schemadisplay: sig-python-modules
   python-sqlparse: sig-python-modules
   python-sse-starlette: sig-intelligence
