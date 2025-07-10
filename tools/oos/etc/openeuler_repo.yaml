@@ -10,7 +10,7 @@ openeuler:
   AI4C: Compiler
   ANNC: Compiler
   Agith: sig-ebpf
-  AppAPIChecker: sig-OSRefTools
+  AppAPIChecker: sig-recycle
   AvxToNeon: sig-AccLib
   BIDK: sig-HPC
   BSCCompiler: Compiler
@@ -47,21 +47,21 @@ openeuler:
   Hi-FHE: sig-security-facility
   Jailhouse-gui: sig-industrial-control
   Java-Packages: sig-Java
-  KPL-gmssl: sig-WayCa
-  KPL-zlib: sig-WayCa
+  KPL-gmssl: sig-recycle
+  KPL-zlib: sig-recycle
   Kmesh: sig-ebpf
   KubeHawk: sig-CloudNative
   KubeHawkeyes: sig-CloudNative
   KubeMate: sig-CloudNative
   KubeOS: sig-CloudNative
   LTF: sig-QA
-  LiveUI: sig-Backup
+  LiveUI: sig-recycle
   MetaBMC: sig-BMC
   NestOS: sig-CloudNative
-  OSAPIChecker: sig-OSRefTools
-  OSCompatibility: sig-OSRefTools
-  OSPerformance: sig-OSRefTools
-  OSPerformanceTools: sig-OSRefTools
+  OSAPIChecker: sig-recycle
+  OSCompatibility: sig-recycle
+  OSPerformance: sig-recycle
+  OSPerformanceTools: sig-recycle
   PRIP: Networking
   PilotGo: sig-ops
   PilotGo-plugin-ELK: sig-ops
@@ -99,7 +99,7 @@ openeuler:
   VMAnalyzer: sig-ops
   Virt-docs: Virt
   WasmEngine: sig-CloudNative
-  WayCa: sig-WayCa
+  WayCa: sig-recycle
   X-diagnosis: sig-ops
   Xen: sig-industrial-control
   aa-ui: sig-intelligence
@@ -160,6 +160,7 @@ openeuler:
   cloudnative: sig-CloudNative
   cloudnative-docs: sig-CloudNative
   cloudphone_kernel: Kernel
+  clyde: sig-CloudNative
   community: TC
   community-issue: TC
   compass-ci: sig-CICD
@@ -276,7 +277,7 @@ openeuler:
   hbm-predictor: Storage
   heolleo: sig-ops
   hi-mpu: sig-embedded
-  hikptool: sig-WayCa
+  hikptool: sig-recycle
   hinic3: sig-Compatibility-Infra
   hmir: sig-ops
   hostha: sig-openstack
@@ -314,6 +315,8 @@ openeuler:
   itrustee_client: sig-confidential-computing
   itrustee_sdk: sig-confidential-computing
   itrustee_tzdriver: sig-confidential-computing
+  jiuwen-agentcore: sig-intelligence
+  jiuwen-deepsearch: sig-intelligence
   k8s-install: sig-CloudNative
   kae_driver: sig-AccLib
   kail_dnn_adapter: sig-AccLib
@@ -428,7 +431,7 @@ openeuler:
   nestos-kubernetes-deployer: sig-K8sDistro
   nestos-website: sig-CloudNative
   nodejsporter: dev-utils
-  numafast: sig-WayCa
+  numafast: sig-recycle
   nvme-snsd: Storage
   nvwa: sig-ops
   oac: sig-HPC
@@ -449,7 +452,7 @@ openeuler:
   oemaker: sig-OS-Builder
   omnidata-hive-connector: bigdata
   oncn-bwm: sig-high-performance-network
-  open-eBackup: sig-Backup
+  open-eBackup: sig-recycle
   open-source-summer: sig-OSCourse
   openAMDC: bigdata
   openEuler-Advisor: sig-EasyLife
@@ -533,7 +536,7 @@ openeuler:
   re2-rust: Base-service
   release-management: sig-release-management
   release-tools: sig-EasyLife
-  reproducible-builds: sig-reproducible-builds
+  reproducible-builds: sig-CICD
   resaware_nri_plugins: sig-CloudNative
   rhostname: sig-memsafety
   riscv-kernel: sig-RISC-V
@@ -552,7 +555,7 @@ openeuler:
   sbom-service: sig-sbom
   sbom-tools: sig-sbom
   sbom-website: sig-sbom
-  sdma-dk: sig-WayCa
+  sdma-dk: sig-recycle
   sds_doc: sig-SDS
   secDetector: sig-security-facility
   secGear: sig-confidential-computing
@@ -629,8 +632,8 @@ openeuler:
   vmtop: Virt
   vs2qt: sig-porting-platform-winapp
   vtopia-agent: sig-security-facility
-  wayca-scheduler: sig-WayCa
-  wayca-scheduler-bench: sig-WayCa
+  wayca-scheduler: sig-recycle
+  wayca-scheduler-bench: sig-recycle
   website: Infrastructure
   website-v2: sig-recycle
   wine-app: sig-compat-winapp
@@ -1071,9 +1074,9 @@ src-openeuler:
   apex_test_tools: sig-ROS
   api-guarder: sig-EasyLife
   apiguardian: sig-Java
-  apisix: sig-OpenResty
-  apisix-dashboard: sig-OpenResty
-  apisix-deps: sig-OpenResty
+  apisix: sig-recycle
+  apisix-dashboard: sig-recycle
+  apisix-deps: sig-recycle
   apiviz: dev-utils
   apparmor: sig-security-facility
   appres: Desktop
@@ -1138,7 +1141,7 @@ src-openeuler:
   atkmm: GNOME
   atlas: Runtime
   atmel-firmware: Networking
-  atomic: sig-Ostree-Assembly
+  atomic: sig-recycle
   atop: dev-utils
   atril: sig-mate-desktop
   attest-tools: sig-security-facility
@@ -1452,6 +1455,7 @@ src-openeuler:
   clutter-gst2: Runtime
   clutter-gst3: Desktop
   clutter-gtk: Desktop
+  clyde: sig-CloudNative
   cmake: Programming-language
   cmake_modules: sig-ROS
   cmark: GNOME
@@ -2819,7 +2823,7 @@ src-openeuler:
   hicolor-icon-theme: Desktop
   highlight: oVirt
   highway: sig-epol
-  hikptool: sig-WayCa
+  hikptool: sig-recycle
   hinic3: sig-Compatibility-Infra
   hiredis: Base-service
   hive: bigdata
@@ -3600,8 +3604,82 @@ src-openeuler:
   kf5-syndication: sig-KDE
   kf5-syntax-highlighting: sig-KDE
   kf5-threadweaver: sig-KDE
+  kf6: sig-KDE
+  kf6-attica: sig-KDE
+  kf6-baloo: sig-KDE
+  kf6-bluez-qt: sig-KDE
+  kf6-breeze-icons: sig-KDE
+  kf6-frameworkintegration: sig-KDE
+  kf6-kapidox: sig-KDE
+  kf6-karchive: sig-KDE
+  kf6-kauth: sig-KDE
+  kf6-kbookmarks: sig-KDE
+  kf6-kcalendarcore: sig-KDE
+  kf6-kcmutils: sig-KDE
+  kf6-kcodecs: sig-KDE
+  kf6-kcolorscheme: sig-KDE
+  kf6-kcompletion: sig-KDE
+  kf6-kconfig: sig-KDE
+  kf6-kconfigwidgets: sig-KDE
+  kf6-kcontacts: sig-KDE
+  kf6-kcoreaddons: sig-KDE
+  kf6-kcrash: sig-KDE
+  kf6-kdav: sig-KDE
+  kf6-kdbusaddons: sig-KDE
+  kf6-kdeclarative: sig-KDE
+  kf6-kded: sig-KDE
+  kf6-kdesu: sig-KDE
+  kf6-kdnssd: sig-KDE
+  kf6-kdoctools: sig-KDE
+  kf6-kfilemetadata: sig-KDE
+  kf6-kglobalaccel: sig-KDE
+  kf6-kguiaddons: sig-KDE
+  kf6-kholidays: sig-KDE
+  kf6-ki18n: sig-KDE
+  kf6-kiconthemes: sig-KDE
+  kf6-kidletime: sig-KDE
+  kf6-kimageformats: sig-KDE
+  kf6-kio: sig-KDE
+  kf6-kirigami: sig-KDE
+  kf6-kirigami-addons: sig-KDE
+  kf6-kitemmodels: sig-KDE
+  kf6-kitemviews: sig-KDE
+  kf6-kjobwidgets: sig-KDE
+  kf6-knewstuff: sig-KDE
+  kf6-knotifications: sig-KDE
+  kf6-knotifyconfig: sig-KDE
+  kf6-kpackage: sig-KDE
+  kf6-kparts: sig-KDE
+  kf6-kpeople: sig-KDE
+  kf6-kplotting: sig-KDE
+  kf6-kpty: sig-KDE
+  kf6-kquickcharts: sig-KDE
+  kf6-krunner: sig-KDE
+  kf6-kservice: sig-KDE
+  kf6-kstatusnotifieritem: sig-KDE
+  kf6-ksvg: sig-KDE
+  kf6-ktexteditor: sig-KDE
+  kf6-ktexttemplate: sig-KDE
+  kf6-ktextwidgets: sig-KDE
+  kf6-kunitconversion: sig-KDE
+  kf6-kuserfeedback: sig-KDE
+  kf6-kwallet: sig-KDE
+  kf6-kwidgetsaddons: sig-KDE
+  kf6-kwindowsystem: sig-KDE
+  kf6-kxmlgui: sig-KDE
+  kf6-modemmanager-qt: sig-KDE
+  kf6-networkmanager-qt: sig-KDE
+  kf6-prison: sig-KDE
+  kf6-purpose: sig-KDE
+  kf6-qqc2-desktop-style: sig-KDE
+  kf6-solid: sig-KDE
+  kf6-sonnet: sig-KDE
+  kf6-syndication: sig-KDE
+  kf6-syntax-highlighting: sig-KDE
+  kf6-threadweaver: sig-KDE
   kfind: sig-KDE
   kfloppy: sig-KDE
+  kglobalacceld: sig-KDE
   khelpcenter: sig-KDE
   khmeros-fonts: System-tool
   khotkeys: sig-KDE
@@ -4181,7 +4259,7 @@ src-openeuler:
   librpcsecgss: dev-utils
   librsvg2: Desktop
   librsync: sig-epol
-  librtas: sig-POWER
+  librtas: sig-recycle
   librttopo: sig-epol
   librx: sig-epol
   libsamplerate: Computing
@@ -4194,7 +4272,7 @@ src-openeuler:
   libsepol: sig-security-facility
   libserf: Networking
   libserverframe: Storage
-  libservicelog: sig-POWER
+  libservicelog: sig-recycle
   libsexy: Desktop
   libshout: Runtime
   libshumate: GNOME
@@ -4276,7 +4354,7 @@ src-openeuler:
   libvncserver: GNOME
   libvoikko: Runtime
   libvorbis: Base-service
-  libvpd: sig-POWER
+  libvpd: sig-recycle
   libvpx: Application
   libwacom: Computing
   libwbxml: Application
@@ -4404,7 +4482,7 @@ src-openeuler:
   lshw-B.02.18: sig-recycle
   lsof: Base-service
   lsscsi: Storage
-  lsvpd: sig-POWER
+  lsvpd: sig-recycle
   lsyncd: Application
   ltrace: Programming-language
   lttng-tools: sig-ROS
@@ -4419,7 +4497,7 @@ src-openeuler:
   lua-socket: Networking
   lua-term: Application
   luajit: Base-service
-  luarocks: sig-OpenResty
+  luarocks: sig-recycle
   lucene: sig-Java
   lucene3: sig-Java
   lucene4: sig-Java
@@ -5392,7 +5470,7 @@ src-openeuler:
   oniguruma: Base-service
   oozie: bigdata
   opa-psm2: dev-utils
-  opal-prd: sig-POWER
+  opal-prd: sig-recycle
   opari2: sig-HPC
   open-chinese-fonts: sig-mate-desktop
   open-iscsi: Storage
@@ -5462,12 +5540,12 @@ src-openeuler:
   openoffice-lv: Application
   openoffice.org-dict-cs_CZ: Application
   openpgm: dev-utils
-  openresty: sig-OpenResty
-  openresty-openssl: sig-OpenResty
-  openresty-openssl111: sig-OpenResty
-  openresty-pcre: sig-OpenResty
-  openresty-valgrind: sig-OpenResty
-  openresty-zlib: sig-OpenResty
+  openresty: sig-recycle
+  openresty-openssl: sig-recycle
+  openresty-openssl111: sig-recycle
+  openresty-pcre: sig-recycle
+  openresty-valgrind: sig-recycle
+  openresty-zlib: sig-recycle
   opensbi: sig-RISC-V
   opensc: Base-service
   openscap: Programming-language
@@ -5572,7 +5650,7 @@ src-openeuler:
   osrf_pycommon: sig-ROS
   osrf_testing_tools_cpp: sig-ROS
   ostree: Base-service
-  ostree_assembly: sig-Ostree-Assembly
+  ostree_assembly: sig-recycle
   otf2: sig-HPC
   otopi: oVirt
   ouxt_common: sig-ROS
@@ -7474,9 +7552,9 @@ src-openeuler:
   powerapi: sig-power-efficient
   powerdevil: sig-KDE
   powermock: sig-Java
-  powerpc-utils: sig-POWER
+  powerpc-utils: sig-recycle
   powertop: Base-service
-  ppc64-diag: sig-POWER
+  ppc64-diag: sig-recycle
   ppp: Networking
   pps-tools: System-tool
   pptp: Application
@@ -9163,6 +9241,7 @@ src-openeuler:
   python-pyshark: sig-python-modules
   python-pyshp: sig-python-modules
   python-pyside: Private
+  python-pyside6: sig-QT
   python-pysmi: sig-python-modules
   python-pysnmp: sig-python-modules
   python-pysocks: Base-service
@@ -10290,7 +10369,7 @@ src-openeuler:
   rpm-git-tag-sort: ecopkg
   rpm-mpi-hooks: Private
   rpm-ostree: sig-K8sDistro
-  rpm-ostree-toolbox: sig-Ostree-Assembly
+  rpm-ostree-toolbox: sig-recycle
   rpmdevtools: Packaging
   rpmlint: Programming-language
   rpmrebuild: Base-service
@@ -10729,7 +10808,7 @@ src-openeuler:
   sddm-kcm: sig-KDE
   sdformat: sig-ROS
   sdformat_urdf: sig-ROS
-  sdma-dk: sig-WayCa
+  sdma-dk: sig-recycle
   sdparm: Storage
   seabios: Virt
   seahorse: Desktop
@@ -10754,7 +10833,7 @@ src-openeuler:
   sequence-library: sig-Java
   serd: sig-epol
   serp: sig-Java
-  servicelog: sig-POWER
+  servicelog: sig-recycle
   sessreg: Desktop
   setools: Base-service
   setroubleshoot: sig-security-facility
