@@ -622,6 +622,8 @@ openeuler:
   ukui-themes: sig-UKUI
   umdk: sig-high-performance-network
   unizip: Base-service
+  uos-tc-exporter: sig-ops
+  uos-uwsgi-exporter: sig-ops
   user-committee: user-committee
   utshell: sig-memsafety
   utsudo: sig-memsafety
@@ -2839,6 +2841,7 @@ src-openeuler:
   hplip: System-tool
   hpp-fcl: sig-ROS
   hppc: Base-service
+  hri_msgs: sig-ROS
   hsak: Storage
   hspell: Application
   hsqldb: sig-Java
@@ -4790,6 +4793,7 @@ src-openeuler:
   mojarra: sig-Java
   mojo-parent: sig-Java
   mokutil: sig-security-facility
+  mola_common: sig-ROS
   mold: sig-RISC-V
   mom: oVirt
   mongo-c-driver: DB
@@ -11377,6 +11381,8 @@ src-openeuler:
   uom-parent: Base-service
   uom-se: dev-utils
   uom-systems: Base-service
+  uos-tc-exporter: sig-ops
+  uos-uwsgi-exporter: sig-ops
   update-desktop-files: Desktop
   uperf: Application
   upower: Computing
