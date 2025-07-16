@@ -10049,7 +10049,7 @@ src-openeuler:
   qt6: sig-QT
   qt6-qt3d: sig-QT
   qt6-qt5compat: sig-QT
-  qt6-qtactiveqt: sig-QT
+  qt6-qtactiveqt: sig-recycle
   qt6-qtbase: sig-QT
   qt6-qtcharts: sig-QT
   qt6-qtcoap: sig-QT
@@ -10057,6 +10057,7 @@ src-openeuler:
   qt6-qtdatavis3d: sig-QT
   qt6-qtdeclarative: sig-QT
   qt6-qtdoc: sig-QT
+  qt6-qtgraphs: sig-QT
   qt6-qtgrpc: sig-QT
   qt6-qthttpserver: sig-QT
   qt6-qtimageformats: sig-QT
@@ -10070,7 +10071,7 @@ src-openeuler:
   qt6-qtpositioning: sig-QT
   qt6-qtquick3d: sig-QT
   qt6-qtquick3dphysics: sig-QT
-  qt6-qtquickcontrols2: sig-QT
+  qt6-qtquickcontrols2: sig-recycle
   qt6-qtquickeffectmaker: sig-QT
   qt6-qtquicktimeline: sig-QT
   qt6-qtremoteobjects: sig-QT
