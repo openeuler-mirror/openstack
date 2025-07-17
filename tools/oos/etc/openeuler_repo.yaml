@@ -31,6 +31,7 @@ openeuler:
   CyclOne: sig-ops
   D-FOT: Compiler
   DDE-GoCode: sig-DDE
+  DevStore: sig-ops
   DyscheOS-kernel: sig-recycle
   DyscheOS-meta: sig-recycle
   DyscheOS-utils: sig-recycle
@@ -700,11 +701,13 @@ src-openeuler:
   DDE-go-gir: sig-DDE
   DDE-go-x11-client: sig-DDE
   DevIL: Application
+  DevStore: sig-ops
   Done: Private
   DynamixelSDK: sig-ROS
   EulerCopilot: A-Tune
   EulerMonitor: sig-ops
   FAudio: sig-compat-winapp
+  FalconFS: sig-Long
   Fast-CDR: sig-ROS
   Fast-DDS: sig-ROS
   Flask-RESTful: Private
@@ -11594,7 +11597,7 @@ src-openeuler:
   xdg-user-dirs: Desktop
   xdg-user-dirs-gtk: Desktop
   xdg-utils: Desktop
-  xdotool: sig-cinnamon
+  xdotool: sig-KIRAN-DESKTOP
   xdp-cpumap-tc: Networking
   xdp-tools: sig-ebpf
   xdpyinfo: Desktop
