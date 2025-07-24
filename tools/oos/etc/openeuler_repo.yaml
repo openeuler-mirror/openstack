@@ -199,6 +199,7 @@ openeuler:
   docs: doc
   docs-accompany-reading: sig-OpenDesign
   docs-centralized: doc
+  docs-model-dataset: doc
   docs-website: sig-OpenDesign
   donau-arv-gpu-extension: sig-HPC
   donau-pam-adopt: sig-HPC
@@ -731,6 +732,7 @@ src-openeuler:
   Kmesh: sig-ebpf
   KubeOS: sig-CloudNative
   LMCache: sig-Long
+  LMS1xx: sig-ROS
   LZMA-SDK: Base-service
   LibRaw: Programming-language
   Lmod: Application
@@ -1134,6 +1136,7 @@ src-openeuler:
   assertj-core: Programming-language
   assimp: Others
   astream: Kernel
+  astuff_sensor_msgs: sig-ROS
   astyle: sig-KDE
   asymptote: dev-utils
   async_web_server_cpp: sig-ROS
@@ -1172,7 +1175,9 @@ src-openeuler:
   automotive_autonomy_msgs: sig-ROS
   autossh: Application
   autotrace: Private
+  autoware_adapi_msgs: sig-ROS
   autoware_auto_msgs: sig-ROS
+  autoware_cmake: sig-ROS
   avahi: Desktop
   avalon-framework: sig-Java
   avalon-logkit: sig-Java
@@ -1241,6 +1246,7 @@ src-openeuler:
   bcel: dev-utils
   bcftools: sig-bio
   bcm283x-firmware: Private
+  bcr_bot: sig-ROS
   bcrypt: dev-utils
   bdftopcf: Desktop
   bea-stax: dev-utils
@@ -1349,6 +1355,7 @@ src-openeuler:
   calico: sig-CloudNative
   callaudiod: GNOME
   calls: GNOME
+  camera_aravis2: sig-ROS
   can-utils: sig-embedded
   canal: DB
   canfestival: sig-industrial-control
@@ -1357,6 +1364,7 @@ src-openeuler:
   cantian: DB
   capstone: Base-service
   capsule: Virt
+  caret_trace: sig-ROS
   cargo2rpm: ecopkg
   caribou: sig-cinnamon
   cartographer: sig-ROS
@@ -1368,6 +1376,7 @@ src-openeuler:
   castxml: Desktop
   catatonit: sig-CloudNative
   catch1: dev-utils
+  catch_ros2: sig-ROS
   catdoc: sig-KDE
   catfish: xfce
   catkin: sig-ROS
@@ -1435,11 +1444,17 @@ src-openeuler:
   clang-15: Compiler
   class_loader: sig-ROS
   classic-flang: Compiler
+  classic_bags: sig-ROS
   classloader-leak-test-framework: sig-Java
   classmate: sig-Java
   claws-mail: sig-UKUI
   cldr-emoji-annotation: Others
+  clearpath_common: sig-ROS
+  clearpath_config: sig-ROS
+  clearpath_mecanum_drive_controller: sig-ROS
+  clearpath_msgs: sig-ROS
   clearpath_nav2_demos: sig-ROS
+  clearpath_simulator: sig-ROS
   clevis: Base-service
   cli-parser: Application
   cli11: dev-utils
@@ -1467,6 +1482,7 @@ src-openeuler:
   cmocka: Programming-language
   cmockery: sig-recycle
   cncf-xds: ai
+  cob_common: sig-ROS
   cobbler: sig-OS-Builder
   cockpit: Desktop
   cockpit-machines: Desktop
@@ -1554,11 +1570,14 @@ src-openeuler:
   cppzmq: sig-ROS
   cpuid: dev-utils
   cracklib: sig-security-facility
+  crane_plus: sig-ROS
   crash: Base-service
   crash-gcore-command: Programming-language
   crash-trace-command: Programming-language
   crda: sig-recycle
+  create3_examples: sig-ROS
   create3_sim-release: sig-ROS
+  create_robot: sig-ROS
   createrepo_c: Base-service
   cri-o: sig-CloudNative
   cri-tools: sig-CloudNative
@@ -1611,6 +1630,7 @@ src-openeuler:
   darshan: sig-HPC
   dash: Base-service
   data-plane-api: ai
+  data_tamer: sig-ROS
   datafu: bigdata
   datanucleus-api-jdo: sig-Java
   datanucleus-core: sig-Java
@@ -1824,6 +1844,7 @@ src-openeuler:
   ebook-tools: sig-KDE
   ebtables: Networking
   ecj: dev-utils
+  ecl_core: sig-ROS
   ecl_tools: sig-ROS
   eclipse: sig-Java
   eclipse-cdt: sig-Java
@@ -1916,6 +1937,7 @@ src-openeuler:
   ethtool: Networking
   etipc: sig-embedded
   etmem: Storage
+  etsi_its_messages: sig-ROS
   euler-copilot-framework: sig-intelligence
   euler-copilot-rag: sig-intelligence
   euler-copilot-shell: sig-intelligence
@@ -1953,6 +1975,7 @@ src-openeuler:
   faad2: sig-epol
   fabtests: Others
   facter: Base-service
+  fadecandy_ros: sig-ROS
   fail2ban: Networking
   fakechroot: System-tool
   fakeroot: Programming-language
@@ -2016,6 +2039,7 @@ src-openeuler:
   fetch-crl: Application
   fetchmail: Application
   ffmpeg: Desktop
+  ffmpeg_image_transport_msgs: sig-ROS
   ffmpegthumbnailer: Desktop
   fftw: Runtime
   fftw2: Application
@@ -2053,6 +2077,7 @@ src-openeuler:
   flatpak-builder: GNOME
   flex: Base-service
   flex_sync: sig-ROS
+  flexbe_behavior_engine: sig-ROS
   flexiblas: sig-epol
   flink: bigdata
   flir_camera_driver: sig-ROS
@@ -2091,6 +2116,7 @@ src-openeuler:
   fpchecker: sig-HPC
   fping: dev-utils
   fprintd: System-tool
+  franka_description: sig-ROS
   freeglut: Runtime
   freeimage: dev-utils
   freeipa: oVirt
@@ -2139,6 +2165,7 @@ src-openeuler:
   gala-spider: sig-ops
   galera: Others
   game-music-emu: dev-utils
+  game_controller_spl: sig-ROS
   gamemode: Desktop
   gamin: sig-recycle
   gammaray: sig-desktop-apps
@@ -2147,8 +2174,10 @@ src-openeuler:
   gavl: Others
   gawk: Base-service
   gazebo: sig-ROS
+  gazebo_model_attachment_plugin: sig-ROS
   gazebo_ros2_control: sig-ROS
   gazebo_ros_pkgs: sig-ROS
+  gazebo_video_monitors: sig-ROS
   gazelle: sig-high-performance-network
   gazelle-cni: sig-recycle
   gc: Base-service
@@ -2808,6 +2837,7 @@ src-openeuler:
   hdf5: Runtime
   hdparm: Storage
   he3fs: DB
+  heaphook: sig-ROS
   hello: dev-utils
   help2man: Programming-language
   heolleo: sig-ops
@@ -3090,6 +3120,7 @@ src-openeuler:
   imlib2: sig-UKUI
   impala: bigdata
   imsettings: Desktop
+  imu_pipeline: sig-ROS
   imu_tools: sig-ROS
   imwheel: sig-UKUI
   incubator-mxnet: ai
@@ -3788,6 +3819,8 @@ src-openeuler:
   kubernetes: sig-CloudNative
   kubevirt: sig-CloudNative
   kudu: bigdata
+  kuka_drivers: sig-ROS
+  kuka_robot_descriptions: sig-ROS
   kunpeng-devkit: sig-ops
   kunpengsecl: sig-security-facility
   kurdit-unikurd-web-fonts: Desktop
@@ -4462,6 +4495,7 @@ src-openeuler:
   log4j: sig-Java
   log4j-jboss-logmanager: sig-Java
   log4j12: Application
+  log_view: sig-ROS
   logback: sig-Java
   logrotate: Base-service
   logwatch: System-tool
@@ -4581,6 +4615,7 @@ src-openeuler:
   mariadb: DB
   mariadb-connector-c: Base-service
   mariadb-connector-odbc: DB
+  marine_msgs: sig-ROS
   marisa: Others
   markdownpart: sig-KDE
   marked: sig-UKUI
@@ -4731,6 +4766,7 @@ src-openeuler:
   metainf-services: sig-Java
   metis: Application
   metrics: sig-Java
+  metrics_msgs: sig-ROS
   metslib: sig-ROS
   mhash: sig-desktop-apps
   mhvtl: dev-utils
@@ -4774,6 +4810,7 @@ src-openeuler:
   mobile-broadband-provider-info: Networking
   moby: sig-CloudNative
   mocap4r2_msgs: sig-ROS
+  mocap_optitrack: sig-ROS
   mocha: dev-utils
   mock: dev-utils
   mock-core-configs: dev-utils
@@ -4810,6 +4847,7 @@ src-openeuler:
   morphia: dev-utils
   mosquitto: Application
   motif: Runtime
+  motion_capture_tracking: sig-ROS
   mousepad: xfce
   mousetweaks: Application
   moveit2: sig-ROS
@@ -4832,6 +4870,7 @@ src-openeuler:
   mpich: Programming-language
   mptcpd: Networking
   mpv: Desktop
+  mqtt_client: sig-ROS
   mrbayes: sig-bio
   mrpt: sig-ROS
   mrpt_msgs: sig-ROS
@@ -4968,6 +5007,7 @@ src-openeuler:
   nmap: Networking
   nmea_hardware_interface: sig-ROS
   nmea_msgs: sig-ROS
+  nmea_navsat_driver: sig-ROS
   nmon: dev-utils
   nmstate: oVirt
   nng: dev-utils
@@ -5351,6 +5391,7 @@ src-openeuler:
   notification_eventhandler: sig-distributed-middleware
   nototools: Programming-language
   novatel_gps_driver: sig-ROS
+  novatel_oem7_driver: sig-ROS
   novnc: sig-openstack
   npth: Computing
   nrpe: System-tool
@@ -5458,6 +5499,7 @@ src-openeuler:
   oec-hardware: sig-Compatibility-Infra
   oemaker: sig-OS-Builder
   oepkgs-repos: sig-Compatibility-Infra
+  off_highway_sensor_drivers: sig-ROS
   ogdi: dev-utils
   ogre: sig-ROS
   ohc: sig-Java
@@ -5732,7 +5774,9 @@ src-openeuler:
   pal_gazebo_plugins: sig-ROS
   pal_gazebo_worlds: sig-ROS
   pal_gripper: sig-ROS
+  pal_hey5: sig-ROS
   pal_maps: sig-ROS
+  pal_navigation_cfg_public: sig-ROS
   pal_statistics: sig-ROS
   pam: sig-security-facility
   pam_krb5: Application
@@ -7527,6 +7571,7 @@ src-openeuler:
   podman: sig-CloudNative
   podofo: Desktop
   point_cloud_msg_wrapper: sig-ROS
+  point_cloud_transport_plugins: sig-ROS
   pointcloud_to_laserscan: sig-ROS
   poissonsearch-oss: DB
   poissonsearch-py: DB
@@ -7540,6 +7585,7 @@ src-openeuler:
   poly2tri: Others
   polycube: sig-high-performance-network
   polyglot: sig-Java
+  polygon_ros: sig-ROS
   popf: sig-ROS
   poppler: Desktop
   poppler-data: Desktop
@@ -7618,6 +7664,7 @@ src-openeuler:
   pyArango: sig-ops
   pyOpenSSL: sig-security-facility
   pyScss: sig-python-modules
+  py_binding_tools: sig-ROS
   py_trees: sig-ROS
   py_trees_js: sig-ROS
   py_trees_ros: sig-ROS
@@ -9979,6 +10026,8 @@ src-openeuler:
   pyxdg: Programming-language
   qaccessibilityclient: sig-KDE
   qax-gm-certificates: sig-security-facility
+  qbdevice-ros: sig-ROS
+  qbshin_ros: sig-ROS
   qca: sig-KDE
   qcoro: sig-KDE
   qdox: Base-service
@@ -10134,6 +10183,8 @@ src-openeuler:
   raspi-config: sig-SBC
   raspimouse2: sig-ROS
   raspimouse_description: sig-ROS
+  raspimouse_sim: sig-ROS
+  raspimouse_slam_navigation: sig-ROS
   rasqal: Application
   raxml-ng: sig-bio
   ray: sig-Long
@@ -10897,6 +10948,7 @@ src-openeuler:
   sisu: sig-Java
   sisu-mojos: sig-Java
   situational_graphs_datasets: sig-ROS
+  situational_graphs_reasoning_msgs: sig-ROS
   skkdic: Application
   skopeo: sig-CloudNative
   skylark: Virt
@@ -11279,9 +11331,12 @@ src-openeuler:
   turtlebot4: sig-ROS
   turtlebot4_desktop: sig-ROS
   turtlebot4_robot: sig-ROS
+  turtlebot4_setup: sig-ROS
   tuscany-sdo-java: Base-service
+  tuw_msgs: sig-ROS
   tvm_vendor: sig-ROS
   twist_mux: sig-ROS
+  twist_mux_msgs: sig-ROS
   twist_stamper: sig-ROS
   twolame: Others
   txgbe-driver: sig-Compatibility-Infra
@@ -11374,6 +11429,7 @@ src-openeuler:
   unique3: sig-mate-desktop
   unique_identifier_msgs: sig-ROS
   unit-api: Base-service
+  unitree_ros: sig-ROS
   units: Application
   univocity-parsers: Base-service
   unixODBC: DB
@@ -11392,6 +11448,7 @@ src-openeuler:
   upower: Computing
   ur_msgs: sig-ROS
   urdf: sig-ROS
+  urdf_launch: sig-ROS
   urdf_parser_py: sig-ROS
   urdf_sim_tutorial: sig-ROS
   urdf_test: sig-ROS
@@ -11446,6 +11503,7 @@ src-openeuler:
   vdo: Runtime
   vdsm: oVirt
   vdsm-jsonrpc-java: oVirt
+  vector_pursuit_controller: sig-ROS
   velocity: sig-Java
   velocity-tools: sig-Java
   velodyne: sig-ROS
@@ -11516,6 +11574,7 @@ src-openeuler:
   webrtc-audio-processing: Desktop
   websocketpp: sig-ROS
   weechat: Application
+  weight_scale_interfaces: sig-ROS
   weld-api: sig-Java
   weld-core: sig-Java
   weld-parent: sig-Java
@@ -11547,6 +11606,7 @@ src-openeuler:
   wpebackend-fdo: dev-utils
   wqy-microhei-fonts: Desktop
   wqy-zenhei-fonts: Desktop
+  wrapyfi_ros2_interfaces: sig-ROS
   wrf: sig-HPC
   wrk: Networking
   ws-commons-util: dev-utils
