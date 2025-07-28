@@ -576,6 +576,7 @@
   ceilometermiddleware: 3.2.0
   cinder: 23.5.0
   cinder_tempest_plugin: 1.10.0
+  cinder_tempest_plugin-2023.2: last
   cinderlib: 5.2.0
   cliff: 4.3.0
   cloudkitty: 19.1.0
@@ -586,6 +587,7 @@
   designate: 17.0.2
   designate_dashboard: 17.0.0
   designate_tempest_plugin: 0.20.0
+  designate_tempest_plugin-2023.2: last
   ec2_api: 17.0.0
   ec2api_tempest_plugin: 1.7.0
   freezer: 15.0.0
@@ -673,6 +675,7 @@
   octavia_dashboard: 12.0.1
   octavia_lib: 3.3.1
   octavia_tempest_plugin: 2.4.1
+  octavia_tempest_plugin-2023.2: last
   openstack_cyborg: 11.0.0
   openstack_heat: 21.0.1
   openstack_placement: 10.0.1
