@@ -58,6 +58,7 @@ openeuler:
   LTF: sig-QA
   LiveUI: sig-recycle
   MetaBMC: sig-BMC
+  ModelFS: sig-Long
   NestOS: sig-CloudNative
   OSAPIChecker: sig-recycle
   OSCompatibility: sig-recycle
@@ -477,6 +478,7 @@ openeuler:
   opendesign-resources: sig-OpenDesign
   opendesign-templates: sig-OpenDesign
   openeuler-docker-images: sig-CloudNative
+  openeuler-intelligence-sandbox: sig-intelligence
   openeuler-jenkins: sig-Gatekeeper
   openeuler-obs: sig-Gatekeeper
   openeuler-os-build: sig-Gatekeeper
@@ -2130,7 +2132,7 @@ src-openeuler:
   freexl: dev-utils
   frei0r-plugins: Base-service
   fribidi: Desktop
-  fros: Desktop
+  fros: sig-recycle
   frozen: sig-RISC-V
   frp: Networking
   fstools: dev-utils
@@ -8882,6 +8884,7 @@ src-openeuler:
   python-mysqlclient: sig-python-modules
   python-myst-nb: sig-python-modules
   python-myst-parser: sig-python-modules
+  python-nanobind: Programming-language
   python-narwhals: sig-python-modules
   python-natsort: sig-openstack
   python-nb2plots: sig-python-modules
@@ -10277,6 +10280,7 @@ src-openeuler:
   rmw_implementation: sig-ROS
   rng-tools: Base-service
   rngom: Application
+  robin-map: Programming-language
   robodoc: Application
   robot_calibration: sig-ROS
   robot_controllers: sig-ROS
