@@ -158,7 +158,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 1. 安装软件包
 
     ```
-    dnf install mysql-config mariadb mariadb-server python3-PyMySQL
+    dnf install mariadb-config mariadb mariadb-server python3-PyMySQL
     ```
 
 2. 新增配置文件`/etc/my.cnf.d/openstack.cnf`，内容如下
