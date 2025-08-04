@@ -183,6 +183,7 @@ openeuler:
   custom_build_tool: Application
   cve-ease: Infrastructure
   cve-manager: Infrastructure
+  cve-void: sig-security-facility
   dcs: sig-power-efficient
   dde: sig-DDE
   dde_autotest_euler: sig-QA
@@ -497,6 +498,7 @@ openeuler:
   openstack-releases-adaptation: sig-openstack
   openstack-sig-tool: sig-openstack
   operator-manager: sig-CloudNative
+  optimized-routines: Compiler
   osinfor: sig-memsafety
   pacemaker-mgmt: sig-Ha
   package-reinforce-test: sig-QA
@@ -10050,7 +10052,7 @@ src-openeuler:
   qqc2-desktop-style: sig-KDE
   qrencode: Desktop
   qrupdate: bigdata
-  qscintilla: bigdata
+  qscintilla: sig-QT
   qstardict: sig-recycle
   qt: sig-QT
   qt-assistant-adp: sig-QT
