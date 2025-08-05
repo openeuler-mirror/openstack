@@ -45,6 +45,7 @@ openeuler:
   GNFC: sig-high-performance-network
   GVirt: sig-Long
   GearOS: sig-industrial-control
+  Gluten: bigdata
   Hi-FHE: sig-security-facility
   Jailhouse-gui: sig-industrial-control
   Java-Packages: sig-Java
@@ -64,6 +65,10 @@ openeuler:
   OSCompatibility: sig-recycle
   OSPerformance: sig-recycle
   OSPerformanceTools: sig-recycle
+  OmniAdaptor: bigdata
+  OmniOperator: bigdata
+  OmniStateStore: bigdata
+  OmniStream: bigdata
   PRIP: Networking
   PilotGo: sig-ops
   PilotGo-plugin-ELK: sig-ops
@@ -280,6 +285,7 @@ openeuler:
   hands-on: sig-OSCourse
   hbm-predictor: Storage
   heolleo: sig-ops
+  hey: sig-intelligence
   hi-mpu: sig-embedded
   hikptool: sig-recycle
   hinic3: sig-Compatibility-Infra
@@ -1368,6 +1374,7 @@ src-openeuler:
   cantian: DB
   capstone: Base-service
   capsule: Virt
+  caret_analyze_cpp_impl: sig-ROS
   caret_trace: sig-ROS
   cargo2rpm: ecopkg
   caribou: sig-cinnamon
@@ -1455,6 +1462,7 @@ src-openeuler:
   cldr-emoji-annotation: Others
   clearpath_common: sig-ROS
   clearpath_config: sig-ROS
+  clearpath_desktop: sig-ROS
   clearpath_mecanum_drive_controller: sig-ROS
   clearpath_msgs: sig-ROS
   clearpath_nav2_demos: sig-ROS
@@ -1530,6 +1538,7 @@ src-openeuler:
   compface: Application
   compiler-rt: Compiler
   compiler-rt-15: Compiler
+  composefs: ecopkg
   composer: Programming-language
   compress-lzf: Application
   comps-extras: Desktop
@@ -2175,6 +2184,7 @@ src-openeuler:
   gammaray: sig-desktop-apps
   ganglia: Base-service
   garcon: xfce
+  gauges2: sig-ROS
   gavl: Others
   gawk: Base-service
   gazebo: sig-ROS
@@ -2878,6 +2888,7 @@ src-openeuler:
   hplip: System-tool
   hpp-fcl: sig-ROS
   hppc: Base-service
+  hri_actions_msgs: sig-ROS
   hri_msgs: sig-ROS
   hsak: Storage
   hspell: Application
@@ -4764,6 +4775,7 @@ src-openeuler:
   message_filters: sig-ROS
   message_generation: sig-ROS
   message_runtime: sig-ROS
+  message_tf_frame_transformer: sig-ROS
   metacity: Desktop
   metadata-extractor2: Application
   metagpt: sig-intelligence
@@ -5781,6 +5793,7 @@ src-openeuler:
   pal_hey5: sig-ROS
   pal_maps: sig-ROS
   pal_navigation_cfg_public: sig-ROS
+  pal_robotiq_gripper: sig-ROS
   pal_statistics: sig-ROS
   pam: sig-security-facility
   pam_krb5: Application
@@ -7646,6 +7659,7 @@ src-openeuler:
   proxytoys: sig-Java
   ps_mem: Computing
   psacct: Application
+  psdk_ros2: sig-ROS
   psiconv: sig-desktop-apps
   psm: dev-utils
   psmisc: Computing
@@ -7659,6 +7673,7 @@ src-openeuler:
   pulsar: sig-message-middleware
   pulseaudio: Computing
   pulseaudio-qt: sig-KDE
+  puma_motor_driver: sig-ROS
   puppet-agent-puppet-strings: sig-ops
   pushgateway: sig-CloudNative
   pv: Base-service
@@ -10393,6 +10408,7 @@ src-openeuler:
   ros2cli_common_extensions: sig-ROS
   ros2launch_security: sig-ROS
   ros_aruco_opencv: sig-ROS
+  ros_babel_fish: sig-ROS
   ros_canopen: sig-ROS
   ros_comm: sig-ROS
   ros_comm_msgs: sig-ROS
@@ -10859,6 +10875,7 @@ src-openeuler:
   scap-security-guide: sig-security-facility
   scap-workbench: sig-security-facility
   scdoc: ecopkg
+  scenario_execution: sig-ROS
   schemas: sig-ROS
   schroedinger: sig-epol
   schunk_svh_library: sig-ROS
@@ -10987,6 +11004,7 @@ src-openeuler:
   soccer_interfaces: sig-ROS
   soccer_object_msgs: sig-ROS
   soccer_visualization: sig-ROS
+  social_nav_ros: sig-ROS
   socket_wrapper: Programming-language
   soem: sig-industrial-control
   soes: sig-industrial-control
@@ -11152,6 +11170,7 @@ src-openeuler:
   takari-lifecycle: sig-Java
   takari-plugin-testing: sig-Java
   takari-pom: sig-Java
+  talos_robot: sig-ROS
   tang: System-tool
   tango_icon_theme: sig-ROS
   tango_icons_vendor: sig-ROS
@@ -11275,6 +11294,7 @@ src-openeuler:
   tk: Desktop
   tldr: Application
   tlsf: sig-ROS
+  tmcl_ros2: sig-ROS
   tmpwatch: Base-service
   tmux: Desktop
   tng: Base-service
@@ -11332,12 +11352,14 @@ src-openeuler:
   tuned: Computing
   turbojpeg_compressed_image_transport: sig-ROS
   turtlebot3: sig-ROS
+  turtlebot3_manipulation: sig-ROS
   turtlebot3_msgs: sig-ROS
   turtlebot3_simulations: sig-ROS
   turtlebot4: sig-ROS
   turtlebot4_desktop: sig-ROS
   turtlebot4_robot: sig-ROS
   turtlebot4_setup: sig-ROS
+  turtlebot4_tutorials: sig-ROS
   tuscany-sdo-java: Base-service
   tuw_msgs: sig-ROS
   tvm_vendor: sig-ROS
@@ -11521,6 +11543,7 @@ src-openeuler:
   vim-airline: Application
   vim-ale: Application
   vim-ansible: Application
+  vimbax_ros2_driver: sig-ROS
   vinagre: sig-recycle
   vino: Desktop
   virglrenderer: Virt
@@ -11598,6 +11621,7 @@ src-openeuler:
   wine: sig-compat-winapp
   wine-mono: sig-compat-winapp
   wireguard-tools: Networking
+  wireless: sig-ROS
   wireless-regdb: sig-mate-desktop
   wireless-tools: sig-mate-desktop
   wireshark: Application
