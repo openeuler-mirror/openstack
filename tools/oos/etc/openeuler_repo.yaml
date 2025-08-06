@@ -23,6 +23,7 @@ openeuler:
   CPM4OSSP-UI: sig-ops
   CPython: Compiler
   CTinspector: sig-ebpf
+  Computing-docs: Computing
   ConfigOrchestrator: System-tool
   Cpds: sig-CloudNative
   CreateImage: sig-Gatekeeper
@@ -96,6 +97,7 @@ openeuler:
   SBC-sig: sig-SBC
   ServerlessLLM: sig-Long
   SoftBR: Compiler
+  Storage-docs: Storage
   TC: TC
   TCP_option_address: Kernel
   TSB-agent: sig-security-facility
@@ -396,6 +398,7 @@ openeuler:
   lfs-course: sig-OSCourse
   li-wen: sig-EasyLife
   lib-shim-v2: iSulad
+  libXSched: sig-Long
   libarchive-rust: Base-service
   libboundscheck: Base-service
   libcareplus: Virt
