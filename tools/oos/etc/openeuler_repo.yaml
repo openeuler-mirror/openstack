@@ -637,7 +637,9 @@ openeuler:
   ukui-themes: sig-UKUI
   umdk: sig-high-performance-network
   unizip: Base-service
+  uos-iptables-exporter: sig-ops
   uos-tc-exporter: sig-ops
+  uos-time-exporter: sig-ops
   uos-uwsgi-exporter: sig-ops
   user-committee: user-committee
   utshell: sig-memsafety
@@ -7405,6 +7407,7 @@ src-openeuler:
   perl-XML-RegExp: sig-perl-modules
   perl-XML-SAX: Programming-language
   perl-XML-SAX-Base: Programming-language
+  perl-XML-SAX-Expat: sig-perl-modules
   perl-XML-SAX-ExpatXS: sig-perl-modules
   perl-XML-SemanticDiff: sig-perl-modules
   perl-XML-Simple: Programming-language
@@ -11472,7 +11475,9 @@ src-openeuler:
   uom-parent: Base-service
   uom-se: dev-utils
   uom-systems: Base-service
+  uos-iptables-exporter: sig-ops
   uos-tc-exporter: sig-ops
+  uos-time-exporter: sig-ops
   uos-uwsgi-exporter: sig-ops
   update-desktop-files: Desktop
   uperf: Application
