@@ -642,8 +642,16 @@ openeuler:
   uos-time-exporter: sig-ops
   uos-uwsgi-exporter: sig-ops
   user-committee: user-committee
+  utcpio: sig-memsafety
+  utdnsmasq: sig-memsafety
+  utipmitool: sig-memsafety
+  utiputils: sig-memsafety
+  utpam: sig-memsafety
+  utpasswd: sig-memsafety
   utshell: sig-memsafety
   utsudo: sig-memsafety
+  utxz: sig-memsafety
+  utzip: sig-memsafety
   vectorBlas: bigdata
   velox: bigdata
   virtCCA_driver: sig-confidential-computing
@@ -4761,6 +4769,7 @@ src-openeuler:
   media-player-info: Application
   media_export: sig-ROS
   meld: sig-desktop-apps
+  mem-agent: sig-Long
   memP: sig-HPC
   memcached: Application
   memcached_exporter: sig-CloudNative
@@ -11509,13 +11518,21 @@ src-openeuler:
   usermode: Base-service
   userspace-rcu: Computing
   ustr: Base-service
+  utcpio: sig-memsafety
+  utdnsmasq: sig-memsafety
   utf8_range: Base-service
   utf8cpp: dev-utils
   utf8proc: Base-service
   uthash: Base-service
   util-linux: Base-service
+  utipmitool: sig-memsafety
+  utiputils: sig-memsafety
+  utpam: sig-memsafety
+  utpasswd: sig-memsafety
   utshell: sig-memsafety
   utsudo: sig-memsafety
+  utxz: sig-memsafety
+  utzip: sig-memsafety
   uuid: Programming-language
   uv: sig-intelligence
   uwsgi: Application
