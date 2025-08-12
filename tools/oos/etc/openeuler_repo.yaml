@@ -386,6 +386,7 @@ openeuler:
   kunpeng-extension-for-pytorch: ai
   kunpengsecl: sig-security-facility
   kupl-sample: sig-HPC
+  kvcache-ops: sig-Long
   kyclassifier: sig-Compatibility-Infra
   kylin-installer: sig-UKUI
   kylin-user-guide: sig-UKUI
@@ -4803,6 +4804,7 @@ src-openeuler:
   micro_ros_diagnostics: sig-ROS
   micro_ros_msgs: sig-ROS
   microcode_ctl: System-tool
+  microdnf: sig-OS-Builder
   microstrain_inertial: sig-ROS
   migration-assistant: sig-Migration
   migration-tools: sig-Migration
@@ -7082,7 +7084,7 @@ src-openeuler:
   perl-Sys-Mmap: sig-perl-modules
   perl-Sys-Statistics-Linux: sig-perl-modules
   perl-Sys-Syslog: sig-perl-modules
-  perl-Sys-Virt: Virt
+  perl-Sys-Virt: sig-perl-modules
   perl-System-Command: sig-perl-modules
   perl-System-Info: sig-perl-modules
   perl-TAP-Formatter-HTML: sig-perl-modules
@@ -8386,7 +8388,7 @@ src-openeuler:
   python-fdb: sig-python-modules
   python-feedgen: sig-python-modules
   python-feedgenerator: sig-python-modules
-  python-feedparser: sig-python-modules
+  python-feedparser: sig-recycle
   python-fido2: sig-python-modules
   python-fields: sig-python-modules
   python-filelock: sig-python-modules
@@ -8478,7 +8480,7 @@ src-openeuler:
   python-gerrymander: sig-python-modules
   python-getmac: sig-python-modules
   python-gevent: Programming-language
-  python-gflags: sig-python-modules
+  python-gflags: sig-recycle
   python-ghp-import2: sig-python-modules
   python-git-changelog: sig-python-modules
   python-git-url-parse: sig-python-modules
@@ -8495,7 +8497,7 @@ src-openeuler:
   python-gnocchiclient: sig-openstack
   python-gntp: sig-python-modules
   python-gnupg: sig-python-modules
-  python-google-apputils: Base-service
+  python-google-apputils: sig-recycle
   python-google-auth: sig-python-modules
   python-google-auth-oauthlib: sig-python-modules
   python-google-compute-engine: sig-python-modules
@@ -10101,7 +10103,7 @@ src-openeuler:
   qt5-qtdatavis3d: sig-QT
   qt5-qtdeclarative: sig-QT
   qt5-qtdoc: sig-QT
-  qt5-qtenginio: sig-QT
+  qt5-qtenginio: sig-recycle
   qt5-qtfeedback: sig-KDE
   qt5-qtgamepad: sig-QT
   qt5-qtgraphicaleffects: sig-QT
@@ -10766,10 +10768,10 @@ src-openeuler:
   rubygem-rspec-mocks: sig-ruby
   rubygem-rspec-rails: sig-ruby
   rubygem-rspec-support: sig-ruby
-  rubygem-rspec2: sig-ruby
-  rubygem-rspec2-core: sig-ruby
-  rubygem-rspec2-expectations: sig-ruby
-  rubygem-rspec2-mocks: sig-ruby
+  rubygem-rspec2: sig-recycle
+  rubygem-rspec2-core: sig-recycle
+  rubygem-rspec2-expectations: sig-recycle
+  rubygem-rspec2-mocks: sig-recycle
   rubygem-ruby-libvirt: sig-ruby
   rubygem-ruby-progressbar: sig-ruby
   rubygem-ruby-rc4: sig-ruby
