@@ -57,6 +57,7 @@ openeuler:
   KubeHawkeyes: sig-CloudNative
   KubeMate: sig-CloudNative
   KubeOS: sig-CloudNative
+  LMCache-mindspore: sig-Long
   LTF: sig-QA
   LiveUI: sig-recycle
   MetaBMC: sig-BMC
@@ -263,6 +264,7 @@ openeuler:
   ft_wl_fwk: sig-FangTian
   gala-anteater: sig-ops
   gala-docs: sig-ops
+  gala-filetrace: sig-ops
   gala-gopher: sig-ebpf
   gala-ragdoll: sig-ops
   gala-spider: sig-ops
@@ -2187,6 +2189,7 @@ src-openeuler:
   g2clib: Base-service
   gajim: sig-mate-desktop
   gala-anteater: sig-ops
+  gala-filetrace: sig-ops
   gala-gopher: sig-ebpf
   gala-ragdoll: sig-ops
   gala-spider: sig-ops
@@ -7501,6 +7504,7 @@ src-openeuler:
   phoenix: sig-recycle
   phonon: sig-KDE
   phonon-backend-gstreamer: Private
+  phonon-backend-vlc: sig-KDE
   phonon-qt4: sig-KDE
   php: Programming-language
   php-pear: Programming-language
