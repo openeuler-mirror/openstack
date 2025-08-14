@@ -47,6 +47,7 @@ openeuler:
   GVirt: sig-Long
   GearOS: sig-industrial-control
   Gluten: bigdata
+  Ha-docs: sig-Ha
   Hi-FHE: sig-security-facility
   Jailhouse-gui: sig-industrial-control
   Java-Packages: sig-Java
