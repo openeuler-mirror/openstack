@@ -4068,7 +4068,7 @@ src-openeuler:
   libdvdnav: Application
   libdvdread: Application
   libdwarf: Programming-language
-  libe-book: ecopkg
+  libe-book: sig-RISC-V
   libeasyfc: Application
   libebml: sig-epol
   libebur128: ecopkg
