@@ -2928,6 +2928,7 @@ src-openeuler:
   httpunit: sig-Java
   hudi: bigdata
   hue: bigdata
+  human_description: sig-ROS
   hunspell: Application
   hunspell-ak: Application
   hunspell-am: Application
@@ -7949,6 +7950,7 @@ src-openeuler:
   python-asn1crypto: Base-service
   python-aspectlib: sig-python-modules
   python-aspy: sig-recycle
+  python-assertpy: ecopkg
   python-asteval: sig-python-modules
   python-astor: A-Tune
   python-astral: sig-python-modules
@@ -11193,6 +11195,7 @@ src-openeuler:
   takari-plugin-testing: sig-Java
   takari-pom: sig-Java
   talos_robot: sig-ROS
+  talos_simulation: sig-ROS
   tang: System-tool
   tango_icon_theme: sig-ROS
   tango_icons_vendor: sig-ROS
