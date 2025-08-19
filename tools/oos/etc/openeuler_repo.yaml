@@ -110,7 +110,7 @@ openeuler:
   VMAnalyzer: sig-ops
   Virt-docs: Virt
   WasmEngine: sig-CloudNative
-  WayCa: sig-recycle
+  WayCa: sig-WayCa
   X-diagnosis: sig-ops
   Xen: sig-industrial-control
   aa-ui: sig-intelligence
@@ -292,7 +292,7 @@ openeuler:
   heolleo: sig-ops
   hey: sig-intelligence
   hi-mpu: sig-embedded
-  hikptool: sig-recycle
+  hikptool: sig-WayCa
   hinic3: sig-Compatibility-Infra
   hmir: sig-ops
   hostha: sig-openstack
@@ -574,7 +574,7 @@ openeuler:
   sbom-service: sig-sbom
   sbom-tools: sig-sbom
   sbom-website: sig-sbom
-  sdma-dk: sig-recycle
+  sdma-dk: sig-WayCa
   sds_doc: sig-SDS
   secDetector: sig-security-facility
   secGear: sig-confidential-computing
@@ -2890,7 +2890,7 @@ src-openeuler:
   hicolor-icon-theme: Desktop
   highlight: oVirt
   highway: sig-epol
-  hikptool: sig-recycle
+  hikptool: sig-WayCa
   hinic3: sig-Compatibility-Infra
   hiredis: Base-service
   hive: bigdata
@@ -10915,7 +10915,7 @@ src-openeuler:
   sddm-kcm: sig-KDE
   sdformat: sig-ROS
   sdformat_urdf: sig-ROS
-  sdma-dk: sig-recycle
+  sdma-dk: sig-WayCa
   sdparm: Storage
   seabios: Virt
   seahorse: Desktop
