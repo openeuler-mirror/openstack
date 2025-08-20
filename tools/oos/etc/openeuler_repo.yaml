@@ -5816,6 +5816,7 @@ src-openeuler:
   pal_navigation_cfg_public: sig-ROS
   pal_robotiq_gripper: sig-ROS
   pal_statistics: sig-ROS
+  pal_urdf_utils: sig-ROS
   pam: sig-security-facility
   pam_krb5: Application
   pam_wrapper: sig-security-facility
@@ -10886,6 +10887,7 @@ src-openeuler:
   saxpath: sig-Java
   sbc: Desktop
   sbd: sig-Ha
+  sbg_ros2: sig-ROS
   sbinary: sig-Java
   sblim-cmpi-devel: Programming-language
   sblim-sfcCommon: Others
@@ -10903,6 +10905,7 @@ src-openeuler:
   schemas: sig-ROS
   schroedinger: sig-epol
   schunk_svh_library: sig-ROS
+  schunk_svh_ros_driver: sig-ROS
   scim: sig-KDE
   scipy: Computing
   scl-utils: Application
@@ -10973,6 +10976,7 @@ src-openeuler:
   sick_safetyscanners2_interfaces: sig-ROS
   sick_safetyscanners_base: sig-ROS
   sick_safevisionary_base: sig-ROS
+  sick_scan_xd: sig-ROS
   siege: sig-epol
   sigar: sig-Java
   sigil: sig-desktop-apps
