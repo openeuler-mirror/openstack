@@ -711,6 +711,7 @@ src-openeuler:
   BiSheng-Autotuner: Compiler
   BiSheng-opentuner: Compiler
   Box2D: ecopkg
+  CImg: sig-UKUI
   CTinspector: sig-ebpf
   CUnit: Base-service
   Catch2: sig-ROS
@@ -3867,8 +3868,10 @@ src-openeuler:
   kwrited: sig-KDE
   kxml: sig-Java
   kyclassifier: sig-Compatibility-Infra
+  kylin-ai-runtime: sig-UKUI
   kylin-burner: sig-UKUI
   kylin-calculator: sig-UKUI
+  kylin-calendar: sig-UKUI
   kylin-device-daemon: sig-UKUI
   kylin-display-switch: sig-UKUI
   kylin-installer: sig-UKUI
@@ -3878,6 +3881,7 @@ src-openeuler:
   kylin-nm-plugin: sig-UKUI
   kylin-photo-viewer: sig-UKUI
   kylin-printer: sig-UKUI
+  kylin-process-manager: sig-UKUI
   kylin-recorder: sig-UKUI
   kylin-scanner: sig-UKUI
   kylin-screenshot: sig-UKUI
@@ -3886,6 +3890,8 @@ src-openeuler:
   kylin-user-guide: sig-UKUI
   kylin-video: sig-UKUI
   kylin-virtual-keyboard: sig-UKUI
+  kylin-wayland-compositor: sig-UKUI
+  kylin-wayland-protocols: sig-UKUI
   kylin-weather: sig-UKUI
   kyotocabinet: Others
   kytuning-client: sig-ops
@@ -4058,6 +4064,7 @@ src-openeuler:
   libdca: sig-epol
   libdecor: Programming-language
   libdeflate: sig-bio
+  libdisplay-info: sig-UKUI
   libdmapsharing: Application
   libdmtx: sig-KDE
   libdmx: Desktop
@@ -4200,10 +4207,14 @@ src-openeuler:
   libksba: Base-service
   libkscreen-qt5: sig-KDE
   libksysguard: sig-KDE
+  libkylin-ai-base: sig-UKUI
+  libkylin-ai-engine-devel: sig-UKUI
   libkylin-chkname: sig-UKUI
   libkylin-nm-base: sig-UKUI
   libkysdk-applications: sig-UKUI
   libkysdk-base: sig-UKUI
+  libkysdk-desktop: sig-UKUI
+  libkysdk-diagnosetest: sig-UKUI
   libkysdk-system: sig-UKUI
   liblangtag: ecopkg
   liblas: sig-HPC
@@ -4211,6 +4222,7 @@ src-openeuler:
   libldac: GNOME
   libldb: Desktop
   libldm: Storage
+  libliftoff: sig-UKUI
   liblockfile: Application
   liblognorm: System-tool
   liblouis: Application
@@ -5541,6 +5553,7 @@ src-openeuler:
   ogre: sig-ROS
   ohc: sig-Java
   ois: sig-ROS
+  ok-input-method: sig-UKUI
   okhttp: ai
   okteta: sig-KDE
   okular: sig-KDE
@@ -10923,6 +10936,7 @@ src-openeuler:
   seabios: Virt
   seahorse: Desktop
   seastar: sig-high-performance-network
+  seatd: sig-UKUI
   secDetector: sig-security-facility
   secGear: sig-confidential-computing
   secpaver: sig-security-facility
@@ -11434,6 +11448,7 @@ src-openeuler:
   ukui-clock: sig-UKUI
   ukui-control-center: sig-UKUI
   ukui-desktop-environment: sig-UKUI
+  ukui-file-metadata: sig-UKUI
   ukui-globaltheme: sig-UKUI
   ukui-greeter: sig-UKUI
   ukui-indicators: sig-UKUI
@@ -11565,6 +11580,7 @@ src-openeuler:
   variants: sig-ROS
   varnish: System-tool
   vboot-utils: Base-service
+  vcdimager: sig-UKUI
   vcftools: sig-bio
   vconfig: Networking
   vdo: Runtime
@@ -11665,6 +11681,7 @@ src-openeuler:
   wireless-tools: sig-mate-desktop
   wireshark: Application
   wisdom-advisor: A-Tune
+  wlroots: sig-UKUI
   wmctrl: Application
   woff2: Desktop
   woodstox-core: dev-utils
@@ -11911,6 +11928,7 @@ src-openeuler:
   yelp: Desktop
   yelp-tools: GNOME
   yelp-xsl: Desktop
+  yhkylin-backup-tools: sig-UKUI
   ykpers: dev-utils
   yocto-opkg-utils: sig-embedded
   yocto-poky: sig-embedded
