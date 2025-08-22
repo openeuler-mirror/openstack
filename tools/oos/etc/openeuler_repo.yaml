@@ -1431,6 +1431,7 @@ src-openeuler:
   cgdcbxd: System-tool
   cgit: sig-epol
   cglib: dev-utils
+  cgnslib: sig-HPC
   chatglm.cpp: A-Tune
   check: Programming-language
   checkpolicy: sig-security-facility
@@ -1712,6 +1713,7 @@ src-openeuler:
   debootstrap: Others
   debugedit: Base-service
   decentxml: Application
+  deepchat: sig-intelligence
   deepin-anything: sig-DDE
   deepin-clone: sig-DDE
   deepin-compressor: sig-DDE
@@ -2013,6 +2015,7 @@ src-openeuler:
   fapolicyd: sig-security-facility
   farstream02: Others
   fast-https: Networking
+  fast_float: sig-HPC
   fast_rsync: sig-memsafety
   fastdb: DB
   fastdfs: Storage
@@ -5903,7 +5906,7 @@ src-openeuler:
   perl-Algorithm-Loops: sig-perl-modules
   perl-Algorithm-NaiveBayes: sig-perl-modules
   perl-Alien-Build: sig-perl-modules
-  perl-Alien-Build-Plugin-Download-GitLab: ecopkg
+  perl-Alien-Build-Plugin-Download-GitLab: sig-perl-modules
   perl-Alien-Libxml2: sig-perl-modules
   perl-Alien-Packages: sig-perl-modules
   perl-Any-Moose: sig-perl-modules
@@ -5920,8 +5923,8 @@ src-openeuler:
   perl-AppConfig: sig-perl-modules
   perl-Archive-Any-Lite: sig-perl-modules
   perl-Archive-Tar: sig-perl-modules
-  perl-Archive-Zip: Programming-language
-  perl-Authen-SASL: Programming-language
+  perl-Archive-Zip: sig-perl-modules
+  perl-Authen-SASL: sig-perl-modules
   perl-B-COW: sig-perl-modules
   perl-B-Compiling: sig-perl-modules
   perl-B-Debug: sig-perl-modules
@@ -5931,13 +5934,13 @@ src-openeuler:
   perl-B-Hooks-OP-PPAddr: sig-perl-modules
   perl-B-Hooks-Parser: sig-perl-modules
   perl-B-Keywords: sig-perl-modules
-  perl-B-Lint: Application
+  perl-B-Lint: sig-perl-modules
   perl-B-Utils: sig-perl-modules
   perl-BSD-Resource: sig-perl-modules
   perl-BSSolv: sig-perl-modules
   perl-BibTeX-Parser: sig-perl-modules
   perl-Biblio-EndnoteStyle: sig-perl-modules
-  perl-Bit-Vector: Programming-language
+  perl-Bit-Vector: sig-perl-modules
   perl-Browser-Open: sig-perl-modules
   perl-Business-CreditCard: sig-perl-modules
   perl-Business-Hours: sig-perl-modules
@@ -5996,11 +5999,11 @@ src-openeuler:
   perl-Cache-LRU: sig-perl-modules
   perl-Cache-Memcached: sig-perl-modules
   perl-Canary-Stability: sig-perl-modules
-  perl-Capture-Tiny: Programming-language
+  perl-Capture-Tiny: sig-perl-modules
   perl-Carp: sig-perl-modules
   perl-Carp-Assert: sig-perl-modules
   perl-Carp-Assert-More: sig-perl-modules
-  perl-Carp-Clan: Programming-language
+  perl-Carp-Clan: sig-perl-modules
   perl-Carp-Fix-1_25: sig-perl-modules
   perl-Carton: sig-perl-modules
   perl-Catalyst-Manual: sig-perl-modules
@@ -6024,7 +6027,7 @@ src-openeuler:
   perl-Class-Can: sig-perl-modules
   perl-Class-Container: sig-perl-modules
   perl-Class-Data-Accessor: sig-perl-modules
-  perl-Class-Data-Inheritable: sig-RISC-V
+  perl-Class-Data-Inheritable: sig-perl-modules
   perl-Class-Date: sig-perl-modules
   perl-Class-ErrorHandler: sig-perl-modules
   perl-Class-Factory-Util: sig-perl-modules
@@ -6038,7 +6041,7 @@ src-openeuler:
   perl-Class-Prototyped: sig-perl-modules
   perl-Class-Refresh: sig-perl-modules
   perl-Class-ReturnValue: sig-perl-modules
-  perl-Class-Singleton: sig-RISC-V
+  perl-Class-Singleton: sig-perl-modules
   perl-Class-Std: sig-perl-modules
   perl-Class-Std-Fast: sig-perl-modules
   perl-Class-Throwable: sig-perl-modules
@@ -6064,7 +6067,7 @@ src-openeuler:
   perl-Compress-Snappy: sig-perl-modules
   perl-Config-Any: sig-perl-modules
   perl-Config-Auto: sig-perl-modules
-  perl-Config-AutoConf: Programming-language
+  perl-Config-AutoConf: sig-perl-modules
   perl-Config-Extend-MySQL: sig-perl-modules
   perl-Config-General: sig-perl-modules
   perl-Config-GitLike: sig-perl-modules
@@ -6108,11 +6111,11 @@ src-openeuler:
   perl-Crypt-OpenSSL-EC: sig-perl-modules
   perl-Crypt-OpenSSL-Guess: sig-perl-modules
   perl-Crypt-OpenSSL-PKCS10: sig-perl-modules
-  perl-Crypt-OpenSSL-RSA: Programming-language
-  perl-Crypt-OpenSSL-Random: Programming-language
+  perl-Crypt-OpenSSL-RSA: sig-perl-modules
+  perl-Crypt-OpenSSL-Random: sig-perl-modules
   perl-Crypt-OpenSSL-X509: sig-perl-modules
   perl-Crypt-PasswdMD5: sig-perl-modules
-  perl-Crypt-RC4: sig-RISC-V
+  perl-Crypt-RC4: sig-perl-modules
   perl-Crypt-RandPasswd: sig-perl-modules
   perl-Crypt-Rijndael: sig-perl-modules
   perl-Crypt-Salsa20: sig-perl-modules
@@ -6124,14 +6127,14 @@ src-openeuler:
   perl-Curses: sig-perl-modules
   perl-Cwd-Guard: sig-perl-modules
   perl-Cwd-utf8: sig-perl-modules
-  perl-DBD-CSV: sig-RISC-V
-  perl-DBD-MariaDB: DB
-  perl-DBD-Mock: DB
-  perl-DBD-MySQL: DB
-  perl-DBD-Pg: DB
-  perl-DBD-SQLite: DB
-  perl-DBD-SQLite2: DB
-  perl-DBD-XBase: DB
+  perl-DBD-CSV: sig-perl-modules
+  perl-DBD-MariaDB: sig-perl-modules
+  perl-DBD-Mock: sig-perl-modules
+  perl-DBD-MySQL: sig-perl-modules
+  perl-DBD-Pg: sig-perl-modules
+  perl-DBD-SQLite: sig-perl-modules
+  perl-DBD-SQLite2: sig-perl-modules
+  perl-DBD-XBase: sig-perl-modules
   perl-DBI: sig-perl-modules
   perl-DBICx-AutoDoc: sig-perl-modules
   perl-DBIx-Class: sig-perl-modules
@@ -6145,7 +6148,7 @@ src-openeuler:
   perl-DBIx-DBSchema: sig-perl-modules
   perl-DBIx-Introspector: sig-perl-modules
   perl-DBIx-RunSQL: sig-perl-modules
-  perl-DBIx-Safe: DB
+  perl-DBIx-Safe: sig-perl-modules
   perl-DBIx-Simple: sig-perl-modules
   perl-DBIx-XHTML_Table: sig-perl-modules
   perl-DBM-Deep: sig-perl-modules
@@ -6155,51 +6158,51 @@ src-openeuler:
   perl-Data-Binary: sig-perl-modules
   perl-Data-Compare: sig-perl-modules
   perl-Data-Dmp: sig-perl-modules
-  perl-Data-Dump: Programming-language
+  perl-Data-Dump: sig-perl-modules
   perl-Data-Dump-Streamer: sig-perl-modules
   perl-Data-Dumper: sig-perl-modules
   perl-Data-Dumper-Concise: sig-perl-modules
   perl-Data-Dumper-Names: sig-perl-modules
   perl-Data-Munge: sig-perl-modules
-  perl-Data-OptList: Programming-language
+  perl-Data-OptList: sig-perl-modules
   perl-Data-Page: sig-perl-modules
   perl-Data-Perl: sig-perl-modules
-  perl-Data-Section: Programming-language
+  perl-Data-Section: sig-perl-modules
   perl-Data-Section-Simple: sig-perl-modules
   perl-Data-Stream-Bulk: sig-perl-modules
   perl-Data-TreeDumper: sig-perl-modules
   perl-Data-Tumbler: sig-perl-modules
-  perl-Data-UUID: Programming-language
-  perl-Data-Uniqid: sig-RISC-V
+  perl-Data-UUID: sig-perl-modules
+  perl-Data-Uniqid: sig-perl-modules
   perl-Data-Validate-Type: sig-perl-modules
   perl-Database-DumpTruck: sig-perl-modules
-  perl-Date-Calc: Programming-language
+  perl-Date-Calc: sig-perl-modules
   perl-Date-Calc-XS: sig-perl-modules
   perl-Date-Easter: sig-perl-modules
   perl-Date-Holidays-DE: sig-perl-modules
   perl-Date-ISO8601: sig-perl-modules
   perl-Date-JD: sig-perl-modules
   perl-Date-Leapyear: sig-perl-modules
-  perl-Date-Manip: Programming-language
+  perl-Date-Manip: sig-perl-modules
   perl-Date-Simple: sig-perl-modules
   perl-Date-Tiny: sig-perl-modules
-  perl-DateTime: sig-RISC-V
-  perl-DateTime-Calendar-Julian: sig-RISC-V
-  perl-DateTime-Format-Builder: sig-RISC-V
-  perl-DateTime-Format-Strptime: sig-RISC-V
-  perl-DateTime-Locale: sig-RISC-V
-  perl-DateTime-TimeZone: sig-RISC-V
-  perl-DateTime-TimeZone-SystemV: sig-RISC-V
-  perl-DateTime-TimeZone-Tzfile: sig-RISC-V
+  perl-DateTime: sig-perl-modules
+  perl-DateTime-Calendar-Julian: sig-perl-modules
+  perl-DateTime-Format-Builder: sig-perl-modules
+  perl-DateTime-Format-Strptime: sig-perl-modules
+  perl-DateTime-Locale: sig-perl-modules
+  perl-DateTime-TimeZone: sig-perl-modules
+  perl-DateTime-TimeZone-SystemV: sig-perl-modules
+  perl-DateTime-TimeZone-Tzfile: sig-perl-modules
   perl-Debug-ShowStuff: sig-perl-modules
   perl-Declare-Constraints-Simple: sig-perl-modules
   perl-Devel-Autoflush: sig-perl-modules
-  perl-Devel-CallChecker: sig-RISC-V
+  perl-Devel-CallChecker: sig-perl-modules
   perl-Devel-Caller: sig-perl-modules
   perl-Devel-Caller-IgnoreNamespaces: sig-perl-modules
   perl-Devel-CheckBin: sig-perl-modules
   perl-Devel-CheckCompiler: sig-perl-modules
-  perl-Devel-CheckLib: Programming-language
+  perl-Devel-CheckLib: sig-perl-modules
   perl-Devel-CheckOS: sig-perl-modules
   perl-Devel-Confess: sig-perl-modules
   perl-Devel-Cycle: sig-perl-modules
@@ -6210,7 +6213,7 @@ src-openeuler:
   perl-Devel-GlobalDestruction: sig-perl-modules
   perl-Devel-GoFaster: sig-perl-modules
   perl-Devel-Hexdump: sig-perl-modules
-  perl-Devel-Hide: sig-RISC-V
+  perl-Devel-Hide: sig-perl-modules
   perl-Devel-LexAlias: sig-perl-modules
   perl-Devel-MAT-Dumper: sig-perl-modules
   perl-Devel-OverloadInfo: sig-perl-modules
@@ -6223,7 +6226,7 @@ src-openeuler:
   perl-Devel-SelfStubber: sig-perl-modules
   perl-Devel-SimpleTrace: sig-perl-modules
   perl-Devel-Size: sig-perl-modules
-  perl-Devel-StackTrace: sig-RISC-V
+  perl-Devel-StackTrace: sig-perl-modules
   perl-Devel-StackTrace-AsHTML: sig-perl-modules
   perl-Devel-StackTrace-WithLexicals: sig-perl-modules
   perl-Devel-StringInfo: sig-perl-modules
@@ -6231,9 +6234,9 @@ src-openeuler:
   perl-Devel-Timer: sig-perl-modules
   perl-Devel-Trace: sig-perl-modules
   perl-Diff-LibXDiff: sig-perl-modules
-  perl-Digest: Base-service
+  perl-Digest: sig-perl-modules
   perl-Digest-BubbleBabble: sig-perl-modules
-  perl-Digest-HMAC: Programming-language
+  perl-Digest-HMAC: sig-perl-modules
   perl-Digest-JHash: sig-perl-modules
   perl-Digest-MD2: sig-perl-modules
   perl-Digest-MD4: sig-perl-modules
@@ -6247,9 +6250,9 @@ src-openeuler:
   perl-Dir-Manifest: sig-perl-modules
   perl-Dir-Self: sig-perl-modules
   perl-Directory-Scratch: sig-perl-modules
-  perl-Dist-CheckConflicts: sig-RISC-V
+  perl-Dist-CheckConflicts: sig-perl-modules
   perl-Dist-Metadata: sig-perl-modules
-  perl-DynaLoader-Functions: sig-RISC-V
+  perl-DynaLoader-Functions: sig-perl-modules
   perl-EBook-EPUB: sig-perl-modules
   perl-ElasticSearch-SearchBuilder: sig-perl-modules
   perl-Email-Abstract: sig-perl-modules
@@ -6269,10 +6272,10 @@ src-openeuler:
   perl-Email-Simple: sig-perl-modules
   perl-Encode: sig-perl-modules
   perl-Encode-Detect: sig-perl-modules
-  perl-Encode-EUCJPASCII: sig-RISC-V
-  perl-Encode-HanExtra: sig-RISC-V
+  perl-Encode-EUCJPASCII: sig-perl-modules
+  perl-Encode-HanExtra: sig-perl-modules
   perl-Encode-IMAPUTF7: sig-perl-modules
-  perl-Encode-JIS2K: sig-RISC-V
+  perl-Encode-JIS2K: sig-perl-modules
   perl-Encode-Locale: sig-perl-modules
   perl-Encode-Newlines: sig-perl-modules
   perl-Env: sig-perl-modules
@@ -6301,27 +6304,27 @@ src-openeuler:
   perl-Exporter-Lite: sig-perl-modules
   perl-Exporter-Tiny: sig-perl-modules
   perl-ExtUtils-AutoInstall: sig-perl-modules
-  perl-ExtUtils-CBuilder: Programming-language
+  perl-ExtUtils-CBuilder: sig-perl-modules
   perl-ExtUtils-CChecker: sig-perl-modules
   perl-ExtUtils-Config: sig-perl-modules
-  perl-ExtUtils-Depends: sig-mate-desktop
+  perl-ExtUtils-Depends: sig-perl-modules
   perl-ExtUtils-HasCompiler: sig-perl-modules
   perl-ExtUtils-Helpers: sig-perl-modules
   perl-ExtUtils-InferConfig: sig-perl-modules
   perl-ExtUtils-Install: sig-perl-modules
   perl-ExtUtils-InstallPaths: sig-perl-modules
   perl-ExtUtils-LibBuilder: sig-perl-modules
-  perl-ExtUtils-MakeMaker: Base-service
+  perl-ExtUtils-MakeMaker: sig-perl-modules
   perl-ExtUtils-Manifest: sig-perl-modules
   perl-ExtUtils-ParseXS: sig-perl-modules
-  perl-ExtUtils-PkgConfig: sig-mate-desktop
+  perl-ExtUtils-PkgConfig: sig-perl-modules
   perl-ExtUtils-TBone: sig-perl-modules
   perl-ExtUtils-Typemap: sig-perl-modules
   perl-ExtUtils-Typemaps-Default: sig-perl-modules
   perl-FCGI: sig-perl-modules
   perl-FCGI-ProcManager: sig-perl-modules
   perl-FFI-CheckLib: sig-perl-modules
-  perl-Fedora-VSP: Programming-language
+  perl-Fedora-VSP: sig-perl-modules
   perl-Fennec-Lite: sig-perl-modules
   perl-File-BOM: sig-perl-modules
   perl-File-BaseDir: sig-perl-modules
@@ -6343,7 +6346,7 @@ src-openeuler:
   perl-File-Flat: sig-perl-modules
   perl-File-HomeDir: sig-perl-modules
   perl-File-KeePass: sig-perl-modules
-  perl-File-Listing: Programming-language
+  perl-File-Listing: sig-perl-modules
   perl-File-LoadLines: sig-perl-modules
   perl-File-MMagic: sig-perl-modules
   perl-File-Map: sig-perl-modules
@@ -6364,7 +6367,7 @@ src-openeuler:
   perl-File-ShareDir: sig-perl-modules
   perl-File-ShareDir-Install: sig-perl-modules
   perl-File-ShareDir-ProjectDistDir: sig-perl-modules
-  perl-File-Slurp: Programming-language
+  perl-File-Slurp: sig-perl-modules
   perl-File-Slurp-Tiny: sig-perl-modules
   perl-File-Slurper: sig-perl-modules
   perl-File-Spec-Native: sig-perl-modules
@@ -6386,8 +6389,8 @@ src-openeuler:
   perl-Filter-Simple: sig-perl-modules
   perl-Finance-YahooQuote: sig-perl-modules
   perl-Flow: sig-perl-modules
-  perl-Font-AFM: sig-RISC-V
-  perl-Font-TTF: Programming-language
+  perl-Font-AFM: sig-perl-modules
+  perl-Font-TTF: sig-perl-modules
   perl-Format-Human-Bytes: sig-perl-modules
   perl-FreezeThaw: sig-perl-modules
   perl-GD: sig-perl-modules
@@ -6414,7 +6417,7 @@ src-openeuler:
   perl-Git-Repository-Plugin-AUTOLOAD: sig-perl-modules
   perl-Git-Version-Compare: sig-perl-modules
   perl-Git-Wrapper: sig-perl-modules
-  perl-Glib: sig-mate-desktop
+  perl-Glib: sig-perl-modules
   perl-Graph: sig-perl-modules
   perl-Graphics-ColorNames: sig-perl-modules
   perl-Graphics-ColorNames-WWW: sig-perl-modules
@@ -6425,13 +6428,13 @@ src-openeuler:
   perl-HTML-FillInForm: sig-perl-modules
   perl-HTML-Form: sig-perl-modules
   perl-HTML-Format: sig-perl-modules
-  perl-HTML-Formatter: sig-RISC-V
+  perl-HTML-Formatter: sig-perl-modules
   perl-HTML-GenToc: sig-perl-modules
   perl-HTML-HTML5-Entities: sig-perl-modules
   perl-HTML-LinkList: sig-perl-modules
   perl-HTML-Lint: sig-perl-modules
   perl-HTML-Mason: sig-perl-modules
-  perl-HTML-Parser: Programming-language
+  perl-HTML-Parser: sig-perl-modules
   perl-HTML-Quoted: sig-perl-modules
   perl-HTML-RewriteAttributes: sig-perl-modules
   perl-HTML-Scrubber: sig-perl-modules
@@ -6441,31 +6444,31 @@ src-openeuler:
   perl-HTML-StripScripts-Parser: sig-perl-modules
   perl-HTML-Table: sig-perl-modules
   perl-HTML-TagCloud: sig-perl-modules
-  perl-HTML-Tagset: Programming-language
+  perl-HTML-Tagset: sig-perl-modules
   perl-HTML-Template-Pro: sig-perl-modules
   perl-HTML-Tiny: sig-perl-modules
   perl-HTML-TokeParser-Simple: sig-perl-modules
-  perl-HTML-Tree: sig-RISC-V
+  perl-HTML-Tree: sig-perl-modules
   perl-HTTP-Body: sig-perl-modules
   perl-HTTP-BrowserDetect: sig-perl-modules
   perl-HTTP-Cache-Transparent: sig-perl-modules
-  perl-HTTP-CookieJar: Programming-language
+  perl-HTTP-CookieJar: sig-perl-modules
   perl-HTTP-CookieMonster: sig-perl-modules
-  perl-HTTP-Cookies: Programming-language
+  perl-HTTP-Cookies: sig-perl-modules
   perl-HTTP-Daemon: sig-perl-modules
-  perl-HTTP-Date: Programming-language
+  perl-HTTP-Date: sig-perl-modules
   perl-HTTP-Exception: sig-perl-modules
   perl-HTTP-Headers-Fast: sig-perl-modules
   perl-HTTP-Link-Parser: sig-perl-modules
   perl-HTTP-Lite: sig-perl-modules
-  perl-HTTP-Message: Programming-language
+  perl-HTTP-Message: sig-perl-modules
   perl-HTTP-MultiPartParser: sig-perl-modules
-  perl-HTTP-Negotiate: Programming-language
+  perl-HTTP-Negotiate: sig-perl-modules
   perl-HTTP-Parser: sig-perl-modules
   perl-HTTP-Parser-XS: sig-perl-modules
   perl-HTTP-Request-AsCGI: sig-perl-modules
   perl-HTTP-Request-Params: sig-perl-modules
-  perl-HTTP-Response-Encoding: sig-RISC-V
+  perl-HTTP-Response-Encoding: sig-perl-modules
   perl-HTTP-Server-Simple: sig-perl-modules
   perl-HTTP-Server-Simple-PSGI: sig-perl-modules
   perl-HTTP-Thin: sig-perl-modules
@@ -6488,7 +6491,7 @@ src-openeuler:
   perl-IO-All: sig-perl-modules
   perl-IO-Any: sig-perl-modules
   perl-IO-Compress: sig-perl-modules
-  perl-IO-HTML: Programming-language
+  perl-IO-HTML: sig-perl-modules
   perl-IO-Interactive: sig-perl-modules
   perl-IO-Interface: sig-perl-modules
   perl-IO-Multiplex: sig-perl-modules
@@ -6497,12 +6500,12 @@ src-openeuler:
   perl-IO-Prompt-Tiny: sig-perl-modules
   perl-IO-Prompter: sig-perl-modules
   perl-IO-Pty-Easy: sig-perl-modules
-  perl-IO-Socket-INET6: Programming-language
+  perl-IO-Socket-INET6: sig-perl-modules
   perl-IO-Socket-IP: sig-perl-modules
   perl-IO-Socket-SSL: sig-perl-modules
   perl-IO-Socket-Socks: sig-perl-modules
   perl-IO-Socket-Timeout: sig-perl-modules
-  perl-IO-String: Programming-language
+  perl-IO-String: sig-perl-modules
   perl-IO-Stty: sig-perl-modules
   perl-IO-Tee: sig-perl-modules
   perl-IO-TieCombine: sig-perl-modules
@@ -6529,7 +6532,7 @@ src-openeuler:
   perl-Inline: sig-perl-modules
   perl-Iterator-Simple: sig-perl-modules
   perl-Iterator-Simple-Lookahead: sig-perl-modules
-  perl-JSON: Programming-language
+  perl-JSON: sig-perl-modules
   perl-JSON-MaybeXS: sig-perl-modules
   perl-JSON-PP: sig-perl-modules
   perl-JSON-Parse: sig-perl-modules
@@ -6538,12 +6541,12 @@ src-openeuler:
   perl-JSON-Tiny: sig-perl-modules
   perl-JSON-XS: sig-perl-modules
   perl-JavaScript-Beautifier: sig-perl-modules
-  perl-Jcode: sig-RISC-V
+  perl-Jcode: sig-perl-modules
   perl-L: sig-perl-modules
-  perl-LDAP: sig-RISC-V
-  perl-LWP-MediaTypes: Programming-language
+  perl-LDAP: sig-perl-modules
+  perl-LWP-MediaTypes: sig-perl-modules
   perl-LWP-Online: sig-perl-modules
-  perl-LWP-Protocol-https: Programming-language
+  perl-LWP-Protocol-https: sig-perl-modules
   perl-LaTeX-ToUnicode: sig-perl-modules
   perl-Language-Functional: sig-perl-modules
   perl-Lchown: sig-perl-modules
@@ -6600,7 +6603,7 @@ src-openeuler:
   perl-Log-Any: sig-perl-modules
   perl-Log-Contextual: sig-perl-modules
   perl-Log-Dispatch: sig-perl-modules
-  perl-Log-Dispatch-FileRotate: sig-RISC-V
+  perl-Log-Dispatch-FileRotate: sig-perl-modules
   perl-Log-Handler: sig-perl-modules
   perl-Log-Log4perl: sig-perl-modules
   perl-Log-Message: sig-perl-modules
@@ -6615,14 +6618,14 @@ src-openeuler:
   perl-MIME-Lite: sig-perl-modules
   perl-MIME-Types: sig-perl-modules
   perl-MIME-tools: sig-perl-modules
-  perl-MLDBM: sig-RISC-V
+  perl-MLDBM: sig-perl-modules
   perl-MP3-Info: sig-perl-modules
-  perl-MRO-Compat: Programming-language
+  perl-MRO-Compat: sig-perl-modules
   perl-Mail-AuthenticationResults: sig-perl-modules
   perl-Mail-Box: sig-perl-modules
   perl-Mail-Box-POP3: sig-perl-modules
   perl-Mail-Box-Parser-C: sig-perl-modules
-  perl-Mail-DKIM: Programming-language
+  perl-Mail-DKIM: sig-perl-modules
   perl-Mail-IMAPTalk: sig-perl-modules
   perl-Mail-JMAPTalk: sig-recycle
   perl-Mail-Message: sig-perl-modules
@@ -6630,10 +6633,10 @@ src-openeuler:
   perl-Mail-Sender: sig-perl-modules
   perl-Mail-Sendmail: sig-perl-modules
   perl-Mail-Transport: sig-perl-modules
-  perl-MailTools: Programming-language
+  perl-MailTools: sig-perl-modules
   perl-Makefile-DOM: sig-perl-modules
   perl-MasonX-Request-WithApacheSession: sig-perl-modules
-  perl-Math-Base-Convert: sig-RISC-V
+  perl-Math-Base-Convert: sig-perl-modules
   perl-Math-Base36: sig-perl-modules
   perl-Math-Base85: sig-perl-modules
   perl-Math-BaseCnv: sig-perl-modules
@@ -6669,7 +6672,7 @@ src-openeuler:
   perl-Mock-Quick: sig-perl-modules
   perl-Mock-Sub: sig-perl-modules
   perl-Modern-Perl: sig-perl-modules
-  perl-Module-Build: Programming-language
+  perl-Module-Build: sig-perl-modules
   perl-Module-Build-Deprecated: sig-perl-modules
   perl-Module-Build-Pluggable: sig-perl-modules
   perl-Module-Build-Tiny: sig-perl-modules
@@ -6683,7 +6686,7 @@ src-openeuler:
   perl-Module-Extract-Namespaces: sig-perl-modules
   perl-Module-Extract-Use: sig-perl-modules
   perl-Module-Find: sig-perl-modules
-  perl-Module-Implementation: sig-RISC-V
+  perl-Module-Implementation: sig-perl-modules
   perl-Module-Install: sig-perl-modules
   perl-Module-Install-AuthorRequires: sig-perl-modules
   perl-Module-Install-AuthorTests: sig-perl-modules
@@ -6693,28 +6696,28 @@ src-openeuler:
   perl-Module-Install-ExtraTests: sig-perl-modules
   perl-Module-Install-GithubMeta: sig-perl-modules
   perl-Module-Install-ManifestSkip: sig-perl-modules
-  perl-Module-Install-ReadmeFromPod: Programming-language
-  perl-Module-Install-ReadmeMarkdownFromPod: Programming-language
-  perl-Module-Install-Repository: Programming-language
+  perl-Module-Install-ReadmeFromPod: sig-perl-modules
+  perl-Module-Install-ReadmeMarkdownFromPod: sig-perl-modules
+  perl-Module-Install-Repository: sig-perl-modules
   perl-Module-Install-TestBase: sig-perl-modules
   perl-Module-Install-TrustMetaYml: sig-perl-modules
   perl-Module-Load: sig-perl-modules
   perl-Module-Load-Conditional: sig-perl-modules
   perl-Module-Load-Util: sig-perl-modules
   perl-Module-Manifest: sig-perl-modules
-  perl-Module-Manifest-Skip: Programming-language
+  perl-Module-Manifest-Skip: sig-perl-modules
   perl-Module-Mask: sig-perl-modules
   perl-Module-Math-Depends: sig-perl-modules
   perl-Module-Metadata: sig-perl-modules
-  perl-Module-Package: Programming-language
-  perl-Module-Package-Au: Programming-language
+  perl-Module-Package: sig-perl-modules
+  perl-Module-Package-Au: sig-perl-modules
   perl-Module-Path: sig-perl-modules
   perl-Module-Pluggable: sig-perl-modules
   perl-Module-Reader: sig-perl-modules
   perl-Module-Refresh: sig-perl-modules
-  perl-Module-Runtime: Programming-language
+  perl-Module-Runtime: sig-perl-modules
   perl-Module-Runtime-Conflicts: sig-perl-modules
-  perl-Module-ScanDeps: Programming-language
+  perl-Module-ScanDeps: sig-perl-modules
   perl-Module-Signature: sig-perl-modules
   perl-Module-Starter: sig-perl-modules
   perl-Module-Util: sig-perl-modules
@@ -6724,7 +6727,7 @@ src-openeuler:
   perl-Mojolicious: sig-perl-modules
   perl-Monitoring-Plugin: sig-perl-modules
   perl-Monotone-AutomateStdio: sig-perl-modules
-  perl-Moo: Programming-language
+  perl-Moo: sig-perl-modules
   perl-MooX: sig-perl-modules
   perl-MooX-Cmd: sig-perl-modules
   perl-MooX-ConfigFromFile: sig-perl-modules
@@ -6791,16 +6794,16 @@ src-openeuler:
   perl-MooseX-Types-Path-Tiny: sig-perl-modules
   perl-MooseX-Types-Perl: sig-perl-modules
   perl-MooseX-Types-Stringlike: sig-perl-modules
-  perl-Mozilla-CA: Base-service
+  perl-Mozilla-CA: sig-perl-modules
   perl-Mozilla-LDAP: sig-perl-modules
   perl-Mozilla-PublicSuffix: sig-perl-modules
   perl-NNTPClient: sig-perl-modules
-  perl-NTLM: Programming-language
+  perl-NTLM: sig-perl-modules
   perl-Net-AMQP: sig-perl-modules
   perl-Net-BGP: sig-perl-modules
   perl-Net-CIDR: sig-perl-modules
   perl-Net-CIDR-Lite: sig-perl-modules
-  perl-Net-DNS: Programming-language
+  perl-Net-DNS: sig-perl-modules
   perl-Net-DNS-Resolver-Mock: sig-perl-modules
   perl-Net-DNS-Resolver-Programmable: sig-perl-modules
   perl-Net-DNS-SEC: sig-perl-modules
@@ -6808,7 +6811,7 @@ src-openeuler:
   perl-Net-Domain-TLD: sig-perl-modules
   perl-Net-Google-AuthSub: sig-perl-modules
   perl-Net-HL7: sig-perl-modules
-  perl-Net-HTTP: Programming-language
+  perl-Net-HTTP: sig-perl-modules
   perl-Net-INET6Glue: sig-perl-modules
   perl-Net-IP: sig-perl-modules
   perl-Net-IP-Match-Regexp: sig-perl-modules
@@ -6833,7 +6836,7 @@ src-openeuler:
   perl-Net-Telnet: sig-perl-modules
   perl-Net-Telnet-Cisco: sig-perl-modules
   perl-Net-UPnP: sig-perl-modules
-  perl-NetAddr-IP: Programming-language
+  perl-NetAddr-IP: sig-perl-modules
   perl-Nmap-Parser: sig-perl-modules
   perl-Number-Bytes-Human: sig-perl-modules
   perl-Number-Compare: sig-perl-modules
@@ -6867,8 +6870,8 @@ src-openeuler:
   perl-PPIx-EditorTools: sig-perl-modules
   perl-PPIx-QuoteLike: sig-perl-modules
   perl-PPIx-Regexp: sig-perl-modules
-  perl-PPIx-Utilities: sig-RISC-V
-  perl-PPIx-Utils: sig-RISC-V
+  perl-PPIx-Utilities: sig-perl-modules
+  perl-PPIx-Utils: sig-perl-modules
   perl-PSGI: sig-perl-modules
   perl-Package-Anon: sig-perl-modules
   perl-Package-Constants: sig-perl-modules
@@ -6876,7 +6879,7 @@ src-openeuler:
   perl-Package-Generator: sig-perl-modules
   perl-Package-New: sig-perl-modules
   perl-Package-Stash: sig-perl-modules
-  perl-Package-Stash-XS: sig-RISC-V
+  perl-Package-Stash-XS: sig-perl-modules
   perl-Package-Variant: sig-perl-modules
   perl-PadWalker: sig-perl-modules
   perl-Palm: sig-perl-modules
@@ -6889,11 +6892,11 @@ src-openeuler:
   perl-Parallel-Scoreboard: sig-perl-modules
   perl-Params-CallbackRequest: sig-perl-modules
   perl-Params-Check: sig-perl-modules
-  perl-Params-Classify: sig-RISC-V
+  perl-Params-Classify: sig-perl-modules
   perl-Params-Coerce: sig-perl-modules
-  perl-Params-Util: Programming-language
+  perl-Params-Util: sig-perl-modules
   perl-Params-Validate: sig-perl-modules
-  perl-Params-ValidationCompiler: sig-RISC-V
+  perl-Params-ValidationCompiler: sig-perl-modules
   perl-Parse-DMIDecode: sig-perl-modules
   perl-Parse-Debian-Packages: sig-perl-modules
   perl-Parse-EDID: sig-perl-modules
@@ -6902,19 +6905,19 @@ src-openeuler:
   perl-Parse-Gitignore: sig-perl-modules
   perl-Parse-MIME: sig-perl-modules
   perl-Parse-PMFile: sig-perl-modules
-  perl-Parse-RecDescent: sig-RISC-V
-  perl-Parse-Yapp: Programming-language
-  perl-Path-Class: Programming-language
+  perl-Parse-RecDescent: sig-perl-modules
+  perl-Parse-Yapp: sig-perl-modules
+  perl-Path-Class: sig-perl-modules
   perl-Path-FindDev: sig-perl-modules
   perl-Path-IsDev: sig-perl-modules
   perl-Path-Iterator-Rule: sig-perl-modules
   perl-Path-ScanINC: sig-perl-modules
-  perl-Path-Tiny: Programming-language
+  perl-Path-Tiny: sig-perl-modules
   perl-Path-Tiny-Rule: sig-perl-modules
   perl-PathTools: sig-perl-modules
   perl-Pegex: sig-perl-modules
-  perl-Perl-Critic: sig-RISC-V
-  perl-Perl-MinimumVersion: sig-RISC-V
+  perl-Perl-Critic: sig-perl-modules
+  perl-Perl-MinimumVersion: sig-perl-modules
   perl-Perl-OSType: sig-perl-modules
   perl-Perl-PrereqScanner: sig-perl-modules
   perl-Perl-Stripper: sig-perl-modules
@@ -6943,8 +6946,8 @@ src-openeuler:
   perl-Pod-Elemental-PerlMunger: sig-perl-modules
   perl-Pod-Escapes: sig-perl-modules
   perl-Pod-Eventual: sig-perl-modules
-  perl-Pod-LaTeX: Application
-  perl-Pod-Markdown: Programming-language
+  perl-Pod-LaTeX: sig-perl-modules
+  perl-Pod-Markdown: sig-perl-modules
   perl-Pod-Markdown-Github: sig-perl-modules
   perl-Pod-MinimumVersion: sig-perl-modules
   perl-Pod-POM: sig-perl-modules
@@ -6996,17 +6999,17 @@ src-openeuler:
   perl-Return-Value: sig-perl-modules
   perl-Role-Basic: sig-perl-modules
   perl-Role-Identifiable: sig-perl-modules
-  perl-Role-Tiny: Programming-language
+  perl-Role-Tiny: sig-perl-modules
   perl-Roman: sig-perl-modules
   perl-Router-Simple: sig-perl-modules
-  perl-SGMLSpm: Programming-language
+  perl-SGMLSpm: sig-perl-modules
   perl-SNMP_Session: sig-perl-modules
   perl-SQL-Abstract: sig-perl-modules
   perl-SQL-Abstract-Classic: sig-perl-modules
   perl-SQL-Interp: sig-perl-modules
   perl-SQL-Library: sig-perl-modules
   perl-SQL-ReservedWords: sig-perl-modules
-  perl-SQL-Statement: sig-RISC-V
+  perl-SQL-Statement: sig-perl-modules
   perl-STD: sig-perl-modules
   perl-SUPER: sig-perl-modules
   perl-SVG: sig-perl-modules
@@ -7014,7 +7017,7 @@ src-openeuler:
   perl-Safe-Isa: sig-perl-modules
   perl-Scalar-Construct: sig-perl-modules
   perl-Scalar-List-Utils: sig-perl-modules
-  perl-Scalar-Properties: sig-RISC-V
+  perl-Scalar-Properties: sig-perl-modules
   perl-Scalar-String: sig-perl-modules
   perl-Schedule-Cron: sig-perl-modules
   perl-Scope-Guard: sig-perl-modules
@@ -7034,24 +7037,24 @@ src-openeuler:
   perl-Snowball-Swedish: sig-perl-modules
   perl-Socket: sig-perl-modules
   perl-Socket-MsgHdr: sig-perl-modules
-  perl-Socket6: Programming-language
-  perl-Software-License: Programming-language
+  perl-Socket6: sig-perl-modules
+  perl-Software-License: sig-perl-modules
   perl-Software-License-CCpack: sig-perl-modules
   perl-Sort-Key: sig-perl-modules
   perl-Sort-MergeSort: sig-perl-modules
   perl-Sort-Naturally: sig-perl-modules
   perl-Sort-Versions: sig-perl-modules
-  perl-Specio: sig-RISC-V
+  perl-Specio: sig-perl-modules
   perl-Spellunker: sig-perl-modules
   perl-Spiffy: sig-perl-modules
   perl-Spreadsheet-ParseExcel: sig-perl-modules
-  perl-Spreadsheet-WriteExcel: sig-RISC-V
+  perl-Spreadsheet-WriteExcel: sig-perl-modules
   perl-Statistics-Basic: sig-perl-modules
   perl-Statistics-CaseResampling: sig-perl-modules
   perl-Statistics-ChiSquare: sig-perl-modules
   perl-Statistics-Contingency: sig-perl-modules
   perl-Statistics-Descriptive: sig-perl-modules
-  perl-Storable: Base-service
+  perl-Storable: sig-perl-modules
   perl-Stream-Buffered: sig-perl-modules
   perl-String-Approx: sig-perl-modules
   perl-String-Base: sig-perl-modules
@@ -7066,7 +7069,7 @@ src-openeuler:
   perl-String-Print: sig-perl-modules
   perl-String-Random: sig-perl-modules
   perl-String-RewritePrefix: sig-perl-modules
-  perl-String-ShellQuote: Programming-language
+  perl-String-ShellQuote: sig-perl-modules
   perl-String-Similarity: sig-perl-modules
   perl-String-Tagged: sig-perl-modules
   perl-String-Tagged-Terminal: sig-perl-modules
@@ -7082,11 +7085,11 @@ src-openeuler:
   perl-Sub-Identify: sig-perl-modules
   perl-Sub-Infix: sig-perl-modules
   perl-Sub-Info: sig-perl-modules
-  perl-Sub-Install: Programming-language
-  perl-Sub-Name: Programming-language
+  perl-Sub-Install: sig-perl-modules
+  perl-Sub-Name: sig-perl-modules
   perl-Sub-Override: sig-perl-modules
   perl-Sub-Prototype: sig-perl-modules
-  perl-Sub-Quote: Programming-language
+  perl-Sub-Quote: sig-perl-modules
   perl-Sub-Uplevel: sig-perl-modules
   perl-Sub-WrapPackages: sig-perl-modules
   perl-Switch: sig-perl-modules
@@ -7155,7 +7158,7 @@ src-openeuler:
   perl-Test-Command: sig-perl-modules
   perl-Test-Compile: sig-perl-modules
   perl-Test-ConsistentVersion: sig-perl-modules
-  perl-Test-Deep: Programming-language
+  perl-Test-Deep: sig-perl-modules
   perl-Test-Deep-Fuzzy: sig-perl-modules
   perl-Test-Deep-Type: sig-perl-modules
   perl-Test-Dependencies: sig-perl-modules
@@ -7171,8 +7174,8 @@ src-openeuler:
   perl-Test-Exception-LessClever: sig-perl-modules
   perl-Test-Exit: sig-perl-modules
   perl-Test-Expect: sig-perl-modules
-  perl-Test-FailWarnings: Programming-language
-  perl-Test-Fatal: Programming-language
+  perl-Test-FailWarnings: sig-perl-modules
+  perl-Test-Fatal: sig-perl-modules
   perl-Test-File: sig-perl-modules
   perl-Test-File-Contents: sig-perl-modules
   perl-Test-File-ShareDir: sig-perl-modules
@@ -7185,7 +7188,7 @@ src-openeuler:
   perl-Test-HexDifferences: sig-perl-modules
   perl-Test-HexString: sig-perl-modules
   perl-Test-Identity: sig-perl-modules
-  perl-Test-InDistDir: Programming-language
+  perl-Test-InDistDir: sig-perl-modules
   perl-Test-Inter: sig-perl-modules
   perl-Test-Is: sig-perl-modules
   perl-Test-JSON: sig-perl-modules
@@ -7197,7 +7200,7 @@ src-openeuler:
   perl-Test-Manifest: sig-perl-modules
   perl-Test-Memory-Cycle: sig-perl-modules
   perl-Test-Metrics-Any: sig-perl-modules
-  perl-Test-MinimumVersion: sig-RISC-V
+  perl-Test-MinimumVersion: sig-perl-modules
   perl-Test-Mock-LWP: sig-perl-modules
   perl-Test-Mock-Time: sig-perl-modules
   perl-Test-MockModule: sig-perl-modules
@@ -7210,28 +7213,28 @@ src-openeuler:
   perl-Test-More-UTF8: sig-perl-modules
   perl-Test-Most: sig-perl-modules
   perl-Test-Name-FromLine: sig-perl-modules
-  perl-Test-Needs: Programming-language
+  perl-Test-Needs: sig-perl-modules
   perl-Test-Nginx: sig-perl-modules
   perl-Test-NiceDump: sig-perl-modules
   perl-Test-NoBreakpoints: sig-perl-modules
   perl-Test-NoPlan: sig-perl-modules
   perl-Test-NoTabs: sig-perl-modules
-  perl-Test-NoWarnings: Programming-language
+  perl-Test-NoWarnings: sig-perl-modules
   perl-Test-Number-Delta: sig-perl-modules
   perl-Test-Object: sig-perl-modules
   perl-Test-Output: sig-perl-modules
   perl-Test-POE-Client-TCP: sig-perl-modules
   perl-Test-POE-Server-TCP: sig-perl-modules
-  perl-Test-Pod: Programming-language
+  perl-Test-Pod: sig-perl-modules
   perl-Test-Pod-Content: sig-perl-modules
-  perl-Test-Pod-Coverage: Programming-language
+  perl-Test-Pod-Coverage: sig-perl-modules
   perl-Test-Pod-No404s: sig-perl-modules
   perl-Test-Pod-Spelling-CommonMistakes: sig-perl-modules
   perl-Test-Portability-Files: sig-perl-modules
   perl-Test-Prereq: sig-perl-modules
   perl-Test-Regexp: sig-perl-modules
   perl-Test-Regression: sig-perl-modules
-  perl-Test-Requires: Programming-language
+  perl-Test-Requires: sig-perl-modules
   perl-Test-Requires-Git: sig-perl-modules
   perl-Test-RequiresInternet: sig-perl-modules
   perl-Test-Roo: sig-perl-modules
@@ -7258,14 +7261,14 @@ src-openeuler:
   perl-Test-Version: sig-perl-modules
   perl-Test-WWW-Selenium: sig-perl-modules
   perl-Test-Warn: sig-perl-modules
-  perl-Test-Warnings: Programming-language
+  perl-Test-Warnings: sig-perl-modules
   perl-Test-Without-Module: sig-perl-modules
   perl-Test-WriteVariants: sig-perl-modules
   perl-Test-YAML: sig-perl-modules
   perl-Test-YAML-Valid: sig-perl-modules
   perl-Test-mysqld: sig-perl-modules
   perl-Test-utf8: sig-perl-modules
-  perl-Test2-Plugin-NoWarnings: sig-RISC-V
+  perl-Test2-Plugin-NoWarnings: sig-perl-modules
   perl-Test2-Suite: sig-perl-modules
   perl-TestML: sig-perl-modules
   perl-Text-ASCIITable: sig-perl-modules
@@ -7273,11 +7276,11 @@ src-openeuler:
   perl-Text-Aligner: sig-perl-modules
   perl-Text-Autoformat: sig-perl-modules
   perl-Text-Balanced: sig-perl-modules
-  perl-Text-BibTeX: sig-RISC-V
-  perl-Text-CSV: sig-RISC-V
+  perl-Text-BibTeX: sig-perl-modules
+  perl-Text-CSV: sig-perl-modules
   perl-Text-CSV-Separator: sig-perl-modules
-  perl-Text-CSV_XS: sig-RISC-V
-  perl-Text-CharWidth: Programming-language
+  perl-Text-CSV_XS: sig-perl-modules
+  perl-Text-CharWidth: sig-perl-modules
   perl-Text-Clip: sig-perl-modules
   perl-Text-Diff: sig-perl-modules
   perl-Text-Diff-HTML: sig-perl-modules
@@ -7286,7 +7289,7 @@ src-openeuler:
   perl-Text-Format: sig-perl-modules
   perl-Text-FormatTable: sig-perl-modules
   perl-Text-Fuzzy: sig-perl-modules
-  perl-Text-Glob: Programming-language
+  perl-Text-Glob: sig-perl-modules
   perl-Text-Haml: sig-perl-modules
   perl-Text-Levenshtein-Damerau: sig-perl-modules
   perl-Text-Levenshtein-Damerau-XS: sig-perl-modules
@@ -7303,17 +7306,17 @@ src-openeuler:
   perl-Text-Sprintf-Named: sig-perl-modules
   perl-Text-Table: sig-perl-modules
   perl-Text-Table-Tiny: sig-perl-modules
-  perl-Text-Tabs-Wrap: Programming-language
+  perl-Text-Tabs-Wrap: sig-perl-modules
   perl-Text-TabularDisplay: sig-perl-modules
-  perl-Text-Template: Programming-language
+  perl-Text-Template: sig-perl-modules
   perl-Text-Template-Simple: sig-perl-modules
   perl-Text-Textile: sig-perl-modules
-  perl-Text-Unidecode: Programming-language
+  perl-Text-Unidecode: sig-perl-modules
   perl-Text-VCardFast: sig-perl-modules
   perl-Text-VisualWidth-PP: sig-perl-modules
   perl-Text-WikiFormat: sig-perl-modules
   perl-Text-WordDiff: sig-perl-modules
-  perl-Text-WrapI18N: Programming-language
+  perl-Text-WrapI18N: sig-perl-modules
   perl-Text-Wrapper: sig-perl-modules
   perl-Text-vCard: sig-perl-modules
   perl-Text-vFile-asData: sig-perl-modules
@@ -7346,7 +7349,7 @@ src-openeuler:
   perl-Time-Zone: Private
   perl-Time-timegm: sig-perl-modules
   perl-Time-y2038: sig-perl-modules
-  perl-TimeDate: Programming-language
+  perl-TimeDate: sig-perl-modules
   perl-Tk: sig-perl-modules
   perl-Tk-Canvas-GradientColor: sig-perl-modules
   perl-Tk-ColoredButton: sig-perl-modules
@@ -7359,7 +7362,7 @@ src-openeuler:
   perl-Tree-DAG_Node: sig-perl-modules
   perl-Tree-R: sig-perl-modules
   perl-Tree-Simple: sig-perl-modules
-  perl-Try-Tiny: Programming-language
+  perl-Try-Tiny: sig-perl-modules
   perl-Type-Tiny-XS: sig-perl-modules
   perl-Types-Serialiser: sig-perl-modules
   perl-UNIVERSAL-can: sig-perl-modules
@@ -7389,7 +7392,7 @@ src-openeuler:
   perl-Unicode-Map: sig-perl-modules
   perl-Unicode-Normalize: sig-perl-modules
   perl-Unicode-String: sig-perl-modules
-  perl-Unicode-UTF8: Programming-language
+  perl-Unicode-UTF8: sig-perl-modules
   perl-Unix-Process: sig-perl-modules
   perl-Unix-Syslog: Private
   perl-User: sig-perl-modules
@@ -7402,7 +7405,7 @@ src-openeuler:
   perl-WWW-DuckDuckGo: sig-perl-modules
   perl-WWW-GoodData: sig-perl-modules
   perl-WWW-Mechanize: sig-perl-modules
-  perl-WWW-RobotRules: Programming-language
+  perl-WWW-RobotRules: sig-perl-modules
   perl-WWW-Shorten: sig-perl-modules
   perl-WWW-Splunk: sig-perl-modules
   perl-WWW-Twilio-API: sig-perl-modules
@@ -7422,25 +7425,25 @@ src-openeuler:
   perl-XML-Generator: sig-perl-modules
   perl-XML-Generator-PerlData: sig-perl-modules
   perl-XML-Hash-LX: sig-perl-modules
-  perl-XML-LibXML: Programming-language
+  perl-XML-LibXML: sig-perl-modules
   perl-XML-LibXML-Debugging: sig-perl-modules
   perl-XML-LibXML-PrettyPrint: sig-perl-modules
   perl-XML-LibXML-Simple: sig-perl-modules
-  perl-XML-LibXSLT: sig-RISC-V
+  perl-XML-LibXSLT: sig-perl-modules
   perl-XML-Merge: sig-perl-modules
   perl-XML-NamespaceFactory: sig-perl-modules
-  perl-XML-NamespaceSupport: Programming-language
+  perl-XML-NamespaceSupport: sig-perl-modules
   perl-XML-Parser: sig-perl-modules
   perl-XML-Parser-Lite: sig-perl-modules
   perl-XML-Parser-Lite-Tree: sig-perl-modules
   perl-XML-Parser-Lite-Tree-XPath: sig-perl-modules
   perl-XML-RegExp: sig-perl-modules
-  perl-XML-SAX: Programming-language
-  perl-XML-SAX-Base: Programming-language
+  perl-XML-SAX: sig-perl-modules
+  perl-XML-SAX-Base: sig-perl-modules
   perl-XML-SAX-Expat: sig-perl-modules
   perl-XML-SAX-ExpatXS: sig-perl-modules
   perl-XML-SemanticDiff: sig-perl-modules
-  perl-XML-Simple: Programming-language
+  perl-XML-Simple: sig-perl-modules
   perl-XML-Stream: sig-perl-modules
   perl-XML-Structured: sig-perl-modules
   perl-XML-Tidy: sig-perl-modules
@@ -7450,26 +7453,26 @@ src-openeuler:
   perl-XML-TreePP: sig-perl-modules
   perl-XML-Twig: sig-perl-modules
   perl-XML-Writer: sig-perl-modules
-  perl-XML-XPath: Programming-language
+  perl-XML-XPath: sig-perl-modules
   perl-XML-XPathEngine: sig-perl-modules
   perl-XS-Parse-Keyword: sig-perl-modules
-  perl-XString: sig-RISC-V
+  perl-XString: sig-perl-modules
   perl-XXX: sig-perl-modules
-  perl-YAML: Programming-language
+  perl-YAML: sig-perl-modules
   perl-YAML-LibYAML: sig-perl-modules
   perl-YAML-PP: sig-perl-modules
   perl-YAML-Syck: sig-perl-modules
-  perl-YAML-Tiny: Programming-language
+  perl-YAML-Tiny: sig-perl-modules
   perl-ZMQ-Constants: sig-perl-modules
   perl-accessors: sig-perl-modules
   perl-aliased: sig-perl-modules
   perl-autobox: sig-perl-modules
   perl-autobox-Core: sig-perl-modules
   perl-autodie: sig-perl-modules
-  perl-autovivification: sig-RISC-V
+  perl-autovivification: sig-perl-modules
   perl-bareword-filehandles: sig-perl-modules
   perl-bignum: sig-perl-modules
-  perl-boolean: Application
+  perl-boolean: sig-perl-modules
   perl-common-sense: sig-perl-modules
   perl-constant: sig-perl-modules
   perl-constant-boolean: sig-perl-modules
@@ -7478,17 +7481,17 @@ src-openeuler:
   perl-enum: sig-perl-modules
   perl-experimental: sig-perl-modules
   perl-generators: sig-perl-modules
-  perl-gettext: Programming-language
-  perl-inc-latest: Programming-language
+  perl-gettext: sig-perl-modules
+  perl-inc-latest: sig-perl-modules
   perl-indirect: sig-perl-modules
   perl-latest: sig-perl-modules
   perl-lexical-underscore: sig-perl-modules
   perl-lib-abs: sig-perl-modules
   perl-lib-relative: sig-perl-modules
-  perl-libintl-perl: Programming-language
+  perl-libintl-perl: sig-perl-modules
   perl-libnet: sig-perl-modules
-  perl-libwww-perl: Programming-language
-  perl-libxml-perl: Programming-language
+  perl-libwww-perl: sig-perl-modules
+  perl-libxml-perl: sig-perl-modules
   perl-local-lib: sig-perl-modules
   perl-match-simple: sig-perl-modules
   perl-match-simple-XS: sig-perl-modules
@@ -7503,7 +7506,7 @@ src-openeuler:
   perl-podlators: sig-perl-modules
   perl-prefork: sig-perl-modules
   perl-re-engine-PCRE2: sig-perl-modules
-  perl-strictures: Programming-language
+  perl-strictures: sig-perl-modules
   perl-syntax: sig-perl-modules
   perl-threads: sig-perl-modules
   perl-threads-shared: sig-perl-modules
@@ -8751,6 +8754,7 @@ src-openeuler:
   python-klusta: sig-python-modules
   python-kmod: Base-service
   python-kombu: sig-python-modules
+  python-krb5: sig-python-modules
   python-krbcontext: sig-python-modules
   python-krest: sig-openstack
   python-kubernetes: sig-CloudNative
@@ -11591,6 +11595,7 @@ src-openeuler:
   velocity-tools: sig-Java
   velodyne: sig-ROS
   velodyne_simulator: sig-ROS
+  verdict: sig-HPC
   vhostmd: oVirt
   vid.stab: Desktop
   viewnior: Desktop
