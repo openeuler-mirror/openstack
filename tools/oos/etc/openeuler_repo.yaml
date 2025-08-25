@@ -4586,7 +4586,7 @@ src-openeuler:
   lua-socket: Networking
   lua-term: Application
   luajit: Base-service
-  luarocks: sig-recycle
+  luarocks: Programming-language
   lucene: sig-Java
   lucene3: sig-Java
   lucene4: sig-Java
