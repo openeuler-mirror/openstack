@@ -6124,6 +6124,7 @@ src-openeuler:
   perl-Crypt-URandom: sig-perl-modules
   perl-Crypt-UnixCrypt_XS: sig-perl-modules
   perl-Crypt-X509: sig-perl-modules
+  perl-CryptX: sig-perl-modules
   perl-Curses: sig-perl-modules
   perl-Cwd-Guard: sig-perl-modules
   perl-Cwd-utf8: sig-perl-modules
@@ -10089,6 +10090,7 @@ src-openeuler:
   qaccessibilityclient: sig-KDE
   qax-gm-certificates: sig-security-facility
   qbdevice-ros: sig-ROS
+  qbe: Compiler
   qbshin_ros: sig-ROS
   qca: sig-KDE
   qcoro: sig-KDE
