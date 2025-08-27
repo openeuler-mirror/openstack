@@ -536,6 +536,7 @@ openeuler:
   powerapi: sig-power-efficient
   prefetch_tuning: A-Tune
   presentations: Marketing
+  process-healer: sig-ops
   ptcr: sig-CloudNative
   pyisula: sig-openstack
   pyporter: dev-utils
@@ -7676,6 +7677,7 @@ src-openeuler:
   preproc: ecopkg
   presto: bigdata
   procenv: dev-utils
+  process-healer: sig-ops
   procinfo: Others
   procmail: Networking
   procps-ng: Computing
