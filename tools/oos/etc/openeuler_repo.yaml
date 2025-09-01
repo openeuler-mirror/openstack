@@ -1389,6 +1389,7 @@ src-openeuler:
   canal: DB
   canfestival: sig-industrial-control
   canfestival-xenomai: sig-industrial-control
+  cangjie: Compiler
   canopennode: sig-industrial-control
   cantian: DB
   capstone: Base-service
@@ -4819,6 +4820,7 @@ src-openeuler:
   metis: Application
   metrics: sig-Java
   metrics_msgs: sig-ROS
+  metro_nav: sig-ROS
   metslib: sig-ROS
   mhash: sig-desktop-apps
   mhvtl: dev-utils
