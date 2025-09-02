@@ -1184,6 +1184,7 @@ src-openeuler:
   attest-tools: sig-security-facility
   attica: sig-KDE
   attr: Storage
+  audacity: sig-desktop-apps
   audiofile: Base-service
   audit: sig-security-facility
   augeas: Desktop
@@ -7654,6 +7655,7 @@ src-openeuler:
   portals-pom: dev-utils
   portaudio: dev-utils
   portlet-2.0-api: dev-utils
+  portmidi: sig-desktop-apps
   portreserve: System-tool
   pose_cov_ops: sig-ROS
   postfix: Networking
@@ -11163,6 +11165,7 @@ src-openeuler:
   subunit: Programming-language
   subversion: Base-service
   sudo: Base-service
+  suil: sig-desktop-apps
   suitesparse: Others
   sundials: ai
   sunpinyin: Desktop
