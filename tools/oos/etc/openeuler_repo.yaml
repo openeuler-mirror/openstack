@@ -642,7 +642,11 @@ openeuler:
   ukui-themes: sig-UKUI
   umdk: sig-high-performance-network
   unizip: Base-service
+  uos-dovecot-exporter: sig-ops
   uos-iptables-exporter: sig-ops
+  uos-mgmt-exporter: sig-ops
+  uos-squid-exporter: sig-ops
+  uos-syslog-ng-exporter: sig-ops
   uos-tc-exporter: sig-ops
   uos-time-exporter: sig-ops
   uos-uwsgi-exporter: sig-ops
@@ -2079,7 +2083,7 @@ src-openeuler:
   ffmpeg_image_transport_msgs: sig-ROS
   ffmpegthumbnailer: Desktop
   fftw: Runtime
-  fftw2: Application
+  fftw2: sig-recycle
   fielding: sig-KDE
   figlet: dev-utils
   file: Storage
@@ -11526,7 +11530,11 @@ src-openeuler:
   uom-parent: Base-service
   uom-se: dev-utils
   uom-systems: Base-service
+  uos-dovecot-exporter: sig-ops
   uos-iptables-exporter: sig-ops
+  uos-mgmt-exporter: sig-ops
+  uos-squid-exporter: sig-ops
+  uos-syslog-ng-exporter: sig-ops
   uos-tc-exporter: sig-ops
   uos-time-exporter: sig-ops
   uos-uwsgi-exporter: sig-ops
