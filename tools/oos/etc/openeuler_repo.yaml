@@ -531,6 +531,7 @@ openeuler:
   plymouth-theme-kiran: sig-KIRAN-DESKTOP
   poissonsearch-oss: DB
   poissonsearch-py: DB
+  polymind: sig-intelligence
   portal-application-license-monitor: sig-HPC
   portal-mulit-cluster-script: sig-HPC
   powerapi: sig-power-efficient
@@ -2301,6 +2302,7 @@ src-openeuler:
   gflags: Programming-language
   gfs2-utils: System-tool
   ghc: sig-haskell
+  ghc-Decimal: sig-haskell
   ghc-Diff: sig-haskell
   ghc-Glob: sig-haskell
   ghc-HUnit: sig-haskell
@@ -2349,6 +2351,8 @@ src-openeuler:
   ghc-cereal: sig-haskell
   ghc-character-ps: sig-haskell
   ghc-citeproc: sig-haskell
+  ghc-clock: sig-haskell
+  ghc-cmdargs: sig-haskell
   ghc-colour: sig-haskell
   ghc-commonmark: sig-haskell
   ghc-commonmark-extensions: sig-haskell
@@ -2385,10 +2389,12 @@ src-openeuler:
   ghc-fast-logger: sig-haskell
   ghc-file-embed: sig-haskell
   ghc-generically: sig-haskell
+  ghc-generics-sop: sig-haskell
   ghc-gridtables: sig-haskell
   ghc-haddock-library: sig-haskell
   ghc-half: sig-haskell
   ghc-hashable: sig-haskell
+  ghc-hashtables: sig-haskell
   ghc-haskell-lexer: sig-haskell
   ghc-hourglass: sig-haskell
   ghc-hslua: sig-haskell
@@ -2428,6 +2434,7 @@ src-openeuler:
   ghc-lpeg: sig-haskell
   ghc-lua: sig-haskell
   ghc-memory: sig-haskell
+  ghc-microlens: sig-haskell
   ghc-mime-types: sig-haskell
   ghc-mmorph: sig-haskell
   ghc-monad-control: sig-haskell
@@ -2440,13 +2447,16 @@ src-openeuler:
   ghc-old-time: sig-haskell
   ghc-optparse-applicative: sig-haskell
   ghc-ordered-containers: sig-haskell
+  ghc-pager: sig-haskell
   ghc-pandoc: sig-haskell
   ghc-pandoc-lua-engine: sig-haskell
   ghc-pandoc-lua-marshal: sig-haskell
   ghc-pandoc-server: sig-haskell
   ghc-pandoc-types: sig-haskell
+  ghc-parser-combinators: sig-haskell
   ghc-pem: sig-haskell
   ghc-pretty-show: sig-haskell
+  ghc-pretty-simple: sig-haskell
   ghc-prettyprinter: sig-haskell
   ghc-prettyprinter-ansi-terminal: sig-haskell
   ghc-primitive: sig-haskell
@@ -2491,6 +2501,7 @@ src-openeuler:
   ghc-tasty-hunit: sig-haskell
   ghc-tasty-quickcheck: sig-haskell
   ghc-temporary: sig-haskell
+  ghc-terminal-size: sig-haskell
   ghc-text-conversions: sig-haskell
   ghc-text-icu: sig-haskell
   ghc-text-iso8601: sig-haskell
@@ -2502,6 +2513,7 @@ src-openeuler:
   ghc-these: sig-haskell
   ghc-time-compat: sig-haskell
   ghc-time-manager: sig-haskell
+  ghc-timeit: sig-haskell
   ghc-tls: sig-haskell
   ghc-toml-parser: sig-haskell
   ghc-transformers-base: sig-haskell
@@ -7652,6 +7664,7 @@ src-openeuler:
   polycube: sig-high-performance-network
   polyglot: sig-Java
   polygon_ros: sig-ROS
+  polymind: sig-intelligence
   popf: sig-ROS
   poppler: Desktop
   poppler-data: Desktop
