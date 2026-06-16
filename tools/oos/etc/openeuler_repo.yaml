@@ -8,7 +8,9 @@ openeuler:
   A-Tune-UI: A-Tune
   A-guard: sig-Gatekeeper
   AI4C: Compiler
+  AIHost-turbo: sig-Long
   ANNC: Compiler
+  AcTrail: sig-intelligence
   Agith: sig-ebpf
   AppAPIChecker: sig-recycle
   AvxToNeon: sig-AccLib
@@ -24,6 +26,7 @@ openeuler:
   CPython: Compiler
   CTinspector: sig-ebpf
   Computing-docs: Computing
+  Conch: sig-CloudNative
   ConfigOrchestrator: System-tool
   Cpds: sig-CloudNative
   CreateImage: sig-Gatekeeper
@@ -32,7 +35,8 @@ openeuler:
   CyclOne: sig-ops
   D-FOT: Compiler
   DDE-GoCode: sig-DDE
-  DevStore: sig-ops
+  DevStore: sig-DevStation
+  DiffSynth-Engine: ai
   DyscheOS-kernel: sig-recycle
   DyscheOS-meta: sig-recycle
   DyscheOS-utils: sig-recycle
@@ -47,20 +51,27 @@ openeuler:
   GVirt: sig-Long
   GearOS: sig-industrial-control
   Gluten: bigdata
+  HDagger: sig-UB-ServiceCore
   Ha-docs: sig-Ha
+  HeteroFusedKernels: sig-Long
   Hi-FHE: sig-security-facility
+  IB_Robot: sig-embedded
+  IB_Robot_ros2: sig-embedded
   Jailhouse-gui: sig-industrial-control
   Java-Packages: sig-Java
+  KASandbox: sig-CloudNative
   KPL-gmssl: sig-recycle
   KPL-zlib: sig-recycle
-  Kmesh: sig-ebpf
   KubeHawk: sig-CloudNative
   KubeHawkeyes: sig-CloudNative
   KubeMate: sig-CloudNative
   KubeOS: sig-CloudNative
   LMCache-mindspore: sig-Long
   LTF: sig-QA
+  LinQuickRec: sig-UnifiedBus
   LiveUI: sig-recycle
+  MIAC: Compiler
+  MLCacheDirect: sig-Long
   MetaBMC: sig-BMC
   ModelFS: sig-Long
   NestOS: sig-CloudNative
@@ -72,6 +83,7 @@ openeuler:
   OmniOperator: bigdata
   OmniStateStore: bigdata
   OmniStream: bigdata
+  OpenSCOW: sig-HPC
   PRIP: Networking
   PilotGo: sig-ops
   PilotGo-plugin-ELK: sig-ops
@@ -80,6 +92,7 @@ openeuler:
   PilotGo-plugin-container: sig-ops
   PilotGo-plugin-gala-ops: sig-ops
   PilotGo-plugin-grafana: sig-ops
+  PilotGo-plugin-llmops: sig-ops
   PilotGo-plugin-logs: sig-ops
   PilotGo-plugin-mysql: sig-ops
   PilotGo-plugin-observation: sig-ops
@@ -92,14 +105,19 @@ openeuler:
   Preempt_RT: sig-industrial-control
   QA: sig-QA
   QARobot: sig-recycle
+  QoS-Deployment-Test: sig-CloudNative
+  RAM-A: sig-intelligence
   RISC-V: sig-RISC-V
   Replay-N: sig-high-performance-network
   RobotBrain: sig-embedded
   RobotStudio: sig-embedded
+  Rprocps-ng: sig-MCP-Tools-Ecosystem
+  Rsysstat: sig-MCP-Tools-Ecosystem
   SBC-sig: sig-SBC
   ServerlessLLM: sig-Long
   SoftBR: Compiler
   Storage-docs: Storage
+  SysAIFrame: sig-MCP-Tools-Ecosystem
   TC: TC
   TCP_option_address: Kernel
   TSB-agent: sig-security-facility
@@ -107,6 +125,7 @@ openeuler:
   UNT: Compiler
   UTBotJava: sig-QA
   UniProton: sig-embedded
+  UnifiedBus-docs: sig-UnifiedBus
   VMAnalyzer: sig-ops
   Virt-docs: Virt
   WasmEngine: sig-CloudNative
@@ -116,6 +135,10 @@ openeuler:
   aa-ui: sig-intelligence
   aarch32-rootfs-builder: sig-embedded
   abichecker: dev-utils
+  ag-cli: sig-EasyLife
+  agent-insight: sig-intelligence
+  agent-skills: Infrastructure
+  agentic-engineering-team: sig-intelligence
   ai-tools: ai
   allwinner-kernel: sig-SBC
   amqp-proxy: sig-message-middleware
@@ -145,21 +168,26 @@ openeuler:
   bishengjdk-11: Compiler
   bishengjdk-17: Compiler
   bishengjdk-21: Compiler
+  bishengjdk-25: Compiler
   bishengjdk-8: Compiler
   bishengjdk-build: Compiler
   bishengjdk-riscv: Compiler
   bishengjdk-test: Compiler
   blesschess: sig-minzuchess
   blog: sig-recycle
+  bridge-utils: Networking
   btfhub: sig-ebpf
   btfhub-archive: sig-ebpf
   c2rust: dev-utils
   cache-proxy: Infrastructure
+  cache_tuner: A-Tune
   cantian: DB
   cantian-connector-mysql: DB
   capsule: Virt
   ccb: sig-CICD
+  cci-job-client: sig-CICD
   ccps: sig-K8sDistro
+  cdf-crypto: sig-security-facility
   ceph_dev: sig-SDS
   certificate-center: sig-OpenDesign
   chaosArsenal: sig-ops
@@ -167,6 +195,7 @@ openeuler:
   chaosArsenal-hardware: sig-ops
   chatig: sig-intelligence
   ci-bot: sig-Gatekeeper
+  cinderx: Compiler
   clibcni: iSulad
   cloudnative: sig-CloudNative
   cloudnative-docs: sig-CloudNative
@@ -187,12 +216,19 @@ openeuler:
   cpds-analyzer: sig-CloudNative
   cpds-dashboard: sig-CloudNative
   cpds-detector: sig-CloudNative
+  ct-cockpit: sig-MCP-Tools-Ecosystem
   ct-oval: sig-security-facility
+  ctdeployer: sig-MCP-Tools-Ecosystem
+  ctforge: sig-security-facility
+  cu-cockpit: sig-ops
+  cu-concrete: sig-security-facility
+  cu-scanner: sig-security-facility
   curl-rust: Networking
   custom_build_tool: Application
   cve-ease: Infrastructure
   cve-manager: Infrastructure
   cve-void: sig-security-facility
+  cyanfs: Storage
   dcs: sig-power-efficient
   dde: sig-DDE
   dde_autotest_euler: sig-QA
@@ -201,6 +237,7 @@ openeuler:
   deepin-upgrade-tool: sig-DDE
   devkit-pipeline: sig-CICD
   devstation-config: Desktop
+  dhcp: Networking
   digest-list-tools: sig-security-facility
   dim: sig-security-facility
   dim_tools: sig-security-facility
@@ -226,6 +263,7 @@ openeuler:
   easybox: sig-memsafety
   easysoftware-command: Infrastructure
   eggo: sig-CloudNative
+  elasticMem: A-Tune
   elf-loader: sig-epkg
   elfin-parser: sig-HPC
   embedded: sig-embedded
@@ -269,6 +307,7 @@ openeuler:
   gala-gopher: sig-ebpf
   gala-ragdoll: sig-ops
   gala-spider: sig-ops
+  gateway: ai
   gazelle: sig-high-performance-network
   gazelle-cni: sig-recycle
   gcc: Compiler
@@ -279,6 +318,7 @@ openeuler:
   gitbook-theme-hugo: Infrastructure
   global-trust-authority: sig-security-facility
   globalization: G11N
+  globaltrustauthority-rbs: sig-security-facility
   glusterfs-dashboard: sig-SDS
   go-gitee: Infrastructure
   golang: sig-golang
@@ -287,9 +327,12 @@ openeuler:
   ha-api: sig-Ha
   ha-monitor: sig-Ha
   ha-web: sig-Ha
+  ham: sig-UnifiedBus
   hands-on: sig-OSCourse
+  hb_build: sig-OS-Builder
   hbm-predictor: Storage
   heolleo: sig-ops
+  heterogeneous_systems_programming: sig-Long
   hey: sig-intelligence
   hi-mpu: sig-embedded
   hikptool: sig-WayCa
@@ -303,6 +346,7 @@ openeuler:
   hpcpilot: sig-HPC
   hpcrunner: sig-HPC
   hsak: Storage
+  http-parser: Networking
   hw-buaa-lab: sig-OSCourse
   hygon-devkit: sig-Hygon
   hygon-edk2: sig-Hygon
@@ -312,6 +356,7 @@ openeuler:
   iSulad-img: sig-recycle
   ifm_nettle: sig-AccLib
   imageTailor: sig-OS-Builder
+  industrial-scene-optimizer: A-Tune
   infrastructure: Infrastructure
   install-scripts: sig-OS-Builder
   integration-test: sig-QA
@@ -371,6 +416,7 @@ openeuler:
   kiran-widgets-qt5: sig-KIRAN-DESKTOP
   kml_adapter: sig-AccLib
   kmpi: sig-HPC
+  knet: sig-UB-ServiceCore
   krun: sig-AccLib
   ks-scmc: sig-KIRAN-DESKTOP
   ks-scmc-gui: sig-KIRAN-DESKTOP
@@ -398,7 +444,9 @@ openeuler:
   lanzhou_university_2021: sig-recycle
   lboot: sig-OS-Builder
   lcr: iSulad
+  ledog_ros2: sig-embedded
   lep: sig-embedded
+  lerobot_ros2: sig-embedded
   lfs-course: sig-OSCourse
   li-wen: sig-EasyLife
   lib-shim-v2: iSulad
@@ -406,10 +454,13 @@ openeuler:
   libarchive-rust: Base-service
   libboundscheck: Base-service
   libcareplus: Virt
+  libcdma: sig-UnifiedBus
+  libevhtp: sig-CloudNative
   libgdbm-rust: Base-service
   libgmem: Computing
   libkae: sig-AccLib
   libkperf: A-Tune
+  libummu: sig-UnifiedBus
   libvirt: Virt
   libwd: sig-AccLib
   libxml2-rust: Base-service
@@ -417,6 +468,7 @@ openeuler:
   liteview: Desktop
   llm_solution: sig-Long
   llvm-project: Compiler
+  llvm-ub: Compiler
   lxcfs-tools: iSulad
   lzu-icc-nsg: sig-OSCourse
   m1600-driver: sig-Compatibility-Infra
@@ -426,8 +478,11 @@ openeuler:
   mcp: sig-CloudNative
   mcp-self-service-vue: sig-CloudNative
   mcp-servers: sig-intelligence
+  mcp-testkit: sig-intelligence
   mcp-vue: sig-CloudNative
   mcs: sig-embedded
+  mem_hot: A-Tune
+  memlinkd: sig-Long
   memory-scan: Storage
   memwatch: dev-utils
   meta-openeuler: sig-epkg
@@ -451,7 +506,9 @@ openeuler:
   numafast: sig-recycle
   nvme-snsd: Storage
   nvwa: sig-ops
+  nvwa-cve-fixer: sig-DevStation
   oac: sig-HPC
+  obmm: sig-Long
   oe-performance: sig-Compatibility-Infra
   oeAware-collector: A-Tune
   oeAware-manager: A-Tune
@@ -478,19 +535,21 @@ openeuler:
   openEuler-menus: sig-KDE
   openEuler-pkginfo: dev-utils
   openEuler-portal: sig-OpenDesign
+  openEuler-portal-ar: sig-OpenDesign
+  openEuler-portal-mcp: sig-OpenDesign
   openEuler-rpm-config: TC
   openEuler_chroot: sig-Gatekeeper
   openRSO: Kernel
   opendesign: sig-OpenDesign
-  opendesign-analysis: sig-OpenDesign
-  opendesign-backend: sig-OpenDesign
+  opendesign-analytics: sig-OpenDesign
   opendesign-components: sig-OpenDesign
   opendesign-datastat: sig-OpenDesign
-  opendesign-deployment: sig-OpenDesign
   opendesign-internship: sig-OpenDesign
   opendesign-miniprogram: sig-OpenDesign
   opendesign-resources: sig-OpenDesign
+  opendesign-skills: sig-OpenDesign
   opendesign-templates: sig-OpenDesign
+  opendesign-token: sig-OpenDesign
   openeuler-docker-images: sig-CloudNative
   openeuler-intelligence-sandbox: sig-intelligence
   openeuler-jenkins: sig-Gatekeeper
@@ -512,6 +571,7 @@ openeuler:
   openstack-sig-tool: sig-openstack
   operator-manager: sig-CloudNative
   optimized-routines: Compiler
+  os-compat-analyzer: sig-ops
   osinfor: sig-memsafety
   pacemaker-mgmt: sig-Ha
   package-reinforce-test: sig-QA
@@ -554,6 +614,7 @@ openeuler:
   raspberrypi-build: sig-SBC
   raspberrypi-kernel: sig-SBC
   rat: sig-memsafety
+  ray-adapter: sig-YuanRong
   re2-rust: Base-service
   release-management: sig-release-management
   release-tools: sig-EasyLife
@@ -564,6 +625,7 @@ openeuler:
   rockchip: sig-SBC
   rockchip-kernel: sig-SBC
   rocketmq-operator: sig-message-middleware
+  rootfs-maker: sig-CICD
   ros: sig-ROS
   ros-porting-tools: sig-ROS
   rpmdepsearch: sig-DDE
@@ -576,10 +638,13 @@ openeuler:
   sbom-service: sig-sbom
   sbom-tools: sig-sbom
   sbom-website: sig-sbom
+  scf-security: sig-security-facility
   sdma-dk: sig-WayCa
   sds_doc: sig-SDS
+  sec-select: sig-security-facility
   secDetector: sig-security-facility
   secGear: sig-confidential-computing
+  seccom-tee: sig-security-facility
   secpaver: sig-security-facility
   secscanner: sig-security-facility
   secureguardian: sig-security-facility
@@ -595,10 +660,17 @@ openeuler:
   sig-OSCourse: sig-OSCourse
   sig-OpenBoard: sig-recycle
   signatrust: Infrastructure
+  sionlib: sig-HPC
+  skills: sig-intelligence
   skylark: Virt
+  skyline-apiserver: sig-openstack
+  skyline-console: sig-openstack
   slice-releases: sig-CloudNative
   smart-shell: sig-intelligence
+  space-doc-spec: sig-Space
+  spdk: Storage
   splitter: sig-CloudNative
+  spring-adapter: sig-YuanRong
   sra_benchmark: sig-AccLib
   sra_onnxruntime_adapter: sig-AccLib
   sra_scann_adapter: sig-AccLib
@@ -614,18 +686,23 @@ openeuler:
   sw-committee: sig-sw-arch
   sync-bot: sig-EasyLife
   sysHAX: sig-intelligence
+  sysHAX-adapter: sig-intelligence
   sysSentry: Base-service
   sysTrace: sig-ops
   sysboost: A-Tune
   syscare: sig-ops
   syscontainer-tools: iSulad
+  syskits: sig-MCP-Tools-Ecosystem
   sysmaster: dev-utils
   sysmonitor: sig-ops
   taishan-oslab: sig-OSCourse
   talent-assessment: sig-OpenDesign
   tarsier: sig-high-performance-network
+  tcas: sig-confidential-computing
+  tcas-cli: sig-confidential-computing
   technical-certification: sig-Compatibility-Infra
   tee-gp-proxy: sig-confidential-computing
+  tensormsg: sig-embedded
   test-tools: sig-QA
   tool-collections: Infrastructure
   tp-libvirt: sig-QA
@@ -638,14 +715,30 @@ openeuler:
   uadk_engine: sig-AccLib
   ub-dhcp: Networking
   ub-lldpd: Networking
+  ub-pkg-manager: sig-UnifiedBus
   ubackup: sig-Migration
+  ubctl: sig-UnifiedBus
+  ubs-atomic: sig-UB-ServiceCore
+  ubs-comm: sig-UB-ServiceCore
+  ubs-core: sig-UB-ServiceCore
+  ubs-engine: sig-UB-ServiceCore
+  ubs-io: sig-UB-ServiceCore
+  ubs-mem: sig-UB-ServiceCore
+  ubs-test: sig-UB-ServiceCore
+  ubs-virt: sig-UB-ServiceCore
+  ubturbo: sig-UnifiedBus
+  ubutils: sig-UnifiedBus
   ukui: sig-UKUI
   ukui-themes: sig-UKUI
-  umdk: sig-high-performance-network
+  umdk: sig-UnifiedBus
   unizip: Base-service
   uos-dovecot-exporter: sig-ops
+  uos-exporter: sig-ops
   uos-iptables-exporter: sig-ops
+  uos-libvirtd-exporter: sig-ops
   uos-mgmt-exporter: sig-ops
+  uos-network-exporter: sig-ops
+  uos-openldap-exporter: sig-ops
   uos-squid-exporter: sig-ops
   uos-syslog-ng-exporter: sig-ops
   uos-tc-exporter: sig-ops
@@ -662,6 +755,7 @@ openeuler:
   utsudo: sig-memsafety
   utxz: sig-memsafety
   utzip: sig-memsafety
+  uwal: sig-UB-ServiceCore
   vectorBlas: bigdata
   velox: bigdata
   virtCCA_driver: sig-confidential-computing
@@ -675,12 +769,28 @@ openeuler:
   website-v2: sig-recycle
   wine-app: sig-compat-winapp
   wisdom-advisor: A-Tune
+  witty: sig-intelligence
+  witty-diagnosis-agent: sig-intelligence
+  witty-framework: sig-DevStation
+  witty-insight: sig-DevStation
+  witty-opencode: sig-intelligence
+  witty-opentunex: sig-intelligence
+  witty-ops-cases: sig-intelligence
+  witty-profiler: sig-intelligence
+  witty-service: sig-DevStation
+  witty-ub: sig-intelligence
+  workflowkits: sig-MCP-Tools-Ecosystem
   wsl: sig-OS-Builder
   wuhan_uni_tech_2021: sig-recycle
   x2nestos: sig-K8sDistro
   xenomai: sig-industrial-control
+  xflex: sig-Long
+  xiaoO: sig-intelligence
   xlin-sbom: sig-sbom
+  xlin-sbom-analysis: sig-sbom
+  xmig: sig-Long
   xmlpull: sig-Java
+  xsched: sig-Long
   yocto-embedded-tools: sig-embedded
   yocto-meta-arm: sig-embedded
   yocto-meta-openembedded: sig-embedded
@@ -694,10 +804,17 @@ openeuler:
   yocto-meta-st: sig-embedded
   yocto-meta-virtualization: sig-embedded
   yocto-poky: sig-embedded
+  yuanrong: sig-YuanRong
+  yuanrong-agentruntime: sig-YuanRong
+  yuanrong-datasystem: sig-YuanRong
+  yuanrong-frontend: sig-YuanRong
+  yuanrong-functionsystem: sig-YuanRong
+  yuanrong-sandbox-sdk: sig-YuanRong
   yunyi: sig-CloudNative
   zephyr-cn: sig-Zephyr
   zvm: sig-Zephyr
 src-openeuler:
+  389-ds-base: Application
   A-FOT: Compiler
   A-Ops: sig-ops
   A-SysArmor: sig-security-facility
@@ -709,6 +826,7 @@ src-openeuler:
   AFLplusplus: sig-QA
   AI4C: Compiler
   ANNC: Compiler
+  AcTrail: sig-intelligence
   BSC-extrae: sig-HPC
   BSC-wxparaver: sig-HPC
   BareBonesBrowserLaunch: sig-Java
@@ -718,11 +836,13 @@ src-openeuler:
   BiSheng-opentuner: Compiler
   Box2D: ecopkg
   CImg: sig-UKUI
+  CPython: Compiler
   CTinspector: sig-ebpf
   CUnit: Base-service
   Catch2: sig-ROS
   CharLS: Desktop
   ComputeLibrary: ai
+  Conch: sig-CloudNative
   Control-FREEC: sig-bio
   Cpds: sig-CloudNative
   CreateImage: sig-Gatekeeper
@@ -736,7 +856,7 @@ src-openeuler:
   DDE-go-gir: sig-DDE
   DDE-go-x11-client: sig-DDE
   DevIL: Application
-  DevStore: sig-ops
+  DevStore: sig-DevStation
   Done: Private
   DynamixelSDK: sig-ROS
   EulerCopilot: A-Tune
@@ -754,14 +874,17 @@ src-openeuler:
   GeoIP: Networking
   GeoIP-GeoLite-data: Networking
   GraphicsMagick: Application
+  HDagger: sig-UB-ServiceCore
   HMCL: sig-desktop-apps
   HdrHistogram: Application
   HdrHistogram_C: ecopkg
   HikariCP: sig-Java
   ImageMagick: Others
   Imath: Runtime
+  JUnitParams: sig-Java
   Jailhouse: sig-industrial-control
   Judy: Base-service
+  KASandbox: sig-CloudNative
   Keras: Private
   Kmesh: sig-ebpf
   KubeOS: sig-CloudNative
@@ -769,8 +892,12 @@ src-openeuler:
   LMS1xx: sig-ROS
   LZMA-SDK: Base-service
   LibRaw: Programming-language
+  LinQuickRec: sig-UnifiedBus
   Lmod: Application
+  MIAC: Compiler
+  MLCacheDirect: sig-Long
   ModemManager: Networking
+  Mooncake: sig-Long
   NetworkManager: Networking
   NetworkManager-fortisslvpn: Networking
   NetworkManager-iodine: Networking
@@ -809,6 +936,7 @@ src-openeuler:
   PyQt4: sig-python-modules
   PyYAML: sig-python-modules
   QingShuang: dev-utils
+  R: Programming-language
   R-AUC: Programming-language
   R-AsioHeaders: Programming-language
   R-BH-devel: Programming-language
@@ -868,7 +996,6 @@ src-openeuler:
   R-jsonlite: Programming-language
   R-knitr: Programming-language
   R-labeling: Programming-language
-  R-language: Programming-language
   R-lifecycle: Programming-language
   R-lmodel2: Programming-language
   R-lmtest: Programming-language
@@ -886,7 +1013,7 @@ src-openeuler:
   R-pkgbuild: Programming-language
   R-pkgconfig: Programming-language
   R-pkgload: Programming-language
-  R-plogr: Programming-language
+  R-plogr: sig-recycle
   R-png: Programming-language
   R-praise: Programming-language
   R-prettycode: Programming-language
@@ -922,6 +1049,7 @@ src-openeuler:
   R-xtable: Programming-language
   R-yaml: Programming-language
   R-zoo: Programming-language
+  RAM-A: sig-intelligence
   RSIBreak: sig-KDE
   RSL: sig-ROS
   SDL: Programming-language
@@ -940,6 +1068,7 @@ src-openeuler:
   Sweeper: sig-KDE
   TCP_option_address: Kernel
   TRF: sig-HPC
+  TSB-agent: sig-security-facility
   TSSE-driver: sig-Compatibility-Infra
   TeXamator: Base-service
   TellySkout: sig-KDE
@@ -997,6 +1126,7 @@ src-openeuler:
   aespipe: sig-security-facility
   afflib: Others
   afterburn: sig-CloudNative
+  ag-cli: sig-EasyLife
   aha: Application
   aide: Base-service
   airline: Base-service
@@ -1092,6 +1222,7 @@ src-openeuler:
   apache-commons-parent: sig-Java
   apache-commons-pool: Application
   apache-commons-pool2: dev-utils
+  apache-commons-text: sig-Java
   apache-commons-validator: Application
   apache-commons-vfs: sig-Java
   apache-ivy: sig-Java
@@ -1201,10 +1332,11 @@ src-openeuler:
   auto: dev-utils
   autoconf: Base-service
   autoconf-archive: Programming-language
-  autoconf213: Programming-language
+  autoconf213: sig-recycle
   autofdo: Compiler
   autofs: System-tool
   autogen: Base-service
+  autolink-java: sig-Java
   automake: Base-service
   automoc: dev-utils
   automotive_autonomy_msgs: sig-ROS
@@ -1255,7 +1387,7 @@ src-openeuler:
   bash-completion: Base-service
   bat: dev-utils
   batik: sig-Java
-  bats: sig-CloudNative
+  bats: Base-service
   bazel: ai
   bazel-common: ai
   bazel-compile-commands-extractor: ai
@@ -1295,7 +1427,7 @@ src-openeuler:
   biber: sig-perl-modules
   bigtop: bigdata
   bind: Networking
-  bind-dyndb-ldap: Networking
+  bind-dyndb-ldap: sig-recycle
   binutils: Compiler
   binutils-2.42: Compiler
   biobambam2: sig-bio
@@ -1309,6 +1441,7 @@ src-openeuler:
   blivet-gui: sig-OS-Builder
   blktrace: Storage
   blueman: sig-UKUI
+  blueprint-compiler: GNOME
   bluez: Base-service
   blur-effect: Desktop
   bno055: sig-ROS
@@ -1351,6 +1484,7 @@ src-openeuler:
   bubblemail: GNOME
   bubblewrap: Base-service
   bucardo: DB
+  build-helper-maven-plugin: sig-Java
   buildah: sig-CloudNative
   buildnumber-maven-plugin: sig-Java
   buildroot: dev-utils
@@ -1373,12 +1507,14 @@ src-openeuler:
   c2rust: dev-utils
   c3p0: sig-Java
   ca-certificates: Base-service
+  cache_tuner: A-Tune
   cachefilesd: Storage
   cadvisor: sig-CloudNative
   caffe: sig-recycle
   caffeine: dev-utils
   cairo: Desktop
   cairomm: Desktop
+  cairomm116: Others
   caja: sig-mate-desktop
   caja-actions: sig-mate-desktop
   caja-dropbox: sig-mate-desktop
@@ -1400,8 +1536,10 @@ src-openeuler:
   cantian: DB
   capstone: Base-service
   capsule: Virt
+  caret_analyze: sig-ROS
   caret_analyze_cpp_impl: sig-ROS
   caret_trace: sig-ROS
+  cargo-packaging: Compiler
   cargo2rpm: ecopkg
   caribou: sig-cinnamon
   cartographer: sig-ROS
@@ -1422,6 +1560,7 @@ src-openeuler:
   ccb: sig-CICD
   ccid: Storage
   cdbs: sig-Edge
+  cdf-crypto: sig-security-facility
   cdi-api: sig-Java
   cdparanoia: Desktop
   cdrdao: Application
@@ -1444,7 +1583,7 @@ src-openeuler:
   check: Programming-language
   checkpolicy: sig-security-facility
   checkstyle: Application
-  cheese: Desktop
+  cheese: sig-recycle
   chkconfig: Base-service
   chmlib: sig-desktop-apps
   chromaprint: dev-utils
@@ -1456,6 +1595,7 @@ src-openeuler:
   cifs-utils: Storage
   cilium: sig-high-performance-network
   cim-schema: System-tool
+  cinderx: Compiler
   cinnamon: sig-cinnamon
   cinnamon-control-center: sig-cinnamon
   cinnamon-desktop: sig-cinnamon
@@ -1501,6 +1641,7 @@ src-openeuler:
   clickhouse: DB
   cline: sig-intelligence
   cliquer: sig-epol
+  clisp: Application
   clitest: Application
   cln: sig-KDE
   cloc: dev-utils
@@ -1516,6 +1657,7 @@ src-openeuler:
   clutter-gtk: Desktop
   clyde: sig-CloudNative
   cmake: Programming-language
+  cmake-extras: Programming-language
   cmake_modules: sig-ROS
   cmark: GNOME
   cmocka: Programming-language
@@ -1561,11 +1703,11 @@ src-openeuler:
   compat-libgfortran: Private
   compat-lua: sig-epol
   compat-openssl11: sig-security-facility
-  compat-rest: Desktop
+  compat-rest: sig-recycle
   compface: Application
   compiler-rt: Compiler
   compiler-rt-15: Compiler
-  composefs: ecopkg
+  composefs: sig-CloudNative
   composer: Programming-language
   compress-lzf: Application
   comps-extras: Desktop
@@ -1635,6 +1777,9 @@ src-openeuler:
   csmith: dev-utils
   ct-ng: sig-embedded
   ctags: Base-service
+  cu-cockpit: sig-ops
+  cu-concrete: sig-security-facility
+  cu-scanner: sig-security-facility
   cube: sig-HPC
   cudnn_cmake_module: sig-ROS
   cufflinks: sig-bio
@@ -1705,12 +1850,13 @@ src-openeuler:
   dde-device-formatter: sig-DDE
   dde-dock: sig-DDE
   dde-file-manager: sig-DDE
+  dde-grand-search: sig-DDE
   dde-introduction: sig-DDE
   dde-kwin: sig-DDE
   dde-launcher: sig-DDE
   dde-manual-content: sig-DDE
   dde-network-core: sig-DDE
-  dde-network-utils: sig-DDE
+  dde-network-utils: sig-recycle
   dde-polkit-agent: sig-DDE
   dde-qt-dbus-factory: sig-DDE
   dde-server-industry-config: sig-DDE
@@ -1738,13 +1884,15 @@ src-openeuler:
   deepin-gtk-theme: sig-DDE
   deepin-icon-theme: sig-DDE
   deepin-image-editor: sig-DDE
-  deepin-image-viewer: sig-DDE
+  deepin-image-viewer: sig-recycle
   deepin-kwin: sig-recycle
   deepin-log-viewer: sig-DDE
   deepin-manual: sig-DDE
   deepin-menu: sig-DDE
   deepin-movie: sig-DDE
   deepin-music: sig-DDE
+  deepin-ocr: sig-DDE
+  deepin-pdfium: sig-DDE
   deepin-proxy: sig-DDE
   deepin-pw-check: sig-DDE
   deepin-qml-widgets: sig-recycle
@@ -1752,6 +1900,7 @@ src-openeuler:
   deepin-rpm-installer: sig-DDE
   deepin-screen-recorder: sig-DDE
   deepin-screensaver: sig-DDE
+  deepin-service-manager: sig-DDE
   deepin-shortcut-viewer: sig-DDE
   deepin-sound-theme: sig-DDE
   deepin-system-monitor: sig-DDE
@@ -1769,9 +1918,9 @@ src-openeuler:
   depthai-core: sig-ROS
   depthai-ros: sig-ROS
   depthimage_to_laserscan: sig-ROS
-  derby: DB
+  derby: sig-recycle
   desktop-file-utils: Desktop
-  devhelp: GNOME
+  devhelp: sig-recycle
   devstation-config: Desktop
   dh-autoreconf: sig-Edge
   dhcp: Networking
@@ -1803,10 +1952,10 @@ src-openeuler:
   distribution-gpg-keys: ecopkg
   djvulibre: Others
   dkms: Others
-  dleyna-connector-dbus: dev-utils
-  dleyna-core: dev-utils
-  dleyna-renderer: GNOME
-  dleyna-server: Application
+  dleyna-connector-dbus: sig-recycle
+  dleyna-core: sig-recycle
+  dleyna-renderer: sig-recycle
+  dleyna-server: sig-recycle
   dlib: ai
   dlm: sig-Ha
   dmenu: sig-epol
@@ -1832,6 +1981,7 @@ src-openeuler:
   docker-compose: sig-CloudNative
   docparser: sig-DDE
   doctest: Base-service
+  dogtag-pki: Application
   dogtail: Others
   dolly: sig-ROS
   dolphin: sig-KDE
@@ -1857,10 +2007,14 @@ src-openeuler:
   druid: bigdata
   dsoftbus: sig-distributed-middleware
   dtc: Base-service
+  dtk6log: sig-DDE
   dtkcommon: sig-DDE
   dtkcore: sig-DDE
   dtkcore2: sig-DDE
+  dtkdeclarative: sig-DDE
   dtkgui: sig-DDE
+  dtkmultimedia: sig-DDE
+  dtksystemsettings: sig-DDE
   dtkwidget: sig-DDE
   dtkwidget2: sig-DDE
   dtkwm: sig-DDE
@@ -1877,6 +2031,10 @@ src-openeuler:
   dynamixel-workbench: sig-ROS
   dynamixel-workbench-msgs: sig-ROS
   dyninst: Computing
+  e2b-code-interpreter: sig-CloudNative
+  e2b-desktop: sig-CloudNative
+  e2b-infra: sig-CloudNative
+  e2b-sdk: sig-CloudNative
   e2fsprogs: Storage
   eagle: sig-power-efficient
   easy-checker: sig-EasyLife
@@ -1928,6 +2086,7 @@ src-openeuler:
   eigen3_cmake_module: sig-ROS
   eigen_stl_containers: sig-ROS
   eigenpy: sig-ROS
+  elasticMem: A-Tune
   elfutils: Base-service
   eli5: ai
   elinks: Application
@@ -2008,6 +2167,7 @@ src-openeuler:
   extfuse: Storage
   extlinux-bootloader: Private
   extra-cmake-modules: sig-KDE
+  extra-enforcer-rules: sig-Java
   extra166y: sig-Java
   ezmorph: dev-utils
   f29-backgrounds: Private
@@ -2025,6 +2185,7 @@ src-openeuler:
   fast-https: Networking
   fast_float: sig-HPC
   fast_rsync: sig-memsafety
+  fastblock: sig-SDS
   fastdb: DB
   fastdfs: Storage
   fasterxml-oss-parent: sig-Java
@@ -2037,12 +2198,12 @@ src-openeuler:
   fbida: sig-epol
   fbset: sig-epol
   fcgi: dev-utils
-  fcitx: Desktop
-  fcitx-cloudpinyin: Desktop
-  fcitx-configtool: Desktop
-  fcitx-libpinyin: Desktop
-  fcitx-qt5: Desktop
-  fcitx-sunpinyin: Desktop
+  fcitx: sig-recycle
+  fcitx-cloudpinyin: sig-recycle
+  fcitx-configtool: sig-recycle
+  fcitx-libpinyin: sig-recycle
+  fcitx-qt5: sig-recycle
+  fcitx-sunpinyin: sig-recycle
   fcitx5: sig-UKUI
   fcitx5-chinese-addons: sig-UKUI
   fcitx5-configtool: sig-UKUI
@@ -2080,6 +2241,7 @@ src-openeuler:
   festival-freebsoft-utils: Others
   fetch-crl: Application
   fetchmail: Application
+  ffcall: Application
   ffmpeg: Desktop
   ffmpeg_image_transport_msgs: sig-ROS
   ffmpegthumbnailer: Desktop
@@ -2103,6 +2265,7 @@ src-openeuler:
   fio: Application
   fipscheck: Base-service
   firebird: DB
+  firecracker: sig-CloudNative
   firefox: Application
   firesim: sig-RISC-V
   firewalld: Networking
@@ -2121,6 +2284,7 @@ src-openeuler:
   flex_sync: sig-ROS
   flexbe_behavior_engine: sig-ROS
   flexiblas: sig-epol
+  flexmark-java: sig-Java
   flink: bigdata
   flir_camera_driver: sig-ROS
   flite: Others
@@ -2153,6 +2317,7 @@ src-openeuler:
   forge-parent: Application
   formiko: sig-desktop-apps
   foros: sig-ROS
+  foundry: GNOME
   four_wheel_steering_msgs: sig-ROS
   fpaste: Base-service
   fpchecker: sig-HPC
@@ -2162,6 +2327,7 @@ src-openeuler:
   freeglut: Runtime
   freeimage: dev-utils
   freeipa: oVirt
+  freeipa-healthcheck: oVirt
   freeipmi: System-tool
   freemarker: dev-utils
   freeradius: System-tool
@@ -2230,6 +2396,7 @@ src-openeuler:
   gcc: Compiler
   gcc-10: Compiler
   gcc-12: Compiler
+  gcc-13: Compiler
   gcc-14: Compiler
   gcc-7: Compiler
   gcc-cross: Compiler
@@ -2248,7 +2415,7 @@ src-openeuler:
   gdisk: Storage
   gdk-pixbuf-xlib: Desktop
   gdk-pixbuf2: Desktop
-  gdlmm: GNOME
+  gdlmm: sig-recycle
   gdm: Desktop
   geany: Desktop
   gearmand: Application
@@ -2296,7 +2463,7 @@ src-openeuler:
   geronimo-validation: sig-Java
   gettext: Base-service
   gf-complete: sig-SDS
-  gfbgraph: GNOME
+  gfbgraph: sig-recycle
   gffcompare: sig-bio
   gffread: sig-bio
   gflags: Programming-language
@@ -2570,7 +2737,7 @@ src-openeuler:
   gl2ps: bigdata
   gl_dependency: sig-ROS
   glade: Desktop
-  glade3: sig-mate-desktop
+  glade3: sig-recycle
   glances: dev-utils
   glassfish-annotation-api: sig-Java
   glassfish-dtd-parser: dev-utils
@@ -2599,13 +2766,16 @@ src-openeuler:
   glib2: Base-service
   glibc: Computing
   glibmm24: Others
+  glibmm268: Others
   glm: dev-utils
   global-trust-authority: sig-security-facility
+  globaltrustauthority-rbs: sig-security-facility
   glog: Application
   glpk: ai
   glslang: sig-epol
   gluster_exporter: sig-CloudNative
   glusterfs: Storage
+  glycin: Desktop
   glyphicons-halflings-fonts: Application
   gmavenplus-plugin: Programming-language
   gmetric4j: Application
@@ -2633,7 +2803,7 @@ src-openeuler:
   gnome-control-center: GNOME
   gnome-desktop: Application
   gnome-desktop3: GNOME
-  gnome-dictionary: Desktop
+  gnome-dictionary: sig-recycle
   gnome-disk-utility: GNOME
   gnome-doc-utils: Desktop
   gnome-font-viewer: GNOME
@@ -2644,13 +2814,14 @@ src-openeuler:
   gnome-initial-setup: Desktop
   gnome-keyring: Desktop
   gnome-logs: GNOME
+  gnome-manuals: GNOME
   gnome-maps: GNOME
   gnome-menus: Desktop
   gnome-music: GNOME
   gnome-online-accounts: GNOME
-  gnome-online-miners: GNOME
+  gnome-online-miners: sig-recycle
   gnome-packagekit: Others
-  gnome-photos: GNOME
+  gnome-photos: sig-recycle
   gnome-python2: sig-recycle
   gnome-remote-desktop: GNOME
   gnome-screenshot: Desktop
@@ -2681,7 +2852,7 @@ src-openeuler:
   gnome-user-docs: GNOME
   gnome-user-share: GNOME
   gnome-vfs2: GNOME
-  gnome-video-effects: GNOME
+  gnome-video-effects: sig-recycle
   gnome-weather: GNOME
   gnu-efi: Programming-language
   gnu-free-fonts: Desktop
@@ -2705,6 +2876,7 @@ src-openeuler:
   goebpf: sig-ebpf
   goffice: sig-desktop-apps
   golang: sig-golang
+  golang-1.24: sig-golang
   golang-deepin-go-lib: sig-DDE
   golang-github-coreos-go-iptables: sig-recycle
   golang-github-cpuguy83-go-md2man: sig-recycle
@@ -2790,9 +2962,11 @@ src-openeuler:
   gromacs: Application
   groovy: sig-Java
   groovy18: sig-Java
+  group-service: sig-mate-desktop
   grpc: Networking
   grub2: sig-OS-Builder
   grubby: Base-service
+  gsasl: Application
   gsbase: sig-Java
   gscam: sig-ROS
   gsettings-desktop-schemas: Desktop
@@ -2806,15 +2980,16 @@ src-openeuler:
   gssdp: Programming-language
   gssntlmssp: dev-utils
   gssproxy: Base-service
-  gst-editing-services: GNOME
+  gst-editing-services: Desktop
   gstreamer: sig-recycle
   gstreamer-plugins-base: sig-recycle
   gstreamer-plugins-good: sig-recycle
   gstreamer1: Desktop
-  gstreamer1-libav: GNOME
-  gstreamer1-plugins-bad-free: Programming-language
+  gstreamer1-libav: Desktop
+  gstreamer1-plugins-bad-free: Desktop
   gstreamer1-plugins-base: Desktop
-  gstreamer1-plugins-good: Others
+  gstreamer1-plugins-good: Desktop
+  gstreamer1-plugins-ugly-free: Desktop
   gtest: Programming-language
   gtk: sig-recycle
   gtk-doc: GNOME
@@ -2826,8 +3001,9 @@ src-openeuler:
   gtk3: Desktop
   gtk4: Others
   gtkglext: sig-HPC
-  gtkmm24: dev-utils
+  gtkmm24: sig-recycle
   gtkmm30: Others
+  gtkmm40: Others
   gtksourceview2: sig-desktop-apps
   gtksourceview3: Others
   gtksourceview4: sig-mate-desktop
@@ -2854,6 +3030,7 @@ src-openeuler:
   gv: Desktop
   gvfs: Desktop
   gvisor: sig-CloudNative
+  gweather-locations: Desktop
   gyp: Application
   gz-cmake: sig-ROS
   gz-common: sig-ROS
@@ -2870,6 +3047,7 @@ src-openeuler:
   ha-web: sig-Ha
   hadoop: bigdata
   hadoop-3.1: bigdata
+  ham: sig-UnifiedBus
   hamcrest: dev-utils
   happy: sig-haskell
   haproxy: Networking
@@ -2893,6 +3071,7 @@ src-openeuler:
   hdparm: Storage
   he3fs: DB
   heaphook: sig-ROS
+  hearthd: ai
   hello: dev-utils
   help2man: Programming-language
   heolleo: sig-ops
@@ -2949,6 +3128,7 @@ src-openeuler:
   httpd: Networking
   httpry: Application
   httpunit: sig-Java
+  huatuo: sig-ebpf
   hudi: bigdata
   hue: bigdata
   human_description: sig-ROS
@@ -3201,6 +3381,7 @@ src-openeuler:
   intel-gmmlib: sig-Intel-Arch
   intel-graphics-compiler: sig-Intel-Arch
   intel-gsc: sig-Intel-Arch
+  intel-ice: sig-Intel-Arch
   intel-ipp-crypto-mb: sig-Intel-Arch
   intel-ipsec-mb: sig-Intel-Arch
   intel-metee: sig-Intel-Arch
@@ -3285,11 +3466,15 @@ src-openeuler:
   jacorb: sig-Java
   jaf: sig-Java
   jai-imageio-core: Private
+  jakarta-activation: sig-Java
+  jakarta-activation1: sig-Java
+  jakarta-annotations: sig-Java
   jakarta-cdi: sig-Java
   jakarta-commons-httpclient: sig-Java
   jakarta-el: dev-utils
   jakarta-interceptors: sig-Java
   jakarta-mail: sig-Java
+  jakarta-mail1: sig-Java
   jakarta-oro: dev-utils
   jakarta-server-pages: dev-utils
   jakarta-servlet: sig-Java
@@ -3323,10 +3508,17 @@ src-openeuler:
   javacc-maven-plugin: sig-Java
   javaewah: sig-Java
   javamail: Application
+  javapackages-bootstrap: sig-Java
   javapackages-tools: sig-Java
   javaparser: dev-utils
   javapoet: sig-Java
   javassist: sig-Java
+  jaxb: sig-Java
+  jaxb-api: sig-Java
+  jaxb-dtd-parser: sig-Java
+  jaxb-fi: sig-Java
+  jaxb-istack-commons: sig-Java
+  jaxb-stax-ex: sig-Java
   jaxb2-common-basics: sig-Java
   jaxb2-maven-plugin: sig-Java
   jaxen: sig-Java
@@ -3476,6 +3668,7 @@ src-openeuler:
   joy_tester: sig-ROS
   joystick_drivers: sig-ROS
   jpegoptim: Application
+  jpegxl: sig-KDE
   jq: Base-service
   jruby: sig-ruby
   js-excanvas: dev-utils
@@ -3516,6 +3709,7 @@ src-openeuler:
   junitperf: sig-Java
   juniversalchardet: sig-Java
   jupyter: bigdata
+  jurand: sig-Java
   jvnet-parent: sig-Java
   jwnl: sig-Java
   jxrlib: Desktop
@@ -3831,6 +4025,7 @@ src-openeuler:
   kmod-kvdo: Runtime
   kmod-v4l2loopback: dev-utils
   kmodtool: dev-utils
+  knet: sig-UB-ServiceCore
   knox: bigdata
   kobuki_ros_interfaces: sig-ROS
   kobuki_velocity_smoother: sig-ROS
@@ -3919,6 +4114,7 @@ src-openeuler:
   kytuning-client: sig-ops
   kytuning-server: sig-ops
   kyua: Base-service
+  l10n-maven-plugin: sig-Java
   labltk: Programming-language
   ladspa: dev-utils
   lame: Others
@@ -4023,6 +4219,7 @@ src-openeuler:
   libatasmart: Desktop
   libatomic_ops: Computing
   libavc1394: Runtime
+  libavif: sig-KDE
   libb2: sig-UKUI
   libblockdev: Storage
   libbluray: Desktop
@@ -4047,6 +4244,7 @@ src-openeuler:
   libcddb: sig-epol
   libcdio: Desktop
   libcdio-paranoia: Desktop
+  libcdma: sig-UnifiedBus
   libcdr: ecopkg
   libcec: sig-epol
   libcerror: Programming-language
@@ -4062,10 +4260,12 @@ src-openeuler:
   libcomps: Base-service
   libconfig: Base-service
   libconfuse: Base-service
+  libcreate: sig-ROS
   libcroco: sig-recycle
   libcrystalhd: sig-UKUI
   libcthreads: Programming-language
   libcue: Desktop
+  libcups: System-tool
   libcupsfilters: System-tool
   libcutl: sig-KIRAN-DESKTOP
   libcxx: Compiler
@@ -4086,6 +4286,7 @@ src-openeuler:
   libdca: sig-epol
   libdecor: Programming-language
   libdeflate: sig-bio
+  libdex: GNOME
   libdisplay-info: sig-UKUI
   libdmapsharing: Application
   libdmtx: sig-KDE
@@ -4140,29 +4341,30 @@ src-openeuler:
   libfreehand: ecopkg
   libfreenect: sig-epol
   libftdi: sig-embedded
+  libfyaml: dev-utils
   libg2o-release: sig-ROS
   libgadu: Application
   libgcrypt: sig-security-facility
   libgdata: Desktop
   libgdiplus: Base-service
-  libgdither: Others
-  libgdl: GNOME
+  libgdither: sig-recycle
+  libgdl: sig-recycle
   libgee: Desktop
   libgeotiff: dev-utils
   libgexiv2: Base-service
   libgit2: Base-service
   libgit2-glib: Base-service
   libglade2: Desktop
-  libglademm24: xfce
+  libglademm24: sig-recycle
   libglib-testing: GNOME
   libglvnd: Desktop
   libgmem: Computing
   libgnome: GNOME
-  libgnome-keyring: Programming-language
+  libgnome-keyring: sig-recycle
   libgnomecanvas: GNOME
-  libgnomecanvasmm26: xfce
+  libgnomecanvasmm26: sig-recycle
   libgnomekbd: GNOME
-  libgnomeui: Others
+  libgnomeui: sig-recycle
   libgovirt: Others
   libgpg-error: Base-service
   libgphoto2: System-tool
@@ -4197,10 +4399,11 @@ src-openeuler:
   libidn2: Base-service
   libiec61883: Runtime
   libieee1284: Runtime
-  libijs: Computing
+  libijs: sig-recycle
   libimagequant: Programming-language
   libime: sig-UKUI
   libimobiledevice: Desktop
+  libimobiledevice-glue: Desktop
   libindicator: Programming-language
   libinput: Computing
   libiodbc: bigdata
@@ -4315,7 +4518,7 @@ src-openeuler:
   libogg: Computing
   liboggz: sig-recycle
   liboil: sig-recycle
-  libomp: sig-ROS
+  libomp: sig-recycle
   libomxil-bellagio: Base-service
   libopenmpt: sig-epol
   libopenraw: Others
@@ -4328,6 +4531,7 @@ src-openeuler:
   libpcap: Networking
   libpciaccess: Storage
   libpeas: GNOME
+  libpeas2: GNOME
   libpfm: Programming-language
   libpgf: sig-KDE
   libpinyin: Others
@@ -4380,10 +4584,11 @@ src-openeuler:
   libserf: Networking
   libserverframe: Storage
   libservicelog: sig-recycle
-  libsexy: Desktop
+  libsexy: sig-recycle
   libshout: Runtime
   libshumate: GNOME
-  libsigcpp20: Others
+  libsigcpp20: dev-utils
+  libsigcpp30: dev-utils
   libsigsegv: Base-service
   libslirp: sig-CloudNative
   libsmbios: System-tool
@@ -4412,6 +4617,7 @@ src-openeuler:
   libtalloc: Storage
   libtar: Base-service
   libtasn1: Base-service
+  libtatsu: Desktop
   libtcnative: Application
   libtdb: Base-service
   libteam: Base-service
@@ -4420,7 +4626,7 @@ src-openeuler:
   libtheora: Base-service
   libtiff: Desktop
   libtiger: sig-epol
-  libtimezonemap: Desktop
+  libtimezonemap: sig-recycle
   libtins: sig-high-performance-network
   libtirpc: Networking
   libtomcrypt: Base-service
@@ -4428,12 +4634,12 @@ src-openeuler:
   libtool: Base-service
   libtorrent: sig-epol
   libtpms: sig-security-facility
-  libtracecmd: Programming-language
   libtraceevent: Programming-language
   libtracefs: Programming-language
   libucil: sig-epol
   libudfread: xfce
   libumem: Computing
+  libummu: sig-UnifiedBus
   libunicap: sig-epol
   libuninameslist: dev-utils
   libunistring: Base-service
@@ -4485,6 +4691,7 @@ src-openeuler:
   libxkbfile: Desktop
   libxklavier: Desktop
   libxml2: Base-service
+  libxml2-compat: Base-service
   libxml2-rust: Base-service
   libxmlb: Others
   libxmlpp: sig-compat-winapp
@@ -4497,9 +4704,9 @@ src-openeuler:
   libyang: sig-ops
   libyang1: sig-industrial-control
   libytnef: sig-UKUI
-  libyubikey: dev-utils
+  libyubikey: sig-recycle
   libyuv: ecopkg
-  libzapojit: Others
+  libzapojit: sig-recycle
   libzen: Desktop
   libzip: Programming-language
   libzmf: ecopkg
@@ -4549,11 +4756,14 @@ src-openeuler:
   llvm-toolset-18: Compiler
   llvm-toolset-19: Compiler
   llvm-toolset-20: Compiler
+  llvm-toolset-21: Compiler
+  llvm-ub: Compiler
   lm_sensors: Computing
   lmbench: dev-utils
   lmdb: Base-service
   lmfit: Application
   lndir: Desktop
+  localsearch: GNOME
   locator_ros_bridge: sig-ROS
   loci: sig-openstack
   lockdev: Computing
@@ -4611,6 +4821,7 @@ src-openeuler:
   lucene4: sig-Java
   lucenepp: Desktop
   luit: Desktop
+  lujavrite: sig-Java
   luksmeta: Storage
   lunar-date: sig-KIRAN-DESKTOP
   lusb: sig-ROS
@@ -4642,7 +4853,7 @@ src-openeuler:
   lyx: sig-desktop-apps
   lz4: Base-service
   lz4-java: sig-Java
-  lzip: bigdata
+  lzip: Base-service
   lzma: sig-recycle
   lzma-java: sig-Java
   lzo: Base-service
@@ -4681,7 +4892,7 @@ src-openeuler:
   marble: sig-KDE
   marco: sig-mate-desktop
   mariadb: DB
-  mariadb-connector-c: Base-service
+  mariadb-connector-c: DB
   mariadb-connector-odbc: DB
   marine_msgs: sig-ROS
   marisa: Others
@@ -4725,6 +4936,7 @@ src-openeuler:
   maven-artifact-resolver: sig-Java
   maven-artifact-transfer: sig-Java
   maven-assembly-plugin: sig-Java
+  maven-bundle-plugin: sig-Java
   maven-checkstyle-plugin: sig-Java
   maven-clean-plugin: sig-Java
   maven-common-artifact-filters: sig-Java
@@ -4794,6 +5006,7 @@ src-openeuler:
   mcp: sig-CloudNative
   mcp-self-service-vue: sig-CloudNative
   mcp-servers: sig-intelligence
+  mcp-testkit: sig-intelligence
   mcp-vue: sig-CloudNative
   mcpp: Base-service
   mcstrans: sig-security-facility
@@ -4811,10 +5024,12 @@ src-openeuler:
   meld: sig-desktop-apps
   mem-agent: sig-Long
   memP: sig-HPC
+  mem_hot: A-Tune
   memcached: Application
   memcached_exporter: sig-CloudNative
   memkind: Computing
   memleax: dev-utils
+  memlinkd: sig-Long
   memoryfilesystem: sig-Java
   memtester: dev-utils
   memwatch: dev-utils
@@ -4901,6 +5116,8 @@ src-openeuler:
   mod_wsgi: Application
   modello: Base-service
   modeltest-ng: sig-bio
+  moditect: sig-Java
+  modulemaker-maven-plugin: sig-Java
   modulemd-tools: ecopkg
   mojarra: sig-Java
   mojo-parent: sig-Java
@@ -4928,6 +5145,7 @@ src-openeuler:
   moveit_visual_tools: sig-ROS
   mozilla-filesystem: Desktop
   mozjs102: GNOME
+  mozjs140: Desktop
   mozjs52: sig-recycle
   mozjs60: sig-recycle
   mozjs68: sig-recycle
@@ -4948,7 +5166,9 @@ src-openeuler:
   mrpt_msgs: sig-ROS
   mrt_cmake_modules: sig-ROS
   mrtg: Application
+  msedit: Application
   msgpack-c: sig-epol
+  msgpack-cxx: sig-Long
   mstflint: System-tool
   msv: Application
   mt-st: Others
@@ -4957,6 +5177,7 @@ src-openeuler:
   mtools: Storage
   mtr: Networking
   mtx: System-tool
+  muParser: Base-service
   muffin: sig-cinnamon
   mugen: sig-QA
   mujs: Desktop
@@ -5002,6 +5223,7 @@ src-openeuler:
   nao_button_sim: sig-ROS
   nao_interfaces: sig-ROS
   nao_lola: sig-ROS
+  naoqi_bridge_msgs2: sig-ROS
   narayana: sig-Java
   nasm: Programming-language
   native-platform: sig-Java
@@ -5067,7 +5289,9 @@ src-openeuler:
   nfs4-acl-tools: Storage
   nftables: Networking
   nghttp2: Networking
+  nghttp3: dev-utils
   nginx: Networking
+  ngtcp2: dev-utils
   nilfs-utils: Others
   nim: Programming-language
   ninja-build: Programming-language
@@ -5497,6 +5721,7 @@ src-openeuler:
   objectweb-asm3: Application
   objectweb-pom: sig-Java
   objenesis: sig-Java
+  obmm: sig-Long
   obs-build: Others
   obs-bundled-gems: Others
   obs-env: Programming-language
@@ -5545,6 +5770,7 @@ src-openeuler:
   ocaml-topkg: Programming-language
   ocaml-uutf: Programming-language
   ocaml-xml-light: dev-utils
+  ocaml-yojson: Programming-language
   oceanbase-ce: sig-OceanBase
   ocf: Storage
   ocfs2-tools: ecopkg
@@ -5629,10 +5855,12 @@ src-openeuler:
   opencl-clhpp: ai
   opencl-filesystem: ai
   opencl-headers: ai
+  opencode: sig-DevStation
   openconnect: Application
   opencore-amr: Desktop
   opencryptoki: dev-utils
   opencv: ai
+  opencv-mobile: sig-DDE
   opendmarc: Base-service
   openeuler-ros: sig-ROS
   openfortivpn: Networking
@@ -5645,12 +5873,14 @@ src-openeuler:
   openjdk-11: Compiler
   openjdk-17: Compiler
   openjdk-21: Compiler
+  openjdk-25: Compiler
   openjdk-latest: Compiler
   openjfx11: Compiler
   openjfx8: Compiler
   openjpa: sig-Java
   openjpeg: sig-recycle
   openjpeg2: Desktop
+  openjph: Runtime
   openldap: Networking
   openmotif: Private
   openmp: Compiler
@@ -5758,6 +5988,7 @@ src-openeuler:
   orocos_kdl: sig-ROS
   orocos_kdl_vendor: sig-ROS
   orocos_kinematics_dynamics: sig-ROS
+  os-compat-analyzer: sig-ops
   os-maven-plugin: sig-Java
   os-net-config: sig-openstack
   os-prober: Base-service
@@ -5855,15 +6086,17 @@ src-openeuler:
   pal_urdf_utils: sig-ROS
   pam: sig-security-facility
   pam_krb5: Application
+  pam_pkcs11: sig-security-facility
   pam_wrapper: sig-security-facility
   pandoc-cli: sig-haskell
   pango: Desktop
   pangomm: Programming-language
+  pangomm248: Others
   pangox-compat: sig-mate-desktop
   papi: Programming-language
   papirus-icon-theme: Others
   paps: Application
-  parallel: sig-CloudNative
+  parallel: Base-service
   paranamer: Base-service
   paratype-pt-sans-fonts: Desktop
   paraver-kernel: sig-HPC
@@ -5894,7 +6127,9 @@ src-openeuler:
   pcre: Base-service
   pcre2: Base-service
   pcs: sig-Ha
+  pcs-web-ui: sig-Ha
   pcsc-lite: Storage
+  pcsc-tools: sig-security-facility
   pdf-renderer: sig-Java
   pdfbox: sig-Java
   pdfpc: Application
@@ -5919,7 +6154,6 @@ src-openeuler:
   perl-Acme-Damn: sig-perl-modules
   perl-Algorithm-C3: sig-perl-modules
   perl-Algorithm-Combinatorics: sig-perl-modules
-  perl-Algorithm-Dependency: sig-perl-modules
   perl-Algorithm-Diff: sig-perl-modules
   perl-Algorithm-Diff-XS: sig-perl-modules
   perl-Algorithm-LUHN: sig-perl-modules
@@ -5929,13 +6163,11 @@ src-openeuler:
   perl-Alien-Build-Plugin-Download-GitLab: sig-perl-modules
   perl-Alien-Libxml2: sig-perl-modules
   perl-Alien-Packages: sig-perl-modules
-  perl-Any-Moose: sig-perl-modules
   perl-Any-URI-Escape: sig-perl-modules
   perl-AnyEvent: sig-perl-modules
   perl-AnyEvent-I3: sig-perl-modules
   perl-Apache-LogFormat-Compiler: sig-perl-modules
   perl-Apache-Session: sig-perl-modules
-  perl-Apache-Session-Wrapper: sig-perl-modules
   perl-App-ChangeShebang: sig-perl-modules
   perl-App-Cmd: sig-perl-modules
   perl-App-FatPacker: sig-perl-modules
@@ -5974,30 +6206,12 @@ src-openeuler:
   perl-CDDB: sig-perl-modules
   perl-CGI: sig-perl-modules
   perl-CGI-Ajax: sig-perl-modules
-  perl-CGI-Application: sig-perl-modules
-  perl-CGI-Application-PSGI: sig-perl-modules
-  perl-CGI-Application-Plugin-ConfigAuto: sig-perl-modules
-  perl-CGI-Application-Plugin-DBH: sig-perl-modules
-  perl-CGI-Application-Plugin-DBIC-Schema: sig-perl-modules
-  perl-CGI-Application-Plugin-DevPopup: sig-perl-modules
-  perl-CGI-Application-Plugin-ErrorPage: sig-perl-modules
-  perl-CGI-Application-Plugin-FillInForm: sig-perl-modules
-  perl-CGI-Application-Plugin-FormState: sig-perl-modules
-  perl-CGI-Application-Plugin-JSON: sig-perl-modules
-  perl-CGI-Application-Plugin-LinkIntegrity: sig-perl-modules
-  perl-CGI-Application-Plugin-MessageStack: sig-perl-modules
-  perl-CGI-Application-Plugin-Redirect: sig-perl-modules
-  perl-CGI-Application-Plugin-Session: sig-perl-modules
-  perl-CGI-Application-Plugin-Stream: sig-perl-modules
-  perl-CGI-Application-Plugin-TT: sig-perl-modules
   perl-CGI-Application-Standard-Config: sig-perl-modules
   perl-CGI-Deurl-XS: sig-perl-modules
   perl-CGI-Emulate-PSGI: sig-perl-modules
   perl-CGI-Ex: sig-perl-modules
   perl-CGI-Fast: sig-perl-modules
-  perl-CGI-FormBuilder: sig-perl-modules
   perl-CGI-PSGI: sig-perl-modules
-  perl-CGI-Prototype: sig-perl-modules
   perl-CGI-Session: sig-perl-modules
   perl-CGI-Session-Driver-memcached: sig-perl-modules
   perl-CGI-Simple: sig-perl-modules
@@ -6075,22 +6289,18 @@ src-openeuler:
   perl-Clone: sig-perl-modules
   perl-Clone-Choose: sig-perl-modules
   perl-Clone-PP: sig-perl-modules
-  perl-Code-TidyAll: sig-perl-modules
   perl-Color-Library: sig-perl-modules
   perl-Command-Runner: sig-perl-modules
-  perl-Commandable: sig-perl-modules
   perl-Compress-Bzip2: sig-perl-modules
   perl-Compress-LZ4: sig-perl-modules
   perl-Compress-LZF: sig-perl-modules
   perl-Compress-Raw-Bzip2: sig-perl-modules
   perl-Compress-Raw-Zlib: sig-perl-modules
-  perl-Compress-Snappy: sig-perl-modules
   perl-Config-Any: sig-perl-modules
   perl-Config-Auto: sig-perl-modules
   perl-Config-AutoConf: sig-perl-modules
   perl-Config-Extend-MySQL: sig-perl-modules
   perl-Config-General: sig-perl-modules
-  perl-Config-GitLike: sig-perl-modules
   perl-Config-Grammar: sig-perl-modules
   perl-Config-INI: sig-perl-modules
   perl-Config-INI-Reader-Multiline: sig-perl-modules
@@ -6141,6 +6351,7 @@ src-openeuler:
   perl-Crypt-Salsa20: sig-perl-modules
   perl-Crypt-SaltedHash: sig-perl-modules
   perl-Crypt-ScryptKDF: sig-perl-modules
+  perl-Crypt-Twofish: sig-perl-modules
   perl-Crypt-URandom: sig-perl-modules
   perl-Crypt-UnixCrypt_XS: sig-perl-modules
   perl-Crypt-X509: sig-perl-modules
@@ -6157,17 +6368,8 @@ src-openeuler:
   perl-DBD-SQLite2: sig-perl-modules
   perl-DBD-XBase: sig-perl-modules
   perl-DBI: sig-perl-modules
-  perl-DBICx-AutoDoc: sig-perl-modules
-  perl-DBIx-Class: sig-perl-modules
-  perl-DBIx-Class-Candy: sig-perl-modules
-  perl-DBIx-Class-Cursor-Cached: sig-perl-modules
-  perl-DBIx-Class-IntrospectableM2M: sig-perl-modules
-  perl-DBIx-Class-OptimisticLocking: sig-perl-modules
-  perl-DBIx-Class-Schema-Config: sig-perl-modules
-  perl-DBIx-Class-Storage-Statistics: sig-perl-modules
   perl-DBIx-Connector: sig-perl-modules
   perl-DBIx-DBSchema: sig-perl-modules
-  perl-DBIx-Introspector: sig-perl-modules
   perl-DBIx-RunSQL: sig-perl-modules
   perl-DBIx-Safe: sig-perl-modules
   perl-DBIx-Simple: sig-perl-modules
@@ -6190,7 +6392,6 @@ src-openeuler:
   perl-Data-Perl: sig-perl-modules
   perl-Data-Section: sig-perl-modules
   perl-Data-Section-Simple: sig-perl-modules
-  perl-Data-Stream-Bulk: sig-perl-modules
   perl-Data-TreeDumper: sig-perl-modules
   perl-Data-Tumbler: sig-perl-modules
   perl-Data-UUID: sig-perl-modules
@@ -6217,7 +6418,6 @@ src-openeuler:
   perl-DateTime-TimeZone-Tzfile: sig-perl-modules
   perl-Debug-ShowStuff: sig-perl-modules
   perl-Declare-Constraints-Simple: sig-perl-modules
-  perl-Devel-Autoflush: sig-perl-modules
   perl-Devel-CallChecker: sig-perl-modules
   perl-Devel-Caller: sig-perl-modules
   perl-Devel-Caller-IgnoreNamespaces: sig-perl-modules
@@ -6250,7 +6450,6 @@ src-openeuler:
   perl-Devel-StackTrace: sig-perl-modules
   perl-Devel-StackTrace-AsHTML: sig-perl-modules
   perl-Devel-StackTrace-WithLexicals: sig-perl-modules
-  perl-Devel-StringInfo: sig-perl-modules
   perl-Devel-Symdump: sig-perl-modules
   perl-Devel-Timer: sig-perl-modules
   perl-Devel-Trace: sig-perl-modules
@@ -6288,8 +6487,6 @@ src-openeuler:
   perl-Email-MIME-Encodings: sig-perl-modules
   perl-Email-MessageID: sig-perl-modules
   perl-Email-Reply: sig-perl-modules
-  perl-Email-Send: sig-perl-modules
-  perl-Email-Sender: sig-perl-modules
   perl-Email-Simple: sig-perl-modules
   perl-Encode: sig-perl-modules
   perl-Encode-Detect: sig-perl-modules
@@ -6311,7 +6508,6 @@ src-openeuler:
   perl-Eval-WithLexicals: sig-perl-modules
   perl-Event: sig-perl-modules
   perl-Excel-Writer-XLSX: sig-perl-modules
-  perl-Exception-Base: sig-perl-modules
   perl-Exception-Class: sig-perl-modules
   perl-Exception-Class-TryCatch: sig-perl-modules
   perl-Exception-Tiny: sig-perl-modules
@@ -6320,11 +6516,9 @@ src-openeuler:
   perl-Export-Attrs: sig-perl-modules
   perl-Exporter: sig-perl-modules
   perl-Exporter-Declare: sig-perl-modules
-  perl-Exporter-Declare-Magic: sig-perl-modules
   perl-Exporter-Easy: sig-perl-modules
   perl-Exporter-Lite: sig-perl-modules
   perl-Exporter-Tiny: sig-perl-modules
-  perl-ExtUtils-AutoInstall: sig-perl-modules
   perl-ExtUtils-CBuilder: sig-perl-modules
   perl-ExtUtils-CChecker: sig-perl-modules
   perl-ExtUtils-Config: sig-perl-modules
@@ -6375,7 +6569,6 @@ src-openeuler:
   perl-File-Modified: sig-perl-modules
   perl-File-NFSLock: sig-perl-modules
   perl-File-Next: sig-perl-modules
-  perl-File-Object: sig-perl-modules
   perl-File-Path: sig-perl-modules
   perl-File-Path-Tiny: sig-perl-modules
   perl-File-PathList: sig-perl-modules
@@ -6408,7 +6601,6 @@ src-openeuler:
   perl-Filesys-Notify-Simple: sig-perl-modules
   perl-Filter: sig-perl-modules
   perl-Filter-Simple: sig-perl-modules
-  perl-Finance-YahooQuote: sig-perl-modules
   perl-Flow: sig-perl-modules
   perl-Font-AFM: sig-perl-modules
   perl-Font-TTF: sig-perl-modules
@@ -6434,8 +6626,6 @@ src-openeuler:
   perl-Getopt-Long-Descriptive: sig-perl-modules
   perl-Getopt-Lucid: sig-perl-modules
   perl-Getopt-Simple: sig-perl-modules
-  perl-Git-Repository: sig-perl-modules
-  perl-Git-Repository-Plugin-AUTOLOAD: sig-perl-modules
   perl-Git-Version-Compare: sig-perl-modules
   perl-Git-Wrapper: sig-perl-modules
   perl-Glib: sig-perl-modules
@@ -6454,7 +6644,6 @@ src-openeuler:
   perl-HTML-HTML5-Entities: sig-perl-modules
   perl-HTML-LinkList: sig-perl-modules
   perl-HTML-Lint: sig-perl-modules
-  perl-HTML-Mason: sig-perl-modules
   perl-HTML-Parser: sig-perl-modules
   perl-HTML-Quoted: sig-perl-modules
   perl-HTML-RewriteAttributes: sig-perl-modules
@@ -6478,21 +6667,17 @@ src-openeuler:
   perl-HTTP-Cookies: sig-perl-modules
   perl-HTTP-Daemon: sig-perl-modules
   perl-HTTP-Date: sig-perl-modules
-  perl-HTTP-Exception: sig-perl-modules
   perl-HTTP-Headers-Fast: sig-perl-modules
-  perl-HTTP-Link-Parser: sig-perl-modules
   perl-HTTP-Lite: sig-perl-modules
   perl-HTTP-Message: sig-perl-modules
   perl-HTTP-MultiPartParser: sig-perl-modules
   perl-HTTP-Negotiate: sig-perl-modules
   perl-HTTP-Parser: sig-perl-modules
-  perl-HTTP-Parser-XS: sig-perl-modules
   perl-HTTP-Request-AsCGI: sig-perl-modules
   perl-HTTP-Request-Params: sig-perl-modules
   perl-HTTP-Response-Encoding: sig-perl-modules
   perl-HTTP-Server-Simple: sig-perl-modules
   perl-HTTP-Server-Simple-PSGI: sig-perl-modules
-  perl-HTTP-Thin: sig-perl-modules
   perl-HTTP-Tiny: sig-perl-modules
   perl-HTTP-Tiny-Multipart: sig-perl-modules
   perl-HTTP-Tinyish: sig-perl-modules
@@ -6500,15 +6685,11 @@ src-openeuler:
   perl-HarfBuzz-Shaper: sig-perl-modules
   perl-Hash-Case: sig-perl-modules
   perl-Hash-Diff: sig-perl-modules
-  perl-Hash-Flatten: sig-perl-modules
   perl-Hash-Merge: sig-perl-modules
   perl-Hash-Merge-Simple: sig-perl-modules
   perl-Hash-MoreUtils: sig-perl-modules
-  perl-Hash-MultiValue: sig-perl-modules
   perl-Hash-Ordered: sig-perl-modules
-  perl-Hash-Util-FieldHash-Compat: sig-perl-modules
   perl-Hook-LexWrap: sig-perl-modules
-  perl-IO: sig-perl-modules
   perl-IO-All: sig-perl-modules
   perl-IO-Any: sig-perl-modules
   perl-IO-Compress: sig-perl-modules
@@ -6561,7 +6742,6 @@ src-openeuler:
   perl-JSON-RPC-Common: sig-perl-modules
   perl-JSON-Tiny: sig-perl-modules
   perl-JSON-XS: sig-perl-modules
-  perl-JavaScript-Beautifier: sig-perl-modules
   perl-Jcode: sig-perl-modules
   perl-L: sig-perl-modules
   perl-LDAP: sig-perl-modules
@@ -6571,7 +6751,6 @@ src-openeuler:
   perl-LaTeX-ToUnicode: sig-perl-modules
   perl-Language-Functional: sig-perl-modules
   perl-Lchown: sig-perl-modules
-  perl-Lemplate: sig-perl-modules
   perl-Lexical-Persistence: sig-perl-modules
   perl-Lexical-SealRequireHints: sig-perl-modules
   perl-Library-CallNumber-LC: sig-perl-modules
@@ -6589,7 +6768,6 @@ src-openeuler:
   perl-Lingua-EN-Syllable: sig-perl-modules
   perl-Lingua-EN-Words2Nums: sig-perl-modules
   perl-Lingua-Flags: sig-perl-modules
-  perl-Lingua-Identify: sig-perl-modules
   perl-Lingua-KO-Hangul-Util: sig-perl-modules
   perl-Lingua-PT-Stemmer: sig-perl-modules
   perl-Lingua-Stem-Ru: sig-perl-modules
@@ -6607,20 +6785,15 @@ src-openeuler:
   perl-List-UtilsBy: sig-perl-modules
   perl-Locale-Codes: sig-perl-modules
   perl-Locale-Currency-Format: sig-perl-modules
-  perl-Locale-MO-File: sig-perl-modules
   perl-Locale-Maketext: sig-perl-modules
   perl-Locale-Maketext-Gettext: sig-perl-modules
   perl-Locale-Maketext-Lexicon: sig-perl-modules
-  perl-Locale-Maketext-Simple: sig-perl-modules
   perl-Locale-Msgfmt: sig-perl-modules
   perl-Locale-PO: sig-perl-modules
   perl-Locale-SubCountry: sig-perl-modules
-  perl-Locale-TextDomain-OO: sig-perl-modules
   perl-Locale-TextDomain-OO-Util: sig-perl-modules
   perl-Locale-US: sig-perl-modules
-  perl-Locale-Utils-PlaceholderBabelFish: sig-perl-modules
-  perl-Locale-Utils-PlaceholderMaketext: sig-perl-modules
-  perl-Locale-Utils-PlaceholderNamed: sig-perl-modules
+  perl-Locale-gettext: sig-perl-modules
   perl-Log-Any: sig-perl-modules
   perl-Log-Contextual: sig-perl-modules
   perl-Log-Dispatch: sig-perl-modules
@@ -6643,20 +6816,14 @@ src-openeuler:
   perl-MP3-Info: sig-perl-modules
   perl-MRO-Compat: sig-perl-modules
   perl-Mail-AuthenticationResults: sig-perl-modules
-  perl-Mail-Box: sig-perl-modules
-  perl-Mail-Box-POP3: sig-perl-modules
-  perl-Mail-Box-Parser-C: sig-perl-modules
   perl-Mail-DKIM: sig-perl-modules
   perl-Mail-IMAPTalk: sig-perl-modules
   perl-Mail-JMAPTalk: sig-recycle
-  perl-Mail-Message: sig-perl-modules
   perl-Mail-SPF: sig-perl-modules
   perl-Mail-Sender: sig-perl-modules
   perl-Mail-Sendmail: sig-perl-modules
-  perl-Mail-Transport: sig-perl-modules
   perl-MailTools: sig-perl-modules
   perl-Makefile-DOM: sig-perl-modules
-  perl-MasonX-Request-WithApacheSession: sig-perl-modules
   perl-Math-Base-Convert: sig-perl-modules
   perl-Math-Base36: sig-perl-modules
   perl-Math-Base85: sig-perl-modules
@@ -6666,7 +6833,6 @@ src-openeuler:
   perl-Math-BigRat: sig-recycle
   perl-Math-Calc-Units: sig-perl-modules
   perl-Math-Cartesian-Product: sig-perl-modules
-  perl-Math-Complex: sig-perl-modules
   perl-Math-ConvexHull: sig-perl-modules
   perl-Math-ConvexHull-MonotoneChain: sig-perl-modules
   perl-Math-Derivative: sig-perl-modules
@@ -6681,11 +6847,9 @@ src-openeuler:
   perl-Math-Utils: sig-perl-modules
   perl-Math-Vec: sig-perl-modules
   perl-MemHandle: sig-perl-modules
-  perl-Memoize: sig-perl-modules
   perl-Menlo: sig-perl-modules
   perl-Menlo-Legacy: sig-perl-modules
   perl-Meta-Builder: sig-perl-modules
-  perl-Method-Signatures-Simple: sig-perl-modules
   perl-Metrics-Any: sig-perl-modules
   perl-Mixin-ExtraFields: sig-perl-modules
   perl-Mixin-Linewise: sig-perl-modules
@@ -6695,15 +6859,12 @@ src-openeuler:
   perl-Modern-Perl: sig-perl-modules
   perl-Module-Build: sig-perl-modules
   perl-Module-Build-Deprecated: sig-perl-modules
-  perl-Module-Build-Pluggable: sig-perl-modules
   perl-Module-Build-Tiny: sig-perl-modules
-  perl-Module-Build-Using-PkgConfig: sig-perl-modules
   perl-Module-CPANfile: sig-perl-modules
   perl-Module-Compile: sig-perl-modules
   perl-Module-CoreList: sig-perl-modules
   perl-Module-Data: sig-perl-modules
   perl-Module-Depends: sig-perl-modules
-  perl-Module-Extract: sig-perl-modules
   perl-Module-Extract-Namespaces: sig-perl-modules
   perl-Module-Extract-Use: sig-perl-modules
   perl-Module-Find: sig-perl-modules
@@ -6724,7 +6885,6 @@ src-openeuler:
   perl-Module-Install-TrustMetaYml: sig-perl-modules
   perl-Module-Load: sig-perl-modules
   perl-Module-Load-Conditional: sig-perl-modules
-  perl-Module-Load-Util: sig-perl-modules
   perl-Module-Manifest: sig-perl-modules
   perl-Module-Manifest-Skip: sig-perl-modules
   perl-Module-Mask: sig-perl-modules
@@ -6750,13 +6910,8 @@ src-openeuler:
   perl-Monotone-AutomateStdio: sig-perl-modules
   perl-Moo: sig-perl-modules
   perl-MooX: sig-perl-modules
-  perl-MooX-Cmd: sig-perl-modules
-  perl-MooX-ConfigFromFile: sig-perl-modules
-  perl-MooX-File-ConfigDir: sig-perl-modules
-  perl-MooX-HandlesVia: sig-perl-modules
   perl-MooX-HasEnv: sig-perl-modules
   perl-MooX-Locale-Passthrough: sig-perl-modules
-  perl-MooX-Locale-TextDomain-OO: sig-perl-modules
   perl-MooX-Log-Any: sig-perl-modules
   perl-MooX-Role-Parameterized: sig-perl-modules
   perl-MooX-Roles-Pluggable: sig-perl-modules
@@ -6764,55 +6919,31 @@ src-openeuler:
   perl-MooX-StrictConstructor: sig-perl-modules
   perl-Moose: sig-perl-modules
   perl-Moose-Autobox: sig-perl-modules
-  perl-MooseX-Aliases: sig-perl-modules
-  perl-MooseX-App-Cmd: sig-perl-modules
   perl-MooseX-ArrayRef: sig-perl-modules
-  perl-MooseX-Async: sig-perl-modules
   perl-MooseX-Attribute-Chained: sig-perl-modules
   perl-MooseX-CascadeClearing: sig-perl-modules
-  perl-MooseX-ClassAttribute: sig-perl-modules
   perl-MooseX-CoercePerAttribute: sig-perl-modules
-  perl-MooseX-ConfigFromFile: sig-perl-modules
-  perl-MooseX-Configuration: sig-perl-modules
-  perl-MooseX-Daemonize: sig-perl-modules
   perl-MooseX-Emulate-Class-Accessor-Fast: sig-perl-modules
-  perl-MooseX-Getopt: sig-perl-modules
-  perl-MooseX-GlobRef: sig-perl-modules
-  perl-MooseX-Has-Options: sig-perl-modules
-  perl-MooseX-Has-Sugar: sig-perl-modules
-  perl-MooseX-InsideOut: sig-perl-modules
   perl-MooseX-Iterator: sig-perl-modules
   perl-MooseX-LazyRequire: sig-perl-modules
   perl-MooseX-MarkAsMethods: sig-perl-modules
   perl-MooseX-Meta-TypeConstraint-ForceCoercion: sig-perl-modules
   perl-MooseX-Meta-TypeConstraint-Mooish: sig-perl-modules
-  perl-MooseX-MethodAttributes: sig-perl-modules
   perl-MooseX-MultiInitArg: sig-perl-modules
-  perl-MooseX-NonMoose: sig-perl-modules
   perl-MooseX-Object-Pluggable: sig-perl-modules
-  perl-MooseX-OneArgNew: sig-perl-modules
-  perl-MooseX-POE: sig-perl-modules
   perl-MooseX-Param: sig-perl-modules
   perl-MooseX-Params-Validate: sig-perl-modules
-  perl-MooseX-RelatedClassRoles: sig-perl-modules
   perl-MooseX-Role-Cmd: sig-perl-modules
-  perl-MooseX-Role-Matcher: sig-perl-modules
-  perl-MooseX-Role-Parameterized: sig-perl-modules
   perl-MooseX-Role-Strict: sig-perl-modules
-  perl-MooseX-Role-Tempdir: sig-perl-modules
   perl-MooseX-SemiAffordanceAccessor: sig-perl-modules
   perl-MooseX-SetOnce: sig-perl-modules
-  perl-MooseX-SimpleConfig: sig-perl-modules
   perl-MooseX-Singleton: sig-perl-modules
   perl-MooseX-StrictConstructor: sig-perl-modules
   perl-MooseX-TraitFor-Meta-Class-BetterAnonClassNames: sig-perl-modules
-  perl-MooseX-Traits: sig-perl-modules
   perl-MooseX-Traits-Pluggable: sig-perl-modules
   perl-MooseX-Types: sig-perl-modules
   perl-MooseX-Types-Common: sig-perl-modules
   perl-MooseX-Types-LoadableClass: sig-perl-modules
-  perl-MooseX-Types-Path-Class: sig-perl-modules
-  perl-MooseX-Types-Path-Tiny: sig-perl-modules
   perl-MooseX-Types-Perl: sig-perl-modules
   perl-MooseX-Types-Stringlike: sig-perl-modules
   perl-Mozilla-CA: sig-perl-modules
@@ -6831,7 +6962,6 @@ src-openeuler:
   perl-Net-Daemon: sig-perl-modules
   perl-Net-Domain-TLD: sig-perl-modules
   perl-Net-Google-AuthSub: sig-perl-modules
-  perl-Net-HL7: sig-perl-modules
   perl-Net-HTTP: sig-perl-modules
   perl-Net-INET6Glue: sig-perl-modules
   perl-Net-IP: sig-perl-modules
@@ -6846,7 +6976,6 @@ src-openeuler:
   perl-Net-POP3S: sig-perl-modules
   perl-Net-Ping-External: sig-perl-modules
   perl-Net-Random: sig-perl-modules
-  perl-Net-RawIP: sig-perl-modules
   perl-Net-SFTP-Foreign: sig-perl-modules
   perl-Net-SMTP-SSL: sig-perl-modules
   perl-Net-SMTPS: sig-perl-modules
@@ -6878,7 +7007,6 @@ src-openeuler:
   perl-PBKDF2-Tiny: sig-perl-modules
   perl-PDF-Create: sig-perl-modules
   perl-PDF-Reuse: sig-perl-modules
-  perl-PFT: sig-perl-modules
   perl-PHP-Serialization: sig-perl-modules
   perl-POD2-Base: sig-perl-modules
   perl-POE: sig-perl-modules
@@ -6905,7 +7033,6 @@ src-openeuler:
   perl-PadWalker: sig-perl-modules
   perl-Palm: sig-perl-modules
   perl-Palm-PDB: sig-perl-modules
-  perl-Panotools-Script: sig-perl-modules
   perl-Parallel-ForkManager: sig-perl-modules
   perl-Parallel-Iterator: sig-perl-modules
   perl-Parallel-Pipes: sig-perl-modules
@@ -6921,7 +7048,6 @@ src-openeuler:
   perl-Parse-DMIDecode: sig-perl-modules
   perl-Parse-Debian-Packages: sig-perl-modules
   perl-Parse-EDID: sig-perl-modules
-  perl-Parse-ErrorString-Perl: sig-perl-modules
   perl-Parse-ExuberantCTags: sig-perl-modules
   perl-Parse-Gitignore: sig-perl-modules
   perl-Parse-MIME: sig-perl-modules
@@ -6940,7 +7066,6 @@ src-openeuler:
   perl-Perl-Critic: sig-perl-modules
   perl-Perl-MinimumVersion: sig-perl-modules
   perl-Perl-OSType: sig-perl-modules
-  perl-Perl-PrereqScanner: sig-perl-modules
   perl-Perl-Stripper: sig-perl-modules
   perl-Perl-Tidy: sig-perl-modules
   perl-Perl-Tidy-Sweetened: sig-perl-modules
@@ -6961,7 +7086,6 @@ src-openeuler:
   perl-Pod-Checker: sig-perl-modules
   perl-Pod-Constants: sig-perl-modules
   perl-Pod-Coverage: sig-perl-modules
-  perl-Pod-Coverage-Moose: sig-perl-modules
   perl-Pod-Coverage-TrustPod: sig-perl-modules
   perl-Pod-Elemental: sig-perl-modules
   perl-Pod-Elemental-PerlMunger: sig-perl-modules
@@ -6982,11 +7106,7 @@ src-openeuler:
   perl-Pod-Spell: sig-perl-modules
   perl-Pod-Spell-CommonMistakes: sig-perl-modules
   perl-Pod-Strip: sig-perl-modules
-  perl-Pod-Tidy: sig-perl-modules
   perl-Pod-Usage: sig-perl-modules
-  perl-Pod-Wrap: sig-perl-modules
-  perl-Pod-Xhtml: sig-perl-modules
-  perl-Printer: sig-perl-modules
   perl-Proc-Daemon: sig-perl-modules
   perl-Proc-InvokeEditor: sig-perl-modules
   perl-Proc-PID-File: sig-perl-modules
@@ -6994,16 +7114,12 @@ src-openeuler:
   perl-Proc-Simple: sig-perl-modules
   perl-Proc-Terminator: sig-perl-modules
   perl-Proc-Wait3: sig-perl-modules
-  perl-Promises: sig-perl-modules
-  perl-RDF-NS: sig-perl-modules
   perl-RDF-NS-Curated: sig-perl-modules
   perl-RDF-Prefixes: sig-perl-modules
-  perl-RDF-Trine: sig-perl-modules
   perl-REST-Client: sig-perl-modules
   perl-RPM2: sig-perl-modules
   perl-Readonly: sig-perl-modules
   perl-ReadonlyX: sig-perl-modules
-  perl-Redis: sig-perl-modules
   perl-Ref-Util: sig-perl-modules
   perl-Ref-Util-XS: sig-perl-modules
   perl-Regexp-Assemble: sig-perl-modules
@@ -7014,10 +7130,7 @@ src-openeuler:
   perl-Regexp-IPv6: sig-perl-modules
   perl-Regexp-Pattern: sig-perl-modules
   perl-Regexp-Stringify: sig-perl-modules
-  perl-Regexp-Util: sig-perl-modules
-  perl-Retry: sig-perl-modules
   perl-Return-MultiLevel: sig-perl-modules
-  perl-Return-Value: sig-perl-modules
   perl-Role-Basic: sig-perl-modules
   perl-Role-Identifiable: sig-perl-modules
   perl-Role-Tiny: sig-perl-modules
@@ -7025,7 +7138,6 @@ src-openeuler:
   perl-Router-Simple: sig-perl-modules
   perl-SGMLSpm: sig-perl-modules
   perl-SNMP_Session: sig-perl-modules
-  perl-SQL-Abstract: sig-perl-modules
   perl-SQL-Abstract-Classic: sig-perl-modules
   perl-SQL-Interp: sig-perl-modules
   perl-SQL-Library: sig-perl-modules
@@ -7044,7 +7156,6 @@ src-openeuler:
   perl-Scope-Guard: sig-perl-modules
   perl-Scope-Upper: sig-perl-modules
   perl-Scriptalicious: sig-perl-modules
-  perl-SelfLoader: sig-perl-modules
   perl-Server-Starter: sig-perl-modules
   perl-Set-Array: sig-perl-modules
   perl-Set-Crontab: sig-perl-modules
@@ -7060,7 +7171,6 @@ src-openeuler:
   perl-Socket-MsgHdr: sig-perl-modules
   perl-Socket6: sig-perl-modules
   perl-Software-License: sig-perl-modules
-  perl-Software-License-CCpack: sig-perl-modules
   perl-Sort-Key: sig-perl-modules
   perl-Sort-MergeSort: sig-perl-modules
   perl-Sort-Naturally: sig-perl-modules
@@ -7093,7 +7203,6 @@ src-openeuler:
   perl-String-ShellQuote: sig-perl-modules
   perl-String-Similarity: sig-perl-modules
   perl-String-Tagged: sig-perl-modules
-  perl-String-Tagged-Terminal: sig-perl-modules
   perl-String-Trim: sig-perl-modules
   perl-String-Truncate: sig-perl-modules
   perl-String-Util: sig-perl-modules
@@ -7139,22 +7248,18 @@ src-openeuler:
   perl-Tangerine: sig-perl-modules
   perl-Tapper: sig-perl-modules
   perl-Task-Kensho-Exceptions: sig-perl-modules
-  perl-Task-Moose: sig-perl-modules
   perl-Task-Weaken: sig-perl-modules
   perl-TeX-Encode: sig-perl-modules
   perl-TeX-Hyphen: sig-perl-modules
   perl-Template-Alloy: sig-perl-modules
-  perl-Template-Multilingual: sig-perl-modules
   perl-Template-Plugin-Class: sig-perl-modules
   perl-Template-Plugin-Cycle: sig-perl-modules
   perl-Template-Tiny: sig-perl-modules
   perl-Template-Toolkit: sig-perl-modules
-  perl-Template-Toolkit-Simple: sig-perl-modules
   perl-Term-ANSIColor: sig-perl-modules
   perl-Term-Cap: sig-perl-modules
   perl-Term-Chrome: sig-perl-modules
   perl-Term-Clui: sig-perl-modules
-  perl-Term-EditorEdit: sig-perl-modules
   perl-Term-Encoding: sig-perl-modules
   perl-Term-ProgressBar: sig-perl-modules
   perl-Term-Size: sig-perl-modules
@@ -7163,8 +7268,6 @@ src-openeuler:
   perl-TermReadKey: sig-perl-modules
   perl-Test-API: sig-perl-modules
   perl-Test-Abortable: sig-perl-modules
-  perl-Test-Assert: sig-perl-modules
-  perl-Test-Assertions: sig-perl-modules
   perl-Test-Base: sig-perl-modules
   perl-Test-CPAN-Meta: sig-perl-modules
   perl-Test-CPAN-Meta-JSON: sig-perl-modules
@@ -7174,8 +7277,6 @@ src-openeuler:
   perl-Test-CheckManifest: sig-perl-modules
   perl-Test-Class: sig-perl-modules
   perl-Test-Class-Most: sig-perl-modules
-  perl-Test-CleanNamespaces: sig-perl-modules
-  perl-Test-Cmd: sig-perl-modules
   perl-Test-Command: sig-perl-modules
   perl-Test-Compile: sig-perl-modules
   perl-Test-ConsistentVersion: sig-perl-modules
@@ -7192,7 +7293,6 @@ src-openeuler:
   perl-Test-Dynamic: sig-perl-modules
   perl-Test-EOL: sig-perl-modules
   perl-Test-Exception: sig-perl-modules
-  perl-Test-Exception-LessClever: sig-perl-modules
   perl-Test-Exit: sig-perl-modules
   perl-Test-Expect: sig-perl-modules
   perl-Test-FailWarnings: sig-perl-modules
@@ -7212,7 +7312,6 @@ src-openeuler:
   perl-Test-InDistDir: sig-perl-modules
   perl-Test-Inter: sig-perl-modules
   perl-Test-Is: sig-perl-modules
-  perl-Test-JSON: sig-perl-modules
   perl-Test-LWP-UserAgent: sig-perl-modules
   perl-Test-LeakTrace: sig-perl-modules
   perl-Test-LectroTest: sig-perl-modules
@@ -7228,14 +7327,11 @@ src-openeuler:
   perl-Test-MockObject: sig-perl-modules
   perl-Test-MockRandom: sig-perl-modules
   perl-Test-MockTime: sig-perl-modules
-  perl-Test-Modern: sig-perl-modules
-  perl-Test-Mojibake: sig-perl-modules
   perl-Test-Moose-More: sig-perl-modules
   perl-Test-More-UTF8: sig-perl-modules
   perl-Test-Most: sig-perl-modules
   perl-Test-Name-FromLine: sig-perl-modules
   perl-Test-Needs: sig-perl-modules
-  perl-Test-Nginx: sig-perl-modules
   perl-Test-NiceDump: sig-perl-modules
   perl-Test-NoBreakpoints: sig-perl-modules
   perl-Test-NoPlan: sig-perl-modules
@@ -7258,15 +7354,11 @@ src-openeuler:
   perl-Test-Requires: sig-perl-modules
   perl-Test-Requires-Git: sig-perl-modules
   perl-Test-RequiresInternet: sig-perl-modules
-  perl-Test-Roo: sig-perl-modules
-  perl-Test-Routine: sig-perl-modules
   perl-Test-Run: sig-perl-modules
-  perl-Test-Run-CmdLine: sig-perl-modules
   perl-Test-Script-Run: sig-perl-modules
   perl-Test-SharedFork: sig-perl-modules
   perl-Test-Simple: sig-perl-modules
   perl-Test-Spelling: sig-perl-modules
-  perl-Test-Strict: sig-perl-modules
   perl-Test-SubCalls: sig-perl-modules
   perl-Test-Synopsis: sig-perl-modules
   perl-Test-TCP: sig-perl-modules
@@ -7280,7 +7372,6 @@ src-openeuler:
   perl-Test-UseAllModules: sig-perl-modules
   perl-Test-Vars: sig-perl-modules
   perl-Test-Version: sig-perl-modules
-  perl-Test-WWW-Selenium: sig-perl-modules
   perl-Test-Warn: sig-perl-modules
   perl-Test-Warnings: sig-perl-modules
   perl-Test-Without-Module: sig-perl-modules
@@ -7302,7 +7393,6 @@ src-openeuler:
   perl-Text-CSV-Separator: sig-perl-modules
   perl-Text-CSV_XS: sig-perl-modules
   perl-Text-CharWidth: sig-perl-modules
-  perl-Text-Clip: sig-perl-modules
   perl-Text-Diff: sig-perl-modules
   perl-Text-Diff-HTML: sig-perl-modules
   perl-Text-Diff-Parser: sig-perl-modules
@@ -7319,14 +7409,12 @@ src-openeuler:
   perl-Text-Ngram: sig-perl-modules
   perl-Text-PDF: sig-perl-modules
   perl-Text-ParseWords: sig-perl-modules
-  perl-Text-Quoted: sig-perl-modules
   perl-Text-Reflow: sig-perl-modules
   perl-Text-Reform: sig-perl-modules
   perl-Text-Roman: sig-perl-modules
   perl-Text-Soundex: sig-perl-modules
   perl-Text-Sprintf-Named: sig-perl-modules
   perl-Text-Table: sig-perl-modules
-  perl-Text-Table-Tiny: sig-perl-modules
   perl-Text-Tabs-Wrap: sig-perl-modules
   perl-Text-TabularDisplay: sig-perl-modules
   perl-Text-Template: sig-perl-modules
@@ -7361,10 +7449,8 @@ src-openeuler:
   perl-Time-Interval: sig-perl-modules
   perl-Time-Local: sig-perl-modules
   perl-Time-Mock: sig-perl-modules
-  perl-Time-Moment: sig-perl-modules
   perl-Time-ParseDate: sig-perl-modules
   perl-Time-Period: sig-perl-modules
-  perl-Time-Piece: sig-perl-modules
   perl-Time-Tiny: sig-perl-modules
   perl-Time-Warp: sig-perl-modules
   perl-Time-Zone: Private
@@ -7377,7 +7463,6 @@ src-openeuler:
   perl-Tk-DoubleClick: sig-perl-modules
   perl-Tk-FontDialog: sig-perl-modules
   perl-Tk-ObjScanner: sig-perl-modules
-  perl-Tk-Pod: sig-perl-modules
   perl-Tk-Text-SuperText: sig-perl-modules
   perl-Tree: sig-perl-modules
   perl-Tree-DAG_Node: sig-perl-modules
@@ -7399,8 +7484,6 @@ src-openeuler:
   perl-URI-Query: sig-perl-modules
   perl-URI-Title: sig-perl-modules
   perl-URI-db: sig-perl-modules
-  perl-URI-ws: sig-perl-modules
-  perl-URL-Encode: sig-perl-modules
   perl-URL-Encode-XS: sig-perl-modules
   perl-UUID: sig-perl-modules
   perl-UUID-Tiny: sig-perl-modules
@@ -7418,7 +7501,6 @@ src-openeuler:
   perl-Unix-Syslog: Private
   perl-User: sig-perl-modules
   perl-User-Identity: sig-perl-modules
-  perl-Validation-Class: sig-perl-modules
   perl-Variable-Magic: sig-perl-modules
   perl-Verilog-Readmem: sig-perl-modules
   perl-Version-Next: sig-perl-modules
@@ -7433,7 +7515,6 @@ src-openeuler:
   perl-Want: sig-perl-modules
   perl-WebService-Linode: sig-perl-modules
   perl-WebService-Validator-HTML-W3C: sig-perl-modules
-  perl-Win32-ShellQuote: sig-perl-modules
   perl-XML-Atom-SimpleFeed: sig-perl-modules
   perl-XML-Bare: sig-perl-modules
   perl-XML-Catalog: sig-perl-modules
@@ -7502,7 +7583,6 @@ src-openeuler:
   perl-enum: sig-perl-modules
   perl-experimental: sig-perl-modules
   perl-generators: sig-perl-modules
-  perl-gettext: sig-perl-modules
   perl-inc-latest: sig-perl-modules
   perl-indirect: sig-perl-modules
   perl-latest: sig-perl-modules
@@ -7520,13 +7600,11 @@ src-openeuler:
   perl-multidimensional: sig-perl-modules
   perl-namespace-autoclean: sig-perl-modules
   perl-namespace-clean: sig-perl-modules
-  perl-namespace-sweep: sig-perl-modules
   perl-parent: sig-perl-modules
   perl-perlfaq: sig-perl-modules
   perl-pmtools: sig-perl-modules
   perl-podlators: sig-perl-modules
   perl-prefork: sig-perl-modules
-  perl-re-engine-PCRE2: sig-perl-modules
   perl-strictures: sig-perl-modules
   perl-syntax: sig-perl-modules
   perl-threads: sig-perl-modules
@@ -7555,7 +7633,9 @@ src-openeuler:
   picketbox: sig-Java
   picketbox-commons: sig-Java
   picketbox-xacml: sig-Java
+  picocli: sig-Java
   pidgin: Application
+  pie: Programming-language
   pig: sig-recycle
   pigpio: sig-SBC
   pigz: Base-service
@@ -7627,8 +7707,10 @@ src-openeuler:
   plexus-pom: sig-Java
   plexus-resources: sig-Java
   plexus-sec-dispatcher: sig-Java
+  plexus-testing: sig-Java
   plexus-utils: sig-Java
   plexus-velocity: sig-Java
+  plexus-xml: sig-Java
   plotjuggler-ros-plugins: sig-ROS
   plotjuggler_msgs: sig-ROS
   plotutils: Application
@@ -7801,7 +7883,6 @@ src-openeuler:
   python-ECPy: sig-python-modules
   python-EditorConfig: sig-python-modules
   python-Faker: sig-python-modules
-  python-Fiona: sig-python-modules
   python-Flask-APScheduler: sig-python-modules
   python-Flask-Admin: sig-python-modules
   python-Flask-Assets: sig-python-modules
@@ -7852,6 +7933,7 @@ src-openeuler:
   python-PyPDF2: sig-python-modules
   python-PyQt-builder: sig-python-modules
   python-PyQt5: sig-python-modules
+  python-PyQt5-sip: sig-python-modules
   python-PyQtWebEngine: sig-python-modules
   python-PyRSS2Gen: sig-python-modules
   python-PySimpleSOAP: sig-python-modules
@@ -7935,10 +8017,12 @@ src-openeuler:
   python-aiomqtt: sig-python-modules
   python-aiomysql: sig-python-modules
   python-aioodbc: sig-python-modules
+  python-aiopg: sig-openstack
   python-aiorpcX: sig-python-modules
   python-aiosignal: sig-python-modules
   python-aiosmtpd: sig-python-modules
   python-aiosnmp: sig-python-modules
+  python-aiosqlite: sig-openstack
   python-aiostream: sig-python-modules
   python-aiounittest: sig-python-modules
   python-aiowinreg: sig-python-modules
@@ -8009,6 +8093,7 @@ src-openeuler:
   python-async-timeout: sig-python-modules
   python-async_generator: sig-python-modules
   python-asyncer: sig-intelligence
+  python-asyncmy: sig-openstack
   python-asyncpg: sig-intelligence
   python-asyncssh: sig-python-modules
   python-asynctest: sig-python-modules
@@ -8041,6 +8126,7 @@ src-openeuler:
   python-backports-functools_lru_cache: Private
   python-backports-shutil_get_terminal_size: Private
   python-backports-ssl_match_hostname: Networking
+  python-backports-tarfile: sig-python-modules
   python-backports-unittest_mock: sig-python-modules
   python-backports_abc: Programming-language
   python-backrefs: ecopkg
@@ -8252,6 +8338,7 @@ src-openeuler:
   python-daiquiri: sig-python-modules
   python-darglint: sig-python-modules
   python-dasbus: sig-OS-Builder
+  python-databases: sig-openstack
   python-dataclasses: sig-python-modules
   python-datanommer.consumer: sig-python-modules
   python-datanommer.models: sig-python-modules
@@ -8364,6 +8451,8 @@ src-openeuler:
   python-domdf-python-tools: sig-python-modules
   python-dominate: sig-python-modules
   python-dotenv: sig-python-modules
+  python-doxypypy: sig-KDE
+  python-doxyqml: sig-KDE
   python-dparse: sig-python-modules
   python-dpath: sig-python-modules
   python-dpkt: sig-python-modules
@@ -8414,7 +8503,7 @@ src-openeuler:
   python-execnet: sig-python-modules
   python-executing: ecopkg
   python-exif: sig-python-modules
-  python-expandvars: sig-intelligence
+  python-expandvars: Programming-language
   python-extras: Programming-language
   python-ez_setup: sig-python-modules
   python-f5-icontrol-rest: sig-python-modules
@@ -8441,6 +8530,7 @@ src-openeuler:
   python-fields: sig-python-modules
   python-filelock: sig-python-modules
   python-filetype: sig-python-modules
+  python-fiona: sig-python-modules
   python-fire: sig-python-modules
   python-firebirdsql: sig-python-modules
   python-firehose: sig-python-modules
@@ -8840,6 +8930,7 @@ src-openeuler:
   python-locket: sig-python-modules
   python-lockfile: sig-python-modules
   python-logging_tree: sig-python-modules
+  python-loguru: sig-openstack
   python-logutils: sig-python-modules
   python-logzero: sig-python-modules
   python-losant-rest: sig-python-modules
@@ -8944,6 +9035,7 @@ src-openeuler:
   python-mox: Base-service
   python-mox3: sig-openstack
   python-mpmath: sig-python-modules
+  python-mrcfile: sig-python-modules
   python-msgpack: sig-python-modules
   python-msgspec: sig-python-modules
   python-msrest: sig-openstack
@@ -9249,7 +9341,7 @@ src-openeuler:
   python-prometheus_client: sig-python-modules
   python-prompt-toolkit: sig-python-modules
   python-prompt_toolkit: Private
-  python-propcache: sig-intelligence
+  python-propcache: Programming-language
   python-protobuf: sig-intelligence
   python-psutil: Programming-language
   python-psycogreen: sig-python-modules
@@ -9568,7 +9660,8 @@ src-openeuler:
   python-robotframework: sig-ROS
   python-rocket: sig-python-modules
   python-roman: sig-python-modules
-  python-roman-numerals-py: ecopkg
+  python-roman-numerals: sig-python-modules
+  python-roman-numerals-py: sig-recycle
   python-rope: sig-python-modules
   python-rosdistro: sig-ROS
   python-rosinstall: sig-python-modules
@@ -9719,6 +9812,7 @@ src-openeuler:
   python-sphinx-notfound-page: sig-python-modules
   python-sphinx-remove-toctrees: sig-python-modules
   python-sphinx-reredirects: sig-python-modules
+  python-sphinx-rtd-theme: sig-openstack
   python-sphinx-sitemap: sig-python-modules
   python-sphinx-tabs: sig-python-modules
   python-sphinx-testing: sig-openstack
@@ -10161,6 +10255,7 @@ src-openeuler:
   qt5-qtlocation: sig-QT
   qt5-qtmultimedia: sig-QT
   qt5-qtnetworkauth: sig-QT
+  qt5-qtquick3d: sig-QT
   qt5-qtquickcontrols: sig-QT
   qt5-qtquickcontrols2: sig-QT
   qt5-qtremoteobjects: sig-QT
@@ -10275,6 +10370,7 @@ src-openeuler:
   rasqal: Application
   raxml-ng: sig-bio
   ray: sig-Long
+  ray-adapter: sig-YuanRong
   rc_common_msgs_ros2: sig-ROS
   rc_dynamics_api: sig-ROS
   rc_genicam_api: sig-ROS
@@ -10317,6 +10413,7 @@ src-openeuler:
   reflections: sig-Java
   regexp: Application
   reiserfs-utils: Others
+  relaxng-datatype-java: sig-Java
   relaxngDatatype: dev-utils
   relaxngcc: dev-utils
   relocatable-perl: Base-service
@@ -10417,9 +10514,11 @@ src-openeuler:
   ros2_moveit_visual_tools: sig-ROS
   ros2_navigation2: sig-ROS
   ros2_navigation_msgs: sig-ROS
+  ros2_object_msgs: sig-ROS
   ros2_object_recognition_msgs: sig-ROS
   ros2_octomap: sig-ROS
   ros2_octomap_msgs: sig-ROS
+  ros2_openvino_toolkit: sig-ROS
   ros2_orocos_kinematics_dynamics: sig-ROS
   ros2_ouster_drivers: sig-ROS
   ros2_pcl_msgs: sig-ROS
@@ -10494,6 +10593,7 @@ src-openeuler:
   rosconsole: sig-ROS
   rosconsole_bridge: sig-ROS
   roscpp_core: sig-ROS
+  rosgpt: sig-ROS
   rosidl: sig-ROS
   rosidl_dds: sig-ROS
   rosidl_defaults: sig-ROS
@@ -10506,6 +10606,7 @@ src-openeuler:
   roslisp: sig-ROS
   rospack: sig-ROS
   rospy_message_converter: sig-ROS
+  rosx_introspection: sig-ROS
   rot_conv_lib: sig-ROS
   rpcbind: Networking
   rpcsvc-proto: Application
@@ -10863,6 +10964,7 @@ src-openeuler:
   rubygem-sys-uname: sig-ruby
   rubygem-temple: sig-ruby
   rubygem-test-unit-rr: sig-Ha
+  rubygem-test-unit-ruby-core: sig-Ha
   rubygem-test_declarative: sig-ruby
   rubygem-text: sig-ops
   rubygem-thin: sig-ruby
@@ -10897,12 +10999,17 @@ src-openeuler:
   ruckig: sig-ROS
   runc: sig-CloudNative
   rust: Compiler
+  rust-add-determinism: Base-service
   rust-bindgen: Compiler
+  rust-cargo-c: Compiler
   rust-cbindgen: Compiler
   rust-packaging: Compiler
   rust-ripgrep: Compiler
+  rust-rpm-sequoia: Base-service
   rust-srpm-macros: sig-epol
+  rust2rpm: Compiler
   rustup: Compiler
+  ruyi: sig-RISC-V
   rviz: sig-ROS
   rviz_2d_overlay_plugins: sig-ROS
   rviz_satellite: sig-ROS
@@ -10944,8 +11051,10 @@ src-openeuler:
   scap-workbench: sig-security-facility
   scdoc: ecopkg
   scenario_execution: sig-ROS
+  scf-security: sig-security-facility
   schemas: sig-ROS
   schroedinger: sig-epol
+  schtest: Kernel
   schunk_svh_library: sig-ROS
   schunk_svh_ros_driver: sig-ROS
   scim: sig-KDE
@@ -10956,6 +11065,8 @@ src-openeuler:
   screen: Base-service
   scrub: Application
   scsi-target-utils: Others
+  scx: Kernel
+  scx-loader: Kernel
   sddm: sig-KDE
   sddm-kcm: sig-KDE
   sdformat: sig-ROS
@@ -11037,15 +11148,19 @@ src-openeuler:
   simple-xml: sig-Java
   simple_actions: sig-ROS
   simple_launch: sig-ROS
+  sionlib: sig-HPC
   sip: Others
   sip-6: sig-python-modules
   sisu: sig-Java
   sisu-mojos: sig-Java
   situational_graphs_datasets: sig-ROS
   situational_graphs_reasoning_msgs: sig-ROS
+  skills: sig-intelligence
   skkdic: Application
   skopeo: sig-CloudNative
   skylark: Virt
+  skyline-apiserver: sig-openstack
+  skyline-console: sig-openstack
   slam_gmapping: sig-ROS
   slam_gmapping_ros2: sig-ROS
   slam_toolbox: sig-ROS
@@ -11182,6 +11297,7 @@ src-openeuler:
   subunit: Programming-language
   subversion: Base-service
   sudo: Base-service
+  sudo-rs: Base-service
   suil: sig-desktop-apps
   suitesparse: Others
   sundials: ai
@@ -11203,6 +11319,7 @@ src-openeuler:
   symlinks: Base-service
   sync_parameter_server: sig-ROS
   sysHAX: sig-intelligence
+  sysHAX-adapter: sig-intelligence
   sysSentry: Base-service
   sysTrace: sig-ops
   sysbench: dev-utils
@@ -11242,6 +11359,7 @@ src-openeuler:
   takari-lifecycle: sig-Java
   takari-plugin-testing: sig-Java
   takari-pom: sig-Java
+  talos_moveit_config: sig-ROS
   talos_robot: sig-ROS
   talos_simulation: sig-ROS
   tang: System-tool
@@ -11263,6 +11381,7 @@ src-openeuler:
   tcpdump: Networking
   tcsh: Base-service
   teckit: dev-utils
+  tecla: sig-DevStation
   telegraf: bigdata
   teleop_tools: sig-ROS
   teleop_twist_joy: sig-ROS
@@ -11326,7 +11445,6 @@ src-openeuler:
   thin-provisioning-tools: Storage
   thonny: Desktop
   thredds: sig-Java
-  three-eight-nine-ds-base: Application
   thrift: Base-service
   thunar-archive-plugin: xfce
   thunar-media-tags-plugin: xfce
@@ -11356,6 +11474,7 @@ src-openeuler:
   tinycdb: Runtime
   tinypinyin: Others
   tinyproxy: Networking
+  tinysparql: GNOME
   tinytoml: Compiler
   tinyxml: sig-compat-winapp
   tinyxml2: Programming-language
@@ -11375,10 +11494,12 @@ src-openeuler:
   tog-pegasus: System-tool
   tokyocabinet: Base-service
   tomcat: Application
+  tomcat-jakartaee-migration: sig-Java
   tomcat-taglibs-parent: sig-Java
   tomcat-taglibs-standard: Application
   tomcatjss: Base-service
   toolbox: sig-CloudNative
+  topic_based_ros2_control_release: sig-ROS
   topic_tools: sig-ROS
   torque: Application
   totem: Base-service
@@ -11415,8 +11536,11 @@ src-openeuler:
   triton-cpu: Compiler
   trivy: sig-security-facility
   trousers: Base-service
+  trzsz: ecopkg
   tslib: sig-compat-winapp
   tss2: sig-security-facility
+  tssh: ecopkg
+  tsshd: ecopkg
   ttembed: Application
   ttfautohint: Application
   ttmkfdir: Application
@@ -11451,12 +11575,23 @@ src-openeuler:
   uadk_engine: sig-AccLib
   ub-dhcp: Networking
   ub-lldpd: Networking
+  ub-pkg-manager: sig-UnifiedBus
   ubackup: sig-Migration
+  ubctl: sig-UnifiedBus
   ublox: sig-ROS
   ublox_dgnss: sig-ROS
   uboot-tools: sig-OS-Builder
+  ubs-atomic: sig-UB-ServiceCore
+  ubs-comm: sig-UB-ServiceCore
+  ubs-core: sig-UB-ServiceCore
+  ubs-engine: sig-UB-ServiceCore
+  ubs-io: sig-UB-ServiceCore
+  ubs-mem: sig-UB-ServiceCore
+  ubs-virt: sig-UB-ServiceCore
+  ubturbo: sig-UnifiedBus
   ubu-keyring: Private
   ubuntukylin-default-settings: sig-UKUI
+  ubutils: sig-UnifiedBus
   uchardet: Others
   ucs-miscfixed-fonts: Others
   ucx: sig-HPC
@@ -11515,7 +11650,7 @@ src-openeuler:
   ukui-window-switch: sig-UKUI
   ukwm: sig-UKUI
   ukylin-feedback-client: sig-UKUI
-  umdk: sig-high-performance-network
+  umdk: sig-UnifiedBus
   umoci: sig-CloudNative
   umockdev: Base-service
   uname-build-checks: Base-service
@@ -11527,7 +11662,7 @@ src-openeuler:
   unicode-ucd: System-tool
   uniconvertor: Application
   unifdef: dev-utils
-  unique: Base-service
+  unique: sig-recycle
   unique3: sig-mate-desktop
   unique_identifier_msgs: sig-ROS
   unit-api: Base-service
@@ -11545,7 +11680,9 @@ src-openeuler:
   uom-systems: Base-service
   uos-dovecot-exporter: sig-ops
   uos-iptables-exporter: sig-ops
+  uos-libvirtd-exporter: sig-ops
   uos-mgmt-exporter: sig-ops
+  uos-openldap-exporter: sig-ops
   uos-squid-exporter: sig-ops
   uos-syslog-ng-exporter: sig-ops
   uos-tc-exporter: sig-ops
@@ -11587,6 +11724,7 @@ src-openeuler:
   utf8cpp: dev-utils
   utf8proc: Base-service
   uthash: Base-service
+  util-dfm: sig-DDE
   util-linux: Base-service
   utipmitool: sig-memsafety
   utiputils: sig-memsafety
@@ -11598,6 +11736,7 @@ src-openeuler:
   utzip: sig-memsafety
   uuid: Programming-language
   uv: sig-intelligence
+  uwal: sig-UB-ServiceCore
   uwsgi: Application
   v2v-conversion-host: oVirt
   v4l-utils: System-tool
@@ -11669,7 +11808,7 @@ src-openeuler:
   vscode: Desktop
   vscodium: sig-RISC-V
   vsftpd: Networking
-  vte: Application
+  vte: sig-recycle
   vte291: GNOME
   vtk: sig-epol
   vulkan-headers: Base-service
@@ -11716,6 +11855,13 @@ src-openeuler:
   wireless-tools: sig-mate-desktop
   wireshark: Application
   wisdom-advisor: A-Tune
+  witty-framework: sig-DevStation
+  witty-opencode: sig-intelligence
+  witty-opentunex: sig-intelligence
+  witty-ops-cases: sig-intelligence
+  witty-profiler: sig-intelligence
+  witty-service: sig-DevStation
+  witty-ub: sig-intelligence
   wlroots: sig-UKUI
   wmctrl: Application
   woff2: Desktop
@@ -11839,6 +11985,7 @@ src-openeuler:
   xfd: Desktop
   xfdashboard: xfce
   xfdesktop: xfce
+  xflex: sig-Long
   xfontsel: Desktop
   xfsdump: Storage
   xfsprogs: Storage
@@ -11847,12 +11994,14 @@ src-openeuler:
   xhost: Desktop
   xhtml1-dtds: Others
   xhtml2fo-style-xsl: Private
+  xiaoO: sig-intelligence
   xinetd: Networking
   xinput: Desktop
   xkbcomp: Desktop
   xkeyboard-config: Desktop
   xkill: Desktop
   xl2tpd: Networking
+  xlin-sbom-analysis: sig-sbom
   xload: Desktop
   xlogo: Desktop
   xlsatoms: Desktop
@@ -11860,6 +12009,7 @@ src-openeuler:
   xlsfonts: Desktop
   xmag: Desktop
   xmessage: Desktop
+  xmig: sig-Long
   xml-commons-apis: Application
   xml-commons-resolver: Base-service
   xml-maven-plugin: sig-Java
@@ -11883,6 +12033,7 @@ src-openeuler:
   xmpcore: sig-Java
   xmvn: sig-Java
   xmvn-connector-gradle: Private
+  xmvn-connector-ivy: sig-Java
   xmvn-tools: Private
   xnio: sig-Java
   xom: dev-utils
@@ -11951,8 +12102,9 @@ src-openeuler:
   yaffs2: sig-embedded
   yajl: Base-service
   yakuake: sig-KDE
+  yalantinglibs: sig-Long
   yaml-cpp: Base-service
-  yaml-cpp03: Base-service
+  yaml-cpp03: sig-recycle
   yaml_cpp_vendor: sig-ROS
   yapet: System-tool
   yarnpkg: sig-RISC-V
@@ -11964,7 +12116,7 @@ src-openeuler:
   yelp-tools: GNOME
   yelp-xsl: Desktop
   yhkylin-backup-tools: sig-UKUI
-  ykpers: dev-utils
+  ykpers: sig-recycle
   yocto-opkg-utils: sig-embedded
   yocto-poky: sig-embedded
   yocto-pseudo: sig-embedded
@@ -11976,6 +12128,11 @@ src-openeuler:
   yp-tools: Desktop
   ypbind: Desktop
   ypserv: Desktop
+  yuanrong: sig-YuanRong
+  yuanrong-agentruntime: sig-YuanRong
+  yuanrong-datasystem: sig-YuanRong
+  yuanrong-frontend: sig-YuanRong
+  yuanrong-functionsystem: sig-YuanRong
   yum-metadata-parser: sig-recycle
   yunyi: sig-CloudNative
   yyjson: ecopkg
