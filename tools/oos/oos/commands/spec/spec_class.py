@@ -428,20 +428,39 @@ class RPMCopy():
         self.spec_file = ''
 
     def _rpmbuild_env_ensure(self):
+        dnf_cmd = shutil.which('dnf')
+        if not dnf_cmd:
+            raise click.ClickException("Fail to install rpm tools, You must install them by hand first")
+
         try:
-            subprocess.call(["dnf", "install", "-y", "rpmdevtools"])
+            subprocess.call([dnf_cmd, "install", "-y", "rpmdevtools"])
 
         except Exception:
             raise click.ClickException("Fail to install rpm tools, You must install them by hand first")
 
     def _rpmbuild_dir_check(self):
-        '''if rpmdev-setuptree is installed, run it'''
-        if 0 != os.system('rpmdev-setuptree --help >/dev/null 2>&1'):
-            self._rpmbuild_env_ensure()
+        '''If rpmdev-setuptree is installed, use it; otherwise create rpmbuild tree manually.'''
+        rpmdev = shutil.which('rpmdev-setuptree')
+        if not rpmdev:
+            # If rpmdev tools are not available, manually create the rpmbuild layout.
+            topdir = os.path.expanduser('~/rpmbuild')
+            if self.clear and os.path.exists(topdir):
+                shutil.rmtree(topdir, ignore_errors=True)
+            try:
+                for subdir in ["BUILD", "BUILDROOT", "RPMS", "SOURCES", "SPECS", "SRPMS"]:
+                    os.makedirs(os.path.join(topdir, subdir), exist_ok=True)
+                return
+            except Exception:
+                raise click.ClickException("rpm tools error, You must install them by hand first")
+
         try:
             if self.clear:
-                os.system('rpmdev-wipetree')
-
+                if shutil.which('rpmdev-wipetree'):
+                    os.system('rpmdev-wipetree')
+                else:
+                    topdir = os.path.expanduser('~/rpmbuild')
+                    if os.path.exists(topdir):
+                        shutil.rmtree(topdir, ignore_errors=True)
             os.system('rpmdev-setuptree')
         except Exception:
             raise click.ClickException("rpm tools error, You must install them by hand first")

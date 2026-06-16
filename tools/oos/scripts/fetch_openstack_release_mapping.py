@@ -18,7 +18,13 @@ releases = [
     'yoga',
     'zed',
     '2023.1 antelope',
-    '2023.2 bobcat'
+    '2023.2 bobcat',
+    '2024.1 caracal',
+    '2024.2 dalmatian',
+    '2025.1 epoxy',
+    '2025.2 flamingo',
+    '2026.1 gazpacho',
+    '2026.2 hibiscus'
 ]
 
 
@@ -27,7 +33,7 @@ for release in releases:
     release_name = release.split()[-1]
     url = 'https://releases.openstack.org/' + release_name
     try:
-        url_os_content = requests.get(url, verify=True).content.decode()
+        url_os_content = requests.get(url, verify=True, timeout=10000).content.decode()
 
         # get all links, which ends .tar.gz from HTML
         links = re.findall(r'https://.*\.tar\.gz', url_os_content)
