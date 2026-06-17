@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+
+import time
+
 from packaging import version
 import re
 
@@ -31,9 +34,10 @@ releases = [
 all_res = dict()
 for release in releases:
     release_name = release.split()[-1]
+    release_version = release.split()[0]
     url = 'https://releases.openstack.org/' + release_name
     try:
-        url_os_content = requests.get(url, verify=True, timeout=10000).content.decode()
+        url_os_content = requests.get(url, verify=True, timeout=100000).content.decode()
 
         # get all links, which ends .tar.gz from HTML
         links = re.findall(r'https://.*\.tar\.gz', url_os_content)
@@ -49,7 +53,7 @@ for release in releases:
             # Commits related to {release}-eom versions are not considered now.
             # When SIG decide to incorporate commits which were only contained
             # in eom version, adding the necessary mechanisms to oos.
-            if f"{release}-last" in pkg_link or f"{release}-eom" in pkg_link:
+            if f"{release_name}-last" in pkg_link or f"{release_version}-last" in pkg_link or f"{release_name}-eom" in pkg_link or f"{release_version}-eom" in pkg_link:
                 # tempest plugin version names like "stein-last" should be skipped.
                 # version names like "victoria-eom" should be skipped.
                 continue
@@ -70,7 +74,7 @@ for release in releases:
                     if version.parse(results.get(pkg_name)) < version.parse(pkg_ver):
                         results[pkg_name] = pkg_ver
                 except Exception as e:
-                    print(release + ': ' + pkg_name)
+                    print(release_name + ': ' + pkg_name)
                     print(f"Error occurred: {e}\n")
         # Store the release information.
         # For releases after "Zed", use the release number:
@@ -81,9 +85,13 @@ for release in releases:
         # code. And the release number will be used as the primary identifier
         # in the development cycle.
         # Reference: https://governance.openstack.org/tc/reference/release-naming.html
-        all_res[release.split()[0]] = results
+        all_res[release_version] = results
     except requests.exceptions.RequestException as e:
-            print(f"Error fetching data for {release}: {e}")
+            print(f"Error fetching data for {release_version}: {e}")
+    finally:
+        sleep_time = 1
+        print(f"Sleeping for {sleep_time} seconds to avoid overwhelming the server...")
+        time.sleep(sleep_time)
 
 with open('openstack_release.yaml', 'w') as fp:
     fp.write(yaml.dump(all_res))

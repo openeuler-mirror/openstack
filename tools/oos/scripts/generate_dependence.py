@@ -124,6 +124,48 @@ SUPPORT_RELEASE = {
             "gnocchi": "4.6.0"
         }
     },
+    # caracal
+    "2024.1": {
+        "base_service": _SEARVICE,
+        "extra_service": {
+            "gnocchi": "4.6.1"
+        }
+    },
+    # dalmatian
+    "2024.2": {
+        "base_service": _SEARVICE,
+        "extra_service": {
+            "gnocchi": "4.6.2"
+        }
+    },
+    # epoxy
+    "2025.1": {
+        "base_service": _SEARVICE,
+        "extra_service": {
+            "gnocchi": "4.6.3"
+        }
+    },
+    # flamingo
+    "2025.2": {
+        "base_service": _SEARVICE,
+        "extra_service": {
+            "gnocchi": "4.6.4"
+        }
+    },
+    # gazpacho
+    "2026.1": {
+        "base_service": _SEARVICE,
+        "extra_service": {
+            "gnocchi": "4.6.5"
+        }
+    },
+    # hibiscus
+    "2026.2": {
+        "base_service": _SEARVICE,
+        "extra_service": {
+            "gnocchi": "4.7.0"
+        }
+    },
 }
 PYTHON_REGEX = {
     'python_version_gt_regex': ([r"(?<=python_version>)[0-9\.'\"]+", r"(?<=python_version >) [0-9\.'\"]+"], '>='),
@@ -455,7 +497,7 @@ def run(projects, core, runtime, release):
     upper_url = "https://opendev.org/openstack/requirements/raw/branch/stable/%s/upper-constraints.txt" % release
     upper_projects = requests.get(upper_url, verify=True).content.decode().split('\n')
     for upper_project in upper_projects:
-        if not upper_project:
+        if not upper_project or "===" not in upper_project:
             continue
         project_name, project_version = upper_project.split('===')
         project_version = project_version.split(';')[0]
