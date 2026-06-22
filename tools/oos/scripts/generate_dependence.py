@@ -211,7 +211,10 @@ class Project(object):
         # strings. This handles edge cases where versions from
         # pypi_version_fix of CONSTANTS might not be in string format.
         # Closes-Bug: https://gitee.com/openeuler/openstack/issues/I90U2K
-        if p_version.parse(str(self.version)) > p_version.parse(str(local_project.version)):
+        prefix=self.version
+        if str(self.version).endswith('.*'):
+            prefix = str(self.version)[0:-2]
+        if p_version.parse(str(prefix)) > p_version.parse(str(local_project.version)):
             is_out_of_date = True
         if not is_out_of_date:
             self.name = local_project.name
