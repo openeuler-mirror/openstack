@@ -359,9 +359,9 @@ def fetch_open_pr(gitee_pat, repos, output):
 @click.option("-o", "--atomgit-org", envvar='ATOMGIT_ORG', required=True,
               default="src-openeuler", show_default=True,
               help="Atomgit organization name of repos")
-def fork_repos(token, names, gitee_org):
+def fork_repos(token, names, atomgit_org):
 
-    repo_obj = PkgGitRepo(gitee_pat=token, repo_name='nouse', gitee_org=gitee_org)
+    repo_obj = PkgGitRepo(gitee_pat=token, repo_name='nouse', atomgit_org=atomgit_org)
     for name in names.split():
         repo_obj.fork_repo(name)
 

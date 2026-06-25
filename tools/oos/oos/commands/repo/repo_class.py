@@ -10,14 +10,14 @@ from oos.common import utils
 
 
 class PkgGitRepo(object):
-    def __init__(self, gitee_pat=None, gitee_org='src-openeuler',
-                 gitee_user=None, gitee_email=None,
+    def __init__(self, atomgit_pat=None, atomgit_org='src-openeuler',
+                 atomgit_user=None, atomgit_email=None,
                  pypi_name=None, repo_name=None):
         self.pypi_name = pypi_name
-        self.gitee_org = gitee_org
-        self.gitee_pat = gitee_pat
-        self.gitee_user = gitee_user
-        self.gitee_email = gitee_email
+        self.atomgit_org = atomgit_org
+        self.atomgit_pat = atomgit_pat
+        self.atomgit_user = atomgit_user
+        self.atomgit_email = atomgit_email
         self.not_found = False
         self.branch_not_found = False
         self.repo_dir = ''
@@ -47,9 +47,9 @@ class PkgGitRepo(object):
             url = "https://api.atomgit.com/api/v5/repos/%s/%s/forks" % (
                 self.gitee_org, repo_name)
             resp = requests.request("POST", url,
-                                    data={"access_token": self.gitee_pat})
+                                    data={"access_token": self.atomgit_pat})
             if resp.status_code == 404:
-                click.echo("Repo not found for: %s/%s" % (self.gitee_org,
+                click.echo("Repo not found for: %s/%s" % (self.atomgit_org,
                                                           repo_name),
                            err=True)
                 self.not_found = True
