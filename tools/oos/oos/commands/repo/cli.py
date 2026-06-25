@@ -356,9 +356,9 @@ def fetch_open_pr(gitee_pat, repos, output):
 @group.command(name='fork', help='fork multi repos')
 @click.argument('token', type=str)
 @click.argument('names', type=str)
-@click.option("-o", "--gitee-org", envvar='GITEE_ORG', required=True,
+@click.option("-o", "--atomgit-org", envvar='ATOMGIT_ORG', required=True,
               default="src-openeuler", show_default=True,
-              help="Gitee organization name of repos")
+              help="Atomgit organization name of repos")
 def fork_repos(token, names, gitee_org):
 
     repo_obj = PkgGitRepo(gitee_pat=token, repo_name='nouse', gitee_org=gitee_org)

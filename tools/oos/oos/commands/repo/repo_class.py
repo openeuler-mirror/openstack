@@ -44,7 +44,7 @@ class PkgGitRepo(object):
 
     def fork_repo(self, repo_name):
         try:
-            url = "https://gitee.com/api/v5/repos/%s/%s/forks" % (
+            url = "https://api.atomgit.com/api/v5/repos/%s/%s/forks" % (
                 self.gitee_org, repo_name)
             resp = requests.request("POST", url,
                                     data={"access_token": self.gitee_pat})
