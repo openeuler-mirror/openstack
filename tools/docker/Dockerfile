@@ -18,7 +18,7 @@ RUN sed -i s'/TMOUT=300/TMOUT=300000000000/' /etc/bashrc
 RUN rpmdev-setuptree
 
 WORKDIR /root/
-RUN git clone https://atomgit.com/openeuler/openstack \
+RUN git clone https://atomgit.com/openeuler/openstack.git \
     && cd openstack/tools/oos \
     && pip3 install -r requirements.txt \
     && python3 setup.py develop
