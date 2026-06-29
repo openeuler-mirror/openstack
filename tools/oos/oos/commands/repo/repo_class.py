@@ -45,7 +45,7 @@ class PkgGitRepo(object):
     def fork_repo(self, repo_name):
         try:
             url = "https://api.atomgit.com/api/v5/repos/%s/%s/forks" % (
-                self.gitee_org, repo_name)
+                self.atomgit_org, repo_name)
             resp = requests.request("POST", url,
                                     data={"access_token": self.atomgit_pat})
             if resp.status_code == 404:
