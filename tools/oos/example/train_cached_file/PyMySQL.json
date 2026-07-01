@@ -1,1 +1,0 @@
-{"name": "PyMySQL", "version_dict": {"version": "0.9.3", "eq_version": "", "ge_version": "0.7.6", "lt_version": "", "ne_version": [], "upper_version": "0.9.3"}, "deep": {"count": 9, "list": ["aodh", "futurist", "hacking", "oslosphinx", "openstackdocstheme", "os-api-ref", "stestr", "subunit2sql", "oslo.db", "PyMySQL"]}, "requires": {}}

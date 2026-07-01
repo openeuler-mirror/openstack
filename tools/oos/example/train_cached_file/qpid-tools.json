@@ -1,1 +1,0 @@
-{"name": "qpid-tools", "version_dict": {"version": "0.26", "eq_version": "", "ge_version": "0.26", "lt_version": "", "ne_version": [], "upper_version": ""}, "deep": {"count": 4, "list": ["aodh", "keystonemiddleware", "oslo.messaging", "kombu", "qpid-tools"]}, "requires": {}}

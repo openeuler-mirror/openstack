@@ -1,1 +1,0 @@
-{"name": "selenium", "version_dict": {"version": "3.141.0", "eq_version": "", "ge_version": "2.50.1", "lt_version": "", "ne_version": [], "upper_version": "3.141.0"}, "deep": {"count": 1, "list": ["horizon", "selenium"]}, "requires": {}}
