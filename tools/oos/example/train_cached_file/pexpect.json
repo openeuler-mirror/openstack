@@ -1,1 +1,0 @@
-{"name": "pexpect", "version_dict": {"version": "4.7.0", "eq_version": "", "ge_version": "3.1", "lt_version": "", "ne_version": ["3.3"], "upper_version": "4.7.0"}, "deep": {"count": 1, "list": ["trove", "pexpect"]}, "requires": {"ptyprocess": {"eq_version": "", "ge_version": "0.5", "lt_version": "", "ne_version": [], "upper_version": "0.6.0", "version": "0.6.0"}}}

@@ -1,1 +1,0 @@
-{"name": "infi.dtypes.iqn", "version_dict": {"version": "0.4.0", "eq_version": "", "ge_version": "", "lt_version": "", "ne_version": [], "upper_version": "0.4.0"}, "deep": {"count": 1, "list": ["cinder", "infi.dtypes.iqn"]}, "requires": {}}

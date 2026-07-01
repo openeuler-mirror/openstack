@@ -1,1 +1,0 @@
-{"name": "pymongo", "version_dict": {"version": "3.9.0", "eq_version": "", "ge_version": "3.0.2", "lt_version": "", "ne_version": ["3.1"], "upper_version": "3.9.0"}, "deep": {"count": 3, "list": ["aodh", "keystonemiddleware", "oslo.cache", "pymongo"]}, "requires": {}}

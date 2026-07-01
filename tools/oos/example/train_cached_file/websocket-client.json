@@ -1,1 +1,0 @@
-{"name": "websocket-client", "version_dict": {"version": "0.56.0", "eq_version": "", "ge_version": "0.44.0", "lt_version": "", "ne_version": [], "upper_version": "0.56.0"}, "deep": {"count": 4, "list": ["aodh", "gnocchiclient", "python-openstackclient", "python-zunclient", "websocket-client"]}, "requires": {}}

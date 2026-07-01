@@ -1,1 +1,0 @@
-{"name": "suds-jurko", "version_dict": {"version": "0.6", "eq_version": "", "ge_version": "0.6", "lt_version": "", "ne_version": [], "upper_version": "0.6"}, "deep": {"count": 2, "list": ["ceilometer", "oslo.vmware", "suds-jurko"]}, "requires": {}}

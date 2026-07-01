@@ -1,1 +1,0 @@
-{"name": "alembic", "version_dict": {"version": "1.1.0", "eq_version": "", "ge_version": "0.4.1", "lt_version": "", "ne_version": [], "upper_version": "1.1.0"}, "deep": {"count": 8, "list": ["aodh", "futurist", "hacking", "oslosphinx", "openstackdocstheme", "os-api-ref", "stestr", "subunit2sql", "alembic"]}, "requires": {}}

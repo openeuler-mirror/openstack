@@ -1,1 +1,0 @@
-{"name": "simplejson", "version_dict": {"version": "3.16.0", "eq_version": "", "ge_version": "3.5.1", "lt_version": "", "ne_version": [], "upper_version": "3.16.0"}, "deep": {"count": 3, "list": ["aodh", "gnocchiclient", "osc-lib", "simplejson"]}, "requires": {}}

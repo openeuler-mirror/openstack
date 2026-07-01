@@ -1,1 +1,0 @@
-{"name": "pygments-github-lexers", "version_dict": {"version": "0.0.5", "eq_version": "0.0.5", "ge_version": "", "lt_version": "", "ne_version": [], "upper_version": ""}, "deep": {"count": 6, "list": ["aodh", "futurist", "hacking", "mock", "Sphinx", "setuptools", "pygments-github-lexers"]}, "requires": {}}

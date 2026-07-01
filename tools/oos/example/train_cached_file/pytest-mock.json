@@ -1,1 +1,0 @@
-{"name": "pytest-mock", "version_dict": {"version": "1.8", "eq_version": "", "ge_version": "1.8", "lt_version": "", "ne_version": [], "upper_version": ""}, "deep": {"count": 2, "list": ["kolla", "graphviz", "pytest-mock"]}, "requires": {"pytest": {"eq_version": "", "ge_version": "2.7", "lt_version": "", "ne_version": [], "upper_version": "5.1.2", "version": "5.1.2"}}}
