@@ -28,6 +28,7 @@ Meeting agenda and summary: <https://etherpad.openeuler.org/p/sig-openstack-meet
 - Zheng Ting [tzing_t](https://gitee.com/tzing_t) zhengting13@huawei.com
 - Wang Dongxing [desert-sailor](https://gitee.com/desert-sailor) dongxing.wang_a@thundersoft.com
 - Wang Jing [Accessac](https://gitee.com/Accessac) wangjing@uniontech.com
+- Chen Zhichao [unac](https://atomgit.com/unac) 1317113781@qq.com
 
 ### Maintainer/Committer list
 
@@ -41,6 +42,7 @@ Meeting agenda and summary: <https://etherpad.openeuler.org/p/sig-openstack-meet
 - Wang Dongxing [desert-sailor](https://gitee.com/desert-sailor) dongxing.wang_a@thundersoft.com
 - Zheng Ting [tzing_t](https://gitee.com/tzing_t) zhengting13@huawei.com
 - Wang Jing [Accessac](https://gitee.com/Accessac) wangjing@uniontech.com
+- Chen Zhichao [unac](https://atomgit.com/unac) 1317113781@qq.com
 - Liu Sheng [@sean-lau](https://gitee.com/sean-lau) liusheng2048@gmail.com - Retired
 
 ### Contact details

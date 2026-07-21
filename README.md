@@ -32,6 +32,8 @@ openEuler OpenStack SIG致力于结合多样性算力为openstack社区贡献更
 |郑挺|[tzing_t](https://gitee.com/tzing_t)|zhengting13@huawei.com|华为|
 |王东兴|[desert-sailor](https://gitee.com/desert-sailor)|dongxing.wang_a@thundersoft.com|创达奥思维|
 |王静|[Accessac](https://gitee.com/Accessac)|wangjing@uniontech.com|统信软件|
+|陈智超|[unac](https://atomgit.com/unac)|1317113781@qq.com|华为|
+
 
 ### Maintainer/Committer列表
 
@@ -47,6 +49,7 @@ openEuler OpenStack SIG致力于结合多样性算力为openstack社区贡献更
 |王东兴|[desert-sailor](https://gitee.com/desert-sailor)|dongxing.wang_a@thundersoft.com|创达奥思维|
 |郑挺|[tzing_t](https://gitee.com/tzing_t)|zhengting13@huawei.com|华为|
 |王静|[Accessac](https://gitee.com/Accessac)|wangjing@uniontech.com|统信软件|
+|陈智超|[unac](https://atomgit.com/unac)|1317113781@qq.com|华为|
 
 #### 已退休
 
